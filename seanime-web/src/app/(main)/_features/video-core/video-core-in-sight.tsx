@@ -14,6 +14,9 @@ import { useAtom } from "jotai/react"
 import { useRef } from "react"
 import React, { useMemo, useState } from "react"
 import { BiX } from "react-icons/bi"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 export const vc_inSight_open = atom(false)
 export const vc_inSight_data = atom<VideoCore_InSightData | null>(null)
@@ -57,7 +60,7 @@ export function VideoCoreInSight() {
         const res = list.filter(c => c.name?.toLowerCase().includes(searchQuery.toLowerCase()))
         if (res.length === 0) return [{
             mal_id: 0,
-            name: "No results",
+            name: t("videoPlayer.inSight.noResults"),
             images: {
                 webp: {
                     image_url: "/no-cover.png",
@@ -200,9 +203,9 @@ export function VideoCoreInSight() {
                 <div className="w-fit flex items-center gap-3">
                     <div className="w-fit">
                         <p className="text-2xl font-semibold text-white text-shadow-md">
-                            Characters
+                            {t("videoPlayer.inSight.characters")}
                         </p>
-                        <p className="text-white/60">May contain spoilers.</p>
+                        <p className="text-white/60">{t("videoPlayer.inSight.mayContainSpoilers")}</p>
                     </div>
                     <IconButton
                         icon={<BiX />}
@@ -216,7 +219,7 @@ export function VideoCoreInSight() {
                 <TextInput
                     ref={searchInputRef}
                     type="text"
-                    placeholder="Search characters..."
+                    placeholder={t("videoPlayer.inSight.searchCharacters")}
                     value={searchQuery}
                     onValueChange={(v) => setSearchQuery(v)}
                     fieldClass="w-[300px] !rounded-full"
@@ -285,11 +288,11 @@ export function VideoCoreInSight() {
 function CharacterPopoverContent({ character }: { character: VideoCore_InSightCharacter }) {
     const { data: details, isLoading } = useVideoCoreInSightGetCharacterDetails(character.mal_id)
 
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <p>{t("videoPlayer.inSight.loading")}</p>
 
     return (
         <p className="text-justify text-white">
-            {details?.about || "No details available."}
+            {details?.about || t("videoPlayer.inSight.noDetailsAvailable")}
         </p>
     )
 }
