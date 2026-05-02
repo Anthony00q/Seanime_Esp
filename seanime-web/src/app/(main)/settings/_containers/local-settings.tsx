@@ -7,8 +7,11 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { Field } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { LuCloudUpload, LuUserCog } from "react-icons/lu"
+
+const t = createTranslator("es")
 
 type Props = {
     isPending: boolean
@@ -28,9 +31,9 @@ export function LocalSettings(props: Props) {
     const { mutate: upload, isPending: isUploading } = useLocalSyncSimulatedDataToAnilist()
 
     const confirmDialog = useConfirmationDialog({
-        title: "Upload to AniList",
-        description: "This will upload your local Seanime collection to your AniList account. Are you sure you want to proceed?",
-        actionText: "Upload",
+        title: t("settings.server.uploadToAnilist"),
+        description: t("settings.server.uploadToAnilistDescription"),
+        actionText: t("settings.server.upload"),
         actionIntent: "primary",
         onConfirm: async () => {
             upload()
@@ -41,21 +44,20 @@ export function LocalSettings(props: Props) {
         <div className="space-y-4">
 
             <SettingsPageHeader
-                title="Local Account"
-                description="Local anime and manga list managed by Seanime"
+                title={t("settings.localSettings.title")}
+                description={t("settings.localSettings.description")}
                 icon={LuUserCog}
             />
 
             <SettingsCard
-                title="AniList"
-                // description="You can upload your local Seanime collection to your AniList account."
+                title={t("settings.anilist.title")}
             >
                 <div className={cn(serverStatus?.user?.isSimulated && "opacity-50 pointer-events-none")}>
                     <Field.Switch
                         side="right"
                         name="autoSyncToLocalAccount"
-                        label="Auto sync from AniList"
-                        help="Periodically update your local collection by using your AniList data."
+                        label={t("settings.localSettings.autoSyncFromAniList")}
+                        help={t("settings.localSettings.autoSyncFromAniListHelp")}
                     />
                 </div>
                 <Separator />
@@ -69,7 +71,7 @@ export function LocalSettings(props: Props) {
                     }}
                     disabled={serverStatus?.user?.isSimulated}
                 >
-                    Upload to AniList
+                    {t("settings.localSettings.uploadToAniList")}
                 </Button>
             </SettingsCard>
 

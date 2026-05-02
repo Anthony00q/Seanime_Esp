@@ -1,5 +1,6 @@
 import { Models_HomeItem, Nullish } from "@/api/generated/types"
 import { ADVANCED_SEARCH_COUNTRIES_MANGA, ADVANCED_SEARCH_MEDIA_GENRES } from "@/app/(main)/search/_lib/advanced-search-constants"
+import { createTranslator } from "@/locales"
 
 export const DEFAULT_HOME_ITEMS: Models_HomeItem[] = [
     {
@@ -44,158 +45,160 @@ type HomeItemSchema = {
     description?: string
 }
 
+const t = createTranslator("es")
+
 const _carouselOptions = [
     {
-        label: "Name",
+        label: t("common.labels.name"),
         type: "text",
         name: "name",
     },
     {
-        label: "Sorting",
+        label: t("home.items.options.sorting.label"),
         type: "select",
         name: "sorting",
         options: [
             {
-                label: "Popular",
+                label: t("home.items.options.sorting.popular"),
                 value: "POPULARITY_DESC",
             },
             {
-                label: "Trending",
+                label: t("home.items.options.sorting.trending"),
                 value: "TRENDING_DESC",
             },
             {
-                label: "Romaji Title (A-Z)",
+                label: t("home.items.options.sorting.romajiTitle"),
                 value: "TITLE_ROMAJI_ASC",
             },
             {
-                label: "Romaji Title (Z-A)",
+                label: t("home.items.options.sorting.romajiTitleDesc"),
                 value: "TITLE_ROMAJI_DESC",
             },
             {
-                label: "English title (A-Z)",
+                label: t("home.items.options.sorting.englishTitle"),
                 value: "TITLE_ENGLISH_ASC",
             },
             {
-                label: "English title (Z-A)",
+                label: t("home.items.options.sorting.englishTitleDesc"),
                 value: "TITLE_ENGLISH_DESC",
             },
             {
-                label: "Score (0-10)",
+                label: t("home.items.options.sorting.score"),
                 value: "SCORE",
             },
             {
-                label: "Score (10-0)",
+                label: t("home.items.options.sorting.scoreDesc"),
                 value: "SCORE_DESC",
             },
         ],
     },
     {
-        label: "Status",
+        label: t("home.items.options.status.label"),
         type: "multi-select",
         name: "status",
         options: [
             {
-                label: "Releasing",
+                label: t("home.items.options.status.releasing"),
                 value: "RELEASING",
             },
             {
-                label: "Finished",
+                label: t("home.items.options.status.finished"),
                 value: "FINISHED",
             },
             {
-                label: "Not yet released",
+                label: t("home.items.options.status.notYetReleased"),
                 value: "NOT_YET_RELEASED",
             },
         ],
     },
     {
-        label: "Format",
+        label: t("home.items.options.format.label"),
         type: "select",
         name: "format",
         options: [
             {
-                label: "TV",
+                label: t("home.items.options.format.tv"),
                 value: "TV",
             },
             {
-                label: "Movie",
+                label: t("home.items.options.format.movie"),
                 value: "MOVIE",
             },
             {
-                label: "OVA",
+                label: t("home.items.options.format.ova"),
                 value: "OVA",
             },
             {
-                label: "ONA",
+                label: t("home.items.options.format.ona"),
                 value: "ONA",
             },
             {
-                label: "Special",
+                label: t("home.items.options.format.special"),
                 value: "SPECIAL",
             },
         ],
     },
     {
-        label: "Genres",
+        label: t("home.items.options.genres.label"),
         type: "multi-select",
         options: ADVANCED_SEARCH_MEDIA_GENRES.map(n => ({ value: n, label: n })),
         name: "genres",
     },
     {
-        label: "Season",
+        label: t("home.items.options.season.label"),
         type: "select",
         name: "season",
         options: [
-            { value: "WINTER", label: "Winter" },
-            { value: "SPRING", label: "Spring" },
-            { value: "SUMMER", label: "Summer" },
-            { value: "FALL", label: "Fall" },
+            { value: "WINTER", label: t("home.items.options.season.winter") },
+            { value: "SPRING", label: t("home.items.options.season.spring") },
+            { value: "SUMMER", label: t("home.items.options.season.summer") },
+            { value: "FALL", label: t("home.items.options.season.fall") },
         ],
     },
     {
-        label: "Year",
+        label: t("home.items.options.year.label"),
         type: "number",
         name: "year",
         min: 0,
         max: 2100,
     },
     {
-        label: "Country of Origin",
+        label: t("home.items.options.countryOfOrigin.label"),
         type: "select",
         name: "countryOfOrigin",
         options: ADVANCED_SEARCH_COUNTRIES_MANGA,
     },
 ]
 
-export const HOME_ITEMS = {
+export const HOME_ITEMS: Record<string, HomeItemSchema> = {
     "centered-title": {
-        name: "Centered title",
+        name: t("home.items.centeredTitle.name"),
         kind: ["row"],
         schemaVersion: 1,
-        description: "Display a centered title text.",
+        description: t("home.items.centeredTitle.description"),
         options: [{
-            label: "Text",
+            label: t("home.items.options.text"),
             type: "text",
             name: "text",
         }],
     },
     "anime-continue-watching": {
-        name: "Continue Watching",
+        name: t("home.items.continueWatching.name"),
         kind: ["row", "header"],
         schemaVersion: 1,
-        description: "Display a list of episodes you are currently watching.",
+        description: t("home.items.continueWatching.description"),
     },
     "anime-continue-watching-header": {
-        name: "Continue Watching Header",
+        name: t("home.items.continueWatchingHeader.name"),
         kind: ["header"],
         schemaVersion: 1,
-        description: "Display a header with a carousel of anime you are currently watching.",
+        description: t("home.items.continueWatchingHeader.description"),
     },
     "anime-library": {
-        name: "Anime Library",
+        name: t("home.items.animeLibrary.name"),
         kind: ["row"],
         schemaVersion: 2,
-        description: "Display anime you have downloaded / you are currently watching by status.",
+        description: t("home.items.animeLibrary.description"),
         options: [
             {
                 label: "Statuses",
@@ -204,37 +207,37 @@ export const HOME_ITEMS = {
                 options: [
                     {
                         value: "CURRENT",
-                        label: "Currently Watching",
+                        label: t("home.carousel.anime.currentlyWatching"),
                     },
                     {
                         value: "PAUSED",
-                        label: "Paused",
+                        label: t("home.items.options.state.paused"),
                     },
                     {
                         value: "PLANNING",
-                        label: "Planning",
+                        label: t("home.items.options.state.planning"),
                     },
                     {
                         value: "COMPLETED",
-                        label: "Completed",
+                        label: t("home.items.options.state.completed"),
                     },
                     {
                         value: "DROPPED",
-                        label: "Dropped",
+                        label: t("home.items.options.state.dropped"),
                     },
                 ],
             },
             {
-                label: "Layout",
+                label: t("home.items.options.layout.label"),
                 name: "layout",
                 type: "select",
                 options: [
                     {
-                        label: "Grid",
+                        label: t("home.items.options.layout.grid"),
                         value: "grid",
                     },
                     {
-                        label: "Carousel",
+                        label: t("home.items.options.layout.carousel"),
                         value: "carousel",
                     },
                 ],
@@ -242,10 +245,10 @@ export const HOME_ITEMS = {
         ],
     },
     "my-lists": {
-        name: "My Lists",
+        name: t("home.items.myLists.name"),
         kind: ["row"],
         schemaVersion: 1,
-        description: "Display media from your lists by status.",
+        description: t("home.items.myLists.description"),
         options: [
             {
                 label: "Statuses",
@@ -254,84 +257,84 @@ export const HOME_ITEMS = {
                 options: [
                     {
                         value: "CURRENT",
-                        label: "Current",
+                        label: t("home.items.options.state.current"),
                     },
                     {
                         value: "REPEATING",
-                        label: "Repeating",
+                        label: t("home.items.options.state.repeating"),
                     },
                     {
                         value: "PAUSED",
-                        label: "Paused",
+                        label: t("home.items.options.state.paused"),
                     },
                     {
                         value: "PLANNING",
-                        label: "Planning",
+                        label: t("home.items.options.state.planning"),
                     },
                     {
                         value: "COMPLETED",
-                        label: "Completed",
+                        label: t("home.items.options.state.completed"),
                     },
                     {
                         value: "DROPPED",
-                        label: "Dropped",
+                        label: t("home.items.options.state.dropped"),
                     },
                 ],
             },
             {
-                label: "Layout",
+                label: t("home.items.options.layout.label"),
                 name: "layout",
                 type: "select",
                 options: [
                     {
-                        label: "Grid",
+                        label: t("home.items.options.layout.grid"),
                         value: "grid",
                     },
                     {
-                        label: "Carousel",
+                        label: t("home.items.options.layout.carousel"),
                         value: "carousel",
                     },
                 ],
             },
             {
-                label: "Type",
+                label: t("home.items.options.type.label"),
                 name: "type",
                 type: "select",
                 options: [
                     {
-                        label: "Anime",
+                        label: t("home.items.options.type.anime"),
                         value: "anime",
                     },
                     {
-                        label: "Manga",
+                        label: t("home.items.options.type.manga"),
                         value: "manga",
                     },
                 ],
             },
             {
-                label: "Custom list name (Optional)",
+                label: t("home.items.options.customListName.label"),
                 type: "text",
                 name: "customListName",
             },
         ],
     },
     "local-anime-library": {
-        name: "Local Anime Library",
+        name: t("home.items.localAnimeLibrary.name"),
         kind: ["row"],
         schemaVersion: 2,
-        description: "Display a complete grid of anime you have in your local library.",
+        description: t("home.items.localAnimeLibrary.description"),
         options: [
             {
-                label: "Layout",
+                label: t("home.items.options.layout.label"),
                 name: "layout",
                 type: "select",
                 options: [
                     {
-                        label: "Grid",
+                        label: t("home.items.options.layout.grid"),
                         value: "grid",
                     },
                     {
-                        label: "Carousel",
+                        label: t("home.items.options.layout.carousel"),
                         value: "carousel",
                     },
                 ],
@@ -339,40 +342,40 @@ export const HOME_ITEMS = {
         ],
     },
     "library-upcoming-episodes": {
-        name: "Upcoming Library Episodes",
+        name: t("home.items.upcomingEpisodes.name"),
         kind: ["row"],
         schemaVersion: 1,
-        description: "Display a carousel of upcoming episodes from anime you have in your library.",
+        description: t("home.items.upcomingEpisodes.description"),
     },
     "aired-recently": {
-        name: "Aired Recently (Global)",
+        name: t("home.items.airedRecently.name"),
         kind: ["row"],
         schemaVersion: 1,
-        description: "Display a carousel of anime episodes that aired recently.",
+        description: t("home.items.airedRecently.description"),
     },
     "missed-sequels": {
-        name: "Missed Sequels",
+        name: t("home.items.missedSequels.name"),
         kind: ["row"],
         schemaVersion: 1,
-        description: "Display a carousel of sequels that aren't in your collection.",
+        description: t("home.items.missedSequels.description"),
     },
     "anime-schedule-calendar": {
-        name: "Anime Schedule Calendar",
+        name: t("home.items.animeScheduleCalendar.name"),
         kind: ["row"],
         schemaVersion: 2,
-        description: "Display a calendar of anime episodes based on their airing schedule.",
+        description: t("home.items.animeScheduleCalendar.description"),
         options: [
             {
-                label: "Type",
+                label: t("home.items.options.carouselType.label"),
                 name: "type",
                 type: "select",
                 options: [
                     {
-                        label: "My lists",
+                        label: t("home.items.options.carouselType.myLists"),
                         value: "my-lists",
                     },
                     {
-                        label: "Global",
+                        label: t("home.items.options.carouselType.global"),
                         value: "global",
                     },
                 ],
@@ -380,40 +383,40 @@ export const HOME_ITEMS = {
         ],
     },
     "local-anime-library-stats": {
-        name: "Local Anime Library Stats",
+        name: t("home.items.localAnimeLibraryStats.name"),
         kind: ["row"],
         schemaVersion: 1,
-        description: "Display the stats for your local anime library.",
+        description: t("home.items.localAnimeLibraryStats.description"),
     },
     "discover-header": {
-        name: "Discover Header",
+        name: t("home.items.discoverHeader.name"),
         kind: ["header"],
         schemaVersion: 1,
-        description: "Display a header with a carousel of anime that are trending.",
+        description: t("home.items.discoverHeader.description"),
     },
     "anime-carousel": {
-        name: "Anime Carousel",
+        name: t("home.items.animeCarousel.name"),
         kind: ["row"],
         schemaVersion: 3,
         options: _carouselOptions,
-        description: "Display a carousel of anime based on the selected options.",
+        description: t("home.items.animeCarousel.description"),
     },
     "manga-carousel": {
-        name: "Manga Carousel",
+        name: t("home.items.mangaCarousel.name"),
         kind: ["row"],
         schemaVersion: 1,
-        description: "Display a carousel of manga based on the selected options.",
+        description: t("home.items.mangaCarousel.description"),
         options: _carouselOptions.map(n => {
             if (n.name === "format") {
                 return {
                     ...n,
                     options: [
                         {
-                            label: "Manga",
+                            label: t("home.items.options.format.manga"),
                             value: "MANGA",
                         },
                         {
-                            label: "One Shot",
+                            label: t("home.items.options.format.oneShot"),
                             value: "ONE_SHOT",
                         },
                     ],
@@ -423,10 +426,10 @@ export const HOME_ITEMS = {
         }),
     },
     "manga-library": {
-        name: "Manga Library",
+        name: t("home.items.mangaLibrary.name"),
         kind: ["row", "header"],
         schemaVersion: 2,
-        description: "Display a list of manga you have in your library by status.",
+        description: t("home.items.mangaLibrary.description"),
         options: [
             {
                 label: "Statuses",
@@ -435,33 +438,31 @@ export const HOME_ITEMS = {
                 options: [
                     {
                         value: "CURRENT",
-                        label: "Currently Reading",
+                        label: t("home.carousel.manga.currentlyReading"),
                     },
                     {
                         value: "PAUSED",
-                        label: "Paused",
+                        label: t("home.items.options.state.paused"),
                     },
                 ],
             },
             {
-                label: "Layout",
+                label: t("home.items.options.layout.label"),
                 name: "layout",
                 type: "select",
                 options: [
                     {
-                        label: "Grid",
+                        label: t("home.items.options.layout.grid"),
                         value: "grid",
                     },
                     {
-                        label: "Carousel",
+                        label: t("home.items.options.layout.carousel"),
                         value: "carousel",
                     },
                 ],
             },
         ],
     },
-} as Record<string, HomeItemSchema>
+}
 
-export const HOME_ITEM_IDS = Object.keys(HOME_ITEMS) as (keyof typeof HOME_ITEMS)[]
-
-// export type HomeItemID = (keyof typeof HOME_ITEMS)
+export const HOME_ITEM_IDS = Object.keys(HOME_ITEMS)

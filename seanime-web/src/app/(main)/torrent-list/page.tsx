@@ -17,7 +17,10 @@ import { Popover } from "@/components/ui/popover"
 import { TextInput } from "@/components/ui/text-input"
 import { Tooltip } from "@/components/ui/tooltip"
 import { upath } from "@/lib/helpers/upath"
+import { createTranslator } from "@/locales"
 import capitalize from "lodash/capitalize"
+
+const t = createTranslator("es")
 import React from "react"
 import { BiDownArrow, BiLinkExternal, BiPause, BiPlay, BiStop, BiTime, BiTrash, BiUpArrow } from "react-icons/bi"
 import { LuListCheck } from "react-icons/lu"
@@ -103,14 +106,14 @@ function Content() {
         },
     })
 
-    if (!enabled) return <LuffyError title="Failed to connect">
+    if (!enabled) return <LuffyError title={t("torrentList.failedToConnect")}>
         <div className="flex flex-col gap-4 items-center">
-            <p className="max-w-md">Failed to connect to the torrent client, verify your settings and make sure it is running.</p>
+            <p className="max-w-md">{t("torrentList.failedToConnect")}</p>
             <Button
                 intent="primary-subtle" onClick={() => {
                 setEnabled(true)
             }}
-            >Retry</Button>
+            >{t("torrentList.retry")}</Button>
         </div>
     </LuffyError>
 
@@ -121,14 +124,14 @@ function Content() {
 
             <div>
                 <ul className="text-[--muted] flex flex-wrap gap-4 items-center">
-                    <li>Downloading: {data?.filter(t => t.status === "downloading" || t.status === "paused")?.length ?? 0}</li>
-                    <li>Seeding: {data?.filter(t => t.status === "seeding")?.length ?? 0}</li>
+                    <li>{t("torrentList.downloading")}: {data?.filter(t => t.status === "downloading" || t.status === "paused")?.length ?? 0}</li>
+                    <li>{t("torrentList.seeding")}: {data?.filter(t => t.status === "seeding")?.length ?? 0}</li>
                     {!!data?.filter(t => t.status === "seeding")?.length && <li>
                         <Button
                             size="xs"
                             intent="primary-link"
                             onClick={() => confirmStopAllSeedingProps.open()}
-                        >Stop seeding</Button>
+                        >{t("torrentList.stopSeeding")}</Button>
                     </li>}
                     <div className="flex flex-1"></div>
                     {serverStatus?.settings?.torrent?.defaultTorrentClient === "qbittorrent" && <Popover

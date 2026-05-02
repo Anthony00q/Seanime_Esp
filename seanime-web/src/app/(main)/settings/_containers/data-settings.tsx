@@ -5,10 +5,13 @@ import { Button } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
 import { TextInput } from "@/components/ui/text-input"
 import { openTab } from "@/lib/helpers/browser"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { CgImport } from "react-icons/cg"
 import { TbDatabaseExport } from "react-icons/tb"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 type DataSettingsProps = {
     children?: React.ReactNode
@@ -43,7 +46,7 @@ export function DataSettings(props: DataSettingsProps) {
             openTab(`${getServerBaseUrl()}${endpoint}${tokenQuery}`)
         }
         catch (error) {
-            toast.error("Failed to generate export token")
+            toast.error(t("settings.data.failedToGenerateExportToken"))
         }
     }, [getHMACTokenQueryParam])
 
@@ -51,10 +54,10 @@ export function DataSettings(props: DataSettingsProps) {
         <div className="space-y-4">
 
             <div>
-                <h5>Local files</h5>
+                <h5>{t("settings.data.localFiles")}</h5>
 
                 <p className="text-[--muted]">
-                    Scanned local file data.
+                    {t("settings.data.scannedLocalFileData")}
                 </p>
             </div>
 
@@ -66,11 +69,11 @@ export function DataSettings(props: DataSettingsProps) {
                     disabled={isImportingLocalFiles}
                     onClick={handleExportLocalFiles}
                 >
-                    Export local file data
+                    {t("settings.data.exportLocalFileData")}
                 </Button>
 
                 <Modal
-                    title="Import local files"
+                    title={t("settings.data.importLocalFiles")}
                     trigger={
                         <Button
                             intent="white-subtle"
@@ -78,18 +81,18 @@ export function DataSettings(props: DataSettingsProps) {
                             size="md"
                             disabled={isImportingLocalFiles}
                         >
-                            Import local files
+                            {t("settings.data.importLocalFiles")}
                         </Button>
                     }
                 >
 
                     <p>
-                        This will overwrite your existing library data, make sure you have a backup.
+                        {t("settings.data.importWarning")}
                     </p>
 
                     <TextInput
-                        label="Data file path"
-                        help="The path to the JSON file containing the local file data."
+                        label={t("settings.data.dataFilePath")}
+                        help={t("settings.data.dataFilePathHelp")}
                         value={localFileDataPath}
                         onValueChange={setLocalFileDataPath}
                     />
@@ -99,7 +102,7 @@ export function DataSettings(props: DataSettingsProps) {
                         rounded
                         onClick={handleImportLocalFiles}
                         disabled={isImportingLocalFiles}
-                    >Import</Button>
+                    >{t("settings.data.import")}</Button>
 
                 </Modal>
             </div>

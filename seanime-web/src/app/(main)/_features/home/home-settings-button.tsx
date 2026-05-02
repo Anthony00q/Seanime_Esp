@@ -1,10 +1,13 @@
 import { __home_settingsModalOpen } from "@/app/(main)/_features/home/home-settings-modal"
 import { IconButton } from "@/components/ui/button"
 import { Tooltip } from "@/components/ui/tooltip"
+import { createTranslator } from "@/locales"
 import { useAtom } from "jotai/react"
 import { atomWithStorage } from "jotai/utils"
 import React from "react"
 import { LuSettings2 } from "react-icons/lu"
+
+const t = createTranslator("es")
 
 // by default, the button will be highlighted until the user clicks it for the first time
 // this is not applied to the empty home page
@@ -55,7 +58,7 @@ export function HomeSettingsButton(props: HomeSettingsButtonProps) {
                     }}
                 />}
             >
-                Home Settings
+                {t("home.settingsButton.tooltip")}
             </Tooltip>
         </>
     )

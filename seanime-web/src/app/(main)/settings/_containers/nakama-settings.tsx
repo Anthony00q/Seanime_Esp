@@ -9,6 +9,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import React, { useState } from "react"
 import { useWatch } from "react-hook-form"
 import { MdOutlineConnectWithoutContact } from "react-icons/md"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 type Props = {
     isPending: boolean
@@ -52,8 +55,8 @@ export function NakamaSettings(props: Props) {
         <div className="space-y-4">
 
             <SettingsPageHeader
-                title="Nakama"
-                description="Communicate with other Seanime instances"
+                title={t("nakama.title")}
+                description={t("nakama.description")}
                 icon={MdOutlineConnectWithoutContact}
             />
 
@@ -61,14 +64,14 @@ export function NakamaSettings(props: Props) {
                 <Field.Switch
                     side="right"
                     name="nakamaEnabled"
-                    label="Enable Nakama"
+                    label={t("nakama.enableNakama")}
                 />
 
                 <Field.Text
-                    label="Username"
+                    label={t("nakama.username")}
                     name="nakamaUsername"
-                    placeholder="Username"
-                    help="The username to identify this server to other instances. If empty a random ID will be assigned."
+                    placeholder={t("nakama.usernamePlaceholder")}
+                    help={t("nakama.usernameHelp")}
                 />
             </SettingsCard>
 
@@ -80,9 +83,9 @@ export function NakamaSettings(props: Props) {
                 listClass={tabsListClass}
             >
                 <TabsList className="flex-wrap max-w-full bg-[--paper] p-2 border rounded-xl">
-                    <TabsTrigger value="peer">Connect as a Peer</TabsTrigger>
-                    <TabsTrigger value="host">Hosting {serverStatus?.settings?.nakama?.isHost &&
-                        <Badge intent="info" className="ml-3">Currently hosting</Badge>}</TabsTrigger>
+                    <TabsTrigger value="peer">{t("nakama.connectAsPeer")}</TabsTrigger>
+                    <TabsTrigger value="host">{t("nakama.hosting")} {serverStatus?.settings?.nakama?.isHost &&
+                        <Badge intent="info" className="ml-3">{t("nakama.currentlyHosting")}</Badge>}</TabsTrigger>
                     {/*<TabsTrigger value="browser-client">Rendering</TabsTrigger>*/}
                 </TabsList>
 
@@ -91,17 +94,17 @@ export function NakamaSettings(props: Props) {
                     {!serverStatus?.serverHasPassword &&
                         <Alert
                             intent="warning"
-                            title="Reminder"
-                            description="Add a password to your config file before exposing your server to the internet."
+                            title={t("nakama.reminder")}
+                            description={t("nakama.reminderDescription")}
                         />}
 
                     <SettingsCard className="!bg-gray-900 text-sm">
                         <div>
                             <p>
-                                Host mode is intended for Seanime servers that are accessible over the internet.
+                                {t("nakama.hostModeIntended")}
                             </p>
                             <p>
-                                However, you can use <strong>Cloud Rooms</strong> to host watch parties without exposing your server to the internet.
+                                {t("nakama.cloudRoomsNote")}
                             </p>
                         </div>
                     </SettingsCard>
@@ -111,17 +114,17 @@ export function NakamaSettings(props: Props) {
                         <Field.Switch
                             side="right"
                             name="nakamaIsHost"
-                            label="Enable host mode"
+                            label={t("nakama.enableHostMode")}
                             // moreHelp="Password must be set in the config file"
-                            help="If enabled, this server will act as a host for other clients. This requires a host password to be set."
+                            help={t("nakama.enableHostModeHelp")}
                         />
 
                         <Field.Text
-                            label="Passcode"
+                            label={t("nakama.passcode")}
                             name="nakamaHostPassword"
-                            placeholder="Passcode"
+                            placeholder={t("nakama.passcodePlaceholder")}
                             type="password"
-                            help="Set a passcode to secure your host mode and room. This passcode should be different than your server password."
+                            help={t("nakama.passcodeHelp")}
                         />
 
                         {/*<Field.Switch*/}
@@ -133,26 +136,26 @@ export function NakamaSettings(props: Props) {
                         {/*/>*/}
                     </SettingsCard>
 
-                    {nakamaIsHost && <SettingsCard title="Settings">
+                    {nakamaIsHost && <SettingsCard title={t("nakama.title")}>
 
                         <Field.Switch
                             side="right"
                             name="nakamaHostShareLocalAnimeLibrary"
-                            label="Share local anime library"
-                            help="If enabled, this server will share its local anime library to other clients."
+                            label={t("nakama.shareLocalAnimeLibrary")}
+                            help={t("nakama.shareLocalAnimeLibraryHelp")}
                         />
 
                         <Field.MediaExclusionSelector
                             name="nakamaHostUnsharedAnimeIds"
-                            label="Exclude anime from sharing"
-                            help="Select anime that you don't want to share with other clients."
+                            label={t("nakama.excludeAnimeFromSharing")}
+                            help={t("nakama.excludeAnimeFromSharingHelp")}
                         />
                     </SettingsCard>}
                 </TabsContent>
 
                 <TabsContent value="peer" className={tabContentClass}>
                     <SettingsCard>
-                        {serverStatus?.settings?.nakama?.isHost && <Alert intent="info" description="Cannot connect to a host while in host mode." />}
+                        {serverStatus?.settings?.nakama?.isHost && <Alert intent="info" description={t("nakama.cannotConnectToHostInHostMode")} />}
 
                         <div
                             className={cn(
@@ -162,28 +165,28 @@ export function NakamaSettings(props: Props) {
                         >
 
                             <Field.Text
-                                label="Nakama Server URL"
+                                label={t("nakama.nakamaServerURL")}
                                 name="nakamaRemoteServerURL"
-                                placeholder="https://{address} or room://{id}"
-                                help="The URL of the Nakama host to connect to."
+                                placeholder={t("nakama.nakamaServerURLPlaceholder")}
+                                help={t("nakama.nakamaServerURLHelp")}
                             />
 
                             <Field.Text
-                                label="Nakama Passcode"
+                                label={t("nakama.nakamaPasscode")}
                                 name="nakamaRemoteServerPassword"
-                                placeholder="Passcode"
-                                help="The passcode to connect to the Nakama host."
+                                placeholder={t("nakama.passcodePlaceholder")}
+                                help={t("nakama.nakamaPasscodeHelp")}
                                 type="password"
                             />
                         </div>
                     </SettingsCard>
 
-                    {!serverStatus?.settings?.nakama?.isHost && <SettingsCard title="Settings">
+                    {!serverStatus?.settings?.nakama?.isHost && <SettingsCard title={t("nakama.title")}>
                         <Field.Switch
                             side="right"
                             name="includeNakamaAnimeLibrary"
-                            label="Use Nakama's anime library"
-                            help="If enabled, the Nakama's anime library will be used as your library if it is being shared."
+                            label={t("nakama.useNakamaAnimeLibrary")}
+                            help={t("nakama.useNakamaAnimeLibraryHelp")}
                         />
                     </SettingsCard>}
                 </TabsContent>

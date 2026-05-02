@@ -12,6 +12,9 @@ import { atom } from "jotai"
 import { useAtom, useAtomValue, useSetAtom } from "jotai/react"
 import React from "react"
 import { FiSearch } from "react-icons/fi"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 const trendingGenresAtom = atom<string[]>([])
 
@@ -116,7 +119,7 @@ function GenreSelector() {
         <MediaGenreSelector
             items={[
                 {
-                    name: "All",
+                    name: t("discover.all"),
                     isCurrent: selectedGenre.length === 0,
                     onClick: () => setSelectedGenre([]),
                 },

@@ -32,6 +32,9 @@ import { useAtom, useSetAtom } from "jotai/react"
 import { AnimatePresence, motion } from "motion/react"
 import React from "react"
 import { RiSignalTowerLine } from "react-icons/ri"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 // Atoms for state management
 export const __discover_hoveringHeaderAtom = atom(false)
@@ -301,7 +304,7 @@ function MediaMetadata({ media, pageType, isTransitioning, onHoverChange }: Medi
 
                     {(media as AL_BaseAnime)?.nextAiringEpisode?.airingAt && (
                         <p className="text-base text-brand-200 inline-flex items-center gap-1.5">
-                            <RiSignalTowerLine /> Releasing now
+                            <RiSignalTowerLine /> {t("discover.releasingNow")}
                         </p>
                     )}
 
@@ -309,13 +312,15 @@ function MediaMetadata({ media, pageType, isTransitioning, onHoverChange }: Medi
                         <p className="text-base font-medium">
                             {(media as AL_BaseAnime).nextAiringEpisode?.episode ? (
                                 <span>
-                                    {(media as AL_BaseAnime).nextAiringEpisode?.episode! - 1} episode{(media as AL_BaseAnime).nextAiringEpisode?.episode! - 1 === 1
-                                    ? ""
-                                    : "s"} released
+                                    {(media as AL_BaseAnime).nextAiringEpisode?.episode! - 1} {(media as AL_BaseAnime).nextAiringEpisode?.episode! - 1 === 1
+                                    ? t("discover.episodeReleased")
+                                    : t("discover.episodeReleased_plural", { count: (media as AL_BaseAnime).nextAiringEpisode?.episode! - 1 })}
                                 </span>
                             ) : (
                                 <span>
-                                    {(media as AL_BaseAnime).episodes} total episode{(media as AL_BaseAnime).episodes === 1 ? "" : "s"}
+                                    {(media as AL_BaseAnime).episodes === 1
+                                        ? t("discover.totalEpisode", { count: (media as AL_BaseAnime).episodes ?? 0 })
+                                        : t("discover.totalEpisodes", { count: (media as AL_BaseAnime).episodes ?? 0 })}
                                 </span>
                             )}
                         </p>
@@ -338,7 +343,7 @@ function MediaMetadata({ media, pageType, isTransitioning, onHoverChange }: Medi
                         className="rounded-full"
                         onClick={() => setPreviewModalMediaId(media?.id, pageType === "manga" ? "manga" : "anime")}
                     >
-                        Preview
+                        {t("discover.preview")}
                     </Button>
                 </motion.div>
             </motion.div>

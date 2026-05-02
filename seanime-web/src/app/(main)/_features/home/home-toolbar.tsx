@@ -20,6 +20,7 @@ import { DropdownMenu, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { Tooltip } from "@/components/ui/tooltip"
 import { TORRENT_PROVIDER } from "@/lib/server/settings"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
+import { createTranslator } from "@/locales"
 import { useAtom, useSetAtom } from "jotai/react"
 import React from "react"
 import { BiCollection, BiDotsVerticalRounded, BiFolder } from "react-icons/bi"
@@ -30,6 +31,8 @@ import { LuFolderSearch, LuFolderSync, LuFolderTree } from "react-icons/lu"
 import { MdOutlineConnectWithoutContact, MdOutlineVideoLibrary } from "react-icons/md"
 import { TbFileSad, TbReportSearch } from "react-icons/tb"
 import { PluginAnimeLibraryDropdownItems } from "../plugin/actions/plugin-actions"
+
+const t = createTranslator("es")
 
 export type HomeToolbarProps = {
     collectionList: Anime_LibraryCollectionList[]
@@ -88,7 +91,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                         <MdOutlineConnectWithoutContact className="size-8" />
                     </div>}
                 >
-                    {nakamaStatus?.hostConnectionStatus?.username}'s Library
+                    {t("home.toolbar.library.tooltip", { username: nakamaStatus?.hostConnectionStatus?.username ?? "" })}
                 </Tooltip>}
                 {(!isExtensionsLoading && !allExtensions?.extensions?.some(n => n.type === "anime-torrent-provider") && serverStatus?.settings?.library?.torrentProvider !== TORRENT_PROVIDER.NONE) &&
                     <SeaLink href="/extensions?tab=marketplace&type=anime-torrent-provider">
@@ -100,10 +103,10 @@ export function HomeToolbar(props: HomeToolbarProps) {
                                     intent={"warning"}
                                     leftIcon={<HiExclamation className="text-2xl" />}
                                 >
-                                    Add missing extensions
+                                    {t("home.toolbar.actions.addMissingExtensions")}
                                 </Button>}
                             >
-                                No torrent providers installed.
+                                {t("home.toolbar.actions.noTorrentProviders")}
                             </Tooltip>
                         </span>
                     </SeaLink>}
@@ -117,7 +120,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                                 onClick={() => setHomeView(p => p === "detailed" ? "base" : "detailed")}
                             />}
                         >
-                            {homeView === "base" ? "Local Anime Library" : "Home"}
+                            {homeView === "base" ? t("home.toolbar.navigation.localAnimeLibrary") : t("home.toolbar.navigation.home")}
                         </Tooltip>}
 
                         {(!isStreamingOnly && !isNakamaLibrary && hasLibraryPath) && <Tooltip
@@ -131,7 +134,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                                 className={cn(unmatchedLocalFiles.length > 0 && "animate-pulse")}
                             />}
                         >
-                            Library Explorer
+                            {t("home.toolbar.navigation.libraryExplorer")}
                         </Tooltip>}
 
                         <Tooltip
@@ -141,7 +144,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                                 icon={<MdOutlineVideoLibrary className="text-2xl" />}
                                 onClick={() => setModalOpen(true)}
                             />}
-                        >Playlists</Tooltip>
+                        >{t("home.toolbar.navigation.playlists")}</Tooltip>
                     </>
                 )}
                 {/*Shows up even when there's no local entries*/}
@@ -154,11 +157,11 @@ export function HomeToolbar(props: HomeToolbarProps) {
                             onClick={() => setScannerModalOpen(true)}
                             hideTextOnSmallScreen
                         >
-                            {hasEntries ? "Refresh" : "Scan"}
+                            {hasEntries ? t("home.toolbar.actions.refresh") : t("home.toolbar.actions.scan")}
                         </Button>
                     </div>}
                 >
-                    {hasEntries ? "Refresh Anime Library" : "Scan Anime Library"}
+                    {hasEntries ? t("home.toolbar.actions.refreshTooltip") : t("home.toolbar.actions.scanTooltip")}
                 </Tooltip>}
                 {(!isNakamaLibrary && unmatchedLocalFiles.length > 0) && <Button
                     data-home-toolbar-unmatched-button
@@ -167,7 +170,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                     className="animate-bounce"
                     onClick={() => setUnmatchedFileManagerOpen(true)}
                 >
-                    Resolve unmatched ({unmatchedLocalFiles.length})
+                    {t("home.toolbar.resolve.unmatched", { count: unmatchedLocalFiles.length })}
                 </Button>}
                 {(!isNakamaLibrary && unknownGroups.length > 0) && <Button
                     data-home-toolbar-unknown-button
@@ -176,7 +179,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                     className="animate-bounce"
                     onClick={() => setUnknownMediaManagerOpen(true)}
                 >
-                    Resolve hidden media ({unknownGroups.length})
+                    {t("home.toolbar.resolve.hidden", { count: unknownGroups.length })}
                 </Button>}
 
                 <HomeSettingsButton type="toolbar" />
@@ -215,7 +218,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                             }}
                         >
                             <LuSearch />
-                            <span>Search in library</span>
+                            <span>{t("home.toolbar.dropdown.searchInLibrary")}</span>
                         </DropdownMenuItem>
 
                         <DropdownMenuItem
@@ -227,7 +230,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                             }}
                         >
                             <BiFolder />
-                            <span>Open directory</span>
+                            <span>{t("home.toolbar.dropdown.openDirectory")}</span>
                         </DropdownMenuItem>
 
                         <DropdownMenuItem
@@ -237,7 +240,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                             className={cn({ "!text-[--muted]": !hasEntries })}
                         >
                             <BiCollection />
-                            <span>Bulk actions</span>
+                            <span>{t("home.toolbar.dropdown.bulkActions")}</span>
                         </DropdownMenuItem>
 
                         <DropdownMenuItem
@@ -247,7 +250,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                             className={cn({ "!text-[--muted]": !hasEntries })}
                         >
                             <TbFileSad />
-                            <span>Ignored files</span>
+                            <span>{t("home.toolbar.dropdown.ignoredFiles")}</span>
                         </DropdownMenuItem>
 
                         <SeaLink href="/scan-summaries">
@@ -256,7 +259,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                                 // className={cn({ "!text-[--muted]": !hasEntries })}
                             >
                                 <TbReportSearch />
-                                <span>Scan summaries</span>
+                                <span>{t("home.toolbar.dropdown.scanSummaries")}</span>
                             </DropdownMenuItem>
                         </SeaLink>
 

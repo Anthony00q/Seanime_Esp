@@ -9,6 +9,9 @@ import { BiArrowBack } from "react-icons/bi"
 import { CommandHelperText, CommandItemMedia } from "./_components/command-utils"
 import { useSeaCommandContext } from "./sea-command"
 import { seaCommand_compareMediaTitles } from "./utils"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 // only rendered when typing "/anime", "/library" or "/manga"
 export function SeaCommandUserMediaNavigation() {
@@ -36,25 +39,25 @@ export function SeaCommandUserMediaNavigation() {
             {query.length === 0 && (
                 <>
                     <CommandHelperText
-                        command="/anime [title]"
-                        description="Find anime in your collection"
+                        command={t("seaCommand.animeCommand")}
+                        description={t("seaCommand.findAnimeInCollection")}
                         show={command === "anime"}
                     />
                     <CommandHelperText
-                        command="/manga [title]"
-                        description="Find manga in your collection"
+                        command={t("seaCommand.mangaCommand")}
+                        description={t("seaCommand.findMangaInCollection")}
                         show={command === "manga"}
                     />
                     <CommandHelperText
-                        command="/library [title]"
-                        description="Find anime in your library"
+                        command={t("seaCommand.libraryCommand")}
+                        description={t("seaCommand.findAnimeInLibrary")}
                         show={command === "library"}
                     />
                 </>
             )}
 
             {command === "anime" && filteredAnime.length > 0 && (
-                <CommandGroup heading="My anime">
+                <CommandGroup heading={t("seaCommand.myAnime")}>
                     {filteredAnime.map(n => (
                         <CommandItem
                             key={n.id}
@@ -71,7 +74,7 @@ export function SeaCommandUserMediaNavigation() {
             )}
 
             {command === "library" && filteredAnimeLibrary.length > 0 && (
-                <CommandGroup heading="Library anime">
+                <CommandGroup heading={t("seaCommand.libraryAnime")}>
                     {filteredAnimeLibrary.map(n => (
                         <CommandItem
                             key={n.id}
@@ -87,7 +90,7 @@ export function SeaCommandUserMediaNavigation() {
                 </CommandGroup>
             )}
             {command === "manga" && filteredManga.length > 0 && (
-                <CommandGroup heading="My manga">
+                <CommandGroup heading={t("seaCommand.myManga")}>
                     {filteredManga.map(n => (
                         <CommandItem
                             key={n.id}
@@ -116,67 +119,67 @@ export function SeaCommandNavigation() {
 
     const pages = [
         {
-            name: "Home",
+            name: t("seaCommand.home"),
             href: "/",
             flag: "home",
             show: !serverStatus?.isOffline,
         },
         {
-            name: "Schedule",
+            name: t("seaCommand.schedule"),
             href: "/schedule",
             flag: "schedule",
             show: !serverStatus?.isOffline,
         },
         {
-            name: "Settings",
+            name: t("seaCommand.settings"),
             href: "/settings",
             flag: "settings",
             show: !serverStatus?.isOffline,
         },
         {
-            name: "Manga",
+            name: t("seaCommand.manga"),
             href: "/manga",
             flag: "manga",
             show: !serverStatus?.isOffline,
         },
         {
-            name: "Discover",
+            name: t("seaCommand.discover"),
             href: "/discover",
             flag: "discover",
             show: !serverStatus?.isOffline,
         },
         {
-            name: "My lists",
+            name: t("seaCommand.myLists"),
             href: "/lists",
             flag: "lists",
             show: !serverStatus?.isOffline,
         },
         {
-            name: "Auto Downloader",
+            name: t("seaCommand.autoDownloader"),
             href: "/auto-downloader",
             flag: "auto-downloader",
             show: !serverStatus?.isOffline,
         },
         {
-            name: "Torrent list",
+            name: t("seaCommand.torrentList"),
             href: "/torrent-list",
             flag: "torrent-list",
             show: !serverStatus?.isOffline,
         },
         {
-            name: "Scan summaries",
+            name: t("seaCommand.scanSummaries"),
             href: "/scan-summaries",
             flag: "scan-summaries",
             show: !serverStatus?.isOffline,
         },
         {
-            name: "Extensions",
+            name: t("seaCommand.extensions"),
             href: "/extensions",
             flag: "extensions",
             show: !serverStatus?.isOffline,
         },
         {
-            name: "Advanced search",
+            name: t("seaCommand.advancedSearch"),
             href: "/search",
             flag: "search",
             show: !serverStatus?.isOffline,
@@ -194,7 +197,7 @@ export function SeaCommandNavigation() {
     return (
         <>
             {command.startsWith("ba") && (
-                <CommandGroup heading="Navigation">
+                <CommandGroup heading={t("seaCommand.navigation")}>
                     <CommandItem
                         onSelect={() => {
                             select(() => {
@@ -203,12 +206,12 @@ export function SeaCommandNavigation() {
                         }}
                     >
                         <BiArrowBack className="mr-2 h-4 w-4" />
-                        <span>Go back</span>
+                        <span>{t("seaCommand.goBack")}</span>
                     </CommandItem>
                 </CommandGroup>
             )}
             {command.startsWith("fo") && (
-                <CommandGroup heading="Navigation">
+                <CommandGroup heading={t("seaCommand.navigation")}>
                     <CommandItem
                         onSelect={() => {
                             select(() => {
@@ -217,14 +220,14 @@ export function SeaCommandNavigation() {
                         }}
                     >
                         <BiArrowBack className="mr-2 h-4 w-4 rotate-180" />
-                        <span>Go forward</span>
+                        <span>{t("seaCommand.goForward")}</span>
                     </CommandItem>
                 </CommandGroup>
             )}
 
             {/*Typing `/library`, `/schedule`, etc. without args*/}
             {isCommand && filteredPages.length > 0 && args.length === 0 && (
-                <CommandGroup heading="Screens">
+                <CommandGroup heading={t("seaCommand.screens")}>
                     <>
                         {filteredPages.filter(page => page.show).map(page => (
                             <CommandItem
@@ -235,7 +238,7 @@ export function SeaCommandNavigation() {
                                     })
                                 }}
                             >
-                                <span className="text-sm tracking-wide font-bold text-[--muted]">Go to:&nbsp;</span>{" "}{page.name}
+                                <span className="text-sm tracking-wide font-bold text-[--muted]">{t("seaCommand.goTo")}&nbsp;</span>{" "}{page.name}
                                 {command === page.flag ? <CommandShortcut>Enter</CommandShortcut> : <CommandShortcut>/{page.flag}</CommandShortcut>}
                             </CommandItem>
                         ))}
@@ -243,7 +246,7 @@ export function SeaCommandNavigation() {
                 </CommandGroup>
             )}
             {(command !== "back" && command !== "forward") && (
-                <CommandGroup heading="Navigation">
+                <CommandGroup heading={t("seaCommand.navigation")}>
                     {/* {command === "" && ( */}
                     <>
                         <CommandItem
@@ -254,7 +257,7 @@ export function SeaCommandNavigation() {
                             }}
                         >
                             <BiArrowBack className="mr-2 h-4 w-4" />
-                            <span>Go back</span>
+                            <span>{t("seaCommand.goBack")}</span>
                         </CommandItem>
                         <CommandItem
                             onSelect={() => {
@@ -264,7 +267,7 @@ export function SeaCommandNavigation() {
                             }}
                         >
                             <BiArrowBack className="mr-2 h-4 w-4 rotate-180" />
-                            <span>Go forward</span>
+                            <span>{t("seaCommand.goForward")}</span>
                         </CommandItem>
                     </>
                     {/* )} */}

@@ -1,7 +1,10 @@
 import { SettingsCard } from "@/app/(main)/settings/_components/settings-card"
 import { Switch } from "@/components/ui/switch"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { RiSettings3Fill } from "react-icons/ri"
+
+const t = createTranslator("es")
 
 export function DenshiSettings() {
 
@@ -34,39 +37,39 @@ export function DenshiSettings() {
 
     return (
         <div className="space-y-4">
-            <SettingsCard title="Window">
+            <SettingsCard title={t("settings.denshi.window")}>
                 <Switch
                     side="right"
                     value={settings.minimizeToTray}
                     onValueChange={(v) => updateSetting("minimizeToTray", v)}
-                    label="Minimize to tray on close"
-                    help="When enabled, closing the window will minimize the app to the system tray instead of quitting."
+                    label={t("settings.denshi.minimizeToTrayOnClose")}
+                    help={t("settings.denshi.minimizeToTrayOnCloseHelp")}
                 />
                 <Switch
                     side="right"
                     value={settings.openInBackground}
                     onValueChange={(v) => updateSetting("openInBackground", v)}
-                    label="Open in background"
-                    help="When enabled, the app will start hidden. You can show it from the system tray."
+                    label={t("settings.denshi.openInBackground")}
+                    help={t("settings.denshi.openInBackgroundHelp")}
                 />
             </SettingsCard>
 
-            <SettingsCard title="System">
+            <SettingsCard title={t("settings.denshi.system")}>
                 <Switch
                     side="right"
                     value={settings.openAtLaunch}
                     onValueChange={(v) => updateSetting("openAtLaunch", v)}
-                    label="Open at launch"
+                    label={t("settings.denshi.openAtLaunch")}
                     help={window.electron?.platform === "linux"
-                        ? "This feature is not supported on Linux."
-                        : "When enabled, the app will start automatically when you log in to your computer."}
+                        ? t("settings.denshi.featureNotSupportedOnLinux")
+                        : t("settings.denshi.openAtLaunchHelp")}
                     disabled={window.electron?.platform === "linux"}
                 />
             </SettingsCard>
 
             <div className="flex items-center gap-2 text-sm text-gray-500 bg-gray-50 dark:bg-gray-900/30 rounded-lg p-3 border border-gray-200 dark:border-gray-800 border-dashed">
                 <RiSettings3Fill className="text-base" />
-                <span>Settings are saved automatically and applied after a restart</span>
+                <span>{t("settings.denshi.settingsAutoSaved")}</span>
             </div>
         </div>
     )

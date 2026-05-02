@@ -18,6 +18,9 @@ import { Modal } from "@/components/ui/modal"
 import { Tooltip } from "@/components/ui/tooltip"
 import { WSEvents } from "@/lib/server/ws-events"
 import { formatDate } from "date-fns"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import capitalize from "lodash/capitalize"
@@ -97,14 +100,14 @@ function Content() {
         }
     }, [status])
 
-    if (!enabled) return <LuffyError title="Failed to connect">
+    if (!enabled) return <LuffyError title={t("debrid.failedToConnect")}>
         <div className="flex flex-col gap-4 items-center">
-            <p className="max-w-md">Failed to connect to the Debrid service, verify your settings.</p>
+            <p className="max-w-md">{t("debrid.failedToConnect")}</p>
             <Button
                 intent="primary-subtle" onClick={() => {
                 setEnabled(true)
             }}
-            >Retry</Button>
+            >{t("debrid.retry")}</Button>
         </div>
     </LuffyError>
 

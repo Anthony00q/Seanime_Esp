@@ -7,9 +7,12 @@ import { Separator } from "@/components/ui/separator"
 import { javascript } from "@codemirror/lang-javascript"
 import { vscodeDark } from "@uiw/codemirror-theme-vscode"
 import CodeMirror from "@uiw/react-codemirror"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { useFormContext, useWatch } from "react-hook-form"
 import { FcFolder } from "react-icons/fc"
+
+const t = createTranslator("es")
 
 type LibrarySettingsProps = {
     isPending: boolean
@@ -33,17 +36,17 @@ export function AnimeLibrarySettings(props: LibrarySettingsProps) {
             <SettingsCard>
                 <Field.DirectorySelector
                     name="libraryPath"
-                    label="Library directory"
+                    label={t("settings.library.libraryPath")}
                     leftIcon={<FcFolder />}
-                    help="Path of the directory where your media files ared located. (Keep the casing consistent)"
+                    help={t("settings.library.libraryPathHelp")}
                     shouldExist
                 />
 
                 <Field.MultiDirectorySelector
                     name="libraryPaths"
-                    label="Additional library directories"
+                    label={t("settings.library.additionalDirectories")}
                     leftIcon={<FcFolder />}
-                    help="Include additional directory paths if your library is spread across multiple locations."
+                    help={t("settings.library.additionalDirectoriesHelp")}
                     shouldExist
                 />
             </SettingsCard>
@@ -53,16 +56,16 @@ export function AnimeLibrarySettings(props: LibrarySettingsProps) {
                 <Field.Switch
                     side="right"
                     name="autoScan"
-                    label="Automatically refresh library"
+                    label={t("settings.library.autoScan")}
                     moreHelp={<p>
-                        When adding batches, not all files are guaranteed to be picked up.
+                        {t("settings.library.autoScanMoreHelp")}
                     </p>}
                 />
 
                 <Field.Switch
                     side="right"
                     name="refreshLibraryOnStart"
-                    label="Refresh library on startup"
+                    label={t("settings.library.refreshOnStartup")}
                 />
             </SettingsCard>
 
@@ -78,15 +81,14 @@ export function AnimeLibrarySettings(props: LibrarySettingsProps) {
             >
                 <AccordionItem value="more">
                     <AccordionTrigger className="bg-gray-900 rounded-[--radius-md]" data-settings-anime-library="advanced-accordion-trigger">
-                        Advanced
+                        {t("settings.ui.advanced")}
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4">
                         {!useLegacyMatching && <div className="space-y-4">
                             <div>
-                                <p className="font-semibold text-lg mb-2">Scanner Configuration</p>
+                                <p className="font-semibold text-lg mb-2">{t("settings.library.scannerConfig")}</p>
                                 <p className="text-sm text-[--muted] mb-4">
-                                    Configure advanced scanner rules in JSON format. This allows you to define custom matching and hydration rules for
-                                    your library.
+                                    {t("settings.library.scannerConfigHelp")}
                                 </p>
                             </div>
                             <ScannerConfigEditor />
@@ -95,28 +97,28 @@ export function AnimeLibrarySettings(props: LibrarySettingsProps) {
                         <>
                             <Field.Switch
                                 name="scannerUseLegacyMatching"
-                                label="Use legacy matching algorithm"
-                                help="Enable to use the legacy matching algorithms. (Versions 3.4 and below)"
-                                moreHelp="The legacy matching algorithm uses simpler methods which may be less accurate."
+                                label={t("settings.library.scannerUseLegacyMatching")}
+                                help={t("settings.library.scannerUseLegacyMatchingHelp")}
+                                moreHelp={t("settings.library.scannerUseLegacyMatchingMoreHelp")}
                             />
                         </>
 
                         {useLegacyMatching && <div className="flex flex-col md:flex-row gap-3">
                             <Field.Select
                                 options={[
-                                    { value: "-", label: "Levenshtein + Sorensen-Dice (Default)" },
-                                    { value: "sorensen-dice", label: "Sorensen-Dice" },
-                                    { value: "jaccard", label: "Jaccard" },
+                                    { value: "-", label: t("settings.library.levenshteinSorensen") },
+                                    { value: "sorensen-dice", label: t("settings.library.sorensenDice") },
+                                    { value: "jaccard", label: t("settings.library.jaccard") },
                                 ]}
                                 name="scannerMatchingAlgorithm"
-                                label="Matching algorithm"
-                                help="Choose the algorithm used to match files to AniList entries."
+                                label={t("settings.library.scannerMatchingAlgorithm")}
+                                help={t("settings.library.scannerMatchingAlgorithmHelp")}
                             />
                             <Field.Number
                                 name="scannerMatchingThreshold"
-                                label="Matching threshold"
+                                label={t("settings.library.scannerMatchingThreshold")}
                                 placeholder="0.5"
-                                help="The minimum score required for a file to be matched to an AniList entry. Default is 0.5."
+                                help={t("settings.library.scannerMatchingThresholdHelp")}
                                 formatOptions={{
                                     minimumFractionDigits: 1,
                                     maximumFractionDigits: 1,

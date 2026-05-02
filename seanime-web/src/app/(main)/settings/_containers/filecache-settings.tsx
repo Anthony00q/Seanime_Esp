@@ -1,7 +1,10 @@
 import { useClearFileCacheMediastreamVideoFiles, useGetFileCacheTotalSize, useRemoveFileCacheBucket } from "@/api/hooks/filecache.hooks"
 import { Button } from "@/components/ui/button"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { SettingsCard } from "../_components/settings-card"
+
+const t = createTranslator("es")
 
 type FilecacheSettingsProps = {
     children?: React.ReactNode
@@ -31,7 +34,7 @@ export function FilecacheSettings(props: FilecacheSettingsProps) {
         <div className="space-y-4">
             <div className="flex gap-2 items-center">
                 <Button intent="white-subtle" size="sm" onClick={() => getTotalSize()} disabled={isFetchingSize}>
-                    Show total size
+                    {t("settings.cache.showTotalSize")}
                 </Button>
                 {!!totalSize && (
                     <p>
@@ -43,13 +46,13 @@ export function FilecacheSettings(props: FilecacheSettingsProps) {
             <SettingsCard>
                 <div className="flex gap-2 flex-wrap items-center">
                     <Button intent="warning-subtle" onClick={() => clearBucket({ bucket: "manga" })} disabled={isClearing}>
-                        Clear manga cache
+                        {t("settings.cache.clearMangaCache")}
                     </Button>
                     <Button intent="warning-subtle" onClick={() => clearMediastreamCache()} disabled={isClearing}>
-                        Clear media streaming cache
+                        {t("settings.cache.clearMediaStreamingCache")}
                     </Button>
                     <Button intent="warning-subtle" onClick={() => clearBucket({ bucket: "onlinestream" })} disabled={isClearing}>
-                        Clear online streaming cache
+                        {t("settings.cache.clearOnlineStreamingCache")}
                     </Button>
                 </div>
             </SettingsCard>

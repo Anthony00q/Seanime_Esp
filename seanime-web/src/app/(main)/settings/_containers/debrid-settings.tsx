@@ -7,11 +7,14 @@ import { SeaLink } from "@/components/shared/sea-link"
 import { Alert } from "@/components/ui/alert"
 import { defineSchema, Field, Form } from "@/components/ui/form"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { UseFormReturn } from "react-hook-form"
 import { HiOutlineServerStack } from "react-icons/hi2"
 import { LuCirclePlay } from "react-icons/lu"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 const debridSettingsSchema = defineSchema(({ z }) => z.object({
     enabled: z.boolean().default(false),
@@ -45,8 +48,8 @@ export function DebridSettings(props: DebridSettingsProps) {
         <div className="space-y-4">
 
             <SettingsPageHeader
-                title="Debrid Service"
-                description="Configure your Debrid service integration"
+                title={t("settings.debridService.title")}
+                description={t("settings.debridService.description")}
                 icon={HiOutlineServerStack}
             />
 
@@ -66,7 +69,7 @@ export function DebridSettings(props: DebridSettingsProps) {
                             {
                                 onSuccess: () => {
                                     formRef.current?.reset(formRef.current.getValues())
-                                    toast.success("Settings saved")
+                                    toast.success(t("settings.debridService.settingsSaved"))
                                 },
                             },
                         )
@@ -89,17 +92,17 @@ export function DebridSettings(props: DebridSettingsProps) {
                             <Field.Switch
                                 side="right"
                                 name="enabled"
-                                label="Enable"
+                                label={t("settings.debridService.enable")}
                             />
                             {(f.watch("enabled") && serverStatus?.settings?.autoDownloader?.enabled && !serverStatus?.settings?.autoDownloader?.useDebrid) && (
                                 <Alert
                                     intent="info"
-                                    title="Auto Downloader not using Debrid"
+                                    title={t("settings.debridService.autoDownloaderNotUsingDebrid")}
                                     description={<p>
-                                        Auto Downloader is enabled but not using Debrid. Change the <SeaLink
+                                        {t("settings.debridService.autoDownloaderNotUsingDebridDescription")} <SeaLink
                                         href="/auto-downloader"
                                         className="underline"
-                                    >Auto Downloader settings</SeaLink> to use your Debrid service.
+                                    >{t("settings.debridService.autoDownloaderSettings")}</SeaLink> {t("settings.debridService.toUseYourDebridService")}
                                     </p>}
                                 />
                             )}
@@ -109,61 +112,51 @@ export function DebridSettings(props: DebridSettingsProps) {
                         <SettingsCard>
                             <Field.Select
                                 options={[
-                                    { label: "None", value: "-" },
+                                    { label: t("settings.debridService.none"), value: "-" },
                                     { label: "TorBox", value: "torbox" },
                                     { label: "Real-Debrid", value: "realdebrid" },
                                     { label: "AllDebrid", value: "alldebrid" },
                                 ]}
                                 name="provider"
-                                label="Provider"
+                                label={t("settings.debridService.provider")}
                             />
 
                             <Field.Text
                                 name="apiKey"
-                                label="API Key"
+                                label={t("settings.debridService.apiKey")}
                                 type="password"
                             />
                         </SettingsCard>
 
                         <SettingsPageHeader
-                            title="Debrid Streaming"
-                            description="Configure how shows are streaming from your Debrid service"
+                            title={t("settings.debridService.debridStreaming")}
+                            description={t("settings.debridService.debridStreamingDescription")}
                             icon={LuCirclePlay}
                         />
 
-                        <SettingsCard title="Home Screen">
+                        <SettingsCard title={t("settings.debridService.homeScreen")}>
                             <Field.Switch
                                 side="right"
                                 name="includeDebridStreamInLibrary"
-                                label="Include in anime library"
-                                help="Add non-downloaded shows that are in your currently watching list to the anime library."
+                                label={t("settings.debridService.includeInAnimeLibrary")}
+                                help={t("settings.debridService.includeInAnimeLibraryHelp")}
                             />
                         </SettingsCard>
 
-                        <SettingsCard title="Auto-select">
+                        <SettingsCard title={t("settings.debridService.autoSelect")}>
                             <Field.Switch
                                 side="right"
                                 name="streamAutoSelect"
-                                label="Enable"
-                                help="Let Seanime find the best torrent automatically, based on cache and resolution."
+                                label={t("settings.debridService.autoSelectEnable")}
+                                help={t("settings.debridService.autoSelectEnableHelp")}
                             />
-
-                            {/*{f.watch("streamAutoSelect") && f.watch("provider") === "torbox" && (*/}
-                            {/*    <Alert*/}
-                            {/*        intent="warning-basic"*/}
-                            {/*        title="Auto-select with TorBox"*/}
-                            {/*        description={<p>*/}
-                            {/*            Avoid using auto-select if you have a limited amount of downloads on your Debrid service.*/}
-                            {/*        </p>}*/}
-                            {/*    />*/}
-                            {/*)}*/}
 
                             <Field.Select
                                 name="streamPreferredResolution"
-                                label="Preferred resolution"
-                                help="If auto-select is enabled, Seanime will try to find torrents with this resolution."
+                                label={t("settings.debridService.preferredResolution")}
+                                help={t("settings.debridService.preferredResolutionHelp")}
                                 options={[
-                                    { label: "Highest", value: "-" },
+                                    { label: t("settings.debridService.highest"), value: "-" },
                                     { label: "480p", value: "480" },
                                     { label: "720p", value: "720" },
                                     { label: "1080p", value: "1080" },
