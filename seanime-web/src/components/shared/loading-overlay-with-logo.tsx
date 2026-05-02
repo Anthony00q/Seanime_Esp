@@ -4,7 +4,10 @@ import { Button } from "@/components/ui/button"
 import { LoadingOverlay } from "@/components/ui/loading-spinner"
 import { __isDesktop__ } from "@/types/constants"
 import { SeaImage } from "@/components/shared/sea-image"
+import { createTranslator } from "@/locales"
 import React from "react"
+
+const t = createTranslator("es")
 
 export function LoadingOverlayWithLogo({ refetch, title }: { refetch?: () => void, title?: string }) {
     return <LoadingOverlay showSpinner={false}>
@@ -26,7 +29,7 @@ export function LoadingOverlayWithLogo({ refetch, title }: { refetch?: () => voi
                 className="mt-4 z-[1]"
                 intent="gray-outline"
                 size="sm"
-            >Reload</Button>
+            >{t("shared.reload")}</Button>
         )}
     </LoadingOverlay>
 }

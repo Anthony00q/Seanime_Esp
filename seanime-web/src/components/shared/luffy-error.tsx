@@ -1,7 +1,10 @@
 import { SeaImage } from "@/components/shared/sea-image"
 import { Button } from "@/components/ui/button/button"
 import { cn } from "@/components/ui/core/styling"
+import { createTranslator } from "@/locales"
 import React from "react"
+
+const t = createTranslator("es")
 
 interface LuffyErrorProps {
     children?: React.ReactNode
@@ -44,10 +47,10 @@ export const LuffyError: React.FC<LuffyErrorProps> = (props) => {
                                 data-luffy-error-content-button-refresh
                                 intent="warning-subtle"
                                 onClick={() => window.location.reload()}
-                            >Retry</Button>
+                            >{t("shared.retry")}</Button>
                         )}
                         {!!reset && (
-                            <Button data-luffy-error-content-button-reset intent="warning-subtle" onClick={reset}>Retry</Button>
+                            <Button data-luffy-error-content-button-reset intent="warning-subtle" onClick={reset}>{t("shared.retry")}</Button>
                         )}
                     </div>
                 </div>
