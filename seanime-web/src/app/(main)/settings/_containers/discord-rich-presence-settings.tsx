@@ -1,8 +1,11 @@
 import { SettingsCard } from "@/app/(main)/settings/_components/settings-card"
 import { cn } from "@/components/ui/core/styling"
 import { Field } from "@/components/ui/form"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { useFormContext } from "react-hook-form"
+
+const t = createTranslator("es")
 
 type DiscordRichPresenceSettingsProps = {
     children?: React.ReactNode
@@ -21,11 +24,11 @@ export function DiscordRichPresenceSettings(props: DiscordRichPresenceSettingsPr
 
     return (
         <>
-            <SettingsCard title="Rich Presence" description="Show what you are watching or reading in Discord.">
+            <SettingsCard title={t("settings.discord.richPresence")} description={t("settings.discord.richPresenceDescription")}>
                 <Field.Switch
                     side="right"
                     name="enableRichPresence"
-                    label={<span className="flex gap-1 items-center">Enable</span>}
+                    label={<span className="flex gap-1 items-center">{t("settings.discord.enable")}</span>}
                 />
                 <div
                     className={cn(
@@ -35,12 +38,12 @@ export function DiscordRichPresenceSettings(props: DiscordRichPresenceSettingsPr
                 >
                     <Field.Checkbox
                         name="enableAnimeRichPresence"
-                        label="Anime"
+                        label={t("settings.discord.anime")}
                         fieldClass="w-fit"
                     />
                     <Field.Checkbox
                         name="enableMangaRichPresence"
-                        label="Manga"
+                        label={t("settings.discord.manga")}
                         fieldClass="w-fit"
                     />
                 </div>
@@ -48,30 +51,15 @@ export function DiscordRichPresenceSettings(props: DiscordRichPresenceSettingsPr
                 <Field.Switch
                     side="right"
                     name="richPresenceHideSeanimeRepositoryButton"
-                    label="Hide Seanime Repository Button"
+                    label={t("settings.discord.hideSeanimeRepositoryButton")}
                 />
-
-                {/*<Field.Switch*/}
-                {/*    side="right"*/}
-                {/*    name="richPresenceShowAniListMediaButton"*/}
-                {/*    label="Show AniList Media Button"*/}
-                {/*    help="Show a button to open the media page on AniList."*/}
-                {/*/>*/}
 
                 <Field.Switch
                     side="right"
                     name="richPresenceShowAniListProfileButton"
-                    label="Show AniList Profile Button"
-                    help="Show a button to open your profile page on AniList."
+                    label={t("settings.discord.showAniListProfileButton")}
+                    help={t("settings.discord.showAniListProfileButtonHelp")}
                 />
-
-                {/*<Field.Switch*/}
-                {/*    side="right"*/}
-                {/*    name="richPresenceUseMediaTitleStatus"*/}
-                {/*    label={<span className="flex gap-2 items-center">Use Media Title as Status <LuTriangleAlert className="text-[--orange]" /></span>}*/}
-                {/*    moreHelp="Does not work with the default Discord Desktop Client."*/}
-                {/*    help="Replace 'Seanime' with the media title in the activity status. Only works if you use a discord client that utilizes arRPC."*/}
-                {/*/>*/}
             </SettingsCard>
         </>
     )
