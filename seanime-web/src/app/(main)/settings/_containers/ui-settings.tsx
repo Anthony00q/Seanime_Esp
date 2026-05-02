@@ -32,6 +32,9 @@ import { useIsSimulatedUser } from "../../_hooks/use-server-status"
 import { useServerStatus } from "../../_hooks/use-server-status"
 import { SettingsCard } from "../_components/settings-card"
 import { SettingsIsDirty } from "../_components/settings-submit-button"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 const themeSchema = defineSchema(({ z }) => z.object({
     animeEntryScreenLayout: z.string().min(0).default(THEME_DEFAULT_VALUES.animeEntryScreenLayout),
@@ -430,7 +433,7 @@ export function UISettings() {
 
     function handleSave(data: z.infer<typeof themeSchema>) {
         if (colord(data.backgroundColor).isLight()) {
-            toast.error("Seanime does not support light themes")
+            toast.error(t("settings.ui.lightThemeNotSupported"))
             return
         }
 
@@ -631,9 +634,9 @@ export function UISettings() {
                                     <>
                                         <Switch
                                             side="right"
-                                            label="Live preview"
+                                            label={t("settings.ui.livePreview")}
                                             name="enableLivePreview"
-                                            help={enableLivePreview && "Disabling will reload the page without applying the changes."}
+                                            help={enableLivePreview && t("settings.ui.livePreviewDisabled")}
                                             value={enableLivePreview}
                                             onValueChange={(value) => {
                                                 setEnableLivePreview(value)
@@ -649,13 +652,13 @@ export function UISettings() {
                                         <div className="flex flex-col md:flex-row gap-3">
                                             <Field.ColorPicker
                                                 name="backgroundColor"
-                                                label="Background color"
-                                                help="Default: #070707"
+                                                label={t("settings.ui.backgroundColor")}
+                                                help={t("settings.ui.defaultBgColor")}
                                             />
                                             <Field.ColorPicker
                                                 name="accentColor"
-                                                label="Accent color"
-                                                help="Default: #6152df"
+                                                label={t("settings.ui.accentColor")}
+                                                help={t("settings.ui.defaultAccentColor")}
                                             />
                                         </div>
                                     </>
@@ -718,14 +721,14 @@ export function UISettings() {
                                     <Field.Text
                                         label="Background image path"
                                         name="libraryScreenCustomBackgroundImage"
-                                        placeholder="e.g. image.png"
-                                        help="Background image for all pages. Dimmed on non-library screens."
+                                        placeholder={t("settings.ui.imagePathPlaceholder")}
+                                        help={t("settings.ui.backgroundImageHelp")}
                                     />
 
                                     <Field.Number
                                         label="Background image opacity"
                                         name="libraryScreenCustomBackgroundOpacity"
-                                        placeholder="Default: 10"
+                                        placeholder={t("settings.ui.defaultOpacity")}
                                         min={1}
                                         max={100}
                                     />
@@ -746,18 +749,18 @@ export function UISettings() {
                                     <Field.Text
                                         label="Banner image path"
                                         name="libraryScreenCustomBannerImage"
-                                        placeholder="e.g. image.gif"
-                                        help="Banner image for all pages."
+                                        placeholder={t("settings.ui.imagePathPlaceholder")}
+                                        help={t("settings.ui.backgroundImageHelp")}
                                     />
                                     <Field.Text
                                         label="Banner position"
                                         name="libraryScreenCustomBannerPosition"
-                                        placeholder="Default: 50% 50%"
+                                        placeholder={t("settings.ui.defaultPosition")}
                                     />
                                     <Field.Number
                                         label="Banner opacity"
                                         name="libraryScreenCustomBannerOpacity"
-                                        placeholder="Default: 10"
+                                        placeholder={t("settings.ui.defaultOpacity")}
                                         min={1}
                                         max={100}
                                     />
@@ -1062,7 +1065,7 @@ export function UISettings() {
                                         "Expand sidebar on hover",
                                     )}
                                     name="expandSidebarOnHover"
-                                    help="Causes visual glitches with plugin tray."
+                                    help={t("settings.ui.expandSidebarGlitch")}
                                 />
 
                                 <Field.Switch
@@ -1101,53 +1104,53 @@ export function UISettings() {
                                 />
 
                                 <Field.Combobox
-                                    label="Unpinned menu items"
+                                    label={t("settings.ui.unpinnedMenuItems")}
                                     name="unpinnedMenuItems"
-                                    emptyMessage="No items selected"
+                                    emptyMessage={t("settings.ui.noItemsSelected")}
                                     multiple
                                     options={[
                                         {
-                                            label: "Schedule",
+                                            label: t("navigation.schedule"),
                                             textValue: "Schedule",
                                             value: "schedule",
                                         },
                                         {
-                                            label: "Manga",
+                                            label: t("navigation.manga"),
                                             textValue: "Manga",
                                             value: "manga",
                                         },
                                         {
-                                            label: "Discover",
+                                            label: t("navigation.discover"),
                                             textValue: "Discover",
                                             value: "discover",
                                         },
                                         {
-                                            label: "My lists",
+                                            label: t("navigation.myLists"),
                                             textValue: "My lists",
                                             value: "lists",
                                         },
                                         {
-                                            label: "Auto Downloader",
+                                            label: t("navigation.autoDownloader"),
                                             textValue: "Auto Downloader",
                                             value: "auto-downloader",
                                         },
                                         {
-                                            label: "Torrent list",
+                                            label: t("navigation.torrentList"),
                                             textValue: "Torrent list",
                                             value: "torrent-list",
                                         },
                                         {
-                                            label: "Debrid",
+                                            label: t("navigation.debrid"),
                                             textValue: "Debrid",
                                             value: "debrid",
                                         },
                                         {
-                                            label: "Scan summaries",
+                                            label: t("navigation.scanSummaries"),
                                             textValue: "Scan summaries",
                                             value: "scan-summaries",
                                         },
                                         {
-                                            label: "Search",
+                                            label: t("navigation.search"),
                                             textValue: "Search",
                                             value: "search",
                                         },
@@ -1181,7 +1184,7 @@ export function UISettings() {
                         {/*</TabsContent>*/}
 
                         {tab !== "browser-client" && <div className="mt-4">
-                            <Field.Submit role="save" intent="white" rounded loading={isPending}>Save</Field.Submit>
+                            <Field.Submit role="save" intent="white" rounded loading={isPending}>{t("settings.ui.save")}</Field.Submit>
                         </div>}
 
                     </Tabs>

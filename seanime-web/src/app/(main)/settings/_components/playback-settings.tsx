@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { Switch } from "@/components/ui/switch"
 import { __isElectronDesktop__ } from "@/types/constants"
+import { createTranslator } from "@/locales"
 import { useSetAtom } from "jotai"
 import React from "react"
 import { BiDesktop } from "react-icons/bi"
@@ -21,6 +22,8 @@ import { LuCirclePlay, LuClapperboard, LuExternalLink, LuLaptop } from "react-ic
 import { MdOutlineBroadcastOnHome } from "react-icons/md"
 import { RiSettings3Fill } from "react-icons/ri"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 type PlaybackSettingsProps = {
     children?: React.ReactNode
@@ -54,14 +57,14 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
         <>
             <div className="space-y-4">
                 <SettingsPageHeader
-                    title="Video playback"
-                    description="Choose how anime is played on this device"
+                    title={t("settings.playback.title")}
+                    description={t("settings.playback.description")}
                     icon={LuCirclePlay}
                 />
 
                 <div className="flex items-center gap-2 text-sm bg-gray-50 dark:bg-gray-900/50 rounded-lg p-3 border border-gray-200 dark:border-gray-800">
                     <BiDesktop className="text-lg text-gray-500" />
-                    <span className="text-gray-600 dark:text-gray-400">Device:</span>
+                    <span className="text-gray-600 dark:text-gray-400">{t("settings.playback.device")}</span>
                     <span className="font-medium">{serverStatus?.clientDevice || "-"}</span>
                     <span className="text-gray-400">•</span>
                     <span className="font-medium">{serverStatus?.clientPlatform || "-"}</span>
@@ -73,13 +76,13 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
                     intent="alert-basic"
                     description={
                         <div className="flex items-center justify-between gap-3">
-                            <span>No external player custom scheme has been set</span>
+                            <span>{t("settings.playback.noExternalPlayerCustomSchemeSet")}</span>
                             <Button
                                 intent="gray-outline"
                                 size="sm"
                                 onClick={() => setTab("external-player-link")}
                             >
-                                Add
+                                {t("settings.playback.add")}
                             </Button>
                         </div>
                     }
@@ -88,7 +91,7 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
 
             {__isElectronDesktop__ && (
                 <SettingsCard
-                    title="Seanime Denshi"
+                    title={t("settings.playback.seanimeDenshi")}
                     className="border-2 border-dashed dark:border-gray-700 bg-gradient-to-r from-indigo-50/50 to-pink-50/50 dark:from-gray-900/20 dark:to-gray-900/20"
                 >
                     <div className="space-y-4">
@@ -99,12 +102,12 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
                             </div>
                             <div className="flex-1">
                                 <Switch
-                                    label="Use built-in player"
-                                    help="When enabled, all media playback will use the built-in player (overrides settings below)"
+                                    label={t("settings.playback.useBuiltInPlayer")}
+                                    help={t("settings.playback.useBuiltInPlayerHelp")}
                                     value={electronPlaybackMethod === ElectronPlaybackMethod.NativePlayer}
                                     onValueChange={v => {
                                         setElectronPlaybackMethod(v ? ElectronPlaybackMethod.NativePlayer : ElectronPlaybackMethod.Default)
-                                        toast.success("Playback settings updated")
+                                        toast.success(t("settings.playback.settingsSaved"))
                                     }}
                                 />
                             </div>
@@ -114,8 +117,8 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
             )}
 
             <SettingsCard
-                title="Downloaded Media"
-                description="Choose how to play anime files stored on your device"
+                title={t("settings.playback.downloadedMedia")}
+                description={t("settings.playback.downloadedMediaDescription")}
                 className={cn(
                     "transition-all duration-200",
                     usingNativePlayer && "opacity-50",
@@ -136,16 +139,15 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
                             onClick={() => {
                                 setDownloadedMediaPlayback(PlaybackDownloadedMedia.Default)
                                 setActiveOnDevice(false)
-                                toast.success("Playback settings updated")
+                                toast.success(t("settings.playback.settingsSaved"))
                             }}
                         >
                             <div className="flex items-start gap-3">
                                 <LuLaptop className="text-xl text-brand-600 dark:text-brand-400 mt-1" />
                                 <div className="flex-1 space-y-2">
                                     <div>
-                                        <p className="font-medium">Desktop Media Player</p>
-                                        <p className="text-xs text-gray-600 dark:text-gray-400">Opens files in your system player with automatic
-                                                                                                tracking</p>
+                                        <p className="font-medium">{t("settings.playback.desktopMediaPlayer")}</p>
+                                        <p className="text-xs text-gray-600 dark:text-gray-400">{t("settings.playback.desktopMediaPlayerHelp")}</p>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +166,7 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
                                 if (serverStatus?.mediastreamSettings?.transcodeEnabled) {
                                     setDownloadedMediaPlayback(PlaybackDownloadedMedia.Default)
                                     setActiveOnDevice(true)
-                                    toast.success("Playback settings updated")
+                                    toast.success(t("settings.playback.settingsSaved"))
                                 }
                             }}
                         >
@@ -172,11 +174,11 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
                                 <MdOutlineBroadcastOnHome className="text-xl text-brand-600 dark:text-brand-400 mt-1" />
                                 <div className="flex-1 space-y-2">
                                     <div>
-                                        <p className="font-medium">Transcoding / Direct Play</p>
+                                        <p className="font-medium">{t("settings.playback.transcodingDirectPlay")}</p>
                                         <p className="text-xs text-gray-600 dark:text-gray-400">
                                             {serverStatus?.mediastreamSettings?.transcodeEnabled
-                                                ? "Plays in browser with transcoding"
-                                                : "Transcoding not enabled"
+                                                ? t("settings.playback.transcodingDirectPlayHelp")
+                                                : t("settings.playback.transcodingNotEnabled")
                                             }
                                         </p>
                                     </div>
@@ -194,15 +196,15 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
                             )}
                             onClick={() => {
                                 setDownloadedMediaPlayback(PlaybackDownloadedMedia.ExternalPlayerLink)
-                                toast.success("Playback settings updated")
+                                toast.success(t("settings.playback.settingsSaved"))
                             }}
                         >
                             <div className="flex items-start gap-3">
                                 <LuExternalLink className="text-xl text-brand-600 dark:text-brand-400 mt-1" />
                                 <div className="flex-1 space-y-2">
                                     <div>
-                                        <p className="font-medium">External Player Link</p>
-                                        <p className="text-xs text-gray-600 dark:text-gray-400">Send stream URL to another application</p>
+                                        <p className="font-medium">{t("settings.playback.externalPlayerLink")}</p>
+                                        <p className="text-xs text-gray-600 dark:text-gray-400">{t("settings.playback.externalPlayerLinkHelp")}</p>
                                     </div>
                                 </div>
                             </div>
@@ -212,8 +214,8 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
             </SettingsCard>
 
             <SettingsCard
-                title="Torrent & Debrid Streaming"
-                description="Choose how to play streamed content from torrents and debrid services"
+                title={t("settings.playback.torrentDebridStreaming")}
+                description={t("settings.playback.torrentDebridStreamingDescription")}
                 className={cn(
                     "transition-all duration-200",
                     usingNativePlayer && "opacity-50",
@@ -233,16 +235,15 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
                             )}
                             onClick={() => {
                                 setTorrentStreamingPlayback(PlaybackTorrentStreaming.Default)
-                                toast.success("Playback settings updated")
+                                toast.success(t("settings.playback.settingsSaved"))
                             }}
                         >
                             <div className="flex items-start gap-3">
                                 <LuLaptop className="text-xl text-brand-600 dark:text-brand-400 mt-1" />
                                 <div className="flex-1 space-y-2">
                                     <div>
-                                        <p className="font-medium">Desktop Media Player</p>
-                                        <p className="text-xs text-gray-600 dark:text-gray-400">Opens streams in your system player with automatic
-                                                                                                tracking</p>
+                                        <p className="font-medium">{t("settings.playback.desktopMediaPlayer")}</p>
+                                        <p className="text-xs text-gray-600 dark:text-gray-400">{t("settings.playback.desktopMediaPlayerHelp")}</p>
                                     </div>
                                 </div>
                             </div>
@@ -258,15 +259,15 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
                             )}
                             onClick={() => {
                                 setTorrentStreamingPlayback(PlaybackTorrentStreaming.ExternalPlayerLink)
-                                toast.success("Playback settings updated")
+                                toast.success(t("settings.playback.settingsSaved"))
                             }}
                         >
                             <div className="flex items-start gap-3">
                                 <LuExternalLink className="text-xl text-brand-600 dark:text-brand-400 mt-1" />
                                 <div className="flex-1 space-y-2">
                                     <div>
-                                        <p className="font-medium">External Player Link</p>
-                                        <p className="text-xs text-gray-600 dark:text-gray-400">Send stream URL to another application</p>
+                                        <p className="font-medium">{t("settings.playback.externalPlayerLink")}</p>
+                                        <p className="text-xs text-gray-600 dark:text-gray-400">{t("settings.playback.externalPlayerLinkHelp")}</p>
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +278,7 @@ export function PlaybackSettings(props: PlaybackSettingsProps) {
 
             <div className="flex items-center gap-2 text-sm text-gray-500 bg-gray-50 dark:bg-gray-900/30 rounded-lg p-3 border border-gray-200 dark:border-gray-800 border-dashed">
                 <RiSettings3Fill className="text-base" />
-                <span>Settings are saved automatically</span>
+                <span>{t("settings.playback.settingsAutoSaved")}</span>
             </div>
 
         </>

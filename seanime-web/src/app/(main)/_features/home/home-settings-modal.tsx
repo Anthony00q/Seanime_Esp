@@ -16,6 +16,7 @@ import { RadioGroup } from "@/components/ui/radio-group"
 import { Select } from "@/components/ui/select"
 import { TextInput } from "@/components/ui/text-input"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
+import { createTranslator } from "@/locales"
 import { DndContext, DragEndEvent } from "@dnd-kit/core"
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers"
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable"
@@ -41,6 +42,8 @@ import {
 import { MdOutlineVideoLibrary } from "react-icons/md"
 import { TbCarouselHorizontal } from "react-icons/tb"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 export const __home_settingsModalOpen = atom(false)
 
@@ -149,7 +152,7 @@ export function HomeSettingsModal({ emptyLibrary, isNakamaLibrary }: { emptyLibr
         setCurrentItems(newItems)
         updateHomeItems({ items: newItems }, {
             onSuccess: () => {
-                toast.success("Home item added")
+                toast.success(t("home.settings.toasts.itemAdded"))
             },
         })
     }
@@ -159,7 +162,7 @@ export function HomeSettingsModal({ emptyLibrary, isNakamaLibrary }: { emptyLibr
         setCurrentItems(newItems)
         updateHomeItems({ items: newItems }, {
             onSuccess: () => {
-                toast.success("Home item removed")
+                toast.success(t("home.settings.toasts.itemRemoved"))
             },
         })
     }
@@ -173,8 +176,7 @@ export function HomeSettingsModal({ emptyLibrary, isNakamaLibrary }: { emptyLibr
         setCurrentItems(newItems)
         updateHomeItems({ items: newItems }, {
             onSuccess: () => {
-                toast.success("Home layout updated")
-                setOptionsModalOpen(null)
+                toast.success(t("home.settings.toasts.layoutUpdated"))
             },
         })
     }
@@ -196,7 +198,7 @@ export function HomeSettingsModal({ emptyLibrary, isNakamaLibrary }: { emptyLibr
                 onOpenChange={setIsModalOpen}
                 title={<div className="flex items-center gap-2 w-full justify-center">
                     <IoHomeOutline className="size-5" />
-                    Home
+                    {t("home.settings.title")}
                 </div>}
                 contentClass={cn(
                     "max-w-5xl bg-gray-950 bg-opacity-90 sm:rounded-3xl",
@@ -218,7 +220,7 @@ export function HomeSettingsModal({ emptyLibrary, isNakamaLibrary }: { emptyLibr
                     <div>
                         <div className="flex items-center gap-2 mb-4">
                             <LuCirclePlay className="size-5" />
-                            <h4 className="text-lg font-semibold">Anime Library</h4>
+                            <h4 className="text-lg font-semibold">{t("home.settings.sections.animeLibrary")}</h4>
                         </div>
 
                         <RadioGroup
@@ -252,8 +254,8 @@ export function HomeSettingsModal({ emptyLibrary, isNakamaLibrary }: { emptyLibr
                             }}
                             disabled={isSavingSettings || isSavingTorrentstreamSettings || isSavingDebridSettings}
                             options={[
-                                { label: "Local anime only", value: "local" },
-                                { label: "Local anime + Streaming", value: "stream" },
+                                { label: t("home.settings.options.localAnimeOnly"), value: "local" },
+                                { label: t("home.settings.options.localAnimePlusStreaming"), value: "stream" },
                             ]}
 
                             {...{
@@ -285,8 +287,8 @@ export function HomeSettingsModal({ emptyLibrary, isNakamaLibrary }: { emptyLibr
 
                         <p className="text-sm text-[--muted] pt-4">
                             {animeLibraryType === "local"
-                                ? "Only anime in your local library will be displayed"
-                                : "All anime in your currently watching list will be included in the library"}
+                                ? t("home.settings.options.localOnlyDescription")
+                                : t("home.settings.options.streamingDescription")}
                         </p>
 
 
@@ -300,7 +302,7 @@ export function HomeSettingsModal({ emptyLibrary, isNakamaLibrary }: { emptyLibr
                     >
                         <div className="flex items-center gap-2 mb-4">
                             <LuLayoutPanelLeft className="size-5" />
-                            <h4 className="text-lg font-semibold">Home Layout</h4>
+                            <h4 className="text-lg font-semibold">{t("home.settings.sections.homeLayout")}</h4>
                         </div>
 
                         {isLoadingHomeItems ? (
@@ -316,7 +318,7 @@ export function HomeSettingsModal({ emptyLibrary, isNakamaLibrary }: { emptyLibr
                                     <div className="space-y-2 bg-gray-900/30 rounded-xl p-4 border border-gray-800">
                                         {currentItems.length === 0 ? (
                                             <div className="text-center py-8 text-gray-400">
-                                                No items added yet. Add some items below to customize your home screen.
+                                                {t("home.settings.options.noItemsAdded")}
                                             </div>
                                         ) : (
                                             currentItems.map((item, index) => (
@@ -345,12 +347,12 @@ export function HomeSettingsModal({ emptyLibrary, isNakamaLibrary }: { emptyLibr
                     >
                         <div className="flex items-center gap-2 mb-4">
                             <BiPlus className="size-5" />
-                            <h4 className="text-lg font-semibold">Available Items</h4>
+                            <h4 className="text-lg font-semibold">{t("home.settings.sections.availableItems")}</h4>
                         </div>
 
                         {availableItems.length === 0 ? (
                             <div className="text-center py-6 text-gray-400">
-                                All available items have been added to your home screen.
+                                {t("home.settings.options.allItemsAdded")}
                             </div>
                         ) : (
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -505,7 +507,7 @@ function AvailableHomeItem({ id, type, onAdd, isUpdating }: AvailableHomeItemPro
                 disabled={isUpdating}
                 leftIcon={<BiPlus />}
             >
-                Add
+                {t("home.settings.buttons.addItem")}
             </Button>
         </div>
     )
@@ -552,7 +554,7 @@ function HomeItemOptionsModal({ id, item, isOpen, onClose, onSave, isUpdating }:
             title={
                 <div className="flex items-center gap-2">
                     <BiCog className="size-5" />
-                    Configure {homeItemConfig.name}
+                    {t("home.settings.configure.title", { name: homeItemConfig.name })}
                 </div>
             }
             contentClass="max-w-2xl bg-gray-950 bg-opacity-90 firefox:bg-opacity-100 firefox:backdrop-blur-none sm:rounded-3xl"
@@ -560,7 +562,7 @@ function HomeItemOptionsModal({ id, item, isOpen, onClose, onSave, isUpdating }:
         >
             <div className="space-y-6">
                 <div className="text-sm text-gray-400">
-                    Customize the settings for this home item.
+                    {t("home.settings.configure.description")}
                 </div>
 
                 <div className="space-y-4">
@@ -580,14 +582,14 @@ function HomeItemOptionsModal({ id, item, isOpen, onClose, onSave, isUpdating }:
                         onClick={onClose}
                         disabled={isUpdating}
                     >
-                        Cancel
+                        {t("common.buttons.cancel")}
                     </Button>
                     <Button
                         intent="primary"
                         onClick={handleSave}
                         loading={isUpdating}
                     >
-                        Save
+                        {t("common.buttons.save")}
                     </Button>
                 </div>
             </div>
@@ -620,7 +622,7 @@ function OptionField({ option, value, onChange }: OptionFieldProps) {
                     <TextInput
                         value={value || ""}
                         onChange={(e) => onChange(e.target.value)}
-                        placeholder={`Enter ${label.toLowerCase()}`}
+                        placeholder={t("home.settings.configure.enterValue", { label: label.toLowerCase() })}
                     />
                 </div>
             )
@@ -646,7 +648,7 @@ function OptionField({ option, value, onChange }: OptionFieldProps) {
                     <Select
                         value={value || ""}
                         onValueChange={onChange}
-                        placeholder={`Select ${label.toLowerCase()}`}
+                        placeholder={t("home.settings.configure.selectValue", { label: label.toLowerCase() })}
                         options={[
                             ...options,
                         ]}
@@ -688,7 +690,7 @@ function OptionField({ option, value, onChange }: OptionFieldProps) {
         default:
             return (
                 <div className="text-sm text-gray-400">
-                    Unsupported field type: {type}
+                    {t("home.settings.configure.unsupportedFieldType", { type })}
                 </div>
             )
     }

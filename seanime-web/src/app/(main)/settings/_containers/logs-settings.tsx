@@ -33,6 +33,9 @@ import { VscDebugAlt } from "react-icons/vsc"
 import { toast } from "sonner"
 import { __issueReport_overlayOpenAtom } from "../../_features/issue-report/issue-report"
 import { SettingsCard } from "../_components/settings-card"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 type LogsSettingsProps = {}
 
@@ -346,7 +349,7 @@ function MemoryProfilingSettings() {
 
                     {!memoryStats && !isLoadingMemoryStats && (
                         <div className="text-center py-4 text-[--muted]">
-                            Click "Refresh" to load memory statistics
+                            {t("logs.clickRefreshToLoadMemory")}
                         </div>
                     )}
 
@@ -364,7 +367,7 @@ function MemoryProfilingSettings() {
                         <div>
                             <h4 className="text-md font-medium mb-2 flex items-center gap-2">
                                 <FaMemory className="text-blue-400" />
-                                Memory
+                                {t("logs.memory")}
                             </h4>
                             <div className="flex flex-wrap gap-2">
                                 <Button
@@ -374,7 +377,7 @@ function MemoryProfilingSettings() {
                                     onClick={handleDownloadHeapProfile}
                                     loading={isDownloadingHeap}
                                 >
-                                    Heap Profile
+                                    {t("logs.heapProfile")}
                                 </Button>
                                 <Button
                                     intent="gray-subtle"
@@ -383,7 +386,7 @@ function MemoryProfilingSettings() {
                                     onClick={handleDownloadAllocsProfile}
                                     loading={isDownloadingAllocs}
                                 >
-                                    Allocations Profile
+                                    {t("logs.allocationsProfile")}
                                 </Button>
                                 <Button
                                     intent="gray-subtle"
@@ -392,7 +395,7 @@ function MemoryProfilingSettings() {
                                     onClick={handleDownloadGoRoutineProfile}
                                     loading={isDownloadingGoroutine}
                                 >
-                                    Goroutine Profile
+                                    {t("logs.goroutineProfile")}
                                 </Button>
                             </div>
                         </div>

@@ -42,6 +42,9 @@ import { toast } from "sonner"
 import { z } from "zod"
 import { useServerStatus } from "../../_hooks/use-server-status"
 import { useVideoCoreScreenshot } from "./video-core-screenshot"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 export const videoCorePreferencesModalAtom = atom(false)
 
@@ -552,20 +555,20 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                 intent="gray-outline"
                                 onClick={handleReset}
                             >
-                                Reset all
+                                {t("videoPlayer.resetAll")}
                             </Button>
                             <div className="flex gap-2">
                                 <Button
                                     intent="gray-outline"
                                     onClick={() => setOpen(false)}
                                 >
-                                    Cancel
+                                    {t("videoPlayer.cancel")}
                                 </Button>
                                 <Button
                                     intent="primary"
                                     onClick={handleSave}
                                 >
-                                    Save
+                                    {t("videoPlayer.save")}
                                 </Button>
                             </div>
                         </div>
@@ -573,11 +576,11 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                 </TabsContent>
                 <TabsContent value="subtitles" className={tabContentClass}>
                     <div className="space-y-3">
-                        <h3 className="text-lg font-semibold text-white">Defaults</h3>
+                        <h3 className="text-lg font-semibold text-white">{t("videoPlayer.defaults")}</h3>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-muted-foreground">
-                                    Preferred Subtitle Language
+                                    {t("videoPlayer.preferredSubtitleLanguage")}
                                 </label>
                                 <TextInput
                                     value={editedSubLanguage}
@@ -589,7 +592,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-muted-foreground">
-                                    Preferred Audio Language
+                                    {t("videoPlayer.preferredAudioLanguage")}
                                 </label>
                                 <TextInput
                                     value={editedAudioLanguage}
@@ -602,7 +605,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                         </div>
                         <div className="space-y-2">
                             <label className="text-sm font-medium text-muted-foreground">
-                                Ignored Subtitle Names
+                                {t("videoPlayer.ignoredSubtitleNames")}
                             </label>
                             <TextInput
                                 value={editedSubsBlacklist}
@@ -610,20 +613,20 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                 placeholder="e.g. signs & songs,signs/songs"
                                 onKeyDown={(e) => e.stopPropagation()}
                                 onInput={(e) => e.stopPropagation()}
-                                help="Subtitle tracks that will not be selected by default if they match the preferred lanauges. Separate multiple names with commas."
+                                help={t("videoPlayer.ignoredSubtitleNamesHelp")}
                             />
                         </div>
                     </div>
 
                     {isWebPlayer && <div className="space-y-3">
-                        <h3 className="text-lg font-semibold text-white">Rendering</h3>
+                        <h3 className="text-lg font-semibold text-white">{t("videoPlayer.rendering")}</h3>
                         <div className="space-y-2">
                             <Switch
                                 side="right"
-                                label="Convert Soft Subs to ASS"
+                                label={t("videoPlayer.convertSoftSubsToASS")}
                                 value={editedUseLibassRenderer}
                                 onValueChange={setEditedUseLibassRenderer}
-                                help="The player will convert other subtitle formats (SRT, VTT, ...) to ASS. In case your language is not supported, you can add a new font or disable this feature. Reloading the player is required after changing this setting."
+                                help={t("videoPlayer.convertSoftSubsToASSHelp")}
                             />
                         </div>
                     </div>}
@@ -633,20 +636,20 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                             intent="gray-outline"
                             onClick={handleReset}
                         >
-                            Reset all
+                            {t("videoPlayer.resetAll")}
                         </Button>
                         <div className="flex gap-2">
                             <Button
                                 intent="gray-outline"
                                 onClick={() => setOpen(false)}
                             >
-                                Cancel
+                                {t("videoPlayer.cancel")}
                             </Button>
                             <Button
                                 intent="primary"
                                 onClick={handleSave}
                             >
-                                Save
+                                {t("videoPlayer.save")}
                             </Button>
                         </div>
                     </div>
@@ -678,12 +681,12 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                     <Field.Switch
                                         name="vcTranslate"
                                         side="right"
-                                        label="Enable Translation"
-                                        help="Automatically translate subtitle tracks to your selected language"
+                                        label={t("videoPlayer.translationSettings.enableTranslation")}
+                                        help={t("videoPlayer.translationSettings.enableTranslationHelp")}
                                     />
                                     <div className="space-y-2">
                                         <Field.Select
-                                            label="Provider"
+                                            label={t("videoPlayer.translationSettings.provider")}
                                             name="vcTranslateProvider"
                                             options={[
                                                 { value: "google", label: "Google Free" },
@@ -697,13 +700,13 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
 
                                     {provider === "deepl" && (
                                         <p>
-                                            DeepL does not support all target languages.
+                                            {t("videoPlayer.translationSettings.deeplNote")}
                                         </p>
                                     )}
 
                                     <div className="space-y-2">
                                         <Field.Select
-                                            label="Target Language"
+                                            label={t("videoPlayer.translationSettings.targetLanguage")}
                                             name="vcTranslateTargetLanguage"
                                             options={[
                                                 // DeepL
@@ -926,10 +929,10 @@ export function VideoCoreKeybindingController(props: {
             e.preventDefault()
             if (video.paused) {
                 await video.play()
-                showOverlayFeedback({ message: "PLAY", type: "icon" })
+                showOverlayFeedback({ message: t("videoPlayer.overlay.play"), type: "icon" })
             } else {
                 video.pause()
-                showOverlayFeedback({ message: "PAUSE", type: "icon" })
+                showOverlayFeedback({ message: t("videoPlayer.overlay.pause"), type: "icon" })
             }
             return
         }
@@ -938,7 +941,7 @@ export function VideoCoreKeybindingController(props: {
         if (e.code === "Home") {
             e.preventDefault()
             seekTo(0)
-            showOverlayFeedback({ message: "Beginning" })
+            showOverlayFeedback({ message: t("videoPlayer.overlay.beginning") })
             return
         }
 
@@ -946,7 +949,7 @@ export function VideoCoreKeybindingController(props: {
         if (e.code === "End") {
             e.preventDefault()
             seekTo(video.duration)
-            showOverlayFeedback({ message: "End" })
+            showOverlayFeedback({ message: t("videoPlayer.overlay.end") })
             return
         }
 
@@ -972,14 +975,14 @@ export function VideoCoreKeybindingController(props: {
         if (e.code === "Comma") {
             e.preventDefault()
             seek(-1 / 24)
-            showOverlayFeedback({ message: "Previous Frame" })
+            showOverlayFeedback({ message: t("videoPlayer.overlay.previousFrame") })
             return
         }
 
         if (e.code === "Period") {
             e.preventDefault()
             seek(1 / 24)
-            showOverlayFeedback({ message: "Next Frame" })
+            showOverlayFeedback({ message: t("videoPlayer.overlay.nextFrame") })
             return
         }
 
@@ -1000,12 +1003,12 @@ export function VideoCoreKeybindingController(props: {
 
             if (props.introEndTime && props.introStartTime && video.currentTime < props.introEndTime && video.currentTime >= props.introStartTime) {
                 seekTo(props.introEndTime)
-                showOverlayFeedback({ message: "Skipped Opening" })
+                showOverlayFeedback({ message: t("videoPlayer.overlay.skippedOpening") })
                 return
             }
             if (props.endingEndTime && props.endingStartTime && video.currentTime < props.endingEndTime && video.currentTime >= props.endingStartTime) {
                 seekTo(props.endingEndTime)
-                showOverlayFeedback({ message: "Skipped Ending" })
+                showOverlayFeedback({ message: t("videoPlayer.overlay.skippedEnding") })
                 return
             }
             seek(keybindings.seekForward.value)

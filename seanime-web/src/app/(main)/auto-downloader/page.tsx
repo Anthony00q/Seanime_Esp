@@ -2,6 +2,9 @@ import { CustomLibraryBanner } from "@/app/(main)/_features/anime-library/_conta
 import { AutoDownloaderPage } from "@/app/(main)/auto-downloader/_containers/autodownloader-page"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import React from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 
 export default function Page() {
@@ -12,9 +15,9 @@ export default function Page() {
             <PageWrapper className="p-4 sm:p-8 space-y-4">
                 <div className="flex justify-between items-center w-full relative">
                     <div>
-                        <h2>Auto Downloader</h2>
+                        <h2>{t("autoDownloader.title")}</h2>
                         <p className="text-[--muted]">
-                            Automatically download new episodes as they are released.
+                            {t("autoDownloader.description")}
                         </p>
                     </div>
                 </div>

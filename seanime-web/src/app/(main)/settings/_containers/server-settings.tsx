@@ -12,6 +12,7 @@ import { Field } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
 import { Switch } from "@/components/ui/switch"
 import { __isElectronDesktop__ } from "@/types/constants"
+import { createTranslator } from "@/locales"
 import { useAtom } from "jotai/react"
 import React from "react"
 import { useFormContext, useWatch } from "react-hook-form"
@@ -21,6 +22,8 @@ import { MdDownloading } from "react-icons/md"
 import { RiMovieAiLine } from "react-icons/ri"
 import { TbAlertSquareRoundedOff, TbBrowserShare, TbChecklist, TbClockPlay, TbDownloadOff, TbProgressCheck, TbRating18Plus } from "react-icons/tb"
 import { useServerStatus } from "../../_hooks/use-server-status"
+
+const t = createTranslator("es")
 
 type ServerSettingsProps = {
     isPending: boolean
@@ -71,9 +74,9 @@ export function ServerSettings(props: ServerSettingsProps) {
     const { mutate: toggleCacheLayer, isPending: isTogglingCacheLayer } = useToggleAnilistCacheLayerStatus()
 
     const confirmDialog = useConfirmationDialog({
-        title: "Upload to AniList",
-        description: "This will upload your local Seanime collection to your AniList account. Are you sure you want to proceed?",
-        actionText: "Upload",
+        title: t("settings.server.uploadToAnilist"),
+        description: t("settings.server.uploadToAnilistDescription"),
+        actionText: t("settings.server.upload"),
         actionIntent: "primary",
         onConfirm: async () => {
             if (isUploading) return
@@ -88,8 +91,8 @@ export function ServerSettings(props: ServerSettingsProps) {
                 <Alert
                     intent="warning-basic"
                     description={<div className="space-y-1">
-                        <p>The AniList API is not working. All requests will be served from the cache.</p>
-                        <p>You can disable this in the app settings.</p>
+                        <p>{t("settings.server.anilistApiNotWorking")}</p>
+                        <p>{t("settings.server.anilistApiNotWorkingHelp")}</p>
                     </div>}
                     className="fixed top-4 right-4 z-[50] hidden lg:block"
                 />
@@ -103,18 +106,18 @@ export function ServerSettings(props: ServerSettingsProps) {
                 <Field.Switch
                     side="right"
                     name="autoUpdateProgress"
-                    label="Automatically update progress"
-                    help="If enabled, your progress will be automatically updated when you watch 80% of an episode."
-                    moreHelp="Only applies to desktop and integrated players."
+                    label={t("settings.server.autoUpdateProgress")}
+                    help={t("settings.server.autoUpdateProgressHelp")}
+                    moreHelp={t("settings.server.autoUpdateProgressMoreHelp")}
                     icon={<TbProgressCheck className="" />}
                 />
                 {/*<Separator />*/}
                 <Field.Switch
                     side="right"
                     name="enableWatchContinuity"
-                    label="Enable watch history"
-                    help="If enabled, Seanime will remember your watch progress and resume from where you left off."
-                    moreHelp="Only applies to desktop and integrated players."
+                    label={t("settings.server.enableWatchHistory")}
+                    help={t("settings.server.enableWatchHistoryHelp")}
+                    moreHelp={t("settings.server.enableWatchHistoryMoreHelp")}
                     icon={<TbClockPlay className="" />}
                 />
 
@@ -172,8 +175,8 @@ export function ServerSettings(props: ServerSettingsProps) {
                 <Field.Switch
                     side="right"
                     name="hideAudienceScore"
-                    label="Hide audience score"
-                    help="If enabled, the audience score will be hidden until you decide to view it."
+                    label={t("settings.server.hideAudienceScore")}
+                    help={t("settings.server.hideAudienceScoreHelp")}
                     icon={<LuStarOff className="" />}
                 />
 
@@ -181,27 +184,29 @@ export function ServerSettings(props: ServerSettingsProps) {
                 <Field.Switch
                     side="right"
                     name="enableAdultContent"
-                    label="Enable adult content"
-                    help="If disabled, adult content will be hidden from search results and your library."
+                    label={t("settings.server.enableAdultContent")}
+                    help={t("settings.server.enableAdultContentHelp")}
                     icon={<TbRating18Plus className="" />}
                 />
                 {f.watch("enableAdultContent") && <div className="space-y-1 pl-4 border-l border-[--border] ml-2">
                     <Field.Switch
                         side="right"
                         name="blurAdultContent"
-                        label="Blur adult content"
-                        fieldClass={cn(
-                            !f.watch("enableAdultContent") && "opacity-50",
-                        )}
-                    />
-                </div>}
+                    name="blurAdultContent"
+                    label={t("settings.server.blurAdultContent")}
+                    help={t("settings.server.blurAdultContentHelp")}
+                    fieldClass={cn(
+                        !f.watch("enableAdultContent") && "opacity-50",
+                    )}
+                />
+            </div>}
 
-                <Field.Switch
-                    side="right"
-                    name="disableAnimeCardTrailers"
-                    label="Disable anime card trailers"
-                    help=""
-                    icon={<LuImageOff className="" />}
+            <Field.Switch
+                side="right"
+                name="disableAnimeCardTrailers"
+                label={t("settings.server.disableAnimeCardTrailers")}
+                help={t("settings.server.disableAnimeCardTrailersHelp")}
+                icon={<LuImageOff className="" />}
                 />
 
                 <Separator />
@@ -220,15 +225,15 @@ export function ServerSettings(props: ServerSettingsProps) {
             </SettingsCard>
 
             <SettingsCard
-                title="Local Account"
-                description="Local account is used when you're not using an AniList account."
+                title={t("settings.server.localData")}
+                description={t("settings.server.localDataDescription")}
             >
                 <div className={cn(serverStatus?.user?.isSimulated && "opacity-50 pointer-events-none")}>
                     <Field.Switch
                         side="right"
                         name="autoSyncToLocalAccount"
-                        label="Automatically back up AniList lists"
-                        help="If enabled, your local lists will be periodically updated by using your AniList data. This will override any local changes you've made since the last sync."
+                        label={t("settings.server.autoBackupListsFromAnilist")}
+                        help={t("settings.server.autoBackupListsFromAnilistHelp")}
                         icon={<LuUserPen className="" />}
                     />
                 </div>
@@ -243,38 +248,38 @@ export function ServerSettings(props: ServerSettingsProps) {
                     }}
                     disabled={serverStatus?.user?.isSimulated}
                 >
-                    Upload local lists to AniList
+                    {t("settings.server.uploadLocalListsToAnilist")}
                 </Button>
             </SettingsCard>
 
             <ConfirmationDialog {...confirmDialog} />
 
-            <SettingsCard title="Offline mode" description="Only available when authenticated with AniList.">
+            <SettingsCard title={t("settings.server.offlineMode")} description={t("settings.server.offlineModeDescription")}>
 
                 <Field.Switch
                     side="right"
                     name="autoSyncOfflineLocalData"
-                    label="Auto-refresh offline media"
-                    help="If disabled, you will need to manually refresh your local metadata by clicking 'Sync now' in the offline mode page."
-                    moreHelp="Will be paused if you have made changes offline and have not synced them to AniList yet."
+                    label={t("settings.server.downloadMetadataAutomatically")}
+                    help={t("settings.server.downloadMetadataAutomaticallyHelp")}
+                    moreHelp={t("settings.server.downloadMetadataAutomaticallyMoreHelp")}
                     icon={<MdDownloading className="" />}
                 />
 
                 <Field.Switch
                     side="right"
                     name="autoSaveCurrentMediaOffline"
-                    label="Auto-save currently watched/read media"
-                    help="If enabled, Seanime will automatically save all media you're currently watching/reading for offline use."
+                    label={t("settings.server.saveAllCurrentlyWatchedMedia")}
+                    help={t("settings.server.saveAllCurrentlyWatchedMediaHelp")}
                     icon={<TbChecklist className="" />}
                 />
 
             </SettingsCard>
 
-            <SettingsCard title="Keyboard shortcuts">
+            <SettingsCard title={t("settings.server.keyboardShortcuts")}>
                 <div className="space-y-4">
                     {[
                         {
-                            label: "Open command palette",
+                            label: t("settings.server.openCommandPalette"),
                             value: "meta+j",
                             altValue: "q",
                         },
@@ -301,7 +306,6 @@ export function ServerSettings(props: ServerSettingsProps) {
                                                     .replace(" ", "space")
                                                     .replace("+", "plus")}`
 
-                                                // Update the first shortcut
                                                 setShortcuts(prev => [keyStr, prev[1]])
                                             }
                                         }}
@@ -311,7 +315,7 @@ export function ServerSettings(props: ServerSettingsProps) {
                                     >
                                         {shortcuts[0]}
                                     </Button>
-                                    <span className="text-[--muted]">or</span>
+                                    <span className="text-[--muted]">{t("settings.server.or")}</span>
                                     <Button
                                         onKeyDownCapture={(e) => {
                                             e.preventDefault()
@@ -328,7 +332,6 @@ export function ServerSettings(props: ServerSettingsProps) {
                                                     .replace(" ", "space")
                                                     .replace("+", "plus")}`
 
-                                                // Update the second shortcut
                                                 setShortcuts(prev => [prev[0], keyStr])
                                             }
                                         }}
@@ -349,7 +352,7 @@ export function ServerSettings(props: ServerSettingsProps) {
                                         intent="white-basic"
                                         leftIcon={<FaRedo />}
                                     >
-                                        Reset
+                                        {t("settings.server.reset")}
                                     </Button>
                                 )}
                             </div>
@@ -358,14 +361,14 @@ export function ServerSettings(props: ServerSettingsProps) {
                 </div>
             </SettingsCard>
 
-            <SettingsCard title="App">
+            <SettingsCard title={t("settings.server.appSettings")}>
                 {/*<Separator />*/}
                 <Field.Switch
                     side="right"
                     name="disableCacheLayer"
-                    label="Disable AniList caching"
-                    help="If enabled, Seanime will stop caching AniList requests to disk."
-                    moreHelp="By default, all requests made to AniList are cached. This allows Seanime to keep being usable when AniList goes down. The cache directory is modifiable in the config file."
+                    label={t("settings.server.disableAnilistCaching")}
+                    help={t("settings.server.disableAnilistCachingHelp")}
+                    moreHelp={t("settings.server.disableAnilistCachingMoreHelp")}
                     icon={<LuDatabaseBackup className="" />}
                 />
                 {!f.watch("disableCacheLayer") && (
@@ -374,8 +377,8 @@ export function ServerSettings(props: ServerSettingsProps) {
                             value={!isApiWorking}
                             onValueChange={v => toggleCacheLayer()}
                             disabled={isTogglingCacheLayer}
-                            label="Enable cache-only mode"
-                            moreHelp="Seanime will use cached data instead of making API requests."
+                            label={t("settings.server.useCacheOnlyMode")}
+                            moreHelp={t("settings.server.useCacheOnlyModeHelp")}
                         />
                     </div>
                 )}
@@ -383,8 +386,8 @@ export function ServerSettings(props: ServerSettingsProps) {
                 <Field.Switch
                     side="right"
                     name="useFallbackMetadataProvider"
-                    label="Use fallback metadata provider"
-                    help="If enabled, Seanime will use an alternative source to fetch episode metadata."
+                    label={t("settings.server.useFallbackMetadataProvider")}
+                    help={t("settings.server.useFallbackMetadataProviderHelp")}
                     icon={<LuImages className="" />}
                 />
                 {/*<Separator />*/}
@@ -403,31 +406,31 @@ export function ServerSettings(props: ServerSettingsProps) {
                 <Field.Switch
                     side="right"
                     name="disableUpdateCheck"
-                    label={__isElectronDesktop__ ? "Do not fetch updates" : "Do not check for updates"}
+                    label={__isElectronDesktop__ ? t("settings.server.doNotFetchUpdateNotes") : t("settings.server.doNotCheckForUpdates")}
                     help={__isElectronDesktop__ ? (<span className="flex gap-2 items-center">
                         <LuCircleAlert className="size-4 text-[--blue]" />
-                        <span>If enabled, new releases won't be displayed. Seanime Denshi may still auto-update in the background.</span>
-                    </span>) : "If enabled, Seanime will not check for new releases."}
-                    moreHelp={__isElectronDesktop__ ? "You cannot disable auto-updates for Seanime Denshi." : undefined}
+                        <span>{t("settings.server.doNotFetchUpdateNotesHelp")}</span>
+                    </span>) : t("settings.server.doNotCheckForUpdatesHelp")}
+                    moreHelp={__isElectronDesktop__ ? t("settings.server.cannotDisableAutoUpdatesDenshi") : undefined}
                     icon={<TbDownloadOff className="" />}
                 />
                 <Field.Select
-                    label="Update Channel"
+                    label={t("settings.server.updateChannel")}
                     name="updateChannel"
-                    help={__isElectronDesktop__ ? "Also applies to Seanime Denshi auto-updates." : ""}
+                    help={__isElectronDesktop__ ? t("settings.server.updateChannelHelpDenshi") : ""}
                     options={[
-                        { label: "GitHub (Default)", value: "github" },
-                        { label: "Seanime", value: "seanime" },
-                        { label: "Seanime (Canary)", value: "seanime_nightly" },
+                        { label: t("settings.server.githubDefault"), value: "github" },
+                        { label: t("settings.server.seanime"), value: "seanime" },
+                        { label: t("settings.server.seanimeCanary"), value: "seanime_nightly" },
                     ]}
                 />
                 {serverStatus?.settings?.library?.updateChannel === "seanime" && (
-                    <Alert intent="info" description="You are currently using a release channel hosted on Seanime." />
+                    <Alert intent="info" description={t("settings.server.usingSeanimeReleaseChannel")} />
                 )}
                 {serverStatus?.settings?.library?.updateChannel === "seanime_nightly" && (
                     <Alert
                         intent="warning"
-                        description="You are currently using the canary release channel hosted on Seanime. This channel may receive unstable updates without much testing."
+                        description={t("settings.server.usingSeanimeCanaryReleaseChannel")}
                     />
                 )}
                 <Separator />
