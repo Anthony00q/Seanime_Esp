@@ -113,3 +113,8 @@ skills*.json
 ## Informacion local
 ##
 informacion/
+
+##
+## Scripts locales
+##
+*.bat
