@@ -108,3 +108,8 @@ skills*.json
 .github/prompts/
 .github/skills/
 *.agent.md
+
+##
+## Informacion local
+##
+informacion/
