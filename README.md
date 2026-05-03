@@ -106,7 +106,7 @@ El proyecto original no tiene i18n integrado, por lo que se implementó un siste
 
 | Capa | Tecnología |
 |------|-----------|
-| **Servidor** | [Go](https://go.dev/) 1.26.0, Echo v4, GraphQL (gqlgen), SQLite |
+| **Servidor** | [Go](https://go.dev/) |
 | **Frontend** | [React](https://reactjs.org/), [Rsbuild/Rspack](https://rsbuild.rs/), [TanStack Router](https://tanstack.com/router) |
 | **Escritorio** | [Electron](https://www.electronjs.org/) |
 
