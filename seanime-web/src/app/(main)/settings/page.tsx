@@ -348,6 +348,7 @@ export default function Page() {
                                         useFallbackMetadataProvider: data.useFallbackMetadataProvider ?? false,
                                         scannerUseLegacyMatching: data.scannerUseLegacyMatching ?? false,
                                         scannerConfig: data.scannerConfig ?? "",
+                                        updateChannel: "github",
                                     },
                                     nakama: {
                                         enabled: data.nakamaEnabled ?? false,
@@ -515,6 +516,7 @@ export default function Page() {
                                 vcTranslateTargetLanguage: status?.settings?.mediaPlayer?.vcTranslateTargetLanguage ?? "",
                                 scannerUseLegacyMatching: status?.settings?.library?.scannerUseLegacyMatching ?? false,
                                 scannerConfig: status?.settings?.library?.scannerConfig ?? "",
+                                updateChannel: "github",
                             }}
                             stackClass="space-y-0 relative"
                         >
