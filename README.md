@@ -22,10 +22,7 @@
     <img src="https://img.shields.io/github/v/release/5rahim/seanime?style=flat-square&color=blue" alt="versión" />
   </a>
   <a href="https://github.com/Anthony00q/Seanime_Esp">
-    <img src="https://img.shields.io/badge/Traducción-~70%25-orange?style=flat-square" alt="progreso traducción" />
-  </a>
-  <a href="https://github.com/5rahim/seanime/releases">
-    <img src="https://img.shields.io/github/downloads/5rahim/seanime/total?style=flat-square&color=blue" alt="descargas" />
+    <img src="https://img.shields.io/badge/Traducción-en_progreso-orange?style=flat-square" alt="progreso traducción" />
   </a>
   <a href="https://discord.gg/Aruz7wdAaf">
     <img src="https://img.shields.io/discord/1224767201551192224?style=flat-square&logo=Discord&color=blue&label=Discord" alt="discord" />
@@ -36,27 +33,27 @@
 </div>
 
 <h5 align="center">
-Si te gusta el proyecto original, ¡deja una estrella en el <a href="https://github.com/5rahim/seanime">repositorio original</a>! ⭐️
+Si te gusta el proyecto, ¡deja una estrella en el <a href="https://github.com/5rahim/seanime">repositorio original</a>! ⭐️
 </h5>
 
 ---
 
-## 📌 ¿Qué es este fork?
+## ¿Qué es este fork?
 
 Este es un **fork en español** del proyecto [Seanime](https://github.com/5rahim/seanime) creado por [5rahim](https://github.com/5rahim).
 
-**Objetivo:** Traducir toda la interfaz de usuario al español para uso personal y público, manteniendo el proyecto original intacto y actualizado.
+**Objetivo:** Traducir toda la interfaz de usuario al español, manteniendo el proyecto original intacto y actualizado.
 
 **Estructura de ramas:**
 - `main` → espejo puro del upstream (sin modificaciones)
-- `traduccion-es` → rama de trabajo con todas las traducciones al español *(rama por defecto)*
+- `traduccion-es` → rama de trabajo con las traducciones al español *(rama por defecto)*
 
 > [!IMPORTANT]
 > Seanime no proporciona, aloja ni distribuye contenido multimedia. Los usuarios son responsables de obtener contenido por medios legales y cumplir con las leyes locales. Las extensiones listadas en la app no están afiliadas con Seanime y pueden ser eliminadas si violan leyes de derechos de autor.
 
 ---
 
-## 📋 Características
+## Características
 
 - **Multiplataforma**: Interfaz web y app de escritorio para Windows, Linux y macOS
 - **Seanime Denshi**: Cliente de escritorio con reproductor de video integrado (soporte para subtítulos SSA/ASS, Anime4K, traducción automática y más)
@@ -79,129 +76,49 @@ Este es un **fork en español** del proyecto [Seanime](https://github.com/5rahim
 
 ---
 
-## 🌍 Progreso de Traducción
+## Progreso de Traducción
 
-El sistema de traducción es personalizado (el proyecto original no tiene i18n integrado). Se usa un sistema de archivos JSON con deep-merge automático.
+El proyecto original no tiene i18n integrado, por lo que se implementó un sistema de traducción personalizado con archivos JSON.
 
-### ✅ Completado
+### ✅ Traducido
 
-| Sección | Keys | Componentes |
-|---------|------|-------------|
-| Common (botones, labels, mensajes) | 36 | — |
-| Home Screen | 142 | 5 |
-| Schedule (Horario) | 28 | 5 |
-| Discover (Descubrir) | 13 | 6 |
-| Navigation (Navegación) | 42 | 2 |
-| Video Player (Reproductor) | 33 | 2 |
-| Sea Command (Paleta de comandos) | 23 | 1 |
-| Settings (Configuración) | ~681 | 19 |
-| Nakama (Watch Parties) | 31 | 1 |
-| Misc (onlinestream, torrentList, etc.) | 30 | 4 |
-| Shared Components | — | 3 |
-
-**Total: ~1059 keys traducidas · 48 componentes**
+- Pantalla de inicio
+- Horario y descubrimiento
+- Navegación y barra lateral
+- Reproductor de video
+- Configuración completa
+- Watch parties (Nakama)
+- Paleta de comandos
+- Componentos compartidos
 
 ### ⏳ Pendiente
 
-| Sección | Estimación |
-|---------|------------|
-| Extensions | ~100+ strings |
-| Manga (lectores, entrada) | ~200+ strings |
-| Sync | ~40+ strings |
-| Search | ~30+ strings |
-| Custom Sources | ~15+ strings |
-| Entry, Lists, Auth, Webview, MediaLinks, MAL | varios |
+- Extensiones
+- Manga (lectores y páginas)
+- Búsqueda
+- Sincronización
+- Fuentes personalizadas
+- Páginas de entrada, listas, autenticación, MAL
 
 ---
 
-## 🚀 Inicio Rápido
-
-### Requisitos
-
-- **Go** 1.23+
-- **Node.js** 18+ (recomendado 20+)
-- **npm** (viene con Node.js)
-
-### Build de Producción (Windows)
-
-El fork incluye un script automatizado:
-
-```bat
-abrir-proyecto.bat
-```
-
-Esto:
-1. Instala dependencias de npm
-2. Construye la interfaz web
-3. Copia los archivos al directorio `web/`
-4. Compila el servidor Go como `seanime.exe`
-
-Luego ejecuta `seanime.exe` y accede a `http://127.0.0.1:43000`.
-
-### Build Manual
-
-```bash
-# 1. Construir interfaz web
-cd seanime-web
-npm install
-npm run build
-cd ..
-
-# 2. Copiar archivos web
-rmdir /s /q web 2>nul
-xcopy /e /i /y seanime-web\out web
-
-# 3. Compilar servidor Go (Windows sin system tray)
-go build -o seanime.exe -trimpath -ldflags="-s -w" -tags=nosystray
-
-# 4. Ejecutar
-seanime.exe
-```
-
-### Desarrollo
-
-```bash
-# Servidor Go (puerto correcto para frontend dev)
-go run main.go serve --port 43000
-
-# Frontend (en otra terminal)
-cd seanime-web && npm run dev
-```
-
-Acceso: `http://127.0.0.1:43210`
-
----
-
-## 💻 Stack Tecnológico
+## Stack Tecnológico
 
 | Capa | Tecnología |
 |------|-----------|
 | **Servidor** | [Go](https://go.dev/) 1.26.0, Echo v4, GraphQL (gqlgen), SQLite |
 | **Frontend** | [React](https://reactjs.org/), [Rsbuild/Rspack](https://rsbuild.rs/), [TanStack Router](https://tanstack.com/router) |
 | **Escritorio** | [Electron](https://www.electronjs.org/) |
-| **State** | Jotai, React Hook Form + Zod |
 
 ---
 
-## 🤝 Contribuir
+## Desarrollo y Build
 
-Este es un fork personal de traducción. Para reportar bugs o sugerir features del **proyecto original**, visita [5rahim/seanime](https://github.com/5rahim/seanime).
-
-Para sugerencias sobre la **traducción al español**, puedes abrir un issue en este repositorio.
-
-### Sincronizar con el upstream
-
-```bash
-git checkout main
-git pull upstream main
-
-git checkout traduccion-es
-git rebase main
-```
+Consulta la guía completa en [DEVELOPMENT_AND_BUILD.md](DEVELOPMENT_AND_BUILD.md).
 
 ---
 
-## ❤️ Créditos
+## Créditos
 
 Este proyecto es un fork de [Seanime](https://github.com/5rahim/seanime), creado por [5rahim](https://github.com/5rahim).
 
