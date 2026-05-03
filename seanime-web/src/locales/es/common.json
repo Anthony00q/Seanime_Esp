@@ -1,0 +1,48 @@
+{
+  "common": {
+    "buttons": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "add": "Añadir",
+      "delete": "Eliminar",
+      "confirm": "Confirmar",
+      "close": "Cerrar",
+      "edit": "Editar",
+      "refresh": "Actualizar",
+      "scan": "Escanear",
+      "retry": "Reintentar",
+      "reload": "Recargar",
+      "open": "Abrir"
+    },
+    "labels": {
+      "name": "Nombre",
+      "type": "Tipo",
+      "status": "Estado",
+      "loading": "Cargando...",
+      "search": "Buscar",
+      "settings": "Ajustes",
+      "yes": "Sí",
+      "no": "No",
+      "all": "Todos",
+      "none": "Ninguno",
+      "custom": "Personalizado",
+      "optional": "Opcional"
+    },
+    "messages": {
+      "itemNotFound": "Elemento no encontrado",
+      "itemNotFoundWithType": "Elemento no encontrado ({itemType})",
+      "nothingFetched": "No se obtuvo nada, por favor actualiza las opciones.",
+      "error": "Algo salió mal",
+      "success": "Éxito",
+      "noResults": "No se encontraron resultados"
+    },
+    "toast": {
+      "saved": "Guardado correctamente",
+      "deleted": "Eliminado correctamente",
+      "added": "Añadido correctamente",
+      "removed": "Eliminado correctamente",
+      "updated": "Actualizado correctamente",
+      "error": "Ocurrió un error"
+    }
+  }
+}

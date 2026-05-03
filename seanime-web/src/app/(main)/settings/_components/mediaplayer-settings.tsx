@@ -185,7 +185,7 @@ export function MediaplayerSettings(props: MediaplayerSettingsProps) {
                                 <Field.Text
                                     name="iinaPath"
                                     label={t("settings.mediaPlayer.cliPath")}
-                                    placeholder={"Path to the IINA CLI"}
+                                    placeholder={t("settings.mediaPlayer.iinaCliPathPlaceholder")}
                                     help={t("settings.mediaPlayer.iinaHelp")}
                                 />
                             </div>

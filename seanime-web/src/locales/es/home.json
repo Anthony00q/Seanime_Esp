@@ -1,0 +1,242 @@
+{
+  "home": {
+    "empty": {
+      "title": "Tu pantalla de inicio está vacía",
+      "description": "Añade elementos para personalizar tu pantalla de inicio.",
+      "scanLibrary": "Escanear tu biblioteca de anime",
+      "addSeries": "Añadir series a tu colección",
+      "addCurrentlyWatching": "Añadir series vistas actualmente a la biblioteca",
+      "noSeriesWatching": "No se está viendo ninguna serie actualmente",
+      "addToList": "Añade series a tu lista de 'Viendo actualmente' para empezar"
+    },
+    "toolbar": {
+      "library": {
+        "tooltip": "Biblioteca de {username}"
+      },
+      "actions": {
+        "addMissingExtensions": "Añadir extensiones faltantes",
+        "noTorrentProviders": "No hay proveedores de torrent instalados.",
+        "refresh": "Actualizar",
+        "refreshTooltip": "Actualizar Biblioteca de Anime",
+        "scan": "Escanear",
+        "scanTooltip": "Escanear Biblioteca de Anime"
+      },
+      "navigation": {
+        "home": "Inicio",
+        "localAnimeLibrary": "Biblioteca de Anime Local",
+        "libraryExplorer": "Explorador de Biblioteca",
+        "playlists": "Listas de reproducción"
+      },
+      "resolve": {
+        "unmatched": "Resolver sin coincidencia ({count})",
+        "hidden": "Resolver medios ocultos ({count})"
+      },
+      "dropdown": {
+        "searchInLibrary": "Buscar en biblioteca",
+        "openDirectory": "Abrir directorio",
+        "bulkActions": "Acciones masivas",
+        "ignoredFiles": "Archivos ignorados",
+        "scanSummaries": "Resúmenes de escaneo"
+      }
+    },
+    "screen": {
+      "trendingRightNow": "En Tendencia Ahora",
+      "missedSequels": "Secuelas Olvidadas",
+      "invalidItem": "El elemento \"{schemaName}\" no se puede mostrar porque le faltan algunas opciones requeridas."
+    },
+    "settings": {
+      "title": "Inicio",
+      "sections": {
+        "animeLibrary": "Biblioteca de Anime",
+        "homeLayout": "Diseño de Inicio",
+        "availableItems": "Elementos Disponibles"
+      },
+      "options": {
+        "localAnimeOnly": "Solo anime local",
+        "localAnimePlusStreaming": "Anime local + Streaming",
+        "localOnlyDescription": "Solo se mostrarán los animes de tu biblioteca local",
+        "streamingDescription": "Todos los animes de tu lista de 'Viendo actualmente' se incluirán en la biblioteca",
+        "noItemsAdded": "No hay elementos añadidos aún. Añade algunos a continuación para personalizar tu pantalla de inicio.",
+        "allItemsAdded": "Todos los elementos disponibles han sido añadidos a tu pantalla de inicio."
+      },
+      "buttons": {
+        "addItem": "Añadir"
+      },
+      "configure": {
+        "title": "Configurar {name}",
+        "description": "Personaliza los ajustes para este elemento de inicio.",
+        "enterValue": "Introducir {label}",
+        "selectValue": "Seleccionar {label}",
+        "unsupportedFieldType": "Tipo de campo no soportado: {type}"
+      },
+      "toasts": {
+        "itemAdded": "Elemento de inicio añadido",
+        "itemRemoved": "Elemento de inicio eliminado",
+        "layoutUpdated": "Diseño de inicio actualizado",
+        "itemsUpdated": "Elementos de inicio actualizados"
+      }
+    },
+    "settingsButton": {
+      "tooltip": "Ajustes de Inicio"
+    },
+    "carousel": {
+      "anime": {
+        "currentlyWatching": "Viendo actualmente",
+        "repeating": "Repitiendo",
+        "planning": "Planeando",
+        "paused": "Pausado",
+        "completed": "Completado",
+        "dropped": "Abandonado"
+      },
+      "manga": {
+        "currentlyReading": "Leyendo actualmente",
+        "paused": "Pausado",
+        "completed": "Completado"
+      }
+    },
+    "stats": {
+      "library": "Biblioteca",
+      "files": "Archivos",
+      "entries": "Entradas",
+      "tvShows": "Series de TV",
+      "movies": "Películas",
+      "specials": "Especiales"
+    },
+    "items": {
+      "centeredTitle": {
+        "name": "Título centrado",
+        "description": "Muestra un texto de título centrado."
+      },
+      "continueWatching": {
+        "name": "Continuar Viendo",
+        "description": "Muestra una lista de episodios que estás viendo actualmente."
+      },
+      "continueWatchingHeader": {
+        "name": "Encabezado de Continuar Viendo",
+        "description": "Muestra un encabezado con un carrusel de anime que estás viendo actualmente."
+      },
+      "animeLibrary": {
+        "name": "Biblioteca de Anime",
+        "description": "Muestra el anime que has descargado o estás viendo actualmente por estado."
+      },
+      "myLists": {
+        "name": "Mis Listas",
+        "description": "Muestra medios de tus listas por estado."
+      },
+      "localAnimeLibrary": {
+        "name": "Biblioteca de Anime Local",
+        "description": "Muestra una cuadrícula completa del anime que tienes en tu biblioteca local."
+      },
+      "upcomingEpisodes": {
+        "name": "Próximos Episodios de Biblioteca",
+        "description": "Muestra un carrusel de próximos episodios de anime que tienes en tu biblioteca."
+      },
+      "airedRecently": {
+        "name": "Transmitido Recientemente (Global)",
+        "description": "Muestra un carrusel de episodios de anime que se transmitieron recientemente."
+      },
+      "missedSequels": {
+        "name": "Secuelas Olvidadas",
+        "description": "Muestra un carrusel de secuelas que no están en tu colección."
+      },
+      "animeScheduleCalendar": {
+        "name": "Calendario de Horarios de Anime",
+        "description": "Muestra un calendario de episodios de anime basado en su calendario de transmisión."
+      },
+      "localAnimeLibraryStats": {
+        "name": "Estadísticas de Biblioteca de Anime Local",
+        "description": "Muestra las estadísticas de tu biblioteca de anime local."
+      },
+      "discoverHeader": {
+        "name": "Encabezado de Descubrir",
+        "description": "Muestra un encabezado con un carrusel de anime que está en tendencia."
+      },
+      "animeCarousel": {
+        "name": "Carrusel de Anime",
+        "description": "Muestra un carrusel de anime basado en las opciones seleccionadas."
+      },
+      "mangaCarousel": {
+        "name": "Carrusel de Manga",
+        "description": "Muestra un carrusel de manga basado en las opciones seleccionadas."
+      },
+      "mangaLibrary": {
+        "name": "Biblioteca de Manga",
+        "description": "Muestra una lista de manga que tienes en tu biblioteca por estado."
+      },
+      "options": {
+        "name": "Nombre",
+        "text": "Texto",
+        "sorting": {
+          "label": "Ordenar",
+          "popular": "Popular",
+          "trending": "En tendencia",
+          "romajiTitle": "Título Romaji (A-Z)",
+          "romajiTitleDesc": "Título Romaji (Z-A)",
+          "englishTitle": "Título en Inglés (A-Z)",
+          "englishTitleDesc": "Título en Inglés (Z-A)",
+          "score": "Puntuación (0-10)",
+          "scoreDesc": "Puntuación (10-0)"
+        },
+        "status": {
+          "label": "Estado",
+          "releasing": "En emisión",
+          "finished": "Finalizado",
+          "notYetReleased": "Aún no lanzado"
+        },
+        "format": {
+          "label": "Formato",
+          "tv": "TV",
+          "movie": "Película",
+          "ova": "OVA",
+          "ona": "ONA",
+          "special": "Especial",
+          "manga": "Manga",
+          "oneShot": "One Shot"
+        },
+        "genres": {
+          "label": "Géneros"
+        },
+        "season": {
+          "label": "Temporada",
+          "winter": "Invierno",
+          "spring": "Primavera",
+          "summer": "Verano",
+          "fall": "Otoño"
+        },
+        "year": {
+          "label": "Año"
+        },
+        "countryOfOrigin": {
+          "label": "País de Origen"
+        },
+        "layout": {
+          "label": "Diseño",
+          "grid": "Cuadrícula",
+          "carousel": "Carrusel"
+        },
+        "state": {
+          "label": "Estado",
+          "current": "Actual",
+          "repeating": "Repitiendo",
+          "paused": "Pausado",
+          "planning": "Planeando",
+          "completed": "Completado",
+          "dropped": "Abandonado"
+        },
+        "type": {
+          "label": "Tipo",
+          "anime": "Anime",
+          "manga": "Manga"
+        },
+        "carouselType": {
+          "label": "Tipo",
+          "myLists": "Mis listas",
+          "global": "Global"
+        },
+        "customListName": {
+          "label": "Nombre de lista personalizada"
+        }
+      }
+    }
+  }
+}

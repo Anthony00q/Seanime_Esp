@@ -1,0 +1,56 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "schedule": "Horario",
+    "manga": "Manga",
+    "myLists": "Mis Listas",
+    "discover": "Descubrir",
+    "search": "Buscar",
+    "torrentList": "Lista de Torrents",
+    "torrentListSeeding": "Lista de Torrents ({count} sincronizando)",
+    "debrid": "Debrid",
+    "scanSummaries": "Resúmenes de Escaneo",
+    "autoDownloader": "Descargador Automático",
+    "more": "Más",
+    "refreshAniList": "Actualizar AniList",
+    "nakama": "Nakama",
+    "extensions": "Extensiones",
+    "offline": "Sin Conexión",
+    "settings": "Ajustes",
+    "signIn": "Iniciar Sesión",
+    "signOut": "Cerrar Sesión",
+    "login": "Entrar",
+    "loginWithAniList": "Iniciar Sesión con AniList",
+    "loginDescription": "Se recomienda usar una cuenta de AniList.",
+    "getAniListToken": "Obtener Token de AniList",
+    "enterToken": "Introducir el token",
+    "tokenRequired": "El token es obligatorio",
+    "continue": "Continuar"
+  },
+  "dialog": {
+    "signOut": {
+      "title": "Cerrar Sesión",
+      "description": "¿Estás seguro de que quieres cerrar sesión?"
+    },
+    "disableOfflineMode": {
+      "title": "Desactivar modo sin conexión",
+      "description": "¿Estás seguro de que quieres desactivar el modo sin conexión?",
+      "confirm": "Sí"
+    }
+  },
+  "auth": {
+    "loginTitle": "Iniciar Sesión con AniList",
+    "loginDescription": "Se recomienda usar una cuenta de AniList.",
+    "getAniListToken": "Obtener Token de AniList",
+    "enterToken": "Introducir el token",
+    "tokenRequired": "El token es obligatorio",
+    "continue": "Continuar"
+  },
+  "offline": {
+    "animeLibrary": "Biblioteca de Anime",
+    "manga": "Manga",
+    "disableOfflineMode": "Desactivar modo sin conexión",
+    "settings": "Ajustes",
+    "offline": "Sin Conexión"
+  }
+}

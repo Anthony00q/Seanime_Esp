@@ -1,0 +1,45 @@
+{
+  "videoPlayer": {
+    "tabs": {
+      "subtitles": "Subtítulos",
+      "translation": "Traducción",
+      "keybindings": "Atajos de Teclado"
+    },
+    "defaults": "Valores Predeterminados",
+    "rendering": "Renderizado",
+    "preferredSubtitleLanguage": "Idioma de Subtítulos Preferido",
+    "preferredAudioLanguage": "Idioma de Audio Preferido",
+    "ignoredSubtitleNames": "Nombres de Subtítulos Ignorados",
+    "ignoredSubtitleNamesHelp": "Las pistas de subtítulos que no se seleccionarán por defecto si coinciden con los idiomas preferidos. Separa múltiples nombres con comas.",
+    "convertSoftSubsToASS": "Convertir Soft Subs a ASS",
+    "convertSoftSubsToASSHelp": "El reproductor convertirá otros formatos de subtítulos (SRT, VTT, ...) a ASS. Si tu idioma no es soportado, puedes añadir una nueva fuente o desactivar esta función. Se requiere recargar el reproductor después de cambiar esta opción.",
+    "resetAll": "Restablecer Todo",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "overlay": {
+      "beginning": "Inicio",
+      "end": "Fin",
+      "previousFrame": "Fotograma Anterior",
+      "nextFrame": "Siguiente Fotograma",
+      "skippedOpening": "Opening Omitido",
+      "skippedEnding": "Ending Omitido",
+      "play": "Reproducir",
+      "pause": "Pausar"
+    },
+    "translationSettings": {
+      "enableTranslation": "Activar Traducción",
+      "enableTranslationHelp": "Traduce automáticamente las pistas de subtítulos al idioma seleccionado",
+      "provider": "Proveedor",
+      "targetLanguage": "Idioma Destino",
+      "deeplNote": "Nota: DeepL no soporta todos los idiomas destino."
+    },
+    "inSight": {
+      "characters": "Personajes",
+      "mayContainSpoilers": "Puede contener spoilers.",
+      "searchCharacters": "Buscar personajes...",
+      "noResults": "Sin resultados",
+      "loading": "Cargando...",
+      "noDetailsAvailable": "No hay detalles disponibles."
+    }
+  }
+}
