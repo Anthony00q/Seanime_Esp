@@ -113,9 +113,9 @@ export function DebridSettings(props: DebridSettingsProps) {
                             <Field.Select
                                 options={[
                                     { label: t("settings.debridService.none"), value: "-" },
-                                    { label: "TorBox", value: "torbox" },
-                                    { label: "Real-Debrid", value: "realdebrid" },
-                                    { label: "AllDebrid", value: "alldebrid" },
+                                    { label: t("settings.debridService.providerTorBox"), value: "torbox" },
+                                    { label: t("settings.debridService.providerRealDebrid"), value: "realdebrid" },
+                                    { label: t("settings.debridService.providerAllDebrid"), value: "alldebrid" },
                                 ]}
                                 name="provider"
                                 label={t("settings.debridService.provider")}
@@ -157,9 +157,9 @@ export function DebridSettings(props: DebridSettingsProps) {
                                 help={t("settings.debridService.preferredResolutionHelp")}
                                 options={[
                                     { label: t("settings.debridService.highest"), value: "-" },
-                                    { label: "480p", value: "480" },
-                                    { label: "720p", value: "720" },
-                                    { label: "1080p", value: "1080" },
+                                    { label: t("settings.debridService.res480p"), value: "480" },
+                                    { label: t("settings.debridService.res720p"), value: "720" },
+                                    { label: t("settings.debridService.res1080p"), value: "1080" },
                                 ]}
                             />
 

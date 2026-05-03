@@ -27,20 +27,20 @@ const mediastreamSchema = defineSchema(({ z }) => z.object({
 }))
 
 const MEDIASTREAM_HW_ACCEL_OPTIONS = [
-    { label: "CPU (Disabled)", value: "cpu" },
-    { label: "NVIDIA (NVENC)", value: "nvidia" },
-    { label: "Intel (QSV)", value: "qsv" },
-    { label: "VAAPI", value: "vaapi" },
-    { label: "Apple VideoToolbox", value: "videotoolbox" },
-    { label: "Custom", value: "custom" },
+    { label: t("settings.mediastream.hwAccelCpu"), value: "cpu" },
+    { label: t("settings.mediastream.hwAccelNvidia"), value: "nvidia" },
+    { label: t("settings.mediastream.hwAccelIntel"), value: "qsv" },
+    { label: t("settings.mediastream.hwAccelVaapi"), value: "vaapi" },
+    { label: t("settings.mediastream.hwAccelVideoToolbox"), value: "videotoolbox" },
+    { label: t("settings.mediastream.hwAccelCustom"), value: "custom" },
 ]
 
 const MEDIASTREAM_PRESET_OPTIONS = [
-    { label: "Ultrafast", value: "ultrafast" },
-    { label: "Superfast", value: "superfast" },
-    { label: "Veryfast", value: "veryfast" },
-    { label: "Fast", value: "fast" },
-    { label: "Medium", value: "medium" },
+    { label: t("settings.mediastream.presetUltrafast"), value: "ultrafast" },
+    { label: t("settings.mediastream.presetSuperfast"), value: "superfast" },
+    { label: t("settings.mediastream.presetVeryfast"), value: "veryfast" },
+    { label: t("settings.mediastream.presetFast"), value: "fast" },
+    { label: t("settings.mediastream.presetMedium"), value: "medium" },
 ]
 
 type MediastreamSettingsProps = {

@@ -13,9 +13,7 @@ import { THEME_COLOR_BANK } from "@/lib/theme/theme-bank"
 import {
     THEME_DEFAULT_VALUES,
     ThemeLibraryScreenBannerType,
-    ThemeMediaPageBannerSizeOptions,
     ThemeMediaPageBannerType,
-    ThemeMediaPageBannerTypeOptions,
     useThemeSettings,
 } from "@/lib/theme/theme-hooks.ts"
 import { __isDesktop__ } from "@/types/constants"
@@ -1111,47 +1109,47 @@ export function UISettings() {
                                     options={[
                                         {
                                             label: t("navigation.schedule"),
-                                            textValue: "Schedule",
+                                            textValue: t("settings.server.schedule"),
                                             value: "schedule",
                                         },
                                         {
                                             label: t("navigation.manga"),
-                                            textValue: "Manga",
+                                            textValue: t("settings.server.manga"),
                                             value: "manga",
                                         },
                                         {
                                             label: t("navigation.discover"),
-                                            textValue: "Discover",
+                                            textValue: t("settings.server.discover"),
                                             value: "discover",
                                         },
                                         {
                                             label: t("navigation.myLists"),
-                                            textValue: "My lists",
+                                            textValue: t("settings.server.myLists"),
                                             value: "lists",
                                         },
                                         {
                                             label: t("navigation.autoDownloader"),
-                                            textValue: "Auto Downloader",
+                                            textValue: t("settings.server.autoDownloader"),
                                             value: "auto-downloader",
                                         },
                                         {
                                             label: t("navigation.torrentList"),
-                                            textValue: "Torrent list",
+                                            textValue: t("settings.server.torrentList"),
                                             value: "torrent-list",
                                         },
                                         {
                                             label: t("navigation.debrid"),
-                                            textValue: "Debrid",
+                                            textValue: t("settings.server.debrid"),
                                             value: "debrid",
                                         },
                                         {
                                             label: t("navigation.scanSummaries"),
-                                            textValue: "Scan summaries",
+                                            textValue: t("settings.server.scanSummaries"),
                                             value: "scan-summaries",
                                         },
                                         {
                                             label: t("navigation.search"),
-                                            textValue: "Search",
+                                            textValue: t("settings.server.search"),
                                             value: "search",
                                         },
                                     ]}

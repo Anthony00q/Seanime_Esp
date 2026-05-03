@@ -130,9 +130,9 @@ export function TorrentstreamSettings(props: TorrentstreamSettingsProps) {
                                 help={t("settings.torrentstream.preferredResolutionHelp")}
                                 options={[
                                     { label: t("settings.torrentstream.highest"), value: "-" },
-                                    { label: "480p", value: "480" },
-                                    { label: "720p", value: "720" },
-                                    { label: "1080p", value: "1080" },
+                                    { label: t("settings.torrentstream.res480p"), value: "480" },
+                                    { label: t("settings.torrentstream.res720p"), value: "720" },
+                                    { label: t("settings.torrentstream.res1080p"), value: "1080" },
                                 ]}
                             />
 
