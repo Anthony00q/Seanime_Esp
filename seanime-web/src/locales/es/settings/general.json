@@ -48,8 +48,6 @@
       "search": "Búsqueda",
       "general": "General",
       "updates": "Actualizaciones",
-      "updateChannel": "Canal de actualización",
-      "updateChannelHelp": "El canal de actualización determina qué versión recibirás.",
       "stable": "Estable",
       "beta": "Beta",
       "updateSettings": "Ajustes de actualización",
@@ -108,13 +106,7 @@
       "doNotCheckForUpdates": "No buscar actualizaciones",
       "doNotFetchUpdateNotesHelp": "Si está activado, los nuevos lanzamientos no se mostrarán. Seanime Denshi puede seguir actualizándose automáticamente en segundo plano.",
       "doNotCheckForUpdatesHelp": "Si está activado, Seanime no buscará nuevos lanzamientos.",
-      "cannotDisableAutoUpdatesDenshi": "No puedes desactivar las actualizaciones automáticas para Seanime Denshi.",
-      "updateChannelHelpDenshi": "También aplica a las actualizaciones automáticas de Seanime Denshi.",
-      "githubDefault": "GitHub (Por defecto)",
-      "seanime": "Seanime",
-      "seanimeCanary": "Seanime (Canary)",
-      "usingSeanimeReleaseChannel": "Estás usando un canal de lanzamiento alojado en Seanime.",
-      "usingSeanimeCanaryReleaseChannel": "Estás usando el canal de lanzamiento canary alojado en Seanime. Este canal puede recibir actualizaciones no probadas sin mucho testing."
+      "cannotDisableAutoUpdatesDenshi": "No puedes desactivar las actualizaciones automáticas para Seanime Denshi."
     }
   }
 }
