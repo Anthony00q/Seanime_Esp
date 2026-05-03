@@ -9,6 +9,9 @@ import { useMissingEpisodeSpoilers } from "@/lib/theme/anime-spoilers"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { addSeconds, formatDistanceToNow } from "date-fns"
 import React from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 /**
  * @description
@@ -31,8 +34,8 @@ export function UpcomingEpisodes() {
             {data?.episodes.length > 0 && (
                 <>
                     <div>
-                        <h2>Upcoming episodes</h2>
-                        <p className="text-[--muted]">Based on your anime list</p>
+                        <h2>{t("schedule.upcomingEpisodes")}</h2>
+                        <p className="text-[--muted]">{t("schedule.subtitle")}</p>
                     </div>
 
                     <Carousel
