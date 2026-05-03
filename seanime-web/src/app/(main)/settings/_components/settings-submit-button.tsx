@@ -6,6 +6,9 @@ import { atom, useSetAtom } from "jotai"
 import React from "react"
 import { useFormContext, useFormState } from "react-hook-form"
 import { FiRotateCcw, FiSave } from "react-icons/fi"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 export const settingsFormIsDirtyAtom = atom(false)
 
@@ -33,7 +36,7 @@ export function SettingsSubmitButton({ isPending }: { isPending: boolean }) {
                 loading={isPending}
                 leftIcon={<FiSave className="transition-transform duration-200 group-hover:scale-110" />}
             >
-                Save
+                {t("settings.submitButton.save")}
             </Field.Submit>
         </>
     )
@@ -51,7 +54,7 @@ export function SettingsIsDirty({ className }: { className?: string }) {
         )}
     >
         <div className="flex items-center gap-2">
-            <span className="text-sm">You have unsaved changes.</span>
+            <span className="text-sm">{t("settings.submitButton.unsavedChangesAlert")}</span>
             <Button
                 role="save"
                 size="md"
@@ -62,7 +65,7 @@ export function SettingsIsDirty({ className }: { className?: string }) {
                 onClick={() => reset()}
                 leftIcon={<FiRotateCcw className="transition-transform duration-200 group-hover:rotate-180" />}
             >
-                Reset
+                {t("settings.submitButton.reset")}
             </Button>
             <Field.Submit
                 role="save"
@@ -74,7 +77,7 @@ export function SettingsIsDirty({ className }: { className?: string }) {
                 disabled={isLoading || isSubmitting || isValidating}
                 leftIcon={<FiSave className="transition-transform duration-200 group-hover:scale-110" />}
             >
-                Save
+                {t("settings.submitButton.save")}
             </Field.Submit>
         </div>
     </Alert> : null

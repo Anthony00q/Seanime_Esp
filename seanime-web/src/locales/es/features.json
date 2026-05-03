@@ -1,5 +1,6 @@
 {
   "schedule": {
+    "subtitle": "Basado en tu lista de anime",
     "weekStartsOn": "La semana comienza en",
     "monday": "Lunes",
     "sunday": "Domingo",
@@ -20,14 +21,13 @@
     "scheduledEpisodes": "episodios programados",
     "noScheduledEpisodesForThisDay": "No hay episodios programados para este día",
     "noEpisodesAreScheduledForThisDay": "No hay episodios programados para este día.",
-    "more": "más"
-  },
-  "logs": {
-    "clickRefreshToLoadMemory": "Haz clic en \"Actualizar\" para cargar las estadísticas de memoria",
-    "memory": "Memoria",
-    "heapProfile": "Perfil de Heap",
-    "allocationsProfile": "Perfil de Asignaciones",
-    "goroutineProfile": "Perfil de Goroutine"
+    "more": "más",
+    "airedRecently": "Emitidos Recientemente",
+    "movie": "Película",
+    "upcomingEpisodes": "Próximos episodios",
+    "episodeNumber": "Episodio {number}",
+    "missingFromLibrary": "Faltan en tu biblioteca",
+    "silencedEpisodes": "Episodios silenciados"
   },
   "nakama": {
     "title": "Nakama",
