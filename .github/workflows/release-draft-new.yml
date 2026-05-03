@@ -422,9 +422,9 @@ jobs:
           draft: true
           prerelease: false
           body: |
-            ## What's new?
+            ## ¿Qué hay de nuevo?
 
             ${{ env.RELEASE_BODY }}
 
             ---
-            [Open an issue](https://github.com/Anthony00q/Seanime_Esp/issues/new/choose)
+            [Abrir un issue](https://github.com/Anthony00q/Seanime_Esp/issues/new/choose)
