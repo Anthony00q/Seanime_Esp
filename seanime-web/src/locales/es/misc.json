@@ -1,0 +1,42 @@
+{
+  "onlinestream": {
+    "watchPartyProviderNotInstalled": "Watch Party: El proveedor usado por el host no está instalado.",
+    "playbackErrorRetrying": "Error de reproducción, intentando otro servidor...",
+    "findOtherProviders": "Buscar otros proveedores",
+    "selectProvider": "Seleccionar proveedor",
+    "cache": "Caché",
+    "emptyCacheDescription": "Vacía el caché si estás experimentando problemas con el stream.",
+    "emptyStreamCache": "Vaciar caché de stream",
+    "manualMatch": "Coincidencia manual",
+    "switchToSubs": "Cambiar a subtítulos",
+    "switchToDub": "Cambiar a doblaje",
+    "switchToGridView": "Cambiar a vista de cuadrícula",
+    "switchToListView": "Cambiar a vista de lista",
+    "noProviderSelected": "Ningún proveedor seleccionado",
+    "providerError": "Error del proveedor",
+    "loadingStream": "Cargando stream",
+    "completeMovie": "Película completa"
+  },
+  "autoDownloader": {
+    "title": "Descargador Automático",
+    "description": "Descarga automáticamente nuevos episodios cuando se lancen."
+  },
+  "shared": {
+    "pageNotFoundTitle": "Página No Encontrada",
+    "pageNotFound": "La página que buscas no existe.",
+    "goHome": "Ir al Inicio",
+    "retry": "Reintentar",
+    "reload": "Recargar"
+  },
+  "torrentList": {
+    "failedToConnect": "Error al conectar con el cliente torrent. Verifica los ajustes y asegúrate de que está funcionando.",
+    "retry": "Reintentar",
+    "downloading": "Descargando",
+    "seeding": "Sincronizando",
+    "stopSeeding": "Detener sincronización"
+  },
+  "debrid": {
+    "failedToConnect": "Error al conectar con el servicio Debrid. Verifica los ajustes.",
+    "retry": "Reintentar"
+  }
+}
