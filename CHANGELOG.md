@@ -4,22 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ## v3.7.1
 
-- ⚡️ Cache mode: Ability to update entries in the cache (Experimental)
-  - You can now update progress while AniList is down. Data will be auto-synced when AniList is back online.
-- ⚡️ VideoCore: Ability to save screenshots to disk
-- ⚡️ Plugin: Added more APIs
-  - Added '$shared' API for sharing pure functions between hooks and runtimes
-  - Added 'ctx.jobs', 'ctx.settings', 'ctx.cache' for less boilerplate
-  - Added '$debug' API for looking at plugin logs on the client
-- 🦺 Cache mode: Fixed certain queries bypassing the cache layer
-- 🦺 Home: Fixed 'not authenticated' errors for local accounts
-- 🦺 Torrentstream: Fixed 'Disable IPV6' option not working
-- 🦺 Plugin: Fixed potential crash caused by concurrent shared map writes
-- 🦺 Torrentstream: Fixed HEAD requests
-- 🦺 MPV: Fixed player launch when using '--terminal=no --really-quiet'
-- 🦺 Auto-select: Fixed form fields showing empty values after saving
-- 🦺 Settings: Fixed form fields showing empty values after saving
-- 🦺 UI: Fixed some UI issues
+- ⚡️ Modo caché: Capacidad de actualizar entradas en la caché (Experimental)
+  - Ahora puedes actualizar tu progreso mientras AniList está caído. Los datos se sincronizarán automáticamente cuando AniList vuelva en línea.
+- ⚡️ VideoCore: Capacidad de guardar capturas de pantalla en disco
+- ️ Plugin: Se añadieron más APIs
+  - Se añadió la API '$shared' para compartir funciones puras entre hooks y runtimes
+  - Se añadieron 'ctx.jobs', 'ctx.settings', 'ctx.cache' para reducir código repetitivo
+  - Se añadió la API '$debug' para ver los logs del plugin en el cliente
+- 🦺 Modo caché: Se corrigió que ciertas consultas evitaban la capa de caché
+- 🦺 Inicio: Se corrigieron errores de 'no autenticado' para cuentas locales
+- 🦺 Torrentstream: Se corrigió que la opción 'Desactivar IPV6' no funcionaba
+- 🦺 Plugin: Se corrigió un posible crash causado por escrituras concurrentes en mapas compartidos
+- 🦺 Torrentstream: Se corrigieron las solicitudes HEAD
+- 🦺 MPV: Se corrigió el lanzamiento del reproductor al usar '--terminal=no --really-quiet'
+- 🦺 Auto-selección: Se corrigieron campos del formulario que mostraban valores vacíos después de guardar
+-  Ajustes: Se corrigieron campos del formulario que mostraban valores vacíos después de guardar
+- 🦺 UI: Se corrigieron algunos problemas de interfaz
 
 ## v3.7.0
 
