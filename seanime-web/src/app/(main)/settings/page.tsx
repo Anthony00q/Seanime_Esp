@@ -348,7 +348,6 @@ export default function Page() {
                                         useFallbackMetadataProvider: data.useFallbackMetadataProvider ?? false,
                                         scannerUseLegacyMatching: data.scannerUseLegacyMatching ?? false,
                                         scannerConfig: data.scannerConfig ?? "",
-                                        updateChannel: data.updateChannel || "github",
                                     },
                                     nakama: {
                                         enabled: data.nakamaEnabled ?? false,
@@ -427,16 +426,6 @@ export default function Page() {
                                 }, {
                                     onSuccess: () => {
                                         formRef.current?.reset(formRef.current.getValues())
-
-                                        // Sync updateChannel to Denshi
-                                        if (__isElectronDesktop__ && window.electron?.denshiSettings) {
-                                            window.electron.denshiSettings.get().then((denshiSettings) => {
-                                                window.electron!.denshiSettings.set({
-                                                    ...denshiSettings,
-                                                    updateChannel: data.updateChannel || "github",
-                                                })
-                                            })
-                                        }
                                     },
                                 })
                             }}
@@ -526,7 +515,6 @@ export default function Page() {
                                 vcTranslateTargetLanguage: status?.settings?.mediaPlayer?.vcTranslateTargetLanguage ?? "",
                                 scannerUseLegacyMatching: status?.settings?.library?.scannerUseLegacyMatching ?? false,
                                 scannerConfig: status?.settings?.library?.scannerConfig ?? "",
-                                updateChannel: status?.settings?.library?.updateChannel || "github",
                             }}
                             stackClass="space-y-0 relative"
                         >
