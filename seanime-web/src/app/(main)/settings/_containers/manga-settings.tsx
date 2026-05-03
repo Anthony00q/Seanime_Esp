@@ -39,7 +39,7 @@ export function MangaSettings(props: MangaSettingsProps) {
 
     const options = React.useMemo(() => {
         return [
-            { label: "Auto", value: "-" },
+            { label: t("settings.manga.autoOption"), value: "-" },
             ...(extensions?.map(provider => ({
                 label: provider.name,
                 value: provider.id,

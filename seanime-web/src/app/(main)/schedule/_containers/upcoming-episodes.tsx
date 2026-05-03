@@ -7,6 +7,9 @@ import { Carousel, CarouselContent, CarouselDotButtons, CarouselItem } from "@/c
 import { useRouter } from "@/lib/navigation"
 import { addSeconds, formatDistanceToNow } from "date-fns"
 import React from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 /**
  * @description
@@ -27,8 +30,8 @@ export function UpcomingEpisodes() {
             {data?.episodes.length > 0 && (
                 <>
                     <div>
-                        <h2>Upcoming episodes</h2>
-                        <p className="text-[--muted]">Based on your anime list</p>
+                        <h2>{t("schedule.upcomingEpisodes")}</h2>
+                        <p className="text-[--muted]">{t("schedule.subtitle")}</p>
                     </div>
 
                     <Carousel
@@ -51,7 +54,7 @@ export function UpcomingEpisodes() {
                                             key={item.mediaId}
                                             image={item.episodeMetadata?.image || item.baseAnime?.bannerImage || item.baseAnime?.coverImage?.large}
                                             topTitle={item?.baseAnime?.title?.userPreferred}
-                                            title={`Episode ${item.episodeNumber}`}
+                                            title={t("schedule.episodeNumber", { number: item.episodeNumber })}
                                             meta={formatDistanceToNow(addSeconds(new Date(), item.timeUntilAiring!),
                                                 { addSuffix: true })}
                                             imageClass="opacity-50"

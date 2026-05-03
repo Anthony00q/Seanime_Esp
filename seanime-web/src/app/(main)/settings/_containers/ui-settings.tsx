@@ -7,14 +7,11 @@ import { cn } from "@/components/ui/core/styling"
 import { defineSchema, Field, Form } from "@/components/ui/form"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ANIME_COLLECTION_SORTING_OPTIONS, CONTINUE_WATCHING_SORTING_OPTIONS, MANGA_COLLECTION_SORTING_OPTIONS } from "@/lib/helpers/filtering"
 import { THEME_COLOR_BANK } from "@/lib/theme/theme-bank"
 import {
     THEME_DEFAULT_VALUES,
     ThemeLibraryScreenBannerType,
-    ThemeMediaPageBannerSizeOptions,
     ThemeMediaPageBannerType,
-    ThemeMediaPageBannerTypeOptions,
     useThemeSettings,
 } from "@/lib/theme/theme-hooks.ts"
 import { __isDesktop__ } from "@/types/constants"
@@ -539,47 +536,47 @@ export function UISettings() {
                                     options={[
                                         {
                                             label: t("navigation.schedule"),
-                                            textValue: "Schedule",
+                                            textValue: t("settings.server.schedule"),
                                             value: "schedule",
                                         },
                                         {
                                             label: t("navigation.manga"),
-                                            textValue: "Manga",
+                                            textValue: t("settings.server.manga"),
                                             value: "manga",
                                         },
                                         {
                                             label: t("navigation.discover"),
-                                            textValue: "Discover",
+                                            textValue: t("settings.server.discover"),
                                             value: "discover",
                                         },
                                         {
                                             label: t("navigation.myLists"),
-                                            textValue: "My lists",
+                                            textValue: t("settings.server.myLists"),
                                             value: "lists",
                                         },
                                         {
                                             label: t("navigation.autoDownloader"),
-                                            textValue: "Auto Downloader",
+                                            textValue: t("settings.server.autoDownloader"),
                                             value: "auto-downloader",
                                         },
                                         {
                                             label: t("navigation.torrentList"),
-                                            textValue: "Torrent list",
+                                            textValue: t("settings.server.torrentList"),
                                             value: "torrent-list",
                                         },
                                         {
                                             label: t("navigation.debrid"),
-                                            textValue: "Debrid",
+                                            textValue: t("settings.server.debrid"),
                                             value: "debrid",
                                         },
                                         {
                                             label: t("navigation.scanSummaries"),
-                                            textValue: "Scan summaries",
+                                            textValue: t("settings.server.scanSummaries"),
                                             value: "scan-summaries",
                                         },
                                         {
                                             label: t("navigation.search"),
-                                            textValue: "Search",
+                                            textValue: t("settings.server.search"),
                                             value: "search",
                                         },
                                     ]}
@@ -644,21 +641,64 @@ export function UISettings() {
                                 <Field.Select
                                     label={t("settings.ui.continueWatchingSorting")}
                                     name="continueWatchingDefaultSorting"
-                                    options={CONTINUE_WATCHING_SORTING_OPTIONS.map(n => ({ value: n.value, label: n.label }))}
+                                    options={[
+                                        { value: "AIRDATE_DESC", label: t("settings.ui.sorting.airedRecentlyNotUpToDate") },
+                                        { value: "AIRDATE", label: t("settings.ui.sorting.airedOldestNotUpToDate") },
+                                        { value: "EPISODE_NUMBER_DESC", label: t("settings.ui.sorting.highestEpisodeNumber") },
+                                        { value: "EPISODE_NUMBER", label: t("settings.ui.sorting.lowestEpisodeNumber") },
+                                        { value: "UNWATCHED_EPISODES_DESC", label: t("settings.ui.sorting.mostUnwatchedEpisodes") },
+                                        { value: "UNWATCHED_EPISODES", label: t("settings.ui.sorting.leastUnwatchedEpisodes") },
+                                        { value: "SCORE_DESC", label: t("settings.ui.sorting.highestScore") },
+                                        { value: "SCORE", label: t("settings.ui.sorting.lowestScore") },
+                                        { value: "START_DATE_DESC", label: t("settings.ui.sorting.startedRecently") },
+                                        { value: "START_DATE", label: t("settings.ui.sorting.oldestStartDate") },
+                                        { value: "LAST_WATCHED_DESC", label: t("settings.ui.sorting.mostRecentWatch") },
+                                        { value: "LAST_WATCHED", label: t("settings.ui.sorting.leastRecentWatch") },
+                                    ]}
                                 />
 
                                 <Field.Select
                                     label={t("settings.ui.animeLibrarySorting")}
                                     name="animeLibraryCollectionDefaultSorting"
-                                    options={ANIME_COLLECTION_SORTING_OPTIONS.filter(n => !n.value.includes("END"))
-                                        .map(n => ({ value: n.value, label: n.label }))}
+                                    options={[
+                                        { value: "SCORE_DESC", label: t("settings.ui.sorting.highestScore") },
+                                        { value: "SCORE", label: t("settings.ui.sorting.lowestScore") },
+                                        { value: "TITLE", label: t("settings.ui.sorting.title") },
+                                        { value: "TITLE_DESC", label: t("settings.ui.sorting.titleReverse") },
+                                        { value: "AUDIENCE_SCORE_DESC", label: t("settings.ui.sorting.highestAudienceScore") },
+                                        { value: "AUDIENCE_SCORE", label: t("settings.ui.sorting.lowestAudienceScore") },
+                                        { value: "PROGRESS_DESC", label: t("settings.ui.sorting.highestProgress") },
+                                        { value: "PROGRESS", label: t("settings.ui.sorting.lowestProgress") },
+                                        { value: "START_DATE_DESC", label: t("settings.ui.sorting.startedRecently") },
+                                        { value: "START_DATE", label: t("settings.ui.sorting.oldestStartDate") },
+                                        { value: "END_DATE_DESC", label: t("settings.ui.sorting.completedRecently") },
+                                        { value: "END_DATE", label: t("settings.ui.sorting.oldestCompletionDate") },
+                                        { value: "RELEASE_DATE_DESC", label: t("settings.ui.sorting.releasedRecently") },
+                                        { value: "RELEASE_DATE", label: t("settings.ui.sorting.oldestRelease") },
+                                    ]}
                                 />
 
                                 <Field.Select
                                     label={t("settings.ui.mangaLibrarySorting")}
                                     name="mangaLibraryCollectionDefaultSorting"
-                                    options={MANGA_COLLECTION_SORTING_OPTIONS.filter(n => !n.value.includes("END"))
-                                        .map(n => ({ value: n.value, label: n.label }))}
+                                    options={[
+                                        { value: "UNREAD_CHAPTERS_DESC", label: t("settings.ui.sorting.mostUnreadChapters") },
+                                        { value: "UNREAD_CHAPTERS", label: t("settings.ui.sorting.leastUnreadChapters") },
+                                        { value: "SCORE_DESC", label: t("settings.ui.sorting.highestScore") },
+                                        { value: "SCORE", label: t("settings.ui.sorting.lowestScore") },
+                                        { value: "TITLE", label: t("settings.ui.sorting.title") },
+                                        { value: "TITLE_DESC", label: t("settings.ui.sorting.titleReverse") },
+                                        { value: "AUDIENCE_SCORE_DESC", label: t("settings.ui.sorting.highestAudienceScore") },
+                                        { value: "AUDIENCE_SCORE", label: t("settings.ui.sorting.lowestAudienceScore") },
+                                        { value: "PROGRESS_DESC", label: t("settings.ui.sorting.highestProgress") },
+                                        { value: "PROGRESS", label: t("settings.ui.sorting.lowestProgress") },
+                                        { value: "START_DATE_DESC", label: t("settings.ui.sorting.startedRecently") },
+                                        { value: "START_DATE", label: t("settings.ui.sorting.oldestStartDate") },
+                                        { value: "END_DATE_DESC", label: t("settings.ui.sorting.completedRecently") },
+                                        { value: "END_DATE", label: t("settings.ui.sorting.oldestCompletionDate") },
+                                        { value: "RELEASE_DATE_DESC", label: t("settings.ui.sorting.releasedRecently") },
+                                        { value: "RELEASE_DATE", label: t("settings.ui.sorting.oldestRelease") },
+                                    ]}
                                 />
 
 
@@ -669,17 +709,39 @@ export function UISettings() {
                                 <Field.RadioCards
                                     label={t("settings.ui.anilistBannerImage")}
                                     name="mediaPageBannerType"
-                                    options={ThemeMediaPageBannerTypeOptions.map(n => ({ value: n.value, label: n.label }))}
+                                    options={[
+                                        { value: "default", label: t("settings.ui.bannerTypeOptions.default") },
+                                        { value: "blur-when-unavailable", label: t("settings.ui.bannerTypeOptions.blurWhenUnavailable") },
+                                        { value: "dim-when-unavailable", label: t("settings.ui.bannerTypeOptions.dimWhenUnavailable") },
+                                        { value: "hide-when-unavailable", label: t("settings.ui.bannerTypeOptions.hideWhenUnavailable") },
+                                        { value: "dim", label: t("settings.ui.bannerTypeOptions.dim") },
+                                        { value: "blur", label: t("settings.ui.bannerTypeOptions.blur") },
+                                        { value: "hide", label: t("settings.ui.bannerTypeOptions.hide") },
+                                    ]}
                                     stackClass="flex flex-col md:flex-row flex-wrap gap-2 space-y-0"
-                                    help={ThemeMediaPageBannerTypeOptions.find(n => n.value === f.watch("mediaPageBannerType"))?.description}
+                                    help={
+                                        f.watch("mediaPageBannerType") === "default" ? t("settings.ui.bannerTypeOptions.defaultDesc") :
+                                        f.watch("mediaPageBannerType") === "blur-when-unavailable" ? t("settings.ui.bannerTypeOptions.blurWhenUnavailableDesc") :
+                                        f.watch("mediaPageBannerType") === "dim-when-unavailable" ? t("settings.ui.bannerTypeOptions.dimWhenUnavailableDesc") :
+                                        f.watch("mediaPageBannerType") === "hide-when-unavailable" ? t("settings.ui.bannerTypeOptions.hideWhenUnavailableDesc") :
+                                        f.watch("mediaPageBannerType") === "dim" ? t("settings.ui.bannerTypeOptions.dimDesc") :
+                                        f.watch("mediaPageBannerType") === "blur" ? t("settings.ui.bannerTypeOptions.blurDesc") :
+                                        f.watch("mediaPageBannerType") === "hide" ? t("settings.ui.bannerTypeOptions.hideDesc") : ""
+                                    }
                                 />
 
                                 <Field.RadioCards
                                     label={t("settings.ui.bannerSize")}
                                     name="mediaPageBannerSize"
-                                    options={ThemeMediaPageBannerSizeOptions.map(n => ({ value: n.value, label: n.label }))}
+                                    options={[
+                                        { value: "default", label: t("settings.ui.bannerSizeOptions.large") },
+                                        { value: "small", label: t("settings.ui.bannerSizeOptions.smaller") },
+                                    ]}
                                     stackClass="flex flex-col md:flex-row flex-wrap gap-2 space-y-0"
-                                    help={ThemeMediaPageBannerSizeOptions.find(n => n.value === f.watch("mediaPageBannerSize"))?.description}
+                                    help={
+                                        f.watch("mediaPageBannerSize") === "default" ? t("settings.ui.bannerSizeOptions.largeDesc") :
+                                        f.watch("mediaPageBannerSize") === "small" ? t("settings.ui.bannerSizeOptions.smallerDesc") : ""
+                                    }
                                 />
 
                                 {/*<Field.RadioCards*/}

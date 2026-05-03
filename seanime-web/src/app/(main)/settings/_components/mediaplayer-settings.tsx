@@ -46,10 +46,10 @@ export function MediaplayerSettings(props: MediaplayerSettingsProps) {
                     label={t("settings.mediaPlayer.defaultPlayer")}
                     leftIcon={<FcVideoCall />}
                     options={[
-                        { label: "MPV", value: "mpv" },
-                        { label: "VLC", value: "vlc" },
-                        { label: "MPC-HC (Windows)", value: "mpc-hc" },
-                        { label: "IINA (macOS)", value: "iina" },
+                        { label: t("settings.mediaPlayer.playerMpv"), value: "mpv" },
+                        { label: t("settings.mediaPlayer.playerVlc"), value: "vlc" },
+                        { label: t("settings.mediaPlayer.playerMpcHc"), value: "mpc-hc" },
+                        { label: t("settings.mediaPlayer.playerIina"), value: "iina" },
                     ]}
                     help={t("settings.mediaPlayer.defaultPlayerHelp")}
                 />
@@ -155,9 +155,9 @@ export function MediaplayerSettings(props: MediaplayerSettingsProps) {
                                 <Field.Text
                                     name="mpvPath"
                                     label={t("settings.mediaPlayer.applicationPath")}
-                                    placeholder={serverStatus?.os === "windows" ? "e.g. C:/Program Files/mpv/mpv.exe" : serverStatus?.os === "darwin"
-                                        ? "e.g. /Applications/mpv.app/Contents/MacOS/mpv"
-                                        : "Defaults to CLI"}
+                                    placeholder={serverStatus?.os === "windows" ? t("settings.mediaPlayer.mpvPathWinPlaceholder") : serverStatus?.os === "darwin"
+                                        ? t("settings.mediaPlayer.mpvPathMacPlaceholder")
+                                        : t("settings.mediaPlayer.mpvPathLinuxPlaceholder")}
                                     help={t("settings.mediaPlayer.mpvHelp")}
                                 />
                             </div>
@@ -165,7 +165,7 @@ export function MediaplayerSettings(props: MediaplayerSettingsProps) {
                                 <Field.Text
                                     name="mpvArgs"
                                     label={t("settings.mediaPlayer.options")}
-                                    placeholder="e.g. --no-config --mute=yes"
+                                    placeholder={t("settings.mediaPlayer.mpvArgsPlaceholder")}
                                 />
                             </div>
                         </AccordionContent>
@@ -193,7 +193,7 @@ export function MediaplayerSettings(props: MediaplayerSettingsProps) {
                                 <Field.Text
                                     name="iinaArgs"
                                     label={t("settings.mediaPlayer.options")}
-                                    placeholder="e.g. --mpv-mute=yes"
+                                    placeholder={t("settings.mediaPlayer.iinaArgsPlaceholder")}
                                 />
                             </div>
                         </AccordionContent>

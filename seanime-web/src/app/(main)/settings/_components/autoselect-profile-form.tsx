@@ -369,7 +369,7 @@ function AutoSelectProfileForm(props: AutoSelectProfileFormProps) {
                             onChange={(e) => setFormData(draft => {
                                 draft.minSeeders = parseInt(e.target.value) || 0
                             })}
-                            placeholder="0"
+                            placeholder={t("settings.autoSelectProfile.minSeedersPlaceholder")}
                             min={0}
                         />
                     </div>
@@ -380,7 +380,7 @@ function AutoSelectProfileForm(props: AutoSelectProfileFormProps) {
                             onChange={(e) => setFormData(draft => {
                                 draft.minSize = e.target.value
                             })}
-                            placeholder="e.g. 100MB"
+                            placeholder={t("settings.autoSelectProfile.minSizePlaceholder")}
                         />
                     </div>
                     <div className="space-y-2">
@@ -390,7 +390,7 @@ function AutoSelectProfileForm(props: AutoSelectProfileFormProps) {
                             onChange={(e) => setFormData(draft => {
                                 draft.maxSize = e.target.value
                             })}
-                            placeholder="e.g. 2GB or 10GiB"
+                            placeholder={t("settings.autoSelectProfile.maxSizePlaceholder")}
                         />
                     </div>
                 </div>
@@ -648,7 +648,7 @@ function ReleaseGroupsSortableField() {
         })
     }
 
-    const suggestions = ["SubsPlease", "Erai-raws", "EMBER", "Judas", "ASW"]
+    const suggestions = [t("settings.autoSelectProfile.suggestSubsPlease"), t("settings.autoSelectProfile.suggestEraiRaw"), t("settings.autoSelectProfile.suggestEmber"), t("settings.autoSelectProfile.suggestJudas"), t("settings.autoSelectProfile.suggestAsw")]
 
     return (
         <div className="space-y-2">
@@ -861,7 +861,7 @@ function ExcludeTermsSortableField() {
                                 key={item.id}
                                 id={item.id}
                                 value={item.value}
-                                placeholder="e.g. CamRip, Cam RIP"
+                                placeholder={t("settings.autoSelectProfile.excludeTermsPlaceholder")}
                                 onUpdate={handleUpdate}
                                 onRemove={handleRemove}
                             />
@@ -924,7 +924,7 @@ function PreferredLanguagesSortableField() {
         })
     }
 
-    const suggestions = ["fr, french", "it, ita, italian", "de, ger, german", "es, spa, spanish"]
+    const suggestions = [t("settings.autoSelectProfile.suggestFrench"), t("settings.autoSelectProfile.suggestItalian"), t("settings.autoSelectProfile.suggestGerman"), t("settings.autoSelectProfile.suggestSpanish")]
 
     return (
         <div className="space-y-2">
@@ -1024,7 +1024,7 @@ function PreferredCodecsSortableField() {
         })
     }
 
-    const suggestions = ["HEVC, x265, H.265, 10-bit, 10 bit, 10bit"]
+    const suggestions = [t("settings.autoSelectProfile.suggestCodecs")]
 
     return (
         <div className="space-y-2">
@@ -1124,7 +1124,7 @@ function PreferredSourcesSortableField() {
         })
     }
 
-    const suggestions = ["BDRip, BD RIP, BluRay, Blu-Ray, Blu Ray, BD", "AT-X"]
+    const suggestions = [t("settings.autoSelectProfile.suggestSources"), t("settings.autoSelectProfile.suggestAtx")]
 
     return (
         <div className="space-y-2">
