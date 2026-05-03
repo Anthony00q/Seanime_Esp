@@ -8,7 +8,9 @@ import { AppLayoutStack } from "@/components/ui/app-layout"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import React from "react"
 import { ScheduleCalendar } from "./_components/schedule-calendar"
+import { createTranslator } from "@/locales"
 
+const t = createTranslator("es")
 
 export default function Page() {
 
@@ -27,8 +29,8 @@ export default function Page() {
                 <AppLayoutStack>
 
                     <div className="hidden lg:block space-y-2">
-                        <h2>Release schedule</h2>
-                        <p className="text-[--muted]">Based on your anime list</p>
+                        <h2>{t("discover.airingSchedule")}</h2>
+                        <p className="text-[--muted]">{t("schedule.subtitle")}</p>
                     </div>
 
                     <ScheduleCalendar />
