@@ -62,7 +62,7 @@ export function LogsSettings(props: LogsSettingsProps) {
     const columns = React.useMemo(() => defineDataGridColumns<{ name: string }>(() => [
         {
             accessorKey: "name",
-            header: "Name",
+            header: t("settings.logs.nameColumn"),
             cell: info => (
                 <LogModal filename={info.getValue<string>()} />
             ),
@@ -93,7 +93,7 @@ export function LogsSettings(props: LogsSettingsProps) {
                         intent="gray-glass"
                         onClick={handleCopyLatestLogs}
                     >
-                        Copy current server logs
+                        {t("settings.logs.copyCurrentLogs")}
                     </Button>
                     {!!serverStatus?.dataDir && <Button
                         size="sm"
@@ -103,7 +103,7 @@ export function LogsSettings(props: LogsSettingsProps) {
                         })}
                         leftIcon={<RiFolderDownloadFill className="transition-transform duration-200 group-hover:scale-110" />}
                     >
-                        Open logs directory
+                        {t("settings.logs.openLogsDir")}
                     </Button>}
                     <Button
                         size="sm"
@@ -113,7 +113,7 @@ export function LogsSettings(props: LogsSettingsProps) {
                         className="transition-all duration-200 hover:scale-105 hover:shadow-md group"
                         data-open-issue-recorder-button
                     >
-                        Record an issue
+                        {t("settings.logs.recordIssue")}
                     </Button>
                 </div>
 
@@ -123,9 +123,9 @@ export function LogsSettings(props: LogsSettingsProps) {
                         setGlobalFilter(value === "-" ? "" : value)
                     }}
                     options={[
-                        { value: "-", label: "All" },
-                        { value: "seanime-", label: "Server" },
-                        { value: "-scan", label: "Scanner" },
+                        { value: "-", label: t("settings.logs.filterAll") },
+                        { value: "seanime-", label: t("settings.logs.filterServer") },
+                        { value: "-scan", label: t("settings.logs.filterScanner") },
                     ]}
                 />
 
@@ -142,7 +142,7 @@ export function LogsSettings(props: LogsSettingsProps) {
                             loading={isDeleting}
                             size="sm"
                         >
-                            Delete selected
+                            {t("settings.logs.deleteSelected")}
                         </Button>
                     </div>
                 )}
@@ -200,7 +200,7 @@ function LogModal(props: { filename: string }) {
             return
         }
         navigator.clipboard.writeText(data)
-        toast.success("Copied to clipboard")
+        toast.success(t("settings.logs.copiedToClipboard"))
     }
 
     return (
@@ -222,7 +222,7 @@ function LogModal(props: { filename: string }) {
                     leftIcon={<FaCopy />}
                     className="w-fit"
                 >
-                    Copy to clipboard
+                    {t("settings.logs.copyToClipboard")}
                 </Button>
 
                 {isPending ? <LoadingSpinner /> :
@@ -291,11 +291,11 @@ function MemoryProfilingSettings() {
     }
 
     return (
-        <SettingsCard title="Profiling">
+        <SettingsCard title={t("settings.logs.profiling")}>
             <div className="space-y-6">
                 <div>
                     <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-lg font-medium">Memory Statistics</h3>
+                        <h3 className="text-lg font-medium">{t("settings.logs.memoryStatistics")}</h3>
                         <div className="flex gap-2">
                             <Button
                                 intent="white-subtle"
@@ -304,7 +304,7 @@ function MemoryProfilingSettings() {
                                 onClick={handleRefreshStats}
                                 loading={isLoadingMemoryStats}
                             >
-                                Refresh
+                                {t("settings.logs.refresh")}
                             </Button>
                             <Button
                                 intent="gray-outline"
@@ -313,7 +313,7 @@ function MemoryProfilingSettings() {
                                 onClick={handleForceGC}
                                 loading={isForceGCPending}
                             >
-                                Force GC
+                                {t("settings.logs.forceGC")}
                             </Button>
                         </div>
                     </div>
@@ -321,27 +321,27 @@ function MemoryProfilingSettings() {
                     {memoryStats && (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             <div className="bg-gray-800 p-4 rounded-md">
-                                <div className="text-sm text-[--muted]">Heap Allocated</div>
+                                <div className="text-sm text-[--muted]">{t("settings.logs.heapAllocated")}</div>
                                 <div className="text-xl font-medium">{formatBytes(memoryStats.heapAlloc)}</div>
                             </div>
                             <div className="bg-gray-800 p-4 rounded-md">
-                                <div className="text-sm text-[--muted]">Heap In Use</div>
+                                <div className="text-sm text-[--muted]">{t("settings.logs.heapInUse")}</div>
                                 <div className="text-xl font-medium">{formatBytes(memoryStats.heapInuse)}</div>
                             </div>
                             <div className="bg-gray-800 p-4 rounded-md">
-                                <div className="text-sm text-[--muted]">Heap System</div>
+                                <div className="text-sm text-[--muted]">{t("settings.logs.heapSystem")}</div>
                                 <div className="text-xl font-medium">{formatBytes(memoryStats.heapSys)}</div>
                             </div>
                             <div className="bg-gray-800 p-4 rounded-md">
-                                <div className="text-sm text-[--muted]">Total Allocated</div>
+                                <div className="text-sm text-[--muted]">{t("settings.logs.totalAllocated")}</div>
                                 <div className="text-xl font-medium">{formatBytes(memoryStats.totalAlloc)}</div>
                             </div>
                             <div className="bg-gray-800 p-4 rounded-md">
-                                <div className="text-sm text-[--muted]">Goroutines</div>
+                                <div className="text-sm text-[--muted]">{t("settings.logs.goroutines")}</div>
                                 <div className="text-xl font-medium">{memoryStats.numGoroutine}</div>
                             </div>
                             <div className="bg-gray-800 p-4 rounded-md">
-                                <div className="text-sm text-[--muted]">GC Cycles</div>
+                                <div className="text-sm text-[--muted]">{t("settings.logs.gcCycles")}</div>
                                 <div className="text-xl font-medium">{memoryStats.numGC}</div>
                             </div>
                         </div>
@@ -349,7 +349,7 @@ function MemoryProfilingSettings() {
 
                     {!memoryStats && !isLoadingMemoryStats && (
                         <div className="text-center py-4 text-[--muted]">
-                            {t("logs.clickRefreshToLoadMemory")}
+                            {t("settings.logs.clickRefreshToLoadMemory")}
                         </div>
                     )}
 
@@ -367,7 +367,7 @@ function MemoryProfilingSettings() {
                         <div>
                             <h4 className="text-md font-medium mb-2 flex items-center gap-2">
                                 <FaMemory className="text-blue-400" />
-                                {t("logs.memory")}
+                                {t("settings.logs.memory")}
                             </h4>
                             <div className="flex flex-wrap gap-2">
                                 <Button
@@ -377,7 +377,7 @@ function MemoryProfilingSettings() {
                                     onClick={handleDownloadHeapProfile}
                                     loading={isDownloadingHeap}
                                 >
-                                    {t("logs.heapProfile")}
+                                    {t("settings.logs.heapProfile")}
                                 </Button>
                                 <Button
                                     intent="gray-subtle"
@@ -386,7 +386,7 @@ function MemoryProfilingSettings() {
                                     onClick={handleDownloadAllocsProfile}
                                     loading={isDownloadingAllocs}
                                 >
-                                    {t("logs.allocationsProfile")}
+                                    {t("settings.logs.allocationsProfile")}
                                 </Button>
                                 <Button
                                     intent="gray-subtle"
@@ -395,7 +395,7 @@ function MemoryProfilingSettings() {
                                     onClick={handleDownloadGoRoutineProfile}
                                     loading={isDownloadingGoroutine}
                                 >
-                                    {t("logs.goroutineProfile")}
+                                    {t("settings.logs.goroutineProfile")}
                                 </Button>
                             </div>
                         </div>
@@ -405,11 +405,11 @@ function MemoryProfilingSettings() {
                         <div>
                             <h4 className="text-md font-medium mb-2 flex items-center gap-2">
                                 <FaMicrochip className="text-green-400" />
-                                CPU
+                                {t("settings.logs.cpu")}
                             </h4>
                             <div className="space-y-2">
                                 <NumberInput
-                                    label="Duration (seconds)"
+                                    label={t("settings.logs.durationSeconds")}
                                     value={cpuDuration}
                                     onValueChange={(value) => setCpuDuration(value || 30)}
                                     min={1}
@@ -424,11 +424,11 @@ function MemoryProfilingSettings() {
                                     onClick={handleDownloadCPUProfile}
                                     loading={isDownloadingCPU}
                                 >
-                                    Download CPU Profile
+                                    {t("settings.logs.downloadCPUProfile")}
                                 </Button>
                             </div>
                             <p className="text-xs text-[--muted] mt-1">
-                                CPU profiling will run for the specified duration (1-300 seconds)
+                                {t("settings.logs.cpuProfilingHelp")}
                             </p>
                         </div>
                     </div>
