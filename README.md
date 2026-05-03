@@ -46,7 +46,7 @@ Este es un **fork en español** del proyecto [Seanime](https://github.com/5rahim
 
 **Estructura de ramas:**
 - `main` → espejo puro del upstream (sin modificaciones)
-- `traduccion-es` → rama de trabajo con las traducciones al español *(rama por defecto)*
+- `traduccion-es` → rama de trabajo con las traducciones al español
 
 > [!IMPORTANT]
 > Seanime no proporciona, aloja ni distribuye contenido multimedia. Los usuarios son responsables de obtener contenido por medios legales y cumplir con las leyes locales. Las extensiones listadas en la app no están afiliadas con Seanime y pueden ser eliminadas si violan leyes de derechos de autor.
@@ -126,13 +126,12 @@ Si te gusta este proyecto, considera **sponsorizar al creador original**:
 
 <p align="center">
   <a href="https://github.com/sponsors/5rahim">
-    <img src="https://img.shields.io/static/v1?label=Sponsor+5rahim&style=for-the-badge&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor 5rahim" />
+    <img src="https://img.shields.io/static/v1?label=Sponsor+5rahim&style=for-the-badge&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor" />
   </a>
 </p>
 
-El mantenimiento de este proyecto es posible gracias a los sponsors del proyecto original.
 
 ---
 
 > [!NOTE]
-> Para solicitudes relacionadas con derechos de autor, contacta al mantenedor usando la información en [seanime.app](https://seanime.app/docs/policies).
+> Para consultas relacionadas con los derechos de autor, póngase en contacto con el responsable del mantenimiento utilizando la información de contacto que aparece en [el sitio web](https://seanime.app/docs/policies).
