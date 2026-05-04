@@ -1,0 +1,111 @@
+name: Error de Traducción
+description: Reporta un error en la traducción o una sección sin traducir
+title: 'traducción: '
+labels:
+  - traduccion
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Nota:** Este repositorio es solo para traducciones al español.
+        Para bugs de la app o solicitudes de nuevas funcionalidades, abre un issue en el [repositorio original](https://github.com/5rahim/seanime/issues).
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de Problema
+      options:
+        - Traducción incorrecta (significado erróneo)
+        - Error ortográfico o gramatical
+        - Caracteres especiales mal renderizados (ñ, acentos, ¿, ¡)
+        - Texto cortado o desbordado en la interfaz
+        - Sección completamente en inglés (sin traducir)
+        - Key faltante (muestra el texto en inglés)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: seccion
+    attributes:
+      label: Sección Afectada
+      options:
+        - Inicio (Home)
+        - Horario (Schedule)
+        - Descubrir (Discover)
+        - Navegación (Sidebar)
+        - Reproductor de Video
+        - Paleta de Comandos (Sea Command)
+        - Ajustes (Settings)
+        - Nakama (Watch Parties)
+        - Streaming en Línea
+        - Descargador Automático
+        - Lista de Torrents
+        - Servicio Debrid
+        - Extensiones
+        - Manga
+        - Sincronización
+        - Búsqueda
+        - Fuentes Personalizadas
+        - Página de Entrada (Anime/Manga)
+        - Listas de Anime
+        - Autenticación
+        - WebView
+        - MediaLinks
+        - Mediastream
+        - qBittorrent
+        - Resúmenes de Escaneo
+        - MyAnimeList (MAL)
+        - Otro / No estoy seguro
+    validations:
+      required: true
+
+  - type: textarea
+    id: ubicacion
+    attributes:
+      label: Ubicación del Error
+      description: Describe dónde se vio el error (pantalla, menú, botón, modal, etc.)
+      placeholder: "Ej: En Ajustes → Reproducción → el label del checkbox dice..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: texto-actual
+    attributes:
+      label: Texto Actual
+      description: Qué dice ahora (copia el texto exacto)
+      placeholder: 'Ej: "Habilitar la reproducción automática"'
+    validations:
+      required: true
+
+  - type: textarea
+    id: texto-correcto
+    attributes:
+      label: Texto Correcto (Sugerencia)
+      description: Qué debería decir (tu sugerencia de corrección)
+      placeholder: 'Ej: "Activar reproducción automática"'
+
+  - type: textarea
+    id: captura
+    attributes:
+      label: Captura de Pantalla
+      description: Si aplica, adjunta una captura del error
+
+  - type: input
+    id: version
+    attributes:
+      label: Versión de la App
+      description: Qué versión de Seanime_Esp estás usando
+      placeholder: v3.7.1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sistema
+    attributes:
+      label: Sistema Operativo
+      options:
+        - Windows
+        - Linux
+        - macOS
+    validations:
+      required: true
