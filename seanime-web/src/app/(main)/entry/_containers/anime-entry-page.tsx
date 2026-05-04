@@ -28,6 +28,7 @@ import { OnlinestreamPage } from "@/app/(main)/onlinestream/_containers/onlinest
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { cn } from "@/components/ui/core/styling"
 import { StaticTabs } from "@/components/ui/tabs"
+import { createTranslator } from "@/locales"
 import { usePathname, useRouter, useSearchParams } from "@/lib/navigation"
 import { atom, useAtomValue } from "jotai"
 import { useAtom, useSetAtom } from "jotai/react"
@@ -108,6 +109,7 @@ export function useAnimeEntryPageView() {
 
 export function AnimeEntryPage() {
 
+    const t = createTranslator("es")
     const serverStatus = useServerStatus()
     const router = useRouter()
     const pathname = usePathname()
@@ -251,28 +253,28 @@ export function AnimeEntryPage() {
             items: [
                 ...[{
                     id: "library",
-                    description: "Downloaded episodes",
+                    description: t("entry.downloadedEpisodes"),
                     show: currentView !== "library",
                 },
                     {
                         id: "torrentstream",
-                        description: "Torrent streaming",
+                        description: t("entry.torrentStreaming"),
                         show: serverStatus?.torrentstreamSettings?.enabled && currentView !== "torrentstream",
                     },
                     {
                         id: "debridstream",
-                        description: "Debrid streaming",
+                        description: t("entry.debridStreaming"),
                         show: serverStatus?.debridSettings?.enabled && currentView !== "debridstream",
                     },
                     {
                         id: "onlinestream",
-                        description: "Online streaming",
+                        description: t("entry.onlineStreaming"),
                         show: serverStatus?.settings?.library?.enableOnlinestream && currentView !== "onlinestream",
                     },
                 ].map(item => ({
                     id: item.id,
                     value: item.id,
-                    heading: "Views",
+                    heading: t("entry.views"),
                     data: item,
                     render: () => <div>{item.description}</div>,
                     onSelect: () => setView(item.id as any),
@@ -281,8 +283,8 @@ export function AnimeEntryPage() {
                 {
                     id: "download",
                     value: "download",
-                    render: () => <div>Download torrents</div>,
-                    heading: "Views",
+                    render: () => <div>{t("entry.downloadTorrents")}</div>,
+                    heading: t("entry.views"),
                     data: "download torrents",
                     onSelect: () => setTorrentSearchDrawer("download"),
                     shouldShow: () => currentView === "library",
@@ -290,7 +292,7 @@ export function AnimeEntryPage() {
                 ...pluginEpisodeTabs.tabs.map(tab => ({
                     id: tab.viewId,
                     value: tab.viewId,
-                    heading: "Views",
+                    heading: t("entry.views"),
                     data: { description: tab.name },
                     render: () => <div>{tab.name}</div>,
                     onSelect: () => setView(tab.viewId),
@@ -427,6 +429,7 @@ type EntrySectionTabs = {
 
 export function EntrySectionTabs(props: EntrySectionTabs) {
 
+    const t = createTranslator("es")
     const {
         children,
         entry,
@@ -470,21 +473,21 @@ export function EntrySectionTabs(props: EntrySectionTabs) {
                     triggerClass="px-4 py-1 text-[1.1rem] data-[current=true]:text-[1.19rem] border border-transparent data-[current=true]:text-white opacity-80 data-[current=true]:border-transparent data-[current=true]:opacity-100 data-[current=true]:bg-gray-300 data-[current=true]:bg-opacity-10 rounded-xl data-[current=false]:scale-95 lg:scale-100 "
                     iconClass="size-5 hidden data-[current=true]:block"
                     items={[
-                        { name: "Local library", iconType: IoLibraryOutline, isCurrent: isLibraryView, onClick: () => setView("library") },
+                        { name: t("entry.localLibrary"), iconType: IoLibraryOutline, isCurrent: isLibraryView, onClick: () => setView("library") },
                         ...(serverStatus?.torrentstreamSettings?.enabled ? [{
-                            name: "Torrent streaming",
+                            name: t("entry.torrentStreaming"),
                             iconType: PiMonitorPlayDuotone,
                             isCurrent: isTorrentStreamingView,
                             onClick: () => setView("torrentstream"),
                         }] : []),
                         ...(serverStatus?.debridSettings?.enabled ? [{
-                            name: "Debrid streaming",
+                            name: t("entry.debridStreaming"),
                             iconType: HiOutlineServerStack,
                             isCurrent: isDebridStreamingView,
                             onClick: () => setView("debridstream"),
                         }] : []),
                         ...(serverStatus?.settings?.library?.enableOnlinestream ? [{
-                            name: "Online streaming",
+                            name: t("entry.onlineStreaming"),
                             iconType: FiGlobe,
                             isCurrent: isOnlineStreamingView,
                             onClick: () => setView("onlinestream"),
