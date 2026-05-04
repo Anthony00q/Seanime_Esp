@@ -4,7 +4,7 @@
 </a>
 </p>
 
-<h1 align="center"><b>Seanime_Esp</b></h1>
+<h1 align="center"><b>Seanime Esp</b></h1>
 
 <p align="center">
 <img src="https://seanime.app/bucket/img-20260508-090521-5fjqklfa--sq.webp" alt="preview" width="100%"/>
