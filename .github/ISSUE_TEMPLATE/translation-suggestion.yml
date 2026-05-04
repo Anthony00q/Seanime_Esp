@@ -1,0 +1,79 @@
+name: Sugerencia de Traducción
+description: Sugiere una mejora para una traducción existente
+title: 'sugerencia: '
+labels:
+  - sugerencia
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Nota:** Este repositorio es solo para traducciones al español.
+        Para bugs de la app o solicitudes de nuevas funcionalidades, abre un issue en el [repositorio original](https://github.com/5rahim/seanime/issues).
+
+  - type: dropdown
+    id: seccion
+    attributes:
+      label: Sección Afectada
+      options:
+        - Inicio (Home)
+        - Horario (Schedule)
+        - Descubrir (Discover)
+        - Navegación (Sidebar)
+        - Reproductor de Video
+        - Paleta de Comandos (Sea Command)
+        - Ajustes (Settings)
+        - Nakama (Watch Parties)
+        - Streaming en Línea
+        - Descargador Automático
+        - Lista de Torrents
+        - Servicio Debrid
+        - Extensiones
+        - Manga
+        - Sincronización
+        - Búsqueda
+        - Fuentes Personalizadas
+        - Página de Entrada (Anime/Manga)
+        - Listas de Anime
+        - Autenticación
+        - WebView
+        - MediaLinks
+        - Mediastream
+        - qBittorrent
+        - Resúmenes de Escaneo
+        - MyAnimeList (MAL)
+        - Otro / No estoy seguro
+    validations:
+      required: true
+
+  - type: textarea
+    id: texto-actual
+    attributes:
+      label: Traducción Actual
+      description: La traducción que existe ahora
+      placeholder: 'Ej: "Habilitar la reproducción automática"'
+    validations:
+      required: true
+
+  - type: textarea
+    id: sugerencia
+    attributes:
+      label: Traducción Sugerida
+      description: La traducción alternativa que propones
+      placeholder: 'Ej: "Activar reproducción automática"'
+    validations:
+      required: true
+
+  - type: textarea
+    id: razon
+    attributes:
+      label: Razón
+      description: Por qué tu sugerencia es mejor (más natural, más precisa, más consistente con el resto, etc.)
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto
+      description: Dónde se usa este texto (ayuda a decidir si el cambio es apropiado)
+      placeholder: "Ej: Es el label de un checkbox en Ajustes → Reproducción"
