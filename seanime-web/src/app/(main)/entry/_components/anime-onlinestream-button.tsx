@@ -2,6 +2,7 @@ import { Anime_Entry } from "@/api/generated/types"
 import { useServerStatus } from "@/app/(main)/_hooks/use-server-status"
 import { AnimeMetaActionButton } from "@/app/(main)/entry/_components/meta-section"
 import { useAnimeEntryPageView } from "@/app/(main)/entry/_containers/anime-entry-page"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { FiPlayCircle } from "react-icons/fi"
@@ -13,6 +14,7 @@ type AnimeOnlinestreamButtonProps = {
 
 export function AnimeOnlinestreamButton(props: AnimeOnlinestreamButtonProps) {
 
+    const t = createTranslator("es")
     const {
         children,
         entry,
@@ -54,7 +56,7 @@ export function AnimeOnlinestreamButton(props: AnimeOnlinestreamButtonProps) {
             leftIcon={isOnlineStreamingView ? <AiOutlineArrowLeft className="text-xl" /> : <FiPlayCircle className="text-2xl" />}
             onClick={() => toggleOnlineStreamingView()}
         >
-            {isOnlineStreamingView ? "Close Online streaming" : "Online streaming"}
+            {isOnlineStreamingView ? t("entry.onlineStream.close") : t("entry.onlineStreaming")}
         </AnimeMetaActionButton>
     )
 }

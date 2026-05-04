@@ -8,6 +8,7 @@ import {
     __torrentSearch_selectionEpisodeAtom,
 } from "@/app/(main)/entry/_containers/torrent-search/torrent-search-drawer"
 import { useSetAtom } from "jotai"
+import { createTranslator } from "@/locales"
 import React, { startTransition } from "react"
 import { BiCalendarAlt, BiDownload } from "react-icons/bi"
 import { EpisodeItemInfoModalButton } from "./episode-item"
@@ -18,6 +19,7 @@ export function UndownloadedEpisodeList({ downloadInfo, media, maxCol }: {
     maxCol?: number
 }) {
 
+    const t = createTranslator("es")
     const episodes = downloadInfo?.episodesToDownload
 
     const setTorrentSearchIsOpen = useSetAtom(__torrentSearch_selectionAtom)
@@ -26,9 +28,9 @@ export function UndownloadedEpisodeList({ downloadInfo, media, maxCol }: {
     const { hasTorrentProvider } = useHasTorrentProvider()
 
     const text = hasTorrentProvider ? (downloadInfo?.rewatch
-            ? "You have not downloaded the following:"
-            : "You have not watched nor downloaded the following:") :
-        "The following episodes are not in your library:"
+            ? "No has descargado lo siguiente:"
+            : "No has visto ni descargado lo siguiente:") :
+        "Los siguientes episodios no están en tu biblioteca:"
 
     if (!episodes?.length) return null
 
@@ -74,15 +76,15 @@ export function UndownloadedEpisodeList({ downloadInfo, media, maxCol }: {
                             <div data-undownloaded-episode-list-episode-metadata-container className="mt-1">
                                 <p data-undownloaded-episode-list-episode-metadata-text className="flex gap-1 items-center text-sm text-[--muted]">
                                     <BiCalendarAlt /> {episode.episodeMetadata?.airDate
-                                    ? `Aired on ${new Date(episode.episodeMetadata?.airDate).toLocaleDateString()}`
-                                    : "Aired"}
+                                    ? `Emitido el ${new Date(episode.episodeMetadata?.airDate).toLocaleDateString()}`
+                                    : "Emitido"}
                                 </p>
                             </div>
                         </EpisodeGridItem>
                     )
                 })}
             </EpisodeListGrid>
-            {episodes.length > 28 && <h3>And more...</h3>}
+            {episodes.length > 28 && <h3>Y más...</h3>}
         </div>
     )
 

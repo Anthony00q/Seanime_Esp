@@ -4,6 +4,7 @@ import { FilepathSelector } from "@/app/(main)/_features/media/_components/filep
 import { ConfirmationDialog, useConfirmationDialog } from "@/components/shared/confirmation-dialog"
 import { Button } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
+import { createTranslator } from "@/locales"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import React from "react"
@@ -17,6 +18,7 @@ export const __animeEntryUnmatchFilesModalIsOpenAtom = atom(false)
 
 export function AnimeEntryUnmatchFilesModal({ entry }: AnimeEntryUnmatchFilesModalProps) {
 
+    const t = createTranslator("es")
     const [open, setOpen] = useAtom(__animeEntryUnmatchFilesModalIsOpenAtom)
 
     return (
@@ -24,7 +26,7 @@ export function AnimeEntryUnmatchFilesModal({ entry }: AnimeEntryUnmatchFilesMod
             open={open}
             onOpenChange={() => setOpen(false)}
             contentClass="max-w-2xl"
-            title={<span>Select files to unmatch</span>}
+            title={<span>{t("entry.unmatchFiles.title")}</span>}
             titleClass="text-center"
 
         >
@@ -36,6 +38,7 @@ export function AnimeEntryUnmatchFilesModal({ entry }: AnimeEntryUnmatchFilesMod
 
 function Content({ entry }: { entry: Anime_Entry }) {
 
+    const t = createTranslator("es")
     const [open, setOpen] = useAtom(__animeEntryUnmatchFilesModalIsOpenAtom)
 
     const [filepaths, setFilepaths] = React.useState<string[]>([])
@@ -52,7 +55,7 @@ function Content({ entry }: { entry: Anime_Entry }) {
     const { mutate: updateFiles, isPending: isDeleting } = useUpdateLocalFiles()
 
     const confirmUnmatch = useConfirmationDialog({
-        title: "Unmatch files",
+        title: t("entry.unmatchFiles.confirmTitle"),
         onConfirm: () => {
             if (filepaths.length === 0) return
 
@@ -85,14 +88,14 @@ function Content({ entry }: { entry: Anime_Entry }) {
                     onClick={() => confirmUnmatch.open()}
                     loading={isDeleting}
                 >
-                    Unmatch
+                    {t("entry.unmatchFiles.unmatch")}
                 </Button>
                 <Button
                     intent="white"
                     onClick={() => setOpen(false)}
                     disabled={isDeleting}
                 >
-                    Cancel
+                    {t("common.buttons.cancel")}
                 </Button>
             </div>
             <ConfirmationDialog {...confirmUnmatch} />

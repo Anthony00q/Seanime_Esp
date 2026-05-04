@@ -1,6 +1,7 @@
 import { useGetAnimeEntrySilenceStatus, useToggleAnimeEntrySilenceStatus } from "@/api/hooks/anime_entries.hooks"
 import { IconButton } from "@/components/ui/button"
 import { Tooltip } from "@/components/ui/tooltip"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { LuBellOff, LuBellRing } from "react-icons/lu"
 
@@ -28,6 +29,8 @@ export function AnimeEntrySilenceToggle(props: AnimeEntrySilenceToggleProps) {
         mutate({ mediaId })
     }
 
+    const t = createTranslator("es")
+
     return (
         <>
             <Tooltip
@@ -40,7 +43,7 @@ export function AnimeEntrySilenceToggle(props: AnimeEntrySilenceToggleProps) {
                     {...rest}
                 />}
             >
-                {isSilenced ? "Un-silence notifications" : "Silence notifications"}
+                {isSilenced ? t("entry.silenceToggle.unsilence") : t("entry.silenceToggle.silence")}
             </Tooltip>
         </>
     )

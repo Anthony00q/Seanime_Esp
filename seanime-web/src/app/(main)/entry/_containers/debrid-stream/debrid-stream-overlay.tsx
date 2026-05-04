@@ -7,6 +7,7 @@ import { AppLayoutStack } from "@/components/ui/app-layout"
 import { Button } from "@/components/ui/button"
 import { LoadingSpinner, Spinner } from "@/components/ui/loading-spinner"
 import { Modal } from "@/components/ui/modal"
+import { createTranslator } from "@/locales"
 import { WSEvents } from "@/lib/server/ws-events"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
@@ -24,6 +25,7 @@ export const __debridstream_stateAtom = atom<DebridClient_StreamState | null>(nu
 
 export function DebridStreamOverlay() {
 
+    const t = createTranslator("es")
     const [state, setState] = useAtom(__debridstream_stateAtom)
 
     const { mutate: cancelStream, isPending: isCancelling } = useDebridCancelStream()
@@ -57,7 +59,7 @@ export function DebridStreamOverlay() {
                 }
                 if (data.status === "ready") {
                     setState(null)
-                    toast.info("Sending stream to player...", { duration: 1 })
+                    toast.info(t("entry.debridStream.sendingStream"), { duration: 1 })
                     setShowMediaPlayerLoading(true)
                     return
                 }
@@ -75,8 +77,8 @@ export function DebridStreamOverlay() {
     })
 
     const confirmCancelAndRemoveTorrent = useConfirmationDialog({
-        title: "Cancel and remove torrent",
-        description: "Are you sure you want to cancel the stream and remove the torrent?",
+        title: t("entry.debridStream.cancelAndRemoveTorrent"),
+        description: t("entry.debridStream.cancelAndRemoveTorrentDesc"),
         onConfirm: () => {
             cancelStream({
                 options: {
@@ -91,8 +93,8 @@ export function DebridStreamOverlay() {
     })
 
     const confirmCancelStream = useConfirmationDialog({
-        title: "Cancel stream",
-        description: "Are you sure you want to cancel the stream?",
+        title: t("entry.debridStream.cancelStream"),
+        description: t("entry.debridStream.cancelStreamDesc"),
         onConfirm: () => {
             cancelStream({
                 options: {
