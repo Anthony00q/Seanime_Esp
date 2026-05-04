@@ -5,6 +5,7 @@ import { useServerHMACAuth } from "@/app/(main)/_hooks/use-server-status"
 import { Button } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
 import { Separator } from "@/components/ui/separator"
+import { createTranslator } from "@/locales"
 import { openTab } from "@/lib/helpers/browser"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
@@ -19,6 +20,7 @@ export const __animeEntryDownloadFilesModalIsOpenAtom = atom(false)
 
 export function AnimeEntryDownloadFilesModal({ entry }: AnimeEntryDownloadFilesModalProps) {
 
+    const t = createTranslator("es")
     const [open, setOpen] = useAtom(__animeEntryDownloadFilesModalIsOpenAtom)
 
 
@@ -27,7 +29,7 @@ export function AnimeEntryDownloadFilesModal({ entry }: AnimeEntryDownloadFilesM
             open={open}
             onOpenChange={() => setOpen(false)}
             contentClass="max-w-2xl"
-            title={<span>Select files to download</span>}
+            title={<span>{t("entry.downloadFiles.title")}</span>}
             titleClass="text-center"
 
         >
@@ -39,6 +41,7 @@ export function AnimeEntryDownloadFilesModal({ entry }: AnimeEntryDownloadFilesM
 
 function Content({ entry }: { entry: Anime_Entry }) {
 
+    const t = createTranslator("es")
     const [open, setOpen] = useAtom(__animeEntryDownloadFilesModalIsOpenAtom)
     const [filepaths, setFilepaths] = React.useState<string[]>([])
     const { getHMACTokenQueryParam } = useServerHMACAuth()
@@ -59,7 +62,7 @@ function Content({ entry }: { entry: Anime_Entry }) {
         <div className="space-y-2 mt-2">
 
             <p className="text-[--muted]">
-                Seanime will open a new tab for each file you download. Make sure your browser allows popups.
+                {t("entry.downloadFiles.popupWarning")}
             </p>
 
             <Separator />
@@ -76,7 +79,7 @@ function Content({ entry }: { entry: Anime_Entry }) {
                     intent="white"
                     onClick={() => handleDownload()}
                 >
-                    Download
+                    {t("entry.downloadFiles.download")}
                 </Button>
             </div>
         </div>

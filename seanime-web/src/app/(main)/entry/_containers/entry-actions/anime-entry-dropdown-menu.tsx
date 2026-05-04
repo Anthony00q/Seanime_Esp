@@ -20,6 +20,7 @@ import {
 } from "@/app/(main)/entry/_containers/entry-actions/anime-entry-unmatch-files-modal"
 import { IconButton } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
+import { createTranslator } from "@/locales"
 import { copyToClipboard, openTab } from "@/lib/helpers/browser"
 import { isCustomSource } from "@/lib/server/utils"
 import { useSetAtom } from "jotai"
@@ -32,6 +33,7 @@ import { SiMyanimelist } from "react-icons/si"
 
 export function AnimeEntryDropdownMenu({ entry, details }: { entry: Anime_Entry, details?: AL_AnimeDetailsById_Media }) {
 
+    const t = createTranslator("es")
     const serverStatus = useServerStatus()
     const setIsMetadataManagerOpen = useSetAtom(__metadataManager_isOpenAtom)
 
@@ -66,12 +68,12 @@ export function AnimeEntryDropdownMenu({ entry, details }: { entry: Anime_Entry,
                     <DropdownMenuItem
                         onClick={() => openEntryInExplorer({ mediaId: entry.mediaId })}
                     >
-                        <BiFolder /> Open directory
+                        <BiFolder /> {t("entry.dropdown.openDirectory")}
                     </DropdownMenuItem>
                     {!!entry.libraryData?.sharedPath && <DropdownMenuItem
                         onClick={() => openDirInLibraryExplorer(entry.libraryData?.sharedPath || "")}
                     >
-                        <LuFolderTree /> Open in Library Explorer
+                        <LuFolderTree /> {t("entry.dropdown.openInLibraryExplorer")}
                     </DropdownMenuItem>}
 
                     {/*{serverStatus?.settings?.mediaPlayer?.defaultPlayer != "mpv" && <DropdownMenuItem*/}
@@ -86,7 +88,7 @@ export function AnimeEntryDropdownMenu({ entry, details }: { entry: Anime_Entry,
                     onClick={() => openTab(`https://anidb.net/anime/${entry.anidbId}`)}
                     className="flex justify-between items-center"
                 >
-                    <span className="flex items-center gap-2"><LuGlobe className="text-lg" /> Open on AniDB</span>
+                    <span className="flex items-center gap-2"><LuGlobe className="text-lg" /> {t("entry.dropdown.openOnAniDB")}</span>
                     <FiArrowUpRight className="text-[--muted] text-sm" />
                 </DropdownMenuItem>}
 
@@ -94,43 +96,43 @@ export function AnimeEntryDropdownMenu({ entry, details }: { entry: Anime_Entry,
                     onClick={() => openTab(`https://myanimelist.net/anime/${entry.media?.idMal}`)}
                     className="flex justify-between items-center"
                 >
-                    <span className="flex items-center gap-2"><SiMyanimelist className="text-lg" /> Open on MAL</span>
+                    <span className="flex items-center gap-2"><SiMyanimelist className="text-lg" /> {t("entry.dropdown.openOnMAL")}</span>
                     <FiArrowUpRight className="text-[--muted] text-sm" />
                 </DropdownMenuItem>}
 
                 {isCustomSource(entry.mediaId) && <DropdownMenuItem
                     onClick={() => copyToClipboard(entry.mediaId.toString())}
                 >
-                    <LuCopy /> Copy ID
+                    <LuCopy /> {t("entry.dropdown.copyId")}
                 </DropdownMenuItem>}
                 <DropdownMenuItem
                     onClick={() => setIsMetadataManagerOpen(p => !p)}
                 >
-                    <LuImage /> Metadata
+                    <LuImage /> {t("entry.dropdown.metadata")}
                 </DropdownMenuItem>
 
 
                 {(isLibraryView && inLibrary && !entry._isNakamaEntry) && <>
                     <DropdownMenuSeparator />
-                    <DropdownMenuLabel>Bulk actions</DropdownMenuLabel>
+                    <DropdownMenuLabel>{t("entry.dropdown.bulkActions")}</DropdownMenuLabel>
                     <DropdownMenuItem
                         className="flex justify-between"
                         onClick={() => setDownloadFilesModalOpen(p => !p)}
                     >
-                        <span className="flex items-center gap-2"><FiDownload className="text-lg" /> Download some files</span> <BiRightArrowAlt />
+                        <span className="flex items-center gap-2"><FiDownload className="text-lg" /> {t("entry.dropdown.downloadSomeFiles")}</span> <BiRightArrowAlt />
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         className="text-orange-500 dark:text-orange-200 flex justify-between"
                         onClick={() => setAnimeEntryUnmatchFilesModalOpen(true)}
                     >
-                        <span className="flex items-center gap-2"><MdOutlineRemoveDone className="text-lg" /> Unmatch some files</span>
+                        <span className="flex items-center gap-2"><MdOutlineRemoveDone className="text-lg" /> {t("entry.dropdown.unmatchSomeFiles")}</span>
                         <BiRightArrowAlt />
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         className="text-red-500 dark:text-red-200 flex justify-between"
                         onClick={() => setBulkDeleteFilesModalOpen(true)}
                     >
-                        <span className="flex items-center gap-2"><FiTrash className="text-lg" /> Delete some files</span> <BiRightArrowAlt />
+                        <span className="flex items-center gap-2"><FiTrash className="text-lg" /> {t("entry.dropdown.deleteSomeFiles")}</span> <BiRightArrowAlt />
                     </DropdownMenuItem>
                 </>}
 
