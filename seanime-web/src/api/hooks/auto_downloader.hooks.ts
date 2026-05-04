@@ -15,16 +15,18 @@ import {
 } from "@/api/generated/types"
 import { useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useRunAutoDownloader() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.RunAutoDownloader.endpoint,
         method: API_ENDPOINTS.AUTO_DOWNLOADER.RunAutoDownloader.methods[0],
         mutationKey: [API_ENDPOINTS.AUTO_DOWNLOADER.RunAutoDownloader.key],
         onSuccess: async () => {
-            toast.success("Auto downloader started")
+            toast.success(t("toast.autoDownloader.started"))
             setTimeout(() => {
                 queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderRules.key] })
             }, 1000)
@@ -52,6 +54,7 @@ export function useGetAutoDownloaderRules() {
 
 export function useCreateAutoDownloaderRule() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<Anime_AutoDownloaderRule, CreateAutoDownloaderRule_Variables>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.CreateAutoDownloaderRule.endpoint,
@@ -60,13 +63,14 @@ export function useCreateAutoDownloaderRule() {
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderRules.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderRulesByAnime.key] })
-            toast.success("Rule created")
+            toast.success(t("toast.autoDownloader.ruleCreated"))
         },
     })
 }
 
 export function useUpdateAutoDownloaderRule() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<Anime_AutoDownloaderRule, UpdateAutoDownloaderRule_Variables>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.UpdateAutoDownloaderRule.endpoint,
@@ -75,13 +79,14 @@ export function useUpdateAutoDownloaderRule() {
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderRules.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderRulesByAnime.key] })
-            toast.success("Rule updated")
+            toast.success(t("toast.autoDownloader.ruleUpdated"))
         },
     })
 }
 
 export function useDeleteAutoDownloaderRule(id: Nullish<number>) {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.DeleteAutoDownloaderRule.endpoint.replace("{id}", String(id)),
@@ -90,7 +95,7 @@ export function useDeleteAutoDownloaderRule(id: Nullish<number>) {
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderRules.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderRulesByAnime.key] })
-            toast.success("Rule deleted")
+            toast.success(t("toast.autoDownloader.ruleDeleted"))
         },
     })
 }
@@ -106,13 +111,14 @@ export function useGetAutoDownloaderItems(enabled: boolean = true) {
 
 export function useDeleteAutoDownloaderItem() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, DeleteAutoDownloaderItem_Variables>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.DeleteAutoDownloaderItem.endpoint,
         method: API_ENDPOINTS.AUTO_DOWNLOADER.DeleteAutoDownloaderItem.methods[0],
         mutationKey: [API_ENDPOINTS.AUTO_DOWNLOADER.DeleteAutoDownloaderItem.key],
         onSuccess: async () => {
-            toast.success("Item deleted")
+            toast.success(t("toast.autoDownloader.itemDeleted"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderItems.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderRulesByAnime.key] })
         },
@@ -148,6 +154,7 @@ export function useGetAutoDownloaderProfile(id: Nullish<number>) {
 
 export function useCreateAutoDownloaderProfile() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<Anime_AutoDownloaderProfile, Anime_AutoDownloaderProfile>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.CreateAutoDownloaderProfile.endpoint,
@@ -155,13 +162,14 @@ export function useCreateAutoDownloaderProfile() {
         mutationKey: [API_ENDPOINTS.AUTO_DOWNLOADER.CreateAutoDownloaderProfile.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderProfiles.key] })
-            toast.success("Profile created")
+            toast.success(t("toast.autoDownloader.profileCreated"))
         },
     })
 }
 
 export function useUpdateAutoDownloaderProfile() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<Anime_AutoDownloaderProfile, Anime_AutoDownloaderProfile>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.UpdateAutoDownloaderProfile.endpoint,
@@ -169,13 +177,14 @@ export function useUpdateAutoDownloaderProfile() {
         mutationKey: [API_ENDPOINTS.AUTO_DOWNLOADER.UpdateAutoDownloaderProfile.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderProfiles.key] })
-            toast.success("Profile updated")
+            toast.success(t("toast.autoDownloader.profileUpdated"))
         },
     })
 }
 
 export function useDeleteAutoDownloaderProfile(id: Nullish<number>) {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.DeleteAutoDownloaderProfile.endpoint.replace("{id}", String(id)),
@@ -183,7 +192,7 @@ export function useDeleteAutoDownloaderProfile(id: Nullish<number>) {
         mutationKey: [API_ENDPOINTS.AUTO_DOWNLOADER.DeleteAutoDownloaderProfile.key, String(id)],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderProfiles.key] })
-            toast.success("Profile deleted")
+            toast.success(t("toast.autoDownloader.profileDeleted"))
         },
     })
 }

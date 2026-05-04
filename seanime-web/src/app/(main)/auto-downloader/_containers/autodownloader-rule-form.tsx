@@ -43,6 +43,7 @@ import { FcFolder } from "react-icons/fc"
 import { LuTextCursorInput } from "react-icons/lu"
 import { MdFilterAlt, MdVerified } from "react-icons/md"
 import { useMount } from "react-use"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
 type AutoDownloaderRuleFormProps = {
@@ -92,6 +93,7 @@ export function useAutoDownloaderMediaList(allMedia: AL_BaseAnime[]) {
 }
 
 export function AutoDownloaderRuleForm(props: AutoDownloaderRuleFormProps) {
+    const t = createTranslator("es")
 
     const {
         type,
@@ -119,7 +121,7 @@ export function AutoDownloaderRuleForm(props: AutoDownloaderRuleFormProps) {
 
     function handleSave(data: InferType<typeof schema>) {
         if (data.episodeType === "selected" && data.episodeNumbers.length === 0) {
-            return toast.error("You must specify at least one episode number")
+            return toast.error(t("autoDownloader.youMustSpecifyEpisode"))
         }
         if (type === "create") {
             createRule({
@@ -178,7 +180,7 @@ export function AutoDownloaderRuleForm(props: AutoDownloaderRuleFormProps) {
                     profileId: rule?.profileId ? [String(rule.profileId)] : [],
                 }}
                 onError={() => {
-                    toast.error("An error occurred, verify the fields.")
+                    toast.error(t("autoDownloader.errorOccurredVerifyFields"))
                 }}
             >
                 {(f) => (

@@ -30,6 +30,7 @@ import { Modal } from "@/components/ui/modal"
 import { TextInput } from "@/components/ui/text-input"
 import { Tooltip } from "@/components/ui/tooltip"
 import { copyToClipboard } from "@/lib/helpers/browser"
+import { createTranslator } from "@/locales"
 import { WSEvents } from "@/lib/server/ws-events"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { __isElectronDesktop__ } from "@/types/constants"
@@ -83,6 +84,7 @@ export function useNakamaWatchParty() {
 }
 
 export function NakamaManager() {
+    const t = createTranslator("es")
     const { sendMessage } = useWebsocketSender()
     const [isModalOpen, setIsModalOpen] = useAtom(nakamaModalOpenAtom)
     const [nakamaStatus, setNakamaStatus] = useAtom(nakamaStatusAtom)
@@ -151,11 +153,11 @@ export function NakamaManager() {
     const handleReconnect = React.useCallback(() => {
         reconnectToHost({}, {
             onSuccess: () => {
-                toast.success("Reconnection initiated")
+                toast.success(t("nakama.toast.reconnectionInitiated"))
                 refetchStatus()
             },
             onError: (error) => {
-                toast.error(`Failed to reconnect: ${error.message}`)
+                toast.error(t("nakama.toast.failedToReconnect", { error: error.message }))
             },
         })
     }, [reconnectToHost, refetchStatus])
@@ -163,11 +165,11 @@ export function NakamaManager() {
     const handleCleanupStaleConnections = React.useCallback(() => {
         removeStaleConnections({}, {
             onSuccess: () => {
-                toast.success("Stale connections cleaned up")
+                toast.success(t("nakama.toast.staleConnectionsCleaned"))
                 refetchStatus()
             },
             onError: (error) => {
-                toast.error(`Failed to cleanup: ${error.message}`)
+                toast.error(t("nakama.toast.failedToCleanup", { error: error.message }))
             },
         })
     }, [removeStaleConnections, refetchStatus])
@@ -175,11 +177,11 @@ export function NakamaManager() {
     const handleCreateWatchParty = React.useCallback(() => {
         createWatchParty({ settings: watchPartySettings }, {
             onSuccess: () => {
-                toast.success("Watch party created")
+                toast.success(t("nakama.toast.watchPartyCreated"))
                 refetchStatus()
             },
             onError: (error) => {
-                toast.error(`Failed to create watch party: ${error.message}`)
+                toast.error(t("nakama.toast.failedToCreateWatchParty", { error: error.message }))
             },
         })
     }, [createWatchParty, watchPartySettings, refetchStatus])
@@ -189,7 +191,7 @@ export function NakamaManager() {
             clientId: clientId || "",
         }, {
             onSuccess: () => {
-                toast.info("Joining watch party")
+                toast.info(t("nakama.toast.joiningWatchParty"))
                 refetchStatus()
             },
         })
@@ -198,7 +200,7 @@ export function NakamaManager() {
     const handleLeaveWatchParty = React.useCallback(() => {
         leaveWatchParty(undefined, {
             onSuccess: () => {
-                toast.info("Leaving watch party")
+                toast.info(t("nakama.toast.leavingWatchParty"))
                 refetchStatus()
             },
         })
@@ -207,7 +209,7 @@ export function NakamaManager() {
     const handleCreateRoom = React.useCallback(() => {
         createAndJoinRoom(undefined, {
             onSuccess: () => {
-                toast.success("Room created successfully")
+                toast.success(t("nakama.toast.roomCreatedSuccessfully"))
                 refetchStatus()
             },
         })
@@ -216,11 +218,11 @@ export function NakamaManager() {
     const handleDisconnectFromRoom = React.useCallback(() => {
         disconnectFromRoom(undefined, {
             onSuccess: () => {
-                toast.info("Disconnected from room")
+                toast.info(t("nakama.toast.disconnectedFromRoom"))
                 refetchStatus()
             },
             onError: (error) => {
-                toast.error(`Failed to disconnect from room: ${error.message}`)
+                toast.error(t("nakama.toast.failedToDisconnectFromRoom", { error: error.message }))
             },
         })
     }, [disconnectFromRoom, refetchStatus])
@@ -413,7 +415,7 @@ export function NakamaManager() {
                                                                 intent="gray-basic"
                                                                 onClick={() => {
                                                                     copyToClipboard(`room://${roomInfo.roomId}`)
-                                                                        .then(() => toast.success("Copied to clipboard"))
+                                                                        .then(() => toast.success(t("common.toast.copiedToClipboard")))
                                                                 }}
                                                                 icon={<LuClipboard />}
                                                             />
@@ -433,7 +435,7 @@ export function NakamaManager() {
                                                                 intent="gray-basic"
                                                                 onClick={() => {
                                                                     copyToClipboard(serverStatus?.settings?.nakama?.hostPassword || "")
-                                                                        .then(() => toast.success("Copied to clipboard"))
+                                                                        .then(() => toast.success(t("common.toast.copiedToClipboard")))
                                                                 }}
                                                                 icon={<LuClipboard />}
                                                             />

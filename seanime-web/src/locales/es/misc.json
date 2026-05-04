@@ -79,7 +79,10 @@
     "description": "Descarga automáticamente nuevos episodios cuando se lancen.",
     "allCurrentlyWatching": "Todo lo que se está viendo actualmente",
     "allUpcoming": "Todo lo próximo",
-    "errorOccurred": "Ocurrió un error, verifica los campos."
+    "errorOccurred": "Ocurrió un error, verifica los campos.",
+    "intervalChanged15Min": "Intervalo cambiado a al menos 15 minutos",
+    "youMustSpecifyEpisode": "Debes especificar al menos un número de episodio",
+    "errorOccurredVerifyFields": "Ocurrió un error, verifica los campos."
   },
   "scanner": {
     "title": "Escáner de Biblioteca",
@@ -207,5 +210,236 @@
   },
   "debrid": {
     "failedToConnect": "Error al conectar con el servicio Debrid. Verifica los ajustes."
+  },
+  "electron": {
+    "updateDownloadedReady": "Actualización descargada y lista para instalar",
+    "updateError": "Error de actualización: {error}",
+    "updateFoundDownloading": "Actualización encontrada, descargando...",
+    "updateVersionNotFound": "Versión de actualización no encontrada",
+    "macosUpdateAssetNotFound": "Asset de actualización de macOS no encontrado",
+    "downloadingInstallingUpdate": "Descargando e instalando actualización...",
+    "updateInstalledClosing": "¡Actualización instalada! Cerrando aplicación...",
+    "failedToInstallUpdate": "Error al instalar la actualización: {error}",
+    "downloadingUpdate": "Descargando actualización...",
+    "shuttingDownServer": "Apagando servidor...",
+    "installingUpdate": "Instalando actualización...",
+    "updateInstalledRestarting": "Actualización instalada. Reiniciando aplicación...",
+    "restartingServer": "Reiniciando servidor...",
+    "devModeNotRestarting": "Modo desarrollo: No se reiniciará el servidor"
+  },
+  "issueReport": {
+    "failedToSaveReportBrowser": "Error al guardar el informe en el almacenamiento del navegador",
+    "restoredPreviousReport": "Informe anterior restaurado",
+    "decompressingReport": "Descomprimiendo informe...",
+    "reportLoaded": "Informe cargado",
+    "failedToDecompressReport": "Error al descomprimir el informe",
+    "failedToParseReport": "Error al analizar el informe",
+    "clearedReport": "Informe eliminado",
+    "failedToStartDomRecording": "Error al iniciar la grabación del DOM",
+    "unableToCaptureScreenshot": "No se pudo capturar la captura de pantalla",
+    "screenshotAdded": "Captura de pantalla añadida al informe",
+    "issueReportSaved": "Informe de problema guardado exitosamente",
+    "failedToGenerateDownloadToken": "Error al generar el token de descarga"
+  },
+  "autoplay": {
+    "requestingNextEpisode": "Solicitando siguiente episodio",
+    "playingNextEpisode": "Reproduciendo siguiente episodio",
+    "failedToPlayNextEpisode": "Error al reproducir el siguiente episodio"
+  },
+  "libraryExplorer": {
+    "noMediaFound": "No se encontró ningún medio",
+    "metadataSaved": "Metadatos guardados",
+    "noValidChangesToApply": "No hay cambios válidos para aplicar. Verifica tu configuración.",
+    "applyingChangesSkippingInvalid": "Aplicando {valid} cambios, omitiendo {skipped} cambios inválidos",
+    "failedToRenameFiles": "Error al renombrar archivos: {error}"
+  },
+  "manga": {
+    "refetchingSources": "Actualizando fuentes...",
+    "chaptersAddedToDownloadQueue": "Capítulos añadidos a la cola de descarga",
+    "doublePageModeNotSupported": "El modo de página doble no es compatible con pantallas pequeñas.",
+    "couldNotGetPageDimensions": "No se pudieron obtener las dimensiones de página de este proveedor. Cambiando a modo paginado."
+  },
+  "animeLibrary": {
+    "mediaUnmatched": "Medio no coincidente",
+    "filesUnignored": "Archivos des-ignorados",
+    "filesLocked": "Archivos bloqueados",
+    "filesUnlocked": "Archivos desbloqueados"
+  },
+  "playlists": {
+    "startingPlaylist": "Iniciando lista de reproducción...",
+    "playingEpisode": "Reproduciendo episodio {episode} de {anime}",
+    "pleaseEnterPlaylistName": "Ingresa un nombre para la lista de reproducción"
+  },
+  "update": {
+    "missingOptions": "Faltan opciones"
+  },
+  "nativePlayer": {
+    "errorPlayingStream": "Ocurrió un error al reproducir el stream. {error}"
+  },
+  "sync": {
+    "localChangesIgnored": "Cambios locales ignorados."
+  },
+  "onlineStream": {
+    "startingWatchParty": "Iniciando watch party de streaming en línea"
+  },
+  "handlePlayMedia": {
+    "externalPlayerNotSet": "El enlace de reproductor externo no está configurado."
+  },
+  "debridPage": {
+    "refreshed": "Actualizado"
+  },
+  "mediastream": {
+    "codecNotSupported": "Codec no compatible para reproducción directa",
+    "playbackErrorOccurred": "Ocurrió un error de reproducción",
+    "filePathNotFoundEpisode": "Ruta de archivo no encontrada para este episodio"
+  },
+  "mediaLinks": {
+    "episodeNotFound": "Episodio no encontrado.",
+    "externalPlayerLinkNotSet": "El enlace de reproductor externo no está configurado."
+  },
+  "serverStatus": {
+    "featureDisabled": "Esta función está desactivada"
+  },
+  "toast": {
+    "settings": {
+      "settingsSaved": "Ajustes guardados"
+    },
+    "anilist": {
+      "upToDate": "AniList está actualizado",
+      "entryUpdated": "Entrada actualizada",
+      "entryDeleted": "Entrada eliminada"
+    },
+    "auth": {
+      "authenticated": "Autenticación exitosa",
+      "loggedOut": "Sesión cerrada exitosamente",
+      "invalidToken": "Token inválido"
+    },
+    "autoDownloader": {
+      "started": "Descargador automático iniciado",
+      "ruleCreated": "Regla creada",
+      "ruleUpdated": "Regla actualizada",
+      "ruleDeleted": "Regla eliminada",
+      "itemDeleted": "Elemento eliminado",
+      "profileCreated": "Perfil creado",
+      "profileUpdated": "Perfil actualizado",
+      "profileDeleted": "Perfil eliminado"
+    },
+    "debrid": {
+      "torrentAdded": "Torrent añadido",
+      "downloadStarted": "Descarga iniciada",
+      "downloadCancelled": "Descarga cancelada",
+      "torrentDeleted": "Torrent eliminado",
+      "streamCancelled": "Stream cancelado"
+    },
+    "download": {
+      "filesDownloaded": "Archivos descargados",
+      "updateDownloaded": "Actualización descargada exitosamente",
+      "updateInstalled": "Actualización instalada exitosamente. Por favor reinicia la aplicación."
+    },
+    "extensions": {
+      "uninstalled": "Extensión desinstalada exitosamente",
+      "updated": "Extensión actualizada exitosamente",
+      "configSaved": "Configuración guardada exitosamente",
+      "reloaded": "Extensión recargada exitosamente",
+      "permissionsGranted": "Permisos del plugin concedidos exitosamente"
+    },
+    "filecache": {
+      "cacheCleared": "Caché limpiado"
+    },
+    "local": {
+      "mediaAddedOffline": "Medio añadido para sincronización offline",
+      "offlineDataRemoved": "Datos offline eliminados",
+      "syncing": "Sincronizando datos locales...",
+      "anilistUpdated": "Datos de AniList actualizados",
+      "offlineEnabled": "Modo offline activado",
+      "offlineDisabled": "Modo offline desactivado"
+    },
+    "localfiles": {
+      "metadataUpdated": "Metadatos del archivo actualizados",
+      "filesDeleted": "Archivos eliminados",
+      "emptyDirsRemoved": "Directorios vacíos eliminados",
+      "imported": "Archivos locales importados"
+    },
+    "mal": {
+      "loggedOut": "Sesión de MyAnimeList cerrada exitosamente"
+    },
+    "manga": {
+      "mappingAdded": "Mapeo añadido",
+      "mappingRemoved": "Mapeo eliminado",
+      "sourcesRefreshed": "Fuentes actualizadas"
+    },
+    "mangaDownload": {
+      "downloading": "Descargando capítulos",
+      "queueStopped": "Cola de descarga detenida",
+      "queueCleared": "Cola de descarga limpiada",
+      "erroredReset": "Capítulos con error reiniciados",
+      "chaptersDeleted": "Capítulos eliminados"
+    },
+    "metadata": {
+      "fillerFetched": "Datos de filler obtenidos",
+      "fillerRemoved": "Datos de filler eliminados",
+      "updated": "Metadatos actualizados",
+      "removed": "Metadatos eliminados"
+    },
+    "onlinestream": {
+      "cacheEmptied": "Caché de stream vaciado",
+      "mappingAdded": "Mapeo añadido",
+      "mappingRemoved": "Mapeo eliminado"
+    },
+    "playlist": {
+      "created": "Lista de reproducción creada",
+      "updated": "Lista de reproducción actualizada",
+      "deleted": "Lista de reproducción eliminada"
+    },
+    "playback": {
+      "playlistCancelled": "Cancelando lista de reproducción",
+      "nextFile": "Cargando siguiente archivo",
+      "randomEpisode": "Reproduciendo episodio aleatorio",
+      "nextEpisode": "Cargando siguiente episodio"
+    },
+    "releases": {
+      "installingUpdate": "Instalando actualización..."
+    },
+    "status": {
+      "logsDeleted": "Registros eliminados",
+      "couldntFetchLogs": "No se pudieron obtener los registros",
+      "failedToCopyLogs": "Error al copiar registros: {error}",
+      "gcCompleted": "Recolección de basura completada",
+      "generatingProfile": "Generando perfil {profileType}...",
+      "profileDownloaded": "Perfil \"{profileType}\" descargado",
+      "failedToDownloadProfile": "Error al descargar perfil {profileType}",
+      "generatingGoroutineProfile": "Generando perfil de goroutines...",
+      "goroutineProfileDownloaded": "Perfil de goroutines descargado",
+      "failedToDownloadGoroutineProfile": "Error al descargar perfil de goroutines",
+      "generatingCpuProfile": "Generando perfil de CPU durante {duration} segundos...",
+      "cpuProfileDownloaded": "Perfil de CPU ({duration}s) descargado",
+      "failedToDownloadCpuProfile": "Error al descargar perfil de CPU",
+      "homeUpdated": "Pantalla de inicio actualizada"
+    },
+    "theme": {
+      "uiSettingsSaved": "Ajustes de interfaz guardados"
+    },
+    "torrentClient": {
+      "actionPerformed": "Acción realizada",
+      "downloadStarted": "Descarga iniciada"
+    },
+    "torrentstream": {
+      "streamStopped": "Stream detenido",
+      "torrentDropped": "Torrent eliminado"
+    },
+    "animeCollection": {
+      "mediaAdded": "Medio añadido exitosamente"
+    },
+    "animeEntries": {
+      "filesMatched": "Archivos coincidentes",
+      "progressUpdated": "Progreso actualizado exitosamente"
+    },
+    "client": {
+      "featureDisabled": "Esta función está desactivada",
+      "anilistRateLimit": "AniList: Demasiadas solicitudes, espera un momento e intenta de nuevo.",
+      "anilistError": "Error de AniList: {error}",
+      "error": "Error: {error}",
+      "noResponse": "Sin respuesta del servidor"
+    }
   }
 }
