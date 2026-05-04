@@ -7,6 +7,7 @@ import { AppLayoutStack } from "@/components/ui/app-layout"
 import { Button } from "@/components/ui/button"
 import { Drawer } from "@/components/ui/drawer"
 import { upath } from "@/lib/helpers/upath.ts"
+import { createTranslator } from "@/locales"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import React, { useCallback } from "react"
@@ -24,6 +25,7 @@ type UnknownMediaManagerProps = {
 
 export function UnknownMediaManager(props: UnknownMediaManagerProps) {
 
+    const t = createTranslator("es")
     const { unknownGroups, onActionComplete } = props
 
     const [isOpen, setIsOpen] = useAtom(__unknownMedia_drawerIsOpen)
@@ -62,7 +64,7 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
             action: "unmatch",
         }, {
             onSuccess: () => {
-                toast.success("Media unmatched")
+                toast.success(t("animeLibrary.mediaUnmatched"))
                 onActionComplete?.()
             },
         })

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Drawer } from "@/components/ui/drawer"
 import { upath } from "@/lib/helpers/upath"
+import { createTranslator } from "@/locales"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import React from "react"
@@ -21,6 +22,7 @@ type IgnoredFileManagerProps = {
 
 export function IgnoredFileManager(props: IgnoredFileManagerProps) {
 
+    const t = createTranslator("es")
     const { files } = props
 
     const [isOpen, setIsOpen] = useAtom(__ignoredFileManagerIsOpen)
@@ -42,7 +44,7 @@ export function IgnoredFileManager(props: IgnoredFileManagerProps) {
                 action: "unignore",
             }, {
                 onSuccess: () => {
-                    toast.success("Files un-ignored")
+                    toast.success(t("animeLibrary.filesUnignored"))
                 },
             })
         }

@@ -21,6 +21,7 @@ import { Modal } from "@/components/ui/modal"
 import { Popover } from "@/components/ui/popover"
 import { Tooltip } from "@/components/ui/tooltip"
 import { useRouter } from "@/lib/navigation"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { GrUpdate } from "react-icons/gr"
 import { LuBook, LuCode, LuEllipsisVertical, LuPower, LuRefreshCcw, LuSearch, LuSettings2 } from "react-icons/lu"
@@ -40,6 +41,7 @@ type ExtensionCardProps = {
 
 export function ExtensionCard(props: ExtensionCardProps) {
 
+    const t = createTranslator("es")
     const {
         extension,
         updateData,
@@ -153,7 +155,7 @@ export function ExtensionCard(props: ExtensionCardProps) {
                      intent="gray-basic"
                      icon={<LuRefreshCcw />}
                      onClick={() => {
-                     if (!extension.id) return toast.error("Extension has no ID")
+                     if (!extension.id) return toast.error(t("extensions.toast.extensionHasNoId"))
                      reloadExternalExtension({ id: extension.id })
                      }}
                      disabled={isReloadingExtension}
@@ -257,6 +259,7 @@ type ExtensionSettingsProps = {
 
 export function ExtensionSettings(props: ExtensionSettingsProps) {
 
+    const t = createTranslator("es")
     const {
         extension,
         children,
@@ -296,7 +299,7 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
 
     React.useEffect(() => {
         if (installResponse) {
-            toast.success(installResponse.message)
+            toast.success(t("extensions.toast.extensionInstalled", { message: installResponse.message }))
             reset()
         }
     }, [installResponse])
@@ -316,9 +319,9 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
             checkingForUpdatesRef.current = false
 
             if (fetchedExtensionData.version !== extension.version) {
-                toast.success("Update available")
+                toast.success(t("extensions.toast.updateAvailable"))
             } else {
-                toast.info("The extension is up to date")
+                toast.info(t("extensions.toast.extensionUpToDate"))
             }
         }
     }, [fetchedExtensionData])
@@ -378,7 +381,7 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
                                             intent="gray-basic"
                                             icon={<LuRefreshCcw />}
                                             onClick={() => {
-                                                if (!extension.id) return toast.error("Extension has no ID")
+                                                if (!extension.id) return toast.error(t("extensions.toast.extensionHasNoId"))
                                                 reloadExternalExtension({ id: extension.id })
                                             }}
                                             disabled={isReloadingExtension}

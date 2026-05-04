@@ -4,6 +4,7 @@ import { API_ENDPOINTS } from "@/api/generated/endpoints"
 import { Status, Updater_Update } from "@/api/generated/types"
 import { useSetServerStatus } from "@/app/(main)/_hooks/use-server-status"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useGetLatestUpdate(enabled: boolean) {
     return useServerQuery<Updater_Update>({
@@ -16,6 +17,7 @@ export function useGetLatestUpdate(enabled: boolean) {
 
 export function useInstallLatestUpdate() {
     const setServerStatus = useSetServerStatus()
+    const t = createTranslator("es")
     return useServerMutation<Status, InstallLatestUpdate_Variables>({
         endpoint: API_ENDPOINTS.RELEASES.InstallLatestUpdate.endpoint,
         method: API_ENDPOINTS.RELEASES.InstallLatestUpdate.methods[0],
@@ -24,7 +26,7 @@ export function useInstallLatestUpdate() {
             if (data) {
                 setServerStatus(data)
             }
-            toast.info("Installing update...")
+            toast.info(t("toast.releases.installingUpdate"))
         },
     })
 }
