@@ -129,7 +129,7 @@ function Content() {
                 intent="primary-subtle" onClick={() => {
                 setEnabled(true)
             }}
-            >{t("torrentList.retry")}</Button>
+            >{t("common.buttons.retry")}</Button>
         </div>
     </LuffyError>
 

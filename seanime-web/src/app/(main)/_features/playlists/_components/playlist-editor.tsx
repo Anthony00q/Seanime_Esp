@@ -21,6 +21,7 @@ import React from "react"
 import { BiPlus, BiTrash } from "react-icons/bi"
 import { IoLibrarySharp } from "react-icons/io5"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function playlist_isSameEpisode(a: Nullish<Anime_PlaylistEpisode>, b: Nullish<Anime_PlaylistEpisode>) {
     if (!a || !b) return false
@@ -89,6 +90,7 @@ export function PlaylistEditor(props: PlaylistEditorProps) {
     const [selectedCategory, setSelectedCategory] = React.useState("CURRENT")
     const [searchInput, setSearchInput] = React.useState("")
     const debouncedSearchInput = useDebounce(searchInput, 500)
+    const t = createTranslator("es")
 
     const entries = React.useMemo(() => {
         if (debouncedSearchInput.length !== 0) return (libraryCollection?.lists
@@ -111,14 +113,14 @@ export function PlaylistEditor(props: PlaylistEditorProps) {
 
             <div className="space-y-2">
                 <Modal
-                    title="Select an anime"
+                    title={t("playlistEditor.selectAnime")}
                     contentClass="max-w-4xl"
                     trigger={<Button
                         leftIcon={<BiPlus className="text-2xl" />}
                         intent="white-glass"
                         className="rounded-full"
                         disabled={episodes.length >= 10}
-                    >Add episodes</Button>}
+                    >{t("playlistEditor.addEpisodes")}</Button>}
                 >
 
                     <div className="grid grid-cols-[150px,1fr] gap-2">
@@ -126,16 +128,16 @@ export function PlaylistEditor(props: PlaylistEditorProps) {
                             value={selectedCategory}
                             onValueChange={v => setSelectedCategory(v)}
                             options={[
-                                { label: "Current", value: "CURRENT" },
-                                { label: "Paused", value: "PAUSED" },
-                                { label: "Planning", value: "PLANNING" },
-                                { label: "All", value: "-" },
+                                { label: t("status.current"), value: "CURRENT" },
+                                { label: t("status.paused"), value: "PAUSED" },
+                                { label: t("status.planning"), value: "PLANNING" },
+                                { label: t("status.all"), value: "-" },
                             ]}
                             disabled={searchInput.length !== 0}
                         />
 
                         <TextInput
-                            placeholder="Search"
+                            placeholder={t("common.labels.search")}
                             value={searchInput}
                             onChange={e => setSearchInput(e.target.value)}
                         />
@@ -272,6 +274,8 @@ function SortableItem({ id, episode, setEpisodes }: {
         transition,
     } = useSortable({ id: id })
 
+    const tr = createTranslator("es")
+
     // const { hasTorrentStreaming, hasDebridStreaming } = useHasTorrentOrDebridInclusion()
     const { hasDebridService } = useHasDebridService()
     const { hasTorrentStreaming } = useHasTorrentStreaming()
@@ -359,8 +363,8 @@ function SortableItem({ id, episode, setEpisodes }: {
                 <div className="max-w-full space-y-1">
                     <p className="text-sm text-[--muted] font-medium">{episode.episode?.baseAnime?.title?.userPreferred}</p>
                     <p className="">{episode.episode?.baseAnime?.format !== "MOVIE"
-                        ? `Episode ${episode.episode!.episodeNumber}`
-                        : "Movie"}{episode.isCompleted ? ` (Watched)` : ""}</p>
+                        ? `${tr("schedule.episodeLabel")} ${episode.episode!.episodeNumber}`
+                        : "Película"}{episode.isCompleted ? ` (Visto)` : ""}</p>
 
                     {(!episode.episode?.localFile && !episode.isNakama) && <div className="flex gap-1 flex-wrap">
                         {streamOptions.map(option => {
@@ -422,6 +426,7 @@ function EntryEpisodeList(props: EntryEpisodeListProps) {
 
     const { data, isLoading } = useGetPlaylistEpisodes(entry.mediaId)
     const { episodeToAdd, selectedMedia, setSelectedMedia, setEpisodeToAdd } = usePlaylistEditorManager()
+    const tr = createTranslator("es")
 
     const t = React.useRef<NodeJS.Timeout | null>(null)
     React.useEffect(() => {
@@ -429,13 +434,13 @@ function EntryEpisodeList(props: EntryEpisodeListProps) {
             t.current = setTimeout(() => {
                 // Check if already added
                 if (selectedEpisodes.find(n => n.episode?.baseAnime?.id === selectedMedia && n.episode.aniDBEpisode === episodeToAdd)) {
-                    toast.info("Episode already added")
+                    toast.info(tr("playlistEditor.episodeAlreadyAdded"))
                     return
                 }
                 const foundEp = data?.find(n => n.episode?.aniDBEpisode === episodeToAdd)
                 if (foundEp) {
                     handleSelect(foundEp)
-                    toast.info("Episode added to playlist")
+                    toast.info(tr("playlistEditor.episodeAdded"))
                     setEpisodeToAdd(null)
                 }
             }, 400)
@@ -455,7 +460,7 @@ function EntryEpisodeList(props: EntryEpisodeListProps) {
                     return prev.filter(n => !playlist_isSameEpisode(n, ep))
                 }
                 if (prev.length >= MAX_PLAYLIST_EPISODES) {
-                    toast.error("You can't add more than 20 episodes to a playlist")
+                    toast.error(tr("playlistEditor.maxEpisodes"))
                     return prev
                 }
                 return [...prev, ep]
@@ -486,12 +491,12 @@ function EntryEpisodeList(props: EntryEpisodeListProps) {
                                 const availableSlots = Math.max(0, MAX_PLAYLIST_EPISODES - prev.length)
 
                                 if (availableSlots === 0) {
-                                    toast.error("You can't add more than 20 episodes to a playlist")
+                                    toast.error(tr("playlistEditor.maxEpisodes"))
                                     return prev
                                 }
 
                                 if (episodesToAdd.length > availableSlots) {
-                                    toast.error("You can't add more than 20 episodes to a playlist")
+                                    toast.error(tr("playlistEditor.maxEpisodes"))
                                 }
 
                                 return [...prev, ...episodesToAdd.slice(0, availableSlots)]
@@ -532,7 +537,7 @@ function EntryEpisodeList(props: EntryEpisodeListProps) {
                             />}
                         </div>
                         <div className="max-w-full">
-                            <p className="">{entry.media?.format !== "MOVIE" ? `Episode ${ep.episode!.episodeNumber}` : "Movie"}</p>
+                            <p className="">{entry.media?.format !== "MOVIE" ? `${tr("schedule.episodeLabel")} ${ep.episode!.episodeNumber}` : "Película"}</p>
                             {ep.episode!.localFile &&
                                 <p className="text-xs text-[--muted] tracking-wide italic max-w-full line-clamp-2">{ep.episode!.localFile?.name}</p>}
 

@@ -26,7 +26,9 @@
       "all": "Todos",
       "none": "Ninguno",
       "custom": "Personalizado",
-      "optional": "Opcional"
+      "optional": "Opcional",
+      "slowerForLargeLibraries": "Más lento para bibliotecas grandes",
+      "bestScore": "mejor puntuación"
     },
     "messages": {
       "itemNotFound": "Elemento no encontrado",

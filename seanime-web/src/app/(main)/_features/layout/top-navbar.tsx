@@ -1,3 +1,4 @@
+import { createTranslator } from "@/locales"
 import { LayoutHeaderBackground } from "@/app/(main)/_features/layout/_components/layout-header-background"
 import { TopMenu } from "@/app/(main)/_features/navigation/top-menu"
 import { OfflineTopMenu } from "@/app/(main)/_features/offline/_components/offline-top-menu"
@@ -87,6 +88,8 @@ export function SidebarNavbar(props: SidebarNavbarProps) {
         ...rest
     } = props
 
+    const t = createTranslator("es")
+
     const serverStatus = useServerStatus()
     const ts = useThemeSettings()
     const pathname = usePathname()
@@ -113,7 +116,7 @@ export function SidebarNavbar(props: SidebarNavbarProps) {
                     ...(isMangaPage ? [
                         {
                             iconType: LuFolderDown,
-                            name: "Manga Downloads",
+                            name: "Descargas de Manga",
                             onClick: () => {
                                 openDownloadQueue(true)
                             },
