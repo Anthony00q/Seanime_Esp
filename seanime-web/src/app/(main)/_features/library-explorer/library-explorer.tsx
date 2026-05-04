@@ -28,6 +28,7 @@ import { Popover } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
 import { TextInput } from "@/components/ui/text-input"
 import { Tooltip } from "@/components/ui/tooltip"
+import { createTranslator } from "@/locales"
 import { upath } from "@/lib/helpers/upath"
 import { ContextMenuGroup } from "@radix-ui/react-context-menu"
 import { useAtom, useAtomValue, useSetAtom } from "jotai"
@@ -761,6 +762,7 @@ const VirtualizedTreeNode = memo(({
     onResolveMedia,
     onOpenInExplorer,
 }: VirtualizedTreeNodeProps) => {
+    const t = createTranslator("es")
     const { node, level } = item
     const isDirectory = node.kind === "directory"
     const isSelected = selectedPath === node.path
@@ -926,7 +928,7 @@ const VirtualizedTreeNode = memo(({
     const handleResolveMedia = () => {
         const id = media?.id ?? node.mediaIds?.[0] ?? 0
         if (!id || !localFiles) {
-            toast.error("No media found")
+            toast.error(t("libraryExplorer.noMediaFound"))
             return
         }
         onResolveMedia(Object.values(localFiles)?.filter(n => n.mediaId === id) ?? [])
@@ -937,7 +939,7 @@ const VirtualizedTreeNode = memo(({
     function handleOpenMediaPreview() {
         const id = media?.id ?? node.mediaIds?.[0] ?? 0
         if (!id) {
-            toast.error("No media found")
+            toast.error(t("libraryExplorer.noMediaFound"))
             return
         }
         setPreviewModalMediaId(id, "anime")
@@ -1268,7 +1270,7 @@ const VirtualizedTreeNode = memo(({
                                 },
                             }, () => {
                                 setMetadataModalOpen(false)
-                                toast.success("Metadata saved")
+                                toast.success(t("libraryExplorer.metadataSaved"))
                             })
                         }
                     }}

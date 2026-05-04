@@ -1,4 +1,5 @@
 import { useServerMutation, useServerQuery } from "@/api/client/requests"
+import { createTranslator } from "@/locales"
 import {
     PreloadMediastreamMediaContainer_Variables,
     RequestMediastreamMediaContainer_Variables,
@@ -21,6 +22,7 @@ export function useGetMediastreamSettings(enabled?: boolean) {
 
 export function useSaveMediastreamSettings() {
     const qc = useQueryClient()
+    const t = createTranslator("es")
     return useServerMutation<Models_MediastreamSettings, SaveMediastreamSettings_Variables>({
         endpoint: API_ENDPOINTS.MEDIASTREAM.SaveMediastreamSettings.endpoint,
         method: API_ENDPOINTS.MEDIASTREAM.SaveMediastreamSettings.methods[0],
@@ -28,7 +30,7 @@ export function useSaveMediastreamSettings() {
         onSuccess: async () => {
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.MEDIASTREAM.GetMediastreamSettings.key] })
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.STATUS.GetStatus.key] })
-            toast.success("Settings saved")
+            toast.success(t("toast.settings.settingsSaved"))
         },
     })
 }

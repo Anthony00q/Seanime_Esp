@@ -9,6 +9,9 @@ import { getAssetUrl } from "@/lib/server/assets"
 import JASSUB from "jassub"
 import type { ASSEvent } from "jassub/dist/worker/util"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 const modernWasmUrl = "/jassub/jassub-worker-modern.wasm"
 const wasmUrl = "/jassub/jassub-worker.wasm"
@@ -266,7 +269,7 @@ Style: Default, Roboto Medium,24,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0
             }
             catch (e) {
                 subtitleLog.error("Error initializing libass renderer", e)
-                toast.error("Error initializing libass renderer: " + e)
+                toast.error(t("nakama.toast.errorInitializingLibass", { error: String(e) }))
             }
         }
 
@@ -1118,7 +1121,7 @@ Style: Default, Roboto Medium,24,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0
             }
             catch (error) {
                 subtitleLog.error("Error fetching subtitle content", error)
-                toast.error("Failed to load subtitle track")
+                toast.error(t("nakama.toast.failedToLoadSubtitle"))
             }
         } else {
             try {
@@ -1127,7 +1130,7 @@ Style: Default, Roboto Medium,24,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0
 
                 if (!assContent) {
                     subtitleLog.error("Failed to convert subtitle to ASS format")
-                    toast.error("Failed to convert subtitle track")
+                    toast.error(t("nakama.toast.failedToConvertSubtitle"))
                     return
                 }
                 // Cache the converted content
@@ -1140,7 +1143,7 @@ Style: Default, Roboto Medium,24,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0
             }
             catch (error) {
                 subtitleLog.error("Error loading track", error)
-                toast.error("Failed to load subtitle track: " + error)
+                toast.error(t("nakama.toast.failedToLoadSubtitle", { error: String(error) }))
             }
         }
 

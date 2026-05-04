@@ -65,6 +65,23 @@
     },
     "userConfig": {
       "title": "Configuración de la extensión"
+    },
+    "toast": {
+      "marketplaceUrlUpdated": "URL del marketplace actualizada",
+      "failedToFetchExtensions": "Error al obtener extensiones de la URL proporcionada",
+      "resetToDefaultMarketplace": "Restablecida URL del marketplace por defecto",
+      "failedToFetchExtensionsDefault": "Error al obtener extensiones de la URL por defecto",
+      "refreshed": "Actualizado",
+      "installingUpdates": "Instalando actualizaciones...",
+      "skippedUnsafeFlags": "Omitido \"{extensionID}\" porque usa flags inseguros. Actualízalo manualmente.",
+      "extensionInstalled": "{message}",
+      "updateAvailable": "Actualización disponible",
+      "extensionUpToDate": "La extensión está actualizada",
+      "extensionHasNoId": "La extensión no tiene ID",
+      "pleaseProvideValidUrl": "Proporciona una URL válida.",
+      "extensionsInstalledSuccessfully": "Extensiones instaladas exitosamente.",
+      "invalidFunctionSelected": "Función inválida seleccionada.",
+      "noOutputToCopy": "No hay salida para copiar"
     }
   }
 }

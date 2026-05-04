@@ -2,6 +2,7 @@ import { useLogin } from "@/api/hooks/auth.hooks"
 import { websocketConnectedAtom } from "@/app/websocket-provider"
 import { LoadingOverlay } from "@/components/ui/loading-spinner"
 import { useRouter } from "@/lib/navigation"
+import { createTranslator } from "@/locales"
 import { useAtomValue } from "jotai/react"
 import React from "react"
 import { toast } from "sonner"
@@ -13,6 +14,7 @@ type CallbackPageProps = {}
  * - Logs the user in using the AniList token present in the URL hash
  */
 export function CallbackPage(props: CallbackPageProps) {
+    const t = createTranslator("es")
     const router = useRouter()
     const {} = props
 
@@ -32,7 +34,7 @@ export function CallbackPage(props: CallbackPageProps) {
                 login({ token: _token })
                 called.current = true
             } else {
-                toast.error("Invalid token")
+                toast.error(t("toast.auth.invalidToken"))
                 router.push("/")
             }
         }

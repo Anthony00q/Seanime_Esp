@@ -1,4 +1,5 @@
 import { useServerMutation, useServerQuery } from "@/api/client/requests"
+import { createTranslator } from "@/locales"
 import {
     DeleteMediaMetadataParent_Variables,
     PopulateFillerData_Variables,
@@ -12,6 +13,7 @@ import { toast } from "sonner"
 
 export function usePopulateFillerData() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<true, PopulateFillerData_Variables>({
         endpoint: API_ENDPOINTS.METADATA.PopulateFillerData.endpoint,
@@ -19,7 +21,7 @@ export function usePopulateFillerData() {
         mutationKey: [API_ENDPOINTS.METADATA.PopulateFillerData.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetAnimeEntry.key] })
-            toast.success("Filler data fetched")
+            toast.success(t("toast.metadata.fillerFetched"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME.GetAnimeEpisodeCollection.key] })
         },
     })
@@ -27,6 +29,7 @@ export function usePopulateFillerData() {
 
 export function useRemoveFillerData() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, RemoveFillerData_Variables>({
         endpoint: API_ENDPOINTS.METADATA.RemoveFillerData.endpoint,
@@ -34,7 +37,7 @@ export function useRemoveFillerData() {
         mutationKey: [API_ENDPOINTS.METADATA.RemoveFillerData.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetAnimeEntry.key] })
-            toast.success("Filler data removed")
+            toast.success(t("toast.metadata.fillerRemoved"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME.GetAnimeEpisodeCollection.key] })
         },
     })
@@ -51,6 +54,7 @@ export function useGetMediaMetadataParent(id: number) {
 
 export function useSaveMediaMetadataParent() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
     return useServerMutation<Models_MediaMetadataParent, SaveMediaMetadataParent_Variables>({
         endpoint: API_ENDPOINTS.METADATA.SaveMediaMetadataParent.endpoint,
         method: API_ENDPOINTS.METADATA.SaveMediaMetadataParent.methods[0],
@@ -58,7 +62,7 @@ export function useSaveMediaMetadataParent() {
         onSuccess: async () => {
             queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.METADATA.GetMediaMetadataParent.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetAnimeEntry.key] })
-            toast.success("Metadata updated")
+            toast.success(t("toast.metadata.updated"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME.GetAnimeEpisodeCollection.key] })
         },
     })
@@ -66,6 +70,7 @@ export function useSaveMediaMetadataParent() {
 
 export function useDeleteMediaMetadataParent() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
     return useServerMutation<boolean, DeleteMediaMetadataParent_Variables>({
         endpoint: API_ENDPOINTS.METADATA.DeleteMediaMetadataParent.endpoint,
         method: API_ENDPOINTS.METADATA.DeleteMediaMetadataParent.methods[0],
@@ -73,7 +78,7 @@ export function useDeleteMediaMetadataParent() {
         onSuccess: async () => {
             queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.METADATA.GetMediaMetadataParent.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetAnimeEntry.key] })
-            toast.success("Metadata removed")
+            toast.success(t("toast.metadata.removed"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME.GetAnimeEpisodeCollection.key] })
         },
     })

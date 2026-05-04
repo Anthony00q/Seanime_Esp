@@ -12,6 +12,7 @@ import { isLoginModalOpenAtom } from "@/app/(main)/_atoms/server-status.atoms"
 import { useSetServerStatus } from "@/app/(main)/_hooks/use-server-status"
 import { useQueryClient } from "@tanstack/react-query"
 import { useSetAtom } from "jotai/react"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
 export function useGetSettings(options?: { enabled?: boolean }) {
@@ -41,6 +42,7 @@ export function useGettingStarted() {
 
 export function useSaveSettings() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<Status, SaveSettings_Variables>({
         endpoint: API_ENDPOINTS.SETTINGS.SaveSettings.endpoint,
@@ -49,7 +51,7 @@ export function useSaveSettings() {
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.SETTINGS.GetSettings.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.STATUS.GetStatus.key] })
-            toast.success("Settings saved")
+            toast.success(t("toast.settings.settingsSaved"))
         },
     })
 }
@@ -78,6 +80,7 @@ export function usePatchSetting() {
 
 export function useSaveAutoDownloaderSettings() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, SaveAutoDownloaderSettings_Variables>({
         endpoint: API_ENDPOINTS.SETTINGS.SaveAutoDownloaderSettings.endpoint,
@@ -86,7 +89,7 @@ export function useSaveAutoDownloaderSettings() {
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.SETTINGS.GetSettings.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.STATUS.GetStatus.key] })
-            toast.success("Settings saved")
+            toast.success(t("toast.settings.settingsSaved"))
         },
     })
 }

@@ -23,6 +23,7 @@ import { Select } from "@/components/ui/select"
 import { StaticTabs } from "@/components/ui/tabs"
 import { TextInput } from "@/components/ui/text-input"
 import { useSearchParams } from "@/lib/navigation"
+import { createTranslator } from "@/locales"
 import { useAtom } from "jotai/react"
 import capitalize from "lodash/capitalize"
 import orderBy from "lodash/orderBy"
@@ -40,6 +41,7 @@ type MarketplaceExtensionsProps = {
 }
 
 export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
+    const t = createTranslator("es")
     const {
         children,
         ...rest
@@ -191,10 +193,10 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                 setMarketplaceUrl(tempUrl)
                 await refetch()
                 setIsUrlModalOpen(false)
-                toast.success("Marketplace URL updated")
+                toast.success(t("extensions.toast.marketplaceUrlUpdated"))
             }
             catch (error) {
-                toast.error("Failed to fetch extensions from the provided URL")
+                toast.error(t("extensions.toast.failedToFetchExtensions"))
                 console.error("Error fetching extensions:", error)
             }
             finally {
@@ -216,10 +218,10 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
             setMarketplaceUrl(DEFAULT_MARKETPLACE_URL)
             await refetch()
             setIsUrlModalOpen(false)
-            toast.success("Reset to default marketplace URL")
+            toast.success(t("extensions.toast.resetToDefaultMarketplace"))
         }
         catch (error) {
-            toast.error("Failed to fetch extensions from the default URL")
+            toast.error(t("extensions.toast.failedToFetchExtensionsDefault"))
             console.error("Error fetching extensions:", error)
         }
         finally {
@@ -314,7 +316,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                         intent="gray-outline"
                         onClick={() => {
                             refetch()
-                            toast.success("Refreshed", { duration: 1000 })
+                            toast.success(t("extensions.toast.refreshed"), { duration: 1000 })
                         }}
                     >
                         Refresh
@@ -529,6 +531,7 @@ type MarketplaceExtensionCardProps = {
 
 export function MarketplaceExtensionCard(props: MarketplaceExtensionCardProps) {
 
+    const t = createTranslator("es")
     const {
         extension,
         updateData,
@@ -550,7 +553,7 @@ export function MarketplaceExtensionCard(props: MarketplaceExtensionCardProps) {
 
     React.useEffect(() => {
         if (installResponse) {
-            toast.success(installResponse.message)
+            toast.success(t("extensions.toast.extensionInstalled", { message: installResponse.message }))
             setInstallModalOpen(false)
         }
     }, [installResponse])
