@@ -1,3 +1,4 @@
+import { createTranslator } from "@/locales"
 import { PluginWebviewSlot } from "@/app/(main)/_features/plugin/webview/plugin-webviews"
 import { useServerStatus } from "@/app/(main)/_hooks/use-server-status"
 import { DiscoverPageHeader } from "@/app/(main)/discover/_components/discover-page-header"
@@ -25,6 +26,8 @@ export default function Page() {
     const [pageType, setPageType] = useAtom(__discord_pageTypeAtom)
     const searchParams = useSearchParams()
     const searchType = searchParams.get("type")
+
+    const t = createTranslator("es")
 
 
     React.useEffect(() => {
@@ -54,9 +57,9 @@ export default function Page() {
                             triggerClass="px-4 py-1"
                             items={[
                                 { name: "Anime", isCurrent: pageType === "anime", onClick: () => setPageType("anime") },
-                                { name: "Schedule", isCurrent: pageType === "schedule", onClick: () => setPageType("schedule") },
+                                { name: t("navigation.schedule"), isCurrent: pageType === "schedule", onClick: () => setPageType("schedule") },
                                 ...(serverStatus?.settings?.library?.enableManga ? [{
-                                    name: "Manga",
+                                    name: t("navigation.manga"),
                                     isCurrent: pageType === "manga",
                                     onClick: () => setPageType("manga"),
                                 }] : []),

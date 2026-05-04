@@ -1,4 +1,5 @@
 import { ScanLogViewer } from "@/app/scan-log-viewer/scan-log-viewer"
+import { createTranslator } from "@/locales"
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { BiTrash, BiUpload } from "react-icons/bi"
 import { toast } from "sonner"
@@ -34,7 +35,7 @@ const saveLogToDB = async (content: string) => {
     }
     catch (error) {
         console.error("Failed to save log to DB:", error)
-        toast.error("Failed to save log to browser storage")
+        toast.error("Error al guardar registro en almacenamiento del navegador")
     }
 }
 
@@ -77,13 +78,14 @@ export default function Page() {
     const [isLoading, setIsLoading] = useState(true)
     const fileInputRef = useRef<HTMLInputElement>(null)
     const dragCounter = useRef(0)
+    const t = createTranslator("es")
 
     // Load saved log on mount
     useEffect(() => {
         getLogFromDB().then((savedContent) => {
             if (savedContent) {
                 setContent(savedContent)
-                toast.success("Restored previous scan log")
+                toast.success(t("scanLogViewer.restoredLog"))
             }
             setIsLoading(false)
         })
@@ -95,9 +97,9 @@ export default function Page() {
             const result = e.target?.result as string
             setContent(result)
             toast.promise(saveLogToDB(result), {
-                loading: "Saving log locally...",
-                success: "Log saved for future sessions",
-                error: "Failed to save log",
+                loading: t("scanLogViewer.savingLog"),
+                success: t("scanLogViewer.logSaved"),
+                error: t("scanLogViewer.failedToSaveLog"),
             })
         }
         reader.readAsText(file)
@@ -106,7 +108,7 @@ export default function Page() {
     const handleClear = useCallback(async () => {
         await clearLogFromDB()
         setContent("")
-        toast.success("Cleared saved log")
+        toast.success(t("scanLogViewer.clearLog"))
     }, [])
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -148,7 +150,7 @@ export default function Page() {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-screen text-[--muted]">
-                <p>Loading saved logs...</p>
+                <p>{t("scanLogViewer.loadingSavedLogs")}</p>
             </div>
         )
     }
@@ -165,7 +167,7 @@ export default function Page() {
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-950/80 backdrop-blur-sm">
                     <div className="flex flex-col items-center gap-3 p-8 border-2 border-dashed border-indigo-500 rounded-xl bg-gray-900/50">
                         <BiUpload className="text-4xl text-indigo-400" />
-                        <p className="text-lg font-medium text-indigo-300">Drop log file</p>
+                        <p className="text-lg font-medium text-indigo-300">{t("scanLogViewer.dropLogFile")}</p>
                     </div>
                 </div>
             )}
@@ -173,12 +175,12 @@ export default function Page() {
             <div className="mb-4">
                 <div className="flex items-center gap-4 justify-between">
                     <div className="flex items-center gap-4">
-                        <h1 className="text-xl font-bold text-gray-200 tracking-tight">Scan Log Analyzer</h1>
+                        <h1 className="text-xl font-bold text-gray-200 tracking-tight">{t("scanLogViewer.title")}</h1>
                         <label
                             className="flex items-center gap-2 px-3 py-1.5 bg-gray-800 border border-[--border] rounded-md cursor-pointer hover:bg-gray-700 transition-colors text-sm text-gray-300"
                         >
                             <BiUpload />
-                            <span>{content ? "Load another file" : "Load scan log file"}</span>
+                            <span>{content ? t("scanLogViewer.loadAnother") : t("scanLogViewer.loadFile")}</span>
                             <input
                                 type="file"
                                 ref={fileInputRef}
@@ -195,7 +197,7 @@ export default function Page() {
                             className="flex items-center gap-2 px-3 py-1.5 text-sm text-red-400 hover:text-red-300 hover:bg-red-950/30 rounded-md transition-colors"
                         >
                             <BiTrash />
-                            Clear log
+                            {t("scanLogViewer.clearLog")}
                         </button>
                     )}
                 </div>
