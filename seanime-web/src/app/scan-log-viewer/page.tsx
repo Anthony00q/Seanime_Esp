@@ -22,7 +22,7 @@ const initDB = (): Promise<IDBDatabase> => {
     })
 }
 
-const saveLogToDB = async (content: string) => {
+const saveLogToDB = async (content: string, errorMsg: string) => {
     try {
         const db = await initDB()
         return new Promise<void>((resolve, reject) => {
@@ -35,7 +35,7 @@ const saveLogToDB = async (content: string) => {
     }
     catch (error) {
         console.error("Failed to save log to DB:", error)
-        toast.error("Error al guardar registro en almacenamiento del navegador")
+        toast.error(errorMsg)
     }
 }
 
@@ -96,7 +96,7 @@ export default function Page() {
         reader.onload = async (e) => {
             const result = e.target?.result as string
             setContent(result)
-            toast.promise(saveLogToDB(result), {
+            toast.promise(saveLogToDB(result, t("scanLogViewer.failedToSaveLogStorage")), {
                 loading: t("scanLogViewer.savingLog"),
                 success: t("scanLogViewer.logSaved"),
                 error: t("scanLogViewer.failedToSaveLog"),

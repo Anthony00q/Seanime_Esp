@@ -19,6 +19,7 @@ import {
     ADVANCED_SEARCH_STATUS,
 } from "@/app/(main)/search/_lib/advanced-search-constants"
 import { createTranslator } from "@/locales"
+import { translateFormat, translateGenre, translateSeason, translateStatus, translateTag } from "@/lib/anilist-translations"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { AppLayoutStack } from "@/components/ui/app-layout"
 import { IconButton } from "@/components/ui/button"
@@ -44,6 +45,8 @@ import { FiSearch } from "react-icons/fi"
 import { LuCalendar, LuLeaf, LuTags } from "react-icons/lu"
 import { MdPersonalVideo } from "react-icons/md"
 import { RiSignalTowerLine } from "react-icons/ri"
+
+const t = createTranslator("es")
 
 type LibraryViewProps = {
     collectionList: Anime_LibraryCollectionList[]
@@ -317,7 +320,7 @@ export function SearchOptions() {
                 data-detailed-library-view-search-options-grid
             >
                 <Select
-                    label="Ordenar"
+                    label={t("home.items.options.sorting.label")}
                     leftAddon={<FaSortAmountDown className={cn(params.sorting !== "TITLE" && "text-indigo-300 font-bold text-xl")} />}
                     className="w-full"
                     fieldClass="flex items-center"
@@ -334,10 +337,10 @@ export function SearchOptions() {
                 <Select
                     leftAddon={
                         <MdPersonalVideo className={cn((params.format as any) !== null && (params.format as any) !== "" && "text-indigo-300 font-bold text-xl")} />}
-                    label="Format" placeholder="All formats"
+                    label={t("home.items.options.format.label")} placeholder={t("common.placeholders.allFormats")}
                     className="w-full"
                     fieldClass="w-full"
-                    options={ADVANCED_SEARCH_FORMATS}
+                    options={ADVANCED_SEARCH_FORMATS.map(f => ({ ...f, label: translateFormat(f.value) }))}
                     value={params.format || ""}
                     onValueChange={v => setParams(draft => {
                         draft.format = v as any
@@ -348,11 +351,11 @@ export function SearchOptions() {
                 <Select
                     leftAddon={
                         <RiSignalTowerLine className={cn((params.status as any) !== null && (params.status as any) !== "" && "text-indigo-300 font-bold text-xl")} />}
-                    label="Status" placeholder="All statuses"
+                    label={t("home.items.options.status.label")} placeholder={t("common.placeholders.allStatuses")}
                     className="w-full"
                     fieldClass="w-full"
                     options={[
-                        ...ADVANCED_SEARCH_STATUS,
+                        ...ADVANCED_SEARCH_STATUS.map(s => ({ ...s, label: translateStatus(s.value) })),
                     ]}
                     value={params.status || ""}
                     onValueChange={v => setParams(draft => {
@@ -365,9 +368,9 @@ export function SearchOptions() {
                     multiple
                     leftAddon={!params.tags &&
                         <LuTags />}
-                    emptyMessage="No options found"
-                    label="Tags"
-                    placeholder="All tags"
+                    emptyMessage={t("common.messages.noOptions")}
+                    label={t("common.labels.tags")}
+                    placeholder={t("common.placeholders.allTags")}
                     className="w-full"
                     fieldClass="w-full"
                     options={ADVANCED_SEARCH_MEDIA_TAGS
@@ -377,7 +380,7 @@ export function SearchOptions() {
                             }
                             return tag.isAdult === false
                         })
-                        .map(tag => ({ value: tag.name, label: tag.name, textValue: tag.name }))}
+                        .map(tag => ({ value: tag.name, label: translateTag(tag.name), textValue: tag.name }))}
                     value={params.tags ? params.tags : []}
                     onValueChange={v => setParams(draft => {
                         draft.tags = v
@@ -388,12 +391,12 @@ export function SearchOptions() {
                 <Select
                     leftAddon={
                         <LuLeaf className={cn((params.season as any) !== null && (params.season as any) !== "" && "text-indigo-300 font-bold text-xl")} />}
-                    label="Season"
-                    placeholder="All seasons"
+                    label={t("home.items.options.season.label")}
+                    placeholder={t("common.placeholders.allSeasons")}
                     className="w-full"
                     fieldClass="w-full flex items-center"
                     inputContainerClass="w-full"
-                    options={ADVANCED_SEARCH_SEASONS.map(season => ({ value: season.toUpperCase(), label: season }))}
+                    options={ADVANCED_SEARCH_SEASONS.map(season => ({ value: season.toUpperCase(), label: translateSeason(season.toUpperCase()) }))}
                     value={params.season || ""}
                     onValueChange={v => setParams(draft => {
                         draft.season = v as any
@@ -403,7 +406,7 @@ export function SearchOptions() {
                 />
                 <Select
                     leftAddon={<LuCalendar className={cn((params.year !== null && params.year !== "") && "text-indigo-300 font-bold text-xl")} />}
-                    label="Year" placeholder="Timeless"
+                    label={t("home.items.options.year.label")} placeholder={t("common.placeholders.timeless")}
                     className="w-full"
                     fieldClass="w-full"
                     options={[...Array(70)].map((v, idx) => getYear(new Date()) - idx).map(year => ({
@@ -426,7 +429,7 @@ export function SearchOptions() {
                 </div>
                 {serverStatus?.settings?.anilist?.enableAdultContent && <div className="flex h-full items-center">
                     <Switch
-                        label="Adult"
+                        label={t("common.labels.adult")}
                         value={params.isAdult}
                         onValueChange={v => setParams(draft => {
                             draft.isAdult = v
@@ -447,7 +450,7 @@ function GenreSelector({ genres }: { genres: string[] }) {
         <MediaGenreSelector
             items={[
                 {
-                    name: "All",
+                    name: t("common.labels.all"),
                     isCurrent: !params!.genre?.length,
                     onClick: () => setParams(draft => {
                         draft.genre = []
@@ -455,7 +458,7 @@ function GenreSelector({ genres }: { genres: string[] }) {
                     }),
                 },
                 ...genres.map(genre => ({
-                    name: genre,
+                    name: translateGenre(genre),
                     isCurrent: params!.genre?.includes(genre) ?? false,
                     onClick: () => setParams(draft => {
                         if (draft.genre?.includes(genre)) {
