@@ -20,6 +20,7 @@ import { BiListPlus, BiPlus, BiStar, BiTrash } from "react-icons/bi"
 import { TbEdit } from "react-icons/tb"
 import { useToggle } from "react-use"
 import { z } from "zod"
+import { createTranslator } from "@/locales"
 
 type AnilistMediaEntryModalProps = {
     children?: React.ReactNode
@@ -226,6 +227,8 @@ function Content(props: AnilistMediaEntryModalProps & {
         ...rest
     } = props
 
+    const t = createTranslator("es")
+
     return (
         <>
             {(!!listData) && <Form
@@ -253,24 +256,24 @@ function Content(props: AnilistMediaEntryModalProps & {
                         options={[
                             media?.status !== "NOT_YET_RELEASED" ? {
                                 value: "CURRENT",
-                                label: type === "anime" ? "Watching" : "Reading",
+                                label: type === "anime" ? t("status.current") : t("status.currentManga"),
                             } : undefined,
-                            { value: "PLANNING", label: "Planning" },
+                            { value: "PLANNING", label: t("status.planning") },
                             media?.status !== "NOT_YET_RELEASED" ? {
                                 value: "PAUSED",
-                                label: "Paused",
+                                label: t("status.paused"),
                             } : undefined,
                             media?.status !== "NOT_YET_RELEASED" ? {
                                 value: "COMPLETED",
-                                label: "Completed",
+                                label: t("status.completed"),
                             } : undefined,
                             media?.status !== "NOT_YET_RELEASED" ? {
                                 value: "DROPPED",
-                                label: "Dropped",
+                                label: t("status.dropped"),
                             } : undefined,
                             media?.status !== "NOT_YET_RELEASED" ? {
                                 value: "REPEATING",
-                                label: "Repeating",
+                                label: t("status.repeating"),
                             } : undefined,
                         ].filter(Boolean)}
                     />

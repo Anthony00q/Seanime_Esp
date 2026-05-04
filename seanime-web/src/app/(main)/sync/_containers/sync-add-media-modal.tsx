@@ -13,6 +13,7 @@ import { useAtomValue } from "jotai/react"
 import React from "react"
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6"
 import { MdOutlineDownloadForOffline } from "react-icons/md"
+import { createTranslator } from "@/locales"
 
 type SyncAddMediaModalProps = {
     savedMediaIds: number[]
@@ -209,6 +210,8 @@ function MediaList(props: {
 }) {
     const { collection, entry, selectedMedia, savedMediaIds, onBatchSelect } = props
 
+    const t = createTranslator("es")
+
     const lists = React.useMemo(() => {
         return {
             CURRENT: collection.lists?.find(n => n.type === "CURRENT")
@@ -239,7 +242,7 @@ function MediaList(props: {
             {!!lists.CURRENT.length && (
                 <MediaListSection
                     listType="CURRENT"
-                    title="Current"
+                    title={t("status.current")}
                     entries={lists.CURRENT}
                     selectedMedia={selectedMedia}
                     savedMediaIds={savedMediaIds}
@@ -250,7 +253,7 @@ function MediaList(props: {
             {!!lists.PAUSED.length && (
                 <MediaListSection
                     listType="PAUSED"
-                    title="Paused"
+                    title={t("status.paused")}
                     entries={lists.PAUSED}
                     selectedMedia={selectedMedia}
                     savedMediaIds={savedMediaIds}
@@ -261,7 +264,7 @@ function MediaList(props: {
             {!!lists.PLANNING.length && (
                 <MediaListSection
                     listType="PLANNING"
-                    title="Planning"
+                    title={t("status.planning")}
                     entries={lists.PLANNING}
                     selectedMedia={selectedMedia}
                     savedMediaIds={savedMediaIds}
@@ -272,7 +275,7 @@ function MediaList(props: {
             {!!lists.COMPLETED.length && (
                 <MediaListSection
                     listType="COMPLETED"
-                    title="Completed"
+                    title={t("status.completed")}
                     entries={lists.COMPLETED}
                     selectedMedia={selectedMedia}
                     savedMediaIds={savedMediaIds}
@@ -283,7 +286,7 @@ function MediaList(props: {
             {!!lists.DROPPED.length && (
                 <MediaListSection
                     listType="DROPPED"
-                    title="Dropped"
+                    title={t("status.dropped")}
                     entries={lists.DROPPED}
                     selectedMedia={selectedMedia}
                     savedMediaIds={savedMediaIds}

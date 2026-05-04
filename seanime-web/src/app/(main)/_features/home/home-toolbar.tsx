@@ -157,7 +157,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                             onClick={() => setScannerModalOpen(true)}
                             hideTextOnSmallScreen
                         >
-                            {hasEntries ? t("home.toolbar.actions.refresh") : t("home.toolbar.actions.scan")}
+                            {hasEntries ? t("common.buttons.refresh") : t("common.buttons.scan")}
                         </Button>
                     </div>}
                 >

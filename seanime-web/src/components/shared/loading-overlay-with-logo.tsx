@@ -43,7 +43,7 @@ export function LoadingOverlayWithLogo({ refetch, title, compactBrandSpacing }: 
                 className="mt-4 z-[1]"
                 intent="gray-outline"
                 size="sm"
-            >{t("shared.reload")}</Button>
+            >{t("common.buttons.reload")}</Button>
         )}
     </LoadingOverlay>
 }
