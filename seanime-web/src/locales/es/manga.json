@@ -1,0 +1,67 @@
+{
+  "manga": {
+    "noMangaFound": "No se encontró manga",
+    "noMangaAdded": "Aún no se ha añadido manga a tu biblioteca.",
+    "browseManga": "Explorar manga",
+    "continueReading": "Continuar leyendo",
+    "showAll": "Mostrar todo",
+    "refreshSources": "Actualizar fuentes",
+    "refetching": "Actualizando...",
+    "unreadOnly": "Solo capítulos sin leer",
+    "currentlyReading": "Leyendo actualmente",
+    "readingModes": {
+      "longStrip": "Tira larga",
+      "singlePage": "Página individual",
+      "doublePage": "Página doble"
+    },
+    "readingDirections": {
+      "leftToRight": "Izquierda a derecha",
+      "rightToLeft": "Derecha a izquierda"
+    },
+    "pageFit": {
+      "contain": "Contener",
+      "overflow": "Desbordar",
+      "cover": "Cubrir",
+      "trueSize": "Tamaño real"
+    },
+    "pageStretch": {
+      "none": "Ninguno",
+      "stretch": "Estirar"
+    },
+    "chapterList": {
+      "scanlator": "Scanlator",
+      "chapter": "Capítulo",
+      "date": "Fecha",
+      "pages": "Páginas",
+      "downloaded": "Descargado",
+      "read": "Leído",
+      "noChaptersFound": "No se encontraron capítulos",
+      "selectProvider": "Seleccionar proveedor",
+      "missingEpisodes": "Episodios faltantes"
+    },
+    "chapterDownloads": {
+      "title": "Descargas de capítulos",
+      "noDownloads": "No hay descargas en curso",
+      "clearCompleted": "Limpiar completadas"
+    },
+    "chapterReader": {
+      "reloadSources": "Recargar fuentes",
+      "reloadSourcesDescription": "Esta acción vaciará el caché de las fuentes de manga. Tendrás que volver a cargar los capítulos.",
+      "noPagesFound": "No se encontraron páginas"
+    },
+    "entry": {
+      "read": "Leer",
+      "continueReading": "Continuar leyendo",
+      "chapters": "Capítulos",
+      "downloadChapters": "Descargar capítulos",
+      "markAsRead": "Marcar como leído",
+      "markAsUnread": "Marcar como no leído",
+      "tracking": "Seguimiento",
+      "recommendations": "Recomendaciones",
+      "relations": "Relaciones"
+    },
+    "libraryHeader": {
+      "title": "Biblioteca de Manga"
+    }
+  }
+}

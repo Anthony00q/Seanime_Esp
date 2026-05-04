@@ -10,6 +10,7 @@ import { IconButton } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { Spinner } from "@/components/ui/loading-spinner"
 import { Tooltip } from "@/components/ui/tooltip"
+import { createTranslator } from "@/locales"
 import { WSEvents } from "@/lib/server/ws-events"
 import { atom } from "jotai"
 import { useAtom, useAtomValue, useSetAtom } from "jotai/react"
@@ -40,6 +41,7 @@ export function TorrentStreamOverlay({ isNativePlayerComponent, show }: {
     show?: boolean
 }) {
 
+    const tr = createTranslator("es")
     const [nativePlayerState, setNativePlayerState] = useAtom(nativePlayer_stateAtom)
     const clientId = useAtomValue(clientIdAtom)
     const videoElement = useAtomValue(vc_videoElement)
@@ -201,7 +203,7 @@ export function TorrentStreamOverlay({ isNativePlayerComponent, show }: {
                                     icon={<BiStop />}
                                 />}
                             >
-                                Stop stream
+                                {tr("entry.torrentStream.stopStream")}
                             </Tooltip>}
                         </div>
                     </div>}
@@ -211,12 +213,12 @@ export function TorrentStreamOverlay({ isNativePlayerComponent, show }: {
                         <div className="lg:max-w-[50%] w-fit h-14 px-6 flex gap-2 items-center text-sm lg:text-base pointer-events-auto">
                             <Spinner className="w-4 h-4" />
                             <div className="truncate max-w-[500px]">
-                                {loadingState === "LOADING" ? "Loading..." : ""}
-                                {loadingState === "SEARCHING_TORRENTS" ? "Selecting file..." : ""}
-                                {loadingState === "ADDING_TORRENT" ? `Adding torrent "${torrentBeingLoaded}"` : ""}
-                                {loadingState === "CHECKING_TORRENT" ? `Checking torrent "${torrentBeingLoaded}"` : ""}
-                                {loadingState === "SELECTING_FILE" ? `Selecting file...` : ""}
-                                {loadingState === "SENDING_STREAM_TO_MEDIA_PLAYER" ? "Getting metadata..." : ""}
+                                {loadingState === "LOADING" ? tr("entry.torrentStream.loading") : ""}
+                                {loadingState === "SEARCHING_TORRENTS" ? tr("entry.torrentStream.selectingFile") : ""}
+                                {loadingState === "ADDING_TORRENT" ? tr("entry.torrentStream.addingTorrent").replace("{name}", torrentBeingLoaded || "") : ""}
+                                {loadingState === "CHECKING_TORRENT" ? tr("entry.torrentStream.checkingTorrent").replace("{name}", torrentBeingLoaded || "") : ""}
+                                {loadingState === "SELECTING_FILE" ? tr("entry.torrentStream.selectingFile") : ""}
+                                {loadingState === "SENDING_STREAM_TO_MEDIA_PLAYER" ? tr("entry.torrentStream.gettingMetadata") : ""}
                             </div>
                         </div>
                     </div>}
@@ -264,7 +266,7 @@ export function TorrentStreamOverlay({ isNativePlayerComponent, show }: {
                                     icon={<BiStop />}
                                 />}
                             >
-                                Stop stream
+                                {tr("entry.torrentStream.stopStream")}
                             </Tooltip>
                         </div>
                     </div>}
@@ -281,12 +283,12 @@ export function TorrentStreamOverlay({ isNativePlayerComponent, show }: {
                 <div className="bg-gray-950 rounded-full border lg:max-w-[50%] w-fit h-14 px-6 flex gap-2 items-center text-sm lg:text-base pointer-events-auto">
                     <Spinner className="w-4 h-4" />
                     <div className="truncate max-w-[500px]">
-                        {loadingState === "LOADING" ? "Loading..." : ""}
-                        {loadingState === "SEARCHING_TORRENTS" ? "Selecting file..." : ""}
-                        {loadingState === "ADDING_TORRENT" ? `Adding torrent "${torrentBeingLoaded}"` : ""}
-                        {loadingState === "CHECKING_TORRENT" ? `Checking torrent "${torrentBeingLoaded}"` : ""}
-                        {loadingState === "SELECTING_FILE" ? `Selecting file...` : ""}
-                        {loadingState === "SENDING_STREAM_TO_MEDIA_PLAYER" ? "Sending stream to media player" : ""}
+                        {loadingState === "LOADING" ? tr("entry.torrentStream.loading") : ""}
+                        {loadingState === "SEARCHING_TORRENTS" ? tr("entry.torrentStream.selectingFile") : ""}
+                        {loadingState === "ADDING_TORRENT" ? tr("entry.torrentStream.addingTorrent").replace("{name}", torrentBeingLoaded || "") : ""}
+                        {loadingState === "CHECKING_TORRENT" ? tr("entry.torrentStream.checkingTorrent").replace("{name}", torrentBeingLoaded || "") : ""}
+                        {loadingState === "SELECTING_FILE" ? tr("entry.torrentStream.selectingFile") : ""}
+                        {loadingState === "SENDING_STREAM_TO_MEDIA_PLAYER" ? tr("entry.torrentStream.sendingStream") : ""}
                     </div>
                 </div>
             </div>
