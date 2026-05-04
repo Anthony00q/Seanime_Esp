@@ -12,6 +12,7 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { Modal } from "@/components/ui/modal"
 import { NumberInput } from "@/components/ui/number-input"
 import { Separator } from "@/components/ui/separator"
+import { createTranslator } from "@/locales"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import React from "react"
@@ -26,6 +27,7 @@ export const __metadataManager_isOpenAtom = atom(false)
 
 export function AnimeEntryMetadataManager(props: AnimeEntryMetadataManagerProps) {
 
+    const t = createTranslator("es")
     const { entry, details } = props
 
     const [isOpen, setOpen] = useAtom(__metadataManager_isOpenAtom)
@@ -54,11 +56,11 @@ export function AnimeEntryMetadataManager(props: AnimeEntryMetadataManagerProps)
         <Modal
             open={isOpen}
             onOpenChange={setOpen}
-            title="Metadata"
+            title={t("entry.metadataManager.title")}
             contentClass="max-w-2xl"
             titleClass=""
         >
-            <h3 className="text-center">AnimeFillerList</h3>
+            <h3 className="text-center">{t("entry.metadataManager.animeFillerList")}</h3>
 
             <div className="flex lg:flex-row flex-col gap-2">
                 <Button
@@ -69,7 +71,7 @@ export function AnimeEntryMetadataManager(props: AnimeEntryMetadataManagerProps)
                     loading={filler_isPopulating}
                     disabled={filler_isPopulating || filler_isRemoving || cannotAddMetadata}
                 >
-                    {filler_isPopulating ? "Fetching..." : "Fetch filler info"}
+                    {filler_isPopulating ? t("common.labels.loading") : t("entry.metadataManager.fetchFillerInfo")}
                 </Button>
                 <Button
                     className="w-full"
@@ -78,7 +80,7 @@ export function AnimeEntryMetadataManager(props: AnimeEntryMetadataManagerProps)
                     loading={filler_isRemoving}
                     disabled={filler_isPopulating || filler_isRemoving || cannotAddMetadata}
                 >
-                    {filler_isRemoving ? "Removing..." : "Remove filler info"}
+                    {filler_isRemoving ? t("entry.metadataManager.removing") : t("entry.metadataManager.removeFillerInfo")}
                 </Button>
             </div>
 
@@ -88,11 +90,10 @@ export function AnimeEntryMetadataManager(props: AnimeEntryMetadataManagerProps)
                     <Separator />
 
                     <div>
-                        <h3 className="text-center flex gap-2 items-center justify-center">Metadata
-                                                                                           Parent <Help content="This will not work if the parent series does not contain specials metadata." />
+                        <h3 className="text-center flex gap-2 items-center justify-center">{t("entry.metadataManager.metadataParent")} <Help content={t("entry.metadataManager.metadataParentHelp")} />
                         </h3>
                         <p className="text-sm text-[--muted] text-center">
-                            Add metadata to specials by linking the entry to a parent anime.
+                            {t("entry.metadataManager.metadataParentDescription")}
                         </p>
                     </div>
 
@@ -100,7 +101,7 @@ export function AnimeEntryMetadataManager(props: AnimeEntryMetadataManagerProps)
                         <>
                             <div className="flex gap-2 flex-col lg:flex-row">
                                 <NumberInput
-                                    leftAddon="AniList ID"
+                                    leftAddon={t("entry.metadataManager.anilistId")}
                                     addonClass="justify-center text-center font-semibold"
                                     hideControls
                                     value={metadataParentId ?? ""}
@@ -110,17 +111,17 @@ export function AnimeEntryMetadataManager(props: AnimeEntryMetadataManagerProps)
                                         size="xs" intent="gray-link"
                                         onClick={() => setMetadataParentId(parentId)}
                                     >
-                                        Select parent
+                                        {t("entry.metadataManager.selectParent")}
                                     </Button> : undefined}
                                 />
 
                                 <NumberInput
-                                    leftAddon="Special Offset"
+                                    leftAddon={t("entry.metadataManager.specialOffset")}
                                     value={specialOffset ?? ""}
                                     onValueChange={setSpecialOffset}
                                     addonClass="text-center font-semibold"
                                     hideControls
-                                    placeholder="0 = S1, 1 = S2, etc."
+                                    placeholder={t("entry.metadataManager.specialOffsetPlaceholder")}
                                 />
                             </div>
 
@@ -139,7 +140,7 @@ export function AnimeEntryMetadataManager(props: AnimeEntryMetadataManagerProps)
                                     }}
                                     disabled={isSavingMetadataParent || isDeletingMetadataParent}
                                 >
-                                    Save
+                                    {t("common.buttons.save")}
                                 </Button>
                                 {!!metadataParentData?.id && <Button
                                     className="w-full"
@@ -147,7 +148,7 @@ export function AnimeEntryMetadataManager(props: AnimeEntryMetadataManagerProps)
                                     loading={isDeletingMetadataParent || isSavingMetadataParent}
                                     onClick={() => deleteMetadataParent({ mediaId: entry.mediaId })}
                                 >
-                                    Remove
+                                    {t("common.buttons.delete")}
                                 </Button>}
                             </div>
                         </>
