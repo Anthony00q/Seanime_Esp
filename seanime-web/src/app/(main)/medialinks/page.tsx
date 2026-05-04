@@ -21,6 +21,7 @@ import { useAtomValue, useSetAtom } from "jotai"
 import React from "react"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 import { PluginEpisodeGridItemMenuItems } from "../_features/plugin/actions/plugin-actions"
 import { useServerHMACAuth } from "../_hooks/use-server-status"
 
@@ -29,6 +30,7 @@ type LocalSubtitleFile = {
 }
 
 export default function Page() {
+    const t = createTranslator("es")
 
     const clientId = useAtomValue(clientIdAtom)
     const router = useRouter()
@@ -82,7 +84,7 @@ export default function Page() {
 
                 if (!episode) {
                     logger("MEDIALINKS").error("Episode not found.")
-                    toast.error("Episode not found.")
+                    toast.error(t("mediaLinks.episodeNotFound"))
                     return
                 }
 
@@ -92,7 +94,7 @@ export default function Page() {
 
                 if (!externalPlayerLink) {
                     logger("MEDIALINKS").error("External player link is not set.")
-                    toast.warning("External player link is not set.")
+                    toast.warning(t("mediaLinks.externalPlayerLinkNotSet"))
                     return
                 }
 

@@ -42,6 +42,7 @@ export const EXTENSION_TYPE = {
 
 export function ExtensionList(props: ExtensionListProps) {
 
+    const t = createTranslator("es")
     const {
         children,
         ...rest
@@ -146,10 +147,10 @@ export function ExtensionList(props: ExtensionListProps) {
                             leftIcon={<LuDownload className="text-lg" />}
                             loading={isInstalling}
                             onClick={() => {
-                                toast.info("Installing updates...")
+                                toast.info(t("extensions.toast.installingUpdates"))
                                 allExtensions?.hasUpdate?.forEach(update => {
                                     if (allExtensions.unsafeExtensions?.[update.extensionID]) {
-                                        toast.warning(`Skipped "${update.extensionID}" because it uses unsafe flags. Update it manually.`)
+                                        toast.warning(t("extensions.toast.skippedUnsafeFlags", { extensionID: update.extensionID }))
                                         return
                                     }
                                     installExtension({

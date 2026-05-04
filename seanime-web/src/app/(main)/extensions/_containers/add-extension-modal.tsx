@@ -7,6 +7,7 @@ import { Modal } from "@/components/ui/modal"
 import { Separator } from "@/components/ui/separator"
 import { TextInput } from "@/components/ui/text-input"
 import React from "react"
+import { createTranslator } from "@/locales"
 import { FiDownload } from "react-icons/fi"
 import { LuSearch } from "react-icons/lu"
 import { toast } from "sonner"
@@ -18,6 +19,7 @@ type AddExtensionModalProps = {
 
 export function AddExtensionModal(props: AddExtensionModalProps) {
 
+    const t = createTranslator("es")
     const {
         extensions,
         children,
@@ -44,7 +46,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
 
     React.useEffect(() => {
         if (installResponse) {
-            toast.success(installResponse.message)
+            toast.success(t("extensions.toast.extensionInstalled", { message: installResponse.message }))
             setOpen(false)
             reset()
         }
@@ -52,7 +54,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
 
     function handleFetchExtensionData() {
         if (!manifestURL) {
-            toast.warning("Please provide a valid URL.")
+            toast.warning(t("extensions.toast.pleaseProvideValidUrl"))
             return
         }
 
@@ -63,7 +65,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
 
     function handleInstallFromRepository(install: boolean) {
         if (!repositoryURL) {
-            toast.warning("Please provide a valid URL.")
+            toast.warning(t("extensions.toast.pleaseProvideValidUrl"))
             return
         }
 
@@ -73,7 +75,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
         }, {
             onSuccess: () => {
                 if (install) {
-                    toast.success("Extensions installed successfully.")
+                    toast.success(t("extensions.toast.extensionsInstalledSuccessfully"))
                     setOpen(false)
                     setRepositoryURL("")
                     resetRepo()

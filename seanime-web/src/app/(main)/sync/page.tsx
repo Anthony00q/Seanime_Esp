@@ -30,10 +30,12 @@ import { useAtomValue } from "jotai/react"
 import React from "react"
 import { LuCloud, LuCloudDownload, LuCloudOff, LuCloudUpload, LuFolderSync } from "react-icons/lu"
 import { VscSyncIgnored } from "react-icons/vsc"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
 
 export default function Page() {
+    const t = createTranslator("es")
     const serverStatus = useServerStatus()
 
     const [syncModalOpen, setSyncModalOpen] = React.useState(false)
@@ -111,7 +113,7 @@ export default function Page() {
             updated: false,
         }, {
             onSuccess: () => {
-                toast.success("Local changes ignored.")
+                toast.success(t("sync.localChangesIgnored"))
                 handleSyncLocal()
             },
         })

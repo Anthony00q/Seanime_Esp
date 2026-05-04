@@ -5,6 +5,7 @@ import { Anime_LocalFile } from "@/api/generated/types"
 import { useServerStatus } from "@/app/(main)/_hooks/use-server-status"
 import { useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function usePlaybackSyncCurrentProgress() {
     const serverStatus = useServerStatus()
@@ -34,23 +35,25 @@ export function usePlaybackPlayNextEpisode(...keys: any) {
 }
 
 export function usePlaybackCancelCurrentPlaylist(...keys: any) {
+    const t = createTranslator("es")
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackCancelCurrentPlaylist.endpoint,
         method: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackCancelCurrentPlaylist.methods[0],
         mutationKey: [API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackCancelCurrentPlaylist.key, ...keys],
         onSuccess: async () => {
-            toast.info("Cancelling playlist")
+            toast.info(t("toast.playback.playlistCancelled"))
         },
     })
 }
 
 export function usePlaybackPlaylistNext(...keys: any) {
+    const t = createTranslator("es")
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackPlaylistNext.endpoint,
         method: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackPlaylistNext.methods[0],
         mutationKey: [API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackPlaylistNext.key, ...keys],
         onSuccess: async () => {
-            toast.info("Loading next file")
+            toast.info(t("toast.playback.nextFile"))
         },
     })
 }
@@ -67,12 +70,13 @@ export function usePlaybackPlayVideo() {
 }
 
 export function usePlaybackPlayRandomVideo() {
+    const t = createTranslator("es")
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackPlayRandomVideo.endpoint,
         method: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackPlayRandomVideo.methods[0],
         mutationKey: [API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackPlayRandomVideo.key],
         onSuccess: async () => {
-            toast.success("Playing random episode")
+            toast.success(t("toast.playback.randomEpisode"))
         },
     })
 }
@@ -108,12 +112,13 @@ export function usePlaybackGetNextEpisode() {
 }
 
 export function usePlaybackAutoPlayNextEpisode() {
+    const t = createTranslator("es")
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackAutoPlayNextEpisode.endpoint,
         method: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackAutoPlayNextEpisode.methods[0],
         mutationKey: [API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackAutoPlayNextEpisode.key],
         onSuccess: async () => {
-            toast.info("Loading next episode")
+            toast.info(t("toast.playback.nextEpisode"))
         },
     })
 }
