@@ -2,7 +2,6 @@
   "entry": {
     "views": "Vistas",
     "localLibrary": "Biblioteca local",
-    "torrentStreaming": "Streaming por torrent",
     "debridStreaming": "Streaming por Debrid",
     "onlineStreaming": "Streaming en línea",
     "downloadTorrents": "Descargar torrents",

@@ -204,7 +204,7 @@ export function AnimeEntryPage() {
                 },
                     {
                         id: "torrentstream",
-                        description: t("entry.torrentStreaming"),
+                        description: t("entry.torrentStream.title"),
                         show: serverStatus?.torrentstreamSettings?.enabled && currentView !== "torrentstream",
                     },
                     {
@@ -450,7 +450,7 @@ export function EntrySectionTabs(props: EntrySectionTabs) {
                     items={[
                         { name: t("entry.localLibrary"), iconType: IoLibraryOutline, isCurrent: isLibraryView, onClick: () => setView("library") },
                         ...(serverStatus?.torrentstreamSettings?.enabled ? [{
-                            name: t("entry.torrentStreaming"),
+                            name: t("entry.torrentStream.title"),
                             iconType: PiMonitorPlayDuotone,
                             isCurrent: isTorrentStreamingView,
                             onClick: () => setView("torrentstream"),

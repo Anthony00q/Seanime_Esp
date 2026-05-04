@@ -14,8 +14,6 @@
     "convertSoftSubsToASS": "Convertir Soft Subs a ASS",
     "convertSoftSubsToASSHelp": "El reproductor convertirá otros formatos de subtítulos (SRT, VTT, ...) a ASS. Si tu idioma no es soportado, puedes añadir una nueva fuente o desactivar esta función. Se requiere recargar el reproductor después de cambiar esta opción.",
     "resetAll": "Restablecer Todo",
-    "cancel": "Cancelar",
-    "save": "Guardar",
     "overlay": {
       "beginning": "Inicio",
       "end": "Fin",

@@ -36,7 +36,7 @@ export function SettingsSubmitButton({ isPending }: { isPending: boolean }) {
                 loading={isPending}
                 leftIcon={<FiSave className="transition-transform duration-200 group-hover:scale-110" />}
             >
-                {t("settings.submitButton.save")}
+                {t("common.buttons.save")}
             </Field.Submit>
         </>
     )
@@ -65,7 +65,7 @@ export function SettingsIsDirty({ className }: { className?: string }) {
                 onClick={() => reset()}
                 leftIcon={<FiRotateCcw className="transition-transform duration-200 group-hover:rotate-180" />}
             >
-                {t("settings.submitButton.reset")}
+                {t("common.buttons.reset")}
             </Button>
             <Field.Submit
                 role="save"
@@ -77,7 +77,7 @@ export function SettingsIsDirty({ className }: { className?: string }) {
                 disabled={isLoading || isSubmitting || isValidating}
                 leftIcon={<FiSave className="transition-transform duration-200 group-hover:scale-110" />}
             >
-                {t("settings.submitButton.save")}
+                {t("common.buttons.save")}
             </Field.Submit>
         </div>
     </Alert> : null

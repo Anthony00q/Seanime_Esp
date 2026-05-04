@@ -62,7 +62,7 @@ export function LogsSettings(props: LogsSettingsProps) {
     const columns = React.useMemo(() => defineDataGridColumns<{ name: string }>(() => [
         {
             accessorKey: "name",
-            header: t("settings.logs.nameColumn"),
+            header: t("common.labels.name"),
             cell: info => (
                 <LogModal filename={info.getValue<string>()} />
             ),
@@ -123,7 +123,7 @@ export function LogsSettings(props: LogsSettingsProps) {
                         setGlobalFilter(value === "-" ? "" : value)
                     }}
                     options={[
-                        { value: "-", label: t("settings.logs.filterAll") },
+                        { value: "-", label: t("common.labels.all") },
                         { value: "seanime-", label: t("settings.logs.filterServer") },
                         { value: "-scan", label: t("settings.logs.filterScanner") },
                     ]}
@@ -200,7 +200,7 @@ function LogModal(props: { filename: string }) {
             return
         }
         navigator.clipboard.writeText(data)
-        toast.success(t("settings.logs.copiedToClipboard"))
+        toast.success(t("common.toast.copiedToClipboard"))
     }
 
     return (
@@ -304,7 +304,7 @@ function MemoryProfilingSettings() {
                                 onClick={handleRefreshStats}
                                 loading={isLoadingMemoryStats}
                             >
-                                {t("settings.logs.refresh")}
+                                {t("common.buttons.refresh")}
                             </Button>
                             <Button
                                 intent="gray-outline"

@@ -21,6 +21,7 @@ import {
 import capitalize from "lodash/capitalize"
 import { motion } from "motion/react"
 import React from "react"
+import { translateSeason, translateStatus } from "@/lib/anilist-translations"
 import { BiCalendarAlt, BiSolidStar, BiStar } from "react-icons/bi"
 import { MdOutlineSegment } from "react-icons/md"
 import { RiSignalTowerFill } from "react-icons/ri"
@@ -416,7 +417,7 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
                                 year: "numeric",
                                 month: "short",
                             }).format(new Date(startDate?.year || 0, startDate?.month ? startDate?.month - 1 : 0))}{!!season
-                                ? ` - ${capitalize(season)}`
+                                ? ` - ${translateSeason(season)}`
                                 : ""}
                             </p>
 
@@ -427,7 +428,7 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
                                 leftIcon={<RiSignalTowerFill />}
                                 data-media-page-header-entry-details-date-badge
                             >
-                                {capitalize(status || "")?.replaceAll("_", " ")}
+                                {translateStatus(status || "")}
                             </Badge>}
 
                             {ts.mediaPageBannerSize === ThemeMediaPageBannerSize.Small && <Popover

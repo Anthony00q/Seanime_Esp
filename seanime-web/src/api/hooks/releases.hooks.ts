@@ -26,7 +26,7 @@ export function useInstallLatestUpdate() {
             if (data) {
                 setServerStatus(data)
             }
-            toast.info(t("toast.releases.installingUpdate"))
+            toast.info(t("electron.installingUpdate"))
         },
     })
 }

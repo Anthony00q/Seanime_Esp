@@ -507,7 +507,7 @@ function AvailableHomeItem({ id, type, onAdd, isUpdating }: AvailableHomeItemPro
                 disabled={isUpdating}
                 leftIcon={<BiPlus />}
             >
-                {t("home.settings.buttons.addItem")}
+                {t("common.buttons.add")}
             </Button>
         </div>
     )

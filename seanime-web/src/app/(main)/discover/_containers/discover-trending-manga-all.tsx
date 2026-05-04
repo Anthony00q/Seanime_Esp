@@ -13,6 +13,7 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai/react"
 import React from "react"
 import { FiSearch } from "react-icons/fi"
 import { createTranslator } from "@/locales"
+import { translateGenre } from "@/lib/anilist-translations"
 
 const t = createTranslator("es")
 
@@ -124,7 +125,7 @@ function GenreSelector() {
                     onClick: () => setSelectedGenre([]),
                 },
                 ...ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({
-                    name: genre,
+                    name: translateGenre(genre),
                     isCurrent: selectedGenre.includes(genre),
                     onClick: () => setSelectedGenre([genre]),
                 })),

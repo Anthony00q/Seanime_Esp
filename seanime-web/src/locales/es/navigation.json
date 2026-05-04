@@ -38,14 +38,6 @@
       "confirm": "Sí"
     }
   },
-  "auth": {
-    "loginTitle": "Iniciar Sesión con AniList",
-    "loginDescription": "Se recomienda usar una cuenta de AniList.",
-    "getAniListToken": "Obtener Token de AniList",
-    "enterToken": "Introducir el token",
-    "tokenRequired": "El token es obligatorio",
-    "continue": "Continuar"
-  },
   "offline": {
     "animeLibrary": "Biblioteca de Anime",
     "manga": "Manga",

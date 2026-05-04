@@ -32,6 +32,10 @@ import { RiSignalTowerLine } from "react-icons/ri"
 import { TbSwords, TbTagsFilled } from "react-icons/tb"
 import { useMount } from "react-use"
 import { useUpdateEffect } from "react-use"
+import { translateGenre, translateTag, translateFormat, translateSeason, translateStatus } from "@/lib/anilist-translations"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 export function AdvancedSearchOptions() {
 
@@ -81,9 +85,9 @@ export function AdvancedSearchOptions() {
                 <Combobox
                     multiple
                     leftAddon={<TbSwords className={cn((params.genre !== null && !!params.genre.length) && "text-indigo-300 font-bold text-xl")} />}
-                    emptyMessage="No options found"
-                    label="Genre" placeholder="All genres" className="w-full"
-                    options={ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({ value: genre, label: genre, textValue: genre }))}
+                    emptyMessage={t("common.messages.noOptions")}
+                    label={t("home.items.options.genres.label")} placeholder={t("common.placeholders.allGenres")} className="w-full"
+                    options={ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({ value: genre, label: translateGenre(genre), textValue: genre }))}
                     value={params.genre ? params.genre : []}
                     onValueChange={v => setParams(draft => {
                         draft.genre = v
@@ -94,8 +98,8 @@ export function AdvancedSearchOptions() {
                 <Combobox
                     multiple
                     leftAddon={<TbTagsFilled className={cn((params.tags !== null && !!params.tags.length) && "text-indigo-300 font-bold text-xl")} />}
-                    emptyMessage="No options found"
-                    label="Tags" placeholder="All tags" className="w-full"
+                    emptyMessage={t("common.messages.noOptions")}
+                    label={t("common.labels.tags")} placeholder={t("common.placeholders.allTags")} className="w-full"
                     options={ADVANCED_SEARCH_MEDIA_TAGS
                         .filter(tag => {
                             if (params.isAdult && serverStatus?.settings?.anilist?.enableAdultContent) {
@@ -103,7 +107,7 @@ export function AdvancedSearchOptions() {
                             }
                             return tag.isAdult === false
                         })
-                        .map(tag => ({ value: tag.name, label: tag.name, textValue: tag.name }))}
+                        .map(tag => ({ value: tag.name, label: translateTag(tag.name), textValue: tag.name }))}
                     value={params.tags ? params.tags : []}
                     onValueChange={v => setParams(draft => {
                         draft.tags = v
@@ -114,8 +118,8 @@ export function AdvancedSearchOptions() {
                 />
                 {params.type === "anime" && <Select
                     leftAddon={<MdPersonalVideo className={cn((params.format !== null && !!params.format) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Format" placeholder="All formats" className="w-full"
-                    options={ADVANCED_SEARCH_FORMATS}
+                    label={t("home.items.options.format.label")} placeholder={t("common.placeholders.allFormats")} className="w-full"
+                    options={ADVANCED_SEARCH_FORMATS.map(f => ({ ...f, label: translateFormat(f.value) }))}
                     value={params.format || ""}
                     onValueChange={v => setParams(draft => {
                         draft.format = v as any
@@ -126,7 +130,7 @@ export function AdvancedSearchOptions() {
                 {params.type === "manga" && <Select
                     leftAddon={
                         <BiWorld className={cn((params.countryOfOrigin !== null && !!params.countryOfOrigin) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Format" placeholder="All countries" className="w-full"
+                    label={t("home.items.options.countryOfOrigin.label")} placeholder={t("common.placeholders.allCountries")} className="w-full"
                     options={ADVANCED_SEARCH_COUNTRIES_MANGA}
                     value={params.countryOfOrigin || ""}
                     onValueChange={v => setParams(draft => {
@@ -137,8 +141,8 @@ export function AdvancedSearchOptions() {
                 />}
                 {params.type === "manga" && <Select
                     leftAddon={<MdOutlineBook className={cn((params.format !== null && !!params.format) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Format" placeholder="All formats" className="w-full"
-                    options={ADVANCED_SEARCH_FORMATS_MANGA}
+                    label={t("home.items.options.format.label")} placeholder={t("common.placeholders.allFormats")} className="w-full"
+                    options={ADVANCED_SEARCH_FORMATS_MANGA.map(f => ({ ...f, label: translateFormat(f.value) }))}
                     value={params.format || ""}
                     onValueChange={v => setParams(draft => {
                         draft.format = v as any
@@ -148,8 +152,8 @@ export function AdvancedSearchOptions() {
                 />}
                 {params.type === "anime" && <Select
                     leftAddon={<LuLeaf className={cn((params.season !== null && !!params.season) && "text-indigo-300 font-bold text-xl")} />}
-                    placeholder="All seasons" className="w-full"
-                    options={ADVANCED_SEARCH_SEASONS.map(season => ({ value: season.toUpperCase(), label: season }))}
+                    placeholder={t("common.placeholders.allSeasons")} className="w-full"
+                    options={ADVANCED_SEARCH_SEASONS.map(season => ({ value: season.toUpperCase(), label: translateSeason(season.toUpperCase()) }))}
                     value={params.season || ""}
                     onValueChange={v => setParams(draft => {
                         draft.season = v as any
@@ -159,7 +163,7 @@ export function AdvancedSearchOptions() {
                 />}
                 <Select
                     leftAddon={<LuCalendar className={cn((params.year !== null && !!params.year) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Year" placeholder="Timeless" className="w-full"
+                    label={t("home.items.options.year.label")} placeholder={t("common.placeholders.timeless")} className="w-full"
                     options={[...Array(70)].map((v, idx) => getYear(new Date()) - idx + 2).map(year => ({
                         value: String(year),
                         label: String(year),
@@ -174,8 +178,8 @@ export function AdvancedSearchOptions() {
                 <Select
                     leftAddon={
                         <RiSignalTowerLine className={cn((params.status !== null && !!params.status.length) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Status" placeholder="All statuses" className="w-full"
-                    options={ADVANCED_SEARCH_STATUS}
+                    label={t("home.items.options.status.label")} placeholder={t("common.placeholders.allStatuses")} className="w-full"
+                    options={ADVANCED_SEARCH_STATUS.map(s => ({ ...s, label: translateStatus(s.value) }))}
                     value={params.status?.[0] || ""}
                     onValueChange={v => setParams(draft => {
                         draft.status = [v] as any
@@ -185,7 +189,7 @@ export function AdvancedSearchOptions() {
                 />
                 <Select
                     leftAddon={<FaRegStar className={cn((params.minScore !== null && !!params.minScore) && "text-indigo-300 font-bold text-xl")} />}
-                    placeholder="All scores" className="w-full"
+                    placeholder={t("common.placeholders.allScores")} className="w-full"
                     options={[...Array(9)].map((v, idx) => 9 - idx).map(score => ({
                         value: String(score),
                         label: String(score),
@@ -197,7 +201,7 @@ export function AdvancedSearchOptions() {
                     })}
                 />
                 {serverStatus?.settings?.anilist?.enableAdultContent && <Switch
-                    label="Adult"
+                    label={t("common.labels.adult")}
                     value={params.isAdult}
                     onValueChange={v => setParams(draft => {
                         draft.isAdult = v
@@ -256,7 +260,7 @@ function TitleInput() {
     return (
         <TextInput
             ref={ref}
-            leftIcon={<FiSearch />} placeholder="Title" className="w-full"
+            leftIcon={<FiSearch />} placeholder={t("common.placeholders.title")} className="w-full"
             value={inputValue}
             onValueChange={v => setInputValue(v)}
         />

@@ -136,7 +136,7 @@ export function AutoSelectProfileButton() {
                     profile={profile}
                     onSuccess={() => {
                         setIsOpen(false)
-                        toast.success(t("settings.autoSelectProfile.settingsSaved"))
+                        toast.success(t("toast.settings.settingsSaved"))
                     }}
                 />
             </Modal>
@@ -413,7 +413,7 @@ function AutoSelectProfileForm(props: AutoSelectProfileFormProps) {
                     intent="success"
                     loading={saving}
                 >
-                    {t("settings.autoSelectProfile.save")}
+                    {t("common.buttons.save")}
                 </Button>
             </div>
         </form>
@@ -583,7 +583,7 @@ function ProvidersFieldControlled() {
                 onValueChange={handleAdd}
                 options={availableOptions}
                 multiple
-                label={t("settings.autoSelectProfile.addProvider")}
+                label={t("common.buttons.addProvider")}
                 disabled={items.length >= 3}
                 emptyMessage={t("settings.autoSelectProfile.noProvidersFound")}
             />
@@ -701,7 +701,7 @@ function ReleaseGroupsSortableField() {
                 onClick={handleAdd}
                 leftIcon={<BiPlus />}
             >
-                {t("settings.autoSelectProfile.add")}
+                {t("common.buttons.add")}
             </Button>
         </div>
     )
@@ -801,7 +801,7 @@ function ResolutionsSortableField() {
                 onClick={handleAdd}
                 leftIcon={<BiPlus />}
             >
-                {t("settings.autoSelectProfile.add")}
+                {t("common.buttons.add")}
             </Button>
         </div>
     )
@@ -877,7 +877,7 @@ function ExcludeTermsSortableField() {
                 onClick={handleAdd}
                 leftIcon={<BiPlus />}
             >
-                {t("settings.autoSelectProfile.add")}
+                {t("common.buttons.add")}
             </Button>
         </div>
     )
@@ -977,7 +977,7 @@ function PreferredLanguagesSortableField() {
                 onClick={handleAdd}
                 leftIcon={<BiPlus />}
             >
-                {t("settings.autoSelectProfile.add")}
+                {t("common.buttons.add")}
             </Button>
         </div>
     )
@@ -1077,7 +1077,7 @@ function PreferredCodecsSortableField() {
                 onClick={handleAdd}
                 leftIcon={<BiPlus />}
             >
-                {t("settings.autoSelectProfile.add")}
+                {t("common.buttons.add")}
             </Button>
         </div>
     )
@@ -1177,7 +1177,7 @@ function PreferredSourcesSortableField() {
                 onClick={handleAdd}
                 leftIcon={<BiPlus />}
             >
-                {t("settings.autoSelectProfile.add")}
+                {t("common.buttons.add")}
             </Button>
         </div>
     )

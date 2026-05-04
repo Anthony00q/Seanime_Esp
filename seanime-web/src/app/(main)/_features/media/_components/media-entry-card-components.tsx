@@ -17,6 +17,7 @@ import { addSeconds, formatDistanceToNow } from "date-fns"
 import { atom, useAtom } from "jotai"
 import capitalize from "lodash/capitalize"
 import React, { memo } from "react"
+import { translateSeason, translateFormat, translateStatus } from "@/lib/anilist-translations"
 import { BiCalendarAlt } from "react-icons/bi"
 import { IoLibrarySharp } from "react-icons/io5"
 import { RiSignalTowerLine } from "react-icons/ri"
@@ -271,7 +272,7 @@ export function MediaEntryCardHoverPopupTitleSection(props: MediaEntryCardHoverP
                     className="justify-center text-sm text-[--muted] flex w-full gap-1 items-center"
                 >
                     {/*{startCase(format || "")} - <BiCalendarAlt /> {capitalize(season ?? "")} {year}*/}
-                    <BiCalendarAlt /> {capitalize(season ?? "")} {year}{(format !== "TV" && format !== "MANGA") && ` - ${format || ""}`}
+                    <BiCalendarAlt /> {translateSeason(season ?? "")} {year}{(format !== "TV" && format !== "MANGA") && ` - ${translateFormat(format || "")}`}
                 </p>
             </div>}
         </>
@@ -467,7 +468,7 @@ export function MediaEntryCardTitleSection(props: MediaEntryCardTitleSectionProp
             </div>
             {(!!season || !!year) && <div>
                 <p data-media-entry-card-title-section-year-season className="text-sm text-[--muted] inline-flex gap-1 items-center">
-                    {capitalize(season ?? "")} {year}
+                    {translateSeason(season ?? "")} {year}
                 </p>
             </div>}
         </div>
@@ -546,7 +547,7 @@ export const MediaEntryCardHoverPopupBanner = memo(({
                     <Tooltip
                         trigger={<Badge intent={status === "RELEASING" ? "primary-solid" : "zinc-solid"} size="lg"><RiSignalTowerLine /></Badge>}
                     >
-                        {status === "RELEASING" ? "Releasing" : "Not yet released"}
+                        {translateStatus(status || "")}
                     </Tooltip>
                 </div>}
 

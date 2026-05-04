@@ -43,8 +43,10 @@ import { Button } from "@/components/ui/button"
 import { ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuTrigger } from "@/components/ui/context-menu"
 import { useRouter } from "@/lib/navigation"
 import { useAtomValue, useSetAtom } from "jotai/react"
-import capitalize from "lodash/capitalize"
 import React, { useState } from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 import { BiAddToQueue, BiPlay } from "react-icons/bi"
 import { LuBookOpen } from "react-icons/lu"
 import { LuEye, LuFolderTree } from "react-icons/lu"
@@ -338,7 +340,7 @@ export function MediaEntryCard<T extends "anime" | "manga">(props: MediaEntryCar
 
                             {(listData?.status && listData?.status !== "CURRENT") &&
                                 <p className="text-center text-xs text-[--muted] w-full">
-                                    {capitalize(listData?.status ?? "")}
+                                    {t(`status.${listData?.status?.toLowerCase() ?? ""}`)}
                                     {/*{listData?.status === "CURRENT" ? type === "anime" ? "Watching" : "Reading"*/}
                                     {/*    : capitalize(listData?.status ?? "")}*/}
                                 </p>}

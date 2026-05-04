@@ -51,13 +51,13 @@ export function DiscordRichPresenceSettings(props: DiscordRichPresenceSettingsPr
                 <Field.Switch
                     side="right"
                     name="richPresenceHideSeanimeRepositoryButton"
-                    label={t("settings.discord.hideSeanimeRepositoryButton")}
+                    label={t("settings.discord.richPresenceHideSeanimeRepositoryButton")}
                 />
 
                 <Field.Switch
                     side="right"
                     name="richPresenceShowAniListProfileButton"
-                    label={t("settings.discord.showAniListProfileButton")}
+                    label={t("settings.discord.richPresenceShowAniListProfileButton")}
                     help={t("settings.discord.showAniListProfileButtonHelp")}
                 />
             </SettingsCard>

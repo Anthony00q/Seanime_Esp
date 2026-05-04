@@ -295,7 +295,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                         intent="gray-outline"
                         onClick={() => {
                             refetch()
-                            toast.success(t("extensions.toast.refreshed"), { duration: 1000 })
+                            toast.success(t("common.toast.updated"), { duration: 1000 })
                         }}
                     >
                         Refresh

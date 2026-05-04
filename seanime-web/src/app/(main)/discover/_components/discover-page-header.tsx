@@ -33,6 +33,7 @@ import { AnimatePresence, motion } from "motion/react"
 import React from "react"
 import { RiSignalTowerLine } from "react-icons/ri"
 import { createTranslator } from "@/locales"
+import { translateGenre } from "@/lib/anilist-translations"
 
 const t = createTranslator("es")
 
@@ -290,7 +291,7 @@ function MediaMetadata({ media, pageType, isTransitioning, onHoverChange }: Medi
                 <div className="flex flex-wrap gap-2">
                     {media.genres?.slice(0, 3).map((genre) => (
                         <div key={genre} className="text-sm font-semibold px-1 text-gray-300">
-                            {genre}
+                            {translateGenre(genre)}
                         </div>
                     ))}
                 </div>

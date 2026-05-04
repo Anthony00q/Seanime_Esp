@@ -10,15 +10,12 @@
       "heapProfile": "Perfil de Heap",
       "allocationsProfile": "Perfil de Asignaciones",
       "goroutineProfile": "Perfil de Goroutine",
-      "nameColumn": "Nombre",
       "copyCurrentLogs": "Copiar registros actuales del servidor",
       "openLogsDir": "Abrir directorio de registros",
       "recordIssue": "Registrar un problema",
-      "filterAll": "Todos",
       "filterServer": "Servidor",
       "filterScanner": "Escáner",
       "deleteSelected": "Eliminar seleccionados",
-      "copiedToClipboard": "Copiado al portapapeles",
       "copyToClipboard": "Copiar al portapapeles",
       "profiling": "Perfilado",
       "memoryStatistics": "Estadísticas de Memoria",
@@ -56,14 +53,12 @@
       "clearMediaStreamingCache": "Limpiar caché de streaming de medios",
       "clearOnlineStreamingCache": "Limpiar caché de streaming en línea"
     },
-    "submitButton": {
-      "saveChanges": "Guardar cambios",
-      "resetChanges": "Restablecer cambios",
-      "unsavedChanges": "Cambios sin guardar",
-      "save": "Guardar",
-      "reset": "Restablecer",
-      "unsavedChangesAlert": "Tienes cambios sin guardar."
-    },
+      "submitButton": {
+        "saveChanges": "Guardar cambios",
+        "resetChanges": "Restablecer cambios",
+        "unsavedChanges": "Cambios sin guardar",
+        "unsavedChangesAlert": "Tienes cambios sin guardar."
+      },
     "ui": {
       "tabs": {
         "theme": "Tema",
@@ -183,7 +178,6 @@
       "carousel": "Carrusel",
       "disableAutoScroll": "Desactivar desplazamiento automático",
       "smallerEpisodeCards": "Tarjetas de episodio más pequeñas",
-      "save": "Guardar",
       "lightThemeNotSupported": "Seanime no soporta temas claros"
     },
     "data": {
