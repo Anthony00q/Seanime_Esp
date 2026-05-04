@@ -9,6 +9,7 @@ import { API_ENDPOINTS } from "@/api/generated/endpoints"
 import { Models_TorrentstreamSettings, Nullish, Torrentstream_BatchHistoryResponse, Torrentstream_FilePreview } from "@/api/generated/types"
 import { useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useGetTorrentstreamSettings() {
     return useServerQuery<Models_TorrentstreamSettings>({
@@ -43,23 +44,25 @@ export function useTorrentstreamStartStream() {
 }
 
 export function useTorrentstreamStopStream() {
+    const t = createTranslator("es")
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.TORRENTSTREAM.TorrentstreamStopStream.endpoint,
         method: API_ENDPOINTS.TORRENTSTREAM.TorrentstreamStopStream.methods[0],
         mutationKey: [API_ENDPOINTS.TORRENTSTREAM.TorrentstreamStopStream.key],
         onSuccess: async () => {
-            toast.success("Stream stopped")
+            toast.success(t("toast.torrentstream.streamStopped"))
         },
     })
 }
 
 export function useTorrentstreamDropTorrent() {
+    const t = createTranslator("es")
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.TORRENTSTREAM.TorrentstreamDropTorrent.endpoint,
         method: API_ENDPOINTS.TORRENTSTREAM.TorrentstreamDropTorrent.methods[0],
         mutationKey: [API_ENDPOINTS.TORRENTSTREAM.TorrentstreamDropTorrent.key],
         onSuccess: async () => {
-            toast.success("Torrent dropped")
+            toast.success(t("toast.torrentstream.torrentDropped"))
         },
     })
 }

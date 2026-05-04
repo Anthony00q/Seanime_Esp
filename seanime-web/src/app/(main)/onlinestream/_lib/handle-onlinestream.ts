@@ -3,10 +3,13 @@ import { useNakamaStatus } from "@/app/(main)/_features/nakama/nakama-manager"
 import { __anime_entryPageViewAtom } from "@/app/(main)/entry/_containers/anime-entry-page"
 import { logger, useLatestFunction } from "@/lib/helpers/debug"
 import { usePathname, useRouter, useSearchParams } from "@/lib/navigation"
+import { createTranslator } from "@/locales"
 import { atom } from "jotai"
 import { useAtom, useSetAtom } from "jotai/react"
 import React from "react"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 export type OnlineStreamParams = {
     mediaId: number
@@ -39,7 +42,7 @@ export function useNakamaOnlineStreamWatchParty() {
             return
         }
         logger("ONLINESTREAM").info("Starting online stream watch party", params)
-        toast.info("Starting online streaming watch party", { duration: 2000 })
+        toast.info(t("onlineStream.startingWatchParty"), { duration: 2000 })
         redirectToStream(params)
         React.startTransition(() => {
             setStreamToLoad(params)

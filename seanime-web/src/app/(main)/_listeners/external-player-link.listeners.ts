@@ -8,7 +8,10 @@ import { openTab } from "@/lib/helpers/browser"
 import { logger } from "@/lib/helpers/debug"
 import { WSEvents } from "@/lib/server/ws-events"
 import { useAtomValue, useSetAtom } from "jotai"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 type ExternalPlayerLinkEventProps = {
     url: string
@@ -29,11 +32,11 @@ export function useExternalPlayerLinkListener() {
         type: WSEvents.EXTERNAL_PLAYER_OPEN_URL,
         onMessage: data => {
             if (!externalPlayerLink?.length) {
-                toast.error("External player link is not set.")
+                toast.error(t("mediaLinks.externalPlayerLinkNotSet"))
                 return
             }
 
-            toast.info("Opening media file in external player.")
+            toast.info(t("common.toast.openingExternalPlayer"))
 
             logger("EXTERNAL PLAYER LINK").info("Opening external player", data)
 

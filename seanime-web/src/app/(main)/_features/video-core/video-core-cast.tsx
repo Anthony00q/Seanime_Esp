@@ -12,6 +12,9 @@ import { useAtom, useAtomValue } from "jotai/react"
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { BiCast } from "react-icons/bi"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 const log = logger("CAST")
 
@@ -69,7 +72,7 @@ export function useCastManager() {
 
         const c4 = window.electron.on("cast:error", (err: any) => {
             log.error("Cast error:", err)
-            toast.error(`Cast error: ${err?.message || "Unknown error"}`)
+            toast.error(t("nakama.toast.castError", { error: err?.message || "Unknown error" }))
         })
         if (c4) cleanups.push(c4)
 
@@ -96,7 +99,7 @@ export function useCastManager() {
         if (!window.electron?.cast) return
         try {
             await window.electron.cast.connect(deviceId)
-            toast.success("Connected to Chromecast")
+            toast.success(t("nakama.toast.connectedToChromecast"))
             // Poll media status
             statusPollRef.current = setInterval(() => {
                 window.electron?.cast?.getStatus().then(s => {
@@ -105,7 +108,7 @@ export function useCastManager() {
             }, 2000)
         }
         catch (err: any) {
-            toast.error(`Failed to connect: ${err?.message || "Unknown error"}`)
+            toast.error(t("nakama.toast.failedToConnectChromecast", { error: err?.message || "Unknown error" }))
         }
     }, [])
 
@@ -114,7 +117,7 @@ export function useCastManager() {
         await window.electron.cast.disconnect()
         setIsCasting(false)
         setMediaStatus(null)
-        toast.info("Disconnected from Chromecast")
+        toast.info(t("nakama.toast.disconnectedFromChromecast"))
     }, [])
 
     return {

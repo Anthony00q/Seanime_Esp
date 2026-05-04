@@ -14,6 +14,7 @@ import { Separator } from "@/components/ui/separator"
 import { TextInput } from "@/components/ui/text-input"
 import { Vaul, VaulContent } from "@/components/vaul"
 import { useAtom, useAtomValue } from "jotai"
+import { createTranslator } from "@/locales"
 import React, { useMemo, useState } from "react"
 import { AiOutlineExclamationCircle } from "react-icons/ai"
 import { BiListCheck, BiPlus, BiTrash } from "react-icons/bi"
@@ -553,6 +554,7 @@ function getNewFileName(originalName: string, options: SuperUpdateFormData & { t
 }
 
 export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpdateDrawerProps) {
+    const t = createTranslator("es")
     const { fileNodes } = props
 
     const [isOpen, setIsOpen] = useAtom(libraryExplorer_superUpdateDrawerOpenAtom)
@@ -622,7 +624,7 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
         })
 
         if (validChanges.length === 0) {
-            toast.error("No valid changes to apply. Please check your settings.")
+            toast.error(t("libraryExplorer.noValidChangesToApply"))
             return
         }
 
@@ -634,7 +636,7 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
 
         if (validChanges.length < changedItems.length) {
             const skipped = changedItems.length - validChanges.length
-            toast.warning(`Applying ${validChanges.length} changes, skipping ${skipped} invalid changes`)
+            toast.warning(t("libraryExplorer.applyingChangesSkippingInvalid", { valid: validChanges.length, skipped }))
         }
 
         console.log("filesToUpdate", filesToUpdate)
@@ -671,7 +673,7 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                 setMetadataEdits([])
             },
             onError: (error) => {
-                toast.error("Failed to rename files: " + error.message)
+                toast.error(t("libraryExplorer.failedToRenameFiles", { error: error.message }))
             },
         })
     }

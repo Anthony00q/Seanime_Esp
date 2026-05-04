@@ -2,6 +2,7 @@ import { useServerMutation } from "@/api/client/requests"
 import { RemoveFileCacheBucket_Variables } from "@/api/generated/endpoint.types"
 import { API_ENDPOINTS } from "@/api/generated/endpoints"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useGetFileCacheTotalSize() {
     return useServerMutation<boolean>({
@@ -12,12 +13,13 @@ export function useGetFileCacheTotalSize() {
 }
 
 export function useRemoveFileCacheBucket(onSuccess?: () => void) {
+    const t = createTranslator("es")
     return useServerMutation<boolean, RemoveFileCacheBucket_Variables>({
         endpoint: API_ENDPOINTS.FILECACHE.RemoveFileCacheBucket.endpoint,
         method: API_ENDPOINTS.FILECACHE.RemoveFileCacheBucket.methods[0],
         mutationKey: [API_ENDPOINTS.FILECACHE.RemoveFileCacheBucket.key],
         onSuccess: async () => {
-            toast.success("Cache cleared")
+            toast.success(t("toast.filecache.cacheCleared"))
             onSuccess?.()
         },
     })
@@ -32,12 +34,13 @@ export function useGetFileCacheMediastreamVideoFilesTotalSize() {
 }
 
 export function useClearFileCacheMediastreamVideoFiles(onSuccess?: () => void) {
+    const t = createTranslator("es")
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.FILECACHE.ClearFileCacheMediastreamVideoFiles.endpoint,
         method: API_ENDPOINTS.FILECACHE.ClearFileCacheMediastreamVideoFiles.methods[0],
         mutationKey: [API_ENDPOINTS.FILECACHE.ClearFileCacheMediastreamVideoFiles.key],
         onSuccess: async () => {
-            toast.success("Cache cleared")
+            toast.success(t("toast.filecache.cacheCleared"))
             onSuccess?.()
         },
     })

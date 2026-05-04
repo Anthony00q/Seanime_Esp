@@ -14,6 +14,7 @@ import { API_ENDPOINTS } from "@/api/generated/endpoints"
 import { Debrid_TorrentInfo, Debrid_TorrentItem, DebridClient_FilePreview, Models_DebridSettings } from "@/api/generated/types"
 import { useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useGetDebridSettings() {
     return useServerQuery<Models_DebridSettings>({
@@ -39,48 +40,52 @@ export function useSaveDebridSettings() {
 
 export function useDebridAddTorrents(onSuccess: () => void) {
     const qc = useQueryClient()
+    const t = createTranslator("es")
     return useServerMutation<boolean, DebridAddTorrents_Variables>({
         endpoint: API_ENDPOINTS.DEBRID.DebridAddTorrents.endpoint,
         method: API_ENDPOINTS.DEBRID.DebridAddTorrents.methods[0],
         mutationKey: [API_ENDPOINTS.DEBRID.DebridAddTorrents.key],
         onSuccess: async () => {
             onSuccess()
-            toast.success("Torrent added")
+            toast.success(t("toast.debrid.torrentAdded"))
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.DEBRID.DebridGetTorrents.key] })
         },
     })
 }
 
 export function useDebridDownloadTorrent() {
+    const t = createTranslator("es")
     return useServerMutation<boolean, DebridDownloadTorrent_Variables>({
         endpoint: API_ENDPOINTS.DEBRID.DebridDownloadTorrent.endpoint,
         method: API_ENDPOINTS.DEBRID.DebridDownloadTorrent.methods[0],
         mutationKey: [API_ENDPOINTS.DEBRID.DebridDownloadTorrent.key],
         onSuccess: async () => {
-            toast.info("Download started")
+            toast.info(t("toast.debrid.downloadStarted"))
         },
     })
 }
 
 export function useDebridCancelDownload() {
+    const t = createTranslator("es")
     return useServerMutation<boolean, DebridCancelDownload_Variables>({
         endpoint: API_ENDPOINTS.DEBRID.DebridCancelDownload.endpoint,
         method: API_ENDPOINTS.DEBRID.DebridCancelDownload.methods[0],
         mutationKey: [API_ENDPOINTS.DEBRID.DebridCancelDownload.key],
         onSuccess: async () => {
-            toast.info("Download cancelled")
+            toast.info(t("toast.debrid.downloadCancelled"))
         },
     })
 }
 
 export function useDebridDeleteTorrent() {
     const qc = useQueryClient()
+    const t = createTranslator("es")
     return useServerMutation<boolean, DebridDeleteTorrent_Variables>({
         endpoint: API_ENDPOINTS.DEBRID.DebridDeleteTorrent.endpoint,
         method: API_ENDPOINTS.DEBRID.DebridDeleteTorrent.methods[0],
         mutationKey: [API_ENDPOINTS.DEBRID.DebridDeleteTorrent.key],
         onSuccess: async () => {
-            toast.success("Torrent deleted")
+            toast.success(t("toast.debrid.torrentDeleted"))
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.DEBRID.DebridGetTorrents.key] })
         },
     })
@@ -130,12 +135,13 @@ export function useDebridStartStream() {
 }
 
 export function useDebridCancelStream() {
+    const t = createTranslator("es")
     return useServerMutation<boolean, DebridCancelStream_Variables>({
         endpoint: API_ENDPOINTS.DEBRID.DebridCancelStream.endpoint,
         method: API_ENDPOINTS.DEBRID.DebridCancelStream.methods[0],
         mutationKey: [API_ENDPOINTS.DEBRID.DebridCancelStream.key],
         onSuccess: async () => {
-            toast.success("Stream cancelled")
+            toast.success(t("toast.debrid.streamCancelled"))
         },
     })
 }

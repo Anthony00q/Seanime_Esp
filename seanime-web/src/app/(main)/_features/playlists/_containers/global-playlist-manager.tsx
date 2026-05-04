@@ -37,9 +37,11 @@ import React from "react"
 import { BiX } from "react-icons/bi"
 import { LuRefreshCw } from "react-icons/lu"
 import { MdSkipNext, MdSkipPrevious } from "react-icons/md"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
 const log = logger("PLAYLIST MANAGER")
+const t = createTranslator("es")
 
 type ServerEvents =
     "current-playlist" |
@@ -62,7 +64,7 @@ export function usePlaylistManager() {
     const { activeOnDevice } = useMediastreamActiveOnDevice()
 
     function startPlaylist(playlist: Anime_Playlist) {
-        toast.info("Starting playlist...")
+        toast.info(t("playlists.startingPlaylist"))
         sendMessage({
             type: WSEvents.PLAYLIST,
             payload: {
@@ -225,7 +227,7 @@ export function GlobalPlaylistManager() {
                     const payload2 = data.payload as { playlistEpisode: Anime_PlaylistEpisode }
                     const episode = payload2.playlistEpisode
 
-                    toast.info(`Playing episode ${episode.episode?.aniDBEpisode} of ${episode.episode?.baseAnime?.title?.userPreferred}`)
+                    toast.info(t("playlists.playingEpisode", { episode: episode.episode?.aniDBEpisode ?? "", anime: episode.episode?.baseAnime?.title?.userPreferred ?? "" }))
 
                     switch (payload2.playlistEpisode.watchType) {
                         case "nakama":

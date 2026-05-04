@@ -5,11 +5,13 @@ import { websocketConnectedAtom, websocketConnectionErrorCountAtom } from "@/app
 import { LuffyError } from "@/components/shared/luffy-error"
 import { Button } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
+import { createTranslator } from "@/locales"
 import { useAtomValue } from "jotai/react"
 import React from "react"
 import { toast } from "sonner"
 
 export function ElectronRestartServerPrompt() {
+    const t = createTranslator("es")
 
     type ServerReachability = "unknown" | "reachable" | "unreachable"
 
@@ -89,10 +91,10 @@ export function ElectronRestartServerPrompt() {
     }, [hasRendered, isConnected, probeServerHealth])
 
     const handleRestart = async () => {
-        if (import.meta.env.MODE === "development") return toast.warning("Dev mode: Not restarting server")
+        if (import.meta.env.MODE === "development") return toast.warning(t("electron.devModeNotRestarting"))
 
         setHasClickedRestarted(true)
-        toast.info("Restarting server...")
+        toast.info(t("electron.restartingServer"))
         if (window.electron) {
             window.electron.emit("restart-server")
             React.startTransition(() => {

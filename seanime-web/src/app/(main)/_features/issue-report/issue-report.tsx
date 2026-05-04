@@ -9,6 +9,7 @@ import { cn } from "@/components/ui/core/styling"
 import { Tooltip } from "@/components/ui/tooltip"
 import { openTab } from "@/lib/helpers/browser"
 import { usePathname, useRouter } from "@/lib/navigation"
+import { createTranslator } from "@/locales"
 import { useQueryClient } from "@tanstack/react-query"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
@@ -53,6 +54,7 @@ const __issueReport_navigationLogsAtom = atom<NavigationLog[]>([])
 const __issueReport_screenshotsAtom = atom<ScreenshotEntry[]>([])
 
 export function IssueReport() {
+    const t = createTranslator("es")
     const router = useRouter()
     const pathname = usePathname()
     const queryClient = useQueryClient()
@@ -170,7 +172,7 @@ export function IssueReport() {
         }
         catch (err) {
             console.error("Failed to start rrweb recording:", err)
-            toast.error("Failed to start DOM recording")
+            toast.error(t("issueReport.failedToStartDomRecording"))
         }
     }, [])
 
@@ -547,7 +549,7 @@ export function IssueReport() {
         const canvas = document.createElement("canvas")
         const ctx = canvas.getContext("2d")
         if (!ctx) {
-            toast.error("Unable to capture screenshot")
+            toast.error(t("issueReport.unableToCaptureScreenshot"))
             return
         }
 
@@ -593,7 +595,7 @@ export function IssueReport() {
             pageUrl: window.location.href.replace(window.location.host, "{client}"),
             timestamp: new Date().toISOString(),
         }])
-        toast.success("Screenshot added to report")
+        toast.success(t("issueReport.screenshotAdded"))
     }
 
     const { getHMACTokenQueryParam } = useServerHMACAuth()
@@ -629,7 +631,7 @@ export function IssueReport() {
             isAnimeLibraryIssue: recordLocalFiles,
         }, {
             onSuccess: async () => {
-                toast.success("Issue report saved successfully")
+                toast.success(t("issueReport.issueReportSaved"))
 
                 setTimeout(async () => {
                     try {
@@ -638,7 +640,7 @@ export function IssueReport() {
                         openTab(`${getServerBaseUrl()}${endpoint}${tokenQuery}`)
                     }
                     catch (error) {
-                        toast.error("Failed to generate download token")
+                        toast.error(t("issueReport.failedToGenerateDownloadToken"))
                     }
                 }, 1000)
             },

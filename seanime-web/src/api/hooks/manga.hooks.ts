@@ -1,4 +1,5 @@
 import { useServerMutation, useServerQuery } from "@/api/client/requests"
+import { createTranslator } from "@/locales"
 import {
     AnilistListManga_Variables,
     EmptyMangaEntryCache_Variables,
@@ -157,13 +158,14 @@ export function useMangaManualSearch(mediaId: Nullish<number>, provider: Nullish
 
 export function useMangaManualMapping() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, MangaManualMapping_Variables>({
         endpoint: API_ENDPOINTS.MANGA.MangaManualMapping.endpoint,
         method: API_ENDPOINTS.MANGA.MangaManualMapping.methods[0],
         mutationKey: [API_ENDPOINTS.MANGA.MangaManualMapping.key],
         onSuccess: async () => {
-            toast.success("Mapping added")
+            toast.success(t("toast.manga.mappingAdded"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA.GetMangaEntryChapters.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA.GetMangaEntryPages.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA.GetMangaMapping.key] })
@@ -183,13 +185,14 @@ export function useGetMangaMapping(variables: Partial<GetMangaMapping_Variables>
 
 export function useRemoveMangaMapping() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, RemoveMangaMapping_Variables>({
         endpoint: API_ENDPOINTS.MANGA.RemoveMangaMapping.endpoint,
         method: API_ENDPOINTS.MANGA.RemoveMangaMapping.methods[0],
         mutationKey: [API_ENDPOINTS.MANGA.RemoveMangaMapping.key],
         onSuccess: async () => {
-            toast.info("Mapping removed")
+            toast.info(t("toast.manga.mappingRemoved"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA.GetMangaEntryChapters.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA.GetMangaEntryPages.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA.GetMangaMapping.key] })
@@ -216,6 +219,7 @@ export function useGetMangaLatestChapterNumbersMap() {
 
 export function useRefetchMangaChapterContainers() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, RefetchMangaChapterContainers_Variables>({
         endpoint: API_ENDPOINTS.MANGA.RefetchMangaChapterContainers.endpoint,
@@ -225,7 +229,7 @@ export function useRefetchMangaChapterContainers() {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA.GetMangaLatestChapterNumbersMap.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA.GetMangaEntryChapters.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA.GetMangaEntryPages.key] })
-            toast.success("Sources refreshed")
+            toast.success(t("toast.manga.sourcesRefreshed"))
         },
     })
 }

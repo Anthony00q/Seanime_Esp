@@ -40,6 +40,7 @@ import React from "react"
 import { BiInfoCircle } from "react-icons/bi"
 import { BsFillGrid3X3GapFill } from "react-icons/bs"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 const log = logger("MEDIASTREAM")
 
@@ -63,6 +64,7 @@ function uuidv4(): string {
 }
 
 function MediastreamPage() {
+    const t = createTranslator("es")
     const serverStatus = useServerStatus()
     const { getHMACTokenQueryParam } = useServerHMACAuth()
     const router = useRouter()
@@ -165,7 +167,7 @@ function MediastreamPage() {
         // switch to direct play if supported
         if (mediaContainer.streamType === "transcode") {
             if (!codecSupported && mediastreamSettings?.directPlayOnly) {
-                toast.warning("Codec not supported for direct play")
+                toast.warning(t("mediastream.codecNotSupported"))
                 changeUrl(null)
                 return
             }
@@ -213,7 +215,7 @@ function MediastreamPage() {
         }
         setPlaybackError("Playback error triggered. Please try again or switch stream type.")
         changeUrl(null) // reset url
-        toast.error("Playback error occurred")
+        toast.error(t("mediastream.playbackErrorOccurred"))
     }, [mediaContainer?.streamType])
 
 
@@ -385,7 +387,7 @@ function MediastreamPage() {
                                                 if (episode.localFile?.path) {
                                                     setFilePath(episode.localFile.path)
                                                 } else {
-                                                    toast.error("File path not found for this episode")
+                                                    toast.error(t("mediastream.filePathNotFoundEpisode"))
                                                 }
                                             }}
                                             title={media?.format === "MOVIE" ? "Complete movie" : `Episode ${episode.episodeNumber}`}

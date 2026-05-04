@@ -4,6 +4,7 @@ import { API_ENDPOINTS } from "@/api/generated/endpoints"
 import { MalAuthResponse } from "@/api/generated/types"
 import { useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useMALAuth(variables: Partial<MALAuth_Variables>, enabled: boolean) {
     return useServerQuery<MalAuthResponse, MALAuth_Variables>({
@@ -28,6 +29,7 @@ export function useEditMALListEntryProgress() {
 
 export function useMALLogout() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.MAL.MALLogout.endpoint,
@@ -35,7 +37,7 @@ export function useMALLogout() {
         mutationKey: [API_ENDPOINTS.MAL.MALLogout.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.STATUS.GetStatus.key] })
-            toast.success("Successfully logged out of MyAnimeList")
+            toast.success(t("toast.mal.loggedOut"))
         },
     })
 }

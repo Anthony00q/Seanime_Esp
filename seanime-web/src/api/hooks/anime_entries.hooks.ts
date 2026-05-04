@@ -12,6 +12,7 @@ import { API_ENDPOINTS } from "@/api/generated/endpoints"
 import { AL_BaseAnime, Anime_Entry, Anime_LocalFile, Anime_MissingEpisodes, Anime_UpcomingEpisodes, Nullish } from "@/api/generated/types"
 import { useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useGetAnimeEntry(id: Nullish<string | number>) {
     return useServerQuery<Anime_Entry>({
@@ -62,6 +63,7 @@ export function useFetchAnimeEntrySuggestions() {
 
 export function useAnimeEntryManualMatch() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<Array<Anime_LocalFile>, AnimeEntryManualMatch_Variables>({
         endpoint: API_ENDPOINTS.ANIME_ENTRIES.AnimeEntryManualMatch.endpoint,
@@ -71,7 +73,7 @@ export function useAnimeEntryManualMatch() {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetAnimeEntry.key] })
             queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.LIBRARY_EXPLORER.GetLibraryExplorerFileTree.key] })
-            toast.success("Files matched")
+            toast.success(t("toast.animeEntries.filesMatched"))
         },
     })
 }
@@ -112,6 +114,7 @@ export function useToggleAnimeEntrySilenceStatus() {
 
 export function useUpdateAnimeEntryProgress(id: Nullish<string | number>, episodeNumber: number, showToast: boolean = true) {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, UpdateAnimeEntryProgress_Variables>({
         endpoint: API_ENDPOINTS.ANIME_ENTRIES.UpdateAnimeEntryProgress.endpoint,
@@ -124,7 +127,7 @@ export function useUpdateAnimeEntryProgress(id: Nullish<string | number>, episod
                 await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetAnimeEntry.key, String(id)] })
             }
             if (showToast) {
-                toast.success("Progress updated successfully")
+                toast.success(t("toast.animeEntries.progressUpdated"))
             }
         },
     })

@@ -1,6 +1,7 @@
 import { Report_ClickLog, Report_ConsoleLog, Report_IssueReport, Report_NetworkLog } from "@/api/generated/types"
 
 import { useDecompressIssueReport } from "@/api/hooks/report.hooks"
+import { createTranslator } from "@/locales"
 import { ScanLogViewer } from "@/app/scan-log-viewer/scan-log-viewer"
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/shared/resizable"
 import { Badge } from "@/components/ui/badge"
@@ -30,6 +31,8 @@ import { LuAppWindow, LuNetwork, LuTerminal } from "react-icons/lu"
 import { SiReactquery } from "react-icons/si"
 import { Virtuoso } from "react-virtuoso"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 const DB_NAME = "seanime-issue-report-db"
 const STORE_NAME = "reports"
@@ -62,7 +65,7 @@ const saveReportToDB = async (report: ExtendedReport) => {
     }
     catch (error) {
         console.error("Failed to save report to DB:", error)
-        toast.error("Failed to save report to browser storage")
+        toast.error(t("issueReport.failedToSaveReportBrowser"))
     }
 }
 
@@ -483,7 +486,7 @@ export default function Page() {
         getReportFromDB().then((savedReport) => {
             if (savedReport) {
                 setReport(resolveRecords(savedReport))
-                toast.success("Restored previous issue report")
+                toast.success(t("issueReport.restoredPreviousReport"))
             }
             setIsLoading(false)
         })
@@ -499,18 +502,18 @@ export default function Page() {
             const formData = new FormData()
             formData.append("file", file)
 
-            toast.info("Decompressing report...")
+            toast.info(t("issueReport.decompressingReport"))
 
             decompressReport(formData, {
                 onSuccess: (data) => {
                     const resolved = resolveRecords(data as ExtendedReport)
                     setReport(resolved)
                     saveReportToDB(resolved)
-                    toast.success("Report loaded")
+                    toast.success(t("issueReport.reportLoaded"))
                 },
                 onError: (error) => {
                     console.error(error)
-                    toast.error("Failed to decompress report")
+                    toast.error(t("issueReport.failedToDecompressReport"))
                 },
             })
             return
@@ -523,10 +526,10 @@ export default function Page() {
                 const parsed = resolveRecords(JSON.parse(content) as ExtendedReport)
                 setReport(parsed)
                 saveReportToDB(parsed)
-                toast.success("Report loaded")
+                toast.success(t("issueReport.reportLoaded"))
             }
             catch {
-                toast.error("Failed to parse report")
+                toast.error(t("issueReport.failedToParseReport"))
             }
         }
         reader.readAsText(file)
@@ -606,7 +609,7 @@ export default function Page() {
                             onClick={async () => {
                                 await clearReportFromDB()
                                 setReport(null)
-                                toast.success("Cleared report")
+                                toast.success(t("issueReport.clearedReport"))
                             }}
                             className="flex items-center gap-2 px-3 py-1.5 text-sm text-red-400 hover:text-red-300 hover:bg-red-950/30 rounded-md transition-colors"
                         >

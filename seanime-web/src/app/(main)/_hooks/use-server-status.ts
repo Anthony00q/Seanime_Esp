@@ -1,5 +1,6 @@
 import { INTERNAL_FeatureKey } from "@/api/generated/types"
 import { serverAuthTokenAtom, serverStatusAtom } from "@/app/(main)/_atoms/server-status.atoms"
+import { createTranslator } from "@/locales"
 import { createNakamaHMACAuth, createServerPasswordHMACAuth } from "@/lib/server/hmac-auth"
 import { TORRENT_PROVIDER } from "@/lib/server/settings"
 import { useAtomValue } from "jotai"
@@ -7,6 +8,8 @@ import { useAtom } from "jotai"
 import { useSetAtom } from "jotai/react"
 import React from "react"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 export function useServerStatus() {
     return useAtomValue(serverStatusAtom)
@@ -168,7 +171,7 @@ export function useServerDisabledFeatures() {
             return status?.disabledFeatures?.includes(feature)
         },
         showFeatureWarning: () => {
-            return toast.warning("This feature is disabled")
+            return toast.warning(t("serverStatus.featureDisabled"))
         },
     }
 }

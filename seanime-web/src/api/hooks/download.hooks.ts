@@ -4,14 +4,16 @@ import { API_ENDPOINTS } from "@/api/generated/endpoints"
 import { DownloadReleaseResponse } from "@/api/generated/types"
 import { useOpenInExplorer } from "@/api/hooks/explorer.hooks"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useDownloadTorrentFile(onSuccess?: () => void) {
+    const t = createTranslator("es")
     return useServerMutation<boolean, DownloadTorrentFile_Variables>({
         endpoint: API_ENDPOINTS.DOWNLOAD.DownloadTorrentFile.endpoint,
         method: API_ENDPOINTS.DOWNLOAD.DownloadTorrentFile.methods[0],
         mutationKey: [API_ENDPOINTS.DOWNLOAD.DownloadTorrentFile.key],
         onSuccess: async () => {
-            toast.success("Files downloaded")
+            toast.success(t("toast.download.filesDownloaded"))
             onSuccess?.()
         },
     })
@@ -19,13 +21,14 @@ export function useDownloadTorrentFile(onSuccess?: () => void) {
 
 export function useDownloadRelease() {
     const { mutate: openInExplorer } = useOpenInExplorer()
+    const t = createTranslator("es")
 
     return useServerMutation<DownloadReleaseResponse, DownloadRelease_Variables>({
         endpoint: API_ENDPOINTS.DOWNLOAD.DownloadRelease.endpoint,
         method: API_ENDPOINTS.DOWNLOAD.DownloadRelease.methods[0],
         mutationKey: [API_ENDPOINTS.DOWNLOAD.DownloadRelease.key],
         onSuccess: async data => {
-            toast.success("Update downloaded successfully!")
+            toast.success(t("toast.download.updateDownloaded"))
             if (data?.error) {
                 toast.error(data.error)
             }
@@ -39,12 +42,13 @@ export function useDownloadRelease() {
 }
 
 export function useDownloadMacDenshiUpdate() {
+    const t = createTranslator("es")
     return useServerMutation<DownloadReleaseResponse, DownloadMacDenshiUpdate_Variables>({
         endpoint: API_ENDPOINTS.DOWNLOAD.DownloadMacDenshiUpdate.endpoint,
         method: API_ENDPOINTS.DOWNLOAD.DownloadMacDenshiUpdate.methods[0],
         mutationKey: [API_ENDPOINTS.DOWNLOAD.DownloadMacDenshiUpdate.key],
         onSuccess: async () => {
-            toast.success("Update installed successfully! Please restart the app.")
+            toast.success(t("toast.download.updateInstalled"))
         },
     })
 }

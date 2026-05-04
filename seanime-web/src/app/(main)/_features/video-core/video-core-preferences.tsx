@@ -271,7 +271,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
             },
         }, {
             onSuccess: () => {
-                toast.success("Translation settings saved")
+                toast.success(t("nakama.toast.translationSettingsSaved"))
                 translationFormRef.current?.reset(translationFormRef.current.getValues())
 
                 subtitleManager?.updateShouldTranslate(data.vcTranslate ? data.vcTranslateTargetLanguage : null)

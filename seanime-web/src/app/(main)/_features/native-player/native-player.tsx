@@ -15,6 +15,7 @@ import { toast } from "sonner"
 import { useWebsocketMessageListener, useWebsocketSender } from "../../_hooks/handle-websockets"
 import { useSkipData } from "../video-core/_lib/aniskip"
 import { nativePlayer_stateAtom } from "./native-player.atoms"
+import { createTranslator } from "@/locales"
 
 const log = logger("NATIVE PLAYER")
 
@@ -22,6 +23,7 @@ const log = logger("NATIVE PLAYER")
 const SUBTITLE_FLUSH_INTERVAL_MS = 300
 
 export function NativePlayer() {
+    const t = createTranslator("es")
     const qc = useQueryClient()
     const clientId = useAtomValue(clientIdAtom)
     const { sendMessage } = useWebsocketSender()
@@ -164,7 +166,7 @@ export function NativePlayer() {
                     break
                 case "error":
                     log.error("Error event received", payload)
-                    toast.error("An error occurred while playing the stream. " + ((payload as { error: string }).error))
+                    toast.error(t("nativePlayer.errorPlayingStream", { error: (payload as { error: string }).error }))
                     setState(draft => {
                         draft.playbackError = (payload as { error: string }).error
                         return

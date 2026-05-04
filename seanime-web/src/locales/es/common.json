@@ -44,7 +44,9 @@
       "added": "Añadido correctamente",
       "removed": "Eliminado correctamente",
       "updated": "Actualizado correctamente",
-      "error": "Ocurrió un error"
+      "error": "Ocurrió un error",
+      "copiedToClipboard": "Copiado al portapapeles",
+      "openingExternalPlayer": "Abriendo archivo en reproductor externo."
     }
   }
 }

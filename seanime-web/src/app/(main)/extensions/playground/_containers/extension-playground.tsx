@@ -24,6 +24,7 @@ import { useAtom } from "jotai/react"
 import { atomWithStorage } from "jotai/utils"
 import mousetrap from "mousetrap"
 import React from "react"
+import { createTranslator } from "@/locales"
 import { BiCopy, BiTerminal } from "react-icons/bi"
 import { toast } from "sonner"
 
@@ -146,6 +147,7 @@ const paramsAtom = atomWithStorage<Params>("sea-extension-playground-params", DE
 
 export function ExtensionPlayground(props: ExtensionPlaygroundProps) {
 
+    const t = createTranslator("es")
     const {
         language,
         onLanguageChange,
@@ -268,7 +270,7 @@ export function ExtensionPlayground(props: ExtensionPlaygroundProps) {
                 server: inputs.onlineStreamingProvider.findEpisodeServer.server,
             }
         } else {
-            toast.error("Invalid function selected.")
+            toast.error(t("extensions.toast.invalidFunctionSelected"))
             return
         }
 
@@ -798,9 +800,9 @@ export function ExtensionPlayground(props: ExtensionPlaygroundProps) {
                                                         intent="gray-subtle" size="sm" onClick={() => {
                                                         if (response?.value) {
                                                             copyToClipboard(response?.value || "")
-                                                            toast.success("Copied to clipboard")
+                                                            toast.success(t("extensions.toast.copiedToClipboard"))
                                                         } else {
-                                                            toast.warning("No output to copy")
+                                                            toast.warning(t("extensions.toast.noOutputToCopy"))
                                                         }
                                                     }} icon={<BiCopy className="size-4" />}
                                                     />

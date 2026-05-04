@@ -5,9 +5,11 @@ import { Anime_Playlist, Anime_PlaylistEpisode } from "@/api/generated/types"
 import { Nullish } from "@/types/common"
 import { useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useCreatePlaylist() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<Anime_Playlist, CreatePlaylist_Variables>({
         endpoint: API_ENDPOINTS.PLAYLIST.CreatePlaylist.endpoint,
@@ -15,7 +17,7 @@ export function useCreatePlaylist() {
         mutationKey: [API_ENDPOINTS.PLAYLIST.CreatePlaylist.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.PLAYLIST.GetPlaylists.key] })
-            toast.success("Playlist created")
+            toast.success(t("toast.playlist.created"))
         },
     })
 }
@@ -31,6 +33,7 @@ export function useGetPlaylists() {
 
 export function useUpdatePlaylist() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<Anime_Playlist, UpdatePlaylist_Variables>({
         endpoint: API_ENDPOINTS.PLAYLIST.UpdatePlaylist.endpoint,
@@ -38,13 +41,14 @@ export function useUpdatePlaylist() {
         mutationKey: [API_ENDPOINTS.PLAYLIST.UpdatePlaylist.key],
         onSuccess: async () => {
             await queryClient.refetchQueries({ queryKey: [API_ENDPOINTS.PLAYLIST.GetPlaylists.key] })
-            toast.success("Playlist updated")
+            toast.success(t("toast.playlist.updated"))
         },
     })
 }
 
 export function useDeletePlaylist() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, DeletePlaylist_Variables>({
         endpoint: API_ENDPOINTS.PLAYLIST.DeletePlaylist.endpoint,
@@ -52,7 +56,7 @@ export function useDeletePlaylist() {
         mutationKey: [API_ENDPOINTS.PLAYLIST.DeletePlaylist.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.PLAYLIST.GetPlaylists.key] })
-            toast.success("Playlist deleted")
+            toast.success(t("toast.playlist.deleted"))
         },
     })
 }

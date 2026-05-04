@@ -17,6 +17,7 @@ import {
     Nullish,
 } from "@/api/generated/types"
 import { useQueryClient } from "@tanstack/react-query"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
 export function useGetAnimeCollection() {
@@ -48,13 +49,14 @@ export function useGetRawAnimeCollectionTags() {
 
 export function useRefreshAnimeCollection() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<AL_AnimeCollection>({
         endpoint: API_ENDPOINTS.ANILIST.GetAnimeCollection.endpoint,
         method: API_ENDPOINTS.ANILIST.GetAnimeCollection.methods[1],
         mutationKey: [API_ENDPOINTS.ANILIST.GetAnimeCollection.key],
         onSuccess: async () => {
-            toast.success("AniList is up-to-date")
+            toast.success(t("toast.anilist.upToDate"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANILIST.GetAnimeCollection.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANILIST.GetRawAnimeCollection.key] })
@@ -72,13 +74,14 @@ export function useRefreshAnimeCollection() {
 
 export function useEditAnilistListEntry(id: Nullish<string | number>, type: "anime" | "manga") {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, EditAnilistListEntry_Variables>({
         endpoint: API_ENDPOINTS.ANILIST.EditAnilistListEntry.endpoint,
         method: API_ENDPOINTS.ANILIST.EditAnilistListEntry.methods[0],
         mutationKey: [API_ENDPOINTS.ANILIST.EditAnilistListEntry.key, String(id)],
         onSuccess: async () => {
-            toast.success("Entry updated")
+            toast.success(t("toast.anilist.entryUpdated"))
             if (type === "anime") {
                 await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetAnimeEntry.key, String(id)] })
                 await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })
@@ -107,13 +110,14 @@ export function useGetAnilistAnimeDetails(id: Nullish<number | string>) {
 
 export function useDeleteAnilistListEntry(id: Nullish<string | number>, type: "anime" | "manga", onSuccess: () => void) {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, DeleteAnilistListEntry_Variables>({
         endpoint: API_ENDPOINTS.ANILIST.DeleteAnilistListEntry.endpoint,
         method: API_ENDPOINTS.ANILIST.DeleteAnilistListEntry.methods[0],
         mutationKey: [API_ENDPOINTS.ANILIST.DeleteAnilistListEntry.key],
         onSuccess: async () => {
-            toast.success("Entry deleted")
+            toast.success(t("toast.anilist.entryDeleted"))
             if (type === "anime") {
                 await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetAnimeEntry.key, String(id)] })
                 await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })

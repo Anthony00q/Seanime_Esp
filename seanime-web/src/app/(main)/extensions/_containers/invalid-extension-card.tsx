@@ -11,6 +11,7 @@ import { Button, IconButton } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { Modal } from "@/components/ui/modal"
 import React from "react"
+import { createTranslator } from "@/locales"
 import { BiCog, BiInfoCircle } from "react-icons/bi"
 import { FaCode } from "react-icons/fa"
 import { LuRefreshCcw, LuShieldCheck } from "react-icons/lu"
@@ -23,6 +24,7 @@ type InvalidExtensionCardProps = {
 
 export function InvalidExtensionCard(props: InvalidExtensionCardProps) {
 
+    const t = createTranslator("es")
     const {
         extension,
         isInstalled,
@@ -96,7 +98,7 @@ export function InvalidExtensionCard(props: InvalidExtensionCardProps) {
                     intent="gray-basic"
                     icon={<LuRefreshCcw />}
                     onClick={() => {
-                        if (!extension.extension?.id) return toast.error("Extension has no ID")
+                        if (!extension.extension?.id) return toast.error(t("extensions.toast.extensionHasNoId"))
                         reloadExternalExtension({ id: extension.extension?.id ?? "" })
                     }}
                     disabled={isReloadingExtension}
@@ -166,6 +168,7 @@ type UnauthorizedExtensionPluginCardProps = {
 
 export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPluginCardProps) {
 
+    const t = createTranslator("es")
     const {
         extension,
         isInstalled,
@@ -270,7 +273,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                         intent="success-subtle"
                         leftIcon={<LuShieldCheck className="size-5" />}
                         onClick={() => {
-                            if (!extension.extension?.id) return toast.error("Extension has no ID")
+                            if (!extension.extension?.id) return toast.error(t("extensions.toast.extensionHasNoId"))
                             pendingGrantRef.current = true
                             React.startTransition(() => {
                                 grantPluginPermissions({ id: extension.extension?.id ?? "", clientId: "" })

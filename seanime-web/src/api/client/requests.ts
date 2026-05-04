@@ -1,6 +1,7 @@
 import { getServerBaseUrl } from "@/api/client/server-url"
 import { SERVER_AUTH_TOKEN_STORAGE_KEY, serverAuthTokenAtom } from "@/app/(main)/_atoms/server-status.atoms"
 import { getClientId, getClientIdProof, setClientIdentity } from "@/lib/server/client-id"
+import { createTranslator } from "@/locales"
 import { __clientPlatform__ } from "@/types/constants"
 import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from "@tanstack/react-query"
 import axios, { AxiosError } from "axios"
@@ -189,6 +190,7 @@ export function useServerMutation<R = void, V = void>(
         ...options
     }: ServerMutationProps<R, V>) {
 
+    const t = createTranslator("es")
     const password = useAtomValue(serverAuthTokenAtom)
 
     return useMutation<R | undefined, SeaError, V>({
@@ -200,7 +202,7 @@ export function useServerMutation<R = void, V = void>(
             console.log("Mutation error", error)
             const errorMsg = _handleSeaError(error.response?.data)
             if (errorMsg.includes("feature disabled")) {
-                toast.warning("This feature is disabled")
+                toast.warning(t("toast.client.featureDisabled"))
                 return
             }
             toast.error(errorMsg)
@@ -279,6 +281,7 @@ export function useServerQuery<R, V = any>(
 //----------------------------------------------------------------------------------------------------------------------
 
 function _handleSeaError(data: any): string {
+    const t = createTranslator("es")
     if (typeof data === "string") return "Server Error: " + data
 
     const err = data?.error as string
@@ -286,25 +289,26 @@ function _handleSeaError(data: any): string {
     if (!err) return "Unknown error"
 
     if (err.includes("Too many requests"))
-        return "AniList: Too many requests, please wait a moment and try again."
+        return t("toast.client.anilistRateLimit")
 
     try {
         const graphqlErr = JSON.parse(err) as any
         console.log("AniList error", graphqlErr)
         if (graphqlErr.graphqlErrors && graphqlErr.graphqlErrors.length > 0 && !!graphqlErr.graphqlErrors[0]?.message) {
-            return "AniList error: " + graphqlErr.graphqlErrors[0]?.message
+            return t("toast.client.anilistError", { error: graphqlErr.graphqlErrors[0]?.message })
         }
-        return "AniList error"
+        return t("toast.client.anilistError", { error: "" })
     }
     catch (e) {
         if (err.includes("no cached data") || err.includes("cache lookup failed")) {
             return ""
         }
-        return "Error: " + err
+        return t("toast.client.error", { error: err })
     }
 }
 
 function _handleSeaResponse<T>(res: unknown): { data: T | undefined, error: string | undefined } {
+    const t = createTranslator("es")
 
     if (typeof res === "object" && !!res && "error" in res && typeof res.error === "string") {
         return { data: undefined, error: res.error }
@@ -313,6 +317,6 @@ function _handleSeaResponse<T>(res: unknown): { data: T | undefined, error: stri
         return { data: res.data as T, error: undefined }
     }
 
-    return { data: undefined, error: "No response from the server" }
+    return { data: undefined, error: t("toast.client.noResponse") }
 
 }

@@ -1,4 +1,5 @@
 import { useServerMutation, useServerQuery } from "@/api/client/requests"
+import { createTranslator } from "@/locales"
 import {
     DeleteMangaDownloadedChapters_Variables,
     DownloadMangaChapters_Variables,
@@ -43,6 +44,7 @@ export function useGetMangaDownloadQueue() {
 
 export function useStartMangaDownloadQueue() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.MANGA_DOWNLOAD.StartMangaDownloadQueue.endpoint,
@@ -50,13 +52,14 @@ export function useStartMangaDownloadQueue() {
         mutationKey: [API_ENDPOINTS.MANGA_DOWNLOAD.StartMangaDownloadQueue.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA_DOWNLOAD.GetMangaDownloadQueue.key] })
-            toast.info("Downloading chapters")
+            toast.info(t("toast.mangaDownload.downloading"))
         },
     })
 }
 
 export function useStopMangaDownloadQueue() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.MANGA_DOWNLOAD.StopMangaDownloadQueue.endpoint,
@@ -64,13 +67,14 @@ export function useStopMangaDownloadQueue() {
         mutationKey: [API_ENDPOINTS.MANGA_DOWNLOAD.StopMangaDownloadQueue.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA_DOWNLOAD.GetMangaDownloadQueue.key] })
-            toast.success("Download queue stopped")
+            toast.success(t("toast.mangaDownload.queueStopped"))
         },
     })
 }
 
 export function useClearAllChapterDownloadQueue() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.MANGA_DOWNLOAD.ClearAllChapterDownloadQueue.endpoint,
@@ -78,13 +82,14 @@ export function useClearAllChapterDownloadQueue() {
         mutationKey: [API_ENDPOINTS.MANGA_DOWNLOAD.ClearAllChapterDownloadQueue.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA_DOWNLOAD.GetMangaDownloadQueue.key] })
-            toast.success("Download queue cleared")
+            toast.success(t("toast.mangaDownload.queueCleared"))
         },
     })
 }
 
 export function useResetErroredChapterDownloadQueue() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.MANGA_DOWNLOAD.ResetErroredChapterDownloadQueue.endpoint,
@@ -92,20 +97,21 @@ export function useResetErroredChapterDownloadQueue() {
         mutationKey: [API_ENDPOINTS.MANGA_DOWNLOAD.ResetErroredChapterDownloadQueue.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA_DOWNLOAD.GetMangaDownloadQueue.key] })
-            toast.success("Reset errored chapters")
+            toast.success(t("toast.mangaDownload.erroredReset"))
         },
     })
 }
 
 export function useDeleteMangaDownloadedChapters(id: Nullish<string | number>, provider: string | null) {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
     return useServerMutation<boolean, DeleteMangaDownloadedChapters_Variables>({
         endpoint: API_ENDPOINTS.MANGA_DOWNLOAD.DeleteMangaDownloadedChapters.endpoint,
         method: API_ENDPOINTS.MANGA_DOWNLOAD.DeleteMangaDownloadedChapters.methods[0],
         mutationKey: [API_ENDPOINTS.MANGA_DOWNLOAD.DeleteMangaDownloadedChapters.key, String(id), provider],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA_DOWNLOAD.GetMangaDownloadData.key] })
-            toast.success("Chapters deleted")
+            toast.success(t("toast.mangaDownload.chaptersDeleted"))
         },
     })
 }

@@ -12,7 +12,10 @@ import { useSelectedMangaProvider } from "@/app/(main)/manga/_lib/handle-manga-s
 import { atom } from "jotai"
 import { useAtomValue, useSetAtom } from "jotai/react"
 import React from "react"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 /**
  * Stores fetched manga download data
@@ -102,7 +105,7 @@ export function useHandleDownloadMangaChapter(mediaId: string | undefined | null
                     startNow: false,
                 }, {
                     onSuccess: () => {
-                        toast.success("Chapters added to download queue")
+                        toast.success(t("manga.chaptersAddedToDownloadQueue"))
                     },
                 })
             }

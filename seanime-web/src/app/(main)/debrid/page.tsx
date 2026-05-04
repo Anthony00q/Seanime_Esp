@@ -18,9 +18,6 @@ import { Modal } from "@/components/ui/modal"
 import { Tooltip } from "@/components/ui/tooltip"
 import { WSEvents } from "@/lib/server/ws-events"
 import { formatDate } from "date-fns"
-import { createTranslator } from "@/locales"
-
-const t = createTranslator("es")
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import capitalize from "lodash/capitalize"
@@ -30,6 +27,9 @@ import { FcFolder } from "react-icons/fc"
 import { FiDownload } from "react-icons/fi"
 import { HiFolderDownload } from "react-icons/hi"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 
 function getServiceName(provider: string) {
@@ -129,7 +129,7 @@ function Content() {
                         leftIcon={<BiRefresh className="text-2xl" />}
                         onClick={() => {
                             refetch()
-                            toast.info("Refreshed")
+                            toast.info(t("debridPage.refreshed"))
                         }}
                     >Refresh</Button>
                     {!!getDashboardLink(serverStatus?.debridSettings?.provider!) && (

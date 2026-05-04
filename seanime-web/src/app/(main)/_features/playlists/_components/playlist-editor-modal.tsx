@@ -6,7 +6,10 @@ import { DangerZone } from "@/components/ui/form"
 import { Modal } from "@/components/ui/modal"
 import { TextInput } from "@/components/ui/text-input"
 import React from "react"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 type PlaylistEditorModalProps = {
     libraryCollection: Anime_LibraryCollection | undefined
@@ -47,7 +50,7 @@ export function PlaylistEditorModal(props: PlaylistEditorModalProps) {
 
     function handleSubmit() {
         if (name.length === 0) {
-            toast.error("Please enter a name for the playlist")
+            toast.error(t("playlists.pleaseEnterPlaylistName"))
             return
         }
         if (isUpdate && !!playlist) {

@@ -6,11 +6,14 @@ import { useHandleStartDebridStream } from "@/app/(main)/entry/_containers/debri
 import { useHandleStartTorrentStream } from "@/app/(main)/entry/_containers/torrent-stream/_lib/handle-torrent-stream"
 import { useHandlePlayMedia } from "@/app/(main)/entry/_lib/handle-play-media"
 import { logger } from "@/lib/helpers/debug"
+import { createTranslator } from "@/locales"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import { atomWithStorage } from "jotai/utils"
 import React, { useState } from "react"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 const __autoplay_countdownAtom = atom(5)
 export const __autoplay_nextEpisodeAtom = atom<Anime_Episode | null>(null)
@@ -125,7 +128,7 @@ export function useTorrentstreamAutoplay() {
             } else {
                 setInfo(null)
             }
-            toast.info("Requesting next episode")
+            toast.info(t("autoplay.requestingNextEpisode"))
         }
 
     }
@@ -194,7 +197,7 @@ export function useDebridstreamAutoplay() {
             setInfo(null)
         }
 
-        toast.info("Requesting next episode")
+        toast.info(t("autoplay.requestingNextEpisode"))
     }
 
 
@@ -348,7 +351,7 @@ export function useAutoplay() {
                             mediaId: playbackState.mediaId,
                             episode: episode,
                         })
-                        toast.info("Playing next episode")
+                        toast.info(t("autoplay.playingNextEpisode"))
                     }
                     break
                 case "torrent":
@@ -363,7 +366,7 @@ export function useAutoplay() {
         }
         catch (error) {
             logger("Autoplay").error("Error executing autoplay", error)
-            toast.error("Failed to play next episode")
+            toast.error(t("autoplay.failedToPlayNextEpisode"))
         }
         finally {
             logger("Autoplay").info("Autoplay execution finished, resetting state")

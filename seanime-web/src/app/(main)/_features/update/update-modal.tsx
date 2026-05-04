@@ -20,6 +20,7 @@ import { AiFillExclamationCircle } from "react-icons/ai"
 import { BiDownload, BiLinkExternal } from "react-icons/bi"
 import { FiArrowRight } from "react-icons/fi"
 import { GrInstall } from "react-icons/gr"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
 type UpdateModalProps = {
@@ -145,6 +146,7 @@ type DownloaderProps = {
 }
 
 export function Downloader(props: DownloaderProps) {
+    const t = createTranslator("es")
 
     const [downloaderOpen, setDownloaderOpen] = useAtom(downloaderOpenAtom)
     const [destination, setDestination] = React.useState<string>("")
@@ -160,7 +162,7 @@ export function Downloader(props: DownloaderProps) {
 
     function handleDownloadRelease() {
         if (!asset || !destination) {
-            return toast.error("Missing options")
+            return toast.error(t("update.missingOptions"))
         }
         mutate({ destination, download_url: asset }, {
             onSuccess: () => {

@@ -36,7 +36,10 @@ import { FaSquareRss } from "react-icons/fa6"
 import { LuTrash } from "react-icons/lu"
 import { MdOutlineAdd } from "react-icons/md"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 import { z } from "zod"
+
+const t = createTranslator("es")
 
 const tabContentClass = cn(
     "space-y-4 animate-in fade-in-0 duration-300",
@@ -46,7 +49,7 @@ const settingsSchema = defineSchema(({ z, presets }) => z.object({
     provider: presets.multiSelect,
     interval: z.number().transform(n => {
         if (n < 15) {
-            toast.info("Interval changed to be at least 15 minutes")
+            toast.info(t("autoDownloader.intervalChanged15Min"))
             return 15
         }
         return n
