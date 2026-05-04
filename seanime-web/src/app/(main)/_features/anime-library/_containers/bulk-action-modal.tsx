@@ -5,6 +5,7 @@ import { AppLayoutStack } from "@/components/ui/app-layout"
 import { Button } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
 import { atom, useAtom } from "jotai"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { BiLockAlt, BiLockOpenAlt } from "react-icons/bi"
 import { toast } from "sonner"
@@ -13,6 +14,7 @@ export const __bulkAction_modalAtomIsOpen = atom<boolean>(false)
 
 export function BulkActionModal() {
 
+    const t = createTranslator("es")
     const [isOpen, setIsOpen] = useAtom(__bulkAction_modalAtomIsOpen)
 
     const { mutate: performBulkAction, isPending } = useLocalFileBulkAction()
@@ -23,7 +25,7 @@ export function BulkActionModal() {
         }, {
             onSuccess: () => {
                 setIsOpen(false)
-                toast.success("Files locked")
+                toast.success(t("animeLibrary.filesLocked"))
             },
         })
     }
@@ -34,7 +36,7 @@ export function BulkActionModal() {
         }, {
             onSuccess: () => {
                 setIsOpen(false)
-                toast.success("Files unlocked")
+                toast.success(t("animeLibrary.filesUnlocked"))
             },
         })
     }

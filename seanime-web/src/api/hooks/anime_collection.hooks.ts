@@ -5,6 +5,7 @@ import { AL_AnimeCollection, Anime_LibraryCollection, Anime_ScheduleItem } from 
 import { useRefreshAnimeCollection } from "@/api/hooks/anilist.hooks"
 import { useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useGetLibraryCollection({ enabled }: { enabled?: boolean } = { enabled: true }) {
     return useServerQuery<Anime_LibraryCollection>({
@@ -18,13 +19,14 @@ export function useGetLibraryCollection({ enabled }: { enabled?: boolean } = { e
 export function useAddUnknownMedia() {
     const queryClient = useQueryClient()
     const { mutate } = useRefreshAnimeCollection()
+    const t = createTranslator("es")
 
     return useServerMutation<AL_AnimeCollection, AddUnknownMedia_Variables>({
         endpoint: API_ENDPOINTS.ANIME_COLLECTION.AddUnknownMedia.endpoint,
         method: API_ENDPOINTS.ANIME_COLLECTION.AddUnknownMedia.methods[0],
         mutationKey: [API_ENDPOINTS.ANIME_COLLECTION.AddUnknownMedia.key],
         onSuccess: async () => {
-            toast.success("Media added successfully")
+            toast.success(t("toast.animeCollection.mediaAdded"))
             mutate(undefined, {
                 onSuccess: () => {
                     queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.LIBRARY_EXPLORER.GetLibraryExplorerFileTree.key] })

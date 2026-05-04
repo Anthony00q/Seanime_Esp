@@ -5,12 +5,14 @@ import { Status } from "@/api/generated/types"
 import { useSetServerStatus } from "@/app/(main)/_hooks/use-server-status"
 import { useRouter } from "@/lib/navigation"
 import { useQueryClient } from "@tanstack/react-query"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
 export function useLogin() {
     const queryClient = useQueryClient()
     const router = useRouter()
     const setServerStatus = useSetServerStatus()
+    const t = createTranslator("es")
 
     return useServerMutation<Status, Login_Variables>({
         endpoint: API_ENDPOINTS.AUTH.Login.endpoint,
@@ -18,7 +20,7 @@ export function useLogin() {
         mutationKey: [API_ENDPOINTS.AUTH.Login.key],
         onSuccess: async data => {
             if (data) {
-                toast.success("Successfully authenticated")
+                toast.success(t("toast.auth.authenticated"))
                 await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })
                 await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANILIST.GetRawAnimeCollection.key] })
                 await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANILIST.GetRawAnimeCollectionTags.key] })
@@ -44,6 +46,7 @@ export function useLogout() {
     const queryClient = useQueryClient()
     const router = useRouter()
     const setServerStatus = useSetServerStatus()
+    const t = createTranslator("es")
 
     return useServerMutation<Status>({
         endpoint: API_ENDPOINTS.AUTH.Logout.endpoint,
@@ -53,7 +56,7 @@ export function useLogout() {
             if (data) {
                 setServerStatus(data)
             }
-            toast.success("Successfully logged out")
+            toast.success(t("toast.auth.loggedOut"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANILIST.GetRawAnimeCollection.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANILIST.GetRawAnimeCollectionTags.key] })

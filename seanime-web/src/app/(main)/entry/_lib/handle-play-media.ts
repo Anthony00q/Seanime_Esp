@@ -17,10 +17,13 @@ import { ExternalPlayerLink } from "@/lib/external-player-link/external-player-l
 import { openTab } from "@/lib/helpers/browser"
 import { logger } from "@/lib/helpers/debug"
 import { useRouter } from "@/lib/navigation"
+import { createTranslator } from "@/locales"
 import { __isElectronDesktop__ } from "@/types/constants"
 import { useAtomValue, useSetAtom } from "jotai"
 import React from "react"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 export function useHandlePlayMedia() {
     const router = useRouter()
@@ -120,7 +123,7 @@ export function useHandlePlayMedia() {
             (forcePlaybackMethod && forcePlaybackMethod === "externalPlayerLink")
         ) {
             if (!externalPlayerLink) {
-                toast.error("External player link is not set.")
+                toast.error(t("mediaLinks.externalPlayerLinkNotSet"))
                 return
             }
 

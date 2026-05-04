@@ -1,4 +1,5 @@
 import { useServerMutation, useServerQuery } from "@/api/client/requests"
+import { createTranslator } from "@/locales"
 import {
     GetOnlineStreamEpisodeList_Variables,
     GetOnlineStreamEpisodeSource_Variables,
@@ -59,6 +60,7 @@ export function useGetOnlineStreamEpisodeSource(id: Nullish<string | number>,
 
 export function useOnlineStreamEmptyCache() {
     const qc = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, OnlineStreamEmptyCache_Variables>({
         endpoint: API_ENDPOINTS.ONLINESTREAM.OnlineStreamEmptyCache.endpoint,
@@ -68,7 +70,7 @@ export function useOnlineStreamEmptyCache() {
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ONLINESTREAM.GetOnlinestreamMapping.key] })
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ONLINESTREAM.GetOnlineStreamEpisodeList.key] })
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ONLINESTREAM.GetOnlineStreamEpisodeSource.key] })
-            toast.info("Stream cache emptied")
+            toast.info(t("toast.onlinestream.cacheEmptied"))
         },
     })
 }
@@ -88,12 +90,13 @@ export function useOnlinestreamManualSearch(mId: number, provider: Nullish<strin
 
 export function useOnlinestreamManualMapping() {
     const qc = useQueryClient()
+    const t = createTranslator("es")
     return useServerMutation<boolean, OnlinestreamManualMapping_Variables>({
         endpoint: API_ENDPOINTS.ONLINESTREAM.OnlinestreamManualMapping.endpoint,
         method: API_ENDPOINTS.ONLINESTREAM.OnlinestreamManualMapping.methods[0],
         mutationKey: [API_ENDPOINTS.ONLINESTREAM.OnlinestreamManualMapping.key],
         onSuccess: async () => {
-            toast.success("Mapping added")
+            toast.success(t("toast.onlinestream.mappingAdded"))
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ONLINESTREAM.GetOnlinestreamMapping.key] })
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ONLINESTREAM.GetOnlineStreamEpisodeList.key] })
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ONLINESTREAM.GetOnlineStreamEpisodeSource.key] })
@@ -113,13 +116,14 @@ export function useGetOnlinestreamMapping(variables: Partial<GetOnlinestreamMapp
 
 export function useRemoveOnlinestreamMapping() {
     const qc = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, RemoveOnlinestreamMapping_Variables>({
         endpoint: API_ENDPOINTS.ONLINESTREAM.RemoveOnlinestreamMapping.endpoint,
         method: API_ENDPOINTS.ONLINESTREAM.RemoveOnlinestreamMapping.methods[0],
         mutationKey: [API_ENDPOINTS.ONLINESTREAM.RemoveOnlinestreamMapping.key],
         onSuccess: async () => {
-            toast.info("Mapping removed")
+            toast.info(t("toast.onlinestream.mappingRemoved"))
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ONLINESTREAM.GetOnlinestreamMapping.key] })
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ONLINESTREAM.GetOnlineStreamEpisodeList.key] })
             await qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ONLINESTREAM.GetOnlineStreamEpisodeSource.key] })

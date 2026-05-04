@@ -42,8 +42,11 @@ import { LuSettings } from "react-icons/lu"
 import { MdMenuBook, MdOutlinePhotoSizeSelectLarge } from "react-icons/md"
 import { PiArrowCircleLeftDuotone, PiArrowCircleRightDuotone, PiReadCvLogoLight, PiScrollDuotone } from "react-icons/pi"
 import { TbArrowAutofitHeight } from "react-icons/tb"
+import { createTranslator } from "@/locales"
 import { useWindowSize } from "react-use"
 import { toast } from "sonner"
+
+const t = createTranslator("es")
 
 export type ChapterReaderSettingsProps = {
     mediaId: number
@@ -319,7 +322,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
     React.useEffect(() => {
         if (readingMode === MangaReadingMode.DOUBLE_PAGE && width < 950) {
             setReadingMode(prev => {
-                toast.error("Double page mode is not supported on small screens.")
+                toast.error(t("manga.doublePageModeNotSupported"))
                 return MangaReadingMode.LONG_STRIP
             })
         }
@@ -327,7 +330,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
 
     function handleSetReadingMode(mode: string) {
         if (mode === MangaReadingMode.DOUBLE_PAGE && width < 950) {
-            toast.error("Double page mode is not supported on small screens.")
+            toast.error(t("manga.doublePageModeNotSupported"))
             return
         }
         setReadingMode(mode)

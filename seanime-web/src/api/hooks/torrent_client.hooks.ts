@@ -10,6 +10,7 @@ import { HibikeTorrent_AnimeTorrent, Nullish, TorrentClient_Torrent } from "@/ap
 import { useQueryClient } from "@tanstack/react-query"
 import React from "react"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useGetActiveTorrentList(enabled: boolean, category: string, sort: string) {
     const query = React.useMemo(() => {
@@ -31,6 +32,7 @@ export function useGetActiveTorrentList(enabled: boolean, category: string, sort
 
 export function useTorrentClientAction(onSuccess?: () => void) {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, TorrentClientAction_Variables>({
         endpoint: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientAction.endpoint,
@@ -38,19 +40,20 @@ export function useTorrentClientAction(onSuccess?: () => void) {
         mutationKey: [API_ENDPOINTS.TORRENT_CLIENT.TorrentClientAction.key],
         onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.TORRENT_CLIENT.GetActiveTorrentList.key] })
-            toast.success("Action performed")
+            toast.success(t("toast.torrentClient.actionPerformed"))
             onSuccess?.()
         },
     })
 }
 
 export function useTorrentClientDownload(onSuccess?: () => void) {
+    const t = createTranslator("es")
     return useServerMutation<boolean, TorrentClientDownload_Variables>({
         endpoint: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientDownload.endpoint,
         method: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientDownload.methods[0],
         mutationKey: [API_ENDPOINTS.TORRENT_CLIENT.TorrentClientDownload.key],
         onSuccess: async () => {
-            toast.success("Download started")
+            toast.success(t("toast.torrentClient.downloadStarted"))
             onSuccess?.()
         },
     })
@@ -58,13 +61,14 @@ export function useTorrentClientDownload(onSuccess?: () => void) {
 
 export function useTorrentClientAddMagnetFromRule() {
     const queryClient = useQueryClient()
+    const t = createTranslator("es")
 
     return useServerMutation<boolean, TorrentClientAddMagnetFromRule_Variables>({
         endpoint: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientAddMagnetFromRule.endpoint,
         method: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientAddMagnetFromRule.methods[0],
         mutationKey: [API_ENDPOINTS.TORRENT_CLIENT.TorrentClientAddMagnetFromRule.key],
         onSuccess: async () => {
-            toast.success("Download started")
+            toast.success(t("toast.torrentClient.downloadStarted"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderItems.key] })
         },
     })

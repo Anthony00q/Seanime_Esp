@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { cn } from "@/components/ui/core/styling"
 import { Tooltip } from "@/components/ui/tooltip"
 import { usePathname, useRouter } from "@/lib/navigation"
+import { createTranslator } from "@/locales"
 import { useQueryClient } from "@tanstack/react-query"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
@@ -88,6 +89,7 @@ const __issueReport_navigationLogsAtom = atom<NavigationLog[]>([])
 const __issueReport_screenshotsAtom = atom<ScreenshotEntry[]>([])
 
 export function IssueReport() {
+    const t = createTranslator("es")
     const router = useRouter()
     const pathname = usePathname()
     const queryClient = useQueryClient()
@@ -206,7 +208,7 @@ export function IssueReport() {
         }
         catch (err) {
             console.error("Failed to start rrweb recording:", err)
-            toast.error("Failed to start DOM recording")
+            toast.error(t("issueReport.failedToStartDomRecording"))
         }
     }, [])
 
@@ -580,7 +582,7 @@ export function IssueReport() {
         const canvas = document.createElement("canvas")
         const ctx = canvas.getContext("2d")
         if (!ctx) {
-            toast.error("Unable to capture screenshot")
+            toast.error(t("issueReport.unableToCaptureScreenshot"))
             return
         }
 
@@ -626,7 +628,7 @@ export function IssueReport() {
             pageUrl: window.location.href.replace(window.location.host, "{client}"),
             timestamp: new Date().toISOString(),
         }])
-        toast.success("Screenshot added to report")
+        toast.success(t("issueReport.screenshotAdded"))
     }
 
     const { password, getHMACTokenQueryParam } = useServerHMACAuth()
@@ -702,14 +704,18 @@ export function IssueReport() {
             })
             setDownloadingReport(true)
             await downloadIssueReport()
-            toast.success("Issue report saved successfully")
+            toast.success(t("issueReport.issueReportSaved"))
         }
         catch (error) {
             if (typeof error === "object" && error !== null && "isAxiosError" in error) {
                 return
             }
             if (error instanceof Error && error.message) {
-                toast.error(error.message)
+                if (error.message === "failed to generate download token") {
+                    toast.error(t("issueReport.failedToGenerateDownloadToken"))
+                } else {
+                    toast.error(error.message)
+                }
             }
         }
         finally {
