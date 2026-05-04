@@ -16,9 +16,7 @@
       "actions": {
         "addMissingExtensions": "Añadir extensiones faltantes",
         "noTorrentProviders": "No hay proveedores de torrent instalados.",
-        "refresh": "Actualizar",
         "refreshTooltip": "Actualizar Biblioteca de Anime",
-        "scan": "Escanear",
         "scanTooltip": "Escanear Biblioteca de Anime"
       },
       "navigation": {
@@ -80,19 +78,8 @@
       "tooltip": "Ajustes de Inicio"
     },
     "carousel": {
-      "anime": {
-        "currentlyWatching": "Viendo actualmente",
-        "repeating": "Repitiendo",
-        "planning": "Planeando",
-        "paused": "Pausado",
-        "completed": "Completado",
-        "dropped": "Abandonado"
-      },
-      "manga": {
-        "currentlyReading": "Leyendo actualmente",
-        "paused": "Pausado",
-        "completed": "Completado"
-      }
+      "anime": {},
+      "manga": {}
     },
     "stats": {
       "library": "Biblioteca",
@@ -213,15 +200,6 @@
           "label": "Diseño",
           "grid": "Cuadrícula",
           "carousel": "Carrusel"
-        },
-        "state": {
-          "label": "Estado",
-          "current": "Actual",
-          "repeating": "Repitiendo",
-          "paused": "Pausado",
-          "planning": "Planeando",
-          "completed": "Completado",
-          "dropped": "Abandonado"
         },
         "type": {
           "label": "Tipo",

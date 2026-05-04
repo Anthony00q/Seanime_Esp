@@ -14,6 +14,7 @@ import { useDebounce } from "@/hooks/use-debounce"
 import { anilist_animeIsMovie } from "@/lib/helpers/media"
 import { useRouter } from "@/lib/navigation"
 import { ThemeLibraryScreenBannerType, useThemeSettings } from "@/lib/theme/theme-hooks"
+import { createTranslator } from "@/locales"
 import { useWindowSize } from "@uidotdev/usehooks"
 import { atom } from "jotai"
 import { useAtom, useSetAtom } from "jotai/react"
@@ -31,6 +32,7 @@ export function ContinueWatching({ episodes, isLoading, linkTemplate, withTitle 
 
     const router = useRouter()
     const ts = useThemeSettings()
+    const t = createTranslator("es")
 
     const { data: watchHistory } = useGetContinuityWatchHistory()
 
@@ -113,7 +115,7 @@ export function ContinueWatching({ episodes, isLoading, linkTemplate, withTitle 
                 data: episode,
                 id: `${episode.localFile?.path || episode.baseAnime?.title?.userPreferred || ""}-${episode.episodeNumber || 1}`,
                 value: `${episode.episodeNumber || 1}`,
-                heading: "Continue Watching",
+                heading: t("continueWatching.heading"),
                 priority: 100,
                 render: () => (
                     <>
@@ -153,7 +155,7 @@ export function ContinueWatching({ episodes, isLoading, linkTemplate, withTitle 
 
     if (episodes.length > 0) return (
         <PageWrapper className="space-y-3 lg:space-y-6 p-4 relative z-[4]" data-continue-watching-container>
-            <h2 data-continue-watching-title>Continue watching</h2>
+            <h2 data-continue-watching-title>{t("continueWatching.title")}</h2>
             {(ts.libraryScreenBannerType === ThemeLibraryScreenBannerType.Dynamic && headerEpisode?.baseAnime && withTitle) && <TextGenerateEffect
                 data-continue-watching-media-title
                 words={headerEpisode?.baseAnime?.title?.userPreferred || ""}

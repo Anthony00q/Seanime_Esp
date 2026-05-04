@@ -191,10 +191,10 @@ export function ScheduleCalendar(props: ScheduleCalendarProps) {
                         {isUserSchedule && <>
                             <CheckboxGroup
                                 label={t("schedule.status")} options={[
-                                { label: t("schedule.watching"), value: "CURRENT" },
-                                { label: t("schedule.planning"), value: "PLANNING" },
-                                { label: t("schedule.completed"), value: "COMPLETED" },
-                                { label: t("schedule.paused"), value: "PAUSED" },
+                                { label: t("status.current"), value: "CURRENT" },
+                                { label: t("status.planning"), value: "PLANNING" },
+                                { label: t("status.completed"), value: "COMPLETED" },
+                                { label: t("status.paused"), value: "PAUSED" },
                             ]} value={calendarParams.listStatuses} onValueChange={v => setCalendarParams(draft => {
                                 draft.listStatuses = v as AL_MediaListStatus[]
                                 return

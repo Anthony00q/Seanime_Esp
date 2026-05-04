@@ -207,23 +207,23 @@ export const HOME_ITEMS: Record<string, HomeItemSchema> = {
                 options: [
                     {
                         value: "CURRENT",
-                        label: t("home.carousel.anime.currentlyWatching"),
+                        label: t("status.currentlyWatching"),
                     },
                     {
                         value: "PAUSED",
-                        label: t("home.items.options.state.paused"),
+                        label: t("status.paused"),
                     },
                     {
                         value: "PLANNING",
-                        label: t("home.items.options.state.planning"),
+                        label: t("status.planning"),
                     },
                     {
                         value: "COMPLETED",
-                        label: t("home.items.options.state.completed"),
+                        label: t("status.completed"),
                     },
                     {
                         value: "DROPPED",
-                        label: t("home.items.options.state.dropped"),
+                        label: t("status.dropped"),
                     },
                 ],
             },
@@ -257,27 +257,27 @@ export const HOME_ITEMS: Record<string, HomeItemSchema> = {
                 options: [
                     {
                         value: "CURRENT",
-                        label: t("home.items.options.state.current"),
+                        label: t("status.current"),
                     },
                     {
                         value: "REPEATING",
-                        label: t("home.items.options.state.repeating"),
+                        label: t("status.repeating"),
                     },
                     {
                         value: "PAUSED",
-                        label: t("home.items.options.state.paused"),
+                        label: t("status.paused"),
                     },
                     {
                         value: "PLANNING",
-                        label: t("home.items.options.state.planning"),
+                        label: t("status.planning"),
                     },
                     {
                         value: "COMPLETED",
-                        label: t("home.items.options.state.completed"),
+                        label: t("status.completed"),
                     },
                     {
                         value: "DROPPED",
-                        label: t("home.items.options.state.dropped"),
+                        label: t("status.dropped"),
                     },
                 ],
             },
@@ -438,11 +438,11 @@ export const HOME_ITEMS: Record<string, HomeItemSchema> = {
                 options: [
                     {
                         value: "CURRENT",
-                        label: t("home.carousel.manga.currentlyReading"),
+                        label: t("status.currentlyReading"),
                     },
                     {
                         value: "PAUSED",
-                        label: t("home.items.options.state.paused"),
+                        label: t("status.paused"),
                     },
                 ],
             },

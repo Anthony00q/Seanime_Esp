@@ -39,6 +39,7 @@ import { FcFolder } from "react-icons/fc"
 import { LuTextCursorInput } from "react-icons/lu"
 import { MdVerified } from "react-icons/md"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 type AutoDownloaderBatchRuleFormProps = {
     onRuleCreated: () => void
@@ -65,6 +66,7 @@ const schema = defineSchema(({ z, presets }) => z.object({
 }))
 
 export function AutoDownloaderBatchRuleForm(props: AutoDownloaderBatchRuleFormProps) {
+    const t = createTranslator("es")
 
     const {
         onRuleCreated,
@@ -124,7 +126,7 @@ export function AutoDownloaderBatchRuleForm(props: AutoDownloaderBatchRuleFormPr
                 onSubmit={handleSave}
                 onError={errors => {
                     console.log(errors)
-                    toast.error("An error occurred, verify the fields.")
+                    toast.error(t("autoDownloader.errorOccurred"))
                 }}
                 defaultValues={{
                     enabled: true,
@@ -291,6 +293,7 @@ interface FormValues {
 }
 
 export function MediaArrayField(props: MediaArrayFieldProps) {
+    const t = createTranslator("es")
     const { fields, append, remove, update } = useFieldArray<FormValues>({
         control: props.control,
         name: props.name,
@@ -398,7 +401,7 @@ export function MediaArrayField(props: MediaArrayFieldProps) {
                     onClick={handleAddCurrentlyWatching}
                     leftIcon={<BiPlus />}
                 >
-                    All Currently Watching
+                    {t("autoDownloader.allCurrentlyWatching")}
                 </Button>}
                 {!entriesAdded?.length && <Button
                     intent="gray-subtle"
@@ -406,7 +409,7 @@ export function MediaArrayField(props: MediaArrayFieldProps) {
                     onClick={handleAddUpcoming}
                     leftIcon={<BiPlus />}
                 >
-                    All Upcoming
+                    {t("autoDownloader.allUpcoming")}
                 </Button>}
             </div>
         </div>

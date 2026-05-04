@@ -19,10 +19,12 @@ import { FaCirclePlay } from "react-icons/fa6"
 import { LuPlus } from "react-icons/lu"
 import { MdOutlineVideoLibrary } from "react-icons/md"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function PlaylistListModal() {
     const ts = useThemeSettings()
     const { isModalOpen, setModalOpen, setSelectedMedia, selectedMedia } = usePlaylistEditorManager()
+    const t = createTranslator("es")
 
     const { data: _data, isLoading: isLibraryLoading } = useGetLibraryCollection()
 
@@ -66,7 +68,7 @@ export function PlaylistListModal() {
     React.useEffect(() => {
         if (selectedMedia) {
             if (!allEntries.find(n => n?.mediaId === selectedMedia)) {
-                toast.warning("This anime is not in your library or currently watching collection.")
+                toast.warning(t("playlistEditor.notInLibraryOrWatching"))
                 setSelectedMedia(null)
                 React.startTransition(() => {
                     setModalOpen(false)

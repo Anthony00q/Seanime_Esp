@@ -4,6 +4,7 @@ import { AreaChart, BarChart, DonutChart } from "@/components/ui/charts"
 import { Separator } from "@/components/ui/separator"
 import { Stats } from "@/components/ui/stats"
 import React from "react"
+import { createTranslator } from "@/locales"
 import { FaRegStar } from "react-icons/fa"
 import { FiBookOpen } from "react-icons/fi"
 import { LuHourglass } from "react-icons/lu"
@@ -25,13 +26,15 @@ const formatName: Record<string, string> = {
     MUSIC: "Music",
 }
 
+const t = createTranslator("es")
+
 const statusName: Record<string, string> = {
-    CURRENT: "Current",
-    PLANNING: "Planning",
-    COMPLETED: "Completed",
-    DROPPED: "Dropped",
-    PAUSED: "Paused",
-    REPEATING: "Repeating",
+    CURRENT: t("status.current"),
+    PLANNING: t("status.planning"),
+    COMPLETED: t("status.completed"),
+    DROPPED: t("status.dropped"),
+    PAUSED: t("status.paused"),
+    REPEATING: t("status.repeating"),
 }
 
 export function AnilistStats(props: AnilistStatsProps) {
@@ -75,7 +78,7 @@ export function AnilistStats(props: AnilistStatsProps) {
                 name: item.genre,
                 "Count": item.count,
                 hoursWatched: Math.round(item.minutesWatched / 60),
-                "Average score": Number((item.meanScore / 10).toFixed(1)),
+                [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),
             }
         }).sort((a, b) => b["Count"] - a["Count"])
     }, [stats?.animeStats?.genres])
@@ -96,8 +99,8 @@ export function AnilistStats(props: AnilistStatsProps) {
             return {
                 name: item.releaseYear,
                 "Count": item.count,
-                "Hours watched": Math.round(item.minutesWatched / 60),
-                "Mean score": Number((item.meanScore / 10).toFixed(1)),
+                [t("anilistStats.hoursWatched")]: Math.round(item.minutesWatched / 60),
+                [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),
             }
         })
     }, [stats?.animeStats?.releaseYears])
@@ -125,7 +128,7 @@ export function AnilistStats(props: AnilistStatsProps) {
                 name: item.genre,
                 "Count": item.count,
                 chaptersRead: item.chaptersRead,
-                "Average score": Number((item.meanScore / 10).toFixed(1)),
+                [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),
             }
         }).sort((a, b) => b["Count"] - a["Count"])
     }, [stats?.mangaStats?.genres])
@@ -146,8 +149,8 @@ export function AnilistStats(props: AnilistStatsProps) {
             return {
                 name: item.releaseYear,
                 "Count": item.count,
-                "Chapters read": item.chaptersRead,
-                "Mean score": Number((item.meanScore / 10).toFixed(1)),
+                [t("anilistStats.chaptersRead")]: item.chaptersRead,
+                [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),
             }
         })
     }, [stats?.mangaStats?.releaseYears])
@@ -155,7 +158,7 @@ export function AnilistStats(props: AnilistStatsProps) {
     return (
         <AppLayoutStack className="py-4 space-y-10" data-anilist-stats>
 
-            <h1 className="text-center" data-anilist-stats-anime-title>Anime</h1>
+            <h1 className="text-center" data-anilist-stats-anime-title>{t("anilistStats.anime")}</h1>
 
             <div data-anilist-stats-anime-stats>
                 <Stats
@@ -164,18 +167,18 @@ export function AnilistStats(props: AnilistStatsProps) {
                     items={[
                         {
                             icon: <PiTelevisionSimpleBold />,
-                            name: "Total Anime",
+                            name: t("anilistStats.totalAnime"),
                             value: stats?.animeStats?.count ?? 0,
                         },
                         {
                             icon: <LuHourglass />,
-                            name: "Watch time",
+                            name: t("anilistStats.watchTime"),
                             value: Math.round((stats?.animeStats?.minutesWatched ?? 0) / 60),
-                            unit: "hours",
+                            unit: t("anilistStats.hours"),
                         },
                         {
                             icon: <FaRegStar />,
-                            name: "Average score",
+                            name: t("anilistStats.averageScore"),
                             value: ((stats?.animeStats?.meanScore ?? 0) / 10).toFixed(1),
                         },
                     ]}
@@ -187,27 +190,27 @@ export function AnilistStats(props: AnilistStatsProps) {
                     items={[
                         {
                             icon: <PiTelevisionSimpleBold />,
-                            name: "Anime watched this year",
+                            name: t("anilistStats.animeThisYear"),
                             value: anime_thisYearStats?.count ?? 0,
                         },
                         {
                             icon: <TbHistory />,
-                            name: "Anime watched last year",
+                            name: t("anilistStats.animeLastYear"),
                             value: anime_lastYearStats?.count ?? 0,
                         },
                         {
                             icon: <FaRegStar />,
-                            name: "Average score this year",
+                            name: t("anilistStats.averageScoreThisYear"),
                             value: ((anime_thisYearStats?.meanScore ?? 0) / 10).toFixed(1),
                         },
                     ]}
                 />
             </div>
 
-            <h3 className="text-center" data-anilist-stats-anime-formats-title>Formats</h3>
+            <h3 className="text-center" data-anilist-stats-anime-formats-title>{t("anilistStats.formats")}</h3>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full" data-anilist-stats-anime-formats-container>
-                <ChartContainer legend="Total" data-anilist-stats-anime-formats-container-total>
+                <ChartContainer legend={t("anilistStats.total")} data-anilist-stats-anime-formats-container-total>
                     <DonutChart
                         data={anime_formatsStats}
                         index="name"
@@ -215,7 +218,7 @@ export function AnilistStats(props: AnilistStatsProps) {
                         variant="pie"
                     />
                 </ChartContainer>
-                <ChartContainer legend="Hours watched" data-anilist-stats-anime-formats-container-hours-watched>
+                <ChartContainer legend={t("anilistStats.hoursWatched")} data-anilist-stats-anime-formats-container-hours-watched>
                     <DonutChart
                         data={anime_formatsStats}
                         index="name"
@@ -223,7 +226,7 @@ export function AnilistStats(props: AnilistStatsProps) {
                         variant="pie"
                     />
                 </ChartContainer>
-                <ChartContainer legend="Average score" data-anilist-stats-anime-formats-container-average-score>
+                <ChartContainer legend={t("anilistStats.averageScore")} data-anilist-stats-anime-formats-container-average-score>
                     <DonutChart
                         data={anime_formatsStats}
                         index="name"
@@ -235,10 +238,10 @@ export function AnilistStats(props: AnilistStatsProps) {
 
             <Separator />
 
-            <h3 className="text-center" data-anilist-stats-anime-statuses-title>Statuses</h3>
+            <h3 className="text-center" data-anilist-stats-anime-statuses-title>{t("anilistStats.statuses")}</h3>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full" data-anilist-stats-anime-statuses-container>
-                <ChartContainer legend="Total" data-anilist-stats-anime-statuses-container-total>
+                <ChartContainer legend={t("anilistStats.total")} data-anilist-stats-anime-statuses-container-total>
                     <DonutChart
                         data={anime_statusesStats}
                         index="name"
@@ -246,7 +249,7 @@ export function AnilistStats(props: AnilistStatsProps) {
                         variant="pie"
                     />
                 </ChartContainer>
-                <ChartContainer legend="Hours watched" data-anilist-stats-anime-statuses-container-hours-watched>
+                <ChartContainer legend={t("anilistStats.hoursWatched")} data-anilist-stats-anime-statuses-container-hours-watched>
                     <DonutChart
                         data={anime_statusesStats}
                         index="name"
@@ -261,7 +264,7 @@ export function AnilistStats(props: AnilistStatsProps) {
             <h3 className="text-center" data-anilist-stats-anime-genres-title>Genres</h3>
 
             <div className="grid grid-cols-1 gap-6 w-full" data-anilist-stats-anime-genres-container>
-                <ChartContainer legend="Favorite genres" data-anilist-stats-anime-genres-container-favorite-genres>
+                <ChartContainer legend={t("anilistStats.favoriteGenres")} data-anilist-stats-anime-genres-container-favorite-genres>
                     <BarChart
                         data={anime_genresStats}
                         index="name"
@@ -273,10 +276,10 @@ export function AnilistStats(props: AnilistStatsProps) {
 
             <Separator />
 
-            <h3 className="text-center" data-anilist-stats-anime-years-title>Years</h3>
+            <h3 className="text-center" data-anilist-stats-anime-years-title>{t("anilistStats.years")}</h3>
 
             <div className="grid grid-cols-1 gap-6 w-full" data-anilist-stats-anime-years-container>
-                <ChartContainer legend="Anime watched per release year" data-anilist-stats-anime-years-container-anime-watched-per-release-year>
+                <ChartContainer legend={t("anilistStats.animePerReleaseYear")} data-anilist-stats-anime-years-container-anime-watched-per-release-year>
                     <AreaChart
                         data={anime_releaseYearsStats}
                         index="name"
@@ -290,7 +293,7 @@ export function AnilistStats(props: AnilistStatsProps) {
             {/*////////////////////////////////////////////////////*/}
             {/*////////////////////////////////////////////////////*/}
 
-            <h1 className="text-center pt-20" data-anilist-stats-manga-title>Manga</h1>
+            <h1 className="text-center pt-20" data-anilist-stats-manga-title>{t("anilistStats.manga")}</h1>
 
             <div data-anilist-stats-manga-stats>
                 <Stats
@@ -299,17 +302,17 @@ export function AnilistStats(props: AnilistStatsProps) {
                     items={[
                         {
                             icon: <FiBookOpen />,
-                            name: "Total Manga",
+                            name: t("anilistStats.totalManga"),
                             value: stats?.mangaStats?.count ?? 0,
                         },
                         {
                             icon: <LuHourglass />,
-                            name: "Total chapters",
+                            name: t("anilistStats.totalChapters"),
                             value: stats?.mangaStats?.chaptersRead ?? 0,
                         },
                         {
                             icon: <FaRegStar />,
-                            name: "Average score",
+                            name: t("anilistStats.averageScore"),
                             value: ((stats?.mangaStats?.meanScore ?? 0) / 10).toFixed(1),
                         },
                     ]}
@@ -321,17 +324,17 @@ export function AnilistStats(props: AnilistStatsProps) {
                     items={[
                         {
                             icon: <FiBookOpen />,
-                            name: "Manga read this year",
+                            name: t("anilistStats.mangaThisYear"),
                             value: manga_thisYearStats?.count ?? 0,
                         },
                         {
                             icon: <TbHistory />,
-                            name: "Manga read last year",
+                            name: t("anilistStats.mangaLastYear"),
                             value: manga_lastYearStats?.count ?? 0,
                         },
                         {
                             icon: <FaRegStar />,
-                            name: "Average score this year",
+                            name: t("anilistStats.averageScoreThisYear"),
                             value: ((manga_thisYearStats?.meanScore ?? 0) / 10).toFixed(1),
                         },
                     ]}
@@ -343,7 +346,7 @@ export function AnilistStats(props: AnilistStatsProps) {
             <h3 className="text-center" data-anilist-stats-manga-statuses-title>Statuses</h3>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full" data-anilist-stats-manga-statuses-container>
-                <ChartContainer legend="Total" data-anilist-stats-manga-statuses-container-total>
+                <ChartContainer legend={t("anilistStats.total")} data-anilist-stats-manga-statuses-container-total>
                     <DonutChart
                         data={manga_statusesStats}
                         index="name"
@@ -351,7 +354,7 @@ export function AnilistStats(props: AnilistStatsProps) {
                         variant="pie"
                     />
                 </ChartContainer>
-                <ChartContainer legend="Chapters read" data-anilist-stats-manga-statuses-container-chapters-read>
+                <ChartContainer legend={t("anilistStats.chaptersRead")} data-anilist-stats-manga-statuses-container-chapters-read>
                     <DonutChart
                         data={manga_statusesStats}
                         index="name"
@@ -366,7 +369,7 @@ export function AnilistStats(props: AnilistStatsProps) {
             <h3 className="text-center" data-anilist-stats-manga-genres-title>Genres</h3>
 
             <div className="grid grid-cols-1 gap-6 w-full" data-anilist-stats-manga-genres-container>
-                <ChartContainer legend="Favorite genres" data-anilist-stats-manga-genres-container-favorite-genres>
+                <ChartContainer legend={t("anilistStats.favoriteGenres")} data-anilist-stats-manga-genres-container-favorite-genres>
                     <BarChart
                         data={manga_genresStats}
                         index="name"
@@ -381,7 +384,7 @@ export function AnilistStats(props: AnilistStatsProps) {
             <h3 className="text-center" data-anilist-stats-manga-years-title>Years</h3>
 
             <div className="grid grid-cols-1 gap-6 w-full" data-anilist-stats-manga-years-container>
-                <ChartContainer legend="Manga read per release year" data-anilist-stats-manga-years-container-manga-read-per-release-year>
+                <ChartContainer legend={t("anilistStats.mangaPerReleaseYear")} data-anilist-stats-manga-years-container-manga-read-per-release-year>
                     <AreaChart
                         data={manga_releaseYearsStats}
                         index="name"

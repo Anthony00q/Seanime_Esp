@@ -950,28 +950,28 @@ function MyLists(props: { item: Models_HomeItem }) {
     return (
         <PageWrapper className="space-y-6 px-4">
             {(!!currentList?.entries?.length && !isCustomList && (!item.options?.statuses?.length || item.options?.statuses?.includes("CURRENT"))) && <>
-                <h2>{item.options?.type === "manga" ? t("home.carousel.manga.currentlyReading") : t("home.carousel.anime.currentlyWatching")}
+                <h2>{item.options?.type === "manga" ? t("status.currentlyReading") : t("status.currentlyWatching")}
                     <span className="text-[--muted] font-medium ml-3">{currentList?.entries?.length}</span></h2>
                 <AnilistAnimeEntryList type={item.options?.type ?? "anime"} layout={item.options?.layout} list={currentList} />
             </>}
             {(!!repeatingList?.entries?.length && !isCustomList && (!item.options?.statuses?.length || item.options?.statuses?.includes("REPEATING"))) && <>
-                <h2>{t("home.carousel.anime.repeating")} <span className="text-[--muted] font-medium ml-3">{repeatingList?.entries?.length}</span></h2>
+                <h2>{t("status.repeating")} <span className="text-[--muted] font-medium ml-3">{repeatingList?.entries?.length}</span></h2>
                 <AnilistAnimeEntryList type={item.options?.type ?? "anime"} layout={item.options?.layout} list={repeatingList} />
             </>}
             {(!!planningList?.entries?.length && !isCustomList && (!item.options?.statuses?.length || item.options?.statuses?.includes("PLANNING"))) && <>
-                <h2>{t("home.carousel.anime.planning")} <span className="text-[--muted] font-medium ml-3">{planningList?.entries?.length}</span></h2>
+                <h2>{t("status.planning")} <span className="text-[--muted] font-medium ml-3">{planningList?.entries?.length}</span></h2>
                 <AnilistAnimeEntryList type={item.options?.type ?? "anime"} layout={item.options?.layout} list={planningList} />
             </>}
             {(!!pausedList?.entries?.length && !isCustomList && (!item.options?.statuses?.length || item.options?.statuses?.includes("PAUSED"))) && <>
-                <h2>{t("home.carousel.anime.paused")} <span className="text-[--muted] font-medium ml-3">{pausedList?.entries?.length}</span></h2>
+                <h2>{t("status.paused")} <span className="text-[--muted] font-medium ml-3">{pausedList?.entries?.length}</span></h2>
                 <AnilistAnimeEntryList type={item.options?.type ?? "anime"} layout={item.options?.layout} list={pausedList} />
             </>}
             {(!!completedList?.entries?.length && !isCustomList && (!item.options?.statuses?.length || item.options?.statuses?.includes("COMPLETED"))) && <>
-                <h2>{t("home.carousel.anime.completed")} <span className="text-[--muted] font-medium ml-3">{completedList?.entries?.length}</span></h2>
+                <h2>{t("status.completed")} <span className="text-[--muted] font-medium ml-3">{completedList?.entries?.length}</span></h2>
                 <AnilistAnimeEntryList type={item.options?.type ?? "anime"} layout={item.options?.layout} list={completedList} />
             </>}
             {(!!droppedList?.entries?.length && !isCustomList && (!item.options?.statuses?.length || item.options?.statuses?.includes("DROPPED"))) && <>
-                <h2>{t("home.carousel.anime.dropped")} <span className="text-[--muted] font-medium ml-3">{droppedList?.entries?.length}</span></h2>
+                <h2>{t("status.dropped")} <span className="text-[--muted] font-medium ml-3">{droppedList?.entries?.length}</span></h2>
                 <AnilistAnimeEntryList type={item.options?.type ?? "anime"} layout={item.options?.layout} list={droppedList} />
             </>}
             {customLists?.map(list => {

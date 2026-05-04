@@ -47,10 +47,10 @@ export const LuffyError: React.FC<LuffyErrorProps> = (props) => {
                                 data-luffy-error-content-button-refresh
                                 intent="warning-subtle"
                                 onClick={() => window.location.reload()}
-                            >{t("shared.retry")}</Button>
+                            >{t("common.buttons.retry")}</Button>
                         )}
                         {!!reset && (
-                            <Button data-luffy-error-content-button-reset intent="warning-subtle" onClick={reset}>{t("shared.retry")}</Button>
+                            <Button data-luffy-error-content-button-reset intent="warning-subtle" onClick={reset}>{t("common.buttons.retry")}</Button>
                         )}
                     </div>
                 </div>

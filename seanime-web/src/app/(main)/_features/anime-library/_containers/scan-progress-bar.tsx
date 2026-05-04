@@ -8,18 +8,21 @@ import { ProgressBar } from "@/components/ui/progress-bar"
 import { WSEvents } from "@/lib/server/ws-events"
 import { useAtom } from "jotai/react"
 import React, { useState } from "react"
+import { createTranslator } from "@/locales"
 
 export function ScanProgressBar() {
 
     const [isScanning] = useAtom(__scanner_isScanningAtom)
 
+    const t = createTranslator("es")
+
     const [progress, setProgress] = useState(0)
-    const [status, setStatus] = useState("Scanning...")
+    const [status, setStatus] = useState(t("scanner.scanning"))
 
     React.useEffect(() => {
         if (!isScanning) {
             setProgress(0)
-            setStatus("Scanning...")
+            setStatus(t("scanner.scanning"))
         }
     }, [isScanning])
 

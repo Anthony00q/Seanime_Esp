@@ -18,6 +18,7 @@ import {
     ADVANCED_SEARCH_SEASONS,
     ADVANCED_SEARCH_STATUS,
 } from "@/app/(main)/search/_lib/advanced-search-constants"
+import { createTranslator } from "@/locales"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { AppLayoutStack } from "@/components/ui/app-layout"
 import { IconButton } from "@/components/ui/button"
@@ -31,7 +32,6 @@ import { StaticTabs } from "@/components/ui/tabs"
 import { TextInput } from "@/components/ui/text-input"
 import { useDebounce } from "@/hooks/use-debounce"
 import { ANIME_COLLECTION_SORTING_OPTIONS } from "@/lib/helpers/filtering"
-import { getLibraryCollectionTitle } from "@/lib/server/utils"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { getYear } from "date-fns"
 import { useSetAtom } from "jotai"
@@ -174,12 +174,13 @@ const LibraryCollectionListItem = React.memo(({ list, streamingMediaIds, type }:
 }) => {
 
     const [selectedList, setSelectedList] = useAtom(__library_selectedListAtom)
+    const t = createTranslator("es")
 
     if (selectedList !== "-" && selectedList !== list.type) return null
 
     return (
         <React.Fragment key={list.type}>
-            <h2>{getLibraryCollectionTitle(list.type)} <span className="text-[--muted] font-medium ml-3">{list?.entries?.length ?? 0}</span></h2>
+            <h2>{list.type === "CURRENT" ? t("status.currentlyWatching") : list.type === "PLANNING" ? t("status.planning") : list.type === "PAUSED" ? t("status.paused") : list.type === "COMPLETED" ? t("status.completed") : list.type === "DROPPED" ? t("status.dropped") : list.type === "REPEATING" ? t("status.repeating") : list.type} <span className="text-[--muted] font-medium ml-3">{list?.entries?.length ?? 0}</span></h2>
             {type === "grid" && <MediaCardLazyGrid itemCount={list?.entries?.length || 0}>
                 {list.entries?.map(entry => {
                     return <LibraryCollectionEntryItem key={entry.mediaId} entry={entry} streamingMediaIds={streamingMediaIds} type={type} />
@@ -292,6 +293,7 @@ export function SearchOptions() {
     const serverStatus = useServerStatus()
     const [params, setParams] = useAtom(__library_paramsAtom)
     const [selectedIndex, setSelectedIndex] = useAtom(__library_selectedListAtom)
+    const t = createTranslator("es")
 
     return (
         <AppLayoutStack className="px-4 xl:px-0" data-detailed-library-view-search-options-container>
@@ -300,13 +302,13 @@ export function SearchOptions() {
                     className="h-10 w-fit pb-6"
                     triggerClass="px-4 py-1"
                     items={[
-                        { name: "Lists", isCurrent: selectedIndex === "-", onClick: () => setSelectedIndex("-") },
-                        { name: "All", isCurrent: selectedIndex === "all", onClick: () => setSelectedIndex("all") },
-                        { name: "Watching", isCurrent: selectedIndex === "CURRENT", onClick: () => setSelectedIndex("CURRENT") },
-                        { name: "Planning", isCurrent: selectedIndex === "PLANNING", onClick: () => setSelectedIndex("PLANNING") },
-                        { name: "Paused", isCurrent: selectedIndex === "PAUSED", onClick: () => setSelectedIndex("PAUSED") },
-                        { name: "Completed", isCurrent: selectedIndex === "COMPLETED", onClick: () => setSelectedIndex("COMPLETED") },
-                        { name: "Dropped", isCurrent: selectedIndex === "DROPPED", onClick: () => setSelectedIndex("DROPPED") },
+                        { name: t("status.lists"), isCurrent: selectedIndex === "-", onClick: () => setSelectedIndex("-") },
+                        { name: t("status.all"), isCurrent: selectedIndex === "all", onClick: () => setSelectedIndex("all") },
+                        { name: t("status.current"), isCurrent: selectedIndex === "CURRENT", onClick: () => setSelectedIndex("CURRENT") },
+                        { name: t("status.planning"), isCurrent: selectedIndex === "PLANNING", onClick: () => setSelectedIndex("PLANNING") },
+                        { name: t("status.paused"), isCurrent: selectedIndex === "PAUSED", onClick: () => setSelectedIndex("PAUSED") },
+                        { name: t("status.completed"), isCurrent: selectedIndex === "COMPLETED", onClick: () => setSelectedIndex("COMPLETED") },
+                        { name: t("status.dropped"), isCurrent: selectedIndex === "DROPPED", onClick: () => setSelectedIndex("DROPPED") },
                     ]}
                 />
             </div>
@@ -315,7 +317,7 @@ export function SearchOptions() {
                 data-detailed-library-view-search-options-grid
             >
                 <Select
-                    label="Sorting"
+                    label="Ordenar"
                     leftAddon={<FaSortAmountDown className={cn(params.sorting !== "TITLE" && "text-indigo-300 font-bold text-xl")} />}
                     className="w-full"
                     fieldClass="flex items-center"

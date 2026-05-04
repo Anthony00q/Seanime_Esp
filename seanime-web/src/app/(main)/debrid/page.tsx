@@ -107,7 +107,7 @@ function Content() {
                 intent="primary-subtle" onClick={() => {
                 setEnabled(true)
             }}
-            >{t("debrid.retry")}</Button>
+            >{t("common.buttons.retry")}</Button>
         </div>
     </LuffyError>
 
