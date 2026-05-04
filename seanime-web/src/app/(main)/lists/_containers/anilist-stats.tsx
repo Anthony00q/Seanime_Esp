@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator"
 import { Stats } from "@/components/ui/stats"
 import React from "react"
 import { createTranslator } from "@/locales"
+import { translateFormat, translateGenre } from "@/lib/anilist-translations"
 import { FaRegStar } from "react-icons/fa"
 import { FiBookOpen } from "react-icons/fi"
 import { LuHourglass } from "react-icons/lu"
@@ -14,16 +15,6 @@ import { TbHistory } from "react-icons/tb"
 type AnilistStatsProps = {
     stats?: AL_Stats
     isLoading?: boolean
-}
-
-const formatName: Record<string, string> = {
-    TV: "TV",
-    TV_SHORT: "TV Short",
-    MOVIE: "Movie",
-    SPECIAL: "Special",
-    OVA: "OVA",
-    ONA: "ONA",
-    MUSIC: "Music",
 }
 
 const t = createTranslator("es")
@@ -49,7 +40,7 @@ export function AnilistStats(props: AnilistStatsProps) {
 
         return stats.animeStats.formats.map((item) => {
             return {
-                name: formatName[item.format as string],
+                name: translateFormat(item.format as string),
                 count: item.count,
                 hoursWatched: Math.round(item.minutesWatched / 60),
                 meanScore: Number((item.meanScore / 10).toFixed(1)),
@@ -75,7 +66,7 @@ export function AnilistStats(props: AnilistStatsProps) {
 
         return stats.animeStats.genres.map((item) => {
             return {
-                name: item.genre,
+                name: translateGenre(item.genre ?? ""),
                 "Count": item.count,
                 hoursWatched: Math.round(item.minutesWatched / 60),
                 [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),
@@ -125,7 +116,7 @@ export function AnilistStats(props: AnilistStatsProps) {
 
         return stats.mangaStats.genres.map((item) => {
             return {
-                name: item.genre,
+                name: translateGenre(item.genre ?? ""),
                 "Count": item.count,
                 chaptersRead: item.chaptersRead,
                 [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),

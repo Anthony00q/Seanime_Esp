@@ -12,6 +12,7 @@
       "scan": "Escanear",
       "retry": "Reintentar",
       "reload": "Recargar",
+      "reset": "Restablecer",
       "open": "Abrir"
     },
     "labels": {
@@ -28,7 +29,9 @@
       "custom": "Personalizado",
       "optional": "Opcional",
       "slowerForLargeLibraries": "Más lento para bibliotecas grandes",
-      "bestScore": "mejor puntuación"
+      "bestScore": "mejor puntuación",
+      "tags": "Etiquetas",
+      "adult": "Adulto"
     },
     "messages": {
       "itemNotFound": "Elemento no encontrado",
@@ -36,7 +39,19 @@
       "nothingFetched": "No se obtuvo nada, por favor actualiza las opciones.",
       "error": "Algo salió mal",
       "success": "Éxito",
-      "noResults": "No se encontraron resultados"
+      "noResults": "No se encontraron resultados",
+      "noOptions": "No se encontraron opciones"
+    },
+    "placeholders": {
+      "allGenres": "Todos los géneros",
+      "allTags": "Todas las etiquetas",
+      "allFormats": "Todos los formatos",
+      "allSeasons": "Todas las temporadas",
+      "allStatuses": "Todos los estados",
+      "allScores": "Todas las puntuaciones",
+      "allCountries": "Todos los países",
+      "timeless": "Cualquier año",
+      "title": "Título"
     },
     "toast": {
       "saved": "Guardado correctamente",

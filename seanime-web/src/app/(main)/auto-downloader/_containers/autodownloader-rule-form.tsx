@@ -180,7 +180,7 @@ export function AutoDownloaderRuleForm(props: AutoDownloaderRuleFormProps) {
                     profileId: rule?.profileId ? [String(rule.profileId)] : [],
                 }}
                 onError={() => {
-                    toast.error(t("autoDownloader.errorOccurredVerifyFields"))
+                    toast.error(t("autoDownloader.errorOccurred"))
                 }}
             >
                 {(f) => (
