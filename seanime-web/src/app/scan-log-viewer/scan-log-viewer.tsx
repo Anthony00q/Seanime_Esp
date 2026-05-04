@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { TextInput } from "@/components/ui/text-input"
+import { createTranslator } from "@/locales"
 import React, { useMemo, useState } from "react"
 import { BiCheck, BiChevronDown, BiChevronRight, BiError, BiFile, BiInfoCircle, BiLinkAlt, BiSearch, BiX } from "react-icons/bi"
 import { RiFileSettingsFill } from "react-icons/ri"
@@ -223,6 +224,7 @@ function buildFileGroups(lines: ParsedLogLine[]): FileGroup[] {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export function ScanLogViewer({ content }: { content: string }) {
+    const t = createTranslator("es")
     const [activePhase, setActivePhase] = useState<Phase>("overview")
     const [searchQuery, setSearchQuery] = useState("")
     const [levelFilter, setLevelFilter] = useState<LogLevel | "all">("all")
@@ -261,7 +263,7 @@ export function ScanLogViewer({ content }: { content: string }) {
     if (!content) {
         return (
             <div className="flex items-center justify-center h-[40vh] text-[--muted]">
-                <p className="text-lg">Load a scan log file to begin analysis</p>
+                <p className="text-lg">{t("scanLogViewer.loadFile")}</p>
             </div>
         )
     }
@@ -273,7 +275,7 @@ export function ScanLogViewer({ content }: { content: string }) {
             <div className="space-y-0">
                 <div className="flex items-center gap-2 bg-gray-950 border-b border-[--border] p-2 rounded-t-lg sticky top-0 z-20">
                     <Button intent="gray" size="sm" onClick={() => setSelectedFile(null)}>
-                        ← Back
+                        {t("scanLogViewer.back")}
                     </Button>
                     <BiFile className="text-blue-400" />
                     <span className="text-sm font-medium text-gray-200 break-all">{selectedFile}</span>
@@ -282,7 +284,7 @@ export function ScanLogViewer({ content }: { content: string }) {
                     {group ? (
                         <FileFlowPanel group={group} />
                     ) : (
-                        <p className="text-gray-500 text-sm">No logs found for this file.</p>
+                        <p className="text-gray-500 text-sm">{t("scanLogViewer.noLogsFound")}</p>
                     )}
                 </div>
             </div>
@@ -293,11 +295,11 @@ export function ScanLogViewer({ content }: { content: string }) {
         <div className="space-y-0">
             <div className="flex gap-1 bg-gray-950 border-b border-[--border] p-1 rounded-t-lg sticky top-0 z-20">
                 {([
-                    { key: "overview", label: "Overview", icon: BiInfoCircle },
-                    { key: "parsing", label: "Parsed Files", icon: BiFile },
-                    { key: "matcher", label: "Matcher", icon: BiSearch },
-                    { key: "hydrator", label: "Hydrator", icon: RiFileSettingsFill },
-                    { key: "issues", label: `Issues (${stats.errorCount + stats.warningCount})`, icon: BiError },
+                    { key: "overview", label: t("scanLogViewer.overview"), icon: BiInfoCircle },
+                    { key: "parsing", label: t("scanLogViewer.parsedFiles"), icon: BiFile },
+                    { key: "matcher", label: t("scanLogViewer.matcher"), icon: BiSearch },
+                    { key: "hydrator", label: t("scanLogViewer.hydrator"), icon: RiFileSettingsFill },
+                    { key: "issues", label: `${t("scanLogViewer.issues")} (${stats.errorCount + stats.warningCount})`, icon: BiError },
                 ] as const).map(({ key, label, icon: Icon }) => (
                     <button
                         key={key}
@@ -354,25 +356,26 @@ export function ScanLogViewer({ content }: { content: string }) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function OverviewPanel({ stats, lines }: { stats: ScanStats; lines: ParsedLogLine[] }) {
+    const t = createTranslator("es")
     return (
         <div className="p-4 space-y-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <StatCard label="Total Files" value={stats.totalFiles} icon={<BiFile />} color="text-blue-400" />
+                <StatCard label={t("scanLogViewer.totalFiles")} value={stats.totalFiles} icon={<BiFile />} color="text-blue-400" />
                 <StatCard
-                    label="Matched"
+                    label={t("scanLogViewer.matched")}
                     value={stats.matchedFiles}
                     icon={<BiCheck />}
                     color="text-green-400"
                     sub={stats.totalFiles > 0 ? `${((stats.matchedFiles / stats.totalFiles) * 100).toFixed(0)}%` : undefined}
                 />
                 <StatCard
-                    label="Unmatched"
+                    label={t("scanLogViewer.unmatched")}
                     value={stats.unmatchedFiles}
                     icon={<BiX />}
                     color={stats.unmatchedFiles > 0 ? "text-orange-400" : "text-gray-500"}
                 />
                 <StatCard
-                    label="Issues"
+                    label={t("scanLogViewer.issues")}
                     value={stats.errorCount + stats.warningCount}
                     icon={<BiError />}
                     color={stats.errorCount > 0 ? "text-red-400" : "text-gray-500"}
@@ -380,22 +383,22 @@ function OverviewPanel({ stats, lines }: { stats: ScanStats; lines: ParsedLogLin
             </div>
 
             <div className="space-y-2">
-                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Pipeline</h3>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">{t("scanLogViewer.pipeline")}</h3>
                 <div className="flex items-center gap-2 flex-wrap">
-                    <PipelineStep label="File Discovery" detail={`${stats.totalFiles} files`} />
+                    <PipelineStep label={t("scanLogViewer.fileDiscovery")} detail={`${stats.totalFiles} ${t("scanLogViewer.files")}`} />
                     <BiChevronRight className="text-[--muted] text-lg flex-shrink-0" />
-                    <PipelineStep label="Media Fetch" detail={`${stats.fetchedMediaCount} media (${stats.unknownMediaCount} new)`} />
+                    <PipelineStep label={t("scanLogViewer.mediaFetch")} detail={`${stats.fetchedMediaCount} media (${stats.unknownMediaCount} new)`} />
                     <BiChevronRight className="text-[--muted] text-lg flex-shrink-0" />
-                    <PipelineStep label="Token Index" detail={`${stats.tokenIndexSize} tokens`} />
+                    <PipelineStep label={t("scanLogViewer.tokenIndex")} detail={`${stats.tokenIndexSize} tokens`} />
                     <BiChevronRight className="text-[--muted] text-lg flex-shrink-0" />
-                    <PipelineStep label="Matcher" detail={stats.matcherDuration || "—"} />
+                    <PipelineStep label={t("scanLogViewer.matcher")} detail={stats.matcherDuration || "—"} />
                     <BiChevronRight className="text-[--muted] text-lg flex-shrink-0" />
-                    <PipelineStep label="Hydrator" detail={stats.hydratorDuration || "—"} />
+                    <PipelineStep label={t("scanLogViewer.hydrator")} detail={stats.hydratorDuration || "—"} />
                 </div>
             </div>
 
             <div className="space-y-2">
-                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Events</h3>
+                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">{t("scanLogViewer.events")}</h3>
                 <Virtuoso
                     style={{ height: "40vh" }}
                     totalCount={lines.length}
@@ -468,6 +471,7 @@ function ParsingPanel({ lines, searchQuery, setSearchQuery, onSelectFile }: {
     setSearchQuery: (v: string) => void;
     onSelectFile: (f: string) => void
 }) {
+    const t = createTranslator("es")
     const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set())
 
     const toggleExpanded = (id: number) => {
@@ -491,10 +495,10 @@ function ParsingPanel({ lines, searchQuery, setSearchQuery, onSelectFile }: {
                 <TextInput
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search parsed files..."
+                    placeholder={t("scanLogViewer.searchParsedFiles")}
                     className="max-w-md"
                 />
-                <span className="text-sm text-gray-500">{filtered.length} files</span>
+                <span className="text-sm text-gray-500">{filtered.length} {t("scanLogViewer.files")}</span>
             </div>
             <Virtuoso
                 style={{ height: "calc(100vh - 200px)" }}
@@ -523,6 +527,7 @@ function ParsedFileLine({ line, onSelectFile, isExpanded, toggleExpanded }: {
     isExpanded?: boolean;
     toggleExpanded?: () => void
 }) {
+    const t = createTranslator("es")
     const [internalExpanded, setInternalExpanded] = useState(false)
     const expanded = isExpanded !== undefined ? isExpanded : internalExpanded
     const handleToggle = () => {
@@ -562,20 +567,20 @@ function ParsedFileLine({ line, onSelectFile, isExpanded, toggleExpanded }: {
                                 onSelectFile(d.filename)
                             }}
                             >
-                                View full flow
+                                {t("scanLogViewer.viewFullFlow")}
                             </Button>
                         </div>
                     )}
                     <div className="text-sm text-gray-500 font-mono break-all">{d.path}</div>
                     {d.parsedData && (
                         <div className="space-y-1">
-                            <p className="text-sm font-semibold text-gray-400">Parsed Data</p>
+                            <p className="text-sm font-semibold text-gray-400">{t("scanLogViewer.parsedData")}</p>
                             <DataGrid data={d.parsedData} />
                         </div>
                     )}
                     {d.parsedFolderData && d.parsedFolderData.length > 0 && (
                         <div className="space-y-1">
-                            <p className="text-sm font-semibold text-gray-400">Folder Data
+                            <p className="text-sm font-semibold text-gray-400">{t("scanLogViewer.folderData")}
                                                                                ({d.parsedFolderData.length} level{d.parsedFolderData.length > 1
                                     ? "s"
                                     : ""})</p>
@@ -611,6 +616,7 @@ function MatcherPanel({
     setStatusFilter: (v: "all" | "matched" | "unmatched" | "errors") => void
     onSelectFile: (f: string) => void
 }) {
+    const t = createTranslator("es")
     const [expandedFiles, setExpandedFiles] = useState<Set<string>>(new Set())
 
     const toggleExpanded = (filename: string) => {
@@ -653,15 +659,15 @@ function MatcherPanel({
                 <TextInput
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search by filename or match..."
+                    placeholder={t("scanLogViewer.searchByFilenameOrMatch")}
                     className="max-w-md"
                 />
                 <div className="flex gap-1">
                     {([
-                        { key: "all" as const, label: "All" },
-                        { key: "matched" as const, label: `Matched (${matchedCount})` },
-                        { key: "unmatched" as const, label: `Unmatched (${unmatchedCount})` },
-                        { key: "errors" as const, label: "Issues" },
+                        { key: "all" as const, label: t("common.labels.all") },
+                        { key: "matched" as const, label: `${t("scanLogViewer.matched")} (${matchedCount})` },
+                        { key: "unmatched" as const, label: `${t("scanLogViewer.unmatched")} (${unmatchedCount})` },
+                        { key: "errors" as const, label: t("scanLogViewer.issues") },
                     ]).map(({ key, label }) => (
                         <button
                             key={key}
@@ -675,7 +681,7 @@ function MatcherPanel({
                         </button>
                     ))}
                 </div>
-                <span className="text-sm text-gray-500 self-center">{filtered.length} files</span>
+                <span className="text-sm text-gray-500 self-center">{filtered.length} {t("scanLogViewer.files")}</span>
             </div>
 
             <Virtuoso
@@ -705,6 +711,7 @@ function MatcherFileGroup({ group, onSelectFile, isExpanded, toggleExpanded }: {
     isExpanded?: boolean;
     toggleExpanded?: () => void
 }) {
+    const t = createTranslator("es")
     const [internalExpanded, setInternalExpanded] = useState(false)
     const expanded = isExpanded !== undefined ? isExpanded : internalExpanded
     const handleToggle = () => {
@@ -746,9 +753,9 @@ function MatcherFileGroup({ group, onSelectFile, isExpanded, toggleExpanded }: {
                             </Badge>
                         </>
                     )}
-                    {group.isUnmatched && <Badge size="sm" intent="warning">unmatched</Badge>}
-                    {group.hasError && <Badge size="sm" intent="alert">error</Badge>}
-                    <Badge size="sm" intent="gray">{group.matcherLogs.length} logs</Badge>
+                    {group.isUnmatched && <Badge size="sm" intent="warning">{t("scanLogViewer.unmatched")}</Badge>}
+                    {group.hasError && <Badge size="sm" intent="alert">{t("scanLogViewer.issues")}</Badge>}
+                    <Badge size="sm" intent="gray">{group.matcherLogs.length} {t("scanLogViewer.logs")}</Badge>
                 </div>
             </button>
 
@@ -761,7 +768,7 @@ function MatcherFileGroup({ group, onSelectFile, isExpanded, toggleExpanded }: {
                             onSelectFile(group.filename)
                         }}
                         >
-                            View full flow
+                            {t("scanLogViewer.viewFullFlow")}
                         </Button>
                     </div>
                     <div className="space-y-0.5 p-2">
@@ -776,6 +783,7 @@ function MatcherFileGroup({ group, onSelectFile, isExpanded, toggleExpanded }: {
 }
 
 function MatcherLogLine({ line }: { line: ParsedLogLine }) {
+    const t = createTranslator("es")
     const [showDetail, setShowDetail] = useState(false)
     const d = line.raw
     const msg = d.message || ""
@@ -807,12 +815,10 @@ function MatcherLogLine({ line }: { line: ParsedLogLine }) {
                 <LevelDot level={line.level} />
                 <span className="break-all flex-1">
                     {isMatch && (
-                        <>✓ Matched → <span className="text-indigo-300">{d.match}</span> <span className="text-gray-500">[{d.id}]</span> <span
-                            className="text-green-400"
-                        >(score: {d.score})</span></>
+                        <>✓ {t("scanLogViewer.matchedStatus", { score: d.score })}</>
                     )}
                     {isNoMatch && (
-                        <>✗ No match found <span className="text-gray-500">(best score: {d.score})</span></>
+                        <>✗ {t("scanLogViewer.noMatchFound")} <span className="text-gray-500">({t("common.labels.bestScore")}: {d.score})</span></>
                     )}
                     {isComparison && d.match && (
                         <>
@@ -912,6 +918,7 @@ function HydratorPanel({
     setLevelFilter: (v: LogLevel | "all") => void
     onSelectFile: (f: string) => void
 }) {
+    const t = createTranslator("es")
     const [expandedFiles, setExpandedFiles] = useState<Set<string>>(new Set())
 
     const toggleExpanded = (filename: string) => {
@@ -948,7 +955,7 @@ function HydratorPanel({
                 <TextInput
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search by filename or media ID..."
+                    placeholder={t("scanLogViewer.searchByFilenameOrMediaId")}
                     className="max-w-md"
                 />
                 <div className="flex gap-1">
@@ -995,6 +1002,7 @@ function HydratorFileGroup({ group, onSelectFile, isExpanded, toggleExpanded }: 
     isExpanded?: boolean;
     toggleExpanded?: () => void
 }) {
+    const t = createTranslator("es")
     const [internalExpanded, setInternalExpanded] = useState(false)
     const expanded = isExpanded !== undefined ? isExpanded : internalExpanded
     const handleToggle = () => {
@@ -1031,7 +1039,7 @@ function HydratorFileGroup({ group, onSelectFile, isExpanded, toggleExpanded }: 
                             <span className="text-sm text-gray-500">{`ep${hr.episode}`}{hr.aniDBEpisode && ` (${hr.aniDBEpisode})`}</span>
                         </>
                     )}
-                    {group.hasError && <Badge size="sm" intent="alert">error</Badge>}
+                    {group.hasError && <Badge size="sm" intent="alert">{t("scanLogViewer.issues")}</Badge>}
                     {group.hasWarning && <Badge size="sm" intent="warning">warning</Badge>}
                 </div>
             </button>
@@ -1045,7 +1053,7 @@ function HydratorFileGroup({ group, onSelectFile, isExpanded, toggleExpanded }: 
                             onSelectFile(group.filename)
                         }}
                         >
-                            View full flow
+                            {t("scanLogViewer.viewFullFlow")}
                         </Button>
                     </div>
                     {group.hydratorLogs.map((log) => (
@@ -1100,6 +1108,7 @@ function HydratorLogLine({ line }: { line: ParsedLogLine }) {
 
 
 function IssuesPanel({ lines, searchQuery, setSearchQuery }: { lines: ParsedLogLine[]; searchQuery: string; setSearchQuery: (v: string) => void }) {
+    const t = createTranslator("es")
     const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set())
 
     const toggleExpanded = (id: number) => {
@@ -1127,7 +1136,7 @@ function IssuesPanel({ lines, searchQuery, setSearchQuery }: { lines: ParsedLogL
                 <TextInput
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search issues..."
+                    placeholder={t("scanLogViewer.searchIssues")}
                     className="max-w-md"
                 />
                 <span className="text-sm text-gray-500">{filtered.length} issues</span>
@@ -1135,7 +1144,7 @@ function IssuesPanel({ lines, searchQuery, setSearchQuery }: { lines: ParsedLogL
 
             {filtered.length === 0 && (
                 <div className="flex items-center justify-center h-[20vh] text-green-400">
-                    <p className="flex items-center gap-2"><BiCheck className="text-xl" /> No issues found</p>
+                    <p className="flex items-center gap-2"><BiCheck className="text-xl" /> {t("scanLogViewer.noIssuesFound")}</p>
                 </div>
             )}
 
@@ -1260,11 +1269,12 @@ function DataGrid({ data }: { data: Record<string, any> }) {
 
 
 function FileFlowPanel({ group }: { group: FileGroup }) {
+    const t = createTranslator("es")
     return (
         <div className="space-y-4">
             {/* Parsing */}
             {group.parsingLog && (
-                <FlowSection title="Parsing" icon={<BiFile className="text-blue-400" />}>
+                <FlowSection title={t("scanLogViewer.parsing")} icon={<BiFile className="text-blue-400" />}>
                     <ParsedFileLine line={group.parsingLog} />
                 </FlowSection>
             )}
@@ -1272,13 +1282,13 @@ function FileFlowPanel({ group }: { group: FileGroup }) {
             {/* Matcher */}
             {group.matcherLogs.length > 0 && (
                 <FlowSection
-                    title="Matcher"
+                    title={t("scanLogViewer.matcher")}
                     icon={<BiSearch className="text-indigo-400" />}
                     badge={group.matchResult
                         ? <Badge size="sm" intent="unstyled" className="text-[--green]">→ {group.matchResult.match} [{group.matchResult.id}]
                                                                                         (score: {group.matchResult.score})</Badge>
                         : group.isUnmatched
-                            ? <Badge size="sm" intent="warning">unmatched</Badge>
+                            ? <Badge size="sm" intent="warning">{t("scanLogViewer.unmatched")}</Badge>
                             : undefined
                     }
                 >
@@ -1293,7 +1303,7 @@ function FileFlowPanel({ group }: { group: FileGroup }) {
             {/* Hydrator */}
             {group.hydratorLogs.length > 0 && (
                 <FlowSection
-                    title="Hydrator"
+                    title={t("scanLogViewer.hydrator")}
                     icon={<RiFileSettingsFill className="text-cyan-400" />}
                     badge={group.hydrationResult
                         ? <Badge size="sm" intent={group.hydrationResult.type === "main" ? "success" : "warning"}>{group.hydrationResult.type} →
