@@ -5,6 +5,7 @@ import { useRefreshLibraryExplorerFileTree } from "@/api/generated/library_explo
 import { Anime_LocalFile } from "@/api/generated/types"
 import { useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export function useScanLocalFiles(onSuccess?: () => void) {
     const queryClient = useQueryClient()
@@ -15,8 +16,9 @@ export function useScanLocalFiles(onSuccess?: () => void) {
         method: API_ENDPOINTS.SCAN.ScanLocalFiles.methods[0],
         mutationKey: [API_ENDPOINTS.SCAN.ScanLocalFiles.key],
         onSuccess: async () => {
+            const t = createTranslator("es")
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })
-            toast.success("Library scanned")
+            toast.success(t("scanner.scanned"))
             refreshLibraryExplorerTree()
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetMissingEpisodes.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderItems.key] })

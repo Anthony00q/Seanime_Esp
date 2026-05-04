@@ -15,6 +15,7 @@ import React, { useState } from "react"
 import { BiSolidBinoculars } from "react-icons/bi"
 import { FiSearch } from "react-icons/fi"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 type LibraryWatcherProps = {
     children?: React.ReactNode
@@ -34,6 +35,8 @@ export function LibraryWatcher(props: LibraryWatcherProps) {
     const fileRemoved = useBoolean(false)
     const autoScanning = useBoolean(false)
     const [progress, setProgress] = useState(0)
+
+    const t = createTranslator("es")
 
     const setScannerModalOpen = useSetAtom(__scanner_modalIsOpen)
 
@@ -89,7 +92,7 @@ export function LibraryWatcher(props: LibraryWatcherProps) {
         type: WSEvents.AUTO_SCAN_COMPLETED,
         onMessage: _ => {
             autoScanning.off()
-            toast.success("Library scanned")
+            toast.success(t("scanner.scanned"))
             qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })
             qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetMissingEpisodes.key] })
             qc.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderItems.key] })
@@ -109,7 +112,7 @@ export function LibraryWatcher(props: LibraryWatcherProps) {
                     <Card className="w-fit max-w-[400px]">
                         <CardHeader>
                             <CardDescription className="flex items-center gap-2 text-base">
-                                <Spinner className="size-6" /> {progress}% Refreshing your library...
+                                <Spinner className="size-6" /> {t("libraryWatcher.refreshing", { progress })}
                             </CardDescription>
                         </CardHeader>
                     </Card>
@@ -124,10 +127,10 @@ export function LibraryWatcher(props: LibraryWatcherProps) {
                         <CardHeader>
                             <CardTitle className="text-lg flex items-center gap-2">
                                 <BiSolidBinoculars className="text-brand-400" />
-                                Library watcher
+                                {t("libraryWatcher.title")}
                             </CardTitle>
                             <CardDescription className="flex items-center gap-2 text-base">
-                                A change has been detected in your library, refresh your entries.
+                                {t("libraryWatcher.description")}
                             </CardDescription>
                         </CardHeader>
                         <CardFooter>
@@ -138,7 +141,7 @@ export function LibraryWatcher(props: LibraryWatcherProps) {
                                 onClick={() => setScannerModalOpen(true)}
                                 className="rounded-full"
                             >
-                                Scan your library
+                                {t("libraryWatcher.scanLibrary")}
                             </Button>
                         </CardFooter>
                         <CloseButton className="absolute top-2 right-2" onClick={handleCancel} />
