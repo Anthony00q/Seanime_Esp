@@ -4,7 +4,7 @@
 </a>
 </p>
 
-<h1 align="center"><b>Seanime_Esp</b></h1>
+<h1 align="center"><b>Seanime Esp</b></h1>
 
 <p align="center">
   <b>Fork en Español de Seanime</b> — Media server con interfaz web y app de escritorio para anime y manga
