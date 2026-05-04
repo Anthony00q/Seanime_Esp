@@ -17,8 +17,7 @@
   "shared": {
     "pageNotFoundTitle": "Página No Encontrada",
     "pageNotFound": "La página que buscas no existe.",
-    "goHome": "Ir al Inicio",
-    "reload": "Recargar"
+    "goHome": "Ir al Inicio"
   },
   "continueWatching": {
     "heading": "Continuar Viendo",
@@ -81,8 +80,7 @@
     "allUpcoming": "Todo lo próximo",
     "errorOccurred": "Ocurrió un error, verifica los campos.",
     "intervalChanged15Min": "Intervalo cambiado a al menos 15 minutos",
-    "youMustSpecifyEpisode": "Debes especificar al menos un número de episodio",
-    "errorOccurredVerifyFields": "Ocurrió un error, verifica los campos."
+    "youMustSpecifyEpisode": "Debes especificar al menos un número de episodio"
   },
   "scanner": {
     "title": "Escáner de Biblioteca",
@@ -300,6 +298,12 @@
   "serverStatus": {
     "featureDisabled": "Esta función está desactivada"
   },
+  "onlineStream": {
+    "startingWatchParty": "Iniciando watch party de streaming en línea"
+  },
+  "handlePlayMedia": {
+    "externalPlayerNotSet": "El enlace de reproductor externo no está configurado."
+  },
   "toast": {
     "settings": {
       "settingsSaved": "Ajustes guardados"
@@ -328,7 +332,6 @@
       "torrentAdded": "Torrent añadido",
       "downloadStarted": "Descarga iniciada",
       "downloadCancelled": "Descarga cancelada",
-      "torrentDeleted": "Torrent eliminado",
       "streamCancelled": "Stream cancelado"
     },
     "download": {
@@ -382,9 +385,7 @@
       "removed": "Metadatos eliminados"
     },
     "onlinestream": {
-      "cacheEmptied": "Caché de stream vaciado",
-      "mappingAdded": "Mapeo añadido",
-      "mappingRemoved": "Mapeo eliminado"
+      "cacheEmptied": "Caché de stream vaciado"
     },
     "playlist": {
       "created": "Lista de reproducción creada",
@@ -397,9 +398,7 @@
       "randomEpisode": "Reproduciendo episodio aleatorio",
       "nextEpisode": "Cargando siguiente episodio"
     },
-    "releases": {
-      "installingUpdate": "Instalando actualización..."
-    },
+    "releases": {},
     "status": {
       "logsDeleted": "Registros eliminados",
       "couldntFetchLogs": "No se pudieron obtener los registros",
@@ -425,7 +424,7 @@
     },
     "torrentstream": {
       "streamStopped": "Stream detenido",
-      "torrentDropped": "Torrent eliminado"
+      "torrentDropped": "Torrent soltado"
     },
     "animeCollection": {
       "mediaAdded": "Medio añadido exitosamente"

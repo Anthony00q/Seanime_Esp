@@ -14,6 +14,9 @@ import {
 import { getMangaEntryLatestChapterNumber, MangaEntryFilters } from "@/app/(main)/manga/_lib/handle-manga-selected-provider"
 import sortBy from "lodash/sortBy"
 import { anilist_getUnwatchedCount } from "./media"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 type BaseCollectionSorting =
     "START_DATE"
@@ -58,51 +61,51 @@ type ContinueWatchingSorting =
     | "LAST_WATCHED_DESC"
 
 export const CONTINUE_WATCHING_SORTING_OPTIONS = [
-    { label: "Aired recently", value: "AIRDATE_DESC" },
-    { label: "Aired oldest", value: "AIRDATE" },
-    { label: "Highest episode number", value: "EPISODE_NUMBER_DESC" },
-    { label: "Lowest episode number", value: "EPISODE_NUMBER" },
-    { label: "Most unwatched episodes", value: "UNWATCHED_EPISODES_DESC" },
-    { label: "Least unwatched episodes", value: "UNWATCHED_EPISODES" },
-    { label: "Highest score", value: "SCORE_DESC" },
-    { label: "Lowest score", value: "SCORE" },
-    { label: "Started recently", value: "START_DATE_DESC" },
-    { label: "Oldest start date", value: "START_DATE" },
-    { label: "Most recent watch", value: "LAST_WATCHED_DESC" },
-    { label: "Least recent watch", value: "LAST_WATCHED" },
+    { label: t("sorting.airedRecently"), value: "AIRDATE_DESC" },
+    { label: t("sorting.airedOldest"), value: "AIRDATE" },
+    { label: t("sorting.highestEpisodeNumber"), value: "EPISODE_NUMBER_DESC" },
+    { label: t("sorting.lowestEpisodeNumber"), value: "EPISODE_NUMBER" },
+    { label: t("sorting.mostUnwatched"), value: "UNWATCHED_EPISODES_DESC" },
+    { label: t("sorting.leastUnwatched"), value: "UNWATCHED_EPISODES" },
+    { label: t("sorting.highestScore"), value: "SCORE_DESC" },
+    { label: t("sorting.lowestScore"), value: "SCORE" },
+    { label: t("sorting.startedRecently"), value: "START_DATE_DESC" },
+    { label: t("sorting.oldestStart"), value: "START_DATE" },
+    { label: t("sorting.mostRecentWatch"), value: "LAST_WATCHED_DESC" },
+    { label: t("sorting.leastRecentWatch"), value: "LAST_WATCHED" },
 ]
 
 
 export const COLLECTION_SORTING_OPTIONS = [
-    { label: "Highest score", value: "SCORE_DESC" },
-    { label: "Lowest score", value: "SCORE" },
-    { label: "Title", value: "TITLE" },
-    { label: "Title (Z-A)", value: "TITLE_DESC" },
-    { label: "Highest audience score", value: "AUDIENCE_SCORE_DESC" },
-    { label: "Lowest audience score", value: "AUDIENCE_SCORE" },
-    { label: "Highest progress", value: "PROGRESS_DESC" },
-    { label: "Lowest progress", value: "PROGRESS" },
-    { label: "Started recently", value: "START_DATE_DESC" },
-    { label: "Oldest start date", value: "START_DATE" },
-    { label: "Completed recently", value: "END_DATE_DESC" },
-    { label: "Oldest completion date", value: "END_DATE" },
-    { label: "Released recently", value: "RELEASE_DATE_DESC" },
-    { label: "Oldest release", value: "RELEASE_DATE" },
+    { label: t("sorting.highestScore"), value: "SCORE_DESC" },
+    { label: t("sorting.lowestScore"), value: "SCORE" },
+    { label: t("sorting.title"), value: "TITLE" },
+    { label: t("sorting.titleZA"), value: "TITLE_DESC" },
+    { label: t("sorting.highestAudience"), value: "AUDIENCE_SCORE_DESC" },
+    { label: t("sorting.lowestAudience"), value: "AUDIENCE_SCORE" },
+    { label: t("sorting.highestProgress"), value: "PROGRESS_DESC" },
+    { label: t("sorting.lowestProgress"), value: "PROGRESS" },
+    { label: t("sorting.startedRecently"), value: "START_DATE_DESC" },
+    { label: t("sorting.oldestStart"), value: "START_DATE" },
+    { label: t("sorting.completedRecently"), value: "END_DATE_DESC" },
+    { label: t("sorting.oldestCompleted"), value: "END_DATE" },
+    { label: t("sorting.releasedRecently"), value: "RELEASE_DATE_DESC" },
+    { label: t("sorting.oldestRelease"), value: "RELEASE_DATE" },
 ]
 
 export const ANIME_COLLECTION_SORTING_OPTIONS = [
-    { label: "Aired recently and not up-to-date", value: "AIRDATE_DESC" },
-    { label: "Aired oldest and not up-to-date", value: "AIRDATE" },
-    { label: "Most unwatched episodes", value: "UNWATCHED_EPISODES_DESC" },
-    { label: "Least unwatched episodes", value: "UNWATCHED_EPISODES" },
-    { label: "Most recent watch", value: "LAST_WATCHED_DESC" },
-    { label: "Least recent watch", value: "LAST_WATCHED" },
+    { label: t("sorting.airedRecentlyNotUpToDate"), value: "AIRDATE_DESC" },
+    { label: t("sorting.airedOldestNotUpToDate"), value: "AIRDATE" },
+    { label: t("sorting.mostUnwatched"), value: "UNWATCHED_EPISODES_DESC" },
+    { label: t("sorting.leastUnwatched"), value: "UNWATCHED_EPISODES" },
+    { label: t("sorting.mostRecentWatch"), value: "LAST_WATCHED_DESC" },
+    { label: t("sorting.leastRecentWatch"), value: "LAST_WATCHED" },
     ...COLLECTION_SORTING_OPTIONS,
 ]
 
 export const MANGA_COLLECTION_SORTING_OPTIONS = [
-    { label: "Most unread chapters", value: "UNREAD_CHAPTERS_DESC" },
-    { label: "Least unread chapters", value: "UNREAD_CHAPTERS" },
+    { label: t("sorting.mostUnreadChapters"), value: "UNREAD_CHAPTERS_DESC" },
+    { label: t("sorting.leastUnreadChapters"), value: "UNREAD_CHAPTERS" },
     ...COLLECTION_SORTING_OPTIONS,
 ]
 

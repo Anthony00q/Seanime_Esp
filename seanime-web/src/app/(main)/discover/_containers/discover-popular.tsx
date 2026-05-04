@@ -13,6 +13,7 @@ import { Carousel, CarouselContent, CarouselDotButtons } from "@/components/ui/c
 import { useAtom } from "jotai/react"
 import React from "react"
 import { createTranslator } from "@/locales"
+import { translateGenre } from "@/lib/anilist-translations"
 
 const t = createTranslator("es")
 
@@ -77,7 +78,7 @@ export function DiscoverThisSeason() {
                         onClick: () => setSelectedGenre([]),
                     },
                     ...ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({
-                        name: genre,
+                        name: translateGenre(genre),
                         isCurrent: selectedGenre.includes(genre),
                         onClick: () => setSelectedGenre([genre]),
                     })),
@@ -129,7 +130,7 @@ export function DiscoverPastSeason() {
                         onClick: () => setSelectedGenre([]),
                     },
                     ...ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({
-                        name: genre,
+                        name: translateGenre(genre),
                         isCurrent: selectedGenre.includes(genre),
                         onClick: () => setSelectedGenre([genre]),
                     })),

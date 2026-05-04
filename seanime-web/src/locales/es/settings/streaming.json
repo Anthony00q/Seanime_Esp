@@ -29,9 +29,9 @@
       "presetMedium": "Medium",
       "ffmpeg": "FFmpeg",
       "ffmpegPath": "Ruta de FFmpeg",
-      "ffmpegPathHelp": "Ruta al binario de FFmpeg. Déjar vacío si el binario ya está en tu PATH.",
+      "ffmpegPathHelp": "Ruta al binario de FFmpeg. Dejar vacío si el binario ya está en tu PATH.",
       "ffprobePath": "Ruta de FFprobe",
-      "ffprobePathHelp": "Ruta al binario de FFprobe. Déjar vacío si el binario ya está en tu PATH."
+      "ffprobePathHelp": "Ruta al binario de FFprobe. Dejar vacío si el binario ya está en tu PATH."
     },
     "torrentstream": {
       "title": "Streaming Torrent",
