@@ -609,8 +609,8 @@ function SidebarUser({ isCollapsed, expandedSidebar, onLogout }: { isCollapsed: 
             </div>}
 
             <Modal
-                title={t("auth.loginTitle")}
-                description={t("auth.loginDescription")}
+                title={t("navigation.loginWithAniList")}
+                description={t("navigation.loginDescription")}
                 open={loginModal && user?.isSimulated}
                 onOpenChange={(v) => setLoginModal(v)}
                 overlayClass="bg-opacity-95 bg-gray-950"
@@ -633,12 +633,12 @@ function SidebarUser({ isCollapsed, expandedSidebar, onLogout }: { isCollapsed: 
                             </svg>}
                             intent="white"
                             size="md"
-                        >{t("auth.getAniListToken")}</Button>
+                        >{t("navigation.getAniListToken")}</Button>
                     </SeaLink>
 
                     <Form
                         schema={defineSchema(({ z }) => z.object({
-                            token: z.string().min(1, t("auth.tokenRequired")),
+                            token: z.string().min(1, t("navigation.tokenRequired")),
                         }))}
                         onSubmit={data => {
                             setLoggingIn(true)
@@ -649,10 +649,10 @@ function SidebarUser({ isCollapsed, expandedSidebar, onLogout }: { isCollapsed: 
                     >
                         <Field.Textarea
                             name="token"
-                            label={t("auth.enterToken")}
+                            label={t("navigation.enterToken")}
                             fieldClass="px-4"
                         />
-                        <Field.Submit showLoadingOverlayOnSuccess loading={loggingIn}>{t("auth.continue")}</Field.Submit>
+                        <Field.Submit showLoadingOverlayOnSuccess loading={loggingIn}>{t("navigation.continue")}</Field.Submit>
                     </Form>
 
                 </div>

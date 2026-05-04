@@ -563,13 +563,13 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                     intent="gray-outline"
                                     onClick={() => setOpen(false)}
                                 >
-                                    {t("videoPlayer.cancel")}
+                                    {t("common.buttons.cancel")}
                                 </Button>
                                 <Button
                                     intent="primary"
                                     onClick={handleSave}
                                 >
-                                    {t("videoPlayer.save")}
+                                    {t("common.buttons.save")}
                                 </Button>
                             </div>
                         </div>
@@ -644,13 +644,13 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                 intent="gray-outline"
                                 onClick={() => setOpen(false)}
                             >
-                                {t("videoPlayer.cancel")}
+                                {t("common.buttons.cancel")}
                             </Button>
                             <Button
                                 intent="primary"
                                 onClick={handleSave}
                             >
-                                {t("videoPlayer.save")}
+                                {t("common.buttons.save")}
                             </Button>
                         </div>
                     </div>

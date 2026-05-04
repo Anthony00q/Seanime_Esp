@@ -33,6 +33,7 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai/react"
 import { AnimatePresence } from "motion/react"
 import React from "react"
 import { createTranslator } from "@/locales"
+import { translateGenre, translateTag, translateFormat, translateStatus, translateSeason } from "@/lib/anilist-translations"
 import { BiTrash } from "react-icons/bi"
 import { FaSortAmountDown } from "react-icons/fa"
 import { FiSearch } from "react-icons/fi"
@@ -40,6 +41,8 @@ import { LuCalendar, LuLeaf, LuTags } from "react-icons/lu"
 import { MdPersonalVideo } from "react-icons/md"
 import { RiSignalTowerLine } from "react-icons/ri"
 import { TbSwords } from "react-icons/tb"
+
+const t = createTranslator("es")
 
 const selectedIndexAtom = atom("-")
 const watchListSearchInputAtom = atom<string>("")
@@ -280,7 +283,7 @@ export function SearchOptions({
                     label="Género" placeholder="Todos los géneros"
                     className="w-full"
                     fieldClass="w-full"
-                    options={ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({ value: genre, label: genre, textValue: genre }))}
+                    options={ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({ value: genre, label: translateGenre(genre), textValue: genre }))}
                     value={params.genre ? params.genre : []}
                     onValueChange={v => setParams(draft => {
                         draft.genre = v
@@ -301,7 +304,7 @@ export function SearchOptions({
                             }
                             return tag.isAdult === false
                         })
-                        .map(tag => ({ value: tag.name, label: tag.name, textValue: tag.name }))}
+                        .map(tag => ({ value: tag.name, label: translateTag(tag.name), textValue: tag.name }))}
                     value={params.tags ? params.tags : []}
                     onValueChange={v => setParams(draft => {
                         draft.tags = v
@@ -330,7 +333,7 @@ export function SearchOptions({
                     label="Formato" placeholder="Todos los formatos"
                     className="w-full"
                     fieldClass="w-full"
-                    options={ADVANCED_SEARCH_FORMATS}
+                    options={ADVANCED_SEARCH_FORMATS.map(f => ({ ...f, label: translateFormat(f.value) }))}
                     value={params.format || ""}
                     onValueChange={v => setParams(draft => {
                         draft.format = v as any
@@ -345,7 +348,7 @@ export function SearchOptions({
                     className="w-full"
                     fieldClass="w-full"
                     options={[
-                        ...ADVANCED_SEARCH_STATUS,
+                        ...ADVANCED_SEARCH_STATUS.map(s => ({ ...s, label: translateStatus(s.value) })),
                     ]}
                     value={params.status || ""}
                     onValueChange={v => setParams(draft => {
@@ -361,7 +364,7 @@ export function SearchOptions({
                     className="w-full"
                     fieldClass="w-full flex items-center"
                     inputContainerClass="w-full"
-                    options={ADVANCED_SEARCH_SEASONS.map(season => ({ value: season.toUpperCase(), label: season }))}
+                    options={ADVANCED_SEARCH_SEASONS.map(season => ({ value: season.toUpperCase(), label: translateSeason(season.toUpperCase()) }))}
                     value={params.season || ""}
                     onValueChange={v => setParams(draft => {
                         draft.season = v as any
@@ -371,7 +374,7 @@ export function SearchOptions({
                 />}
                 <Select
                     leftAddon={<LuCalendar className={cn((params.year !== null && !!params.year?.length) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Año" placeholder="Atemporal"
+                    label="Año" placeholder={t("common.placeholders.timeless")}
                     className="w-full"
                     fieldClass="w-full"
                     options={[...Array(70)].map((v, idx) => getYear(new Date()) + 2 - idx).map(year => ({

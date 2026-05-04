@@ -7,7 +7,6 @@ import { cn } from "@/components/ui/core/styling"
 import { Disclosure, DisclosureContent, DisclosureItem, DisclosureTrigger } from "@/components/ui/disclosure"
 import { Tooltip } from "@/components/ui/tooltip"
 import { getScoreColor } from "@/lib/helpers/score"
-import capitalize from "lodash/capitalize"
 import React from "react"
 import { AiOutlineHeart, AiOutlineStar } from "react-icons/ai"
 import { BiHeart, BiHide } from "react-icons/bi"
@@ -47,7 +46,7 @@ export function MediaEntryGenresList(props: MediaEntryGenresListProps) {
                             size="lg"
                             data-media-entry-genres-list-item
                         >
-                            {genre}
+                            {translateGenre(genre!)}
                         </Badge>
                     })}
                 </div>
@@ -68,7 +67,7 @@ export function MediaEntryGenresList(props: MediaEntryGenresListProps) {
                                 size="lg"
                                 data-media-entry-genres-list-item
                             >
-                                {genre}
+                                {translateGenre(genre!)}
                             </Badge>
                         </SeaLink>
                     })}
@@ -154,7 +153,8 @@ export function AnimeEntryRankings(props: AnimeEntryRankingsProps) {
 
     const formatFormat = React.useCallback((format: string) => {
         if (format === "MANGA") return ""
-        return (format === "TV" ? "" : format).replace("_", " ")
+        if (format === "TV") return ""
+        return translateFormat(format)
     }, [])
 
     const Link = React.useCallback((props: { children: React.ReactNode, href: string }) => {

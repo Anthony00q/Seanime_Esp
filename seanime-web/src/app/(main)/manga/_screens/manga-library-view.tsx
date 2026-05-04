@@ -28,6 +28,7 @@ import { LuBookOpenCheck, LuRefreshCcw } from "react-icons/lu"
 import { toast } from "sonner"
 import { CommandItemMedia } from "../../_features/sea-command/_components/command-utils"
 import { createTranslator } from "@/locales"
+import { translateGenre } from "@/lib/anilist-translations"
 
 type MangaLibraryViewProps = {
     collection: Manga_Collection
@@ -447,7 +448,7 @@ function GenreSelector({
             staticTabsClass=""
             items={[
                 ...genres.map(genre => ({
-                    name: genre,
+                    name: translateGenre(genre),
                     isCurrent: params!.genre?.includes(genre) ?? false,
                     onClick: () => setParams(draft => {
                         if (draft.genre?.includes(genre)) {
