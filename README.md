@@ -13,7 +13,7 @@
 <p align="center">
   <a href="https://github.com/5rahim/seanime">Proyecto Original</a> |
   <a href="https://seanime.app/docs">Documentación</a> |
-  <a href="https://github.com/5rahim/seanime/releases">Última release</a> |
+  <a href="https://github.com/Anthony00q/Seanime_Esp/releases">Última release</a> |
   <a href="https://discord.gg/Sbr7Phzt6m">Discord</a>
 </p>
 
@@ -33,7 +33,7 @@
 </div>
 
 <h5 align="center">
-Si te gusta el proyecto, ¡deja una estrella en el <a href="https://github.com/5rahim/seanime">repositorio original</a>! ⭐️
+Si te gusta el proyecto, ¡deja una estrella en este y en el <a href="https://github.com/5rahim/seanime">repositorio original</a>! ⭐️
 </h5>
 
 ---
