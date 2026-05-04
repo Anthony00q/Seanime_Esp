@@ -18,8 +18,8 @@
 </p>
 
 <div align="center">
-  <a href="https://github.com/5rahim/seanime/releases">
-    <img src="https://img.shields.io/github/v/release/5rahim/seanime?style=flat-square&color=blue" alt="versión" />
+  <a href="https://github.com/Anthony00q/Seanime_Esp/releases">
+    <img src="https://img.shields.io/github/v/release/Anthony00q/Seanime_Esp?style=flat-square&color=blue" alt="versión" />
   </a>
   <a href="https://github.com/Anthony00q/Seanime_Esp">
     <img src="https://img.shields.io/badge/Traducción-en_progreso-orange?style=flat-square" alt="progreso traducción" />
@@ -85,20 +85,35 @@ El proyecto original no tiene i18n integrado, por lo que se implementó un siste
 - Pantalla de inicio
 - Horario y descubrimiento
 - Navegación y barra lateral
-- Reproductor de video
+- Reproductor de video (video-core completo, subtítulos, HLS, Chromecast)
 - Configuración completa
 - Watch parties (Nakama)
 - Paleta de comandos
-- Componentos compartidos
+- Componentes compartidos
+- Página de entrada (anime/manga detail completo)
+- Escáner de biblioteca (modal, resúmenes, logs, archivos no coincidentes)
+- Seguimiento de progreso y listas de reproducción
+- Biblioteca y listas (AniList stats, colección, sincronización)
+- Extensiones (marketplace, tarjetas, playground)
+- Manga (biblioteca, lector de capítulos, descargas)
+- Streaming en línea y lista de torrents
+- Servicio Debrid
+- Descargador automático
+- Electron (modal de actualización, reinicio de servidor)
+- Reporte de problemas (issue report)
+- Autoplay y Library Explorer
+- Biblioteca de anime (media desconocida, archivos ignorados, acciones masivas)
+- **Todos los toasts/notificaciones** (~207 toasts en componentes UI, hooks de API y archivos .ts)
+- Mediastream, MediaLinks, Sync, callback de autenticación
 
 ### ⏳ Pendiente
 
-- Extensiones
-- Manga (lectores y páginas)
 - Búsqueda
-- Sincronización
+- Sincronización (componentes restantes)
 - Fuentes personalizadas
-- Páginas de entrada, listas, autenticación, MAL
+- Páginas de listas, autenticación, MAL
+- Webview
+- qBittorrent
 
 ---
 
