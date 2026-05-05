@@ -230,7 +230,7 @@ export function HomeToolbar(props: HomeToolbarProps) {
                             }}
                         >
                             <BiFolder />
-                            <span>{t("home.toolbar.dropdown.openDirectory")}</span>
+                            <span>{t("common.labels.openDirectory")}</span>
                         </DropdownMenuItem>
 
                         <DropdownMenuItem
