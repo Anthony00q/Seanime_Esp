@@ -31,7 +31,12 @@
       "slowerForLargeLibraries": "Más lento para bibliotecas grandes",
       "bestScore": "mejor puntuación",
       "tags": "Etiquetas",
-      "adult": "Adulto"
+      "adult": "Adulto",
+      "openDirectory": "Abrir directorio",
+      "anilistId": "ID de AniList",
+      "mediaId": "ID de medio",
+      "episodeNumber": "Episodio {number}",
+      "episodeNumberLabel": "Número de episodio"
     },
     "messages": {
       "itemNotFound": "Elemento no encontrado",

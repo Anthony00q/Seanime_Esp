@@ -79,7 +79,7 @@ export function DebridSettings(props: DebridSettingsProps) {
                             {
                                 onSuccess: () => {
                                     formRef.current?.reset(formRef.current.getValues())
-                                    toast.success(t("settings.debridService.settingsSaved"))
+                                    toast.success(t("toast.settings.settingsSaved"))
                                 },
                             },
                         )

@@ -226,7 +226,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
 
                 <div className="flex items-center flex-wrap gap-2">
                     <div className="flex gap-2 items-center w-full">
-                        <p className="flex-none text-lg mr-2 font-semibold">{!hasCustomSources ? t("unmatchedFiles.anilistId") : t("unmatchedFiles.mediaId")}</p>
+                        <p className="flex-none text-lg mr-2 font-semibold">{!hasCustomSources ? t("common.labels.anilistId") : t("common.labels.mediaId")}</p>
                         <NumberInput
                             // key={String(_r) + (currentGroup?.dir || "")}
                             value={anilistId}
