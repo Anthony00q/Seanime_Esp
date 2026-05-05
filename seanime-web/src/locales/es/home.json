@@ -209,7 +209,12 @@
         },
         "customListName": {
           "label": "Nombre de lista personalizada"
-        }
+        },
+        "statuses": "Estados"
+      },
+      "kind": {
+        "row": "Fila",
+        "header": "Encabezado"
       }
     }
   }

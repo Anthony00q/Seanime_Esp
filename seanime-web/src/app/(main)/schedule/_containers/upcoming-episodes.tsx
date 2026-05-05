@@ -8,6 +8,7 @@ import { useRouter } from "@/lib/navigation"
 import { useMissingEpisodeSpoilers } from "@/lib/theme/anime-spoilers"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { addSeconds, formatDistanceToNow } from "date-fns"
+import { es } from "date-fns/locale"
 import React from "react"
 import { createTranslator } from "@/locales"
 
@@ -64,7 +65,7 @@ export function UpcomingEpisodes() {
                                             spoilerActive={spoilerActive}
                                             title={`Episode ${item.episodeNumber}`}
                                             meta={formatDistanceToNow(addSeconds(new Date(), item.timeUntilAiring!),
-                                                { addSuffix: true })}
+                                                { addSuffix: true, locale: es })}
                                             imageClass="opacity-50"
                                             actionIcon={null}
                                             onClick={() => {
