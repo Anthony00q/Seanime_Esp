@@ -43,25 +43,28 @@
   },
   "anilistStats": {
     "anime": "Anime",
-    "totalAnime": "Total Anime",
+    "totalAnime": "Animes totales",
     "watchTime": "Tiempo de visualización",
     "hours": "horas",
     "averageScore": "Puntuación media",
-    "animeThisYear": "Anime visto este año",
-    "animeLastYear": "Anime visto el año pasado",
+    "animeThisYear": "Animes vistos este año",
+    "animeLastYear": "Animes vistos el año pasado",
     "averageScoreThisYear": "Puntuación media este año",
     "formats": "Formatos",
     "total": "Total",
     "hoursWatched": "Horas vistas",
     "statuses": "Estados",
+    "genres": "Géneros",
+    "count": "Cantidad",
     "favoriteGenres": "Géneros favoritos",
     "years": "Años",
+    "statistics": "Estadísticas",
     "animePerReleaseYear": "Anime visto por año de lanzamiento",
     "manga": "Manga",
-    "totalManga": "Total Manga",
+    "totalManga": "Mangas totales",
     "totalChapters": "Total de capítulos",
-    "mangaThisYear": "Manga leído este año",
-    "mangaLastYear": "Manga leído el año pasado",
+    "mangaThisYear": "Mangas leídos este año",
+    "mangaLastYear": "Mangas leídos el año pasado",
     "chaptersRead": "Capítulos leídos",
     "mangaPerReleaseYear": "Manga leído por año de lanzamiento"
   },
@@ -138,6 +141,15 @@
     "ignoreSelection": "Ignorar selección",
     "selectAnime": "Seleccionar Anime",
     "openOnAnilist": "Abrir en AniList"
+  },
+  "mediaCard": {
+    "preview": "Vista previa",
+    "addToPlaylist": "Añadir a lista de reproducción",
+    "openInLibraryExplorer": "Abrir en Explorador de Biblioteca",
+    "openPage": "Abrir página",
+    "continue": "Continuar",
+    "watch": "Ver",
+    "startReading": "Empezar a leer"
   },
   "scanLogViewer": {
     "title": "Analizador de Registros de Escaneo",
@@ -272,7 +284,10 @@
     "errorPlayingStream": "Ocurrió un error al reproducir el stream. {error}"
   },
   "sync": {
-    "localChangesIgnored": "Cambios locales ignorados."
+    "localChangesIgnored": "Cambios locales ignorados.",
+    "selectMedia": "Medios guardados",
+    "selectMediaButton": "Seleccionar medios para guardar",
+    "selectMediaDescription": "Selecciona el medio que quieres guardar localmente. Haz clic en un medio ya guardado para eliminarlo del almacenamiento local."
   },
   "onlineStream": {
     "startingWatchParty": "Iniciando watch party de streaming en línea"
@@ -431,5 +446,29 @@
       "error": "Error: {error}",
       "noResponse": "Sin respuesta del servidor"
     }
+  },
+  "anilist": {
+    "mediaEntry": {
+      "addToList": "Añadir a la lista",
+      "status": "Estado",
+      "score": "Puntuación",
+      "progress": "Progreso",
+      "startDate": "Fecha de inicio",
+      "completionDate": "Fecha de finalización",
+      "totalRewatches": "Total de re-vistas",
+      "totalRereads": "Total de re-lecturas",
+      "confirm": "Confirmar",
+      "save": "Guardar"
+    }
+  },
+  "ui": {
+    "datePicker": {
+      "selectDate": "Seleccionar una fecha",
+      "clear": "Limpiar"
+    }
+  },
+  "manualMatch": {
+    "none": "Sin coincidencia manual",
+    "removeMapping": "Eliminar mapeo"
   }
 }

@@ -6,6 +6,7 @@ import { AppLayoutStack } from "@/components/ui/app-layout"
 import { Carousel, CarouselContent, CarouselDotButtons, CarouselItem } from "@/components/ui/carousel"
 import { useRouter } from "@/lib/navigation"
 import { addSeconds, formatDistanceToNow } from "date-fns"
+import { es } from "date-fns/locale"
 import React from "react"
 import { createTranslator } from "@/locales"
 
@@ -56,7 +57,7 @@ export function UpcomingEpisodes() {
                                             topTitle={item?.baseAnime?.title?.userPreferred}
                                             title={t("schedule.episodeNumber", { number: item.episodeNumber })}
                                             meta={formatDistanceToNow(addSeconds(new Date(), item.timeUntilAiring!),
-                                                { addSuffix: true })}
+                                                { addSuffix: true, locale: es })}
                                             imageClass="opacity-50"
                                             actionIcon={null}
                                             onClick={() => {

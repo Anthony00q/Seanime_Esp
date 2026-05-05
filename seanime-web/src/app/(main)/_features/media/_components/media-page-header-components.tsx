@@ -413,7 +413,7 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
                             data-media-page-header-entry-details-date-container
                         >
                             <p className="text-lg text-white flex gap-1 items-center">
-                                <BiCalendarAlt /> {new Intl.DateTimeFormat("en-US", {
+                                <BiCalendarAlt /> {new Intl.DateTimeFormat("es", {
                                 year: "numeric",
                                 month: "short",
                             }).format(new Date(startDate?.year || 0, startDate?.month ? startDate?.month - 1 : 0))}{!!season

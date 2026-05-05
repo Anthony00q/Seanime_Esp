@@ -1,6 +1,7 @@
 import { weekStartsOnAtom } from "@/app/(main)/schedule/_components/schedule-calendar"
 import { cva } from "class-variance-authority"
 import { Day, formatISO, getYear, Locale, setYear } from "date-fns"
+import { es } from "date-fns/locale"
 import { useAtomValue } from "jotai/react"
 import * as React from "react"
 import { PropsBase } from "react-day-picker"
@@ -12,6 +13,9 @@ import { extractInputPartProps, hiddenInputStyles, InputAddon, InputAnatomy, Inp
 import { Modal } from "../modal"
 import { Popover } from "../popover"
 import { Select } from "../select"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 /* -------------------------------------------------------------------------------------------------
  * Anatomy
@@ -173,7 +177,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>((
         >
             {date ?
                 formatISO(date, { representation: "date" }) :
-                <span className={cn(DatePickerAnatomy.placeholder(), placeholderClass)}>{placeholder || "Select a date"}</span>}
+                <span className={cn(DatePickerAnatomy.placeholder(), placeholderClass)}>{placeholder || t("ui.datePicker.selectDate")}</span>}
         </button>
     )
 
@@ -197,7 +201,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>((
                 onMonthChange={month => setDate(month)}
                 selected={date}
                 onSelect={handleOnSelect}
-                locale={locale}
+                locale={locale || es}
                 initialFocus
                 monthGridClass="w-auto mx-auto"
                 weekStartsOn={weekStartOn as Day}
@@ -210,7 +214,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>((
                     }}
                     className="px-4 py-2 text-sm text-[--muted] hover:text-[--text] transition-colors"
                 >
-                    Clear
+                    {t("ui.datePicker.clear")}
                 </button>
             </div>
         </div>
@@ -234,7 +238,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>((
 
                 <div className="block sm:hidden w-full">
                     <Modal
-                        title={placeholder || "Select a date"}
+                        title={placeholder || t("ui.datePicker.selectDate")}
                         trigger={Input}
                     >
                         {Picker}

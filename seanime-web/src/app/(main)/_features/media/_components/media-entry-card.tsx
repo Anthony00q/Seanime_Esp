@@ -243,17 +243,17 @@ export function MediaEntryCard<T extends "anime" | "manga">(props: MediaEntryCar
                     {!serverStatus?.isOffline && <ContextMenuItem
                         onClick={handlePreviewClick}
                     >
-                        <LuEye /> Preview
+                        <LuEye /> {t("mediaCard.preview")}
                     </ContextMenuItem>}
                     {(libraryData || nakamaLibraryData || (listData && hasStreamingEnabled)) && <ContextMenuItem
                         onClick={handleAddToPlaylistClick}
                     >
-                        <BiAddToQueue /> Add to Playlist
+                        <BiAddToQueue /> {t("mediaCard.addToPlaylist")}
                     </ContextMenuItem>}
                     {(!!libraryData) && <ContextMenuItem
                         onClick={handleOpenInExplorerClick}
                     >
-                        <LuFolderTree /> Open in Library Explorer
+                        <LuFolderTree /> {t("mediaCard.openInLibraryExplorer")}
                     </ContextMenuItem>}
 
                     <PluginMediaCardContextMenuItems for={type} media={media} />
@@ -311,8 +311,8 @@ export function MediaEntryCard<T extends "anime" | "manga">(props: MediaEntryCar
                                     onClick={handleWatchButtonClicked}
                                 >
                                     {!!listData?.progress && (listData?.status === "CURRENT" || listData?.status === "PAUSED")
-                                        ? "Continue"
-                                        : "Watch"}
+                                        ? t("mediaCard.continue")
+                                        : t("mediaCard.watch")}
                                 </Button>}
 
                                 {type === "manga" && <SeaLink
@@ -328,8 +328,8 @@ export function MediaEntryCard<T extends "anime" | "manga">(props: MediaEntryCar
                                         tabIndex={-1}
                                     >
                                         {!!listData?.progress && (listData?.status === "CURRENT" || listData?.status === "PAUSED")
-                                            ? "Continue"
-                                            : "Start Reading"}
+                                            ? t("mediaCard.continue")
+                                            : t("mediaCard.startReading")}
                                     </Button>
                                 </SeaLink>}
                             </div>

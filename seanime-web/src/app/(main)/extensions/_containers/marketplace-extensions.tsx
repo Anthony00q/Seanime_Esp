@@ -274,14 +274,14 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
             <div className="flex items-center gap-2 flex-wrap">
                 <div>
                     <h2>
-                        Marketplace
+                        {t("extensions.marketplace")}
                     </h2>
                     <p className="text-[--muted] text-sm">
-                        Browse and install extensions from the repository.
+                        {t("extensions.marketplaceDescription")}
                     </p>
                     <p className="text-[--muted] text-xs mt-1">
-                        Source: {marketplaceUrl === DEFAULT_MARKETPLACE_URL ?
-                        <span>Official repository</span> :
+                        {t("extensions.source")} {marketplaceUrl === DEFAULT_MARKETPLACE_URL ?
+                        <span>{t("extensions.officialRepository")}</span> :
                         <span>{marketplaceUrl}</span>
                     }
                     </p>
@@ -451,15 +451,15 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
             {!!customSources?.length && (
                 <Card className="p-4 space-y-6">
                     <div>
-                        <h3 className="flex gap-3 items-center"><MdDataSaverOn /> Custom sources <Popover
+                        <h3 className="flex gap-3 items-center"><MdDataSaverOn /> {t("extensions.customSources")} <Popover
                             className="text-sm"
                             trigger={
                                 <AiOutlineExclamationCircle className="text-[1.2rem] transition-opacity opacity-45 hover:opacity-90 cursor-pointer" />}
                         >
-                            Custom sources do not provide any streaming features. Torrent and online streaming providers are needed for this.
+                            {t("extensions.customSourcesInfo1")}
                         </Popover></h3>
                         <p className="text-[--muted] text-sm">
-                            Custom sources let you browse media beyond what AniList provides.
+                            {t("extensions.customSourcesInfo2")}
                         </p>
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">

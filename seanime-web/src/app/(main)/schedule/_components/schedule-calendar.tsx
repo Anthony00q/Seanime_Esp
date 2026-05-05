@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator"
 import { Switch } from "@/components/ui/switch"
 import { addMonths, Day, endOfMonth, endOfWeek, format, isSameMonth, isToday, startOfMonth, startOfWeek, subMonths } from "date-fns"
 import { addDays } from "date-fns/addDays"
+import { es } from "date-fns/locale"
 import { useImmerAtom } from "jotai-immer"
 import { useAtom, useAtomValue } from "jotai/react"
 import { atomWithStorage } from "jotai/utils"
@@ -161,9 +162,9 @@ export function ScheduleCalendar(props: ScheduleCalendarProps) {
                         )}
                         data-schedule-calendar-header-title
                     >
-                        <time dateTime={format(currentDate, "yyyy-MM")} data-schedule-calendar-header-title-time>
-                            <span className="hidden lg:inline">{format(currentDate, "MMMM yyyy")}</span>
-                            <span className="lg:hidden">{format(currentDate, "MMM yyyy")}</span>
+                        <time dateTime={format(currentDate, "yyyy-MM")} className="capitalize" data-schedule-calendar-header-title-time>
+                            <span className="hidden lg:inline">{format(currentDate, "MMMM yyyy", { locale: es })}</span>
+                            <span className="lg:hidden">{format(currentDate, "MMM yyyy", { locale: es })}</span>
                         </time>
                     </h1>
                     <IconButton
@@ -230,28 +231,28 @@ export function ScheduleCalendar(props: ScheduleCalendarProps) {
                 >
                     <div className="hidden lg:grid grid-cols-7 gap-px border-b bg-[--background] text-center text-base font-semibold leading-6 text-gray-200 flex-none">
                         {weekStartsOn === 0 && <div className="py-2" data-schedule-calendar-day-name-sunday>
-                            S<span className="sr-only sm:not-sr-only">un</span>
+                            D<span className="sr-only sm:not-sr-only">om</span>
                         </div>}
                         <div className="py-2" data-schedule-calendar-day-name-monday>
-                            M<span className="sr-only sm:not-sr-only">on</span>
+                            L<span className="sr-only sm:not-sr-only">un</span>
                         </div>
                         <div className="py-2" data-schedule-calendar-day-name-tuesday>
-                            T<span className="sr-only sm:not-sr-only">ue</span>
+                            M<span className="sr-only sm:not-sr-only">ar</span>
                         </div>
                         <div className="py-2" data-schedule-calendar-day-name-wednesday>
-                            W<span className="sr-only sm:not-sr-only">ed</span>
+                            M<span className="sr-only sm:not-sr-only">ié</span>
                         </div>
                         <div className="py-2" data-schedule-calendar-day-name-thursday>
-                            T<span className="sr-only sm:not-sr-only">hu</span>
+                            J<span className="sr-only sm:not-sr-only">ue</span>
                         </div>
                         <div className="py-2" data-schedule-calendar-day-name-friday>
-                            F<span className="sr-only sm:not-sr-only">ri</span>
+                            V<span className="sr-only sm:not-sr-only">ie</span>
                         </div>
                         <div className="py-2" data-schedule-calendar-day-name-saturday>
-                            S<span className="sr-only sm:not-sr-only">at</span>
+                            S<span className="sr-only sm:not-sr-only">áb</span>
                         </div>
                         {weekStartsOn === 1 && <div className="py-2" data-schedule-calendar-day-name-sunday>
-                            S<span className="sr-only sm:not-sr-only">un</span>
+                            D<span className="sr-only sm:not-sr-only">om</span>
                         </div>}
                     </div>
 
@@ -336,9 +337,9 @@ interface MobileDayItemProps {
 }
 
 function MobileDayItem({ day, calendarParams }: MobileDayItemProps) {
-    const dayName = format(new Date(day.date), "EEEE")
+    const dayName = format(new Date(day.date), "EEEE", { locale: es })
     const dayNumber = day.date.split("-")?.pop()?.replace(/^0/, "")
-    const monthDay = format(new Date(day.date), "MMM d")
+    const monthDay = format(new Date(day.date), "MMM d", { locale: es })
 
     return (
         <div className="p-4" data-schedule-calendar-mobile-list-day-item>
@@ -479,7 +480,7 @@ function CalendarDayModal({ day, open, onOpenChange }: CalendarDayModalProps) {
         <Modal
             open={open}
             onOpenChange={onOpenChange}
-            title={format(new Date(day.date), "EEEE, MMMM d, yyyy")}
+            title={format(new Date(day.date), "EEEE, MMMM d, yyyy", { locale: es })}
             description={hasEvents
                 ? `${day.events.length} ${day.events.length !== 1 ? t("schedule.scheduledEpisodes") : t("schedule.scheduledEpisode")}`
                 : t("schedule.noScheduledEpisodesForThisDay")}

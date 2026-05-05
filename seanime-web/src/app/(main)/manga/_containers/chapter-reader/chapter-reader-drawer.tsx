@@ -453,10 +453,10 @@ export function ChapterReaderDrawer(props: ChapterDrawerProps) {
 
                 {pageContainerError ? (
                     <LuffyError
-                        title="Failed to load pages"
+                        title={t("manga.chapterReader.failedToLoadPages")}
                     >
-                        <p>An error occurred while trying to load pages for this chapter.</p>
-                        <p>Reload the page, reload sources or change the source.</p>
+                        <p>{t("manga.chapterReader.loadPagesError")}</p>
+                        <p>{t("manga.chapterReader.reloadPageOrSources")}</p>
 
                         <div className="mt-2">
                             <Button intent="white" onClick={() => retryFetchPageContainer()}>

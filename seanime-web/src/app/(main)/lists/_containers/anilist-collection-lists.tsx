@@ -91,14 +91,14 @@ export function AnilistCollectionLists() {
                     className="h-10 w-fit border rounded-full"
                     triggerClass="px-4 py-1"
                     items={[
-                        { name: "Anime", isCurrent: pageType === "anime", onClick: () => setPageType("anime") },
+                        { name: t("anilistStats.anime"), isCurrent: pageType === "anime", onClick: () => setPageType("anime") },
                         ...[serverStatus?.settings?.library?.enableManga && {
-                            name: "Manga",
+                            name: t("anilistStats.manga"),
                             isCurrent: pageType === "manga",
                             onClick: () => setPageType("manga"),
                         }],
                         ...[!serverStatus?.user?.isSimulated && {
-                            name: "Stats",
+                            name: t("anilistStats.statistics"),
                             isCurrent: pageType === "stats",
                             onClick: () => setPageType("stats"),
                         }],
@@ -297,6 +297,8 @@ export function SearchOptions({
                         <LuTags className={cn((params.tags !== null && !!params.tags.length) && "text-indigo-300 font-bold text-xl")} />}
                     emptyMessage="No se encontraron opciones"
                     label="Etiquetas" placeholder="Todas las etiquetas" className="w-full"
+                    fieldClass="w-full min-w-0"
+                    popoverClass="min-w-[280px]"
                     options={ADVANCED_SEARCH_MEDIA_TAGS
                         .filter(tag => {
                             if (params.isAdult && serverStatus?.settings?.anilist?.enableAdultContent) {
@@ -362,7 +364,7 @@ export function SearchOptions({
                     label="Temporada"
                     placeholder="Todas las temporadas"
                     className="w-full"
-                    fieldClass="w-full flex items-center"
+                    fieldClass="w-full"
                     inputContainerClass="w-full"
                     options={ADVANCED_SEARCH_SEASONS.map(season => ({ value: season.toUpperCase(), label: translateSeason(season.toUpperCase()) }))}
                     value={params.season || ""}

@@ -123,7 +123,16 @@
     "openPage": "Abrir página",
     "all": "Todos",
     "episodeAiringAt": "transmitiendo a las {time}",
-    "episode": "Episodio"
+    "episode": "Episodio",
+    "trendingRightNow": "En tendencia ahora",
+    "topOfSeason": "Lo mejor de la temporada",
+    "bestOfLastSeason": "Lo mejor de la temporada pasada",
+    "comingSoon": "Próximamente",
+    "trendingMovies": "Películas en tendencia",
+    "missedSequels": "Secuelas que te perdiste",
+    "trendingManga": "Manga en tendencia",
+    "trendingManhwa": "Manhwa en tendencia",
+    "trendingManhua": "Manhua en tendencia"
   },
   "sorting": {
     "trending": "En tendencia",

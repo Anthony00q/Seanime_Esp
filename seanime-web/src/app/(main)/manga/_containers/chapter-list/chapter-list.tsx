@@ -23,6 +23,9 @@ import { useAtom, useSetAtom } from "jotai/react"
 import React from "react"
 import { ErrorBoundary } from "react-error-boundary"
 import { FaRedo } from "react-icons/fa"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 import { GiOpenBook } from "react-icons/gi"
 import { IoBookOutline, IoLibrary } from "react-icons/io5"
 import { LuDownload } from "react-icons/lu"
@@ -405,21 +408,21 @@ export function ChapterList(props: ChapterListProps) {
             </ErrorBoundary>
 
             {(chapterContainerLoading || isClearingMangaCache) ? <LoadingSpinner /> : (
-                chapterContainerError ? <LuffyError title="No chapters found">
+                chapterContainerError ? <LuffyError title={t("manga.chapterList.noChaptersFound")}>
                     <MangaManualMappingModal entry={entry}>
                         <Button
                             leftIcon={<LuSearch className="text-lg" />}
                             intent="gray-outline"
                             size="md"
                         >
-                            Manual match
+                            {t("onlinestream.manualMatch")}
                         </Button>
                     </MangaManualMappingModal>
                 </LuffyError> : (
                     <>
 
                         {chapterContainer?.chapters?.length === 0 && (
-                            <LuffyError title="No chapters found"><p>Try another source</p></LuffyError>
+                            <LuffyError title={t("manga.chapterList.noChaptersFound")}><p>{t("manga.chapterList.tryAnotherSource")}</p></LuffyError>
                         )}
 
                         {!!chapterContainer?.chapters?.length && (

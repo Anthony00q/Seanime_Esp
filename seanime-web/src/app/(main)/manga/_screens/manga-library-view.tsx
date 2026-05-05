@@ -340,7 +340,7 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
                             })
                         }}
                     >
-                        <LuRefreshCcw /> {isRefetchingMangaChapterContainers ? "Refetching..." : "Refresh sources"}
+                        <LuRefreshCcw /> {isRefetchingMangaChapterContainers ? t("manga.refetching") : t("manga.refreshSources")}
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         onClick={() => {

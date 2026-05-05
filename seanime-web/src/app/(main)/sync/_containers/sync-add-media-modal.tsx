@@ -15,6 +15,8 @@ import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6"
 import { MdOutlineDownloadForOffline } from "react-icons/md"
 import { createTranslator } from "@/locales"
 
+const t = createTranslator("es")
+
 type SyncAddMediaModalProps = {
     savedMediaIds: number[]
 }
@@ -39,7 +41,7 @@ export function SyncAddMediaModal(props: SyncAddMediaModalProps) {
 
     return (
         <Modal
-            title="Saved media"
+            title={t("sync.selectMedia")}
             contentClass="max-w-4xl"
             trigger={<Button
                 intent="gray-subtle"
@@ -47,12 +49,12 @@ export function SyncAddMediaModal(props: SyncAddMediaModalProps) {
                 leftIcon={<MdOutlineDownloadForOffline className="text-2xl" />}
                 loading={isAdding}
             >
-                Select media to save
+                {t("sync.selectMediaButton")}
             </Button>}
         >
 
             <p className="text-[--muted]">
-                Select the media you want to save locally. Click on already saved media to remove it from local storage.
+                {t("sync.selectMediaDescription")}
             </p>
 
             <MediaSelector
