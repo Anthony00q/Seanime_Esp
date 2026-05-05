@@ -101,7 +101,7 @@ export function AnimeEntryMetadataManager(props: AnimeEntryMetadataManagerProps)
                         <>
                             <div className="flex gap-2 flex-col lg:flex-row">
                                 <NumberInput
-                                    leftAddon={t("entry.metadataManager.anilistId")}
+                                    leftAddon={t("common.labels.anilistId")}
                                     addonClass="justify-center text-center font-semibold"
                                     hideControls
                                     value={metadataParentId ?? ""}

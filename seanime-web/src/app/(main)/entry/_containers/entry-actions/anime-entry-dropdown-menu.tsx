@@ -68,7 +68,7 @@ export function AnimeEntryDropdownMenu({ entry, details }: { entry: Anime_Entry,
                     <DropdownMenuItem
                         onClick={() => openEntryInExplorer({ mediaId: entry.mediaId })}
                     >
-                        <BiFolder /> {t("entry.dropdown.openDirectory")}
+                        <BiFolder /> {t("common.labels.openDirectory")}
                     </DropdownMenuItem>
                     {!!entry.libraryData?.sharedPath && <DropdownMenuItem
                         onClick={() => openDirInLibraryExplorer(entry.libraryData?.sharedPath || "")}

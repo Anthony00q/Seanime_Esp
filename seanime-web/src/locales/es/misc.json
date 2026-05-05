@@ -137,9 +137,7 @@
     "searchOnAnilist": "Buscar en AniList",
     "ignoreSelection": "Ignorar selección",
     "selectAnime": "Seleccionar Anime",
-    "openOnAnilist": "Abrir en AniList",
-    "anilistId": "ID de AniList",
-    "mediaId": "ID de Medio"
+    "openOnAnilist": "Abrir en AniList"
   },
   "scanLogViewer": {
     "title": "Analizador de Registros de Escaneo",
@@ -252,7 +250,6 @@
     "failedToRenameFiles": "Error al renombrar archivos: {error}"
   },
   "manga": {
-    "refetchingSources": "Actualizando fuentes...",
     "chaptersAddedToDownloadQueue": "Capítulos añadidos a la cola de descarga",
     "doublePageModeNotSupported": "El modo de página doble no es compatible con pantallas pequeñas.",
     "couldNotGetPageDimensions": "No se pudieron obtener las dimensiones de página de este proveedor. Cambiando a modo paginado."
@@ -297,12 +294,6 @@
   },
   "serverStatus": {
     "featureDisabled": "Esta función está desactivada"
-  },
-  "onlineStream": {
-    "startingWatchParty": "Iniciando watch party de streaming en línea"
-  },
-  "handlePlayMedia": {
-    "externalPlayerNotSet": "El enlace de reproductor externo no está configurado."
   },
   "toast": {
     "settings": {

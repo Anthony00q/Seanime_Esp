@@ -16,7 +16,6 @@
     "inaccurateScheduleOnline": "Consulta el horario en línea para más información.",
     "noMetadata": "La recuperación de metadatos de episodios no está disponible para esta entrada.",
     "episode": "Episodio",
-    "episodeNumber": "Episodio {number}",
     "end": "Fin",
     "missingEpisodes": "Episodio(s) faltante(s)",
     "streamUrlCopied": "URL de stream copiada",
@@ -42,7 +41,6 @@
       "close": "Cerrar streaming en línea"
     },
     "dropdown": {
-      "openDirectory": "Abrir directorio",
       "openInLibraryExplorer": "Abrir en Explorador de Biblioteca",
       "openOnAniDB": "Abrir en AniDB",
       "openOnMAL": "Abrir en MAL",

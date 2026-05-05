@@ -53,12 +53,12 @@
       "clearMediaStreamingCache": "Limpiar caché de streaming de medios",
       "clearOnlineStreamingCache": "Limpiar caché de streaming en línea"
     },
-      "submitButton": {
-        "saveChanges": "Guardar cambios",
-        "resetChanges": "Restablecer cambios",
-        "unsavedChanges": "Cambios sin guardar",
-        "unsavedChangesAlert": "Tienes cambios sin guardar."
-      },
+    "submitButton": {
+      "saveChanges": "Guardar cambios",
+      "resetChanges": "Restablecer cambios",
+      "unsavedChanges": "Cambios sin guardar",
+      "unsavedChangesAlert": "Tienes cambios sin guardar."
+    },
     "ui": {
       "tabs": {
         "theme": "Tema",
@@ -146,8 +146,8 @@
         "lowestEpisodeNumber": "Menor número de episodio",
         "mostUnwatchedEpisodes": "Más episodios sin ver",
         "leastUnwatchedEpisodes": "Menos episodios sin ver",
-        "highestScore": "Mayor puntuación",
-        "lowestScore": "Menor puntuación",
+        "highestScore": "Puntuación más alta",
+        "lowestScore": "Puntuación más baja",
         "startedRecently": "Comenzado recientemente",
         "oldestStartDate": "Fecha de inicio más antigua",
         "mostRecentWatch": "Visto más recientemente",

@@ -64,8 +64,7 @@
       "cacheDirectory": "Directorio de caché",
       "cacheDirectoryHelp": "Donde se descargarán los torrents mientras se hace streaming. Dejar vacío para usar el directorio de caché predeterminado.",
       "chooseEmptyDirectory": "Elige un directorio vacío para evitar perder datos.",
-      "dropTorrent": "Soltar torrent",
-      "settingsSaved": "Ajustes guardados"
+      "dropTorrent": "Soltar torrent"
     },
     "debridService": {
       "title": "Servicio Debrid",
@@ -95,8 +94,7 @@
       "res1080p": "1080p",
       "providerTorBox": "TorBox",
       "providerRealDebrid": "Real-Debrid",
-      "providerAllDebrid": "AllDebrid",
-      "settingsSaved": "Ajustes guardados"
+      "providerAllDebrid": "AllDebrid"
     },
     "torrent": {
       "title": "Proveedor de Torrent",
