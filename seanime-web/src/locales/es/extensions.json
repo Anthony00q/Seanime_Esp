@@ -19,7 +19,11 @@
       "animeTorrents": "Torrents de anime",
       "manga": "Manga",
       "onlineStreaming": "Streaming en línea",
-      "customSources": "Fuentes personalizadas"
+      "customSources": "Fuentes personalizadas",
+      "source": "Fuente:",
+      "officialRepository": "Repositorio oficial",
+      "customSourcesInfo1": "Las fuentes personalizadas no proporcionan funciones de streaming. Se necesitan proveedores de torrents y streaming en línea para esto.",
+      "customSourcesInfo2": "Las fuentes personalizadas te permiten explorar medios más allá de lo que ofrece AniList."
     },
     "searchPlaceholder": "Buscar extensiones...",
     "noExtensionsFound": "No se encontraron extensiones que coincidan con tus criterios.",
