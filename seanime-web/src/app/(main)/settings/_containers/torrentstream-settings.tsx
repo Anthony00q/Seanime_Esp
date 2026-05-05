@@ -85,7 +85,7 @@ export function TorrentstreamSettings(props: TorrentstreamSettingsProps) {
                             {
                                 onSuccess: () => {
                                     formRef.current?.reset(formRef.current.getValues())
-                                    toast.success(t("settings.torrentstream.settingsSaved"))
+                                    toast.success(t("toast.settings.settingsSaved"))
                                 },
                             },
                         )

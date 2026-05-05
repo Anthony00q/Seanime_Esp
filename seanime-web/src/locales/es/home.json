@@ -31,7 +31,6 @@
       },
       "dropdown": {
         "searchInLibrary": "Buscar en biblioteca",
-        "openDirectory": "Abrir directorio",
         "bulkActions": "Acciones masivas",
         "ignoredFiles": "Archivos ignorados",
         "scanSummaries": "Resúmenes de escaneo"
