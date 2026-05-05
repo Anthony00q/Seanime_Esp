@@ -14,7 +14,7 @@ import { extractInputPartProps, hiddenInputStyles, InputAddon, InputAnatomy, Inp
 export const SelectAnatomy = defineStyleAnatomy({
     root: cva([
         "UI-Select__root",
-        "inline-flex items-center justify-between relative whitespace-nowrap truncate",
+        "inline-flex items-center justify-between relative whitespace-nowrap",
     ]),
     chevronIcon: cva([
         "UI-Combobox__chevronIcon",
@@ -193,7 +193,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>((props, r
                         aria-label={basicFieldProps.name || "Select"}
                         {...rest}
                     >
-                        <SelectPrimitive.Value placeholder={placeholder} />
+                        <span className="truncate"><SelectPrimitive.Value placeholder={placeholder} /></span>
 
                         <SelectPrimitive.Icon className={cn(!!rightIcon && "hidden")}>
                             <svg

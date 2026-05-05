@@ -38,6 +38,9 @@
       "episodeNumber": "Episodio {number}",
       "episodeNumberLabel": "Número de episodio"
     },
+    "status": {
+      "connecting": "Conectando..."
+    },
     "messages": {
       "itemNotFound": "Elemento no encontrado",
       "itemNotFoundWithType": "Elemento no encontrado ({itemType})",
