@@ -437,7 +437,7 @@ function SortableHomeItem({ item, onRemove, onEditOptions, isUpdating, index }: 
                     {homeItemConfig.description}
                 </p>
                 <div className="text-sm text-gray-400">
-                    {homeItemConfig.kind.map(k => k.charAt(0).toUpperCase() + k.slice(1)).join(", ")}
+                    {homeItemConfig.kind.map(k => t(`home.items.kind.${k}`)).join(", ")}
                 </div>
             </div>
 
@@ -496,7 +496,7 @@ function AvailableHomeItem({ id, type, onAdd, isUpdating }: AvailableHomeItemPro
                     {homeItemConfig.description}
                 </p>
                 <div className="text-sm text-gray-400">
-                    {homeItemConfig.kind.map(k => k.charAt(0).toUpperCase() + k.slice(1)).join(", ")}
+                    {homeItemConfig.kind.map(k => t(`home.items.kind.${k}`)).join(", ")}
                 </div>
             </div>
 

@@ -18,6 +18,9 @@ import { Separator } from "@/components/ui/separator"
 import { Tooltip } from "@/components/ui/tooltip"
 import { useAtomValue } from "jotai/react"
 import React from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 import { BiLinkExternal } from "react-icons/bi"
 import { FiSearch } from "react-icons/fi"
 
@@ -122,11 +125,11 @@ function Content({ entry }: { entry: Anime_Entry }) {
                                     }
                                 }}
                                 >
-                                    Remove mapping
+                                    {t("manualMatch.removeMapping")}
                                 </Button>
                             </AppLayoutStack>
                         ) : (
-                            <p className="text-[--muted] italic">No manual match</p>
+                            <p className="text-[--muted] italic">{t("manualMatch.none")}</p>
                         )}
                     </div>
 
