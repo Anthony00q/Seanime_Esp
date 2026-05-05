@@ -372,7 +372,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                                             className="text-gray-200 font-semibold"
                                         >{media.format}</span>
                                         </p>
-                                        <p>Aired: {media.startDate?.year ? new Intl.DateTimeFormat("en-US", {
+                                        <p>Aired: {media.startDate?.year ? new Intl.DateTimeFormat("es", {
                                             year: "numeric",
                                         }).format(new Date(media.startDate?.year || 0, media.startDate?.month || 0)) : "-"}</p>
                                         <p>Status: {media.status}</p>

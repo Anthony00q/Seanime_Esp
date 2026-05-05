@@ -15,6 +15,9 @@ import { Tooltip } from "@/components/ui/tooltip"
 import { useRouter } from "@/lib/navigation"
 import React from "react"
 import { FiSearch } from "react-icons/fi"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 type MangaManualMappingModalProps = {
     entry: Manga_Entry
@@ -117,11 +120,11 @@ function Content({ entry }: { entry: Manga_Entry }) {
                                     }
                                 }}
                                 >
-                                    Remove mapping
+                                    {t("manualMatch.removeMapping")}
                                 </Button>
                             </AppLayoutStack>
                         ) : (
-                            <p className="text-[--muted] italic">No manual match</p>
+                            <p className="text-[--muted] italic">{t("manualMatch.none")}</p>
                         )}
                     </div>
 

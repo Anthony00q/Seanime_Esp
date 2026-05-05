@@ -201,7 +201,7 @@ export const HOME_ITEMS: Record<string, HomeItemSchema> = {
         description: t("home.items.animeLibrary.description"),
         options: [
             {
-                label: "Statuses",
+                label: t("home.items.options.statuses"),
                 name: "statuses",
                 type: "multi-select",
                 options: [
@@ -251,7 +251,7 @@ export const HOME_ITEMS: Record<string, HomeItemSchema> = {
         description: t("home.items.myLists.description"),
         options: [
             {
-                label: "Statuses",
+                label: t("home.items.options.statuses"),
                 name: "statuses",
                 type: "multi-select",
                 options: [
@@ -432,7 +432,7 @@ export const HOME_ITEMS: Record<string, HomeItemSchema> = {
         description: t("home.items.mangaLibrary.description"),
         options: [
             {
-                label: "Statuses",
+                label: t("home.items.options.statuses"),
                 name: "statuses",
                 type: "multi-select",
                 options: [

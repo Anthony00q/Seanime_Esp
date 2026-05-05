@@ -64,14 +64,16 @@ export function AnilistStats(props: AnilistStatsProps) {
     const anime_genresStats = React.useMemo(() => {
         if (!stats?.animeStats?.genres) return []
 
-        return stats.animeStats.genres.map((item) => {
-            return {
-                name: translateGenre(item.genre ?? ""),
-                "Count": item.count,
-                hoursWatched: Math.round(item.minutesWatched / 60),
-                [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),
-            }
-        }).sort((a, b) => b["Count"] - a["Count"])
+        return stats.animeStats.genres
+            .sort((a, b) => b.count - a.count)
+            .map((item) => {
+                return {
+                    name: translateGenre(item.genre ?? ""),
+                    [t("anilistStats.count")]: item.count,
+                    hoursWatched: Math.round(item.minutesWatched / 60),
+                    [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),
+                }
+            })
     }, [stats?.animeStats?.genres])
 
     const [anime_thisYearStats, anime_lastYearStats] = React.useMemo(() => {
@@ -89,7 +91,7 @@ export function AnilistStats(props: AnilistStatsProps) {
         return stats.animeStats.releaseYears.sort((a, b) => a.releaseYear! - b.releaseYear!).map((item) => {
             return {
                 name: item.releaseYear,
-                "Count": item.count,
+                [t("anilistStats.count")]: item.count,
                 [t("anilistStats.hoursWatched")]: Math.round(item.minutesWatched / 60),
                 [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),
             }
@@ -114,14 +116,16 @@ export function AnilistStats(props: AnilistStatsProps) {
     const manga_genresStats = React.useMemo(() => {
         if (!stats?.mangaStats?.genres) return []
 
-        return stats.mangaStats.genres.map((item) => {
-            return {
-                name: translateGenre(item.genre ?? ""),
-                "Count": item.count,
-                chaptersRead: item.chaptersRead,
-                [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),
-            }
-        }).sort((a, b) => b["Count"] - a["Count"])
+        return stats.mangaStats.genres
+            .sort((a, b) => b.count - a.count)
+            .map((item) => {
+                return {
+                    name: translateGenre(item.genre ?? ""),
+                    [t("anilistStats.count")]: item.count,
+                    chaptersRead: item.chaptersRead,
+                    [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),
+                }
+            })
     }, [stats?.mangaStats?.genres])
 
     const [manga_thisYearStats, manga_lastYearStats] = React.useMemo(() => {
@@ -139,7 +143,7 @@ export function AnilistStats(props: AnilistStatsProps) {
         return stats.mangaStats.releaseYears.sort((a, b) => a.releaseYear! - b.releaseYear!).map((item) => {
             return {
                 name: item.releaseYear,
-                "Count": item.count,
+                [t("anilistStats.count")]: item.count,
                 [t("anilistStats.chaptersRead")]: item.chaptersRead,
                 [t("anilistStats.averageScore")]: Number((item.meanScore / 10).toFixed(1)),
             }
@@ -252,14 +256,14 @@ export function AnilistStats(props: AnilistStatsProps) {
 
             <Separator />
 
-            <h3 className="text-center" data-anilist-stats-anime-genres-title>Genres</h3>
+            <h3 className="text-center" data-anilist-stats-anime-genres-title>{t("anilistStats.genres")}</h3>
 
             <div className="grid grid-cols-1 gap-6 w-full" data-anilist-stats-anime-genres-container>
                 <ChartContainer legend={t("anilistStats.favoriteGenres")} data-anilist-stats-anime-genres-container-favorite-genres>
                     <BarChart
                         data={anime_genresStats}
                         index="name"
-                        categories={["Count", "Average score"]}
+                        categories={[t("anilistStats.count"), t("anilistStats.averageScore")]}
                         colors={["brand", "blue"]}
                     />
                 </ChartContainer>
@@ -274,7 +278,7 @@ export function AnilistStats(props: AnilistStatsProps) {
                     <AreaChart
                         data={anime_releaseYearsStats}
                         index="name"
-                        categories={["Count"]}
+                        categories={[t("anilistStats.count")]}
                         angledLabels
                     />
                 </ChartContainer>
@@ -334,7 +338,7 @@ export function AnilistStats(props: AnilistStatsProps) {
 
             <Separator />
 
-            <h3 className="text-center" data-anilist-stats-manga-statuses-title>Statuses</h3>
+            <h3 className="text-center" data-anilist-stats-manga-statuses-title>{t("anilistStats.statuses")}</h3>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full" data-anilist-stats-manga-statuses-container>
                 <ChartContainer legend={t("anilistStats.total")} data-anilist-stats-manga-statuses-container-total>
@@ -357,14 +361,14 @@ export function AnilistStats(props: AnilistStatsProps) {
 
             <Separator />
 
-            <h3 className="text-center" data-anilist-stats-manga-genres-title>Genres</h3>
+            <h3 className="text-center" data-anilist-stats-manga-genres-title>{t("anilistStats.genres")}</h3>
 
             <div className="grid grid-cols-1 gap-6 w-full" data-anilist-stats-manga-genres-container>
                 <ChartContainer legend={t("anilistStats.favoriteGenres")} data-anilist-stats-manga-genres-container-favorite-genres>
                     <BarChart
                         data={manga_genresStats}
                         index="name"
-                        categories={["Count", "Average score"]}
+                        categories={[t("anilistStats.count"), t("anilistStats.averageScore")]}
                         colors={["brand", "blue"]}
                     />
                 </ChartContainer>
@@ -372,14 +376,14 @@ export function AnilistStats(props: AnilistStatsProps) {
 
             <Separator />
 
-            <h3 className="text-center" data-anilist-stats-manga-years-title>Years</h3>
+            <h3 className="text-center" data-anilist-stats-manga-years-title>{t("anilistStats.years")}</h3>
 
             <div className="grid grid-cols-1 gap-6 w-full" data-anilist-stats-manga-years-container>
                 <ChartContainer legend={t("anilistStats.mangaPerReleaseYear")} data-anilist-stats-manga-years-container-manga-read-per-release-year>
                     <AreaChart
                         data={manga_releaseYearsStats}
                         index="name"
-                        categories={["Count"]}
+                        categories={[t("anilistStats.count")]}
                         angledLabels
                     />
                 </ChartContainer>

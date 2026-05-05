@@ -85,6 +85,7 @@ function IsomorphicPopover(props: PopoverProps & ModalProps & { media?: AL_BaseA
 
 
 export const AnilistMediaEntryModal = (props: AnilistMediaEntryModalProps) => {
+    const t = createTranslator("es")
     const [open, toggle] = useToggle(false)
     const [repeat, setRepeat] = React.useState(0)
 
@@ -156,7 +157,7 @@ export const AnilistMediaEntryModal = (props: AnilistMediaEntryModalProps) => {
                         })}
                     />}
                 >
-                    Add to list
+                    {t("anilist.mediaEntry.addToList")}
                 </Tooltip>}
             </>}
 
@@ -251,7 +252,7 @@ function Content(props: AnilistMediaEntryModalProps & {
             >
                 <div className="flex flex-col sm:flex-row gap-4">
                     <Field.Select
-                        label="Status"
+                        label={t("anilist.mediaEntry.status")}
                         name="status"
                         options={[
                             media?.status !== "NOT_YET_RELEASED" ? {
@@ -279,7 +280,7 @@ function Content(props: AnilistMediaEntryModalProps & {
                     />
                     {media?.status !== "NOT_YET_RELEASED" && <>
                         <Field.Number
-                            label="Score"
+                            label={t("anilist.mediaEntry.score")}
                             name="score"
                             min={0}
                             max={10}
@@ -291,7 +292,7 @@ function Content(props: AnilistMediaEntryModalProps & {
                             rightIcon={<BiStar />}
                         />
                         <Field.Number
-                            label="Progress"
+                            label={t("anilist.mediaEntry.progress")}
                             name="progress"
                             min={0}
                             max={type === "anime" ? (!!(media as AL_BaseAnime)?.nextAiringEpisode?.episode
@@ -310,13 +311,13 @@ function Content(props: AnilistMediaEntryModalProps & {
                 </div>
                 {media?.status !== "NOT_YET_RELEASED" && <div className="flex flex-col sm:flex-row gap-4">
                     <Field.DatePicker
-                        label="Start date"
+                        label={t("anilist.mediaEntry.startDate")}
                         name="startedAt"
                         // defaultValue={(state.startedAt && state.startedAt.year) ? parseAbsoluteToLocal(new Date(state.startedAt.year,
                         // (state.startedAt.month || 1)-1, state.startedAt.day || 1).toISOString()) : undefined}
                     />
                     <Field.DatePicker
-                        label="Completion date"
+                        label={t("anilist.mediaEntry.completionDate")}
                         name="completedAt"
                         // defaultValue={(state.completedAt && state.completedAt.year) ? parseAbsoluteToLocal(new Date(state.completedAt.year,
                         // (state.completedAt.month || 1)-1, state.completedAt.day || 1).toISOString()) : undefined}
@@ -324,7 +325,7 @@ function Content(props: AnilistMediaEntryModalProps & {
 
                     <NumberInput
                         name="repeat"
-                        label={type === "anime" ? "Total rewatches" : "Total rereads"}
+                        label={type === "anime" ? t("anilist.mediaEntry.totalRewatches") : t("anilist.mediaEntry.totalRereads")}
                         min={0}
                         max={1000}
                         value={repeat}
@@ -359,14 +360,14 @@ function Content(props: AnilistMediaEntryModalProps & {
                                             mediaId: media?.id!,
                                             type: type,
                                         })}
-                                    >Confirm</Button>
+                                    >{t("anilist.mediaEntry.confirm")}</Button>
                                 </DisclosureContent>
                             </DisclosureItem>
                         </Disclosure>
                     </div>
 
                     <Field.Submit role="save" disableIfInvalid={true} loading={isEditing} disabled={isDeleting}>
-                        Save
+                        {t("anilist.mediaEntry.save")}
                     </Field.Submit>
                 </div>
 

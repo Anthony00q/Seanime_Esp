@@ -37,7 +37,8 @@
       "read": "Leído",
       "noChaptersFound": "No se encontraron capítulos",
       "selectProvider": "Seleccionar proveedor",
-      "missingEpisodes": "Episodios faltantes"
+      "missingEpisodes": "Episodios faltantes",
+      "tryAnotherSource": "Prueba otra fuente"
     },
     "chapterDownloads": {
       "title": "Descargas de capítulos",
@@ -47,7 +48,10 @@
     "chapterReader": {
       "reloadSources": "Recargar fuentes",
       "reloadSourcesDescription": "Esta acción vaciará el caché de las fuentes de manga. Tendrás que volver a cargar los capítulos.",
-      "noPagesFound": "No se encontraron páginas"
+      "noPagesFound": "No se encontraron páginas",
+      "failedToLoadPages": "Error al cargar páginas",
+      "loadPagesError": "Ocurrió un error al intentar cargar las páginas de este capítulo.",
+      "reloadPageOrSources": "Recarga la página, recarga las fuentes o cambia la fuente."
     },
     "entry": {
       "read": "Leer",
