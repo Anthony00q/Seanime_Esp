@@ -700,6 +700,7 @@ interface WatchPartySessionViewProps {
 }
 
 function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: WatchPartySessionViewProps) {
+    const t = createTranslator("es")
     const { sendMessage } = useWebsocketSender()
     const nakamaStatus = useNakamaStatus()
     const participants = Object.values(session.participants || {})
@@ -765,7 +766,7 @@ function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: 
              <>
              <div className="flex items-center justify-between">
              <span className="text-sm text-[--muted]">Current Media:</span>
-             <span className="text-sm">Episode {session.currentMediaInfo.episodeNumber}</span>
+              <span className="text-sm">{t("entry.episode")} {session.currentMediaInfo.episodeNumber}</span>
              </div>
              <div className="flex items-center justify-between">
              <span className="text-sm text-[--muted]">Stream Type:</span>

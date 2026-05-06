@@ -896,7 +896,7 @@ export function OnlinestreamPage({ animeEntry, animeEntryLoading, hideBackButton
                                             key={idx + (episode.title || "") + episode.number}
                                             id={`episode-${String(episode.number)}`}
                                             onClick={() => setSelectedEpisodeNumber(episode.number)}
-                                            title={media.format === "MOVIE" ? tr("onlinestream.completeMovie") : `Episode ${episode.number}`}
+                                                    title={media.format === "MOVIE" ? tr("onlinestream.completeMovie") : `${tr("entry.episode")} ${episode.number}`}
                                             episodeTitle={episode.title}
                                             description={episode.description ?? undefined}
                                             image={episode.image}
@@ -911,7 +911,7 @@ export function OnlinestreamPage({ animeEntry, animeEntryLoading, hideBackButton
                                             progressNumber={episode.number}
                                             action={<>
                                                 <MediaEpisodeInfoModal
-                                                    title={media.format === "MOVIE" ? tr("onlinestream.completeMovie") : `Episode ${episode.number}`}
+                                            title={media.format === "MOVIE" ? tr("onlinestream.completeMovie") : `${tr("entry.episode")} ${episode.number}`}
                                                     image={episode?.image}
                                                     episodeTitle={episode.title}
                                                     summary={episode?.description}
