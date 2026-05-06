@@ -13,6 +13,7 @@ import { isSameDay } from "date-fns/isSameDay"
 import { es } from "date-fns/locale"
 import React from "react"
 import { LuDock, LuEye } from "react-icons/lu"
+import { capitalizeFirst } from "@/lib/utils/capitalize-date"
 import { createTranslator } from "@/locales"
 
 const t = createTranslator("es")
@@ -103,7 +104,7 @@ export function DiscoverAiringSchedule() {
                         <React.Fragment key={day.date}>
                             <div className="flex flex-col gap-2">
                                 <div className="flex items-center gap-2">
-                                    <h3 className="font-semibold">{format(new Date(day.date), "EEEE, PP", { locale: es })}</h3>
+                                    <h3 className="font-semibold">{capitalizeFirst(format(new Date(day.date), "EEEE, PP", { locale: es }))}</h3>
                                     {day.isToday && <span className="text-[--muted]">{t("discover.today")}</span>}
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
