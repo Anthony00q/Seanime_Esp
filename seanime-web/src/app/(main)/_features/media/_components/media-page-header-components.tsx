@@ -18,7 +18,6 @@ import {
     useIsMobile,
     useThemeSettings,
 } from "@/lib/theme/theme-hooks.ts"
-import capitalize from "lodash/capitalize"
 import { motion } from "motion/react"
 import React from "react"
 import { BiSolidStar, BiStar } from "react-icons/bi"

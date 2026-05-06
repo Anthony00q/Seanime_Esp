@@ -40,8 +40,8 @@ export function OnlinestreamManualMappingModal(props: OnlinestreamManualMappingM
     return (
         <>
             <Modal
-                title="Manual match"
-                description="Match this anime to a search result from the provider."
+                title={t("onlinestream.manualMatch")}
+                description="Emparejar este anime con un resultado de búsqueda del proveedor."
                 trigger={children}
                 contentClass="max-w-4xl"
             >
@@ -86,8 +86,8 @@ function Content({ entry }: { entry: Anime_Entry }) {
 
     const [animeId, setAnimeId] = React.useState<string | null>(null)
     const confirmMatch = useConfirmationDialog({
-        title: "Manual match",
-        description: "Are you sure you want to match this anime to the search result?",
+        title: t("onlinestream.manualMatch"),
+        description: "¿Estás seguro de que quieres emparejar este anime con el resultado de búsqueda?",
         actionText: "Confirm",
         actionIntent: "success",
         onConfirm: () => {

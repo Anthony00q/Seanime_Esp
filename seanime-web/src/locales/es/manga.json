@@ -53,10 +53,9 @@
       "loadPagesError": "Ocurrió un error al intentar cargar las páginas de este capítulo.",
       "reloadPageOrSources": "Recarga la página, recarga las fuentes o cambia la fuente."
     },
-    "entry": {
-      "read": "Leer",
-      "continueReading": "Continuar leyendo",
-      "chapters": "Capítulos",
+      "entry": {
+        "read": "Leer",
+        "chapters": "Capítulos",
       "downloadChapters": "Descargar capítulos",
       "markAsRead": "Marcar como leído",
       "markAsUnread": "Marcar como no leído",
