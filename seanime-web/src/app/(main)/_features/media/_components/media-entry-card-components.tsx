@@ -13,6 +13,7 @@ import { Tooltip } from "@/components/ui/tooltip"
 import { getImageUrl } from "@/lib/server/assets"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { __isElectronDesktop__ } from "@/types/constants"
+import { createTranslator } from "@/locales"
 import { addSeconds, formatDistanceToNow } from "date-fns"
 import { es } from "date-fns/locale"
 import { atom, useAtom } from "jotai"
@@ -288,6 +289,7 @@ type AnimeEntryCardNextAiringProps = {
 }
 
 export function AnimeEntryCardNextAiring(props: AnimeEntryCardNextAiringProps) {
+    const t = createTranslator("es")
 
     const {
         nextAiring,
@@ -301,7 +303,7 @@ export function AnimeEntryCardNextAiring(props: AnimeEntryCardNextAiringProps) {
             <div data-anime-entry-card-next-airing-container className="flex gap-1 items-center justify-center">
                 {/*<p className="text-xs min-[2000px]:text-md">Next episode:</p>*/}
                 <p data-anime-entry-card-next-airing className="text-justify font-normal text-xs min-[2000px]:text-md">
-                    Episode <span className="font-semibold">{nextAiring?.episode}</span> {formatDistanceToNow(addSeconds(new Date(),
+                    {t("entry.episode")} <span className="font-semibold">{nextAiring?.episode}</span> {formatDistanceToNow(addSeconds(new Date(),
                     nextAiring?.timeUntilAiring), { addSuffix: true, locale: es })}
                     {/*<Badge*/}
                     {/*    size="sm"*/}

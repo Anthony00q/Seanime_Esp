@@ -11,6 +11,7 @@ import { Popover } from "@/components/ui/popover"
 import { Tooltip } from "@/components/ui/tooltip"
 import { getScoreColor } from "@/lib/helpers/score"
 import { getImageUrl } from "@/lib/server/assets"
+import { capitalizeFirst } from "@/lib/utils/capitalize-date"
 import {
     ThemeMediaPageBannerSize,
     ThemeMediaPageBannerType,
@@ -413,10 +414,10 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
                             data-media-page-header-entry-details-date-container
                         >
                             <p className="text-lg text-white flex gap-1 items-center">
-                                <BiCalendarAlt /> {new Intl.DateTimeFormat("es", {
+                                <BiCalendarAlt /> {capitalizeFirst(new Intl.DateTimeFormat("es", {
                                 year: "numeric",
                                 month: "short",
-                            }).format(new Date(startDate?.year || 0, startDate?.month ? startDate?.month - 1 : 0))}{!!season
+                            }).format(new Date(startDate?.year || 0, startDate?.month ? startDate?.month - 1 : 0)))}{!!season
                                 ? ` - ${translateSeason(season)}`
                                 : ""}
                             </p>

@@ -435,7 +435,7 @@ function EpisodeItem({ episode }: { episode: Anime_PlaylistEpisode }) {
             </div>
             <div className="max-w-full space-y-1">
                 <p className="text-sm text-[--muted]">{episode.episode?.baseAnime?.title?.userPreferred}</p>
-                <p className="">{episode.episode?.baseAnime?.format !== "MOVIE" ? `Episode ${episode.episode!.episodeNumber}` : "Movie"}</p>
+                <p className="">{episode.episode?.baseAnime?.format !== "MOVIE" ? `${t("entry.episode")} ${episode.episode!.episodeNumber}` : "Película"}</p>
 
                 <div>
                     <div className="text-xs text-[--muted] line-clamp-1 tracking-wide">

@@ -12,7 +12,10 @@ import {
     useTorrentFiltering,
     useTorrentSorting,
 } from "@/app/(main)/entry/_containers/torrent-search/_components/torrent-common-helpers"
-import { TorrentSelectionType } from "@/app/(main)/entry/_containers/torrent-search/torrent-search-drawer"
+import {     TorrentSelectionType } from "@/app/(main)/entry/_containers/torrent-search/torrent-search-drawer"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 import { LuffyError } from "@/components/shared/luffy-error"
 import { ScrollAreaBox } from "@/components/shared/scroll-area-box"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -135,7 +138,7 @@ export const TorrentTable = memo((
                                         overrideProps={{
                                             releaseGroup: releaseGroup,
                                             displayName: (episodeNumber ?? -1) >= 0
-                                                ? `Episode ${episodeNumber}`
+                                                ? `${t("entry.episode")} ${episodeNumber}`
                                                 : "",
                                             isBatch: torrent.isBestRelease ? true : isBatch,
                                             image: distance <= 20 ? episodeImage : undefined,

@@ -313,8 +313,8 @@ function MediaMetadata({ media, pageType, isTransitioning, onHoverChange }: Medi
                         <p className="text-base font-medium">
                             {(media as AL_BaseAnime).nextAiringEpisode?.episode ? (
                                 <span>
-                                    {(media as AL_BaseAnime).nextAiringEpisode?.episode! - 1} {(media as AL_BaseAnime).nextAiringEpisode?.episode! - 1 === 1
-                                    ? t("discover.episodeReleased")
+                                    {(media as AL_BaseAnime).nextAiringEpisode?.episode! - 1 === 1
+                                    ? t("discover.episodeReleased", { count: 1 })
                                     : t("discover.episodeReleased_plural", { count: (media as AL_BaseAnime).nextAiringEpisode?.episode! - 1 })}
                                 </span>
                             ) : (

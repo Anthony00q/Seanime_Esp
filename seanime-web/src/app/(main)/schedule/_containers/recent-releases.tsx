@@ -4,6 +4,7 @@ import { MediaEntryCardSkeleton } from "@/app/(main)/_features/media/_components
 import { AppLayoutStack } from "@/components/ui/app-layout"
 import { Carousel, CarouselContent, CarouselDotButtons } from "@/components/ui/carousel"
 import { addSeconds, formatDistanceToNow, subDays } from "date-fns"
+import { es } from "date-fns/locale"
 import React from "react"
 import { createTranslator } from "@/locales"
 
@@ -58,7 +59,7 @@ export function RecentReleases() {
                                         <span className="tracking-wider"><span className="!text-lg">{item.episode}</span><span className="text-[--muted] tracking-wider !text-md">/{item.media?.episodes ?? "-"}</span></span>}</div>
                                     <div className="text-xs font-semibold z-[-1] w-fit h-fit pl-2 pr-[0.3rem] py-1 ml-2 text-center bg-gray-700 !bg-opacity-70 rounded-none rounded-bl-lg">
                                         {item.airingAt
-                                            ? formatDistanceToNow(addSeconds(new Date(), item.timeUntilAiring), { addSuffix: true })
+                                             ? formatDistanceToNow(addSeconds(new Date(), item.timeUntilAiring), { addSuffix: true, locale: es })
                                                 ?.replace("less than a", "1")
                                                 ?.replace("about ", "")
                                                 ?.replace(" minutes", "m")

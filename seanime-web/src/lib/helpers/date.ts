@@ -1,7 +1,8 @@
 import { format, FormatDistanceToNowOptions, FormatOptions } from "date-fns"
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
+import { es } from "date-fns/locale"
 
-export function formatDistanceToNowSafe(value: string, options: FormatDistanceToNowOptions | undefined = { addSuffix: true }) {
+export function formatDistanceToNowSafe(value: string, options: FormatDistanceToNowOptions & { locale?: typeof es } | undefined = { addSuffix: true, locale: es }) {
     try {
         return formatDistanceToNow(value, options)
     }

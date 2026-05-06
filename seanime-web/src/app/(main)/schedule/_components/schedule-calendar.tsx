@@ -23,6 +23,7 @@ import { BiCog } from "react-icons/bi"
 import { FaCheck, FaFlag } from "react-icons/fa6"
 import { __anilist_userAnimeListDataAtom } from "../../_atoms/anilist.atoms"
 import { createTranslator } from "@/locales"
+import { capitalizeFirst } from "@/lib/utils/capitalize-date"
 
 const t = createTranslator("es")
 
@@ -337,9 +338,9 @@ interface MobileDayItemProps {
 }
 
 function MobileDayItem({ day, calendarParams }: MobileDayItemProps) {
-    const dayName = format(new Date(day.date), "EEEE", { locale: es })
+    const dayName = capitalizeFirst(format(new Date(day.date), "EEEE", { locale: es }))
     const dayNumber = day.date.split("-")?.pop()?.replace(/^0/, "")
-    const monthDay = format(new Date(day.date), "MMM d", { locale: es })
+    const monthDay = capitalizeFirst(format(new Date(day.date), "MMM d", { locale: es }))
 
     return (
         <div className="p-4" data-schedule-calendar-mobile-list-day-item>
@@ -480,7 +481,7 @@ function CalendarDayModal({ day, open, onOpenChange }: CalendarDayModalProps) {
         <Modal
             open={open}
             onOpenChange={onOpenChange}
-            title={format(new Date(day.date), "EEEE, MMMM d, yyyy", { locale: es })}
+            title={capitalizeFirst(format(new Date(day.date), "EEEE, MMMM d, yyyy", { locale: es }))}
             description={hasEvents
                 ? `${day.events.length} ${day.events.length !== 1 ? t("schedule.scheduledEpisodes") : t("schedule.scheduledEpisode")}`
                 : t("schedule.noScheduledEpisodesForThisDay")}
