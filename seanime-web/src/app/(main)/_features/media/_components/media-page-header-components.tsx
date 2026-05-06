@@ -10,6 +10,7 @@ import { Popover } from "@/components/ui/popover"
 import { Tooltip } from "@/components/ui/tooltip"
 import { getScoreColor } from "@/lib/helpers/score"
 import { getImageUrl } from "@/lib/server/assets"
+import { capitalizeFirst } from "@/lib/utils/capitalize-date"
 import {
     ThemeMediaPageBannerSize,
     ThemeMediaPageBannerType,
