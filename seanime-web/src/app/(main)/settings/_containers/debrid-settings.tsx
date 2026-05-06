@@ -134,32 +134,32 @@ export function DebridSettings(props: DebridSettingsProps) {
                             icon={LuCirclePlay}
                         />
 
-                        <SettingsCard title={t("settings.debridService.homeScreen")}>
+                        <SettingsCard title={t("settings.torrentstream.homeScreen")}>
                             <Field.Switch
                                 side="right"
                                 name="includeDebridStreamInLibrary"
-                                label={t("settings.debridService.includeInAnimeLibrary")}
-                                help={t("settings.debridService.includeInAnimeLibraryHelp")}
+                                label={t("settings.torrentstream.includeInAnimeLibrary")}
+                                help={t("settings.torrentstream.includeInAnimeLibraryHelp")}
                             />
                         </SettingsCard>
 
-                        <SettingsCard title={t("settings.debridService.autoSelect")}>
+                        <SettingsCard title={t("settings.torrentstream.autoSelect")}>
                             <Field.Switch
                                 side="right"
                                 name="streamAutoSelect"
-                                label={t("settings.debridService.autoSelectEnable")}
-                                help={t("settings.debridService.autoSelectEnableHelp")}
+                                label={t("settings.torrentstream.autoSelectEnable")}
+                                help={t("settings.torrentstream.autoSelectEnableHelp")}
                             />
 
                             <Field.Select
                                 name="streamPreferredResolution"
-                                label={t("settings.debridService.preferredResolution")}
-                                help={t("settings.debridService.preferredResolutionHelp")}
+                                label={t("settings.torrentstream.preferredResolution")}
+                                help={t("settings.torrentstream.preferredResolutionHelp")}
                                 options={[
-                                    { label: t("settings.debridService.highest"), value: "-" },
-                                    { label: t("settings.debridService.res480p"), value: "480" },
-                                    { label: t("settings.debridService.res720p"), value: "720" },
-                                    { label: t("settings.debridService.res1080p"), value: "1080" },
+                                    { label: t("settings.torrentstream.highest"), value: "-" },
+                                    { label: t("settings.torrentstream.res480p"), value: "480" },
+                                    { label: t("settings.torrentstream.res720p"), value: "720" },
+                                    { label: t("settings.torrentstream.res1080p"), value: "1080" },
                                 ]}
                             />
 
