@@ -329,7 +329,7 @@ export function PlaybackManagerProgressTracking() {
                     {/*<p className="text-[--muted]">Currently watching</p>*/}
                     <div data-progress-tracking-title>
                         <h3 className="text-lg font-medium line-clamp-1">{state?.mediaTitle}</h3>
-                        <p className="text-2xl font-bold">Episode {state?.episodeNumber}
+                        <p className="text-2xl font-bold">{t("entry.episode")} {state?.episodeNumber}
                             <span className="text-[--muted]">{" / "}{state?.mediaTotalEpisodes || "-"}</span>
                         </p>
                     </div>
