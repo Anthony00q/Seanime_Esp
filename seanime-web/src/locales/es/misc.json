@@ -10,6 +10,11 @@
     "currentlyWatching": "Viendo actualmente",
     "currentlyReading": "Leyendo actualmente",
     "continueReading": "Continuar leyendo",
+    "startReading": "Empezar a leer",
+    "rewatch": "Re-vista",
+    "rewatchPlural": "Re-vistas",
+    "reread": "Re-leída",
+    "rereadPlural": "Re-leídas",
     "allLists": "Todas las listas",
     "lists": "Listas",
     "all": "Todos"
@@ -148,8 +153,7 @@
     "openInLibraryExplorer": "Abrir en Explorador de Biblioteca",
     "openPage": "Abrir página",
     "continue": "Continuar",
-    "watch": "Ver",
-    "startReading": "Empezar a leer"
+    "watch": "Ver"
   },
   "scanLogViewer": {
     "title": "Analizador de Registros de Escaneo",
@@ -200,7 +204,7 @@
     "cache": "Caché",
     "emptyCacheDescription": "Vacía el caché si estás experimentando problemas con el stream.",
     "emptyStreamCache": "Vaciar caché de stream",
-    "manualMatch": "Coincidencia manual",
+    "manualMatch": "Emparejamiento manual",
     "switchToSubs": "Cambiar a subtítulos",
     "switchToDub": "Cambiar a doblaje",
     "switchToGridView": "Cambiar a vista de cuadrícula",
@@ -404,7 +408,6 @@
       "randomEpisode": "Reproduciendo episodio aleatorio",
       "nextEpisode": "Cargando siguiente episodio"
     },
-    "releases": {},
     "status": {
       "logsDeleted": "Registros eliminados",
       "couldntFetchLogs": "No se pudieron obtener los registros",
@@ -468,7 +471,7 @@
     }
   },
   "manualMatch": {
-    "none": "Sin coincidencia manual",
+    "none": "Sin emparejamiento manual",
     "removeMapping": "Eliminar mapeo"
   }
 }

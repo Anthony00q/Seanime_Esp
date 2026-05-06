@@ -96,10 +96,7 @@
       "title": "Streaming en Línea",
       "description": "Configurar ajustes de streaming en línea",
       "enable": "Activar",
-      "enableHelp": "Ver episodios de anime desde fuentes en línea.",
-      "homeScreen": "Pantalla de inicio",
-      "includeInAnimeLibrary": "Incluir en biblioteca de anime",
-      "includeInAnimeLibraryHelp": "Añade programas no descargados que están en tu lista de 'Viendo actualmente' a la biblioteca."
+      "enableHelp": "Ver episodios de anime desde fuentes en línea."
     },
     "manga": {
       "title": "Manga",

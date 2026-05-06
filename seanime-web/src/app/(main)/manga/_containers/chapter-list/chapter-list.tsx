@@ -357,7 +357,7 @@ export function ChapterList(props: ChapterListProps) {
                         intent="gray-outline"
                         size="sm"
                     >
-                        Manual match
+                        {t("onlinestream.manualMatch")}
                     </Button>
                 </MangaManualMappingModal>
             </div>
@@ -445,7 +445,7 @@ export function ChapterList(props: ChapterListProps) {
                                                 })
                                             }}
                                         >
-                                            {!!entry.listData?.progress ? "Continue reading" : "Start reading"}
+                                            {!!entry.listData?.progress ? t("status.continueReading") : t("status.startReading")}
                                         </Button>}
                                     </div>
                                 </div>

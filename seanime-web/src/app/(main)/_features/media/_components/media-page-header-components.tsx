@@ -19,10 +19,12 @@ import {
     useIsMobile,
     useThemeSettings,
 } from "@/lib/theme/theme-hooks.ts"
-import capitalize from "lodash/capitalize"
 import { motion } from "motion/react"
 import React from "react"
 import { translateSeason, translateStatus } from "@/lib/anilist-translations"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 import { BiCalendarAlt, BiSolidStar, BiStar } from "react-icons/bi"
 import { MdOutlineSegment } from "react-icons/md"
 import { RiSignalTowerFill } from "react-icons/ri"
@@ -464,9 +466,9 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
                             <div
                                 data-media-page-header-entry-details-status
                                 className="text-base text-white md:text-md font-medium tracking-wide flex items-center"
-                            >{capitalize(listData?.status === "CURRENT"
-                                ? type === "anime" ? "watching" : "reading"
-                                : listData?.status)}
+                            >{listData?.status === "CURRENT"
+                                ? type === "anime" ? t("status.current") : t("status.currentManga")
+                                : t(`status.${listData?.status?.toLowerCase() ?? ""}`)}
                                 {listData?.repeat && <Tooltip
                                     trigger={<Badge
                                         size="md"
@@ -478,9 +480,12 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
 
                                     </Badge>}
                                 >
-                                    {listData?.repeat} {type === "anime" ? "rewatch" : "reread"}{listData?.repeat > 1
-                                    ? type === "anime" ? "es" : "s"
-                                    : ""}
+                                    {listData?.repeat} {type === "anime"
+                                        ? t("status.rewatch")
+                                        : t("status.reread")}
+                                    {listData?.repeat > 1
+                                        ? type === "anime" ? t("status.rewatchPlural") : t("status.rereadPlural")
+                                        : ""}
                                 </Tooltip>}
                             </div>}
 

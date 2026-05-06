@@ -329,7 +329,7 @@ export function MediaEntryCard<T extends "anime" | "manga">(props: MediaEntryCar
                                     >
                                         {!!listData?.progress && (listData?.status === "CURRENT" || listData?.status === "PAUSED")
                                             ? t("mediaCard.continue")
-                                            : t("mediaCard.startReading")}
+                                            : t("status.startReading")}
                                     </Button>
                                 </SeaLink>}
                             </div>

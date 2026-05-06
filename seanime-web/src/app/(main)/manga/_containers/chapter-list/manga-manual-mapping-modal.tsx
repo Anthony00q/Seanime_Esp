@@ -36,8 +36,8 @@ export function MangaManualMappingModal(props: MangaManualMappingModalProps) {
         <>
             <Modal
                 data-manga-manual-mapping-modal
-                title="Manual match"
-                description="Match this manga to a search result"
+                title={t("onlinestream.manualMatch")}
+                description="Emparejar este manga con un resultado de búsqueda"
                 trigger={children}
                 contentClass="max-w-4xl"
             >
@@ -81,8 +81,8 @@ function Content({ entry }: { entry: Manga_Entry }) {
 
     const [mangaId, setMangaId] = React.useState<string | null>(null)
     const confirmMatch = useConfirmationDialog({
-        title: "Manual match",
-        description: "Are you sure you want to match this manga to the search result?",
+        title: t("onlinestream.manualMatch"),
+        description: "¿Estás seguro de que quieres emparejar este manga con el resultado de búsqueda?",
         actionText: "Confirm",
         actionIntent: "success",
         onConfirm: () => {

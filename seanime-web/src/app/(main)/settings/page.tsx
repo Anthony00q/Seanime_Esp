@@ -633,12 +633,12 @@ export default function Page() {
                                             />
                                         </SettingsCard>
 
-                                        <SettingsCard title={t("settings.onlinestream.homeScreen")}>
+                                        <SettingsCard title={t("settings.torrentstream.homeScreen")}>
                                             <Field.Switch
                                                 side="right"
                                                 name="includeOnlineStreamingInLibrary"
-                                                label={t("settings.onlinestream.includeInAnimeLibrary")}
-                                                help={t("settings.onlinestream.includeInAnimeLibraryHelp")}
+                                                label={t("settings.library.includeOnlineStreamingInLibrary")}
+                                                help={t("settings.library.includeOnlineStreamingInLibraryHelp")}
                                             />
                                         </SettingsCard>
 

@@ -55,7 +55,6 @@
         "noItemsAdded": "No hay elementos añadidos aún. Añade algunos a continuación para personalizar tu pantalla de inicio.",
         "allItemsAdded": "Todos los elementos disponibles han sido añadidos a tu pantalla de inicio."
       },
-      "buttons": {},
       "configure": {
         "title": "Configurar {name}",
         "description": "Personaliza los ajustes para este elemento de inicio.",
@@ -72,10 +71,6 @@
     },
     "settingsButton": {
       "tooltip": "Ajustes de Inicio"
-    },
-    "carousel": {
-      "anime": {},
-      "manga": {}
     },
     "stats": {
       "library": "Biblioteca",
