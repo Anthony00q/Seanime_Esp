@@ -63,45 +63,42 @@ All notable changes to this project will be documented in this file.
 
 ## v3.8.1
 
-- 🦺 Online streaming: Fixed sidebar visibility in fullscreen mode
-
-## v3.8.0
-
-- ✨ Torrent Search: Search from multiple providers at once
-  - Seanime can now aggregate torrent results from multiple providers
-- ⚡️ Subtitle Translator: Support for OpenAI-compatible local LLMs
-- ⚡️ UI: Route preloading and faster transitions
-  - Media entries in your collection will open virtually instantly
-  - Media pages loading time has been reduced by 40%
-- ⚡️ Denshi: Window position and size are now remembered
-- ⚡️ VideoCore: Auto-import local subtitle files
-  - The native player will now automatically import subtitle files from the same directory as the video file
-- ⚡️ External Player Link: New '{subtitleUrl}' placeholder for local sub files
-- ⚡️ UI: Ability to hide spoilers
-  - New '/spoilers' command to toggle spoilers on/off for a specific anime
-- ⚡️ Online streaming: New HTTP/1-based video proxy
-- ⚡️ Online streaming: Option to automatically cycle through providers
-  - Seanime can now try providers until a working one is found
-- ⚡️ Extensions: Ability to disable extensions
-- ⚡️ Streaming: Ability to delete previous batch selection
-- ⚡️ Debrid: Improved downloading handling
-  - Fixes some edge cases encountered while downloading from TorBox and RD
-- ⚡️ Plugins: More APIs
-  - 'ctx.settings', 'ctx.auth', 'ctx.extensions' to securily manage the app systems
-- ⚡️ Settings: New 'Extension Secure Mode'
-  - Confirmation prompts whenever an extension tries to perform a sensitive action
-- 🦺 qBittorrent: Fixed support for 5.2.x
-- 🦺 Cache mode: Queued updates are deleted on manual mutation
-- 🦺 VideoCore: Potential fix for duplicated subtitles
-- 🦺 VideoCore: Potential fix for media session not being ended
-- 🦺 Online streaming: Fixed video source selection
-- 🦺 Online streaming: Fixed occasional HTTP/2 related errors
-- 🦺 Plugins: Faster reads for '$storage' and '$store'
-- 🦺 UI: Fixed some UI issues
-- 🦺 Auto Downloader: Fixed handling of debrid downloads
-- 🦺 Manga: Fixed chapter page image height
-- 🦺 Core: Fixed handling of stale cookies
-- ⬆️ Updated Go to 1.26.2
+- 🦺 Streaming online: Se solucionó la visibilidad de la barra lateral en modo pantalla completa
+- ✨ Búsqueda de Torrents: Búsqueda simultánea en múltiples proveedores
+  - Seanime ahora puede agregar resultados de torrents de múltiples proveedores
+- ⚡️ Traductor de subtítulos: Soporte para LLMs locales compatibles con OpenAI
+- ⚡️ UI: Precarga de rutas y transiciones más rápidas
+  - Las entradas de medios en tu colección se abrirán casi al instante
+  - El tiempo de carga de las páginas de medios se redujo en un 40%
+- ⚡️ Denshi: Ahora se recuerda la posición y el tamaño de la ventana
+- ⚡️ VideoCore: Auto-importar archivos de subtítulos locales
+  - El reproductor nativo ahora importará automáticamente los archivos de subtítulos desde el mismo directorio que el archivo de video
+- ⚡️ Enlace de reproductor externo: Nuevo marcador '{subtitleUrl}' para archivos de subtítulos locales
+- ⚡️ UI: Capacidad de ocultar spoilers
+  - Nuevo comando '/spoilers' para activar/desactivar spoilers en un anime específico
+- ⚡️ Streaming online: Nuevo proxy de video basado en HTTP/1
+- ⚡️ Streaming online: Opción para alternar automáticamente entre proveedores
+  - Seanime ahora puede intentar con diferentes proveedores hasta encontrar uno que funcione
+- ⚡️ Extensiones: Capacidad para desactivar extensiones
+- ⚡️ Streaming: Capacidad para eliminar selecciones anteriores de lotes
+- ⚡️ Debrid: Mejora en el manejo de descargas
+  - Soluciona algunos casos extremos encontrados al descargar desde TorBox y RD
+- ⚡️ Plugins: Más APIs
+  - 'ctx.settings', 'ctx.auth', 'ctx.extensions' para manejar de forma segura los sistemas de la aplicación
+- ⚡️ Ajustes: Nuevo 'Modo Seguro para Extensiones'
+  - Avisos de confirmación cada vez que una extensión intente realizar una acción sensible
+- 🦺 qBittorrent: Soporte corregido para 5.2.x
+- 🦺 Modo Caché: Las actualizaciones en cola se eliminan al hacer mutación manual
+- 🦺 VideoCore: Posible corrección para subtítulos duplicados
+- 🦺 VideoCore: Posible corrección para la sesión de medios que no finaliza
+- 🦺 Streaming online: Selección de fuente de video corregida
+- 🦺 Streaming online: Errores ocasionales relacionados con HTTP/2 solucionados
+- 🦺 Plugins: Lecturas más rápidas para '$storage' y '$store'
+- 🦺 UI: Se corrigieron algunos problemas de la interfaz
+- 🦺 Auto Descargador: Manejo de descargas por debrid corregido
+- 🦺 Manga: Altura de las imágenes de las páginas del capítulo corregida
+- 🦺 Núcleo: Manejo de cookies expiradas corregido
+- ⬆️ Go actualizado a 1.26.2
 
 ## v3.7.1
 
