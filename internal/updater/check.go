@@ -15,6 +15,11 @@ import (
 var (
 	fallbackGithubUrl    = "https://api.github.com/repos/Anthony00q/Seanime_Esp/releases/latest"
 	ErrInsecureUpdateURL = errors.New("update URL must use https")
+	// Stub variables kept for test compatibility
+	websiteUrl       = ""
+	githubCheckUrl   = ""
+	seanimeStableUrl = ""
+	seanimeNightlyUrl = ""
 )
 
 func validateUpdateURL(rawURL string) error {
