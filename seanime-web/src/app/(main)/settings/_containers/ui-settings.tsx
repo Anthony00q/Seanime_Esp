@@ -14,6 +14,8 @@ import {
     THEME_DEFAULT_VALUES,
     ThemeLibraryScreenBannerType,
     ThemeMediaPageBannerType,
+    ThemeMediaPageBannerTypeOptions,
+    ThemeMediaPageBannerSizeOptions,
     useThemeSettings,
 } from "@/lib/theme/theme-hooks.ts"
 import { __isDesktop__ } from "@/types/constants"

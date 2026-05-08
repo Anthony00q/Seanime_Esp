@@ -192,7 +192,6 @@ export function ServerSettings(props: ServerSettingsProps) {
                     <Field.Switch
                         side="right"
                         name="blurAdultContent"
-                    name="blurAdultContent"
                     label={t("settings.server.blurAdultContent")}
                     help={t("settings.server.blurAdultContentHelp")}
                     fieldClass={cn(
