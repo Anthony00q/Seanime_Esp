@@ -1,3 +1,5 @@
+import { translateGenre, translateFormat } from "@/lib/anilist-translations";
+import capitalize from "lodash/capitalize";
 import { AL_AnimeDetailsById_Media_Rankings, AL_MangaDetailsById_Media_Rankings } from "@/api/generated/types"
 import { useServerStatus } from "@/app/(main)/_hooks/use-server-status"
 import { SeaLink } from "@/components/shared/sea-link"

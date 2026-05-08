@@ -1,3 +1,4 @@
+import { createTranslator } from "@/locales";
 import { Extension_Extension, Extension_InvalidExtension } from "@/api/generated/types"
 import { useGetAllExtensions, useInstallExternalExtension } from "@/api/hooks/extensions.hooks"
 import { AddExtensionModal } from "@/app/(main)/extensions/_containers/add-extension-modal"
