@@ -1,3 +1,6 @@
+import { createTranslator } from "@/locales";
+const t = createTranslator("es");
+
 import { Anime_Episode, Continuity_WatchHistory } from "@/api/generated/types"
 import { getEpisodeMinutesRemaining, getEpisodePercentageComplete, useGetContinuityWatchHistory } from "@/api/hooks/continuity.hooks"
 import { usePlayNext } from "@/app/(main)/_atoms/playback.atoms"
@@ -15,7 +18,6 @@ import { anilist_animeIsMovie } from "@/lib/helpers/media"
 import { useRouter } from "@/lib/navigation"
 import { useContinueWatchingSpoilers } from "@/lib/theme/anime-spoilers"
 import { ThemeLibraryScreenBannerType, useThemeSettings } from "@/lib/theme/theme-hooks"
-import { createTranslator } from "@/locales"
 import { useWindowSize } from "@uidotdev/usehooks"
 import { atom } from "jotai"
 import { useAtom, useSetAtom } from "jotai/react"
