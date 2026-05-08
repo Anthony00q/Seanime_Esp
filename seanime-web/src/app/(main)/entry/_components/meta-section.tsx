@@ -1,3 +1,6 @@
+import { createTranslator } from "@/locales";
+const t = createTranslator("es");
+
 import { AL_AnimeDetailsById_Media, Anime_Entry } from "@/api/generated/types"
 import { AnimeAutoDownloaderButton } from "@/app/(main)/_features/anime-library/_containers/anime-auto-downloader-button"
 import { ToggleLockFilesButton } from "@/app/(main)/_features/anime-library/_containers/toggle-lock-files-button"
@@ -31,7 +34,6 @@ import { Tooltip } from "@/components/ui/tooltip"
 import { TORRENT_CLIENT } from "@/lib/server/settings"
 import { getCustomSourceExtensionId, getCustomSourceMediaSiteUrl, isCustomSource } from "@/lib/server/utils"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
-import { createTranslator } from "@/locales"
 import React from "react"
 import { BiExtension } from "react-icons/bi"
 import { IoInformationCircle } from "react-icons/io5"
