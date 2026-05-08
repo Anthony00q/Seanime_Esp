@@ -108,7 +108,7 @@ func (h *Handler) HandleGetChangelog(c echo.Context) error {
 		return h.RespondWithData(c, cached)
 	}
 
-	changelogBody, err := http.Get("https://raw.githubusercontent.com/5rahim/seanime/main/CHANGELOG.md")
+	changelogBody, err := http.Get("https://raw.githubusercontent.com/Anthony00q/Seanime_Esp/main/CHANGELOG.md")
 	if err != nil {
 		return h.RespondWithData(c, []*changelogItem{})
 	}
