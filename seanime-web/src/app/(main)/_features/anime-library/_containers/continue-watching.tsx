@@ -2,6 +2,7 @@ import { createTranslator } from "@/locales";
 const t = createTranslator("es");
 
 import { Anime_Episode, Continuity_WatchHistory } from "@/api/generated/types"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { getEpisodeMinutesRemaining, getEpisodePercentageComplete, useGetContinuityWatchHistory } from "@/api/hooks/continuity.hooks"
 import { usePlayNext } from "@/app/(main)/_atoms/playback.atoms"
 import { __libraryHeaderImageAtom } from "@/app/(main)/_features/anime-library/_components/library-header"
@@ -133,9 +134,9 @@ export function ContinueWatching({ episodes, isLoading, linkTemplate, withTitle 
                         <div className="flex gap-1 items-center w-full">
                             <p className="max-w-[70%] truncate">{episode.baseAnime?.title?.userPreferred || ""}</p>&nbsp;-&nbsp;
                             {!anilist_animeIsMovie(episode.baseAnime) ? <>
-                                <p className="text-[--muted]">Ep</p><span>{episode.episodeNumber}</span>
+                                <p className="text-[--muted]">{t("common.labels.ep")}</p><span>{episode.episodeNumber}</span>
                             </> : <>
-                                <p className="text-[--muted]">Movie</p>
+                                <p className="text-[--muted]">{t("common.labels.movie")}</p>
                             </>}
 
                         </div>
@@ -239,7 +240,7 @@ const _EpisodeCard = React.memo(({ episode, mRef, overrideLink, spoilerActive, w
             disableAnimation={true}
             spoilerMode="replace"
             spoilerActive={spoilerActive}
-            title={episode.displayTitle}
+            title={translateDisplayTitle(episode.displayTitle)}
             isInvalid={episode.isInvalid}
             progressTotal={episode.baseAnime?.episodes}
             progressNumber={episode.progressNumber}
