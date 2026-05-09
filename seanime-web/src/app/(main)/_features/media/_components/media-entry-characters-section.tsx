@@ -5,8 +5,17 @@ import { SeaImage } from "@/components/shared/sea-image"
 import { SeaLink } from "@/components/shared/sea-link"
 import { cn } from "@/components/ui/core/styling"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { BiSolidHeart } from "react-icons/bi"
+
+const t = createTranslator("es")
+
+const CHARACTER_ROLES: Record<string, string> = {
+    MAIN: t("anilist.characters.roles.MAIN"),
+    SUPPORTING: t("anilist.characters.roles.SUPPORTING"),
+    BACKGROUND: t("anilist.characters.roles.BACKGROUND"),
+}
 
 type RelationsRecommendationsSectionProps = {
     details: AL_AnimeDetailsById_Media | AL_MangaDetailsById_Media | undefined
@@ -36,7 +45,7 @@ export function MediaEntryCharactersSection(props: RelationsRecommendationsSecti
         <div className="space-y-4 animate-in fade-in-0 duration-200">
             {/*{!isMangaPage && <Separator />}*/}
 
-            <h2 data-media-entry-characters-section-title>Characters</h2>
+            <h2 data-media-entry-characters-section-title>{t("anilist.characters.title")}</h2>
 
             <div
                 data-media-entry-characters-section-grid
@@ -100,11 +109,11 @@ export function MediaEntryCharactersSection(props: RelationsRecommendationsSecti
                                 </SeaLink>
 
                                 {edge?.node?.age && <p data-media-entry-characters-section-grid-item-content-age className="text-sm">
-                                    {edge?.node?.age} years old
+                                    {t("anilist.characters.yearsOld", { age: edge?.node?.age })}
                                 </p>}
 
                                 <p data-media-entry-characters-section-grid-item-content-role className="text-[--muted] text-xs">
-                                    {edge?.role}
+                                    {CHARACTER_ROLES[edge?.role ?? ""] ?? edge?.role}
                                 </p>
 
                                 {edge?.node?.isFavourite && <div data-media-entry-characters-section-grid-item-content-favourite>
