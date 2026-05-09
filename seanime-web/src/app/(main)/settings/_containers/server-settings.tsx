@@ -53,16 +53,16 @@ export function ServerSettings(props: ServerSettingsProps) {
         ])).values()).sort((a, b) => a.label.localeCompare(b.label))
 
         const options = [
-            { value: "-", label: "Automatic" },
-            { value: "library", label: "Local library" },
-            ...(serverStatus?.debridSettings?.enabled ? [{ value: "debridstream", label: "Debrid streaming" }] : []),
-            ...(serverStatus?.torrentstreamSettings?.enabled ? [{ value: "torrentstream", label: "Torrent streaming" }] : []),
-            ...(serverStatus?.settings?.library?.enableOnlinestream ? [{ value: "onlinestream", label: "Online streaming" }] : []),
+            { value: "-", label: t("settings.server.automatic") },
+            { value: "library", label: t("settings.server.localLibrary") },
+            ...(serverStatus?.debridSettings?.enabled ? [{ value: "debridstream", label: t("settings.server.debridStreaming") }] : []),
+            ...(serverStatus?.torrentstreamSettings?.enabled ? [{ value: "torrentstream", label: t("settings.server.torrentStreaming") }] : []),
+            ...(serverStatus?.settings?.library?.enableOnlinestream ? [{ value: "onlinestream", label: t("settings.server.onlineStreaming") }] : []),
             ...pluginOptions,
         ]
 
         if (!!defaultPlaybackSource && defaultPlaybackSource.startsWith("ext:") && !options.some(option => option.value === defaultPlaybackSource)) {
-            options.push({ value: defaultPlaybackSource, label: "Unavailable plugin" })
+            options.push({ value: defaultPlaybackSource, label: t("settings.server.unavailablePlugin") })
         }
 
         return options
@@ -124,8 +124,8 @@ export function ServerSettings(props: ServerSettingsProps) {
                 <div data-settings-default-episode-source>
                     <Field.Select
                         name="defaultPlaybackSource"
-                        label="Default episode source"
-                        help="Used when opening anime pages."
+                        label={t("settings.server.defaultEpisodeSource")}
+                        help={t("settings.server.defaultEpisodeSourceHelp")}
                         leftIcon={<RiMovieAiLine />}
                         options={defaultPlaybackSourceOptions}
                     />
@@ -136,8 +136,8 @@ export function ServerSettings(props: ServerSettingsProps) {
                 <div data-settings-hide-anime-spoilers>
                     <Field.Switch
                         side="right"
-                        label="Hide anime spoilers"
-                        help="Use spoiler-safe episode art and text across continue watching, entry episode lists, and missing episodes."
+                        label={t("settings.server.hideAnimeSpoilers")}
+                        help={t("settings.server.hideAnimeSpoilersHelp")}
                         name="hideAnimeSpoilers"
                         icon={<LuEyeOff className="" />}
                     />
@@ -147,26 +147,26 @@ export function ServerSettings(props: ServerSettingsProps) {
                     <div className="space-y-1 pl-4 border-l border-[--border] ml-2">
                         <Field.Switch
                             side="right"
-                            label="Hide thumbnails"
+                            label={t("settings.server.hideThumbnails")}
                             name="hideAnimeSpoilerThumbnails"
                         />
 
                         <Field.Switch
                             side="right"
-                            label="Hide titles"
+                            label={t("settings.server.hideTitles")}
                             name="hideAnimeSpoilerTitles"
                         />
 
                         <Field.Switch
                             side="right"
-                            label="Hide descriptions"
+                            label={t("settings.server.hideDescriptions")}
                             name="hideAnimeSpoilerDescriptions"
                         />
 
                         <Field.Switch
                             side="right"
-                            label="Skip next episode"
-                            help="Start hiding spoilers from the episode after the next one."
+                            label={t("settings.server.skipNextEpisodeSpoiler")}
+                            help={t("settings.server.skipNextEpisodeSpoilerHelp")}
                             name="hideAnimeSpoilerSkipNextEpisode"
                         />
                     </div>
@@ -214,8 +214,8 @@ export function ServerSettings(props: ServerSettingsProps) {
                     <Field.Switch
                         side="right"
                         name="enableExtensionSecureMode"
-                        label="Enable Extension Secure Mode"
-                        help="If enabled, Seanime will prompt you for confirmation whenever an extension tries to perform a sensitive action, even if permissions have been granted."
+                        label={t("settings.server.enableExtensionSecureMode")}
+                        help={t("settings.server.enableExtensionSecureModeHelp")}
                         icon={<LuShield className="" />}
                     />
                 </div>
@@ -417,14 +417,14 @@ export function ServerSettings(props: ServerSettingsProps) {
                 <Field.Switch
                     side="right"
                     name="openWebURLOnStart"
-                    label="Open web UI on startup"
+                    label={t("settings.server.openWebUIOnStartup")}
                     icon={<TbBrowserShare className="" />}
                 />
                 <Field.Switch
                     side="right"
                     name="disableNotifications"
-                    label="Disable system notifications"
-                    moreHelp="Notifications shown by the OS"
+                    label={t("settings.server.disableNotifications")}
+                    moreHelp={t("settings.server.disableNotificationsMoreHelp")}
                     icon={<TbAlertSquareRoundedOff className="" />}
                 />
             </SettingsCard>

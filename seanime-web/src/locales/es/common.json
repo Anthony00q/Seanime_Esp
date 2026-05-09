@@ -13,7 +13,12 @@
       "retry": "Reintentar",
       "reload": "Recargar",
       "reset": "Restablecer",
-      "open": "Abrir"
+      "open": "Abrir",
+      "start": "Comenzar",
+      "next": "Siguiente",
+      "back": "Atrás",
+      "skip": "Omitir",
+      "done": "Listo"
     },
     "labels": {
       "name": "Nombre",
@@ -65,7 +70,7 @@
       "saved": "Guardado correctamente",
       "deleted": "Eliminado correctamente",
       "added": "Añadido correctamente",
-      "removed": "Eliminado correctamente",
+      "removed": "Quitado correctamente",
       "updated": "Actualizado correctamente",
       "error": "Ocurrió un error",
       "copiedToClipboard": "Copiado al portapapeles",
