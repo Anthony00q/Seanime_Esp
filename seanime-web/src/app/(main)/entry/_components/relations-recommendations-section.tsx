@@ -7,6 +7,25 @@ import { createTranslator } from "@/locales"
 import capitalize from "lodash/capitalize"
 import React from "react"
 
+const t = createTranslator("es")
+
+const RELATION_TYPE_MAP: Record<string, string> = {
+    PREQUEL:     t("anilist.relationTypes.PREQUEL"),
+    SEQUEL:      t("anilist.relationTypes.SEQUEL"),
+    PARENT:      t("anilist.relationTypes.PARENT"),
+    SIDE_STORY:  t("anilist.relationTypes.SIDE_STORY"),
+    CHARACTER:   t("anilist.relationTypes.CHARACTER"),
+    SUMMARY:     t("anilist.relationTypes.SUMMARY"),
+    ALTERNATIVE: t("anilist.relationTypes.ALTERNATIVE"),
+    SPIN_OFF:    t("anilist.relationTypes.SPIN_OFF"),
+    OTHER:       t("anilist.relationTypes.OTHER"),
+    SOURCE:      t("anilist.relationTypes.SOURCE"),
+    COMPILATION: t("anilist.relationTypes.COMPILATION"),
+    CONTAINS:    t("anilist.relationTypes.CONTAINS"),
+    ADAPTATION:  t("anilist.relationTypes.ADAPTATION"),
+}
+
+
 type RelationsRecommendationsSectionProps = {
     entry: Nullish<Anime_Entry>
     details: Nullish<AL_AnimeDetailsById_Media>
@@ -68,8 +87,8 @@ export function RelationsRecommendationsSection(props: RelationsRecommendationsS
                                     overlay={<p
                                         className="font-semibold text-white bg-gray-950 z-[-1] absolute right-0 w-fit px-4 py-1.5 text-center !bg-opacity-90 text-sm lg:text-base rounded-none rounded-bl-lg"
                                     >{edge.node?.format === "MOVIE"
-                                        ? capitalize(edge.relationType || "").replace("_", " ") + " (Película)"
-                                        : capitalize(edge.relationType || "").replace("_", " ")}</p>}
+                                        ? (RELATION_TYPE_MAP[edge.relationType ?? ""] ?? capitalize(edge.relationType || "").replace("_", " ")) + " (Película)"
+                                        : (RELATION_TYPE_MAP[edge.relationType ?? ""] ?? capitalize(edge.relationType || "").replace("_", " "))}</p>}
                                     showLibraryBadge
                                     showTrailer
                                     type="anime"
