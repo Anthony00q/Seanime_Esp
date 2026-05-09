@@ -85,6 +85,7 @@ El proyecto original no tiene i18n integrado, por lo que se implementó un siste
 - Navegación y barra lateral
 - Reproductor de video (video-core completo, subtítulos, HLS, Chromecast)
 - Configuración completa (App, Servidor, UI, Discord, Reproductores, etc.)
+- Asistente de Configuración Inicial (Getting Started)
 - Tours interactivos de actualización (Changelog Tour)
 - Watch parties (Nakama)
 - Paleta de comandos

@@ -12,6 +12,7 @@ import esEntry from "./es/entry.json"
 import esManga from "./es/manga.json"
 import esExtensions from "./es/extensions.json"
 import esAnilist from "./es/anilist.json"
+import esGettingStarted from "./es/gettingStarted.json"
 
 // Secciones de settings
 import esSettingsGeneral from "./es/settings/general.json"
@@ -61,6 +62,7 @@ const es = deepMerge(
     esManga,
     esExtensions,
     esAnilist,
+    esGettingStarted,
     esSettingsGeneral,
     esSettingsLibrary,
     esSettingsPlayers,
