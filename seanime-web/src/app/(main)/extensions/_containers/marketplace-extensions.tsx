@@ -132,7 +132,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
 
     // Create language options for dropdown
     const languageOptions = useMemo(() => {
-        const options = [{ value: "all", label: "All Languages" }]
+        const options = [{ value: "all", label: t("extensions.allLanguages") }]
 
         availableLanguages.forEach(langCode => {
             const langInfo = LANGUAGES_LIST[langCode]
@@ -180,7 +180,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
             return true
         }
         catch (e) {
-            setUrlError("Please enter a valid URL")
+            setUrlError(t("extensions.toast.pleaseProvideValidUrl"))
             return false
         }
     }
@@ -234,15 +234,15 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
             <Modal
                 open={isUrlModalOpen}
                 onOpenChange={setIsUrlModalOpen}
-                title="Repository URL"
+                title={t("extensions.repositoryUrl")}
             >
                 <div className="space-y-4">
                     <p className="text-sm text-[--muted]">
-                        Enter the URL of the repository JSON file.
+                        {t("extensions.repositoryUrlHelp")}
                     </p>
 
                     <TextInput
-                        label="Marketplace URL"
+                        label={t("extensions.repositoryUrl")}
                         value={tempUrl}
                         onValueChange={(value) => {
                             setTempUrl(value)
@@ -250,7 +250,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                             if (value) validateUrl(value)
                         }}
                         error={urlError}
-                        placeholder="Enter marketplace URL"
+                        placeholder={t("extensions.repositoryUrlPlaceholder")}
                     />
 
                     <div className="flex justify-between">
@@ -266,27 +266,21 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                                 onClick={applyDefaultUrl}
                                 loading={isUpdatingUrl}
                                 disabled={isUpdatingUrl}
-                            >
-                                Apply Default
-                            </Button>
+                            >{t("extensions.applyDefault")}</Button>
                         </div>
 
                         <div className="flex gap-2">
                             <Button
                                 intent="gray-outline"
                                 onClick={() => setIsUrlModalOpen(false)}
-                            >
-                                Cancel
-                            </Button>
+                                >{t("common.buttons.cancel")}</Button>
 
                             <Button
                                 intent="primary"
                                 onClick={handleUrlChange}
                                 disabled={!tempUrl || !!urlError || isUpdatingUrl}
                                 loading={isUpdatingUrl}
-                            >
-                                Save
-                            </Button>
+                                >{t("common.buttons.save")}</Button>
                         </div>
                     </div>
                 </div>
@@ -301,8 +295,8 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                         {t("extensions.marketplaceDescription")}
                     </p>
                     <p className="text-[--muted] text-xs mt-1">
-                        {t("extensions.source")} {marketplaceUrl === DEFAULT_MARKETPLACE_URL ?
-                        <span>{t("extensions.officialRepository")}</span> :
+                        {t("extensions.types.source")} {marketplaceUrl === DEFAULT_MARKETPLACE_URL ?
+                        <span>{t("extensions.types.officialRepository")}</span> :
                         <span>{marketplaceUrl}</span>
                     }
                     </p>
@@ -318,9 +312,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                             refetch()
                             toast.success(t("common.toast.updated"), { duration: 1000 })
                         }}
-                    >
-                        Refresh
-                    </Button>
+                        >{t("extensions.refresh")}</Button>
                     <Button
                         className="rounded-full"
                         intent="gray-outline"
@@ -330,9 +322,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                             setUrlError("")
                             setIsUrlModalOpen(true)
                         }}
-                    >
-                        Change repository
-                    </Button>
+                        >{t("extensions.changeRepository")}</Button>
                 </div>
             </div>
 
@@ -340,9 +330,9 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                 {!!missingDefaultTypes.length && (
                     <Alert
                         intent="warning"
-                        title="Update the repository!"
+                        title={t("extensions.updateRepositoryAlert")}
                         description={<div>
-                            <p>To protect Seanime, some extensions have been removed. Find a new repository URL online and add it.</p>
+                            <p>{t("extensions.updateRepositoryAlertDesc")}</p>
                             <Button
                                 intent="primary"
                                 size="sm"
@@ -353,7 +343,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                                     setIsUrlModalOpen(true)
                                 }}
                             >
-                                Add new repository
+                                {t("extensions.addNewRepository")}
                             </Button>
                         </div>}
                         className="w-full"
@@ -365,40 +355,34 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                     triggerClass="px-4 py-1 text-sm"
                     items={[
                         {
-                            name: "All Types",
+                            name: t("extensions.allTypes"),
                             isCurrent: filterType === "all",
                             onClick: () => setFilterType("all"),
-                            // iconType: IoGrid,
                         },
                         {
-                            name: "Plugins",
+                            name: t("extensions.sectionPlugins"),
                             isCurrent: filterType === "plugin",
                             onClick: () => setFilterType("plugin"),
-                            // iconType: LuBlocks,
                         },
                         {
-                            name: "Anime Torrents",
+                            name: t("extensions.sectionAnimeTorrents"),
                             isCurrent: filterType === "anime-torrent-provider",
                             onClick: () => setFilterType("anime-torrent-provider"),
-                            // iconType: RiFolderDownloadFill,
                         },
                         {
-                            name: "Manga",
+                            name: t("extensions.sectionManga"),
                             isCurrent: filterType === "manga-provider",
                             onClick: () => setFilterType("manga-provider"),
-                            // iconType: LuBookOpen,
                         },
                         {
-                            name: "Online Streaming",
+                            name: t("extensions.sectionOnlineStreaming"),
                             isCurrent: filterType === "onlinestream-provider",
                             onClick: () => setFilterType("onlinestream-provider"),
-                            // iconType: CgMediaPodcast,
                         },
                         {
-                            name: "Custom Sources",
+                            name: t("extensions.sectionCustomSources"),
                             isCurrent: filterType === "custom-source",
                             onClick: () => setFilterType("custom-source"),
-                            // iconType: CgMediaPodcast,
                         },
                     ]}
                 />
@@ -411,7 +395,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                         fieldClass="lg:max-w-[200px]"
                     />
                     <TextInput
-                        placeholder="Search extensions..."
+                        placeholder={t("extensions.searchPlaceholder")}
                         value={searchTerm}
                         onValueChange={(v) => setSearchTerm(v)}
                         className="pl-10"
@@ -423,18 +407,18 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
             {isLoadingMarketplace && <LoadingSpinner />}
 
             {(!marketplaceExtensions && !isLoadingMarketplace) && <LuffyError>
-                Could not get marketplace extensions.
+                {t("extensions.couldNotGetMarketplace")}
             </LuffyError>}
 
             {(!!marketplaceExtensions && filteredExtensions.length === 0) && (
                 <Card className="p-8 text-center">
-                    <p className="text-[--muted]">No extensions found matching your criteria.</p>
+                    <p className="text-[--muted]">{t("extensions.noExtensionsFound")}</p>
                 </Card>
             )}
 
             {!!pluginExtensions?.length && (
                 <Card className="p-4 space-y-6">
-                    <h3 className="flex gap-3 items-center"><LuBlocks /> Plugins</h3>
+                    <h3 className="flex gap-3 items-center"><LuBlocks /> {t("extensions.sectionPlugins")}</h3>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                         {pluginExtensions.map(extension => (
                             <MarketplaceExtensionCard
@@ -449,7 +433,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
 
             {!!animeTorrentExtensions?.length && (
                 <Card className="p-4 space-y-6">
-                    <h3 className="flex gap-3 items-center"><RiFolderDownloadFill />Anime torrents</h3>
+                    <h3 className="flex gap-3 items-center"><RiFolderDownloadFill />{t("extensions.sectionAnimeTorrents")}</h3>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                         {animeTorrentExtensions.map(extension => (
                             <MarketplaceExtensionCard
@@ -464,7 +448,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
 
             {!!mangaExtensions?.length && (
                 <Card className="p-4 space-y-6">
-                    <h3 className="flex gap-3 items-center"><LuBookOpen />Manga</h3>
+                    <h3 className="flex gap-3 items-center"><LuBookOpen />{t("extensions.sectionManga")}</h3>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                         {mangaExtensions.map(extension => (
                             <MarketplaceExtensionCard
@@ -479,7 +463,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
 
             {!!onlinestreamExtensions?.length && (
                 <Card className="p-4 space-y-6">
-                    <h3 className="flex gap-3 items-center"><CgMediaPodcast /> Online streaming</h3>
+                    <h3 className="flex gap-3 items-center"><CgMediaPodcast /> {t("extensions.sectionOnlineStreaming")}</h3>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                         {onlinestreamExtensions.map(extension => (
                             <MarketplaceExtensionCard
@@ -495,15 +479,15 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
             {!!customSources?.length && (
                 <Card className="p-4 space-y-6">
                     <div>
-                        <h3 className="flex gap-3 items-center"><MdDataSaverOn /> {t("extensions.customSources")} <Popover
+                        <h3 className="flex gap-3 items-center"><MdDataSaverOn /> {t("extensions.sectionCustomSources")} <Popover
                             className="text-sm"
                             trigger={
                                 <AiOutlineExclamationCircle className="text-[1.2rem] transition-opacity opacity-45 hover:opacity-90 cursor-pointer" />}
                         >
-                            {t("extensions.customSourcesInfo1")}
+                            {t("extensions.types.customSourcesInfo1")}
                         </Popover></h3>
                         <p className="text-[--muted] text-sm">
-                            {t("extensions.customSourcesInfo2")}
+                            {t("extensions.types.customSourcesInfo2")}
                         </p>
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
@@ -645,7 +629,7 @@ export function MarketplaceExtensionCard(props: MarketplaceExtensionCardProps) {
                         {capitalize(extension.language)}
                     </Badge>
                     {!!updateData && <Badge className="rounded-md" intent="success">
-                        Update available
+                        {t("extensions.updateAvailable")}
                     </Badge>}
                 </div>
 

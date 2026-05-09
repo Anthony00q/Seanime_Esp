@@ -123,7 +123,7 @@ export function ExtensionList(props: ExtensionListProps) {
     if (isLoading) return <LoadingSpinner />
 
     if (!allExtensions) return <LuffyError>
-        Could not get extensions.
+        {t("extensions.couldNotGetExtensions")}
     </LuffyError>
 
     return (
@@ -131,10 +131,10 @@ export function ExtensionList(props: ExtensionListProps) {
             <div className="flex items-center gap-2 flex-wrap">
                 <div>
                     <h2>
-                        Extensions
+                        {t("extensions.title")}
                     </h2>
                     <p className="text-[--muted] text-sm">
-                        Manage your plugins and content providers.
+                        {t("extensions.description")}
                     </p>
                 </div>
 
@@ -160,7 +160,7 @@ export function ExtensionList(props: ExtensionListProps) {
                                 })
                             }}
                         >
-                            Update all
+                            {t("extensions.updateAll")}
                         </Button>
                     )}
                     <Button
@@ -175,7 +175,7 @@ export function ExtensionList(props: ExtensionListProps) {
                             // })
                         }}
                     >
-                        Check for updates
+                        {t("extensions.checkForUpdates")}
                     </Button>
                     <AddExtensionModal extensions={installedExtensions}>
                         <Button
@@ -183,7 +183,7 @@ export function ExtensionList(props: ExtensionListProps) {
                             intent="white-subtle"
                             leftIcon={<GrInstallOption className="text-lg" />}
                         >
-                            Add extensions
+                            {t("extensions.addExtensions")}
                         </Button>
                     </AddExtensionModal>
 
@@ -194,7 +194,7 @@ export function ExtensionList(props: ExtensionListProps) {
                                 router.push("/extensions/playground")
                             }}
                         >
-                            <span>Playground</span>
+                            <span>{t("extensions.playground")}</span>
                         </DropdownMenuItem>
 
                         <DropdownMenuItem
@@ -202,14 +202,14 @@ export function ExtensionList(props: ExtensionListProps) {
                                 setPage("marketplace")
                             }}
                         >
-                            <span>Marketplace</span>
+                            <span>{t("extensions.marketplace")}</span>
                         </DropdownMenuItem>
                     </DropdownMenu>
                 </div>
             </div>
 
             <TextInput
-                placeholder="Search installed extensions..."
+                placeholder={t("extensions.searchPlaceholderInstalled")}
                 value={searchTerm}
                 onValueChange={setSearchTerm}
                 className="pl-10"
@@ -218,14 +218,14 @@ export function ExtensionList(props: ExtensionListProps) {
 
             {!!searchTerm && !hasVisibleResults && (
                 <Card className="p-8 text-center">
-                    <p className="text-[--muted]">No extensions found matching your search.</p>
+                    <p className="text-[--muted]">{t("extensions.noExtensionsMatchSearch")}</p>
                 </Card>
             )}
 
 
             {!!pluginPermissionsNotGrantedExtensions?.length && (
                 <Card className="p-4 space-y-6">
-                    <h3 className="flex gap-3 items-center">Permissions required</h3>
+                    <h3 className="flex gap-3 items-center">{t("extensions.permissionsRequired")}</h3>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                         {pluginPermissionsNotGrantedExtensions.map(extension => (
@@ -242,7 +242,7 @@ export function ExtensionList(props: ExtensionListProps) {
             {!!nonvalidExtensions?.length && (
                 <Card className="p-4 space-y-6 border-red-800">
 
-                    <h3 className="flex gap-3 items-center">Invalid extensions</h3>
+                    <h3 className="flex gap-3 items-center">{t("extensions.invalidExtensions")}</h3>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                         {nonvalidExtensions.map(extension => (
@@ -258,7 +258,7 @@ export function ExtensionList(props: ExtensionListProps) {
 
             {!!disabledExtensions?.length && (
                 <Card className="p-4 space-y-6">
-                    <h3 className="flex gap-3 items-center">Disabled</h3>
+                    <h3 className="flex gap-3 items-center">{t("extensions.disabled")}</h3>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                         {disabledExtensions.map(extension => (
                             <ExtensionCard
@@ -278,7 +278,7 @@ export function ExtensionList(props: ExtensionListProps) {
 
             {!!pluginExtensions?.length && (
                 <Card className="p-4 space-y-6">
-                    <h3 className="flex gap-3 items-center"><LuBlocks /> Plugins</h3>
+                    <h3 className="flex gap-3 items-center"><LuBlocks /> {t("extensions.sectionPlugins")}</h3>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                         {pluginExtensions.map(extension => (
                             <ExtensionCard
@@ -298,9 +298,9 @@ export function ExtensionList(props: ExtensionListProps) {
             {!!customSourceExtensions?.length && (
                 <Card className="p-4 space-y-6">
                     <div className="flex items-center gap-4">
-                        <h3 className="flex gap-3 items-center"><MdDataSaverOn />Custom Sources</h3>
+                        <h3 className="flex gap-3 items-center"><MdDataSaverOn />{t("extensions.sectionCustomSources")}</h3>
                         <SeaLink href="/custom-sources" className="text-sm underline underline-offset-2 text-[--muted] hover:text-[--foreground]">
-                            Browse all sources
+                            {t("extensions.browseAllSources")}
                         </SeaLink>
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
@@ -321,7 +321,7 @@ export function ExtensionList(props: ExtensionListProps) {
 
             {!!animeTorrentExtensions?.length && (
                 <Card className="p-4 space-y-6">
-                    <h3 className="flex gap-3 items-center"><RiFolderDownloadFill />Anime torrents</h3>
+                    <h3 className="flex gap-3 items-center"><RiFolderDownloadFill />{t("extensions.sectionAnimeTorrents")}</h3>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                         {animeTorrentExtensions.map(extension => (
                             <ExtensionCard
@@ -341,7 +341,7 @@ export function ExtensionList(props: ExtensionListProps) {
 
             {!!mangaExtensions?.length && (
                 <Card className="p-4 space-y-6">
-                    <h3 className="flex gap-3 items-center"><PiBookFill />Manga</h3>
+                    <h3 className="flex gap-3 items-center"><PiBookFill />{t("extensions.sectionManga")}</h3>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                         {mangaExtensions.map(extension => (
                             <ExtensionCard
@@ -360,7 +360,7 @@ export function ExtensionList(props: ExtensionListProps) {
 
             {!!onlinestreamExtensions?.length && (
                 <Card className="p-4 space-y-6">
-                    <h3 className="flex gap-3 items-center"><CgMediaPodcast /> Online streaming</h3>
+                    <h3 className="flex gap-3 items-center"><CgMediaPodcast /> {t("extensions.sectionOnlineStreaming")}</h3>
                     <div className="grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
                         {onlinestreamExtensions.map(extension => (
                             <ExtensionCard
