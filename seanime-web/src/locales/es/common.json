@@ -46,7 +46,16 @@
       "anilistId": "ID de AniList",
       "mediaId": "ID de medio",
       "episodeNumber": "Episodio {number}",
-      "episodeNumberLabel": "Número de episodio"
+      "episodeNumberLabel": "Número de episodio",
+      "ep": "Ep",
+      "movie": "Película",
+      "minutesLeft": "{min}m restantes"
+    },
+    "chapterList": {
+      "name": "Nombre",
+      "provider": "Proveedor",
+      "number": "Número",
+      "showUnread": "Mostrar no leídos"
     },
     "status": {
       "connecting": "Conectando..."
