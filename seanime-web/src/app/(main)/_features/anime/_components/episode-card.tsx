@@ -288,7 +288,7 @@ export function EpisodeCard(props: EpisodeCardProps) {
                                         isSingleContainer && "right-4 bottom-4 ",
                                     )}
                                 >
-                                    <span>{minutesRemaining}m left</span>
+                                    <span>{t("common.labels.minutesLeft", { min: minutesRemaining })}</span>
                                 </div>}
                             </div>}
 

@@ -10,6 +10,7 @@ import { unifiedMergeView } from "@codemirror/merge"
 import { vscodeDark } from "@uiw/codemirror-theme-vscode"
 import CodeMirror, { EditorView } from "@uiw/react-codemirror"
 import React, { useMemo } from "react"
+import { createTranslator } from "@/locales"
 
 
 type ExtensionCodeModalProps = {
@@ -20,18 +21,16 @@ type ExtensionCodeModalProps = {
 }
 
 export function ExtensionCodeModal(props: ExtensionCodeModalProps) {
-
+    const t = createTranslator("es")
 
     return (
         <Modal
             contentClass="max-w-5xl"
             trigger={props.children}
-            title="Code"
+            title={t("extensions.card.code")}
             onInteractOutside={e => {
                 if (!props.readOnly) e.preventDefault()
             }}
-            // size="xl"
-            // contentClass="space-y-4"
         >
             <Content {...props} />
         </Modal>
@@ -46,6 +45,7 @@ function Content(props: ExtensionCodeModalProps) {
     } = props
 
     const [code, setCode] = React.useState("")
+    const t = createTranslator("es")
 
     const { data: payload, isLoading } = useGetExtensionPayload(extension.id)
 
@@ -88,12 +88,12 @@ function Content(props: ExtensionCodeModalProps) {
                     {extension.name}
                 </p>
                 {!readOnly && !diff && <div className="text-sm text-[--muted]">
-                    You can edit the code of the extension here.
+                    {t("extensions.card.codeDescription")}
                 </div>}
             </div>
             {!readOnly && <div className="flex">
                 <Button intent="white" loading={isPending} onClick={handleSave}>
-                    Save
+                    {t("common.buttons.save")}
                 </Button>
                 <div className="flex flex-1"></div>
             </div>}

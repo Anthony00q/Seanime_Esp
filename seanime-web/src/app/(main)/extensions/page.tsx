@@ -10,6 +10,9 @@ import { AnimatePresence } from "motion/react"
 import React from "react"
 import { FaExclamation } from "react-icons/fa"
 import { LuPackageCheck, LuShoppingBasket } from "react-icons/lu"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 export default function Page() {
 
@@ -36,7 +39,7 @@ export default function Page() {
                     triggerClass="px-4 py-1 text-md"
                     items={[
                         {
-                            name: "Installed",
+                            name: t("extensions.installed"),
                             isCurrent: page === "installed",
                             onClick: () => setPage("installed"),
                             iconType: LuPackageCheck,
@@ -47,7 +50,7 @@ export default function Page() {
                             ),
                         },
                         {
-                            name: "Marketplace",
+                            name: t("extensions.marketplace"),
                             isCurrent: page === "marketplace",
                             onClick: () => setPage("marketplace"),
                             iconType: LuShoppingBasket,
