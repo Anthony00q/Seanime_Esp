@@ -18,7 +18,8 @@
       "next": "Siguiente",
       "back": "Atrás",
       "skip": "Omitir",
-      "done": "Listo"
+      "done": "Listo",
+      "previous": "Anterior"
     },
     "labels": {
       "name": "Nombre",
@@ -33,6 +34,10 @@
       "none": "Ninguno",
       "custom": "Personalizado",
       "optional": "Opcional",
+      "host": "Host",
+      "port": "Puerto",
+      "username": "Usuario",
+      "password": "Contraseña",
       "slowerForLargeLibraries": "Más lento para bibliotecas grandes",
       "bestScore": "mejor puntuación",
       "tags": "Etiquetas",

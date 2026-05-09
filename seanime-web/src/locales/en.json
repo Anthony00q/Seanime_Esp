@@ -12,7 +12,13 @@
       "scan": "Scan",
       "retry": "Retry",
       "reload": "Reload",
-      "open": "Open"
+      "open": "Open",
+      "start": "Start",
+      "next": "Next",
+      "back": "Back",
+      "skip": "Skip",
+      "done": "Done",
+      "previous": "Previous"
     },
     "labels": {
       "name": "Name",
@@ -26,7 +32,11 @@
       "all": "All",
       "none": "None",
       "custom": "Custom",
-      "optional": "Optional"
+      "optional": "Optional",
+      "host": "Host",
+      "port": "Port",
+      "username": "Username",
+      "password": "Password"
     },
     "messages": {
       "itemNotFound": "Item not found",
@@ -43,6 +53,94 @@
       "removed": "Removed successfully",
       "updated": "Updated successfully",
       "error": "An error occurred"
+    }
+  },
+  "gettingStarted": {
+    "steps": {
+      "library": {
+        "title": "Local Anime Library",
+        "description": "Choose your anime library folder"
+      },
+      "player": {
+        "title": "Media Player",
+        "description": "Configure your video player"
+      },
+      "torrents": {
+        "title": "Downloading",
+        "description": "Set up downloading"
+      },
+      "debrid": {
+        "title": "Debrid Service",
+        "description": "Optional premium streaming"
+      },
+      "features": {
+        "title": "Features",
+        "description": "Enable additional features"
+      }
+    },
+    "note": "These settings can be changed later",
+    "library": {
+      "title": "Anime Library",
+      "description": "Choose the folder where your anime files are stored. This is where Seanime will scan for your collection.",
+      "path": "Anime Library Path",
+      "pathHelp": "Select the main folder containing your anime collection. You can add more folders later."
+    },
+    "player": {
+      "denshiNotice": "Seanime Denshi includes a built-in media player that is enabled by default. You can still configure an external media player.",
+      "title": "Media Player",
+      "titleExternal": "External Media Player",
+      "description": "Configure your preferred external media player for watching anime and tracking progress automatically.",
+      "desktopPlayer": "Desktop Media Player",
+      "mpvHelp": "MPV is recommended for better subtitle rendering, torrent streaming.",
+      "iinaHelp": "Both MPV and IINA are recommended for macOS.",
+      "mpvRecommended": "MPV (Recommended)",
+      "mpvInstallNote": "On Windows, install MPV easily using Scoop or Chocolatey. On macOS, install MPV using Homebrew.",
+      "mpvConfig": "MPV Configuration",
+      "socketPath": "Socket / Pipe Path",
+      "mpvSocketHelp": "Path for MPV IPC communication",
+      "iinaConfig": "IINA Configuration",
+      "iinaSocketHelp": "Path for IINA IPC communication",
+      "iinaAlert": "For IINA to work correctly with Seanime, make sure <strong>Quit after all windows are closed</strong> is <span className=\"underline\">checked</span> and <strong>Keep window open after playback finishes</strong> is <span className=\"underline\">unchecked</span> in your IINA general settings.",
+      "vlcConfig": "VLC Configuration",
+      "vlcPath": "VLC Executable Path",
+      "mpcConfig": "MPC-HC Configuration",
+      "mpcPath": "MPC-HC Executable Path"
+    },
+    "torrents": {
+      "title": "Downloading",
+      "description": "Configure your torrent client for downloading.",
+      "client": "Torrent Client",
+      "clientHelp": "Client used to download anime torrents",
+      "qbittorrentSettings": "qBittorrent Settings",
+      "transmissionSettings": "Transmission Settings",
+      "executablePath": "Executable Path"
+    },
+    "debrid": {
+      "title": "Debrid Service",
+      "description": "Debrid services offer faster downloads and instant streaming from the cloud.",
+      "apiKey": "API Key",
+      "apiKeyHelp": "The API key provided by the debrid service."
+    },
+    "features": {
+      "title": "Additional Features",
+      "description": "Choose which additional features you'd like to enable. You can enable or disable these later in settings.",
+      "items": {
+        "manga": "Manga",
+        "mangaDesc": "Read and download manga chapters",
+        "torrentStreaming": "Torrent Streaming",
+        "torrentStreamingDesc": "Stream torrents without waiting for download",
+        "adultContent": "NSFW Content",
+        "adultContentDesc": "Show adult content in library and search",
+        "onlineStream": "Online Streaming",
+        "onlineStreamDesc": "Watch anime from online sources",
+        "richPresence": "Discord Rich Presence",
+        "richPresenceDesc": "Show what you're watching on Discord",
+        "transcoding": "Transcoding / Direct Play",
+        "transcodingDesc": "Stream downloaded files on other devices"
+      }
+    },
+    "buttons": {
+      "launch": "Launch Seanime"
     }
   },
   "home": {
