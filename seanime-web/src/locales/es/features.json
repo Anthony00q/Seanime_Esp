@@ -180,6 +180,8 @@
     "manga": "manga",
     "from": "de",
     "mostLikedShows": "Series más gustadas",
-    "mostLikedManga": "Manga más gustado"
+    "mostLikedManga": "Manga más gustado",
+    "discoverSeries": "Descubrir series",
+    "customSources": "Fuentes personalizadas"
   }
 }

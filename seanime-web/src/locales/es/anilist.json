@@ -18,7 +18,8 @@
       "Slice of Life": "Slice of Life",
       "Sports": "Deportes",
       "Supernatural": "Sobrenatural",
-      "Thriller": "Suspense"
+      "Thriller": "Suspense",
+      "Suspense": "Suspense"
     },
     "formats": {
       "TV": "TV",
@@ -43,6 +44,39 @@
       "NOT_YET_RELEASED": "Aún no lanzado",
       "CANCELLED": "Cancelado",
       "HIATUS": "En pausa"
+    },
+    "listStatuses": {
+      "CURRENT_ANIME": "Viendo",
+      "CURRENT_MANGA": "Leyendo",
+      "COMPLETED": "Completado",
+      "PAUSED": "En pausa",
+      "DROPPED": "Abandonado",
+      "PLANNING": "Planeado",
+      "REPEATING": "Reviendo"
+    },
+    "characters": {
+      "title": "Personajes",
+      "yearsOld": "{age} años",
+      "roles": {
+        "MAIN": "Principal",
+        "SUPPORTING": "Secundario",
+        "BACKGROUND": "Secundario"
+      }
+    },
+    "relationTypes": {
+      "PREQUEL": "Precuela",
+      "SEQUEL": "Secuela",
+      "PARENT": "Obra original",
+      "SIDE_STORY": "Historia paralela",
+      "CHARACTER": "Personaje",
+      "SUMMARY": "Resumen",
+      "ALTERNATIVE": "Alternativo",
+      "SPIN_OFF": "Spin-off",
+      "OTHER": "Otro",
+      "SOURCE": "Obra original",
+      "COMPILATION": "Compilación",
+      "CONTAINS": "Contiene",
+      "ADAPTATION": "Adaptación"
     },
     "tags": {
       "4-koma": "4-koma",
