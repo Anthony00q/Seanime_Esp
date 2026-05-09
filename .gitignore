@@ -30,6 +30,7 @@ web-desktop/
 web-denshi/
 out/
 ./assets/
+seanime.exe
 
 test/testdata/**/*.json
 test/sample
