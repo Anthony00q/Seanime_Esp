@@ -2,8 +2,27 @@ import { AL_MangaDetailsById_Media, Manga_Entry, Nullish } from "@/api/generated
 import { MediaCardGrid } from "@/app/(main)/_features/media/_components/media-card-grid"
 import { MediaEntryCard } from "@/app/(main)/_features/media/_components/media-entry-card"
 import { MediaEntryDetailsSkeleton } from "@/app/(main)/_features/media/_components/media-entry-page-loading-display"
+import { createTranslator } from "@/locales"
 import capitalize from "lodash/capitalize"
 import React from "react"
+
+const t = createTranslator("es")
+
+const RELATION_TYPE_MAP: Record<string, string> = {
+    PREQUEL:     t("anilist.relationTypes.PREQUEL"),
+    SEQUEL:      t("anilist.relationTypes.SEQUEL"),
+    PARENT:      t("anilist.relationTypes.PARENT"),
+    SIDE_STORY:  t("anilist.relationTypes.SIDE_STORY"),
+    CHARACTER:   t("anilist.relationTypes.CHARACTER"),
+    SUMMARY:     t("anilist.relationTypes.SUMMARY"),
+    ALTERNATIVE: t("anilist.relationTypes.ALTERNATIVE"),
+    SPIN_OFF:    t("anilist.relationTypes.SPIN_OFF"),
+    OTHER:       t("anilist.relationTypes.OTHER"),
+    SOURCE:      t("anilist.relationTypes.SOURCE"),
+    COMPILATION: t("anilist.relationTypes.COMPILATION"),
+    CONTAINS:    t("anilist.relationTypes.CONTAINS"),
+    ADAPTATION:  t("anilist.relationTypes.ADAPTATION"),
+}
 
 type MangaRecommendationsProps = {
     entry: Nullish<Manga_Entry>
@@ -34,7 +53,7 @@ export function MangaRecommendations(props: MangaRecommendationsProps) {
         <div className="space-y-4 animate-in fade-in-0 duration-200" data-manga-recommendations-container>
             {!!anime?.length && (
                 <>
-                    <h2>Relations</h2>
+                    <h2>{t("entry.relations")}</h2>
                     <MediaCardGrid maxCol={maxCol}>
                         {anime?.toSorted((a, b) => (a.node?.format === "TV" && b.node?.format !== "TV")
                             ? -1
@@ -46,7 +65,7 @@ export function MangaRecommendations(props: MangaRecommendationsProps) {
                                     showTrailer
                                     overlay={<p
                                         className="font-semibold text-white bg-gray-950 z-[-1] absolute right-0 w-fit px-4 py-1.5 text-center !bg-opacity-90 text-sm lg:text-base rounded-none rounded-bl-lg"
-                                    >{capitalize(edge.relationType || "").replace("_", " ")}{edge?.node?.format === "MOVIE" ? " (Movie)" : ""}</p>}
+                                    >{(RELATION_TYPE_MAP[edge.relationType ?? ""] ?? capitalize(edge.relationType || "").replace("_", " "))}{edge?.node?.format === "MOVIE" ? " (Película)" : ""}</p>}
                                     type="anime"
                                 />
                             </div>
@@ -55,7 +74,7 @@ export function MangaRecommendations(props: MangaRecommendationsProps) {
                 </>
             )}
             {recommendations.length > 0 && <>
-                <h2>Recommendations</h2>
+                <h2>{t("entry.recommendations")}</h2>
                 <MediaCardGrid maxCol={maxCol}>
                     {recommendations.map(media => {
                         return <div key={media.id} className="col-span-1">

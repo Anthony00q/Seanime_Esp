@@ -176,7 +176,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>((prop
         (!!value.length && !!selectedOptions.length) ?
             multiple ? selectedOptions.map((option) => (
                 <div key={option.value} className={cn(ComboboxAnatomy.item(), itemClass)}>
-                    <span className="truncate">{option.textValue || option.value}</span>
+                    <span className="truncate">{option.label}</span>
                     <span
                         className={cn(ComboboxAnatomy.removeItemButton(), "rounded-full", removeItemButtonClass)}
                         onClick={(e) => {
