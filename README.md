@@ -85,7 +85,8 @@ El proyecto original no tiene i18n integrado, por lo que se implementó un siste
 - Horario y descubrimiento
 - Navegación y barra lateral
 - Reproductor de video (video-core completo, subtítulos, HLS, Chromecast)
-- Configuración completa
+- Configuración completa (App, Servidor, UI, Discord, Reproductores, etc.)
+- Tours interactivos de actualización (Changelog Tour)
 - Watch parties (Nakama)
 - Paleta de comandos
 - Componentes compartidos
