@@ -130,10 +130,13 @@
       "enableRichPresenceHelp": "Activa Discord Rich Presence.",
       "enableAnimeRichPresence": "Activar Rich Presence de anime",
       "enableMangaRichPresence": "Activar Rich Presence de manga",
+      "anime": "Anime",
+      "manga": "Manga",
       "richPresenceShowAniListMediaButton": "Mostrar botón de medio de AniList",
       "richPresenceUseMediaTitleStatus": "Usar título de medio como estado",
-      "anime": "Anime",
-      "manga": "Manga"
+      "richPresenceHideSeanimeRepositoryButton": "Ocultar botón del repositorio de Seanime",
+      "richPresenceShowAniListProfileButton": "Mostrar botón de perfil de AniList",
+      "showAniListProfileButtonHelp": "Muestra un botón en tu actividad de Discord que enlaza a tu perfil de AniList."
     },
     "denshi": {
       "title": "Denshi",

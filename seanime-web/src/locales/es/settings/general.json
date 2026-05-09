@@ -106,7 +106,27 @@
       "doNotCheckForUpdates": "No buscar actualizaciones",
       "doNotFetchUpdateNotesHelp": "Si está activado, los nuevos lanzamientos no se mostrarán. Seanime Denshi puede seguir actualizándose automáticamente en segundo plano.",
       "doNotCheckForUpdatesHelp": "Si está activado, Seanime no buscará nuevos lanzamientos.",
-      "cannotDisableAutoUpdatesDenshi": "No puedes desactivar las actualizaciones automáticas para Seanime Denshi."
+      "cannotDisableAutoUpdatesDenshi": "No puedes desactivar las actualizaciones automáticas para Seanime Denshi.",
+      "defaultEpisodeSource": "Fuente de episodio predeterminada",
+      "defaultEpisodeSourceHelp": "Utilizada al abrir páginas de anime.",
+      "automatic": "Automático",
+      "localLibrary": "Biblioteca local",
+      "debridStreaming": "Streaming Debrid",
+      "torrentStreaming": "Streaming Torrent",
+      "onlineStreaming": "Streaming en línea",
+      "unavailablePlugin": "Plugin no disponible",
+      "hideAnimeSpoilers": "Ocultar spoilers de anime",
+      "hideAnimeSpoilersHelp": "Usa arte y texto seguros de spoilers en continuar viendo, listas de episodios y episodios faltantes.",
+      "hideThumbnails": "Ocultar miniaturas",
+      "hideTitles": "Ocultar títulos",
+      "hideDescriptions": "Ocultar descripciones",
+      "skipNextEpisodeSpoiler": "Saltar el siguiente episodio",
+      "skipNextEpisodeSpoilerHelp": "Empieza a ocultar spoilers desde el episodio después del siguiente.",
+      "enableExtensionSecureMode": "Activar Modo Seguro de Extensiones",
+      "enableExtensionSecureModeHelp": "Si está activado, Seanime te pedirá confirmación cuando una extensión intente realizar una acción sensible, incluso si los permisos han sido concedidos.",
+      "openWebUIOnStartup": "Abrir la interfaz web al iniciar",
+      "disableNotifications": "Desactivar notificaciones del sistema",
+      "disableNotificationsMoreHelp": "Notificaciones mostradas por el SO cuando Seanime ejecuta el descargador automático o el auto escáner."
     }
   }
 }
