@@ -1,8 +1,11 @@
+import { createTranslator } from "@/locales"
 import { cn } from "@/components/ui/core/styling"
 import { useAtomValue } from "jotai/react"
 import { AnimatePresence, motion } from "motion/react"
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { tourAtom, TourStep, TourStepPlacement, useTour } from "./tour"
+
+const t = createTranslator("es")
 
 type Rect = { top: number; left: number; width: number; height: number }
 
@@ -273,7 +276,7 @@ const TourCard = React.forwardRef<HTMLDivElement, TourCardProps>(
                                             "px-2 py-1 rounded-md hover:bg-gray-800",
                                         )}
                                     >
-                                        Skip
+                                        {t("common.buttons.skip")}
                                     </button>
                                 )}
 
@@ -285,7 +288,7 @@ const TourCard = React.forwardRef<HTMLDivElement, TourCardProps>(
                                             "px-3 py-1.5 rounded-lg hover:bg-gray-800",
                                         )}
                                     >
-                                        {step.prevLabel ?? "Back"}
+                                        {step.prevLabel ?? t("common.buttons.back")}
                                     </button>
                                 )}
 
@@ -297,7 +300,7 @@ const TourCard = React.forwardRef<HTMLDivElement, TourCardProps>(
                                         "shadow-sm shadow-brand-500/20",
                                     )}
                                 >
-                                    {step.nextLabel ?? (isLastStep ? "Done" : "Next")}
+                                    {step.nextLabel ?? (isLastStep ? t("common.buttons.done") : t("common.buttons.next"))}
                                 </button>
                             </div>
                         </div>
@@ -351,7 +354,7 @@ function TourLoadingIndicator() {
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                     />
                 </svg>
-                <span className="text-sm text-gray-300">Loading…</span>
+                <span className="text-sm text-gray-300">{t("common.labels.loading")}</span>
             </div>
         </motion.div>
     )
