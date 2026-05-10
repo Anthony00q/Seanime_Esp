@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://github.com/5rahim/seanime">
+<a href="https://github.com/Anthony00q/Seanime_Esp">
 <img src="docs/images/seanime-logo.png" alt="preview" width="70px"/>
 </a>
 </p>
