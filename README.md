@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://github.com/5rahim/seanime">
+<a href="https://github.com/Anthony00q/Seanime_Esp">
 <img src="docs/images/seanime-logo.png" alt="preview" width="70px"/>
 </a>
 </p>
@@ -7,7 +7,7 @@
 <h1 align="center"><b>Seanime Esp</b></h1>
 
 <p align="center">
-<img src="https://seanime.app/bucket/img-20260508-090521-5fjqklfa--sq.webp" alt="preview" width="100%"/>
+<img src="docs/images/hero_mockup.png" alt="preview" width="100%"/>
   <b>Fork en Español de Seanime</b> — Media server con interfaz web y app de escritorio para anime y manga
 </p>
 
