@@ -137,8 +137,6 @@
   "unmatchedFiles": {
     "noSuggestions": "No se encontraron sugerencias, intenta buscar manualmente",
     "filesIgnored": "Archivos ignorados",
-    "previous": "Anterior",
-    "next": "Siguiente",
     "matchSelection": "Coincidir selección",
     "selectAllFiles": "Seleccionar todos los archivos",
     "fetchSuggestions": "Obtener sugerencias",
@@ -212,7 +210,9 @@
     "noProviderSelected": "Ningún proveedor seleccionado",
     "providerError": "Error del proveedor",
     "loadingStream": "Cargando stream",
-    "completeMovie": "Película completa"
+    "completeMovie": "Película completa",
+    "noWorkingProviders": "No se encontraron proveedores funcionales",
+    "stoppedTryingProviders": "Se detuvo la búsqueda de proveedores"
   },
   "torrentList": {
     "failedToConnect": "Error al conectar con el cliente torrent. Verifica los ajustes y asegúrate de que está funcionando.",
@@ -460,7 +460,6 @@
       "completionDate": "Fecha de finalización",
       "totalRewatches": "Total de re-vistas",
       "totalRereads": "Total de re-lecturas",
-      "confirm": "Confirmar",
       "save": "Guardar"
     }
   },

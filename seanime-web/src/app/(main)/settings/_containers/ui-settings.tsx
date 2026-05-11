@@ -1199,7 +1199,7 @@ export function UISettings() {
                         {/*</TabsContent>*/}
 
                         {tab !== "browser-client" && <div className="mt-4">
-                            <Field.Submit role="save" intent="white" rounded loading={isPending}>{t("settings.ui.save")}</Field.Submit>
+                            <Field.Submit role="save" intent="white" rounded loading={isPending}>{t("common.buttons.save")}</Field.Submit>
                         </div>}
 
                     </Tabs>

@@ -38,7 +38,11 @@
       "noChaptersFound": "No se encontraron capítulos",
       "selectProvider": "Seleccionar proveedor",
       "missingEpisodes": "Episodios faltantes",
-      "tryAnotherSource": "Prueba otra fuente"
+      "tryAnotherSource": "Prueba otra fuente",
+      "name": "Nombre",
+      "provider": "Proveedor",
+      "number": "Número",
+      "showUnread": "Mostrar no leídos"
     },
     "chapterDownloads": {
       "title": "Descargas de capítulos",
@@ -53,9 +57,9 @@
       "loadPagesError": "Ocurrió un error al intentar cargar las páginas de este capítulo.",
       "reloadPageOrSources": "Recarga la página, recarga las fuentes o cambia la fuente."
     },
-      "entry": {
-        "read": "Leer",
-        "chapters": "Capítulos",
+    "entry": {
+      "read": "Leer",
+      "chapters": "Capítulos",
       "downloadChapters": "Descargar capítulos",
       "markAsRead": "Marcar como leído",
       "markAsUnread": "Marcar como no leído",

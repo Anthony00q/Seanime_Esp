@@ -197,7 +197,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                             setPage(p => p - 1)
                         }}
                         className={cn("transition-opacity", { "opacity-0": page === 0 })}
-                    >{t("unmatchedFiles.previous")}</Button>
+                    >{t("common.buttons.previous")}</Button>
 
                     <p>
                         {page + 1} / {maxPage + 1}
@@ -211,7 +211,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                             setPage(p => p + 1)
                         }}
                         className={cn("transition-opacity", { "opacity-0": page >= maxPage })}
-                    >{t("unmatchedFiles.next")}</Button>
+                    >{t("common.buttons.next")}</Button>
                 </div>
 
                 <div
