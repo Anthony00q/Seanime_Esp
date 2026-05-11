@@ -126,7 +126,7 @@ export function ManualProgressTracking() {
                         <SeaImage src={state.mediaCoverImage} alt="cover image" fill className="object-cover object-center" />
                     </div>}
                     <h3 className="text-lg font-medium line-clamp-1">{state?.mediaTitle}</h3>
-                    <p className="text-2xl font-bold">Episode {state?.episodeNumber}
+                    <p className="text-2xl font-bold">{t("common.labels.episodeNumber", { number: state?.episodeNumber })}
                         <span className="text-[--muted]">{" / "}{(!!state?.mediaTotalEpisodes && state?.mediaTotalEpisodes > 0)
                             ? state?.mediaTotalEpisodes
                             : "-"}</span></p>

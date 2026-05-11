@@ -13,6 +13,9 @@ import React from "react"
 import { AiOutlineHeart, AiOutlineStar } from "react-icons/ai"
 import { BiHeart, BiHide } from "react-icons/bi"
 import { LuTrophy } from "react-icons/lu"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 type MediaEntryGenresListProps = {
     genres?: Array<string | null> | null | undefined
@@ -113,7 +116,7 @@ export function MediaEntryAudienceScore(props: MediaEntryAudienceScoreProps) {
                                 size="sm"
                             />
                         </DisclosureTrigger>}
-                    >Show audience score</Tooltip>
+                    >{t("common.labels.showAudienceScore")}</Tooltip>
                     <DisclosureContent>
                         <Badge
                             data-media-entry-audience-score
