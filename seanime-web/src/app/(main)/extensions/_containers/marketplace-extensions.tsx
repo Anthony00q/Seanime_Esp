@@ -312,7 +312,7 @@ export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
                             refetch()
                             toast.success(t("common.toast.updated"), { duration: 1000 })
                         }}
-                        >{t("extensions.refresh")}</Button>
+                        >{t("common.buttons.refresh")}</Button>
                     <Button
                         className="rounded-full"
                         intent="gray-outline"

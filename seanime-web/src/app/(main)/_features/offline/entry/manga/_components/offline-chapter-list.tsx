@@ -59,18 +59,18 @@ export function OfflineChapterList(props: OfflineChapterListProps) {
     const columns = React.useMemo(() => defineDataGridColumns<HibikeManga_ChapterDetails>(() => [
         {
             accessorKey: "title",
-            header: t("common.chapterList.name"),
+            header: t("manga.chapterList.name"),
             size: 90,
         },
         {
             accessorKey: "provider",
-            header: t("common.chapterList.provider"),
+            header: t("manga.chapterList.provider"),
             size: 10,
             enableSorting: true,
         },
         {
             id: "number",
-            header: t("common.chapterList.number"),
+            header: t("manga.chapterList.number"),
             size: 10,
             enableSorting: true,
             accessorFn: (row) => {
@@ -136,7 +136,7 @@ export function OfflineChapterList(props: OfflineChapterListProps) {
 
                 <div className="flex flex-wrap items-center gap-4">
                     <Checkbox
-                        label={t("common.chapterList.showUnread")}
+                        label={t("manga.chapterList.showUnread")}
                         value={showUnreadChapter}
                         onValueChange={v => setShowUnreadChapter(v as boolean)}
                         fieldClass="w-fit"
