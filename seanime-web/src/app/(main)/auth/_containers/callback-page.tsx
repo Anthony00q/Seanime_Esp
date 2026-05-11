@@ -43,7 +43,7 @@ export function CallbackPage(props: CallbackPageProps) {
     return (
         <div>
             <LoadingOverlay className="fixed w-full h-full z-[80]">
-                <h3 className="mt-2">Authenticating...</h3>
+                <h3 className="mt-2">{t("navigation.authenticating")}</h3>
             </LoadingOverlay>
         </div>
     )
