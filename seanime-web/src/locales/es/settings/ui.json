@@ -3,7 +3,6 @@
     "logs": {
       "title": "Registros",
       "description": "Ver los registros",
-      "refresh": "Actualizar",
       "clear": "Limpiar",
       "copy": "Copiar",
       "memory": "Memoria",
@@ -183,7 +182,6 @@
       "carousel": "Carrusel",
       "disableAutoScroll": "Desactivar desplazamiento automático",
       "smallerEpisodeCards": "Tarjetas de episodio más pequeñas",
-      "save": "Guardar",
       "lightThemeNotSupported": "Seanime no soporta temas claros",
       "tabGeneral": "General",
       "tabCSS": "CSS",
@@ -211,9 +209,6 @@
         "viewport": "Viewport",
         "viewportDesc": "Cuando sea visible en el viewport"
       },
-      "removeGenreSelector": "Eliminar selector de género",
-      "enableBlurringEffects": "Activar efectos de desenfoque",
-      "blurringEffectsHelp": "Puede afectar el rendimiento en algunos dispositivos.",
       "mediaScreenBlurredBackground": "Fondo borroso en pantalla de medios",
       "mediaScreenBlurredBackgroundHelp": "Puede causar problemas de rendimiento.",
       "animeCardUnwatchedCount": "Contador de anime no visto",

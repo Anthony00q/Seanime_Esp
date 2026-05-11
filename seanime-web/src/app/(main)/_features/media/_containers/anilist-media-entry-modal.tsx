@@ -361,14 +361,14 @@ function Content(props: AnilistMediaEntryModalProps & {
                                             mediaId: media?.id!,
                                             type: type,
                                         })}
-                                    >{t("anilist.mediaEntry.confirm")}</Button>
+                                    >{t("common.buttons.confirm")}</Button>
                                 </DisclosureContent>
                             </DisclosureItem>
                         </Disclosure>
                     </div>
 
                     <Field.Submit role="save" disableIfInvalid={true} loading={isEditing} disabled={isDeleting}>
-                        {t("anilist.mediaEntry.save")}
+                        {t("common.buttons.save")}
                     </Field.Submit>
                 </div>
 

@@ -472,7 +472,7 @@ export function ExtensionPlayground(props: ExtensionPlaygroundProps) {
                                                         />
 
                                                         <NumberInput
-                                                            leftAddon={t("extensions.mediaId")}
+                                                            leftAddon={t("common.labels.mediaId")}
                                                             min={0}
                                                             formatOptions={{ useGrouping: false }}
                                                             value={inputs.animeTorrentProvider.mediaId}
@@ -501,7 +501,7 @@ export function ExtensionPlayground(props: ExtensionPlaygroundProps) {
                                                                 />
 
                                                                 <NumberInput
-                                                                    leftAddon={t("extensions.episodeNumber")}
+                                                                    leftAddon={t("common.labels.episodeNumber")}
                                                                     value={inputs.animeTorrentProvider.smartSearch.episodeNumber || 0}
                                                                     min={0}
                                                                     formatOptions={{ useGrouping: false }}
@@ -629,7 +629,7 @@ export function ExtensionPlayground(props: ExtensionPlaygroundProps) {
                                                         />
 
                                                         <NumberInput
-                                                            leftAddon={t("extensions.mediaId")}
+                                                            leftAddon={t("common.labels.mediaId")}
                                                             min={0}
                                                             formatOptions={{ useGrouping: false }}
                                                             value={inputs.mangaProvider.mediaId}
@@ -705,7 +705,7 @@ export function ExtensionPlayground(props: ExtensionPlaygroundProps) {
                                                         />
 
                                                         <NumberInput
-                                                            leftAddon={t("extensions.mediaId")}
+                                                            leftAddon={t("common.labels.mediaId")}
                                                             min={0}
                                                             formatOptions={{ useGrouping: false }}
                                                             value={inputs.onlineStreamingProvider.mediaId}
