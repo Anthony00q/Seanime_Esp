@@ -130,7 +130,7 @@
     "toast": {
       "marketplaceUrlUpdated": "URL del marketplace actualizada",
       "failedToFetchExtensions": "Error al obtener extensiones de la URL proporcionada",
-      "resetToDefaultMarketplace": "Restablecida URL del marketplace por defecto",
+      "resetToDefaultMarketplace": "Se restauró la URL por defecto de la tienda",
       "failedToFetchExtensionsDefault": "Error al obtener extensiones de la URL por defecto",
       "installingUpdates": "Instalando actualizaciones...",
       "skippedUnsafeFlags": "Omitido \"{extensionID}\" porque usa flags inseguros. Actualízalo manualmente.",
