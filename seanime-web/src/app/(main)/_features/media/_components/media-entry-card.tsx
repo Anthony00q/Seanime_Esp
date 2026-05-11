@@ -277,7 +277,7 @@ export function MediaEntryCard<T extends "anime" | "manga">(props: MediaEntryCar
                     {(!!libraryData) && <ContextMenuItem
                         onClick={handleOpenInExplorerClick}
                     >
-                        <LuFolderTree /> {t("mediaCard.openInLibraryExplorer")}
+                        <LuFolderTree /> {t("common.labels.openInLibraryExplorer")}
                     </ContextMenuItem>}
 
                     <PluginMediaCardContextMenuItems for={type} media={media} />

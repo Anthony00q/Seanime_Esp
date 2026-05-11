@@ -248,7 +248,7 @@ export default function Page() {
                                                                 leftIcon={<LuFolderTree />}
                                                                 onClick={() => openDirInLibraryExplorer(group.files?.[0]?.localFile?.path || "")}
                                                             >
-                                                                {t("scanSummaries.openInLibraryExplorer")}
+                                                                {t("common.labels.openInLibraryExplorer")}
                                                             </Button>
                                                         </div>
 
@@ -347,7 +347,7 @@ function ScanSummaryGroupItem(props: ScanSummaryFileItem) {
                         leftIcon={<LuFolderTree />}
                         onClick={() => openDirInLibraryExplorer(file.localFile?.path || "")}
                     >
-                        {t("scanSummaries.openInLibraryExplorer")}
+                        {t("common.labels.openInLibraryExplorer")}
                     </Button>
                 </div>
                 <ScanSummaryFileParsedData localFile={file.localFile} />

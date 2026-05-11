@@ -42,7 +42,7 @@ export function useNakamaOnlineStreamWatchParty() {
             return
         }
         logger("ONLINESTREAM").info("Starting online stream watch party", params)
-        toast.info(t("onlineStream.startingWatchParty"), { duration: 2000 })
+        toast.info(t("onlinestream.startingWatchParty"), { duration: 2000 })
         redirectToStream(params)
         React.startTransition(() => {
             setStreamToLoad(params)

@@ -131,7 +131,6 @@
     "filesScanned": "archivos escaneados",
     "errorsFound": "Errores encontrados",
     "warningsFound": "Advertencias encontradas",
-    "openInLibraryExplorer": "Abrir en Explorador de Biblioteca",
     "viewScannerLogs": "Ver registros del escáner"
   },
   "unmatchedFiles": {
@@ -148,7 +147,6 @@
   "mediaCard": {
     "preview": "Vista previa",
     "addToPlaylist": "Añadir a lista de reproducción",
-    "openInLibraryExplorer": "Abrir en Explorador de Biblioteca",
     "openPage": "Abrir página",
     "continue": "Continuar",
     "watch": "Ver"
@@ -194,26 +192,27 @@
     "dropLogFile": "Soltar archivo de registro",
     "back": "Volver"
   },
-  "onlinestream": {
-    "watchPartyProviderNotInstalled": "Watch Party: El proveedor usado por el host no está instalado.",
-    "playbackErrorRetrying": "Error de reproducción, intentando otro servidor...",
-    "findOtherProviders": "Buscar otros proveedores",
-    "selectProvider": "Seleccionar proveedor",
-    "cache": "Caché",
-    "emptyCacheDescription": "Vacía el caché si estás experimentando problemas con el stream.",
-    "emptyStreamCache": "Vaciar caché de stream",
-    "manualMatch": "Emparejamiento manual",
-    "switchToSubs": "Cambiar a subtítulos",
-    "switchToDub": "Cambiar a doblaje",
-    "switchToGridView": "Cambiar a vista de cuadrícula",
-    "switchToListView": "Cambiar a vista de lista",
-    "noProviderSelected": "Ningún proveedor seleccionado",
-    "providerError": "Error del proveedor",
-    "loadingStream": "Cargando stream",
-    "completeMovie": "Película completa",
-    "noWorkingProviders": "No se encontraron proveedores funcionales",
-    "stoppedTryingProviders": "Se detuvo la búsqueda de proveedores"
-  },
+    "onlinestream": {
+      "watchPartyProviderNotInstalled": "Watch Party: El proveedor usado por el host no está instalado.",
+      "playbackErrorRetrying": "Error de reproducción, intentando otro servidor...",
+      "findOtherProviders": "Buscar otros proveedores",
+      "selectProvider": "Seleccionar proveedor",
+      "cache": "Caché",
+      "emptyCacheDescription": "Vacía el caché si estás experimentando problemas con el stream.",
+      "emptyStreamCache": "Vaciar caché de stream",
+      "manualMatch": "Emparejamiento manual",
+      "switchToSubs": "Cambiar a subtítulos",
+      "switchToDub": "Cambiar a doblaje",
+      "switchToGridView": "Cambiar a vista de cuadrícula",
+      "switchToListView": "Cambiar a vista de lista",
+      "noProviderSelected": "Ningún proveedor seleccionado",
+      "providerError": "Error del proveedor",
+      "loadingStream": "Cargando stream",
+      "completeMovie": "Película completa",
+      "noWorkingProviders": "No se encontraron proveedores funcionales",
+      "stoppedTryingProviders": "Se detuvo la búsqueda de proveedores",
+      "startingWatchParty": "Iniciando watch party de streaming en línea"
+    },
   "torrentList": {
     "failedToConnect": "Error al conectar con el cliente torrent. Verifica los ajustes y asegúrate de que está funcionando.",
     "downloading": "Descargando",
@@ -292,9 +291,6 @@
     "selectMedia": "Medios guardados",
     "selectMediaButton": "Seleccionar medios para guardar",
     "selectMediaDescription": "Selecciona el medio que quieres guardar localmente. Haz clic en un medio ya guardado para eliminarlo del almacenamiento local."
-  },
-  "onlineStream": {
-    "startingWatchParty": "Iniciando watch party de streaming en línea"
   },
   "handlePlayMedia": {
     "externalPlayerNotSet": "El enlace de reproductor externo no está configurado."
