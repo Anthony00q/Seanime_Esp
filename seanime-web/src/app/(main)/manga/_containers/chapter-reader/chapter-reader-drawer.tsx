@@ -360,12 +360,12 @@ export function ChapterReaderDrawer(props: ChapterDrawerProps) {
         inject("close-manga-reader", {
             items: [{
                 id: "close-reader",
-                value: "Close reader",
-                heading: "Reader",
+                value: t("manga.chapterReader.closeReader"),
+                heading: t("manga.chapterReader.reader"),
                 priority: 100,
                 render: () => (
                     <div className="flex gap-1 items-center w-full">
-                        <p>Close reader</p>
+                        <p>{t("manga.chapterReader.closeReader")}</p>
                     </div>
                 ),
                 onSelect: () => setCurrentChapter(undefined),
@@ -420,7 +420,7 @@ export function ChapterReaderDrawer(props: ChapterDrawerProps) {
                     loading={isUpdatingProgress}
                     disabled={isUpdatingProgress}
                 >
-                    Update progress ({chapterIdToNumbersMap.get(currentChapter?.chapterId || "")} / {entry?.media?.chapters || "-"})
+                    {t("manga.chapterReader.updateProgress", { current: String(chapterIdToNumbersMap.get(currentChapter?.chapterId || "")), total: String(entry?.media?.chapters || "-") })}
                 </Button>
             </div>
 
@@ -463,7 +463,7 @@ export function ChapterReaderDrawer(props: ChapterDrawerProps) {
 
                         <div className="mt-2">
                             <Button intent="white" onClick={() => retryFetchPageContainer()}>
-                                Retry
+                                {t("manga.chapterReader.retry")}
                             </Button>
                         </div>
                     </LuffyError>

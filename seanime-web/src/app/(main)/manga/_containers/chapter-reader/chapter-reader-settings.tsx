@@ -84,15 +84,15 @@ export const MANGA_READING_MODE_ICONS = {
 export const MANGA_READING_MODE_OPTIONS = [
     {
         value: MangaReadingMode.LONG_STRIP,
-        label: <span className="flex gap-2 items-center"><PiScrollDuotone className="text-xl" /> <span>Long Strip</span></span>,
+        label: <span className="flex gap-2 items-center"><PiScrollDuotone className="text-xl" /> <span>{t("manga.readingModes.longStrip")}</span></span>,
     },
     {
         value: MangaReadingMode.PAGED,
-        label: <span className="flex gap-2 items-center"><PiReadCvLogoLight className="text-xl" /> <span>Single Page</span></span>,
+        label: <span className="flex gap-2 items-center"><PiReadCvLogoLight className="text-xl" /> <span>{t("manga.readingModes.singlePage")}</span></span>,
     },
     {
         value: MangaReadingMode.DOUBLE_PAGE,
-        label: <span className="flex gap-2 items-center"><MdMenuBook className="text-xl" /> <span>Double Page</span></span>,
+        label: <span className="flex gap-2 items-center"><MdMenuBook className="text-xl" /> <span>{t("manga.readingModes.doublePage")}</span></span>,
     },
 ]
 
@@ -104,11 +104,11 @@ export const MANGA_READING_DIRECTION_ICONS = {
 export const MANGA_READING_DIRECTION_OPTIONS = [
     {
         value: MangaReadingDirection.LTR,
-        label: <span className="flex gap-2 items-center"><span>Left to Right</span> <PiArrowCircleRightDuotone className="text-2xl" /></span>,
+        label: <span className="flex gap-2 items-center"><span>{t("manga.readingDirections.leftToRight")}</span> <PiArrowCircleRightDuotone className="text-2xl" /></span>,
     },
     {
         value: MangaReadingDirection.RTL,
-        label: <span className="flex gap-2 items-center"><PiArrowCircleLeftDuotone className="text-2xl" /> <span>Right to Left</span></span>,
+        label: <span className="flex gap-2 items-center"><PiArrowCircleLeftDuotone className="text-2xl" /> <span>{t("manga.readingDirections.rightToLeft")}</span></span>,
     },
 ]
 
@@ -122,19 +122,19 @@ export const MANGA_PAGE_FIT_ICONS = {
 export const MANGA_PAGE_FIT_OPTIONS = [
     {
         value: MangaPageFit.CONTAIN,
-        label: <span className="flex gap-2 items-center"><AiOutlineColumnHeight className="text-xl" /> <span>Contain</span></span>,
+        label: <span className="flex gap-2 items-center"><AiOutlineColumnHeight className="text-xl" /> <span>{t("manga.pageFit.contain")}</span></span>,
     },
     {
         value: MangaPageFit.LARGER,
-        label: <span className="flex gap-2 items-center"><TbArrowAutofitHeight className="text-xl" /> <span>Overflow</span></span>,
+        label: <span className="flex gap-2 items-center"><TbArrowAutofitHeight className="text-xl" /> <span>{t("manga.pageFit.overflow")}</span></span>,
     },
     {
         value: MangaPageFit.COVER,
-        label: <span className="flex gap-2 items-center"><AiOutlineColumnWidth className="text-xl" /> <span>Cover</span></span>,
+        label: <span className="flex gap-2 items-center"><AiOutlineColumnWidth className="text-xl" /> <span>{t("manga.pageFit.cover")}</span></span>,
     },
     {
         value: MangaPageFit.TRUE_SIZE,
-        label: <span className="flex gap-2 items-center"><FaRegImage className="text-xl" /> <span>True size</span></span>,
+        label: <span className="flex gap-2 items-center"><FaRegImage className="text-xl" /> <span>{t("manga.pageFit.trueSize")}</span></span>,
     },
 ]
 
@@ -146,11 +146,11 @@ export const MANGA_PAGE_STRETCH_ICONS = {
 export const MANGA_PAGE_STRETCH_OPTIONS = [
     {
         value: MangaPageStretch.NONE,
-        label: <span className="flex gap-2 items-center"><MdOutlinePhotoSizeSelectLarge className="text-xl" /> <span>None</span></span>,
+        label: <span className="flex gap-2 items-center"><MdOutlinePhotoSizeSelectLarge className="text-xl" /> <span>{t("manga.pageStretch.none")}</span></span>,
     },
     {
         value: MangaPageStretch.STRETCH,
-        label: <span className="flex gap-2 items-center"><GiResize className="text-xl" /> <span>Stretch</span></span>,
+        label: <span className="flex gap-2 items-center"><GiResize className="text-xl" /> <span>{t("manga.pageStretch.stretch")}</span></span>,
     },
 ]
 
@@ -377,13 +377,13 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
             >
                 <DropdownMenuItem
                     onClick={() => setOpen(true)}
-                >Open settings</DropdownMenuItem>
+                >{t("manga.chapterReader.openSettings")}</DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={handleFullscreen}
-                >Toggle fullscreen</DropdownMenuItem>
+                >{t("manga.chapterReader.toggleFullscreen")}</DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => setHideBar((prev) => !prev)}
-                >{hiddenBar ? "Show" : "Hide"} bar</DropdownMenuItem>
+                >{hiddenBar ? t("manga.chapterReader.showBar") : t("manga.chapterReader.hideBar")}</DropdownMenuItem>
             </DropdownMenu>
 
             <Drawer
@@ -394,7 +394,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                         className="hidden lg:flex"
                     />
                 }
-                title="Settings"
+                title={t("manga.chapterReader.settings")}
                 allowOutsideInteraction={false}
                 open={open}
                 onOpenChange={setOpen}
@@ -407,7 +407,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                     <Card className="p-4 space-y-4">
                         <RadioGroup
                             {...radioGroupClasses}
-                            label="Reading Mode"
+                            label={t("manga.chapterReader.readingMode")}
                             options={MANGA_READING_MODE_OPTIONS}
                             value={readingMode}
                             onValueChange={(value) => handleSetReadingMode(value)}
@@ -419,7 +419,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                             )}
                         >
                             <NumberInput
-                                label="Offset"
+                                label={t("manga.chapterReader.offset")}
                                 value={doublePageOffset}
                                 onValueChange={(value) => setDoublePageOffset(value)}
                             />
@@ -427,7 +427,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
 
                         <RadioGroup
                             {...radioGroupClasses}
-                            label="Page Fit"
+                            label={t("manga.chapterReader.pageFit")}
                             options={MANGA_PAGE_FIT_OPTIONS}
                             value={pageFit}
                             onValueChange={(value) => setPageFit(value)}
@@ -464,7 +464,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                         {
                             pageFit === MangaPageFit.LARGER && (
                                 <NumberInput
-                                    label="Page Container Width"
+                                    label={t("manga.chapterReader.pageContainerWidth")}
                                     max={100}
                                     min={0}
                                     rightAddon="%"
@@ -482,11 +482,11 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                         >
                             <RadioGroup
                                 {...radioGroupClasses}
-                                label="Page Stretch"
+                                label={t("manga.chapterReader.pageStretch")}
                                 options={MANGA_PAGE_STRETCH_OPTIONS}
                                 value={pageStretch}
                                 onValueChange={(value) => setPageStretch(value)}
-                                help="'Stretch' forces all pages to have the same width as the container in 'Long Strip' mode."
+                                help={t("manga.chapterReader.stretchHelp")}
                             />
                         </div>
 
@@ -499,8 +499,8 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                             }}
                         >
                             <span className="flex flex-none items-center">
-                                Reset defaults
-                                for <span className="w-2"></span> {MANGA_READING_MODE_OPTIONS.find((option) => option.value === readingMode)?.label}
+                                {t("manga.chapterReader.resetDefaults")}
+                                for <span className="w-2"></span> {readingMode === MangaReadingMode.LONG_STRIP ? t("manga.readingModes.longStrip") : readingMode === MangaReadingMode.PAGED ? t("manga.readingModes.singlePage") : t("manga.readingModes.doublePage")}
                             </span>
                         </Button>
                     </Card>
@@ -509,14 +509,14 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                     <Card className="p-4 space-y-4">
                         <div className="flex gap-4 flex-wrap items-center">
                             <Switch
-                                label="Page Gap"
+                                label={t("manga.chapterReader.pageGap")}
                                 value={pageGap}
                                 onValueChange={setPageGap}
                                 fieldClass="w-fit"
                                 size="sm"
                             />
                             <Switch
-                                label="Page Gap Shadow"
+                                label={t("manga.chapterReader.pageGapShadow")}
                                 value={pageGapShadow}
                                 onValueChange={setPageGapShadow}
                                 fieldClass="w-fit"
@@ -531,7 +531,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                         >
                             <RadioGroup
                                 {...radioGroupClasses}
-                                label="Reading Direction"
+                                label={t("manga.chapterReader.readingDirection")}
                                 options={MANGA_READING_DIRECTION_OPTIONS}
                                 value={readingDirection}
                                 onValueChange={(value) => setReadingDirection(value)}
@@ -539,7 +539,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                         </div>
                         <div className="flex items-center gap-4">
                             <Switch
-                                label="Progress Bar"
+                                label={t("manga.chapterReader.progressBar")}
                                 value={readerProgressBar}
                                 onValueChange={setReaderProgressBar}
                                 fieldClass="w-fit"
@@ -553,34 +553,30 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
 
                         <>
                             <div>
-                                <h4>Editable Keybinds</h4>
-                                <p className="text-[--muted] text-xs">Click to edit</p>
+                                <h4>{t("manga.chapterReader.editableKeybinds")}</h4>
+                                <p className="text-[--muted] text-xs">{t("manga.chapterReader.clickToEdit")}</p>
                             </div>
 
                             {[
                                 {
                                     key: MANGA_KBS_ATOM_KEYS.kbsChapterLeft,
-                                    label: readingDirection === MangaReadingDirection.LTR ? "Previous chapter" : "Next chapter",
+                                    label: readingDirection === MangaReadingDirection.LTR ? t("manga.chapterReader.previousChapter") : t("manga.chapterReader.nextChapter"),
                                     value: kbsChapterLeft,
-                                    // help: readingDirection === MangaReadingDirection.LTR ? "Previous chapter" : "Next chapter",
                                 },
                                 {
                                     key: MANGA_KBS_ATOM_KEYS.kbsChapterRight,
-                                    label: readingDirection === MangaReadingDirection.LTR ? "Next chapter" : "Previous chapter",
+                                    label: readingDirection === MangaReadingDirection.LTR ? t("manga.chapterReader.nextChapter") : t("manga.chapterReader.previousChapter"),
                                     value: kbsChapterRight,
-                                    // help: readingDirection === MangaReadingDirection.LTR ? "Next chapter" : "Previous chapter",
                                 },
                                 {
                                     key: MANGA_KBS_ATOM_KEYS.kbsPageLeft,
-                                    label: readingDirection === MangaReadingDirection.LTR ? "Previous page" : "Next page",
+                                    label: readingDirection === MangaReadingDirection.LTR ? t("manga.chapterReader.previousPage") : t("manga.chapterReader.nextPage"),
                                     value: kbsPageLeft,
-                                    // help: readingDirection === MangaReadingDirection.LTR ? "Previous page" : "Next page",
                                 },
                                 {
                                     key: MANGA_KBS_ATOM_KEYS.kbsPageRight,
-                                    label: readingDirection === MangaReadingDirection.LTR ? "Next page" : "Previous page",
+                                    label: readingDirection === MangaReadingDirection.LTR ? t("manga.chapterReader.nextPage") : t("manga.chapterReader.previousPage"),
                                     value: kbsPageRight,
-                                    // help: readingDirection === MangaReadingDirection.LTR ? "Next page" : "Previous page",
                                 },
                             ].map(item => {
                                 return (
@@ -617,7 +613,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                                                     intent="warning-subtle"
                                                     leftIcon={<FaRedo />}
                                                 >
-                                                    Reset
+                                                    {t("manga.chapterReader.reset")}
                                                 </Button>
                                             )
                                         }
@@ -627,32 +623,32 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
 
                             <Separator />
 
-                            <h4>Keyboard Shortcuts</h4>
+                            <h4>{t("manga.chapterReader.keyboardShortcuts")}</h4>
 
                             {[{
                                 key: "u",
-                                label: "Update progress and go to next chapter",
+                                label: t("manga.chapterReader.updateProgressNextChapter"),
                             }, {
                                 key: "b",
-                                label: "Toggle bottom bar visibility",
+                                label: t("manga.chapterReader.toggleBottomBar"),
                             }, {
                                 key: "m",
-                                label: "Switch reading mode",
+                                label: t("manga.chapterReader.switchReadingMode"),
                             }, {
                                 key: "d",
-                                label: "Switch reading direction",
+                                label: t("manga.chapterReader.switchReadingDirection"),
                             }, {
                                 key: "f",
-                                label: "Switch page fit",
+                                label: t("manga.chapterReader.switchPageFit"),
                             }, {
                                 key: "s",
-                                label: "Switch page stretch",
+                                label: t("manga.chapterReader.switchPageStretch"),
                             }, {
                                 key: "shift+right",
-                                label: "Increment double page offset",
+                                label: t("manga.chapterReader.incrementOffset"),
                             }, {
                                 key: "shift+left",
-                                label: "Decrement double page offset",
+                                label: t("manga.chapterReader.decrementOffset"),
                             }].map(item => {
                                 return (
                                     <div className="flex gap-2 items-center" key={item.key}>

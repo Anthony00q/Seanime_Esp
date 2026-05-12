@@ -160,7 +160,7 @@ function Content() {
                         </Button>}
                     >
                         <TextInput
-                            placeholder="Filter by category"
+                            placeholder={t("torrentList.filterByCategory")}
                             value={categoryInput}
                             onChange={e => setCategoryInput(e.target.value)}
                         />
