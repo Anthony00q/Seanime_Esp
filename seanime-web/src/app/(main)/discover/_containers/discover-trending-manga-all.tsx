@@ -156,7 +156,7 @@ export function DiscoverMangaSearchBar() {
                         setSearchInput(v)
                     }}
                     className="rounded-full"
-                    placeholder="Search manga"
+                    placeholder={t("discover.searchManga")}
                 />
             </div>
 

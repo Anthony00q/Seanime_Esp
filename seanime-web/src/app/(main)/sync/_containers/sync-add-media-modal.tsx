@@ -153,12 +153,12 @@ function MediaSelector(props: MediaSelectorProps) {
                     rounded
                     leftIcon={<MdOutlineDownloadForOffline className="text-2xl" />}
                 >
-                    Save locally
+                    {t("sync.saveLocally")}
                 </Button>
             </div>
 
             {animeLibraryCollection && <>
-                <h2 className="text-center">Anime</h2>
+                <h2 className="text-center">{t("sync.anime")}</h2>
                 <MediaList
                     collection={animeLibraryCollection}
                     selectedMedia={selectedMedia}
@@ -179,7 +179,7 @@ function MediaSelector(props: MediaSelectorProps) {
                 />
             </>}
             {mangaLibraryCollection && <>
-                <h2 className="text-center">Manga</h2>
+                <h2 className="text-center">{t("sync.manga")}</h2>
                 <MediaList
                     collection={mangaLibraryCollection}
                     selectedMedia={selectedMedia}
@@ -363,8 +363,8 @@ function MediaItem(props: {
     const { entry, onClick, isSelected, isSaved, onUntrack, isPending } = props
 
     const confirmUntrack = useConfirmationDialog({
-        title: "Remove offline data",
-        description: "This action will remove the offline data for this media entry. Are you sure you want to proceed?",
+        title: t("sync.removeOfflineData"),
+        description: t("sync.removeOfflineDataDesc"),
         onConfirm: () => {
             onUntrack()
         },

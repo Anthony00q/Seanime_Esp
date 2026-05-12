@@ -99,7 +99,10 @@
       "noFilesAvailable": "No hay archivos disponibles",
       "selectAtLeastOne": "Selecciona al menos un archivo",
       "autoSelect": "Auto seleccionar",
-      "usePreviousBatch": "Usar lote anterior"
+      "usePreviousBatch": "Usar lote anterior",
+      "addProviders": "Añadir proveedores",
+      "noProvidersFound": "No se encontraron proveedores",
+      "additionalProviders": "Proveedores adicionales"
     },
     "torrentStream": {
       "title": "Streaming por torrent",
