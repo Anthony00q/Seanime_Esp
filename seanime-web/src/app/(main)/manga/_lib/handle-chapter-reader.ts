@@ -17,11 +17,14 @@ import {
     MangaReadingMode,
 } from "@/app/(main)/manga/_lib/manga-chapter-reader.atoms"
 import { logger } from "@/lib/helpers/debug"
+import { createTranslator } from "@/locales"
 import { atom } from "jotai"
 import { useAtom, useAtomValue, useSetAtom } from "jotai/react"
 import { atomWithStorage } from "jotai/utils"
 import mousetrap from "mousetrap"
 import React from "react"
+
+const t = createTranslator("es")
 
 const __manga_readerLoadedPagesAtom = atom<number[]>([])
 
@@ -365,35 +368,35 @@ export function useSwitchSettingsWithKeys() {
 
     const getReadingModeLabel = (value: string) => {
         const labels: Record<string, string> = {
-            [MangaReadingMode.LONG_STRIP]: "Long Strip",
-            [MangaReadingMode.PAGED]: "Single Page",
-            [MangaReadingMode.DOUBLE_PAGE]: "Double Page",
+            [MangaReadingMode.LONG_STRIP]: t("manga.readingModes.longStrip"),
+            [MangaReadingMode.PAGED]: t("manga.readingModes.singlePage"),
+            [MangaReadingMode.DOUBLE_PAGE]: t("manga.readingModes.doublePage"),
         }
         return labels[value] || value
     }
 
     const getReadingDirectionLabel = (value: string) => {
         const labels: Record<string, string> = {
-            [MangaReadingDirection.LTR]: "Left to Right",
-            [MangaReadingDirection.RTL]: "Right to Left",
+            [MangaReadingDirection.LTR]: t("manga.readingDirections.leftToRight"),
+            [MangaReadingDirection.RTL]: t("manga.readingDirections.rightToLeft"),
         }
         return labels[value] || value
     }
 
     const getPageFitLabel = (value: string) => {
         const labels: Record<string, string> = {
-            [MangaPageFit.CONTAIN]: "Contain",
-            [MangaPageFit.LARGER]: "Overflow",
-            [MangaPageFit.COVER]: "Cover",
-            [MangaPageFit.TRUE_SIZE]: "True size",
+            [MangaPageFit.CONTAIN]: t("manga.pageFit.contain"),
+            [MangaPageFit.LARGER]: t("manga.pageFit.overflow"),
+            [MangaPageFit.COVER]: t("manga.pageFit.cover"),
+            [MangaPageFit.TRUE_SIZE]: t("manga.pageFit.trueSize"),
         }
         return labels[value] || value
     }
 
     const getPageStretchLabel = (value: string) => {
         const labels: Record<string, string> = {
-            [MangaPageStretch.NONE]: "None",
-            [MangaPageStretch.STRETCH]: "Stretch",
+            [MangaPageStretch.NONE]: t("manga.pageStretch.none"),
+            [MangaPageStretch.STRETCH]: t("manga.pageStretch.stretch"),
         }
         return labels[value] || value
     }
@@ -409,7 +412,7 @@ export function useSwitchSettingsWithKeys() {
     const incrementOffset = () => {
         setDoublePageOffset(prev => {
             const newValue = Math.max(0, prev + 1)
-            setFlashAction({ message: `Double Page Offset: ${newValue}` })
+            setFlashAction({ message: t("manga.chapterReader.doublePageOffset", { value: String(newValue) }) })
             return newValue
         })
     }
@@ -417,7 +420,7 @@ export function useSwitchSettingsWithKeys() {
     const decrementOffset = () => {
         setDoublePageOffset(prev => {
             const newValue = Math.max(0, prev - 1)
-            setFlashAction({ message: `Double Page Offset: ${newValue}` })
+            setFlashAction({ message: t("manga.chapterReader.doublePageOffset", { value: String(newValue) }) })
             return newValue
         })
     }

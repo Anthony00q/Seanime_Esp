@@ -140,8 +140,7 @@
       "pleaseProvideValidUrl": "Proporciona una URL válida.",
       "extensionsInstalledSuccessfully": "Extensiones instaladas exitosamente.",
       "invalidFunctionSelected": "Función inválida seleccionada.",
-      "noOutputToCopy": "No hay salida para copiar",
-      "copiedToClipboard": "Copiado al portapapeles"
+      "noOutputToCopy": "No hay salida para copiar"
     }
   }
 }

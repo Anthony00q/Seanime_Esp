@@ -792,7 +792,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                             <Field.Text
                                                 label={provider === "openai-compatible" ? "API Key (optional)" : "API Key"}
                                                 name="vcTranslateApiKey"
-                                                placeholder="Enter your API key"
+                                                 placeholder={t("videoPlayer.apiKeyPlaceholder")}
                                                 onKeyDown={(e) => e.stopPropagation()}
                                                 onInput={(e) => e.stopPropagation()}
                                                 type="password"

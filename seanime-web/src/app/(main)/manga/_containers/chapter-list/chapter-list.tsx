@@ -124,10 +124,10 @@ export function ChapterList(props: ChapterListProps) {
     }, [chapterIdToNumbersMap, chapterContainer, entry])
 
     const confirmReloadSource = useConfirmationDialog({
-        title: "Reload sources",
+        title: t("manga.chapterList.reloadSources"),
         actionIntent: "primary",
-        actionText: "Reload",
-        description: "This action will empty the cache for this manga and fetch the latest data from the selected source.",
+        actionText: t("manga.chapterList.reload"),
+        description: t("manga.chapterReader.reloadSourcesDescription"),
         onConfirm: () => {
             if (mediaId) {
                 clearMangaCache({ mediaId: Number(mediaId) })
@@ -141,12 +141,12 @@ export function ChapterList(props: ChapterListProps) {
     const columns = React.useMemo(() => defineDataGridColumns<HibikeManga_ChapterDetails>(() => [
         {
             accessorKey: "title",
-            header: "Name",
+            header: t("manga.chapterList.name"),
             size: 90,
         },
         ...(selectedExtension?.settings?.supportsMultiScanlator ? [{
             id: "scanlator",
-            header: "Scanlator",
+            header: t("manga.chapterList.scanlator"),
             size: 30,
             accessorFn: (row: any) => row.scanlator,
             enableSorting: true,
@@ -154,7 +154,7 @@ export function ChapterList(props: ChapterListProps) {
         }] : []),
         ...(selectedExtension?.settings?.supportsMultiLanguage ? [{
             id: "language",
-            header: "Language",
+            header: t("manga.chapterList.language"),
             size: 40,
             accessorFn: (row: any) => LANGUAGES_LIST[row.language]?.nativeName || row.language,
             enableSorting: true,
@@ -162,7 +162,7 @@ export function ChapterList(props: ChapterListProps) {
         }] : []),
         {
             id: "number",
-            header: "Number",
+            header: t("manga.chapterList.number"),
             size: 10,
             enableSorting: true,
             accessorFn: (row) => {
@@ -185,7 +185,7 @@ export function ChapterList(props: ChapterListProps) {
                             icon={<LuDownload className="text-xl" />}
                             className="opacity-50 hover:opacity-100"
                         />}
-                        {isChapterQueued(row.original) && <p className="text-[--muted]">Queued</p>}
+                        {isChapterQueued(row.original) && <p className="text-[--muted]">{t("manga.chapterList.queued")}</p>}
                         {isChapterDownloaded(row.original) && <p className="text-[--green] px-1"><MdOutlineOfflinePin className="text-2xl" /></p>}
                         <IconButton
                             intent="gray-subtle"
@@ -253,11 +253,11 @@ export function ChapterList(props: ChapterListProps) {
                 data: nextChapter,
                 id: `next-chapter-${nextChapter.id}`,
                 value: `${nextChapter.chapter}`,
-                heading: "Next Chapter",
+                heading: t("manga.chapterList.nextChapter"),
                 priority: 2,
                 render: () => (
                     <div className="flex gap-1 items-center w-full">
-                        <p className="max-w-[70%] truncate">Chapter {nextChapter.chapter}</p>
+                        <p className="max-w-[70%] truncate">{t("manga.chapterList.chapterLabel", { number: nextChapter.chapter })}</p>
                         {nextChapter.scanlator && (
                             <p className="text-[--muted]">({nextChapter.scanlator})</p>
                         )}
@@ -278,11 +278,11 @@ export function ChapterList(props: ChapterListProps) {
                 data: chapter,
                 id: `chapter-${chapter.id}`,
                 value: `${chapter.chapter}`,
-                heading: "Upcoming Chapters",
+                heading: t("manga.chapterList.upcomingChapters"),
                 priority: 1,
                 render: () => (
                     <div className="flex gap-1 items-center w-full">
-                        <p className="max-w-[70%] truncate">Chapter {chapter.chapter}</p>
+                        <p className="max-w-[70%] truncate">{t("manga.chapterList.chapterLabel", { number: chapter.chapter })}</p>
                         {chapter.scanlator && (
                             <p className="text-[--muted]">({chapter.scanlator})</p>
                         )}
@@ -336,7 +336,7 @@ export function ChapterList(props: ChapterListProps) {
                         mId: mediaId,
                         provider: v,
                     })}
-                    leftAddon="Source"
+                    leftAddon={t("manga.chapterList.source")}
                     size="sm"
                     disabled={isClearingMangaCache}
                 />
@@ -348,7 +348,7 @@ export function ChapterList(props: ChapterListProps) {
                     loading={isClearingMangaCache}
                     size="sm"
                 >
-                    Reload sources
+                    {t("manga.chapterList.reloadSources")}
                 </Button>
 
                 <MangaManualMappingModal entry={entry}>
@@ -365,8 +365,8 @@ export function ChapterList(props: ChapterListProps) {
             <ErrorBoundary
                 fallbackRender={({ error }) => <Alert
                     intent="alert"
-                    title="Client side error"
-                    description={`Could not load chapter filters. Please contact the extension developer: "${error}"`}
+                    title="Error del cliente"
+                    description={`No se pudieron cargar los filtros de capítulos. Contacta al desarrollador de la extensión: "${error}"`}
                 />}
             >
                 {(selectedExtension?.settings?.supportsMultiLanguage || selectedExtension?.settings?.supportsMultiScanlator) && (
@@ -376,13 +376,13 @@ export function ChapterList(props: ChapterListProps) {
                                 <Select
                                     fieldClass="w-64"
                                     options={scanlatorOptions}
-                                    placeholder="All"
+                                    placeholder={t("manga.chapterList.all")}
                                     value={selectedFilters.scanlators[0] || ""}
                                     onValueChange={v => setSelectedScanlator({
                                         mId: mediaId,
                                         scanlators: [v],
                                     })}
-                                    leftAddon="Scanlator"
+                                    leftAddon={t("manga.chapterList.scanlator")}
                                     // intent="filled"
                                     // size="sm"
                                 />
@@ -392,13 +392,13 @@ export function ChapterList(props: ChapterListProps) {
                             <Select
                                 fieldClass="w-64"
                                 options={languageOptions}
-                                placeholder="All"
+                                placeholder={t("manga.chapterList.all")}
                                 value={selectedFilters.language}
                                 onValueChange={v => setSelectedLanguage({
                                     mId: mediaId,
                                     language: v,
                                 })}
-                                leftAddon="Language"
+                                leftAddon={t("manga.chapterList.language")}
                                 // intent="filled"
                                 // size="sm"
                             />
@@ -428,7 +428,7 @@ export function ChapterList(props: ChapterListProps) {
                         {!!chapterContainer?.chapters?.length && (
                             <>
                                 <div data-chapter-list-header-container className="flex gap-2 items-center w-full pb-2">
-                                    <h2 className="px-1">Chapters</h2>
+                                    <h2 className="px-1">{t("manga.chapterList.title")}</h2>
                                     <div className="flex flex-1"></div>
                                     <div>
                                         {!!unreadChapters?.length && <Button
@@ -473,14 +473,14 @@ export function ChapterList(props: ChapterListProps) {
 
                                     <div data-chapter-list-bulk-actions-checkboxes-container className="flex flex-wrap items-center gap-4">
                                         <Checkbox
-                                            label="Show unread"
+                                            label={t("manga.chapterList.showUnread")}
                                             value={showUnreadChapter}
                                             onValueChange={v => setShowUnreadChapter(v as boolean)}
                                             fieldClass="w-fit"
                                             {...monochromeCheckboxClasses}
                                         />
                                         {selectedProvider !== "local-manga" && <Checkbox
-                                            label={<span className="flex gap-2 items-center"><IoLibrary /> Show downloaded</span>}
+                                            label={<span className="flex gap-2 items-center"><IoLibrary /> {t("manga.chapterList.showDownloaded")}</span>}
                                             value={showDownloadedChapters}
                                             onValueChange={v => setShowDownloadedChapters(v as boolean)}
                                             fieldClass="w-fit"

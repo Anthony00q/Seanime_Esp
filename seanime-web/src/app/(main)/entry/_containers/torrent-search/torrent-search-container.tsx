@@ -39,6 +39,9 @@ import { atom, useSetAtom } from "jotai"
 import React, { startTransition } from "react"
 import { FiSearch } from "react-icons/fi"
 import { LuCornerLeftDown, LuFileSearch, LuPlus, LuSave } from "react-icons/lu"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 export const __torrentSearch_selectedTorrentsAtom = atom<HibikeTorrent_AnimeTorrent[]>([])
 
@@ -325,9 +328,9 @@ export function TorrentSearchContainer({ type, entry }: { type: TorrentSelection
                             value={extraProviderDraft}
                             onValueChange={setExtraProviderDraft}
                             options={extraProviderOptions}
-                            emptyMessage="No providers found"
-                            placeholder="Add providers"
-                            label="Additional providers"
+                            emptyMessage={t("entry.torrentSearch.noProvidersFound")}
+                            placeholder={t("entry.torrentSearch.addProviders")}
+                            label={t("entry.torrentSearch.additionalProviders")}
                             leftAddon={<LuPlus />}
                             size="sm"
                             fieldClass="w-full md:flex-1"
