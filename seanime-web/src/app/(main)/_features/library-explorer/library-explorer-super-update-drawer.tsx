@@ -958,6 +958,7 @@ type MetadataEditRuleProps = {
 }
 
 function MetadataEditRule({ edit, index, onUpdate, onRemove }: MetadataEditRuleProps) {
+    const t = createTranslator("es")
     const getSearchPlaceholder = () => {
         switch (edit.type) {
             case "episode":
@@ -1066,13 +1067,13 @@ function MetadataEditRule({ edit, index, onUpdate, onRemove }: MetadataEditRuleP
                         {edit.type === "type" ? (
                             <Select
                                 options={[
-                                    { value: "main", label: "Main" },
-                                    { value: "special", label: "Special" },
-                                    { value: "nc", label: "NC" },
+                                    { value: "main", label: t("libraryExplorer.episodeType") },
+                                    { value: "special", label: t("libraryExplorer.specialType") },
+                                    { value: "nc", label: t("libraryExplorer.ncType") },
                                 ]}
                                 value={edit.replaceText}
                                 onValueChange={(value: string | undefined) => onUpdate({ replaceText: value || "" })}
-                                placeholder="Select type"
+                                placeholder={t("libraryExplorer.selectType")}
                                 size="sm"
                             />
                         ) : (

@@ -18,6 +18,9 @@ import { atomWithImmer } from "jotai-immer"
 import { useAtom } from "jotai/react"
 import React from "react"
 import { BiMenu, BiPlus, BiTrash } from "react-icons/bi"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 type ConditionType = {
     id: string
@@ -161,7 +164,7 @@ export function AutoDownloaderProfileForm(props: AutoDownloaderProfileFormProps)
                         draft.name = v
                         return
                     })}
-                    placeholder="Name"
+                    placeholder={t("autoDownloader.profileName")}
                     required
                 />
             </div>
@@ -649,8 +652,8 @@ function ConditionItem(props: ConditionItemProps) {
                             <NumberInput
                                 value={field.score}
                                 onValueChange={(v) => onUpdateField(field.id, "score", v || 0)}
-                                placeholder="Score"
-                                label="Score:"
+                                placeholder={t("autoDownloader.scoreValue")}
+                                label={`${t("autoDownloader.scoreValue")}:`}
                                 fieldClass="!flex !items-center gap-2 w-fit"
                                 labelProps={{ className: "items-center text-sm font-semibold pt-1" }}
                                 className="w-32"

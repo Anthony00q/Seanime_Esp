@@ -88,7 +88,9 @@
     "allUpcoming": "Todo lo próximo",
     "errorOccurred": "Ocurrió un error, verifica los campos.",
     "intervalChanged15Min": "Intervalo cambiado a al menos 15 minutos",
-    "youMustSpecifyEpisode": "Debes especificar al menos un número de episodio"
+    "youMustSpecifyEpisode": "Debes especificar al menos un número de episodio",
+    "profileName": "Nombre",
+    "scoreValue": "Puntuación"
   },
   "scanner": {
     "title": "Escáner de Biblioteca",
@@ -217,7 +219,8 @@
     "failedToConnect": "Error al conectar con el cliente torrent. Verifica los ajustes y asegúrate de que está funcionando.",
     "downloading": "Descargando",
     "seeding": "Sincronizando",
-    "stopSeeding": "Detener sincronización"
+    "stopSeeding": "Detener sincronización",
+    "filterByCategory": "Filtrar por categoría"
   },
   "debrid": {
     "failedToConnect": "Error al conectar con el servicio Debrid. Verifica los ajustes."
@@ -250,7 +253,8 @@
     "unableToCaptureScreenshot": "No se pudo capturar la captura de pantalla",
     "screenshotAdded": "Captura de pantalla añadida al informe",
     "issueReportSaved": "Informe de problema guardado exitosamente",
-    "failedToGenerateDownloadToken": "Error al generar el token de descarga"
+    "failedToGenerateDownloadToken": "Error al generar el token de descarga",
+    "describeIssue": "Describe el problema que estás experimentando..."
   },
   "autoplay": {
     "requestingNextEpisode": "Solicitando siguiente episodio",
@@ -262,7 +266,11 @@
     "metadataSaved": "Metadatos guardados",
     "noValidChangesToApply": "No hay cambios válidos para aplicar. Verifica tu configuración.",
     "applyingChangesSkippingInvalid": "Aplicando {valid} cambios, omitiendo {skipped} cambios inválidos",
-    "failedToRenameFiles": "Error al renombrar archivos: {error}"
+    "failedToRenameFiles": "Error al renombrar archivos: {error}",
+    "selectType": "Seleccionar tipo",
+    "episodeType": "Episodio",
+    "specialType": "Especial",
+    "ncType": "NC"
   },
   "manga": {
     "chaptersAddedToDownloadQueue": "Capítulos añadidos a la cola de descarga",
@@ -290,7 +298,12 @@
     "localChangesIgnored": "Cambios locales ignorados.",
     "selectMedia": "Medios guardados",
     "selectMediaButton": "Seleccionar medios para guardar",
-    "selectMediaDescription": "Selecciona el medio que quieres guardar localmente. Haz clic en un medio ya guardado para eliminarlo del almacenamiento local."
+    "selectMediaDescription": "Selecciona el medio que quieres guardar localmente. Haz clic en un medio ya guardado para eliminarlo del almacenamiento local.",
+    "saveLocally": "Guardar localmente",
+    "removeOfflineData": "Eliminar datos sin conexión",
+    "removeOfflineDataDesc": "Esta acción eliminará los datos sin conexión de esta entrada. ¿Estás seguro de que quieres continuar?",
+    "anime": "Anime",
+    "manga": "Manga"
   },
   "handlePlayMedia": {
     "externalPlayerNotSet": "El enlace de reproductor externo no está configurado."
@@ -429,7 +442,9 @@
     },
     "torrentstream": {
       "streamStopped": "Stream detenido",
-      "torrentDropped": "Torrent soltado"
+      "torrentDropped": "Torrent soltado",
+      "downloadDirNotExist": "El directorio de descarga no existe",
+      "downloadDirNotDir": "El directorio de descarga no es un directorio"
     },
     "animeCollection": {
       "mediaAdded": "Medio añadido exitosamente"
