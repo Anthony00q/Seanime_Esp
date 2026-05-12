@@ -280,7 +280,7 @@ export function SearchOptions({
                     multiple
                     leftAddon={<TbSwords className={cn((params.genre !== null && !!params.genre?.length) && "text-indigo-300 font-bold text-xl")} />}
                     emptyMessage="No se encontraron opciones"
-                    label="Género" placeholder="Todos los géneros"
+                    label={t("common.labels.genres")} placeholder={t("common.placeholders.allGenres")}
                     className="w-full"
                     fieldClass="w-full"
                     options={ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({ value: genre, label: translateGenre(genre), textValue: genre }))}
@@ -296,7 +296,7 @@ export function SearchOptions({
                     leftAddon={!params.tags?.length &&
                         <LuTags className={cn((params.tags !== null && !!params.tags.length) && "text-indigo-300 font-bold text-xl")} />}
                     emptyMessage="No se encontraron opciones"
-                    label="Etiquetas" placeholder="Todas las etiquetas" className="w-full"
+                    label={t("common.labels.tags")} placeholder={t("common.placeholders.allTags")} className="w-full"
                     fieldClass="w-full min-w-0"
                     popoverClass="min-w-[280px]"
                     options={ADVANCED_SEARCH_MEDIA_TAGS
@@ -315,7 +315,7 @@ export function SearchOptions({
                     fieldLabelClass="hidden"
                 />
                 <Select
-                    label="Ordenar"
+                    label={t("common.labels.sorting")}
                     leftAddon={<FaSortAmountDown className={cn((params.sorting !== "SCORE_DESC") && "text-indigo-300 font-bold text-xl")} />}
                     className="w-full"
                     fieldClass="flex items-center"
@@ -332,7 +332,7 @@ export function SearchOptions({
                 {pageType === "anime" && <Select
                     leftAddon={
                         <MdPersonalVideo className={cn((params.format !== null && !!params.format?.length) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Formato" placeholder="Todos los formatos"
+                    label={t("common.labels.format")} placeholder={t("common.placeholders.allFormats")}
                     className="w-full"
                     fieldClass="w-full"
                     options={ADVANCED_SEARCH_FORMATS.map(f => ({ ...f, label: translateFormat(f.value) }))}
@@ -346,7 +346,7 @@ export function SearchOptions({
                 <Select
                     leftAddon={
                         <RiSignalTowerLine className={cn((params.status !== null && !!params.status?.length) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Estado" placeholder="Todos los estados"
+                    label={t("common.labels.status")} placeholder={t("common.placeholders.allStatuses")}
                     className="w-full"
                     fieldClass="w-full"
                     options={[
@@ -361,8 +361,8 @@ export function SearchOptions({
                 />
                 {pageType === "anime" && <Select
                     leftAddon={<LuLeaf className={cn((params.season !== null && !!params.season?.length) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Temporada"
-                    placeholder="Todas las temporadas"
+                    label={t("common.labels.season")}
+                    placeholder={t("common.placeholders.allSeasons")}
                     className="w-full"
                     fieldClass="w-full"
                     inputContainerClass="w-full"
@@ -376,7 +376,7 @@ export function SearchOptions({
                 />}
                 <Select
                     leftAddon={<LuCalendar className={cn((params.year !== null && !!params.year?.length) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Año" placeholder={t("common.placeholders.timeless")}
+                    label={t("common.labels.year")} placeholder={t("common.placeholders.timeless")}
                     className="w-full"
                     fieldClass="w-full"
                     options={[...Array(70)].map((v, idx) => getYear(new Date()) + 2 - idx).map(year => ({
@@ -393,7 +393,7 @@ export function SearchOptions({
             </div>
 
             {serverStatus?.settings?.anilist?.enableAdultContent && <Switch
-                label="Adulto"
+                label={t("common.labels.adult")}
                 value={params.isAdult}
                 onValueChange={v => setParams(draft => {
                     draft.isAdult = v

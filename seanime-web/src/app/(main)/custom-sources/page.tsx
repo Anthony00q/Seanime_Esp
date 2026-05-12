@@ -20,6 +20,9 @@ import React from "react"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { FiSearch } from "react-icons/fi"
 import { MdDataSaverOn } from "react-icons/md"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 export default function Page() {
 
@@ -122,7 +125,7 @@ export default function Page() {
                     <div className="flex gap-2">
                         <Select
                             leftAddon={<MdDataSaverOn className={cn("text-indigo-300 font-bold text-xl")} />}
-                            placeholder="Select a source" className="w-full"
+                            placeholder={t("common.placeholders.all")} className="w-full"
                             options={customSources?.map(s => ({
                                 label: s.name,
                                 value: s.id,

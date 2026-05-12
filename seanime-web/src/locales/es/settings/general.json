@@ -93,8 +93,6 @@
       "reset": "Restablecer",
       "appSettings": "Ajustes de la aplicación",
       "openLocalhostWebURLOnStartup": "Abrir URL web de localhost al iniciar",
-      "disableSystemNotifications": "Desactivar notificaciones del sistema",
-      "disableSystemNotificationsMoreHelp": "Notificaciones mostradas por el SO cuando Seanime ejecuta el descargador automático o el auto escáner.",
       "disableAnilistCaching": "Desactivar caché de AniList",
       "disableAnilistCachingHelp": "Si está activado, Seanime dejará de almacenar en caché las solicitudes de AniList en disco.",
       "disableAnilistCachingMoreHelp": "Por defecto, todas las solicitudes realizadas a AniList se almacenan en caché. Esto permite que Seanime siga siendo utilizable cuando AniList cae. El directorio de caché es modificable en el archivo de configuración.",

@@ -838,7 +838,7 @@ export function IssueReport() {
                             <textarea
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
-                                placeholder="Describe the issue you're experiencing..."
+                                placeholder={t("issueReport.describeIssue")}
                                 className="w-full px-3 py-2 rounded-lg bg-gray-900 border border-gray-700 text-sm text-gray-200
                                     placeholder-gray-500 resize-none focus:outline-none focus:border-brand-500 transition-colors"
                                 rows={3}

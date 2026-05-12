@@ -800,7 +800,7 @@ export function ExtensionPlayground(props: ExtensionPlaygroundProps) {
                                                         intent="gray-subtle" size="sm" onClick={() => {
                                                         if (response?.value) {
                                                             copyToClipboard(response?.value || "")
-                                                            toast.success(t("extensions.toast.copiedToClipboard"))
+                                                            toast.success(t("common.toast.copiedToClipboard"))
                                                         } else {
                                                             toast.warning(t("extensions.toast.noOutputToCopy"))
                                                         }
