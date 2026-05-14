@@ -114,7 +114,7 @@ export const LibraryCollectionListItem = React.memo(({ list, streamingMediaIds, 
 
     const [params, setParams] = useAtom(__mainLibrary_paramsAtom)
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     if (!!showStatuses && !!list.type && !showStatuses.includes(list.type)) return null
 

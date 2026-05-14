@@ -23,7 +23,7 @@ import { MdOutlineBroadcastOnHome } from "react-icons/md"
 import { RiSettings3Fill } from "react-icons/ri"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type PlaybackSettingsProps = {
     children?: React.ReactNode

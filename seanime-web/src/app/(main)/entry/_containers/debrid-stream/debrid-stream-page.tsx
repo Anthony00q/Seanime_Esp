@@ -29,7 +29,7 @@ import { BiX } from "react-icons/bi"
 import { StreamPageSkeleton } from "../../_components/stream-page-skeleton"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type DebridStreamPageProps = {
     children?: React.ReactNode

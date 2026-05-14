@@ -46,7 +46,7 @@ import { useMount } from "react-use"
 import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type AutoDownloaderRuleFormProps = {
     type: "create" | "edit"
@@ -95,7 +95,7 @@ export function useAutoDownloaderMediaList(allMedia: AL_BaseAnime[]) {
 }
 
 export function AutoDownloaderRuleForm(props: AutoDownloaderRuleFormProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const {
         type,

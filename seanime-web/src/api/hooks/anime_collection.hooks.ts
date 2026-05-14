@@ -19,7 +19,7 @@ export function useGetLibraryCollection({ enabled }: { enabled?: boolean } = { e
 export function useAddUnknownMedia() {
     const queryClient = useQueryClient()
     const { mutate } = useRefreshAnimeCollection()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<AL_AnimeCollection, AddUnknownMedia_Variables>({
         endpoint: API_ENDPOINTS.ANIME_COLLECTION.AddUnknownMedia.endpoint,

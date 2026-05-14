@@ -1,7 +1,7 @@
 import { AL_MediaFormat } from "@/api/generated/types"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const ADVANCED_SEARCH_MEDIA_GENRES = [
     "Action",

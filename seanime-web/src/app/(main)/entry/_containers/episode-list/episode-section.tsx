@@ -30,7 +30,7 @@ type EpisodeSectionProps = {
 }
 
 export function EpisodeSection({ entry, details, bottomSection, hideCarousel, maxCol = 4 }: EpisodeSectionProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const ts = useThemeSettings()
     const serverStatus = useServerStatus()
     const { currentView } = useAnimeEntryPageView()
@@ -131,7 +131,7 @@ export function EpisodeSection({ entry, details, bottomSection, hideCarousel, ma
 
                 {hasInvalidEpisodes && <Alert
                     intent="alert"
-                    description="Algunos episodios son inválidos. Actualiza los metadatos para solucionarlo."
+                    description={t("entry.invalidEpisodesAlert")}
                 />}
 
 

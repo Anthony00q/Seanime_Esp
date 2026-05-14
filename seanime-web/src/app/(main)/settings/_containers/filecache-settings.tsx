@@ -4,7 +4,7 @@ import { createTranslator } from "@/locales"
 import React from "react"
 import { SettingsCard } from "../_components/settings-card"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type FilecacheSettingsProps = {
     children?: React.ReactNode

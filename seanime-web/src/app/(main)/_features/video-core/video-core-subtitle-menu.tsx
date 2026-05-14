@@ -21,7 +21,7 @@ import { AiFillInfoCircle } from "react-icons/ai"
 import { LuCaptions, LuPaintbrush } from "react-icons/lu"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export function VideoCoreSubtitleMenu({ inline }: { inline?: boolean }) {
     const action = useSetAtom(vc_dispatchAction)

@@ -384,7 +384,7 @@ type AnimeEntryCardNextAiringProps = {
 }
 
 export function AnimeEntryCardNextAiring(props: AnimeEntryCardNextAiringProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const {
         nextAiring,

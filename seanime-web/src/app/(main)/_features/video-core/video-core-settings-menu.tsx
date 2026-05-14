@@ -54,7 +54,7 @@ import { RiShadowLine } from "react-icons/ri"
 import { TbArrowForwardUp } from "react-icons/tb"
 import { VscTextSize } from "react-icons/vsc"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const SUBTITLE_STYLES_FONT_SIZE_OPTIONS = [
     { label: t("videoPlayer.settingsMenu.small"), value: 54 },

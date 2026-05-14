@@ -25,7 +25,7 @@ export const __debridstream_stateAtom = atom<DebridClient_StreamState | null>(nu
 
 export function DebridStreamOverlay() {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [state, setState] = useAtom(__debridstream_stateAtom)
 
     const { mutate: cancelStream, isPending: isCancelling } = useDebridCancelStream()

@@ -8,7 +8,7 @@ import { useFieldArray } from "react-hook-form"
 import { BiPlus } from "react-icons/bi"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type TextArrayFieldProps<T extends string | number> = {
     name: string

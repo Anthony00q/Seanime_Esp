@@ -25,7 +25,7 @@ type UnknownMediaManagerProps = {
 
 export function UnknownMediaManager(props: UnknownMediaManagerProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { unknownGroups, onActionComplete } = props
 
     const [isOpen, setIsOpen] = useAtom(__unknownMedia_drawerIsOpen)

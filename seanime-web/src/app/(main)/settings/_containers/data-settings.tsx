@@ -11,7 +11,7 @@ import { CgImport } from "react-icons/cg"
 import { TbDatabaseExport } from "react-icons/tb"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type DataSettingsProps = {
     children?: React.ReactNode

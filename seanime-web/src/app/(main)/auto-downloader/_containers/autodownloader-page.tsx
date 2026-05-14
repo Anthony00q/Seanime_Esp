@@ -39,7 +39,7 @@ import { toast } from "sonner"
 import { createTranslator } from "@/locales"
 import { z } from "zod"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const tabContentClass = cn(
     "space-y-4 animate-in fade-in-0 duration-300",

@@ -15,7 +15,7 @@ import { formatDistanceToNowSafe } from "@/lib/helpers/date"
 import uniqBy from "lodash/uniqBy"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 import React, { memo } from "react"
 import { AiFillWarning } from "react-icons/ai"
 import { BiCalendarAlt, BiLinkExternal } from "react-icons/bi"

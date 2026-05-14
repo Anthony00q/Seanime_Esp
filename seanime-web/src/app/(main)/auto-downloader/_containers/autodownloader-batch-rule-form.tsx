@@ -41,7 +41,7 @@ import { MdVerified } from "react-icons/md"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type AutoDownloaderBatchRuleFormProps = {
     onRuleCreated: () => void
@@ -68,7 +68,7 @@ const schema = defineSchema(({ z, presets }) => z.object({
 }))
 
 export function AutoDownloaderBatchRuleForm(props: AutoDownloaderBatchRuleFormProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const {
         onRuleCreated,
@@ -293,7 +293,7 @@ interface FormValues {
 }
 
 export function MediaArrayField(props: MediaArrayFieldProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { fields, append, remove, update } = useFieldArray<FormValues>({
         control: props.control,
         name: props.name,

@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react"
 import { createTranslator } from "@/locales"
 import { translateGenre } from "@/lib/anilist-translations"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const trendingGenresAtom = atom<string[]>([])
 

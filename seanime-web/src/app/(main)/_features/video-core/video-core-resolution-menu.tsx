@@ -10,7 +10,7 @@ import React from "react"
 import { LuFilm } from "react-icons/lu"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const vc_videoSources = atom<VideoCore_VideoSource[]>([])
 

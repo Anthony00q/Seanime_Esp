@@ -15,7 +15,7 @@ import React from "react"
 import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 /**
  * Stores fetched manga download data

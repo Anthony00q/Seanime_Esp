@@ -1,5 +1,5 @@
 import { createTranslator } from "@/locales";
-const t = createTranslator("es");
+const t = createTranslator();
 
 import { AL_AnimeDetailsById_Media, Anime_Entry } from "@/api/generated/types"
 import { AnimeAutoDownloaderButton } from "@/app/(main)/_features/anime-library/_containers/anime-auto-downloader-button"

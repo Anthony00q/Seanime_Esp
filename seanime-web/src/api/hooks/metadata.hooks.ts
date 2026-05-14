@@ -13,7 +13,7 @@ import { toast } from "sonner"
 
 export function usePopulateFillerData() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<true, PopulateFillerData_Variables>({
         endpoint: API_ENDPOINTS.METADATA.PopulateFillerData.endpoint,
@@ -29,7 +29,7 @@ export function usePopulateFillerData() {
 
 export function useRemoveFillerData() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, RemoveFillerData_Variables>({
         endpoint: API_ENDPOINTS.METADATA.RemoveFillerData.endpoint,
@@ -54,7 +54,7 @@ export function useGetMediaMetadataParent(id: number) {
 
 export function useSaveMediaMetadataParent() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<Models_MediaMetadataParent, SaveMediaMetadataParent_Variables>({
         endpoint: API_ENDPOINTS.METADATA.SaveMediaMetadataParent.endpoint,
         method: API_ENDPOINTS.METADATA.SaveMediaMetadataParent.methods[0],
@@ -70,7 +70,7 @@ export function useSaveMediaMetadataParent() {
 
 export function useDeleteMediaMetadataParent() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, DeleteMediaMetadataParent_Variables>({
         endpoint: API_ENDPOINTS.METADATA.DeleteMediaMetadataParent.endpoint,
         method: API_ENDPOINTS.METADATA.DeleteMediaMetadataParent.methods[0],

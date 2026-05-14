@@ -14,7 +14,7 @@ import { useAtom } from "jotai/react"
 import React from "react"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type ExtensionUserConfigModalProps = {
     children?: React.ReactElement

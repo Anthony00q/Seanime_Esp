@@ -15,7 +15,7 @@ import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6"
 import { MdOutlineDownloadForOffline } from "react-icons/md"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type SyncAddMediaModalProps = {
     savedMediaIds: number[]
@@ -212,7 +212,7 @@ function MediaList(props: {
 }) {
     const { collection, entry, selectedMedia, savedMediaIds, onBatchSelect } = props
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const lists = React.useMemo(() => {
         return {

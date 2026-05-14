@@ -554,7 +554,7 @@ function getNewFileName(originalName: string, options: SuperUpdateFormData & { t
 }
 
 export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpdateDrawerProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { fileNodes } = props
 
     const [isOpen, setIsOpen] = useAtom(libraryExplorer_superUpdateDrawerOpenAtom)
@@ -958,7 +958,7 @@ type MetadataEditRuleProps = {
 }
 
 function MetadataEditRule({ edit, index, onUpdate, onRemove }: MetadataEditRuleProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const getSearchPlaceholder = () => {
         switch (edit.type) {
             case "episode":

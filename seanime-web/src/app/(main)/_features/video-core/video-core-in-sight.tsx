@@ -16,7 +16,7 @@ import React, { useMemo, useState } from "react"
 import { BiX } from "react-icons/bi"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const vc_inSight_open = atom(false)
 export const vc_inSight_data = atom<VideoCore_InSightData | null>(null)

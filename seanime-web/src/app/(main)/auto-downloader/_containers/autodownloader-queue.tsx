@@ -15,7 +15,7 @@ import React from "react"
 import { BiDownload, BiTrash } from "react-icons/bi"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type AutoDownloaderQueueProps = {
     children?: React.ReactNode

@@ -4,7 +4,7 @@ import { cn } from "@/components/ui/core/styling"
 import { createTranslator } from "@/locales"
 import React from "react"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 interface LuffyErrorProps {
     children?: React.ReactNode

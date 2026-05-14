@@ -147,7 +147,7 @@ const paramsAtom = atomWithStorage<Params>("sea-extension-playground-params", DE
 
 export function ExtensionPlayground(props: ExtensionPlaygroundProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         language,
         onLanguageChange,

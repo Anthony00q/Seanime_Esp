@@ -20,7 +20,7 @@ export const __animeEntryDownloadFilesModalIsOpenAtom = atom(false)
 
 export function AnimeEntryDownloadFilesModal({ entry }: AnimeEntryDownloadFilesModalProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [open, setOpen] = useAtom(__animeEntryDownloadFilesModalIsOpenAtom)
 
 
@@ -41,7 +41,7 @@ export function AnimeEntryDownloadFilesModal({ entry }: AnimeEntryDownloadFilesM
 
 function Content({ entry }: { entry: Anime_Entry }) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [open, setOpen] = useAtom(__animeEntryDownloadFilesModalIsOpenAtom)
     const [filepaths, setFilepaths] = React.useState<string[]>([])
     const { getHMACTokenQueryParam } = useServerHMACAuth()

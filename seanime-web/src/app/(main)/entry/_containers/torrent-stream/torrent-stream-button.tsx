@@ -14,7 +14,7 @@ type TorrentStreamButtonProps = {
 
 export function TorrentStreamButton(props: TorrentStreamButtonProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         children,
         entry,

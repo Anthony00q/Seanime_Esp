@@ -212,7 +212,7 @@
     "trendingManhua": "Trending manhua",
     "searchManga": "Search manga"
   },
-  "sorting": {
+    "sorting": {
     "trending": "Trending",
     "highestScore": "Highest score",
     "lowestScore": "Lowest score",
@@ -245,7 +245,13 @@
     "mostEpisodesShort": "# of episodes",
     "mostChaptersShort": "# of chapters",
     "highestEpisodeNumber": "Highest episode number",
-    "lowestEpisodeNumber": "Lowest episode number"
+    "lowestEpisodeNumber": "Lowest episode number",
+    "bestRatedShort": "highest rated",
+    "trendingShort": "trending",
+    "popularShort": "popular",
+    "mostRecentShort": "most recent",
+    "mostEpisodesShortTitle": "with most episodes",
+    "mostChaptersShortTitle": "with most chapters"
   },
   "search": {
     "highestRated": "Highest rated",
@@ -258,6 +264,7 @@
     "manga": "manga",
     "from": "from",
     "mostLikedShows": "Most liked shows",
+    "mostLikedAnime": "Most liked anime",
     "mostLikedManga": "Most liked manga",
     "discoverSeries": "Discover series",
     "customSources": "Custom sources"

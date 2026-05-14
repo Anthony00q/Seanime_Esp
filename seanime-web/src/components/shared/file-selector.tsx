@@ -10,7 +10,7 @@ import { BiChevronRight, BiFolderOpen } from "react-icons/bi"
 import { FaFolder } from "react-icons/fa"
 import { FiFile, FiFolder } from "react-icons/fi"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type FileSelectorProps = {
     kind: "file" | "directory" | "both"

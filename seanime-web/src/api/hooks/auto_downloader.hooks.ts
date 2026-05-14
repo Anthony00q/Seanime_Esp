@@ -19,7 +19,7 @@ import { createTranslator } from "@/locales"
 
 export function useRunAutoDownloader() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.RunAutoDownloader.endpoint,
@@ -54,7 +54,7 @@ export function useGetAutoDownloaderRules() {
 
 export function useCreateAutoDownloaderRule() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<Anime_AutoDownloaderRule, CreateAutoDownloaderRule_Variables>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.CreateAutoDownloaderRule.endpoint,
@@ -70,7 +70,7 @@ export function useCreateAutoDownloaderRule() {
 
 export function useUpdateAutoDownloaderRule() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<Anime_AutoDownloaderRule, UpdateAutoDownloaderRule_Variables>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.UpdateAutoDownloaderRule.endpoint,
@@ -86,7 +86,7 @@ export function useUpdateAutoDownloaderRule() {
 
 export function useDeleteAutoDownloaderRule(id: Nullish<number>) {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.DeleteAutoDownloaderRule.endpoint.replace("{id}", String(id)),
@@ -111,7 +111,7 @@ export function useGetAutoDownloaderItems(enabled: boolean = true) {
 
 export function useDeleteAutoDownloaderItem() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, DeleteAutoDownloaderItem_Variables>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.DeleteAutoDownloaderItem.endpoint,
@@ -154,7 +154,7 @@ export function useGetAutoDownloaderProfile(id: Nullish<number>) {
 
 export function useCreateAutoDownloaderProfile() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<Anime_AutoDownloaderProfile, Anime_AutoDownloaderProfile>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.CreateAutoDownloaderProfile.endpoint,
@@ -169,7 +169,7 @@ export function useCreateAutoDownloaderProfile() {
 
 export function useUpdateAutoDownloaderProfile() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<Anime_AutoDownloaderProfile, Anime_AutoDownloaderProfile>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.UpdateAutoDownloaderProfile.endpoint,
@@ -184,7 +184,7 @@ export function useUpdateAutoDownloaderProfile() {
 
 export function useDeleteAutoDownloaderProfile(id: Nullish<number>) {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.AUTO_DOWNLOADER.DeleteAutoDownloaderProfile.endpoint.replace("{id}", String(id)),

@@ -90,7 +90,7 @@ export function PlaylistEditor(props: PlaylistEditorProps) {
     const [selectedCategory, setSelectedCategory] = React.useState("CURRENT")
     const [searchInput, setSearchInput] = React.useState("")
     const debouncedSearchInput = useDebounce(searchInput, 500)
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const entries = React.useMemo(() => {
         if (debouncedSearchInput.length !== 0) return (libraryCollection?.lists
@@ -274,7 +274,7 @@ function SortableItem({ id, episode, setEpisodes }: {
         transition,
     } = useSortable({ id: id })
 
-    const tr = createTranslator("es")
+    const tr = createTranslator()
 
     // const { hasTorrentStreaming, hasDebridStreaming } = useHasTorrentOrDebridInclusion()
     const { hasDebridService } = useHasDebridService()
@@ -364,7 +364,7 @@ function SortableItem({ id, episode, setEpisodes }: {
                     <p className="text-sm text-[--muted] font-medium">{episode.episode?.baseAnime?.title?.userPreferred}</p>
                     <p className="">{episode.episode?.baseAnime?.format !== "MOVIE"
                         ? `${tr("schedule.episodeLabel")} ${episode.episode!.episodeNumber}`
-                        : "Película"}{episode.isCompleted ? ` (Visto)` : ""}</p>
+                        : tr("features.movie")}{episode.isCompleted ? ` (${tr("playlist.watched")})` : ""}</p>
 
                     {(!episode.episode?.localFile && !episode.isNakama) && <div className="flex gap-1 flex-wrap">
                         {streamOptions.map(option => {
@@ -426,7 +426,7 @@ function EntryEpisodeList(props: EntryEpisodeListProps) {
 
     const { data, isLoading } = useGetPlaylistEpisodes(entry.mediaId)
     const { episodeToAdd, selectedMedia, setSelectedMedia, setEpisodeToAdd } = usePlaylistEditorManager()
-    const tr = createTranslator("es")
+    const tr = createTranslator()
 
     const t = React.useRef<NodeJS.Timeout | null>(null)
     React.useEffect(() => {
@@ -537,7 +537,7 @@ function EntryEpisodeList(props: EntryEpisodeListProps) {
                             />}
                         </div>
                         <div className="max-w-full">
-                            <p className="">{entry.media?.format !== "MOVIE" ? `${tr("schedule.episodeLabel")} ${ep.episode!.episodeNumber}` : "Película"}</p>
+                            <p className="">{entry.media?.format !== "MOVIE" ? `${tr("schedule.episodeLabel")} ${ep.episode!.episodeNumber}` : tr("features.movie")}</p>
                             {ep.episode!.localFile &&
                                 <p className="text-xs text-[--muted] tracking-wide italic max-w-full line-clamp-2">{ep.episode!.localFile?.name}</p>}
 

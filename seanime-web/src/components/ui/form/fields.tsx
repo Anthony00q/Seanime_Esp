@@ -20,7 +20,7 @@ import { NumberInput, NumberInputProps } from "../number-input"
 import { Popover } from "../popover"
 import { RadioGroup, RadioGroupProps } from "../radio-group"
 
-const t = createTranslator("es")
+const t = createTranslator()
 import { Select, SelectProps } from "../select"
 import { SimpleDropzone, SimpleDropzoneProps } from "../simple-dropzone"
 import { Switch, SwitchProps } from "../switch"

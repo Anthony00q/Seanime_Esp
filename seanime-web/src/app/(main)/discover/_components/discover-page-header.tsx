@@ -35,7 +35,7 @@ import { RiSignalTowerLine } from "react-icons/ri"
 import { createTranslator } from "@/locales"
 import { translateGenre } from "@/lib/anilist-translations"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 // Atoms for state management
 export const __discover_hoveringHeaderAtom = atom(false)

@@ -7,7 +7,7 @@ import { atomWithStorage } from "jotai/utils"
 import React from "react"
 import { LuSettings2 } from "react-icons/lu"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 // by default, the button will be highlighted until the user clicks it for the first time
 // this is not applied to the empty home page

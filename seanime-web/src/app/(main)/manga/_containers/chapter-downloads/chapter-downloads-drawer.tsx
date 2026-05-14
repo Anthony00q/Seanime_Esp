@@ -21,7 +21,7 @@ import { PiWarningOctagonDuotone } from "react-icons/pi"
 import { TbWorldDownload } from "react-icons/tb"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const __manga_chapterDownloadsDrawerIsOpenAtom = atom(false)
 
