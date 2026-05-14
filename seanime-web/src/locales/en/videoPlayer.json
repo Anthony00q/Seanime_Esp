@@ -1,0 +1,44 @@
+{
+  "videoPlayer": {
+    "tabs": {
+      "subtitles": "Subtitles",
+      "translation": "Translation",
+      "keybindings": "Keyboard Shortcuts"
+    },
+    "defaults": "Defaults",
+    "rendering": "Rendering",
+    "preferredSubtitleLanguage": "Preferred Subtitle Language",
+    "preferredAudioLanguage": "Preferred Audio Language",
+    "ignoredSubtitleNames": "Ignored Subtitle Names",
+    "ignoredSubtitleNamesHelp": "Subtitle tracks that will not be selected by default if they match the preferred languages. Separate multiple names with commas.",
+    "convertSoftSubsToASS": "Convert Soft Subs to ASS",
+    "convertSoftSubsToASSHelp": "The player will convert other subtitle formats (SRT, VTT, ...) to ASS. If your language is not supported, you can add a new font or disable this feature. Player reload is required after changing this option.",
+    "resetAll": "Reset All",
+    "apiKeyPlaceholder": "Enter your API key",
+    "overlay": {
+      "beginning": "Beginning",
+      "end": "End",
+      "previousFrame": "Previous Frame",
+      "nextFrame": "Next Frame",
+      "skippedOpening": "Opening Skipped",
+      "skippedEnding": "Ending Skipped",
+      "play": "Play",
+      "pause": "Pause"
+    },
+    "translationSettings": {
+      "enableTranslation": "Enable Translation",
+      "enableTranslationHelp": "Automatically translate subtitle tracks to the selected language",
+      "provider": "Provider",
+      "targetLanguage": "Target Language",
+      "deeplNote": "Note: DeepL does not support all target languages."
+    },
+    "inSight": {
+      "characters": "Characters",
+      "mayContainSpoilers": "May contain spoilers.",
+      "searchCharacters": "Search characters...",
+      "noResults": "No results",
+      "loading": "Loading...",
+      "noDetailsAvailable": "No details available."
+    }
+  }
+}

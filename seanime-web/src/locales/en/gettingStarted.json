@@ -1,0 +1,56 @@
+{
+  "gettingStarted": {
+    "title": "Getting Started",
+    "description": "Let's set up Seanime for the best experience.",
+    "next": "Next",
+    "previous": "Previous",
+    "skip": "Skip",
+    "finish": "Finish",
+    "library": {
+      "title": "Library Setup",
+      "description": "Add your anime library folders.",
+      "addFolder": "Add folder",
+      "removeFolder": "Remove folder",
+      "noFolders": "No folders added yet.",
+      "selectFolder": "Select a folder"
+    },
+    "player": {
+      "title": "Player Setup",
+      "description": "Choose your preferred video player.",
+      "desktopPlayer": "Desktop player",
+      "webPlayer": "Web player",
+      "externalPlayer": "External player",
+      "playerPath": "Player executable path",
+      "playerPathHelp": "e.g. C:/Program Files/mpv/mpv.exe",
+      "playerArgs": "Player arguments",
+      "playerArgsHelp": "Additional arguments to pass to the player"
+    },
+    "torrents": {
+      "title": "Torrent Setup",
+      "description": "Configure your torrent client or streaming preferences.",
+      "torrentClient": "Torrent client",
+      "torrentStreaming": "Torrent streaming",
+      "clientType": "Client type",
+      "clientUrl": "Client URL",
+      "clientUsername": "Client username",
+      "clientPassword": "Client password"
+    },
+    "debrid": {
+      "title": "Debrid Setup",
+      "description": "Connect your Debrid service for streaming.",
+      "serviceType": "Service type",
+      "apiKey": "API key",
+      "apiKeyHelp": "Get your API key from your Debrid service provider"
+    },
+    "features": {
+      "title": "Features",
+      "description": "Enable or disable optional features.",
+      "anilist": "AniList integration",
+      "anilistHelp": "Sync your anime and manga progress with AniList",
+      "discord": "Discord Rich Presence",
+      "discordHelp": "Show your watching activity on Discord",
+      "notifications": "System notifications",
+      "notificationsHelp": "Get notified about new episodes and updates"
+    }
+  }
+}
