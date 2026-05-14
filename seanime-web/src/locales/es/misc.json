@@ -243,6 +243,12 @@
       "strictSeasonCheck": "Verificación estricta de temporada",
       "strictSeasonCheckHelp": "Si está activado, los títulos de los torrents y los medios deben contener el mismo número de temporada. Esto puede llevar a falsos negativos.",
       "save": "Guardar"
+    },
+    "button": {
+      "title": "Descargador Automático",
+      "createRule": "Crear una nueva regla",
+      "newRule": "Nueva regla",
+      "noRulesFound": "No se encontraron reglas para este anime."
     }
   },
   "scanner": {
@@ -679,5 +685,37 @@
   "manualMatch": {
     "none": "Sin emparejamiento manual",
     "removeMapping": "Eliminar mapeo"
+  },
+  "emptyLibrary": {
+    "title": "Biblioteca vacía",
+    "scanLibrary": "Escanear tu biblioteca",
+    "yourLibraryIsEmpty": "Tu biblioteca está vacía",
+    "setLibraryPath": "Configura la ruta de tu biblioteca local y escanéala",
+    "includeOnlineStreaming": "Incluir streaming en línea en tu biblioteca",
+    "includeTorrentStreaming": "Incluir streaming de torrents en tu biblioteca",
+    "includeDebridStreaming": "Incluir streaming de Debrid en tu biblioteca",
+    "trendingThisSeason": "Tendencia esta temporada"
+  },
+  "bulkActions": {
+    "title": "Acciones masivas",
+    "lockFiles": "Bloquear todos los archivos",
+    "unlockFiles": "Desbloquear todos los archivos",
+    "removeEmptyDirectories": "Eliminar directorios vacíos",
+    "removeEmptyDirectoriesDesc": "Esta acción eliminará todos los directorios vacíos en la biblioteca. ¿Estás seguro de que quieres continuar?",
+    "heading": "Biblioteca"
+  },
+  "ignoredFiles": {
+    "title": "Archivos ignorados",
+    "unignoreSelection": "Des-ignorar selección",
+    "noIgnoredFiles": "No hay archivos ignorados",
+    "selectAllFiles": "Seleccionar todos los archivos"
+  },
+  "unknownMedia": {
+    "title": "Media oculta",
+    "description": "Seanime coincidió {count} grupo{plural} con {article}serie que {verb} ausente de tu {!hasCustomSources, select, true {AniList} other {}} colección.<br />Añade la media para poder ver entradas en tu biblioteca o desvincúlalas si son incorrectas.",
+    "addAllToCollection": "Añadir todo a {!hasCustomSources, select, true {AniList} other {colección}}",
+    "matchedTo": "Coincide con",
+    "addToCollection": "Añadir a {!hasCustomSources, select, true {AniList} other {colección}}",
+    "unmatch": "Desvincular"
   }
 }
