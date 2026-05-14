@@ -1,7 +1,7 @@
 import { weekStartsOnAtom } from "@/app/(main)/schedule/_components/schedule-calendar"
 import { cva } from "class-variance-authority"
 import { Day, formatISO, getYear, Locale, setYear } from "date-fns"
-import { es } from "date-fns/locale"
+import { getDateFnsLocale } from "@/locales/date-locale"
 import { useAtomValue } from "jotai/react"
 import * as React from "react"
 import { PropsBase } from "react-day-picker"
@@ -201,7 +201,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>((
                 onMonthChange={month => setDate(month)}
                 selected={date}
                 onSelect={handleOnSelect}
-                locale={locale || es}
+                locale={locale || getDateFnsLocale()}
                 initialFocus
                 monthGridClass="w-auto mx-auto"
                 weekStartsOn={weekStartOn as Day}
