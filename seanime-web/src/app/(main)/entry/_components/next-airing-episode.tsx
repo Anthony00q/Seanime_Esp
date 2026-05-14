@@ -3,15 +3,15 @@ import { cn } from "@/components/ui/core/styling"
 import { createTranslator } from "@/locales"
 import { ThemeMediaPageInfoBoxSize, useThemeSettings } from "@/lib/theme/theme-hooks"
 import { addSeconds, format, formatDistanceToNow } from "date-fns"
-import { es } from "date-fns/locale"
+import { getDateFnsLocale } from "@/locales/date-locale"
 import React from "react"
 import { BiCalendarAlt } from "react-icons/bi"
 import { capitalizeFirst } from "@/lib/utils/capitalize-date"
 
 export function NextAiringEpisode(props: { media: AL_BaseAnime }) {
     const t = createTranslator()
-    const distance = formatDistanceToNow(addSeconds(new Date(), props.media.nextAiringEpisode?.timeUntilAiring || 0), { addSuffix: true, locale: es })
-    const day = capitalizeFirst(format(addSeconds(new Date(), props.media.nextAiringEpisode?.timeUntilAiring || 0), "EEEE", { locale: es }))
+    const distance = formatDistanceToNow(addSeconds(new Date(), props.media.nextAiringEpisode?.timeUntilAiring || 0), { addSuffix: true, locale: getDateFnsLocale() })
+    const day = capitalizeFirst(format(addSeconds(new Date(), props.media.nextAiringEpisode?.timeUntilAiring || 0), "EEEE", { locale: getDateFnsLocale() }))
     const ts = useThemeSettings()
     return <>
         {!!props.media.nextAiringEpisode && (

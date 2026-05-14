@@ -219,16 +219,33 @@ Para agregar un nuevo mensaje del servidor:
 
 Además de `t()`, el proyecto exporta helpers para traducir valores específicos:
 
-### `capitalizeFirst()` — Fechas en español
+### `getDateFnsLocale()` — Locale de fechas dinámico
+
+Devuelve el locale de `date-fns` según el `defaultLocale` configurado en `config.ts`. Todos los componentes que formatean fechas usan este helper:
+
+```typescript
+import { format, formatDistanceToNow } from "date-fns"
+import { getDateFnsLocale } from "@/locales/date-locale"
+
+// Formato de fecha dinámico según el idioma configurado
+format(date, "MMMM yyyy", { locale: getDateFnsLocale() })  // → "Mayo 2026" en español
+formatDistanceToNow(date, { addSuffix: true, locale: getDateFnsLocale() })  // → "en 3 días"
+```
+
+El archivo `locales/date-locale.ts` centraliza esto. Para agregar soporte de fecha a un nuevo idioma, solo agregar el locale al mapa en ese archivo.
+
+### `capitalizeFirst()` — Capitalizar fechas
 
 `date-fns` con locale `es` devuelve meses y días en minúscula. Para capitalizar:
 
 ```typescript
 import { capitalizeFirst } from "@/lib/utils/capitalize-date"
-import { es } from "date-fns/locale"
+import { getDateFnsLocale } from "@/locales/date-locale"
 
-capitalizeFirst(format(date, "MMMM", { locale: es }))  // → "Mayo" en vez de "mayo"
+capitalizeFirst(format(date, "MMMM", { locale: getDateFnsLocale() }))  // → "Mayo" en vez de "mayo"
 ```
+
+> **Nota**: El componente `Calendar` ya sobrescribe `CaptionLabel` con `capitalizeFirst()` internamente. Los captions de meses en los date pickers se capitalizan automáticamente — no es necesario aplicarlo manualmente.
 
 ### `translateGenre()`, `translateFormat()`, `translateSeason()`, etc. — Valores de AniList
 
