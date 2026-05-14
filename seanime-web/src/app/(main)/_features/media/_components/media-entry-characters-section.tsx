@@ -9,7 +9,7 @@ import { createTranslator } from "@/locales"
 import React from "react"
 import { BiSolidHeart } from "react-icons/bi"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const CHARACTER_ROLES: Record<string, string> = {
     MAIN: t("anilist.characters.roles.MAIN"),

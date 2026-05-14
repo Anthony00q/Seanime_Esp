@@ -25,7 +25,7 @@ import { ErrorBoundary } from "react-error-boundary"
 import { FaRedo } from "react-icons/fa"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 import { GiOpenBook } from "react-icons/gi"
 import { IoBookOutline, IoLibrary } from "react-icons/io5"
 import { LuDownload } from "react-icons/lu"

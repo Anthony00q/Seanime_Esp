@@ -44,7 +44,7 @@ import { useServerStatus } from "../../_hooks/use-server-status"
 import { useVideoCoreScreenshot } from "./video-core-screenshot"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const videoCorePreferencesModalAtom = atom(false)
 

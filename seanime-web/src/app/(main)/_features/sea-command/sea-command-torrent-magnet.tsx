@@ -133,7 +133,7 @@ export function SeaCommandTorrentMagnet() {
     const { setTorrentSearchStreamEpisode } = useTorrentSearchSelectedStreamEpisode()
 
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const searchInput = args.join(" ").trim()
     const debouncedSearch = useDebounce(searchInput, 500)

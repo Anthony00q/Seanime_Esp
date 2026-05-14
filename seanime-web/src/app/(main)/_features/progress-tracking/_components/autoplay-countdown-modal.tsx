@@ -5,7 +5,7 @@ import { logger } from "@/lib/helpers/debug"
 import { BiSolidSkipNextCircle } from "react-icons/bi"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 interface AutoplayCountdownModalProps {
     autoplayState: AutoplayState

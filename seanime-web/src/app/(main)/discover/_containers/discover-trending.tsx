@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react"
 import { createTranslator } from "@/locales"
 import { translateGenre } from "@/lib/anilist-translations"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const __discover_randomTrendingAtom = atom<AL_BaseAnime | AL_BaseManga | undefined>(undefined)
 export const __discover_headerIsTransitioningAtom = atom(false)

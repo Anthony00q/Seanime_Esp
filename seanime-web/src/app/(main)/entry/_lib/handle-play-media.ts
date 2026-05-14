@@ -23,7 +23,7 @@ import { useAtomValue, useSetAtom } from "jotai"
 import React from "react"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export function useHandlePlayMedia() {
     const router = useRouter()

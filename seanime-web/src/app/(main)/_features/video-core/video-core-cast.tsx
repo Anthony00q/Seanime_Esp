@@ -14,7 +14,7 @@ import { BiCast } from "react-icons/bi"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const log = logger("CAST")
 

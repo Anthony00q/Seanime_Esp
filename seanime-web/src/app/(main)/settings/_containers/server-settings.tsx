@@ -23,7 +23,7 @@ import { RiMovieAiLine } from "react-icons/ri"
 import { TbAlertSquareRoundedOff, TbBrowserShare, TbChecklist, TbClockPlay, TbDownloadOff, TbProgressCheck, TbRating18Plus } from "react-icons/tb"
 import { useServerStatus } from "../../_hooks/use-server-status"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type ServerSettingsProps = {
     isPending: boolean

@@ -192,7 +192,7 @@ export function useServerMutation<R = void, V = void>(
         ...options
     }: ServerMutationProps<R, V>) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const password = useAtomValue(serverAuthTokenAtom)
 
     return useMutation<R | undefined, SeaError, V>({
@@ -283,7 +283,7 @@ export function useServerQuery<R, V = any>(
 //----------------------------------------------------------------------------------------------------------------------
 
 function _handleSeaError(data: any): string {
-    const t = createTranslator("es")
+    const t = createTranslator()
     if (typeof data === "string") return "Server Error: " + data
 
     const err = data?.error as string
@@ -310,7 +310,7 @@ function _handleSeaError(data: any): string {
 }
 
 function _handleSeaResponse<T>(res: unknown): { data: T | undefined, error: string | undefined } {
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     if (typeof res === "object" && !!res && "error" in res && typeof res.error === "string") {
         return { data: undefined, error: res.error }

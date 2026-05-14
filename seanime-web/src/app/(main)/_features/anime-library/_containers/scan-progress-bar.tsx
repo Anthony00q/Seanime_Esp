@@ -33,7 +33,7 @@ export function ScanProgressBar() {
 
     const [isScanning] = useAtom(__scanner_isScanningAtom)
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const [progress, setProgress] = useState(0)
     const [status, setStatus] = useState(t("scanner.scanning"))

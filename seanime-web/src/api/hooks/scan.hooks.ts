@@ -16,7 +16,7 @@ export function useScanLocalFiles(onSuccess?: () => void) {
         method: API_ENDPOINTS.SCAN.ScanLocalFiles.methods[0],
         mutationKey: [API_ENDPOINTS.SCAN.ScanLocalFiles.key],
         onSuccess: async () => {
-            const t = createTranslator("es")
+            const t = createTranslator()
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })
             toast.success(t("scanner.scanned"))
             refreshLibraryExplorerTree()

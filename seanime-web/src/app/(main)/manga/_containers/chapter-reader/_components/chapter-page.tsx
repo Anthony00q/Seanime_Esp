@@ -9,7 +9,7 @@ import React from "react"
 import { FaRedo } from "react-icons/fa"
 import { useUpdateEffect } from "react-use"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type ChapterPageProps = {
     children?: React.ReactNode

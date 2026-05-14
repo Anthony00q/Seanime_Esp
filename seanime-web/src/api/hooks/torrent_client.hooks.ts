@@ -32,7 +32,7 @@ export function useGetActiveTorrentList(enabled: boolean, category: string, sort
 
 export function useTorrentClientAction(onSuccess?: () => void) {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, TorrentClientAction_Variables>({
         endpoint: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientAction.endpoint,
@@ -47,7 +47,7 @@ export function useTorrentClientAction(onSuccess?: () => void) {
 }
 
 export function useTorrentClientDownload(onSuccess?: () => void) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, TorrentClientDownload_Variables>({
         endpoint: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientDownload.endpoint,
         method: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientDownload.methods[0],
@@ -61,7 +61,7 @@ export function useTorrentClientDownload(onSuccess?: () => void) {
 
 export function useTorrentClientAddMagnetFromRule() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, TorrentClientAddMagnetFromRule_Variables>({
         endpoint: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientAddMagnetFromRule.endpoint,

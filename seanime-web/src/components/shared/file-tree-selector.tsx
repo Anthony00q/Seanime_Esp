@@ -7,7 +7,7 @@ import { FcFolder } from "react-icons/fc"
 import { FiChevronDown, FiChevronRight, FiFile, FiSearch } from "react-icons/fi"
 import { MdVerified } from "react-icons/md"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const filterFilePreviews = (filePreviews: any[], searchTerm: string): any[] => {
     if (!searchTerm.trim()) {

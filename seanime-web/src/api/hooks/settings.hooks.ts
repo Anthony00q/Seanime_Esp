@@ -40,7 +40,7 @@ export function useGettingStarted() {
 
 export function useSaveSettings() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<Status, SaveSettings_Variables>({
         endpoint: API_ENDPOINTS.SETTINGS.SaveSettings.endpoint,
@@ -56,7 +56,7 @@ export function useSaveSettings() {
 
 export function useSaveAutoDownloaderSettings() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, SaveAutoDownloaderSettings_Variables>({
         endpoint: API_ENDPOINTS.SETTINGS.SaveAutoDownloaderSettings.endpoint,

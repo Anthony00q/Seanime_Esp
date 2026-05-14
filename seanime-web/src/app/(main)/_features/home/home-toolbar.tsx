@@ -32,7 +32,7 @@ import { MdOutlineConnectWithoutContact, MdOutlineVideoLibrary } from "react-ico
 import { TbFileSad, TbReportSearch } from "react-icons/tb"
 import { PluginAnimeLibraryDropdownItems } from "../plugin/actions/plugin-actions"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export type HomeToolbarProps = {
     collectionList: Anime_LibraryCollectionList[]

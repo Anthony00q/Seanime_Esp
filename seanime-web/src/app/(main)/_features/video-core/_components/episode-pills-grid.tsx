@@ -3,7 +3,7 @@ import { motion } from "motion/react"
 import React from "react"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type Episode = {
     id: string

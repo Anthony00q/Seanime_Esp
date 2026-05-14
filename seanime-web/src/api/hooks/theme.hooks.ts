@@ -17,7 +17,7 @@ export function useGetTheme() {
 
 export function useUpdateTheme() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<Models_Theme, UpdateTheme_Variables>({
         endpoint: API_ENDPOINTS.THEME.UpdateTheme.endpoint,

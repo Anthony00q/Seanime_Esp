@@ -58,6 +58,42 @@ function saveDenshiSettings(settings) {
 }
 
 let denshiSettings = { ...DENSHI_SETTINGS_DEFAULTS }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Localization
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function getLocalesDir() {
+    return path.join(__dirname, "../locales")
+}
+
+function loadDenshiLocale(locale) {
+    try {
+        const localePath = path.join(getLocalesDir(), `${locale}.json`)
+        if (fs.existsSync(localePath)) {
+            return JSON.parse(fs.readFileSync(localePath, "utf-8"))
+        }
+    } catch (err) {
+        log.error("[Denshi] Failed to load locale:", locale, err)
+    }
+    try {
+        const fallbackPath = path.join(getLocalesDir(), "en.json")
+        if (fs.existsSync(fallbackPath)) {
+            return JSON.parse(fs.readFileSync(fallbackPath, "utf-8"))
+        }
+    } catch (err) {
+        log.error("[Denshi] Failed to load fallback locale:", err)
+    }
+    return { tray: { toggleVisibility: "Show/Hide", removeFromDock: "Remove from Dock", quit: "Quit Seanime" } }
+}
+
+let trayStrings = {}
+
+function initLocale() {
+    const locale = denshiSettings.locale || "es"
+    trayStrings = loadDenshiLocale(locale)
+    log.info(`[Denshi] Loaded locale: ${locale}`)
+}
 let shouldMaximizeMainWindow = false
 
 // validates and returns safe window bounds based on the provided raw bounds and current display configurations
@@ -668,7 +704,7 @@ function createTray() {
     tray = new Tray(icon)
 
     const contextMenu = Menu.buildFromTemplate([{
-        id: "toggle_visibility", label: "Mostrar/Ocultar", click: () => {
+        id: "toggle_visibility", label: trayStrings.toggleVisibility || "Show/Hide", click: () => {
             if (!serverStarted) return
             if (mainWindow.isVisible()) {
                 hideMainWindow()
@@ -677,12 +713,12 @@ function createTray() {
             }
         }
     }, ...(process.platform === "darwin" ? [{
-        id: "accessory_mode", label: "Quitar del Dock", click: () => {
+        id: "accessory_mode", label: trayStrings.removeFromDock || "Remove from Dock", click: () => {
             app.dock.hide()
         }
     }
     ] : []), {
-        id: "quit", label: "Salir de Seanime", click: () => {
+        id: "quit", label: trayStrings.quit || "Quit Seanime", click: () => {
             cleanupAndExit()
         }
     }
@@ -1250,6 +1286,8 @@ app.whenReady().then(async () => {
 
     // Load denshi settings early
     denshiSettings = loadDenshiSettings()
+    // Initialize locale based on settings
+    initLocale()
     if (_development) {
         denshiSettings.openInBackground = false
     }

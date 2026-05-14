@@ -41,7 +41,7 @@ export function TorrentStreamOverlay({ isNativePlayerComponent, show }: {
     show?: boolean
 }) {
 
-    const tr = createTranslator("es")
+    const tr = createTranslator()
     const [nativePlayerState, setNativePlayerState] = useAtom(nativePlayer_stateAtom)
     const clientId = useAtomValue(clientIdAtom)
     const videoElement = useAtomValue(vc_videoElement)

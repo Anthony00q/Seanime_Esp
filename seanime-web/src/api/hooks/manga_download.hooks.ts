@@ -44,7 +44,7 @@ export function useGetMangaDownloadQueue() {
 
 export function useStartMangaDownloadQueue() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.MANGA_DOWNLOAD.StartMangaDownloadQueue.endpoint,
@@ -59,7 +59,7 @@ export function useStartMangaDownloadQueue() {
 
 export function useStopMangaDownloadQueue() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.MANGA_DOWNLOAD.StopMangaDownloadQueue.endpoint,
@@ -74,7 +74,7 @@ export function useStopMangaDownloadQueue() {
 
 export function useClearAllChapterDownloadQueue() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.MANGA_DOWNLOAD.ClearAllChapterDownloadQueue.endpoint,
@@ -89,7 +89,7 @@ export function useClearAllChapterDownloadQueue() {
 
 export function useResetErroredChapterDownloadQueue() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.MANGA_DOWNLOAD.ResetErroredChapterDownloadQueue.endpoint,
@@ -104,7 +104,7 @@ export function useResetErroredChapterDownloadQueue() {
 
 export function useDeleteMangaDownloadedChapters(id: Nullish<string | number>, provider: string | null) {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, DeleteMangaDownloadedChapters_Variables>({
         endpoint: API_ENDPOINTS.MANGA_DOWNLOAD.DeleteMangaDownloadedChapters.endpoint,
         method: API_ENDPOINTS.MANGA_DOWNLOAD.DeleteMangaDownloadedChapters.methods[0],

@@ -65,7 +65,7 @@ export function useFetchAnimeEntrySuggestions() {
 
 export function useAnimeEntryManualMatch() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<Array<Anime_LocalFile>, AnimeEntryManualMatch_Variables>({
         endpoint: API_ENDPOINTS.ANIME_ENTRIES.AnimeEntryManualMatch.endpoint,
@@ -116,7 +116,7 @@ export function useToggleAnimeEntrySilenceStatus() {
 
 export function useUpdateAnimeEntryProgress(id: Nullish<string | number>, episodeNumber: number, showToast: boolean = true) {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, UpdateAnimeEntryProgress_Variables>({
         endpoint: API_ENDPOINTS.ANIME_ENTRIES.UpdateAnimeEntryProgress.endpoint,

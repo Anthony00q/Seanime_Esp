@@ -14,7 +14,7 @@ import { HiOutlineServerStack } from "react-icons/hi2"
 import { LuCirclePlay } from "react-icons/lu"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const debridSettingsSchema = defineSchema(({ z }) => z.object({
     enabled: z.boolean().default(false),

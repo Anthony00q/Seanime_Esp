@@ -21,7 +21,7 @@ import { useSetAtom } from "jotai/react"
 import React, { useEffect } from "react"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type VideoCoreAction = "seekTo" | "seek" | "togglePlay"
 

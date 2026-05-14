@@ -44,7 +44,7 @@ const log = logger("PLAYBACK MANAGER")
 export function PlaybackManagerProgressTrackingButton({ asSidebarButton }: Props) {
     const [showModal, setShowModal] = useAtom(__pt_showModalAtom)
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const isTracking = useAtomValue(__pt_isTrackingAtom)
 
@@ -85,7 +85,7 @@ export function PlaybackManagerProgressTrackingButton({ asSidebarButton }: Props
 export function PlaybackManagerProgressTracking() {
     const serverStatus = useServerStatus()
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const [showModal, setShowModal] = useAtom(__pt_showModalAtom)
 
@@ -231,7 +231,7 @@ export function PlaybackManagerProgressTracking() {
 
     const confirmPlayNext = useConfirmationDialog({
         title: t("progressTracking.playNextEpisode"),
-        description: "¿Estás seguro de que quieres reproducir el siguiente episodio?",
+        description: t("videoPlayer.shortcuts.nextEpisodeDesc"),
         actionText: t("common.buttons.confirm"),
         actionIntent: "success",
         onConfirm: () => {
@@ -267,7 +267,7 @@ export function PlaybackManagerProgressTracking() {
 
     const confirmNextEpisode = useConfirmationDialog({
         title: t("progressTracking.playNextEpisode"),
-        description: "¿Estás seguro de que quieres reproducir el siguiente episodio?",
+        description: t("videoPlayer.shortcuts.nextEpisodeDesc"),
         actionText: t("common.buttons.confirm"),
         actionIntent: "success",
         onConfirm: () => {

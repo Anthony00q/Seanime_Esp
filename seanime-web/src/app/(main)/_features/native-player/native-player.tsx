@@ -23,7 +23,7 @@ const log = logger("NATIVE PLAYER")
 const SUBTITLE_FLUSH_INTERVAL_MS = 300
 
 export function NativePlayer() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const qc = useQueryClient()
     const clientId = useAtomValue(clientIdAtom)
     const { sendMessage } = useWebsocketSender()

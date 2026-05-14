@@ -28,7 +28,7 @@ export function ManualProgressTrackingButton(props: ManualProgressTrackingProps)
         ...rest
     } = props
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const [isWatching, setIsWatching] = useAtom(__mpt_isWatchingAtom)
     const [showModal, setShowModal] = useAtom(__mpt_showModalAtom)
@@ -66,7 +66,7 @@ export function ManualProgressTracking() {
     const [isWatching, setIsWatching] = useAtom(__mpt_isWatchingAtom)
     const stateRef = React.useRef<PlaybackManager_PlaybackState | null>(null)
     const [state, setState] = React.useState<PlaybackManager_PlaybackState | null>(null)
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [showModal, setShowModal] = useAtom(__mpt_showModalAtom)
     const currentExternalPlayerLink = useAtomValue(__mpt_currentExternalPlayerLinkAtom)
 

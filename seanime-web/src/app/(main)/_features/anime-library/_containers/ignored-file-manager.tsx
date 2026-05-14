@@ -22,7 +22,7 @@ type IgnoredFileManagerProps = {
 
 export function IgnoredFileManager(props: IgnoredFileManagerProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { files } = props
 
     const [isOpen, setIsOpen] = useAtom(__ignoredFileManagerIsOpen)

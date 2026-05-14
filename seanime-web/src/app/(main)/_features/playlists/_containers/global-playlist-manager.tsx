@@ -41,7 +41,7 @@ import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
 const log = logger("PLAYLIST MANAGER")
-const t = createTranslator("es")
+const t = createTranslator()
 
 type ServerEvents =
     "current-playlist" |
@@ -435,7 +435,7 @@ function EpisodeItem({ episode }: { episode: Anime_PlaylistEpisode }) {
             </div>
             <div className="max-w-full space-y-1">
                 <p className="text-sm text-[--muted]">{episode.episode?.baseAnime?.title?.userPreferred}</p>
-                <p className="">{episode.episode?.baseAnime?.format !== "MOVIE" ? `${t("entry.episode")} ${episode.episode!.episodeNumber}` : "Película"}</p>
+                <p className="">{episode.episode?.baseAnime?.format !== "MOVIE" ? `${t("entry.episode")} ${episode.episode!.episodeNumber}` : t("features.movie")}</p>
 
                 <div>
                     <div className="text-xs text-[--muted] line-clamp-1 tracking-wide">

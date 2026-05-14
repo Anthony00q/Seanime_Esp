@@ -33,7 +33,7 @@ export function SeaCommandSpoilers() {
         return null
     }
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const query = args[0]?.toLowerCase() || ""
     const items = [

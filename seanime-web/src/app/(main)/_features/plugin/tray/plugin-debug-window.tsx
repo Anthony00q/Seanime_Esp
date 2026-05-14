@@ -90,7 +90,7 @@ export function PluginDebugWindow({
     onClear: () => void
     onClose: () => void
 }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const initialHeight = React.useMemo(() => getInitHeight(), [])
     const [height, setHeight] = React.useState(initialHeight)

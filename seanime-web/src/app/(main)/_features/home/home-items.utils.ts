@@ -45,7 +45,7 @@ type HomeItemSchema = {
     description?: string
 }
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const _carouselOptions = [
     {

@@ -88,7 +88,7 @@ export function SidebarNavbar(props: SidebarNavbarProps) {
         ...rest
     } = props
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const serverStatus = useServerStatus()
     const ts = useThemeSettings()

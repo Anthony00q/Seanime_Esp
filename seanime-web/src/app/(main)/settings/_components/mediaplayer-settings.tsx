@@ -17,7 +17,7 @@ import { IoPlayForwardCircleSharp } from "react-icons/io5"
 import { LuCircleArrowOutUpRight, LuMonitorPlay } from "react-icons/lu"
 import { RiSettings3Fill } from "react-icons/ri"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type MediaplayerSettingsProps = {
     isPending: boolean

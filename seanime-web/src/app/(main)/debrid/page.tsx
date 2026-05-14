@@ -30,7 +30,7 @@ import { HiFolderDownload } from "react-icons/hi"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 
 function getServiceName(provider: string) {

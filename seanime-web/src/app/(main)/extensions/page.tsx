@@ -12,7 +12,7 @@ import { FaExclamation } from "react-icons/fa"
 import { LuPackageCheck, LuShoppingBasket } from "react-icons/lu"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export default function Page() {
 

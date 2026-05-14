@@ -12,7 +12,7 @@ import { es } from "date-fns/locale"
 import React from "react"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 /**
  * @description

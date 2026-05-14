@@ -46,7 +46,7 @@ import { createTranslator } from "@/locales"
 import { useWindowSize } from "react-use"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export type ChapterReaderSettingsProps = {
     mediaId: number

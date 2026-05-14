@@ -60,7 +60,7 @@ export function useGetOnlineStreamEpisodeSource(id: Nullish<string | number>,
 
 export function useOnlineStreamEmptyCache() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, OnlineStreamEmptyCache_Variables>({
         endpoint: API_ENDPOINTS.ONLINESTREAM.OnlineStreamEmptyCache.endpoint,
@@ -90,7 +90,7 @@ export function useOnlinestreamManualSearch(mId: number, provider: Nullish<strin
 
 export function useOnlinestreamManualMapping() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, OnlinestreamManualMapping_Variables>({
         endpoint: API_ENDPOINTS.ONLINESTREAM.OnlinestreamManualMapping.endpoint,
         method: API_ENDPOINTS.ONLINESTREAM.OnlinestreamManualMapping.methods[0],
@@ -116,7 +116,7 @@ export function useGetOnlinestreamMapping(variables: Partial<GetOnlinestreamMapp
 
 export function useRemoveOnlinestreamMapping() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, RemoveOnlinestreamMapping_Variables>({
         endpoint: API_ENDPOINTS.ONLINESTREAM.RemoveOnlinestreamMapping.endpoint,

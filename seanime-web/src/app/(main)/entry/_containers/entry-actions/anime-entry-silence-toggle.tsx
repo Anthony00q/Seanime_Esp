@@ -29,7 +29,7 @@ export function AnimeEntrySilenceToggle(props: AnimeEntrySilenceToggleProps) {
         mutate({ mediaId })
     }
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return (
         <>

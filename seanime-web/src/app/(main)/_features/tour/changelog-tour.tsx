@@ -12,7 +12,7 @@ import { __scanner_modalIsOpen } from "../anime-library/_containers/scanner-moda
 import { tourHelpers, useTour } from "./tour"
 import { TourStep } from "./tour"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const seenChangelogAtom = atomWithStorage<string | null>("sea-seen-changelog", null, undefined, { getOnInit: true })
 

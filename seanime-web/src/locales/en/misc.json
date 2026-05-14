@@ -385,8 +385,10 @@
       "noWorkingProviders": "No working providers found",
       "stoppedTryingProviders": "Stopped trying providers",
       "startingWatchParty": "Starting online streaming watch party",
-      "dubbedSearchHelp": "Only applies to providers that support dubs in search results."
-    },
+    "dubbedSearchHelp": "Only applies to providers that support dubs in search results.",
+    "manualMatchDesc": "Match this anime with a search result from the provider.",
+    "confirmMatchDesc": "Are you sure you want to match this anime with the search result?"
+  },
   "torrentList": {
     "failedToConnect": "Failed to connect to torrent client. Check settings and make sure it is running.",
     "title": "Active torrents",
@@ -427,6 +429,12 @@
     "shuttingDownServer": "Shutting down server...",
     "installingUpdate": "Installing update...",
     "updateInstalledRestarting": "Update installed. Restarting application...",
+    "updateInstalledRestart": "Update installed. Restart the app.",
+    "updateNotAvailableDesktop": "This update is not yet available for desktop clients. Wait a few minutes or check the GitHub page for more information.",
+    "downloadingProgress": "Downloading... {progress}%",
+    "installNow": "Install now",
+    "downloadAndInstall": "Download & Install",
+    "installing": "Installing...",
     "restartingServer": "Restarting server...",
     "devModeNotRestarting": "Dev mode: Server will not restart"
   },
@@ -554,6 +562,9 @@
     "matchedTo": "Matched to",
     "addToCollection": "Add to {!hasCustomSources, select, true {AniList} other {collection}}",
     "unmatch": "Unmatch"
+  },
+  "playlist": {
+    "watched": "Watched"
   },
   "auth": {
     "loading": "L o a d i n g",

@@ -10,7 +10,7 @@ import React from "react"
 import { UseFormReturn } from "react-hook-form"
 import { LuTabletSmartphone } from "react-icons/lu"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const mediastreamSchema = defineSchema(({ z }) => z.object({
     transcodeEnabled: z.boolean(),

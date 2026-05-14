@@ -23,7 +23,7 @@ export function useLocalGetTrackedMediaItems() {
 
 export function useLocalAddTrackedMedia() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, LocalAddTrackedMedia_Variables>({
         endpoint: API_ENDPOINTS.LOCAL.LocalAddTrackedMedia.endpoint,
         method: API_ENDPOINTS.LOCAL.LocalAddTrackedMedia.methods[0],
@@ -40,7 +40,7 @@ export function useLocalAddTrackedMedia() {
 
 export function useLocalRemoveTrackedMedia() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, LocalRemoveTrackedMedia_Variables>({
         endpoint: API_ENDPOINTS.LOCAL.LocalRemoveTrackedMedia.endpoint,
         method: API_ENDPOINTS.LOCAL.LocalRemoveTrackedMedia.methods[0],
@@ -56,7 +56,7 @@ export function useLocalRemoveTrackedMedia() {
 }
 
 export function useLocalSyncData() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.LOCAL.LocalSyncData.endpoint,
         method: API_ENDPOINTS.LOCAL.LocalSyncData.methods[0],
@@ -87,7 +87,7 @@ export function useLocalGetIsMediaTracked(id: number, type: string) {
 
 export function useLocalSyncAnilistData() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.LOCAL.LocalSyncAnilistData.endpoint,
         method: API_ENDPOINTS.LOCAL.LocalSyncAnilistData.methods[0],
@@ -143,7 +143,7 @@ export function useLocalGetLocalStorageSize() {
 
 export function useLocalSyncSimulatedDataToAnilist() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.LOCAL.LocalSyncSimulatedDataToAnilist.endpoint,
         method: API_ENDPOINTS.LOCAL.LocalSyncSimulatedDataToAnilist.methods[0],
@@ -156,7 +156,7 @@ export function useLocalSyncSimulatedDataToAnilist() {
 }
 
 export function useSetOfflineMode() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, SetOfflineMode_Variables>({
         endpoint: API_ENDPOINTS.LOCAL.SetOfflineMode.endpoint,
         method: API_ENDPOINTS.LOCAL.SetOfflineMode.methods[0],

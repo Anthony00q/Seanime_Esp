@@ -182,7 +182,7 @@ function flattenTreeNodes(
 }
 
 export function LibraryExplorer() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { data: fileTree, isLoading } = useGetLibraryExplorerFileTree()
     const refreshMutation = useRefreshLibraryExplorerFileTree()
     const [selectedNode, setSelectedNode] = useAtom(libraryExplorer_selectedNodeAtom)
@@ -647,7 +647,7 @@ type LibraryExplorerBulkActionsProps = {
 }
 
 export function LibraryExplorerBulkActions(props: LibraryExplorerBulkActionsProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         fileNodes,
         handleMatchFiles,
@@ -764,7 +764,7 @@ const VirtualizedTreeNode = memo(({
     onResolveMedia,
     onOpenInExplorer,
 }: VirtualizedTreeNodeProps) => {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { node, level } = item
     const isDirectory = node.kind === "directory"
     const isSelected = selectedPath === node.path
@@ -1317,7 +1317,7 @@ const VirtualizedTreeNode = memo(({
 
 
 function LibraryInfoPanel({}: { localFiles: Record<string, Anime_LocalFile> | undefined }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const selectedNode = useAtomValue(libraryExplorer_selectedNodeAtom)
 
     const userMedia = useAtomValue(__anilist_userAnimeMediaAtom)
@@ -1482,7 +1482,7 @@ type LibraryExplorerDeleteFileModalProps = {
 }
 
 function LibraryExplorerDeleteFileModal(props: LibraryExplorerDeleteFileModalProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { open, onOpenChange, selectedPaths, isDirectory } = props
 
     const [filepaths, setFilepaths] = React.useState<string[]>([])
@@ -1569,7 +1569,7 @@ type LibraryExplorerBulkDeleteModalProps = {
 }
 
 function LibraryExplorerBulkDeleteModal(props: LibraryExplorerBulkDeleteModalProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { open, onOpenChange, selectedPaths, fileNodes } = props
 
     const [filepaths, setFilepaths] = React.useState<string[]>([])

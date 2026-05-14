@@ -1,3 +1,4 @@
+import { defaultLocale } from "./config"
 import { useMemo } from "react"
 
 // --- Importaciones de secciones en inglés (modular) ---
@@ -139,8 +140,9 @@ function interpolate(text: string, params?: Record<string, string | number>): st
     })
 }
 
-export function createTranslator(locale: string) {
-    const messages = translations[locale] || translations.en
+export function createTranslator(locale?: string) {
+    const resolved = locale ?? defaultLocale
+    const messages = translations[resolved] || translations.en
 
     return function t(key: string, params?: Record<string, string | number>): string {
         const translation = getNestedValue(messages, key)
@@ -161,7 +163,7 @@ export function createTranslator(locale: string) {
 
 export function useTranslation() {
     const t = useMemo(() => {
-        return createTranslator("es")
+        return createTranslator()
     }, [])
 
     return { t }

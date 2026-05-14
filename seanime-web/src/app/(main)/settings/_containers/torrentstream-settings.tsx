@@ -14,7 +14,7 @@ import { FcFolder } from "react-icons/fc"
 import { SiBittorrent } from "react-icons/si"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const torrentstreamSchema = defineSchema(({ z }) => z.object({
     enabled: z.boolean(),

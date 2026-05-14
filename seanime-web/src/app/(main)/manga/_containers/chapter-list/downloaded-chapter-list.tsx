@@ -24,7 +24,7 @@ import { GiOpenBook } from "react-icons/gi"
 import { MdOutlineOfflinePin } from "react-icons/md"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const manga_downloadedChapterContainerAtom = atom<Manga_ChapterContainer | null>(null)
 

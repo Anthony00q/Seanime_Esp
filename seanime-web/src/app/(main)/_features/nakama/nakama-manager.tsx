@@ -84,7 +84,7 @@ export function useNakamaWatchParty() {
 }
 
 export function NakamaManager() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { sendMessage } = useWebsocketSender()
     const [isModalOpen, setIsModalOpen] = useAtom(nakamaModalOpenAtom)
     const [nakamaStatus, setNakamaStatus] = useAtom(nakamaStatusAtom)
@@ -598,7 +598,7 @@ function WatchPartyCreation({
     isCreating,
     isJoining,
 }: WatchPartyCreationProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return (
         <div className="space-y-4">
             <h4 className="flex items-center gap-2"><LuPopcorn className="size-6" /> {t("nakama.watchParty")}</h4>
@@ -700,7 +700,7 @@ interface WatchPartySessionViewProps {
 }
 
 function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: WatchPartySessionViewProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { sendMessage } = useWebsocketSender()
     const nakamaStatus = useNakamaStatus()
     const participants = Object.values(session.participants || {})

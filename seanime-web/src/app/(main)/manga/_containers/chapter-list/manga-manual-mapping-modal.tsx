@@ -17,7 +17,7 @@ import React from "react"
 import { FiSearch } from "react-icons/fi"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type MangaManualMappingModalProps = {
     entry: Manga_Entry
@@ -37,7 +37,7 @@ export function MangaManualMappingModal(props: MangaManualMappingModalProps) {
             <Modal
                 data-manga-manual-mapping-modal
                 title={t("onlinestream.manualMatch")}
-                description="Emparejar este manga con un resultado de búsqueda"
+                description={t("manga.manualMapping.description")}
                 trigger={children}
                 contentClass="max-w-4xl"
             >
@@ -82,8 +82,9 @@ function Content({ entry }: { entry: Manga_Entry }) {
     const [mangaId, setMangaId] = React.useState<string | null>(null)
     const confirmMatch = useConfirmationDialog({
         title: t("onlinestream.manualMatch"),
-        description: "¿Estás seguro de que quieres emparejar este manga con el resultado de búsqueda?",
-        actionText: "Confirm",
+        description: t("manga.manualMapping.confirmMatchDesc"),
+        actionText: t("common.buttons.confirm"),
+        cancelText: t("common.buttons.cancel"),
         actionIntent: "success",
         onConfirm: () => {
             if (mangaId && selectedProvider) {

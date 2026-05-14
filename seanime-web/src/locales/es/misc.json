@@ -385,7 +385,9 @@
     "noWorkingProviders": "No se encontraron proveedores funcionales",
     "stoppedTryingProviders": "Se detuvo la búsqueda de proveedores",
     "startingWatchParty": "Iniciando watch party de streaming en línea",
-    "dubbedSearchHelp": "Solo aplica a proveedores que admiten doblajes en los resultados de búsqueda."
+    "dubbedSearchHelp": "Solo aplica a proveedores que admiten doblajes en los resultados de búsqueda.",
+    "manualMatchDesc": "Emparejar este anime con un resultado de búsqueda del proveedor.",
+    "confirmMatchDesc": "¿Estás seguro de que quieres emparejar este anime con el resultado de búsqueda?"
   },
   "torrentList": {
     "failedToConnect": "Error al conectar con el cliente torrent. Verifica los ajustes y asegúrate de que está funcionando.",
@@ -427,6 +429,12 @@
     "shuttingDownServer": "Apagando servidor...",
     "installingUpdate": "Instalando actualización...",
     "updateInstalledRestarting": "Actualización instalada. Reiniciando aplicación...",
+    "updateInstalledRestart": "Actualización instalada. Reinicia la aplicación.",
+    "updateNotAvailableDesktop": "Esta actualización aún no está disponible para clientes de escritorio. Espera unos minutos o consulta la página de GitHub para más información.",
+    "downloadingProgress": "Descargando... {progress}%",
+    "installNow": "Instalar ahora",
+    "downloadAndInstall": "Descargar e instalar",
+    "installing": "Instalando...",
     "restartingServer": "Reiniciando servidor...",
     "devModeNotRestarting": "Modo desarrollo: No se reiniciará el servidor"
   },
@@ -655,7 +663,10 @@
       "entryUpdated": "Entrada actualizada",
       "entryDeleted": "Entrada eliminada"
     },
-    "auth": {
+  "playlist": {
+    "watched": "Visto"
+  },
+  "auth": {
       "authenticated": "Autenticación exitosa",
       "loggedOut": "Sesión cerrada exitosamente",
       "invalidToken": "Token inválido"

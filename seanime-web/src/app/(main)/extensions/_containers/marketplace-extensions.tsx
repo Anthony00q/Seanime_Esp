@@ -24,6 +24,7 @@ import { StaticTabs } from "@/components/ui/tabs"
 import { TextInput } from "@/components/ui/text-input"
 import { useSearchParams } from "@/lib/navigation"
 import { createTranslator } from "@/locales"
+import { translateExtensionInstallMessage } from "@/lib/helpers/translate-extension-toast"
 import { useAtom } from "jotai/react"
 import capitalize from "lodash/capitalize"
 import orderBy from "lodash/orderBy"
@@ -41,7 +42,7 @@ type MarketplaceExtensionsProps = {
 }
 
 export function MarketplaceExtensions(props: MarketplaceExtensionsProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         children,
         ...rest
@@ -515,7 +516,7 @@ type MarketplaceExtensionCardProps = {
 
 export function MarketplaceExtensionCard(props: MarketplaceExtensionCardProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         extension,
         updateData,
@@ -537,7 +538,7 @@ export function MarketplaceExtensionCard(props: MarketplaceExtensionCardProps) {
 
     React.useEffect(() => {
         if (installResponse) {
-            toast.success(t("extensions.toast.extensionInstalled", { message: installResponse.message }))
+            toast.success(translateExtensionInstallMessage(installResponse.message))
             setInstallModalOpen(false)
         }
     }, [installResponse])

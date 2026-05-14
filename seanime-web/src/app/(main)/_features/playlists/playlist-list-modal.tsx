@@ -24,7 +24,7 @@ import { createTranslator } from "@/locales"
 export function PlaylistListModal() {
     const ts = useThemeSettings()
     const { isModalOpen, setModalOpen, setSelectedMedia, selectedMedia } = usePlaylistEditorManager()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const { data: _data, isLoading: isLibraryLoading } = useGetLibraryCollection()
 

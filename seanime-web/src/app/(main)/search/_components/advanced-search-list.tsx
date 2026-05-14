@@ -9,7 +9,7 @@ import { createTranslator } from "@/locales"
 
 export function AdvancedSearchList() {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { isLoading, data, fetchNextPage, hasNextPage, type } = useAnilistAdvancedSearch()
 
     const items = data?.pages.filter(Boolean).flatMap(n => n.Page?.media).filter(Boolean).filter(media => !!media.startDate?.year)

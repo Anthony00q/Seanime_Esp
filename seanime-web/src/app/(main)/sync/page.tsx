@@ -35,7 +35,7 @@ import { toast } from "sonner"
 
 
 export default function Page() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const serverStatus = useServerStatus()
 
     const [syncModalOpen, setSyncModalOpen] = React.useState(false)
@@ -330,7 +330,7 @@ export default function Page() {
 }
 
 function SyncingBadge() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return (
         <Badge
             intent="gray-solid"

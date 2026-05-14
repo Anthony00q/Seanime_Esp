@@ -1,7 +1,7 @@
 import capitalize from "lodash/capitalize";
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 // Maps AniList uppercase enum → Spanish translation
 const SEASON_MAP: Record<string, string> = {

@@ -59,7 +59,7 @@ export function useUpdateLocalFileData() {
         method: API_ENDPOINTS.LOCALFILES.UpdateLocalFileData.methods[0],
         mutationKey: [API_ENDPOINTS.LOCALFILES.UpdateLocalFileData.key],
         onSuccess: async () => {
-            const t = createTranslator("es")
+            const t = createTranslator()
             toast.success(t("toast.localfiles.metadataUpdated"))
             qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })
             qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetAnimeEntry.key] })
@@ -92,7 +92,7 @@ export function useDeleteLocalFiles() {
         method: API_ENDPOINTS.LOCALFILES.DeleteLocalFiles.methods[0],
         mutationKey: [API_ENDPOINTS.LOCALFILES.DeleteLocalFiles.key],
         onSuccess: async () => {
-            const t = createTranslator("es")
+            const t = createTranslator()
             toast.success(t("toast.localfiles.filesDeleted"))
             qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })
             qc.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetAnimeEntry.key] })
@@ -102,7 +102,7 @@ export function useDeleteLocalFiles() {
 }
 
 export function useRemoveEmptyDirectories() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.LOCALFILES.RemoveEmptyDirectories.endpoint,
         method: API_ENDPOINTS.LOCALFILES.RemoveEmptyDirectories.methods[0],
@@ -115,7 +115,7 @@ export function useRemoveEmptyDirectories() {
 
 export function useImportLocalFiles() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, ImportLocalFiles_Variables>({
         endpoint: API_ENDPOINTS.LOCALFILES.ImportLocalFiles.endpoint,
