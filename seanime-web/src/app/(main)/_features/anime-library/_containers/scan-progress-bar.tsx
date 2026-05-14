@@ -10,6 +10,25 @@ import { useAtom } from "jotai/react"
 import React, { useState } from "react"
 import { createTranslator } from "@/locales"
 
+const SCAN_STATUS_MAP: Record<string, string> = {
+    "Retrieving local files...": "scanner.status.retrievingLocalFiles",
+    "Verifying shelved files...": "scanner.status.verifyingShelvedFiles",
+    "Scanning local files...": "scanner.status.scanningLocalFiles",
+    "Verifying file integrity...": "scanner.status.verifyingFileIntegrity",
+    "Scan completed": "scanner.status.scanCompleted",
+    "Fetching additional matching data...": "scanner.status.fetchingMatchingData",
+    "Fetching media...": "scanner.status.fetchingMedia",
+    "Matching local files...": "scanner.status.matchingLocalFiles",
+    "Hydrating metadata...": "scanner.status.hydratingMetadata",
+    "Adding missing media to AniList...": "scanner.status.addingMissingMedia",
+}
+
+function translateScanStatus(status: string, t: ReturnType<typeof createTranslator>): string {
+    const key = SCAN_STATUS_MAP[status]
+    if (key) return t(key)
+    return status
+}
+
 export function ScanProgressBar() {
 
     const [isScanning] = useAtom(__scanner_isScanningAtom)
@@ -29,7 +48,6 @@ export function ScanProgressBar() {
     useWebsocketMessageListener<number>({
         type: WSEvents.SCAN_PROGRESS,
         onMessage: data => {
-            console.log("Scan progress", data)
             setProgress(data)
         },
     })
@@ -37,8 +55,7 @@ export function ScanProgressBar() {
     useWebsocketMessageListener<string>({
         type: WSEvents.SCAN_STATUS,
         onMessage: data => {
-            console.log("Scan status", data)
-            setStatus(data)
+            setStatus(translateScanStatus(data, t))
         },
     })
 
@@ -49,12 +66,6 @@ export function ScanProgressBar() {
             <div className="w-full bg-gray-950 fixed top-0 left-0 z-[100]" data-scan-progress-bar-container>
                 <ProgressBar size="xs" value={progress} />
             </div>
-            {/*<div className="fixed left-0 top-8 w-full flex justify-center z-[100]">*/}
-            {/*    <div className="bg-gray-900 rounded-full border h-14 px-6 flex gap-2 items-center">*/}
-            {/*        <Spinner className="w-4 h-4" />*/}
-            {/*        <p>{progress}% - {status}</p>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
             <div className="z-50 fixed bottom-4 right-4" data-scan-progress-bar-card-container>
                 <PageWrapper>
                     <Card className="w-fit max-w-[400px] relative" data-scan-progress-bar-card>

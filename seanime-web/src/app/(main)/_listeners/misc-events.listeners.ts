@@ -9,6 +9,7 @@ const SERVER_TOAST_MAP: Record<string, string> = {
     "Adding chapters to download queue...": "manga.chaptersAddedToDownloadQueue",
     "Download directory does not exist": "toast.torrentstream.downloadDirNotExist",
     "Download directory is not a directory": "toast.torrentstream.downloadDirNotDir",
+    "Scan completed": "scanner.status.scanCompleted",
 }
 
 function translateServerMessage(msg: string): string {

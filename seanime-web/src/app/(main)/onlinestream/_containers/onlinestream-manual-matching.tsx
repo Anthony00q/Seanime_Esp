@@ -139,19 +139,19 @@ function Content({ entry }: { entry: Anime_Entry }) {
                         <div className="space-y-2">
                             <Field.Text
                                 name="query"
-                                placeholder="Enter a title..."
+                                placeholder={t("common.placeholders.title")}
                                 leftIcon={<FiSearch className="text-xl text-[--muted]" />}
                                 fieldClass="w-full"
                             />
 
                             <Field.Switch
                                 name="dubbed"
-                                label="Look for dubs"
+                                label={t("extensions.dubbed")}
                                 side="right"
-                                moreHelp="Only applies to providers that support dubs in search results."
+                                moreHelp={t("onlinestream.dubbedSearchHelp")}
                             />
 
-                            <Field.Submit intent="white" loading={isMatching || searchLoading || mappingLoading} className="">Search</Field.Submit>
+                            <Field.Submit intent="white" loading={isMatching || searchLoading || mappingLoading} className="">{t("common.labels.search")}</Field.Submit>
                         </div>
                     </Form>
 
