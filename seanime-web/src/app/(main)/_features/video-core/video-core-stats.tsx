@@ -5,6 +5,9 @@ import { cn } from "@/components/ui/core/styling"
 import { useAtomValue } from "jotai"
 import React, { useEffect, useMemo, useState } from "react"
 import { vc_miniPlayer } from "./video-core-atoms"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 interface VideoCoreStatsForNerdsProps {
     playbackInfo: VideoCore_VideoPlaybackInfo | null
@@ -133,24 +136,24 @@ export function VideoCoreStatsForNerds({ playbackInfo, videoRef }: VideoCoreStat
         const details: { label: string; value: string }[] = []
 
         if (playbackInfo.localFile) {
-            details.push({ label: "File", value: playbackInfo.localFile.name })
+            details.push({ label: t("videoPlayer.stats.file"), value: playbackInfo.localFile.name })
         }
         if (playbackInfo.streamPath) {
-            details.push({ label: "Path", value: playbackInfo.streamPath })
+            details.push({ label: t("videoPlayer.stats.path"), value: playbackInfo.streamPath })
         }
         if (playbackInfo.streamUrl) {
-            details.push({ label: "Stream", value: playbackInfo.streamUrl?.replace("{{SERVER_URL}}", "") })
+            details.push({ label: t("videoPlayer.stats.stream"), value: playbackInfo.streamUrl?.replace("{{SERVER_URL}}", "") })
         }
         if (playbackInfo.media) {
             details.push({
-                label: "Title",
+                label: t("videoPlayer.stats.title_label"),
                 value: playbackInfo.media.title?.userPreferred || playbackInfo.media.title?.romaji || "",
             })
             if (playbackInfo.episode) {
                 const epNum = playbackInfo.episode.episodeNumber
                 const aniDbNum = playbackInfo.episode.aniDBEpisode
                 details.push({
-                    label: "Episode",
+                    label: t("videoPlayer.stats.episode"),
                     value: `Ep ${epNum}${aniDbNum ? ` (AniDB ${aniDbNum})` : ""}`,
                 })
             }
@@ -158,15 +161,15 @@ export function VideoCoreStatsForNerds({ playbackInfo, videoRef }: VideoCoreStat
 
         if (playbackInfo.mkvMetadata) {
             if (playbackInfo.mkvMetadata.mimeCodec) {
-                details.push({ label: "MIME Type", value: playbackInfo.mkvMetadata.mimeCodec })
+                details.push({ label: t("videoPlayer.stats.mimeType"), value: playbackInfo.mkvMetadata.mimeCodec })
             }
             const videoTrack = playbackInfo.mkvMetadata.videoTracks?.[0]
             if (videoTrack?.codecID) {
-                details.push({ label: "Video Codec", value: videoTrack.codecID })
+                details.push({ label: t("videoPlayer.stats.videoCodec"), value: videoTrack.codecID })
             }
             if (playbackInfo.mkvMetadata.audioTracks?.length) {
                 details.push({
-                    label: "Audio Codecs",
+                    label: t("videoPlayer.stats.audioCodecs"),
                     value: playbackInfo.mkvMetadata.audioTracks.map(t => t.codecID).join(", "),
                 })
             }
@@ -182,7 +185,7 @@ export function VideoCoreStatsForNerds({ playbackInfo, videoRef }: VideoCoreStat
             data-vc-element="stats-for-nerds"
             className="absolute top-24 left-4 z-[100] bg-black/80 text-white p-4 rounded-md font-mono text-xs pointer-events-none select-none max-w-lg"
         >
-            <p className="font-bold mb-2">Stats for Nerds</p>
+            <p className="font-bold mb-2">{t("videoPlayer.stats.title")}</p>
             <div className="space-y-1">
                 {mediaInfo.map((item, idx) => (
                     <div key={idx} className="flex gap-2">
@@ -195,45 +198,45 @@ export function VideoCoreStatsForNerds({ playbackInfo, videoRef }: VideoCoreStat
                     <>
                         <div className="border-t border-gray-700 my-2 pt-2"></div>
                         <StatLine
-                            label="Display / Video"
+                            label={t("videoPlayer.stats.displayVideo")}
                             value={`${performance.displaySize.width}x${performance.displaySize.height} / ${performance.streamSize.width}x${performance.streamSize.height}`}
                         />
                         <StatLine
-                            label="Framerate"
+                            label={t("videoPlayer.stats.framerate")}
                             value={`${performance.currentFps.toFixed(2)} fps`}
                         />
                         {fpsHistory.length > 0 && <div className="mt-2"><FpsGraph history={fpsHistory} /></div>}
 
                         <StatLine
-                            label="Frames (Total / Dropped)"
+                            label={t("videoPlayer.stats.framesTotalDropped")}
                             value={`${performance.totalFrames} / ${performance.droppedFrames}`}
                         />
                         <StatLine
-                            label="Render Time"
+                            label={t("videoPlayer.stats.renderTime")}
                             value={`${performance.renderTime.toFixed(2)} ms`}
                         />
                         <StatLine
-                            label="Buffer Ahead"
+                            label={t("videoPlayer.stats.bufferAhead")}
                             value={`${performance.availableBuffer.toFixed(2)} s`}
                         />
                         <StatLine
-                            label="Playback Rate"
+                            label={t("videoPlayer.stats.playbackRate")}
                             value={`${performance.rate}x`}
                         />
                         <StatLine
-                            label="Decoded / Corrupted"
+                            label={t("videoPlayer.stats.decodedCorrupted")}
                             value={`${performance.decodedFrames} / ${performance.corruptedFrames}`}
                         />
                         <StatLine
-                            label="Network State"
+                            label={t("videoPlayer.stats.networkState")}
                             value={performance.networkState}
                         />
                         <StatLine
-                            label="Ready State"
+                            label={t("videoPlayer.stats.readyState")}
                             value={performance.readyState}
                         />
                         <StatLine
-                            label="Time / Duration"
+                            label={t("videoPlayer.stats.timeDuration")}
                             value={`${performance.currentTime.toFixed(2)}s / ${performance.duration.toFixed(2)}s`}
                         />
                         {/*<StatLine*/}
@@ -245,15 +248,15 @@ export function VideoCoreStatsForNerds({ playbackInfo, videoRef }: VideoCoreStat
                             <>
                                 <div className="border-t border-gray-700 my-2 pt-2"></div>
                                 <StatLine
-                                    label="Anime4K Mode"
+                                    label={t("videoPlayer.stats.anime4KMode")}
                                     value={anime4kStats.currentOption}
                                 />
                                 <StatLine
-                                    label="A4K Framerate"
+                                    label={t("videoPlayer.stats.a4kFramerate")}
                                     value={`${anime4kStats.currentFps.toFixed(2)} fps`}
                                 />
                                 <StatLine
-                                    label="A4K Frame Drops"
+                                    label={t("videoPlayer.stats.a4kFrameDrops")}
                                     value={anime4kStats.totalFrameDrops.toString()}
                                 />
                                 {a4kFpsHistory.length > 0 && (

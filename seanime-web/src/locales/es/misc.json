@@ -263,7 +263,19 @@
     "useAnilistAPI": "Usar API de AniList",
     "offlineDatabaseHelp": "Coincide archivos locales con todo el catálogo de AniList. El escaneo será más lento.",
     "anilistAPIHelp": "Más lento para bibliotecas grandes. Seanime enviará una solicitud API por cada título de anime encontrado en la biblioteca, lo que puede llevar a límites de tasa y escaneo más lento.",
-    "simulatedWarning": "No se recomienda usar esta función sin una cuenta de AniList si tienes una biblioteca grande, ya que puede llevar a límites de tasa y escaneo más lento. Considera usar una cuenta para una mejor experiencia."
+    "simulatedWarning": "No se recomienda usar esta función sin una cuenta de AniList si tienes una biblioteca grande, ya que puede llevar a límites de tasa y escaneo más lento. Considera usar una cuenta para una mejor experiencia.",
+    "status": {
+      "retrievingLocalFiles": "Obteniendo archivos locales...",
+      "verifyingShelvedFiles": "Verificando archivos archivados...",
+      "scanningLocalFiles": "Escaneando archivos locales...",
+      "verifyingFileIntegrity": "Verificando integridad de archivos...",
+      "scanCompleted": "Escaneo completado",
+      "fetchingMatchingData": "Obteniendo datos de coincidencia adicionales...",
+      "fetchingMedia": "Obteniendo media...",
+      "matchingLocalFiles": "Coincidiendo archivos locales...",
+      "hydratingMetadata": "Cargando metadatos...",
+      "addingMissingMedia": "Añadiendo media faltante a AniList..."
+    }
   },
   "libraryWatcher": {
     "title": "Vigilante de biblioteca",
@@ -347,7 +359,7 @@
     "dropLogFile": "Soltar archivo de registro",
     "back": "Volver"
   },
-    "onlinestream": {
+  "onlinestream": {
       "watchPartyProviderNotInstalled": "Watch Party: El proveedor usado por el host no está instalado.",
       "playbackErrorRetrying": "Error de reproducción, intentando otro servidor...",
       "findOtherProviders": "Buscar otros proveedores",
@@ -366,7 +378,8 @@
       "completeMovie": "Película completa",
       "noWorkingProviders": "No se encontraron proveedores funcionales",
       "stoppedTryingProviders": "Se detuvo la búsqueda de proveedores",
-      "startingWatchParty": "Iniciando watch party de streaming en línea"
+      "startingWatchParty": "Iniciando watch party de streaming en línea",
+      "dubbedSearchHelp": "Solo aplica a proveedores que admiten doblajes en los resultados de búsqueda."
     },
   "torrentList": {
     "failedToConnect": "Error al conectar con el cliente torrent. Verifica los ajustes y asegúrate de que está funcionando.",
@@ -434,7 +447,12 @@
     "mediaUnmatched": "Medio no coincidente",
     "filesUnignored": "Archivos des-ignorados",
     "filesLocked": "Archivos bloqueados",
-    "filesUnlocked": "Archivos desbloqueados"
+    "filesUnlocked": "Archivos desbloqueados",
+    "entries": "Entradas",
+    "tvShows": "Series de TV",
+    "movies": "Películas",
+    "specials": "Especiales",
+    "hostsLibrary": "Biblioteca de {host}"
   },
   "playlists": {
     "startingPlaylist": "Iniciando lista de reproducción...",

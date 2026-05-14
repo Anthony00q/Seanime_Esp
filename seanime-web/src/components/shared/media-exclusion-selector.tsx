@@ -8,9 +8,12 @@ import { cn } from "@/components/ui/core/styling"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { Modal } from "@/components/ui/modal"
 import { useAtomValue } from "jotai/react"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { BiEdit } from "react-icons/bi"
 import { RiCloseCircleFill } from "react-icons/ri"
+
+const t = createTranslator("es")
 
 export type MediaExclusionSelectorProps = {
     value?: number[]
@@ -170,10 +173,12 @@ export const MediaExclusionSelector = React.forwardRef<HTMLDivElement, MediaExcl
                         <div className="flex-1">
                             <div className="flex items-center gap-2 mb-2">
                                 <span className="text-sm font-medium">
-                                    {selectedIds.length} anime excluded from sharing
+                                    {selectedIds.length === 1
+                                        ? t("common.components.mediaExclusion.countExcluded", { count: selectedIds.length })
+                                        : t("common.components.mediaExclusion.countExcluded_plural", { count: selectedIds.length })}
                                 </span>
                                 {selectedIds.length > 0 && (
-                                    <span className="text-xs text-[--muted]">(will not be visible to other clients)</span>
+                                    <span className="text-xs text-[--muted]">{t("common.components.mediaExclusion.notVisibleHint")}</span>
                                 )}
                             </div>
 
@@ -198,7 +203,7 @@ export const MediaExclusionSelector = React.forwardRef<HTMLDivElement, MediaExcl
                                     </div>
                                     {selectedIds.length > 5 && (
                                         <span className="text-xs text-[--muted]">
-                                            +{selectedIds.length - 5} more
+                                            {t("common.components.mediaExclusion.moreCount", { count: selectedIds.length - 5 })}
                                         </span>
                                     )}
                                 </div>
@@ -206,7 +211,7 @@ export const MediaExclusionSelector = React.forwardRef<HTMLDivElement, MediaExcl
                         </div>
 
                         <Modal
-                            title="Select anime to exclude from sharing"
+                            title={t("common.components.mediaExclusion.title")}
                             contentClass="max-w-6xl"
                             open={modalOpen}
                             onOpenChange={setModalOpen}
@@ -218,14 +223,13 @@ export const MediaExclusionSelector = React.forwardRef<HTMLDivElement, MediaExcl
                                     leftIcon={<BiEdit />}
                                     disabled={disabled}
                                 >
-                                    {selectedIds.length > 0 ? "Edit selection" : "Select anime"}
+                                    {selectedIds.length > 0 ? t("common.components.mediaExclusion.editSelection") : t("common.components.mediaExclusion.selectAnime")}
                                 </Button>
                             }
                         >
                             <div className="space-y-4">
                                 <p className="text-[--muted]">
-                                    Select anime that you don't want to share with other clients. Selected anime will not be visible to connected
-                                    clients.
+                                    {t("common.components.mediaExclusion.description")}
                                 </p>
 
                                 <div className="flex items-center gap-2 flex-wrap p-4 bg-[--subtle] rounded-[--radius-md]">
@@ -236,7 +240,7 @@ export const MediaExclusionSelector = React.forwardRef<HTMLDivElement, MediaExcl
                                         onClick={handleSelectAll}
                                         disabled={disabled}
                                     >
-                                        Select all
+                                        {t("common.components.mediaExclusion.selectAll")}
                                     </Button>
                                     <Button
                                         type="button"
@@ -245,7 +249,7 @@ export const MediaExclusionSelector = React.forwardRef<HTMLDivElement, MediaExcl
                                         onClick={handleDeselectAll}
                                         disabled={disabled}
                                     >
-                                        Deselect all
+                                        {t("common.components.mediaExclusion.deselectAll")}
                                     </Button>
                                     <Button
                                         type="button"
@@ -254,18 +258,20 @@ export const MediaExclusionSelector = React.forwardRef<HTMLDivElement, MediaExcl
                                         onClick={handleSelectAdult}
                                         disabled={disabled}
                                     >
-                                        Select adult
+                                        {t("common.components.mediaExclusion.selectAdult")}
                                     </Button>
                                     <div className="flex-1" />
                                     <span className="text-sm text-[--muted]">
-                                        {selectedIds.length} selected (will not be shared)
+                                        {selectedIds.length === 1
+                                            ? t("common.components.mediaExclusion.countSelected", { count: selectedIds.length })
+                                            : t("common.components.mediaExclusion.countSelected_plural", { count: selectedIds.length })}
                                     </span>
                                 </div>
 
                                 <div className="space-y-6 max-h-[60vh] overflow-y-auto p-1">
                                     {!!lists.CURRENT.length && (
                                         <MediaSection
-                                            title="All"
+                                            title={t("common.labels.all")}
                                             entries={lists.CURRENT}
                                             selectedIds={selectedIds}
                                             onToggle={handleToggleMedia}
@@ -316,7 +322,9 @@ export const MediaExclusionSelector = React.forwardRef<HTMLDivElement, MediaExcl
                                         intent="primary"
                                         onClick={() => setModalOpen(false)}
                                     >
-                                        Done ({selectedIds.length} selected)
+                                        {selectedIds.length === 1
+                                            ? t("common.components.mediaExclusion.done", { count: selectedIds.length })
+                                            : t("common.components.mediaExclusion.done_plural", { count: selectedIds.length })}
                                     </Button>
                                 </div>
                             </div>

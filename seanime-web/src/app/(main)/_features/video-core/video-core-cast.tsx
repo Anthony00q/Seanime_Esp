@@ -218,7 +218,7 @@ export function VideoCoreCastButton() {
                 size="sm"
                 icon={<BiCast className={cn("text-lg", isCasting && "text-brand-300")} />}
                 onClick={() => setModalOpen(true)}
-                title={isCasting ? "Casting" : "Cast to device"}
+                title={isCasting ? t("videoPlayer.cast.casting") : t("videoPlayer.cast.castToDevice")}
             />
             <CastDeviceModal open={modalOpen} onOpenChange={setModalOpen} />
         </>
@@ -235,16 +235,16 @@ function CastDeviceModal({ open, onOpenChange }: { open: boolean; onOpenChange: 
     }, [open])
 
     return (
-        <Modal open={open} onOpenChange={onOpenChange} title="Cast to Device" contentClass="max-w-md">
+        <Modal open={open} onOpenChange={onOpenChange} title={t("videoPlayer.cast.title")} contentClass="max-w-md">
             <div className="space-y-4">
                 {isCasting && session.device && (
                     <div className="flex items-center justify-between p-3 bg-gray-900 rounded-md border border-brand-700">
                         <div>
-                            <p className="text-sm font-medium text-brand-300">Connected to</p>
+                            <p className="text-sm font-medium text-brand-300">{t("videoPlayer.cast.connectedTo")}</p>
                             <p className="text-base font-semibold">{session.device.name}</p>
                         </div>
                         <Button intent="alert-subtle" size="sm" onClick={disconnect}>
-                            Disconnect
+                            {t("videoPlayer.cast.disconnect")}
                         </Button>
                     </div>
                 )}
@@ -252,15 +252,15 @@ function CastDeviceModal({ open, onOpenChange }: { open: boolean; onOpenChange: 
                 {isDiscovering && (
                     <div className="flex items-center gap-2 text-sm text-[--muted]">
                         <LoadingSpinner />
-                        <span>Searching for devices...</span>
+                        <span>{t("videoPlayer.cast.searching")}</span>
                     </div>
                 )}
 
                 {devices.length === 0 && !isDiscovering && (
                     <div className="text-center py-6">
-                        <p className="text-sm text-[--muted]">No devices found</p>
+                        <p className="text-sm text-[--muted]">{t("videoPlayer.cast.noDevices")}</p>
                         <Button intent="gray-subtle" size="sm" className="mt-2" onClick={discover}>
-                            Scan again
+                            {t("videoPlayer.cast.scanAgain")}
                         </Button>
                     </div>
                 )}
@@ -293,7 +293,7 @@ function CastDeviceModal({ open, onOpenChange }: { open: boolean; onOpenChange: 
 
                 {!isDiscovering && devices.length > 0 && (
                     <Button intent="gray-subtle" size="sm" className="w-full" onClick={discover}>
-                        Scan again
+                        {t("videoPlayer.cast.scanAgain")}
                     </Button>
                 )}
             </div>
@@ -325,7 +325,7 @@ export function CastPlaybackControls({ onStop }: { onStop?: () => void }) {
         <div className="flex flex-col gap-2 p-3 bg-gray-950/80 rounded-lg">
             <div className="flex items-center gap-2 text-sm text-brand-300">
                 <BiCast className="text-lg" />
-                <span>Casting to {session.device?.name}</span>
+                <span>{t("videoPlayer.cast.castingTo", { device: session.device?.name || "" })}</span>
                 {isBuffering && <LoadingSpinner className="ml-1" />}
             </div>
 
@@ -354,21 +354,21 @@ export function CastPlaybackControls({ onStop }: { onStop?: () => void }) {
                     size="sm"
                     onClick={() => window.electron?.cast?.seek(Math.max(0, currentTime - 10))}
                 >
-                    -10s
+                    {t("videoPlayer.cast.back10s")}
                 </Button>
                 <Button
                     intent="primary-subtle"
                     size="sm"
                     onClick={() => isPlaying ? window.electron?.cast?.pause() : window.electron?.cast?.play()}
                 >
-                    {isPlaying ? "Pause" : "Play"}
+                    {isPlaying ? t("videoPlayer.cast.pause") : t("videoPlayer.cast.play")}
                 </Button>
                 <Button
                     intent="gray-subtle"
                     size="sm"
                     onClick={() => window.electron?.cast?.seek(currentTime + 30)}
                 >
-                    +30s
+                    {t("videoPlayer.cast.forward30s")}
                 </Button>
                 <Button
                     intent="alert-subtle"
@@ -378,7 +378,7 @@ export function CastPlaybackControls({ onStop }: { onStop?: () => void }) {
                         onStop?.()
                     }}
                 >
-                    Stop
+                    {t("videoPlayer.cast.stop")}
                 </Button>
             </div>
         </div>

@@ -1,5 +1,11 @@
 {
   "gettingStarted": {
+    "title": "Primeros Pasos",
+    "description": "Configuremos Seanime para la mejor experiencia.",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "skip": "Omitir",
+    "finish": "Finalizar",
     "steps": {
       "library": {
         "title": "Biblioteca Local",
@@ -26,15 +32,25 @@
     "library": {
       "title": "Biblioteca de Anime",
       "description": "Elige la carpeta donde están almacenados tus archivos de anime. Aquí es donde Seanime escaneará tu colección.",
+      "addFolder": "Añadir carpeta",
+      "removeFolder": "Eliminar carpeta",
+      "noFolders": "No se han añadido carpetas aún.",
+      "selectFolder": "Seleccionar una carpeta",
       "path": "Ruta de la Biblioteca de Anime",
       "pathHelp": "Selecciona la carpeta principal que contiene tu colección de anime. Puedes añadir más carpetas después."
     },
     "player": {
-      "denshiNotice": "Seanime Denshi incluye un reproductor de medios integrado que está habilitado por defecto. Aún puedes configurar un reproductor externo.",
       "title": "Reproductor de Video",
-      "titleExternal": "Reproductor Externo",
       "description": "Configura tu reproductor de medios externo preferido para ver anime y realizar un seguimiento automático de tu progreso.",
       "desktopPlayer": "Reproductor de Escritorio",
+      "webPlayer": "Reproductor web",
+      "externalPlayer": "Reproductor externo",
+      "playerPath": "Ruta del ejecutable del reproductor",
+      "playerPathHelp": "ej. C:/Program Files/mpv/mpv.exe",
+      "playerArgs": "Argumentos del reproductor",
+      "playerArgsHelp": "Argumentos adicionales para pasar al reproductor",
+      "denshiNotice": "Seanime Denshi incluye un reproductor de medios integrado que está habilitado por defecto. Aún puedes configurar un reproductor externo.",
+      "titleExternal": "Reproductor Externo",
       "mpvHelp": "Se recomienda MPV para un mejor renderizado de subtítulos y streaming de torrents.",
       "iinaHelp": "Tanto MPV como IINA son recomendados para macOS.",
       "mpvRecommended": "MPV (Recomendado)",
@@ -53,6 +69,12 @@
     "torrents": {
       "title": "Descargas",
       "description": "Configura tu cliente torrent para descargar.",
+      "torrentClient": "Cliente torrent",
+      "torrentStreaming": "Streaming de torrents",
+      "clientType": "Tipo de cliente",
+      "clientUrl": "URL del cliente",
+      "clientUsername": "Usuario del cliente",
+      "clientPassword": "Contraseña del cliente",
       "client": "Cliente Torrent",
       "clientHelp": "Cliente utilizado para descargar torrents de anime",
       "qbittorrentSettings": "Ajustes de qBittorrent",
@@ -62,12 +84,19 @@
     "debrid": {
       "title": "Servicio Debrid",
       "description": "Los servicios Debrid ofrecen descargas más rápidas y streaming instantáneo desde la nube.",
+      "serviceType": "Tipo de servicio",
       "apiKey": "Clave API",
       "apiKeyHelp": "La clave API proporcionada por el servicio Debrid."
     },
     "features": {
       "title": "Funciones Adicionales",
       "description": "Elige qué funciones adicionales te gustaría habilitar. Puedes habilitarlas o deshabilitarlas más tarde en los ajustes.",
+      "anilist": "Integración con AniList",
+      "anilistHelp": "Sincroniza tu progreso de anime y manga con AniList",
+      "discord": "Discord Rich Presence",
+      "discordHelp": "Muestra lo que estás viendo en Discord",
+      "notifications": "Notificaciones del sistema",
+      "notificationsHelp": "Recibe notificaciones sobre nuevos episodios y actualizaciones",
       "items": {
         "manga": "Manga",
         "mangaDesc": "Lee y descarga capítulos de manga",
