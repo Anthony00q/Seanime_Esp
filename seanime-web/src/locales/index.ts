@@ -1,5 +1,23 @@
 import { useMemo } from "react"
-import en from "./en.json"
+
+// --- Importaciones de secciones en inglés (modular) ---
+import enCommon from "./en/common.json"
+import enHome from "./en/home.json"
+import enNavigation from "./en/navigation.json"
+import enVideoPlayer from "./en/videoPlayer.json"
+import enFeatures from "./en/features.json"
+import enMisc from "./en/misc.json"
+import enEntry from "./en/entry.json"
+import enManga from "./en/manga.json"
+import enExtensions from "./en/extensions.json"
+import enAnilist from "./en/anilist.json"
+import enGettingStarted from "./en/gettingStarted.json"
+import enSettingsGeneral from "./en/settings/general.json"
+import enSettingsLibrary from "./en/settings/library.json"
+import enSettingsPlayers from "./en/settings/players.json"
+import enSettingsStreaming from "./en/settings/streaming.json"
+import enSettingsAdvanced from "./en/settings/advanced.json"
+import enSettingsUi from "./en/settings/ui.json"
 
 // --- Importaciones de secciones en español ---
 import esCommon from "./es/common.json"
@@ -24,8 +42,6 @@ import esSettingsUi from "./es/settings/ui.json"
 
 // ---------------------------------------------------------------------------
 
-type Messages = typeof en
-
 /**
  * Deep merge de objetos. Las propiedades del source sobreescriben las del target.
  */
@@ -48,6 +64,30 @@ function deepMerge(target: Record<string, any>, ...sources: Record<string, any>[
     }
     return target
 }
+
+// Construye el objeto de traducciones en inglés mergeando todos los archivos
+const en = deepMerge(
+    {},
+    enCommon,
+    enHome,
+    enNavigation,
+    enVideoPlayer,
+    enFeatures,
+    enMisc,
+    enEntry,
+    enManga,
+    enExtensions,
+    enAnilist,
+    enGettingStarted,
+    enSettingsGeneral,
+    enSettingsLibrary,
+    enSettingsPlayers,
+    enSettingsStreaming,
+    enSettingsAdvanced,
+    enSettingsUi,
+)
+
+type Messages = typeof en
 
 // Construye el objeto de traducciones en español mergeando todos los archivos
 const es = deepMerge(
