@@ -13,6 +13,9 @@ import { openTab } from "@/lib/helpers/browser"
 import { formatDistanceToNowSafe } from "@/lib/helpers/date"
 import React from "react"
 import { BiDownload, BiTrash } from "react-icons/bi"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 type AutoDownloaderQueueProps = {
     children?: React.ReactNode
@@ -57,16 +60,16 @@ function AutoDownloaderQueueItem(props: AutoDownloaderQueueItemProps) {
                         onClick={() => openTab(item.link)}
                     >{item.torrentName}</h3>
                     <p className="text-md text-gray-400 flex gap-2 items-center">
-                        {item.downloaded && <span className="text-green-200">File downloaded</span>}
-                        {!item.downloaded && !item.isDelayed && <span className="text-blue-300 italic">Manual action required</span>}
-                        {item.isDelayed && <span className="text-indigo-300 italic">Delayed</span>}
+                        {item.downloaded && <span className="text-green-200">{t("autoDownloader.queue.fileDownloaded")}</span>}
+                        {!item.downloaded && !item.isDelayed && <span className="text-blue-300 italic">{t("autoDownloader.queue.manualActionRequired")}</span>}
+                        {item.isDelayed && <span className="text-indigo-300 italic">{t("autoDownloader.queue.delayed")}</span>}
                         {item.isDelayed && item.delayUntil &&
-                            <span>for {formatDistanceToNowSafe(item.delayUntil, { addSuffix: false })}.</span>}
+                            <span>{t("autoDownloader.queue.for")} {formatDistanceToNowSafe(item.delayUntil, { addSuffix: false })}.</span>}
                     </p>
-                    {item.createdAt && <span className="text-[--muted] text-sm">Added {formatDistanceToNowSafe(item.createdAt)}</span>}
+                    {item.createdAt && <span className="text-[--muted] text-sm">{t("autoDownloader.queue.added")} {formatDistanceToNowSafe(item.createdAt)}</span>}
                     {item.downloaded && (
                         <p className="text-sm text-[--muted]">
-                            Not yet scanned
+                            {t("autoDownloader.queue.notYetScanned")}
                         </p>
                     )}
                 </div>
@@ -87,7 +90,7 @@ function AutoDownloaderQueueItem(props: AutoDownloaderQueueItemProps) {
                                     loading={isAdding}
                                     disabled={isPending}
                                 >
-                                    Download
+                                    {t("autoDownloader.queue.download")}
                                 </Button>
                             ) : (
                                 <SeaLink href="/debrid">
@@ -97,7 +100,7 @@ function AutoDownloaderQueueItem(props: AutoDownloaderQueueItemProps) {
                                         intent="primary-subtle"
                                         disabled={isPending}
                                     >
-                                        Download
+                                        {t("autoDownloader.queue.download")}
                                     </Button>
                                 </SeaLink>
                             )}
@@ -111,7 +114,7 @@ function AutoDownloaderQueueItem(props: AutoDownloaderQueueItemProps) {
                         disabled={isPending || isAdding}
                         loading={isPending}
                     >
-                        Remove
+                        {t("autoDownloader.queue.remove")}
                     </Button>
                 </div>
             </div>
@@ -134,7 +137,7 @@ export function AutodownloaderQueue(props: AutoDownloaderQueueProps) {
         <Card className="p-4 space-y-2">
             <ul className="text-base text-[--muted]">
                 <li>
-                    The queue shows items waiting to be downloaded or scanned.
+                    {t("autoDownloader.queue.description")}
                 </li>
                 {/* <li>
                  Removing an item from the queue can cause it to be re-added if the rule is still active and the episode isn't downloaded and scanned.
@@ -142,7 +145,7 @@ export function AutodownloaderQueue(props: AutoDownloaderQueueProps) {
             </ul>
             {!data?.length && (
                 <p className="text-center text-[--muted]">
-                    Queue is empty
+                    {t("autoDownloader.queue.empty")}
                 </p>
             )}
             {data?.toSorted((a, b) => (b.updatedAt ?? "").localeCompare(a.updatedAt ?? ""))?.map((item) => (
