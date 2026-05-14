@@ -115,9 +115,9 @@ export function DetailedLibraryView(props: LibraryViewProps) {
                         size="sm"
                         onClick={() => setView("base")}
                     />
-                    {!isNakamaLibrary && <h3 className="text-ellipsis truncate">Home</h3>}
+                    {!isNakamaLibrary && <h3 className="text-ellipsis truncate">{t("navigation.home")}</h3>}
                     {isNakamaLibrary &&
-                        <h3 className="text-ellipsis truncate">{nakamaStatus?.hostConnectionStatus?.username || "Host"}'s Library</h3>}
+                        <h3 className="text-ellipsis truncate">{t("animeLibrary.hostsLibrary", { host: nakamaStatus?.hostConnectionStatus?.username || "Host" })}</h3>}
                 </div>
 
                 <SearchInput />
@@ -132,27 +132,27 @@ export function DetailedLibraryView(props: LibraryViewProps) {
             >
                 {!isNakamaLibrary && <div>
                     <h3>{stats?.totalSize}</h3>
-                    <p>Library</p>
+                    <p>{t("home.stats.library")}</p>
                 </div>}
                 <div>
                     <h3>{stats?.totalFiles}</h3>
-                    <p>Files</p>
+                    <p>{t("home.stats.files")}</p>
                 </div>
                 <div>
                     <h3>{stats?.totalEntries}</h3>
-                    <p>Entries</p>
+                    <p>{t("animeLibrary.entries")}</p>
                 </div>
                 <div>
                     <h3>{stats?.totalShows}</h3>
-                    <p>TV Shows</p>
+                    <p>{t("animeLibrary.tvShows")}</p>
                 </div>
                 <div>
                     <h3>{stats?.totalMovies}</h3>
-                    <p>Movies</p>
+                    <p>{t("animeLibrary.movies")}</p>
                 </div>
                 <div>
                     <h3>{stats?.totalSpecials}</h3>
-                    <p>Specials</p>
+                    <p>{t("animeLibrary.specials")}</p>
                 </div>
             </div>}
 

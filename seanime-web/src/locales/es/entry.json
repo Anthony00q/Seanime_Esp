@@ -144,6 +144,11 @@
       "noFilesAvailable": "No hay archivos disponibles",
       "selectAtLeastOne": "Selecciona al menos un archivo"
     },
+    "rankings": {
+      "allTimeHighestRated": "Mejor valorada{format}",
+      "seasonHighestRated": "{seasonText}",
+      "seasonMostPopular": "Popular{format} {seasonText}"
+    },
     "episodeList": {
       "downloadedEpisodes": "Episodios descargados",
       "noEpisodesFound": "No se encontraron episodios.",

@@ -8,6 +8,7 @@ import { Select } from "@/components/ui/select"
 import { TextInput, TextInputProps } from "@/components/ui/text-input"
 import { useBoolean } from "@/hooks/use-disclosure"
 import { upath } from "@/lib/helpers/upath"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { BiCheck, BiFolderOpen, BiFolderPlus, BiX } from "react-icons/bi"
 import { FaFolder } from "react-icons/fa"
@@ -15,6 +16,8 @@ import { FiChevronLeft, FiFolder } from "react-icons/fi"
 import { HiMiniChevronUpDown } from "react-icons/hi2"
 import { useUpdateEffect } from "react-use"
 import { useDebounce } from "use-debounce"
+
+const t = createTranslator("es")
 
 export type DirectorySelectorProps = {
     defaultValue?: string
@@ -113,8 +116,8 @@ export const DirectorySelector = React.memo(React.forwardRef<HTMLInputElement, D
                                     onOpenChange={setLibrarySelectionOpen}
                                     className="w-[400px] p-2 ml-[30px]"
                                     sideOffset={-4}
-                                    trigger={<Button size="sm" intent="gray-link" leftIcon={<HiMiniChevronUpDown />} className="!text-[--muted]">
-                                        Change library
+                                    trigger={                                    <Button size="sm" intent="gray-link" leftIcon={<HiMiniChevronUpDown />} className="!text-[--muted]">
+                                        {t("common.components.directorySelector.changeLibrary")}
                                     </Button>}
                                 >
                                     <Select
@@ -157,7 +160,7 @@ export const DirectorySelector = React.memo(React.forwardRef<HTMLInputElement, D
                         checkDirectoryExists()
                     }
                 }}
-                title="Select a directory"
+                title={t("common.components.directorySelector.selectDirectory")}
                 contentClass="mt-4 space-y-2 max-w-4xl"
             >
                 <div className="flex gap-2 items-center">
@@ -189,7 +192,7 @@ export const DirectorySelector = React.memo(React.forwardRef<HTMLInputElement, D
                     <div
                         className="w-full flex flex-none flex-nowrap overflow-x-auto gap-2 items-center rounded-[--radius-md]"
                     >
-                        <div className="flex-none">Suggestions:</div>
+                        <div className="flex-none">{t("common.components.directorySelector.suggestions")}</div>
                         {data.suggestions.map(folder => (
                             <div
                                 key={folder.fullPath}

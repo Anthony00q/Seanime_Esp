@@ -92,6 +92,41 @@
       "error": "Ocurrió un error",
       "copiedToClipboard": "Copiado al portapapeles",
       "openingExternalPlayer": "Abriendo archivo en reproductor externo."
+    },
+    "components": {
+      "fileTree": {
+        "likelyMatch": "Coincidencia probable",
+        "searchFiles": "Buscar archivos...",
+        "noFilesFound": "No se encontraron archivos que coincidan con \"{search}\""
+      },
+      "fileSelector": {
+        "selectFileOrDirectory": "Seleccionar un archivo o directorio"
+      },
+      "directorySelector": {
+        "selectDirectory": "Seleccionar un directorio",
+        "changeLibrary": "Cambiar biblioteca",
+        "suggestions": "Sugerencias:"
+      },
+      "mediaExclusion": {
+        "title": "Seleccionar anime para excluir del intercambio",
+        "countExcluded": "{count} anime excluido del intercambio",
+        "countExcluded_plural": "{count} anime excluidos del intercambio",
+        "notVisibleHint": "(no será visible para otros clientes)",
+        "moreCount": "+{count} más",
+        "editSelection": "Editar selección",
+        "selectAnime": "Seleccionar anime",
+        "description": "Selecciona el anime que no quieres compartir con otros clientes. El anime seleccionado no será visible para los clientes conectados.",
+        "selectAll": "Seleccionar todo",
+        "deselectAll": "Deseleccionar todo",
+        "selectAdult": "Seleccionar adultos",
+        "countSelected": "{count} seleccionado (no se compartirá)",
+        "countSelected_plural": "{count} seleccionados (no se compartirán)",
+        "done": "Listo ({count} seleccionado)",
+        "done_plural": "Listo ({count} seleccionados)"
+      },
+      "fields": {
+        "directory": "Directorio"
+      }
     }
   }
 }
