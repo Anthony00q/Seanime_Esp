@@ -669,7 +669,7 @@ function createTray() {
     tray = new Tray(icon)
 
     const contextMenu = Menu.buildFromTemplate([{
-        id: "toggle_visibility", label: "Toggle Visibility", click: () => {
+        id: "toggle_visibility", label: "Mostrar/Ocultar", click: () => {
             if (!serverStarted) return
             if (mainWindow.isVisible()) {
                 hideMainWindow()
@@ -678,12 +678,12 @@ function createTray() {
             }
         }
     }, ...(process.platform === "darwin" ? [{
-        id: "accessory_mode", label: "Remove from Dock", click: () => {
+        id: "accessory_mode", label: "Quitar del Dock", click: () => {
             app.dock.hide()
         }
     }
     ] : []), {
-        id: "quit", label: "Quit Seanime", click: () => {
+        id: "quit", label: "Salir de Seanime", click: () => {
             cleanupAndExit()
         }
     }
