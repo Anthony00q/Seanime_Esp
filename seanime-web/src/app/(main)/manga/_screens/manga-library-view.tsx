@@ -57,6 +57,8 @@ export function MangaLibraryView(props: MangaLibraryViewProps) {
 
     const [params, setParams] = useAtom(__mangaLibrary_paramsAtom)
 
+    const t = createTranslator("es")
+
     return (
         <>
             <PageWrapper
@@ -70,17 +72,17 @@ export function MangaLibraryView(props: MangaLibraryViewProps) {
                 <AnimatePresence mode="wait" initial={false}>
 
                     {!!collection && !hasManga && <LuffyError
-                        title="No manga found"
+                        title={t("manga.noMangaFound")}
                     >
                         <div className="space-y-2">
                             <p>
-                                No manga has been added to your library yet.
+                                {t("manga.noMangaAdded")}
                             </p>
 
                             <div className="!mt-4">
                                 <SeaLink href="/discover?type=manga">
                                     <Button intent="white-outline" rounded>
-                                        Browse manga
+                                        {t("manga.browseManga")}
                                     </Button>
                                 </SeaLink>
                             </div>
@@ -312,7 +314,7 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
                             })
                         }}
                     >
-                        Show all
+                        {t("manga.showAll")}
                     </Button>
                 )}
 
@@ -350,7 +352,7 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
                             })
                         }}
                     >
-                        <LuBookOpenCheck /> {params.unreadOnly ? "Show all" : "Unread chapters only"}
+                        <LuBookOpenCheck /> {params.unreadOnly ? t("manga.showAll") : t("manga.unreadOnly")}
                     </DropdownMenuItem>
                 </DropdownMenu>}
 
