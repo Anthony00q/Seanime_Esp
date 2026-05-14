@@ -17,7 +17,7 @@ export function useGetLatestUpdate(enabled: boolean) {
 
 export function useInstallLatestUpdate() {
     const setServerStatus = useSetServerStatus()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<Status, InstallLatestUpdate_Variables>({
         endpoint: API_ENDPOINTS.RELEASES.InstallLatestUpdate.endpoint,
         method: API_ENDPOINTS.RELEASES.InstallLatestUpdate.methods[0],

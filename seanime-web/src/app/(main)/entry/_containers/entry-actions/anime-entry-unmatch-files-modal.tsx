@@ -18,7 +18,7 @@ export const __animeEntryUnmatchFilesModalIsOpenAtom = atom(false)
 
 export function AnimeEntryUnmatchFilesModal({ entry }: AnimeEntryUnmatchFilesModalProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [open, setOpen] = useAtom(__animeEntryUnmatchFilesModalIsOpenAtom)
 
     return (
@@ -38,7 +38,7 @@ export function AnimeEntryUnmatchFilesModal({ entry }: AnimeEntryUnmatchFilesMod
 
 function Content({ entry }: { entry: Anime_Entry }) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [open, setOpen] = useAtom(__animeEntryUnmatchFilesModalIsOpenAtom)
 
     const [filepaths, setFilepaths] = React.useState<string[]>([])

@@ -22,7 +22,7 @@ type AnimeAutoDownloaderButtonProps = {
 
 export function AnimeAutoDownloaderButton(props: AnimeAutoDownloaderButtonProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         entry,
         size,
@@ -70,7 +70,7 @@ type ContentProps = {
 
 export function Content(props: ContentProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         entry,
         rules,

@@ -17,7 +17,7 @@ import { HiMiniChevronUpDown } from "react-icons/hi2"
 import { useUpdateEffect } from "react-use"
 import { useDebounce } from "use-debounce"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export type DirectorySelectorProps = {
     defaultValue?: string

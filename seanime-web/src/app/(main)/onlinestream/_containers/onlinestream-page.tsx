@@ -64,7 +64,7 @@ import { toast } from "sonner"
 import { PluginEpisodeGridItemMenuItems } from "../../_features/plugin/actions/plugin-actions"
 import { createTranslator } from "@/locales"
 
-const tr = createTranslator("es")
+const tr = createTranslator()
 
 type OnlinestreamPageProps = {
     animeEntry?: Anime_Entry

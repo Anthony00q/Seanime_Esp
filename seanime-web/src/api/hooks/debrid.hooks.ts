@@ -40,7 +40,7 @@ export function useSaveDebridSettings() {
 
 export function useDebridAddTorrents(onSuccess: () => void) {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, DebridAddTorrents_Variables>({
         endpoint: API_ENDPOINTS.DEBRID.DebridAddTorrents.endpoint,
         method: API_ENDPOINTS.DEBRID.DebridAddTorrents.methods[0],
@@ -55,7 +55,7 @@ export function useDebridAddTorrents(onSuccess: () => void) {
 
 export function useDebridDownloadTorrent() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, DebridDownloadTorrent_Variables>({
         endpoint: API_ENDPOINTS.DEBRID.DebridDownloadTorrent.endpoint,
         method: API_ENDPOINTS.DEBRID.DebridDownloadTorrent.methods[0],
@@ -69,7 +69,7 @@ export function useDebridDownloadTorrent() {
 
 export function useDebridCancelDownload() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, DebridCancelDownload_Variables>({
         endpoint: API_ENDPOINTS.DEBRID.DebridCancelDownload.endpoint,
         method: API_ENDPOINTS.DEBRID.DebridCancelDownload.methods[0],
@@ -83,7 +83,7 @@ export function useDebridCancelDownload() {
 
 export function useDebridDeleteTorrent() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, DebridDeleteTorrent_Variables>({
         endpoint: API_ENDPOINTS.DEBRID.DebridDeleteTorrent.endpoint,
         method: API_ENDPOINTS.DEBRID.DebridDeleteTorrent.methods[0],
@@ -139,7 +139,7 @@ export function useDebridStartStream() {
 }
 
 export function useDebridCancelStream() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, DebridCancelStream_Variables>({
         endpoint: API_ENDPOINTS.DEBRID.DebridCancelStream.endpoint,
         method: API_ENDPOINTS.DEBRID.DebridCancelStream.methods[0],

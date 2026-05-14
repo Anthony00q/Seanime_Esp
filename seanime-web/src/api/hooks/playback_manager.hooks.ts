@@ -35,7 +35,7 @@ export function usePlaybackPlayNextEpisode(...keys: any) {
 }
 
 export function usePlaybackCancelCurrentPlaylist(...keys: any) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackCancelCurrentPlaylist.endpoint,
         method: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackCancelCurrentPlaylist.methods[0],
@@ -47,7 +47,7 @@ export function usePlaybackCancelCurrentPlaylist(...keys: any) {
 }
 
 export function usePlaybackPlaylistNext(...keys: any) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackPlaylistNext.endpoint,
         method: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackPlaylistNext.methods[0],
@@ -70,7 +70,7 @@ export function usePlaybackPlayVideo() {
 }
 
 export function usePlaybackPlayRandomVideo() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackPlayRandomVideo.endpoint,
         method: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackPlayRandomVideo.methods[0],
@@ -112,7 +112,7 @@ export function usePlaybackGetNextEpisode() {
 }
 
 export function usePlaybackAutoPlayNextEpisode() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackAutoPlayNextEpisode.endpoint,
         method: API_ENDPOINTS.PLAYBACK_MANAGER.PlaybackAutoPlayNextEpisode.methods[0],

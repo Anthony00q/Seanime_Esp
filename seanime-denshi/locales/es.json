@@ -1,0 +1,7 @@
+{
+  "tray": {
+    "toggleVisibility": "Mostrar/Ocultar",
+    "removeFromDock": "Quitar del Dock",
+    "quit": "Salir de Seanime"
+  }
+}

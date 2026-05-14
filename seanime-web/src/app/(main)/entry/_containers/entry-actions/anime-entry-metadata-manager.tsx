@@ -27,7 +27,7 @@ export const __metadataManager_isOpenAtom = atom(false)
 
 export function AnimeEntryMetadataManager(props: AnimeEntryMetadataManagerProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { entry, details } = props
 
     const [isOpen, setOpen] = useAtom(__metadataManager_isOpenAtom)

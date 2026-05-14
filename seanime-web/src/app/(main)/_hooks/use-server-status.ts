@@ -9,7 +9,7 @@ import { useSetAtom } from "jotai/react"
 import React from "react"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export function useServerStatus() {
     return useAtomValue(serverStatusAtom)

@@ -66,7 +66,7 @@ const ExtensionList = ({
     width: number | null;
 }) => {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const { mutate: setPluginSettingsPinnedTrays, isPending: isSettingPluginSettingsPinnedTrays } = useSetPluginSettingsPinnedTrays()
 

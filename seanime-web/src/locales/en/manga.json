@@ -147,6 +147,10 @@
     },
     "libraryHeader": {
       "title": "Manga Library"
+    },
+    "manualMapping": {
+      "description": "Match this manga with a search result",
+      "confirmMatchDesc": "Are you sure you want to match this manga with the search result?"
     }
   }
 }

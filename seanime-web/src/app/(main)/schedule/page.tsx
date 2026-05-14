@@ -10,7 +10,7 @@ import React from "react"
 import { ScheduleCalendar } from "./_components/schedule-calendar"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export default function Page() {
 

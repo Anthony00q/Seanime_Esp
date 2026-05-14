@@ -5,7 +5,7 @@ import { createTranslator } from "@/locales"
 import React from "react"
 import { useFormContext } from "react-hook-form"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type DiscordRichPresenceSettingsProps = {
     children?: React.ReactNode

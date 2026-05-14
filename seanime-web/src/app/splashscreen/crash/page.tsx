@@ -6,7 +6,7 @@ import { __isElectronDesktop__ } from "@/types/constants"
 import React from "react"
 
 export default function Page() {
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return (
         <LoadingOverlay showSpinner={false}>

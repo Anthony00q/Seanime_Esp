@@ -7,7 +7,7 @@ import { createTranslator } from "@/locales"
 import capitalize from "lodash/capitalize"
 import React from "react"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const RELATION_TYPE_MAP: Record<string, string> = {
     PREQUEL:     t("anilist.relationTypes.PREQUEL"),
@@ -36,7 +36,7 @@ type RelationsRecommendationsSectionProps = {
 
 export function RelationsRecommendationsSection(props: RelationsRecommendationsSectionProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         entry,
         details,
@@ -87,7 +87,7 @@ export function RelationsRecommendationsSection(props: RelationsRecommendationsS
                                     overlay={<p
                                         className="font-semibold text-white bg-gray-950 z-[-1] absolute right-0 w-fit px-4 py-1.5 text-center !bg-opacity-90 text-sm lg:text-base rounded-none rounded-bl-lg"
                                     >{edge.node?.format === "MOVIE"
-                                        ? (RELATION_TYPE_MAP[edge.relationType ?? ""] ?? capitalize(edge.relationType || "").replace("_", " ")) + " (Película)"
+                                        ? (RELATION_TYPE_MAP[edge.relationType ?? ""] ?? capitalize(edge.relationType || "").replace("_", " ")) + ` (${t("features.movie")})`
                                         : (RELATION_TYPE_MAP[edge.relationType ?? ""] ?? capitalize(edge.relationType || "").replace("_", " "))}</p>}
                                     showLibraryBadge
                                     showTrailer

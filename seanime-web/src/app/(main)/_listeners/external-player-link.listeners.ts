@@ -11,7 +11,7 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type ExternalPlayerLinkEventProps = {
     url: string

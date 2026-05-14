@@ -4,7 +4,7 @@ import { PageWrapper } from "@/components/shared/page-wrapper"
 import React from "react"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 
 export default function Page() {

@@ -16,7 +16,7 @@ import sortBy from "lodash/sortBy"
 import { anilist_getUnwatchedCount } from "./media"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type BaseCollectionSorting =
     "START_DATE"

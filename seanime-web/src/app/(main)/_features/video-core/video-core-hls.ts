@@ -8,7 +8,7 @@ import React, { useEffect, useRef } from "react"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export interface HlsQualityLevel {
     index: number

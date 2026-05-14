@@ -35,7 +35,7 @@ export function useGetLogFilenames() {
 }
 
 export function useDeleteLogs() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const qc = useQueryClient()
     return useServerMutation<boolean, DeleteLogs_Variables>({
         endpoint: API_ENDPOINTS.STATUS.DeleteLogs.endpoint,
@@ -49,7 +49,7 @@ export function useDeleteLogs() {
 }
 
 export function useGetLatestLogContent() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const qc = useQueryClient()
     return useServerMutation<string>({
         endpoint: API_ENDPOINTS.STATUS.GetLatestLogContent.endpoint,
@@ -90,7 +90,7 @@ export function useGetMemoryStats() {
 }
 
 export function useForceGC() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const qc = useQueryClient()
     return useServerMutation<MemoryStatsResponse>({
         endpoint: API_ENDPOINTS.STATUS.ForceGC.endpoint,
@@ -105,7 +105,7 @@ export function useForceGC() {
 }
 
 export function useDownloadMemoryProfile() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const password = useAtomValue(serverAuthTokenAtom)
 
     return useServerMutation<string, { profileType: "heap" | "allocs" }>({
@@ -171,7 +171,7 @@ export function useDownloadMemoryProfile() {
 }
 
 export function useDownloadGoRoutineProfile() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const password = useAtomValue(serverAuthTokenAtom)
 
     return useServerMutation<string>({
@@ -224,7 +224,7 @@ export function useDownloadGoRoutineProfile() {
 }
 
 export function useDownloadCPUProfile() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const password = useAtomValue(serverAuthTokenAtom)
 
     return useServerMutation<string, { duration?: number }>({
@@ -295,7 +295,7 @@ export function useGetHomeItems() {
 }
 
 export function useUpdateHomeItems() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const qc = useQueryClient()
     return useServerMutation<null, UpdateHomeItems_Variables>({
         endpoint: API_ENDPOINTS.STATUS.UpdateHomeItems.endpoint,

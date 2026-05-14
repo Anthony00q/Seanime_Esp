@@ -35,7 +35,7 @@ import { useUpdateEffect } from "react-use"
 import { translateGenre, translateTag, translateFormat, translateSeason, translateStatus } from "@/lib/anilist-translations"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export function AdvancedSearchOptions() {
 

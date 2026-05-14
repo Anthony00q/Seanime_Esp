@@ -11,7 +11,7 @@ import type { ASSEvent } from "jassub/dist/worker/util"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const modernWasmUrl = "/jassub/jassub-worker-modern.wasm"
 const wasmUrl = "/jassub/jassub-worker.wasm"

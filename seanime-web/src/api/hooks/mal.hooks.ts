@@ -29,7 +29,7 @@ export function useEditMALListEntryProgress() {
 
 export function useMALLogout() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.MAL.MALLogout.endpoint,

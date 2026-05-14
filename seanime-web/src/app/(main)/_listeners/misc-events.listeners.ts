@@ -3,7 +3,7 @@ import { WSEvents } from "@/lib/server/ws-events"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const SERVER_TOAST_MAP: Record<string, string> = {
     "Adding chapters to download queue...": "manga.chaptersAddedToDownloadQueue",

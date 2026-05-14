@@ -46,7 +46,7 @@ import { LuCalendar, LuLeaf, LuTags } from "react-icons/lu"
 import { MdPersonalVideo } from "react-icons/md"
 import { RiSignalTowerLine } from "react-icons/ri"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type LibraryViewProps = {
     collectionList: Anime_LibraryCollectionList[]
@@ -177,7 +177,7 @@ const LibraryCollectionListItem = React.memo(({ list, streamingMediaIds, type }:
 }) => {
 
     const [selectedList, setSelectedList] = useAtom(__library_selectedListAtom)
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     if (selectedList !== "-" && selectedList !== list.type) return null
 
@@ -296,7 +296,7 @@ export function SearchOptions() {
     const serverStatus = useServerStatus()
     const [params, setParams] = useAtom(__library_paramsAtom)
     const [selectedIndex, setSelectedIndex] = useAtom(__library_selectedListAtom)
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return (
         <AppLayoutStack className="px-4 xl:px-0" data-detailed-library-view-search-options-container>

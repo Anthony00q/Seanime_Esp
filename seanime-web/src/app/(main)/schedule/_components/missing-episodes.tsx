@@ -15,7 +15,7 @@ import { IoLibrary } from "react-icons/io5"
 import { LuBellOff } from "react-icons/lu"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export function MissingEpisodes({ isLoading, data }: {
     data: Anime_MissingEpisodes | undefined

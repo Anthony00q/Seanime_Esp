@@ -13,7 +13,7 @@ import React from "react"
 import { BiEdit } from "react-icons/bi"
 import { RiCloseCircleFill } from "react-icons/ri"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export type MediaExclusionSelectorProps = {
     value?: number[]

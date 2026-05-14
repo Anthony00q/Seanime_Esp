@@ -98,7 +98,7 @@ export function useInstallExternalExtensionRepository() {
 }
 
 export function useUninstallExternalExtension() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, UninstallExternalExtension_Variables>({
         endpoint: API_ENDPOINTS.EXTENSIONS.UninstallExternalExtension.endpoint,
         method: API_ENDPOINTS.EXTENSIONS.UninstallExternalExtension.methods[0],
@@ -120,7 +120,7 @@ export function useGetExtensionPayload(id: string) {
 }
 
 export function useUpdateExtensionCode() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, UpdateExtensionCode_Variables>({
         endpoint: API_ENDPOINTS.EXTENSIONS.UpdateExtensionCode.endpoint,
         method: API_ENDPOINTS.EXTENSIONS.UpdateExtensionCode.methods[0],
@@ -219,7 +219,7 @@ export function useGetExtensionUserConfig(id: string) {
 }
 
 export function useSaveExtensionUserConfig() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, SaveExtensionUserConfig_Variables>({
         endpoint: API_ENDPOINTS.EXTENSIONS.SaveExtensionUserConfig.endpoint,
         method: API_ENDPOINTS.EXTENSIONS.SaveExtensionUserConfig.methods[0],
@@ -242,7 +242,7 @@ export function useListDevelopmentModeExtensions() {
 
 export function useReloadExternalExtension() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, ReloadExternalExtension_Variables>({
         endpoint: API_ENDPOINTS.EXTENSIONS.ReloadExternalExtension.endpoint,
         method: API_ENDPOINTS.EXTENSIONS.ReloadExternalExtension.methods[0],
@@ -290,7 +290,7 @@ export function useSetPluginSettingsPinnedTrays() {
 
 export function useGrantPluginPermissions() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, GrantPluginPermissions_Variables>({
         endpoint: API_ENDPOINTS.EXTENSIONS.GrantPluginPermissions.endpoint,
         method: API_ENDPOINTS.EXTENSIONS.GrantPluginPermissions.methods[0],

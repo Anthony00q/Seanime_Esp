@@ -20,7 +20,7 @@ import { useAtomValue } from "jotai/react"
 import React from "react"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 import { BiLinkExternal } from "react-icons/bi"
 import { FiSearch } from "react-icons/fi"
 
@@ -41,7 +41,7 @@ export function OnlinestreamManualMappingModal(props: OnlinestreamManualMappingM
         <>
             <Modal
                 title={t("onlinestream.manualMatch")}
-                description="Emparejar este anime con un resultado de búsqueda del proveedor."
+                description={t("misc.onlinestream.manualMatchDesc")}
                 trigger={children}
                 contentClass="max-w-4xl"
             >
@@ -87,7 +87,7 @@ function Content({ entry }: { entry: Anime_Entry }) {
     const [animeId, setAnimeId] = React.useState<string | null>(null)
     const confirmMatch = useConfirmationDialog({
         title: t("onlinestream.manualMatch"),
-        description: "¿Estás seguro de que quieres emparejar este anime con el resultado de búsqueda?",
+        description: t("misc.onlinestream.confirmMatchDesc"),
         actionText: "Confirm",
         actionIntent: "success",
         onConfirm: () => {

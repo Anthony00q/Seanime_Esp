@@ -21,7 +21,7 @@ type ExtensionCodeModalProps = {
 }
 
 export function ExtensionCodeModal(props: ExtensionCodeModalProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return (
         <Modal
@@ -45,7 +45,7 @@ function Content(props: ExtensionCodeModalProps) {
     } = props
 
     const [code, setCode] = React.useState("")
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const { data: payload, isLoading } = useGetExtensionPayload(extension.id)
 

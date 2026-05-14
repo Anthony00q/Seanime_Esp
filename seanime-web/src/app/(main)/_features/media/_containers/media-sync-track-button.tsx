@@ -6,7 +6,7 @@ import React from "react"
 import { MdOutlineDownloadForOffline, MdOutlineOfflinePin } from "react-icons/md"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type MediaSyncTrackButtonProps = {
     mediaId: number

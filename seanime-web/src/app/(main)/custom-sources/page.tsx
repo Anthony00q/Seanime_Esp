@@ -22,7 +22,7 @@ import { FiSearch } from "react-icons/fi"
 import { MdDataSaverOn } from "react-icons/md"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export default function Page() {
 

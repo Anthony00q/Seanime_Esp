@@ -17,7 +17,7 @@ import { BiChevronRight } from "react-icons/bi"
 import { FaSquareRss } from "react-icons/fa6"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export type AutoDownloaderRuleItemProps = {
     rule: Anime_AutoDownloaderRule

@@ -35,7 +35,7 @@ import { __issueReport_overlayOpenAtom } from "../../_features/issue-report/issu
 import { SettingsCard } from "../_components/settings-card"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type LogsSettingsProps = {}
 

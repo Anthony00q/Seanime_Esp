@@ -48,7 +48,7 @@ export function useGetRawAnimeCollectionTags() {
 
 export function useRefreshAnimeCollection() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<AL_AnimeCollection>({
         endpoint: API_ENDPOINTS.ANILIST.GetAnimeCollection.endpoint,
@@ -73,7 +73,7 @@ export function useRefreshAnimeCollection() {
 
 export function useEditAnilistListEntry(id: Nullish<string | number>, type: "anime" | "manga") {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, EditAnilistListEntry_Variables>({
         endpoint: API_ENDPOINTS.ANILIST.EditAnilistListEntry.endpoint,
@@ -110,7 +110,7 @@ export function useGetAnilistAnimeDetails(id: Nullish<number | string>) {
 
 export function useDeleteAnilistListEntry(id: Nullish<string | number>, type: "anime" | "manga", onSuccess: () => void) {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, DeleteAnilistListEntry_Variables>({
         endpoint: API_ENDPOINTS.ANILIST.DeleteAnilistListEntry.endpoint,

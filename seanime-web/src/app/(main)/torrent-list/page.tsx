@@ -21,7 +21,7 @@ import { __isElectronDesktop__ } from "@/types/constants"
 import { createTranslator } from "@/locales"
 import capitalize from "lodash/capitalize"
 
-const t = createTranslator("es")
+const t = createTranslator()
 import React from "react"
 import { BiDownArrow, BiLinkExternal, BiPause, BiPlay, BiStop, BiTime, BiTrash, BiUpArrow } from "react-icons/bi"
 import { LuListCheck } from "react-icons/lu"

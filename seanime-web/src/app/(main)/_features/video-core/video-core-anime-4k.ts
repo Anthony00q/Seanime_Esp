@@ -13,7 +13,7 @@ import { atomWithStorage } from "jotai/utils"
 import React from "react"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const log = logger("VIDEO CORE ANIME 4K")
 

@@ -15,7 +15,7 @@ import { BiHeart, BiHide } from "react-icons/bi"
 import { LuTrophy } from "react-icons/lu"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type MediaEntryGenresListProps = {
     genres?: Array<string | null> | null | undefined

@@ -6,7 +6,7 @@ import { createTranslator } from "@/locales"
 import React from "react"
 import { SiAnilist } from "react-icons/si"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type Props = {
     isPending: boolean

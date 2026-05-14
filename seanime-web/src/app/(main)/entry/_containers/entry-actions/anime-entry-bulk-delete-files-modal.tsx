@@ -18,7 +18,7 @@ export const __bulkDeleteFilesModalIsOpenAtom = atom(false)
 
 export function AnimeEntryBulkDeleteFilesModal({ entry }: AnimeEntryBulkDeleteFilesModalProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [open, setOpen] = useAtom(__bulkDeleteFilesModalIsOpenAtom)
 
     return (
@@ -38,7 +38,7 @@ export function AnimeEntryBulkDeleteFilesModal({ entry }: AnimeEntryBulkDeleteFi
 
 function Content({ entry }: { entry: Anime_Entry }) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [open, setOpen] = useAtom(__bulkDeleteFilesModalIsOpenAtom)
 
     const [filepaths, setFilepaths] = React.useState<string[]>([])

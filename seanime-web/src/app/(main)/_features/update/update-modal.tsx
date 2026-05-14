@@ -32,7 +32,7 @@ export const updateModalOpenAtom = atom<boolean>(false)
 const downloaderOpenAtom = atom<boolean>(false)
 
 export function UpdateModal(props: UpdateModalProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const serverStatus = useServerStatus()
     const [updateModalOpen, setUpdateModalOpen] = useAtom(updateModalOpenAtom)
     const [downloaderOpen, setDownloaderOpen] = useAtom(downloaderOpenAtom)
@@ -146,7 +146,7 @@ type DownloaderProps = {
 }
 
 export function Downloader(props: DownloaderProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const [downloaderOpen, setDownloaderOpen] = useAtom(downloaderOpenAtom)
     const [destination, setDestination] = React.useState<string>("")

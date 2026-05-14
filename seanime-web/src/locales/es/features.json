@@ -212,7 +212,7 @@
     "trendingManhua": "Manhua en tendencia",
     "searchManga": "Buscar manga"
   },
-  "sorting": {
+    "sorting": {
     "trending": "En tendencia",
     "highestScore": "Puntuación más alta",
     "lowestScore": "Puntuación más baja",
@@ -245,7 +245,13 @@
     "mostEpisodesShort": "N.º de episodios",
     "mostChaptersShort": "N.º de capítulos",
     "highestEpisodeNumber": "Número de episodio más alto",
-    "lowestEpisodeNumber": "Número de episodio más bajo"
+    "lowestEpisodeNumber": "Número de episodio más bajo",
+    "bestRatedShort": "mejor valorado",
+    "trendingShort": "en tendencia",
+    "popularShort": "popular",
+    "mostRecentShort": "más reciente",
+    "mostEpisodesShortTitle": "con más episodios",
+    "mostChaptersShortTitle": "con más capítulos"
   },
   "search": {
     "highestRated": "Mejor valorados",
@@ -258,6 +264,7 @@
     "manga": "manga",
     "from": "de",
     "mostLikedShows": "Series más gustadas",
+    "mostLikedAnime": "Anime más gustado",
     "mostLikedManga": "Manga más gustado",
     "discoverSeries": "Descubrir series",
     "customSources": "Fuentes personalizadas"
