@@ -112,14 +112,14 @@ export default function Page() {
                 <div className="flex items-center gap-4">
                     <SeaLink href={`/search`}>
                         <Button leftIcon={<AiOutlineArrowLeft />} rounded intent="gray-outline" size="md">
-                            Search
+                            {t("misc.customSources.search")}
                         </Button>
                     </SeaLink>
                     {/*<h3>Discover</h3>*/}
                 </div>
                 <AppLayoutStack>
                     <h3 data-search-page-title className="text-center xl:text-left">
-                        Custom source{provider ? `: ${customSource?.name ?? ""}` : "s"}
+                        {provider ? t("misc.customSources.titleWithProvider", { name: customSource?.name ?? "" }) : t("misc.customSources.title")}
                     </h3>
 
                     <div className="flex gap-2">
@@ -156,7 +156,7 @@ export default function Page() {
                         />
                         <TextInput
                             leftIcon={<FiSearch />}
-                            placeholder="Search titles..."
+                            placeholder={t("misc.customSources.searchTitles")}
                             className="w-full"
                             value={searchValue}
                             onValueChange={setSearchValue}
@@ -169,12 +169,12 @@ export default function Page() {
                             onClick={handleSearch}
                             loading={isLoading}
                         >
-                            Search
+                            {t("misc.customSources.search")}
                         </Button>
                     </div>
 
                     {!provider && <div className="text-center py-8 text-[--muted]">
-                        Select a source to view its content
+                        {t("misc.customSources.selectSource")}
                     </div>}
 
                     {provider && <CustomSourceResults
@@ -274,8 +274,8 @@ function CustomSourceResults({
 
     if (error) {
         return (
-            <LuffyError title="Failed to load content">
-                <p>Error loading content from {provider}</p>
+            <LuffyError title={t("misc.customSources.failedToLoad")}>
+                <p>{t("misc.customSources.errorLoading", { provider })}</p>
             </LuffyError>
         )
     }
@@ -290,8 +290,8 @@ function CustomSourceResults({
 
     if (!media?.length) {
         return (
-            <LuffyError title="No results found">
-                <p>No {params.type} found for your search criteria</p>
+            <LuffyError title={t("misc.customSources.noResults")}>
+                <p>{t("misc.customSources.noResultsDesc", { type: params.type })}</p>
             </LuffyError>
         )
     }
@@ -300,7 +300,7 @@ function CustomSourceResults({
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <h4 className="text-lg font-medium">
-                    {media.length} result{media.length === 1 ? "" : "s"}
+                    {t("misc.customSources.resultCount", { count: media.length })}
                 </h4>
                 <div className="flex items-center gap-4">
                     <Select
@@ -312,7 +312,7 @@ function CustomSourceResults({
                         })}
                         options={[20, 50, 100].map(size => ({
                             value: String(size),
-                            label: `${size} per page`,
+                            label: t("misc.customSources.perPage", { size }),
                         }))}
                         fieldClass="w-auto"
                         className="w-auto"
@@ -320,7 +320,7 @@ function CustomSourceResults({
                     />
                     {totalPages > 1 && (
                         <div className="text-sm text-[--muted]">
-                            Page {currentPage} of {totalPages}
+                            {t("misc.customSources.pageOf", { current: currentPage, total: totalPages })}
                         </div>
                     )}
                 </div>

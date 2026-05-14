@@ -20,7 +20,8 @@
       "skip": "Omitir",
       "done": "Listo",
       "previous": "Anterior",
-      "loadMore": "Cargar más"
+      "loadMore": "Cargar más",
+      "ok": "Aceptar"
     },
     "labels": {
       "name": "Nombre",

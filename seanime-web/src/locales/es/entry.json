@@ -102,7 +102,41 @@
       "usePreviousBatch": "Usar lote anterior",
       "addProviders": "Añadir proveedores",
       "noProvidersFound": "No se encontraron proveedores",
-      "additionalProviders": "Proveedores adicionales"
+      "additionalProviders": "Proveedores adicionales",
+      "smartSearch": "Búsqueda inteligente",
+      "smartSearchDesc": "Búsqueda automatizada basada en parámetros dados.",
+      "notSupported": "Este proveedor no admite búsqueda inteligente.",
+      "searchAcrossProviders": "Buscar entre proveedores",
+      "searchAcrossDesc": "Ejecuta la misma búsqueda en proveedores adicionales guardados.",
+      "episodeNumber": "Número de episodio",
+      "batches": "Lotes",
+      "resolution": "Resolución",
+      "bestReleases": "Mejores lanzamientos",
+      "refineTitle": "Refinar el título ({title})",
+      "search": "Buscar",
+      "noExtensionSelected": "Ninguna extensión seleccionada",
+      "addExtensions": "Añadir extensiones",
+      "selectTorrentToStream": "Selecciona un torrent para transmitir",
+      "save": "Guardar",
+      "adultContentNotSupported": "Este proveedor no admite contenido para adultos",
+      "smartSearchNotSupported": "Este proveedor no admite búsqueda inteligente",
+      "bestReleaseNotSupported": "Este proveedor no admite búsqueda de mejores lanzamientos",
+      "previousSelection": "Selección anterior"
+    },
+    "torrentDownload": {
+      "chooseDestination": "Elige el destino",
+      "downloadWithDebrid": "Descargar con servicio Debrid",
+      "destination": "Destino",
+      "downloadAll": "Descargar todo",
+      "download": "Descargar",
+      "downloadWithClient": "Descargar con cliente torrent",
+      "downloadTorrentFiles": "Descargar archivos '.torrent'",
+      "chooseFiles": "Elegir archivos para descargar",
+      "downloadMissingEpisodes": "Descargar episodios faltantes",
+      "downloadSelectedFiles": "Descargar archivos seleccionados",
+      "filesSelected": "{selected} de {total} archivos seleccionados",
+      "selectFiles": "Seleccionar archivos para descargar",
+      "openInBrowser": "Abrir en el navegador"
     },
     "torrentStream": {
       "title": "Streaming por torrent",
@@ -129,7 +163,15 @@
       "addingTorrent": "Añadiendo torrent \"{name}\"",
       "checkingTorrent": "Verificando torrent \"{name}\"",
       "gettingMetadata": "Obteniendo metadatos...",
-      "sendingStream": "Enviando stream al reproductor..."
+      "sendingStream": "Enviando stream al reproductor...",
+      "autoSelectFile": "Auto seleccionar archivo",
+      "autoSelectFileDesc": "El archivo del episodio se seleccionará automáticamente del lote de torrents elegido",
+      "autoSelectingFromBatch": "Auto seleccionando del torrent anterior",
+      "noMetadataAvailable": "No hay información de metadatos disponible para este anime. Puede que necesites seleccionar manualmente el archivo para transmitir.",
+      "disablePreviousTorrent": "Desactivar torrent anterior",
+      "disablePreviousTorrentDesc": "Desactiva el uso del lote anterior guardado por ahora, o elimina el historial guardado por completo.",
+      "deleteHistory": "Eliminar historial",
+      "disableOnly": "Solo desactivar"
     },
     "debridStream": {
       "title": "Streaming por Debrid",
@@ -142,7 +184,9 @@
       "fileSelection": "Selección de archivos",
       "selectFilesToStream": "Seleccionar archivos para stream",
       "noFilesAvailable": "No hay archivos disponibles",
-      "selectAtLeastOne": "Selecciona al menos un archivo"
+      "selectAtLeastOne": "Selecciona al menos un archivo",
+      "autoSelectFile": "Auto seleccionar archivo",
+      "autoSelectFileDesc": "El archivo del episodio se seleccionará automáticamente del lote de torrents elegido"
     },
     "rankings": {
       "allTimeHighestRated": "Mejor valorada{format}",
