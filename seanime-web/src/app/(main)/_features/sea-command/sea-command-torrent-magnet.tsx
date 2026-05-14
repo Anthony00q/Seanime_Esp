@@ -19,6 +19,7 @@ import { __torrentSearch_fileSelectionTorrentAtom } from "@/app/(main)/entry/_co
 import { __torrentStream_autoSelectFileAtom } from "@/app/(main)/entry/_containers/torrent-stream/torrent-stream-page"
 import { CommandGroup, CommandItem } from "@/components/ui/command"
 import { useDebounce } from "@/hooks/use-debounce"
+import { createTranslator } from "@/locales"
 import { useRouter } from "@/lib/navigation"
 import { TORRENT_CLIENT } from "@/lib/server/settings.ts"
 import { atom } from "jotai"
@@ -131,6 +132,8 @@ export function SeaCommandTorrentMagnet() {
     const setTorrentSearchFileSelectionTorrent = useSetAtom(__torrentSearch_fileSelectionTorrentAtom)
     const { setTorrentSearchStreamEpisode } = useTorrentSearchSelectedStreamEpisode()
 
+
+    const t = createTranslator("es")
 
     const searchInput = args.join(" ").trim()
     const debouncedSearch = useDebounce(searchInput, 500)
@@ -275,7 +278,7 @@ export function SeaCommandTorrentMagnet() {
                 <>
                     <CommandHelperText
                         command="/magnet [magnet link]"
-                        description="Paste a magnet link to start streaming or downloading."
+                        description={t("seaCommand.pasteMagnetDesc")}
                         show={true}
                     />
                 </>
@@ -283,7 +286,7 @@ export function SeaCommandTorrentMagnet() {
                 <>
 
                     {step === "magnet" && (
-                        <CommandGroup heading="Paste a magnet link">
+                        <CommandGroup heading={t("seaCommand.pasteMagnetHeading")}>
                             {isValidMagnet ? <CommandItem
                                 onSelect={() => {
                                     setStep("select-anime")
@@ -291,9 +294,9 @@ export function SeaCommandTorrentMagnet() {
                                     setInput("/magnet ")
                                 }}
                             >
-                                Continue
+                                {t("seaCommand.continue")}
                             </CommandItem> : <p className="px-2 pb-2 text-sm text-[--muted]">
-                                Paste a valid magnet link to continue.
+                                {t("seaCommand.pasteValidMagnet")}
                             </p>}
                             <CommandItem
                                 onSelect={() => {
@@ -301,18 +304,18 @@ export function SeaCommandTorrentMagnet() {
                                     setInput("/magnet ")
                                 }}
                             >
-                                Cancel
+                                {t("seaCommand.cancel")}
                             </CommandItem>
                         </CommandGroup>
                     )}
 
                     {step === "select-anime" && (
-                        <CommandGroup heading="Select an anime">
+                        <CommandGroup heading={t("seaCommand.selectAnime")}>
                             <div className="px-2 pb-2 space-y-1">
                                 {magnet && (
                                     <div className="flex items-center gap-2 line-clamp-2">
                                         <span className="text-sm text-[--muted] flex-none">
-                                            Magnet link:
+                                            {t("seaCommand.magnetLink")}
                                         </span>
                                         <span className="text-sm text-[--foreground]">
                                             {magnet}
@@ -326,9 +329,9 @@ export function SeaCommandTorrentMagnet() {
                                     setInput(`/magnet ${magnet ?? ""}`)
                                 }}
                             >
-                                Back
+                                {t("seaCommand.back")}
                             </CommandItem>
-                            {isAnimeLoading && <p className="px-2 pb-2 text-sm text-[--muted]">Loading your anime...</p>}
+                            {isAnimeLoading && <p className="px-2 pb-2 text-sm text-[--muted]">{t("seaCommand.loadingAnime")}</p>}
                             {filteredAnime.map(n => (
                                 <CommandItem
                                     key={n.id}
@@ -346,12 +349,12 @@ export function SeaCommandTorrentMagnet() {
                     )}
 
                     {step === "episode" && (
-                        <CommandGroup heading="Select an episode">
+                        <CommandGroup heading={t("seaCommand.selectEpisode")}>
                             <div className="px-2 pb-2 space-y-1">
                                 {magnet && (
                                     <div className="flex items-center gap-2 line-clamp-2">
                                         <span className="text-sm text-[--muted] flex-none">
-                                            Magnet link:
+                                            {t("seaCommand.magnetLink")}
                                         </span>
                                         <span className="text-sm text-[--foreground]">
                                             {magnet}
@@ -367,7 +370,7 @@ export function SeaCommandTorrentMagnet() {
                                     setInput("/magnet ")
                                 }}
                             >
-                                Back
+                                {t("seaCommand.back")}
                             </CommandItem>
 
                             {/*{entry?.media && (*/}
@@ -382,11 +385,11 @@ export function SeaCommandTorrentMagnet() {
                             {/*)}*/}
 
                             {(isEntryLoading || isEpisodeLoading) && <p className="px-2 pb-2 text-sm text-[--muted]">
-                                Loading episodes...
+                                {t("seaCommand.loadingEpisodes")}
                             </p>}
 
                             {!isEntryLoading && !isEpisodeLoading && filteredEpisodes.length === 0 && (
-                                <p className="px-2 pb-2 text-sm text-[--muted]">No episodes found.</p>
+                                <p className="px-2 pb-2 text-sm text-[--muted]">{t("seaCommand.noEpisodesFound")}</p>
                             )}
 
                             {filteredEpisodes.map(episode => (
@@ -410,12 +413,12 @@ export function SeaCommandTorrentMagnet() {
                     )}
 
                     {step === "action" && (
-                        <CommandGroup heading="Choose an action">
+                        <CommandGroup heading={t("seaCommand.chooseAction")}>
                             <div className="px-2 pb-2 space-y-1">
                                 {magnet && (
                                     <div className="flex items-center gap-2 line-clamp-2">
                                         <span className="text-sm text-[--muted] flex-none">
-                                            Magnet link:
+                                            {t("seaCommand.magnetLink")}
                                         </span>
                                         <span className="text-sm text-[--foreground]">
                                             {magnet}
@@ -431,10 +434,10 @@ export function SeaCommandTorrentMagnet() {
                                     <div className="text-[--muted]">{selectedEpisode.displayTitle}</div>
                                 )}
                                 {!canStreamSelectedEpisode && (
-                                    <div className="text-[--muted]">Streaming is unavailable for this episode because AniDB mapping is missing.</div>
+                                    <div className="text-[--muted]">{t("seaCommand.streamingUnavailableNoAnidb")}</div>
                                 )}
                                 {!canDownload && serverStatus?.settings?.torrent?.defaultTorrentClient !== TORRENT_CLIENT.NONE && (
-                                    <div className="text-[--muted]">Download is unavailable because no default destination could be resolved.</div>
+                                    <div className="text-[--muted]">{t("seaCommand.downloadUnavailableNoDest")}</div>
                                 )}
                             </div>
                             <CommandItem
@@ -443,25 +446,25 @@ export function SeaCommandTorrentMagnet() {
                                     setInput("/magnet ")
                                 }}
                             >
-                                Back
+                                {t("seaCommand.back")}
                             </CommandItem>
                             {hasTorrentStreaming && <CommandItem
                                 onSelect={handleStartTorrentStreaming}
                                 disabled={!canStreamSelectedEpisode}
                             >
-                                {torrentStreamAutoSelectFile ? "Stream" : "Stream and pick a file"}
+                                {torrentStreamAutoSelectFile ? t("seaCommand.stream") : t("seaCommand.streamPickFile")}
                             </CommandItem>}
                             {hasDebridService && <CommandItem
                                 onSelect={handleStartDebridStreaming}
                                 disabled={!canStreamSelectedEpisode}
                             >
-                                {debridStreamAutoSelectFile ? "Stream with Debrid" : "Stream with Debrid and pick a file"}
+                                {debridStreamAutoSelectFile ? t("seaCommand.streamWithDebrid") : t("seaCommand.streamWithDebridPickFile")}
                             </CommandItem>}
                             {serverStatus?.settings?.torrent?.defaultTorrentClient !== TORRENT_CLIENT.NONE && <CommandItem
                                 onSelect={handleDownload}
                                 disabled={!canDownload}
                             >
-                                Download
+                                {t("seaCommand.download")}
                             </CommandItem>}
                         </CommandGroup>
                     )}

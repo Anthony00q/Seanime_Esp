@@ -1,6 +1,7 @@
 import { CommandHelperText } from "@/app/(main)/_features/sea-command/_components/command-utils"
 import { useSeaCommandContext } from "@/app/(main)/_features/sea-command/sea-command"
 import { CommandGroup, CommandItem, CommandShortcut } from "@/components/ui/command"
+import { createTranslator } from "@/locales"
 import { usePathname, useSearchParams } from "@/lib/navigation"
 import { useAnimeSpoilerActions, useAnimeSpoilerOverride } from "@/lib/theme/anime-spoilers"
 import React from "react"
@@ -32,16 +33,18 @@ export function SeaCommandSpoilers() {
         return null
     }
 
+    const t = createTranslator("es")
+
     const query = args[0]?.toLowerCase() || ""
     const items = [
         {
             value: "on",
-            description: "rehide spoilers for this anime",
+            description: t("seaCommand.rehideSpoilers"),
             enabled: true,
         },
         {
             value: "off",
-            description: "unhide spoilers for this anime",
+            description: t("seaCommand.unhideSpoilers"),
             enabled: false,
         },
     ]
@@ -56,16 +59,16 @@ export function SeaCommandSpoilers() {
         <>
             <CommandHelperText
                 command="/spoilers off"
-                description="unhide spoilers for the current anime"
+                description={t("seaCommand.unhideSpoilers")}
                 show={query === ""}
             />
             <CommandHelperText
                 command="/spoilers on"
-                description="rehide spoilers for the current anime"
+                description={t("seaCommand.rehideSpoilers")}
                 show={query === ""}
             />
 
-            <CommandGroup heading="Spoilers">
+            <CommandGroup heading={t("seaCommand.headingSpoilers")}>
                 {renderItems.map(item => (
                     <CommandItem
                         key={item.value}
@@ -78,7 +81,7 @@ export function SeaCommandSpoilers() {
                         }}
                     >
                         <span className="tracking-widest text-sm">/spoilers {item.value}</span>
-                        <CommandShortcut className="text-[--muted]">{currentValue === item.value ? "current" : item.description}</CommandShortcut>
+                        <CommandShortcut className="text-[--muted]">{currentValue === item.value ? t("seaCommand.current") : item.description}</CommandShortcut>
                     </CommandItem>
                 ))}
             </CommandGroup>

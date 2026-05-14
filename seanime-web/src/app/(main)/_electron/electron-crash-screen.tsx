@@ -1,7 +1,9 @@
 import { Alert } from "@/components/ui/alert"
+import { createTranslator } from "@/locales"
 import React from "react"
 
 export function ElectronCrashScreenError() {
+    const t = createTranslator("es")
     const [msg, setMsg] = React.useState("")
 
     React.useEffect(() => {
@@ -20,12 +22,12 @@ export function ElectronCrashScreenError() {
     return (
         <div className="px-4 space-y-4">
             <p>
-                {msg || "An error occurred. Closing in 10 seconds."}
+                {msg || t("error.anErrorOccurred")}
             </p>
 
             <Alert
                 intent="warning"
-                description="Make sure another instance of Seanime is not running or check the logs for more details."
+                description={t("error.anotherInstance")}
             />
         </div>
     )
