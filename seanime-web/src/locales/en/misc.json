@@ -1,0 +1,665 @@
+{
+  "status": {
+    "current": "Watching",
+    "repeating": "Rewatching",
+    "planning": "Planning",
+    "paused": "Paused",
+    "completed": "Completed",
+    "dropped": "Dropped",
+    "currentManga": "Reading",
+    "currentlyWatching": "Currently watching",
+    "currentlyReading": "Currently reading",
+    "continueReading": "Continue reading",
+    "startReading": "Start reading",
+    "rewatch": "Rewatched",
+    "rewatchPlural": "Rewatches",
+    "reread": "Reread",
+    "rereadPlural": "Rereads",
+    "allLists": "All lists",
+    "lists": "Lists",
+    "all": "All"
+  },
+  "shared": {
+    "pageNotFoundTitle": "Page Not Found",
+    "pageNotFound": "The page you are looking for does not exist.",
+    "goHome": "Go Home"
+  },
+  "continueWatching": {
+    "heading": "Continue Watching",
+    "title": "Continue watching"
+  },
+  "progressTracking": {
+    "buttonLabel": "Currently watching",
+    "playNextEpisode": "Play next episode",
+    "stopPlaylist": "Play next",
+    "stopPlaylistDesc": "Are you sure you want to stop the playlist? It will be deleted.",
+    "progressUpdated": "Progress updated",
+    "autoUpdateInfo": "Your progress will be updated automatically",
+    "updateProgressNow": "Update progress now",
+    "playingExternally": "Playing externally",
+    "stop": "Stop",
+    "openExternalPlayer": "Open in external player",
+    "playlistTitle": "Playlist",
+    "remainingEpisodes": "{count} episode after this",
+    "remainingEpisodes_plural": "{count} episodes after this",
+    "nextLabel": "Next",
+    "playNext": "Play next",
+    "playerClosed": "Player closed"
+  },
+  "anilistStats": {
+    "anime": "Anime",
+    "totalAnime": "Total anime",
+    "watchTime": "Watch time",
+    "hours": "hours",
+    "averageScore": "Average score",
+    "animeThisYear": "Anime watched this year",
+    "animeLastYear": "Anime watched last year",
+    "averageScoreThisYear": "Average score this year",
+    "formats": "Formats",
+    "total": "Total",
+    "hoursWatched": "Hours watched",
+    "statuses": "Statuses",
+    "genres": "Genres",
+    "count": "Count",
+    "favoriteGenres": "Favorite genres",
+    "years": "Years",
+    "statistics": "Statistics",
+    "animePerReleaseYear": "Anime watched per release year",
+    "manga": "Manga",
+    "totalManga": "Total manga",
+    "totalChapters": "Total chapters",
+    "mangaThisYear": "Manga read this year",
+    "mangaLastYear": "Manga read last year",
+    "chaptersRead": "Chapters read",
+    "mangaPerReleaseYear": "Manga read per release year"
+  },
+  "playlistEditor": {
+    "addEpisodes": "Add episodes",
+    "notInLibraryOrWatching": "This anime is not in your library or currently watching collection.",
+    "selectAnime": "Select an anime",
+    "episodeAlreadyAdded": "Episode already added",
+    "episodeAdded": "Episode added to playlist",
+    "maxEpisodes": "You cannot add more than 20 episodes to a playlist"
+  },
+  "autoDownloader": {
+    "title": "Auto Downloader",
+    "description": "Automatically download new episodes when they are released.",
+    "allCurrentlyWatching": "All currently watching",
+    "allUpcoming": "All upcoming",
+    "errorOccurred": "An error occurred, verify the fields.",
+    "intervalChanged15Min": "Interval changed to at least 15 minutes",
+    "youMustSpecifyEpisode": "You must specify at least one episode number",
+    "profileName": "Name",
+    "scoreValue": "Score",
+    "tabs": {
+      "rules": "Rules",
+      "profiles": "Profiles",
+      "queue": "Queue",
+      "settings": "Settings"
+    },
+    "rules": {
+      "description": "Rules allow you to download new episodes on a schedule based on the parameters you set.",
+      "newRule": "New rule",
+      "oneSeries": "One series",
+      "multipleSeries": "Multiple series at once",
+      "checkRssFeed": "Check RSS feed",
+      "removeNoLongerAiring": "Remove no longer airing media",
+      "removeNoLongerAiringTitle": "Remove no longer airing media",
+      "removeNoLongerAiringDesc": "This action will remove all rules for media that are no longer airing (finished). Are you sure you want to continue?",
+      "noRules": "No rules",
+      "ruleFor": "Rule for",
+      "profiles": "Profiles",
+      "noLongerAiring": "No longer airing",
+      "notInLibrary": "This anime is not in your library",
+      "editRule": "Edit rule",
+      "deleteRule": "Delete this rule",
+      "recentReleases": "Recent releases",
+      "selectEpisodes": "Select episodes"
+    },
+    "queue": {
+      "description": "The queue shows items waiting to be downloaded or scanned.",
+      "empty": "Queue is empty",
+      "fileDownloaded": "File downloaded",
+      "manualActionRequired": "Manual action required",
+      "delayed": "Delayed",
+      "for": "for",
+      "notYetScanned": "Not yet scanned",
+      "download": "Download",
+      "remove": "Remove",
+      "added": "Added"
+    },
+    "profiles": {
+      "description": "Profiles allow you to define a set of filters that can be applied to your rules.",
+      "newProfile": "New profile",
+      "noProfiles": "No profiles have been created yet.",
+      "createProfile": "Create profile",
+      "editProfile": "Edit profile: {name}",
+      "deleteProfile": "Delete profile",
+      "deleteProfileDesc": "Are you sure you want to delete the profile \"{name}\"? This action cannot be undone.",
+      "delete": "Delete",
+      "edit": "Edit",
+      "global": "Global",
+      "globalHelp": "Apply this profile to all rules automatically",
+      "conditions": "conditions"
+    },
+    "ruleForm": {
+      "createRule": "Create a new rule",
+      "noMediaFound": "No media found in your library",
+      "mediaNotInLibrary": "This media is not in your library",
+      "enabled": "Enabled",
+      "anime": "Anime",
+      "showingAiringOnly": "Showing airing only",
+      "showingAiringUpcoming": "Showing airing and upcoming",
+      "showingAll": "Showing all",
+      "noMediaFoundCombobox": "No media found",
+      "noLongerAiring": "No longer airing",
+      "destination": "Destination",
+      "destinationHelp": "Folder in your local library where files will be saved",
+      "title": "Title",
+      "comparisonTitle": "Comparison title",
+      "comparisonTitleHelp": "Used for comparison purposes. When using 'Exact match', use a title that is likely to be used in a torrent name.",
+      "typeOfSearch": "Type of search",
+      "mostLikely": "Most likely",
+      "mostLikelyDesc": "The torrent name will be parsed and examined using a matching algorithm",
+      "exactMatch": "Exact match",
+      "exactMatchDesc": "The torrent name must contain the comparison title you set (case insensitive)",
+      "willAlsoUseTitles": "Will also use these titles:",
+      "episodes": "Episodes",
+      "episodesToLookFor": "Episodes to look for",
+      "recentReleases": "Recent releases",
+      "recentReleasesDesc": "New episodes you haven't watched yet",
+      "select": "Select",
+      "selectDesc": "Only specified episodes that are not in your library",
+      "episodeNumbers": "Episode numbers",
+      "episodeNumberOffset": "Absolute episode number offset",
+      "episodeNumberOffsetHelp": "For example, if the release group starts numbering at 13 instead of 1, set this to 12.",
+      "constraints": "Constraints",
+      "minSeeders": "Minimum seeders",
+      "minSize": "Min size",
+      "maxSize": "Max size",
+      "runSimulation": "Run simulation",
+      "result": "Result",
+      "simulationResult": "Simulation results for rule \"{title}\" (ID: {id})",
+      "checkServerLogs": "Check the server logs for more details.",
+      "create": "Create",
+      "update": "Update"
+    },
+    "batchRule": {
+      "title": "Create new rules",
+      "description": "Create multiple rules at once. Each rule will be created with the same parameters, except for the destination folder. By default, the episode type will be \"Recent releases\".",
+      "and": "And"
+    },
+    "profileForm": {
+      "profileName": "Profile name",
+      "global": "Global",
+      "globalHelp": "Apply this profile to all rules automatically",
+      "releaseGroups": "Release groups",
+      "releaseGroupsHelp": "List of release groups to look for. If empty, any release group will be accepted. Rules can override this.",
+      "addReleaseGroup": "Add release group",
+      "resolutions": "Resolutions",
+      "resolutionsHelp": "Drag and drop to reorder. The first matching resolution will be chosen. Rules can override this.",
+      "addResolution": "Add resolution",
+      "conditions": "Conditions",
+      "conditionsHelp": "Add conditions to filter torrents or adjust their score.",
+      "addCondition": "Add condition",
+      "thresholds": "Thresholds",
+      "minimumScore": "Minimum score",
+      "minimumScoreHelp": "Torrents with a score below this will be rejected",
+      "minSeeders": "Minimum seeders",
+      "minSize": "Min size",
+      "maxSize": "Max size",
+      "providers": "Providers",
+      "providersHelp": "Select specific providers to search. If empty, the default provider will be used.",
+      "selectProviders": "Select providers",
+      "noProvidersFound": "No providers found",
+      "delay": "Delay",
+      "delayHelp": "Wait for better releases before downloading. The delay period will begin once the first match is found. If a profile with a higher delay is assigned to a rule or applied globally, this will be ignored.",
+      "delayMinutes": "Delay",
+      "delayMinutesHelp": "Wait this many minutes before downloading",
+      "skipDelayScore": "Skip delay if score exceeds",
+      "skipDelayScoreHelp": "Skip the delay if the torrent score exceeds this value",
+      "update": "Update",
+      "create": "Create",
+      "action": "Action:",
+      "score": "Score",
+      "block": "Block",
+      "require": "Require",
+      "regex": "Regex",
+      "regexHelp": "Comma-separated case-insensitive values or regex pattern"
+    },
+    "settings": {
+      "enabled": "Enabled",
+      "useDebrid": "Use Debrid service",
+      "debridNotConfigured": "Auto Downloader disabled",
+      "debridNotConfiguredDesc": "Debrid service is not enabled or configured. Enable it in settings.",
+      "defaultProvider": "Default provider",
+      "noExtensionsFound": "No extensions found",
+      "downloadImmediately": "Download episodes immediately",
+      "downloadImmediatelyHelp": "If disabled, torrents will be added to the queue.",
+      "interval": "Interval",
+      "intervalHelp": "How often to look for new episodes.",
+      "every": "Every",
+      "minutes": "minutes",
+      "strictSeasonCheck": "Strict season check",
+      "strictSeasonCheckHelp": "If enabled, torrent titles and media must contain the same season number. This may lead to false negatives.",
+      "save": "Save"
+    }
+  },
+  "scanner": {
+    "title": "Library Scanner",
+    "heading": "Library",
+    "refreshLibrary": "Refresh library",
+    "scanning": "Scanning...",
+    "scanned": "Library scanned",
+    "localFiles": "Local files",
+    "skipLockedFiles": "Skip locked files",
+    "skipIgnoredFiles": "Skip ignored files",
+    "matchingData": "Matching data",
+    "anilistCollectionOnly": "My AniList collection only",
+    "anilistCollectionHelp": "Match local files with your AniList collection.",
+    "anilistCollectionMoreHelp": "This is faster but generally less accurate if your collection does not contain all the anime in the library.",
+    "enhancedMatching": "Enhanced matching method",
+    "useOfflineDatabase": "Use Anime Offline database",
+    "useAnilistAPI": "Use AniList API",
+    "offlineDatabaseHelp": "Match local files with the entire AniList catalog. Scanning will be slower.",
+    "anilistAPIHelp": "Slower for large libraries. Seanime will send one API request per anime title found in the library, which can lead to rate limits and slower scanning.",
+    "simulatedWarning": "Using this feature without an AniList account is not recommended if you have a large library, as it can lead to rate limits and slower scanning. Consider using an account for a better experience."
+  },
+  "libraryWatcher": {
+    "title": "Library watcher",
+    "description": "A change has been detected in your library, update your entries.",
+    "scanLibrary": "Scan your library",
+    "refreshing": "{progress}% Refreshing your library..."
+  },
+  "scanSummaries": {
+    "title": "Scan summaries",
+    "subtitle": "View the logs of your recent scans",
+    "noSummaries": "No scan summaries available",
+    "searchPlaceholder": "Search filenames...",
+    "successfullyScanned": "Seanime successfully scanned {count} media",
+    "notMatched": "file was not matched",
+    "notMatched_plural": "files were not matched",
+    "unmatchedFiles": "Unmatched files",
+    "mediaScanned": "Media scanned",
+    "presentInCollection": "is present in your AniList collection",
+    "notPresentInCollection": "is not present in your AniList collection",
+    "filesScanned": "files scanned",
+    "errorsFound": "Errors found",
+    "warningsFound": "Warnings found",
+    "viewScannerLogs": "View scanner logs"
+  },
+  "unmatchedFiles": {
+    "noSuggestions": "No suggestions found, try searching manually",
+    "filesIgnored": "Files ignored",
+    "matchSelection": "Match selection",
+    "selectAllFiles": "Select all files",
+    "fetchSuggestions": "Fetch suggestions",
+    "searchOnAnilist": "Search on AniList",
+    "ignoreSelection": "Ignore selection",
+    "selectAnime": "Select Anime",
+    "openOnAnilist": "Open on AniList"
+  },
+  "mediaCard": {
+    "preview": "Preview",
+    "addToPlaylist": "Add to playlist",
+    "openPage": "Open page",
+    "continue": "Continue",
+    "watch": "Watch"
+  },
+  "scanLogViewer": {
+    "title": "Scan Log Analyzer",
+    "loadFile": "Load scan log file",
+    "loadAnother": "Load another file",
+    "clearLog": "Clear log",
+    "overview": "Overview",
+    "parsedFiles": "Parsed files",
+    "matcher": "Matcher",
+    "hydrator": "Hydrator",
+    "issues": "Issues",
+    "totalFiles": "Total files",
+    "matched": "Matched",
+    "unmatched": "Unmatched",
+    "pipeline": "Pipeline",
+    "events": "Events",
+    "fileDiscovery": "File discovery",
+    "mediaFetch": "Media fetch",
+    "tokenIndex": "Token index",
+    "viewFullFlow": "View full flow",
+    "parsedData": "Parsed data",
+    "folderData": "Folder data",
+    "searchParsedFiles": "Search parsed files...",
+    "searchByFilenameOrMatch": "Search by filename or match...",
+    "searchByFilenameOrMediaId": "Search by filename or media ID...",
+    "searchIssues": "Search issues...",
+    "noIssuesFound": "No issues found",
+    "parsing": "Parsing",
+    "noLogsFound": "No logs found for this file in any phase.",
+    "matchedStatus": "Matched → ... (score: {score})",
+    "noMatchFound": "No match found",
+    "files": "files",
+    "logs": "logs",
+    "savingLog": "Saving log locally...",
+    "logSaved": "Log saved for future sessions",
+    "failedToSaveLog": "Failed to save log",
+    "restoredLog": "Previous scan log restored",
+    "failedToSaveLogStorage": "Failed to save log to browser storage",
+    "loadingSavedLogs": "Loading saved logs...",
+    "dropLogFile": "Drop log file",
+    "back": "Back"
+  },
+  "onlinestream": {
+    "watchPartyProviderNotInstalled": "Watch Party: The provider used by the host is not installed.",
+    "playbackErrorRetrying": "Playback error, trying another server...",
+    "findOtherProviders": "Find other providers",
+    "selectProvider": "Select provider",
+    "cache": "Cache",
+    "emptyCacheDescription": "Empty the cache if you are experiencing issues with the stream.",
+    "emptyStreamCache": "Empty stream cache",
+    "manualMatch": "Manual match",
+    "switchToSubs": "Switch to subtitles",
+    "switchToDub": "Switch to dub",
+    "switchToGridView": "Switch to grid view",
+    "switchToListView": "Switch to list view",
+    "noProviderSelected": "No provider selected",
+    "providerError": "Provider error",
+    "loadingStream": "Loading stream",
+    "completeMovie": "Complete movie",
+    "noWorkingProviders": "No working providers found",
+    "stoppedTryingProviders": "Stopped trying providers",
+    "startingWatchParty": "Starting online streaming watch party"
+  },
+  "torrentList": {
+    "failedToConnect": "Failed to connect to torrent client. Check settings and make sure it is running.",
+    "downloading": "Downloading",
+    "seeding": "Seeding",
+    "stopSeeding": "Stop seeding",
+    "filterByCategory": "Filter by category"
+  },
+  "debrid": {
+    "failedToConnect": "Failed to connect to Debrid service. Check settings."
+  },
+  "electron": {
+    "updateDownloadedReady": "Update downloaded and ready to install",
+    "updateError": "Update error: {error}",
+    "updateFoundDownloading": "Update found, downloading...",
+    "updateVersionNotFound": "Update version not found",
+    "macosUpdateAssetNotFound": "macOS update asset not found",
+    "downloadingInstallingUpdate": "Downloading and installing update...",
+    "updateInstalledClosing": "Update installed! Closing application...",
+    "failedToInstallUpdate": "Failed to install update: {error}",
+    "downloadingUpdate": "Downloading update...",
+    "shuttingDownServer": "Shutting down server...",
+    "installingUpdate": "Installing update...",
+    "updateInstalledRestarting": "Update installed. Restarting application...",
+    "restartingServer": "Restarting server...",
+    "devModeNotRestarting": "Dev mode: Server will not restart"
+  },
+  "issueReport": {
+    "failedToSaveReportBrowser": "Failed to save report to browser storage",
+    "restoredPreviousReport": "Previous report restored",
+    "decompressingReport": "Decompressing report...",
+    "reportLoaded": "Report loaded",
+    "failedToDecompressReport": "Failed to decompress report",
+    "failedToParseReport": "Failed to parse report",
+    "clearedReport": "Report cleared",
+    "failedToStartDomRecording": "Failed to start DOM recording",
+    "unableToCaptureScreenshot": "Unable to capture screenshot",
+    "screenshotAdded": "Screenshot added to report",
+    "issueReportSaved": "Issue report saved successfully",
+    "failedToGenerateDownloadToken": "Failed to generate download token",
+    "describeIssue": "Describe the issue you are experiencing..."
+  },
+  "autoplay": {
+    "requestingNextEpisode": "Requesting next episode",
+    "playingNextEpisode": "Playing next episode",
+    "failedToPlayNextEpisode": "Failed to play next episode"
+  },
+  "libraryExplorer": {
+    "noMediaFound": "No media found",
+    "metadataSaved": "Metadata saved",
+    "noValidChangesToApply": "No valid changes to apply. Verify your configuration.",
+    "applyingChangesSkippingInvalid": "Applying {valid} changes, skipping {skipped} invalid changes",
+    "failedToRenameFiles": "Failed to rename files: {error}",
+    "selectType": "Select type",
+    "episodeType": "Episode",
+    "specialType": "Special",
+    "ncType": "NC"
+  },
+  "manga": {
+    "chaptersAddedToDownloadQueue": "Chapters added to download queue",
+    "doublePageModeNotSupported": "Double page mode is not supported on small screens.",
+    "couldNotGetPageDimensions": "Could not get page dimensions from this provider. Switching to paginated mode."
+  },
+  "animeLibrary": {
+    "mediaUnmatched": "Media unmatched",
+    "filesUnignored": "Files unignored",
+    "filesLocked": "Files locked",
+    "filesUnlocked": "Files unlocked"
+  },
+  "playlists": {
+    "startingPlaylist": "Starting playlist...",
+    "playingEpisode": "Playing episode {episode} of {anime}",
+    "pleaseEnterPlaylistName": "Please enter a playlist name"
+  },
+  "update": {
+    "missingOptions": "Missing options"
+  },
+  "nativePlayer": {
+    "errorPlayingStream": "An error occurred while playing the stream. {error}"
+  },
+  "sync": {
+    "localChangesIgnored": "Local changes ignored.",
+    "selectMedia": "Saved media",
+    "selectMediaButton": "Select media to save",
+    "selectMediaDescription": "Select the media you want to save locally. Click on already saved media to remove it from local storage.",
+    "saveLocally": "Save locally",
+    "removeOfflineData": "Remove offline data",
+    "removeOfflineDataDesc": "This action will remove the offline data for this entry. Are you sure you want to continue?",
+    "anime": "Anime",
+    "manga": "Manga",
+    "notAuthenticated": "Not authenticated",
+    "notAuthenticatedDesc": "This feature is only available for authenticated users.",
+    "disableOfflineMode": "Disable offline mode",
+    "enableOfflineMode": "Enable offline mode",
+    "offlineMedia": "Offline media",
+    "offlineMediaDesc": "View the media you have saved locally for offline use.",
+    "sync": "Sync",
+    "syncNow": "Sync now",
+    "updateLocalData": "Update local data",
+    "updateLocalDataDesc": "Update your local snapshots with AniList data. This will overwrite your offline changes. You can automate this in Settings > App > Offline mode.",
+    "uploadToAniList": "Upload local changes to AniList",
+    "uploadToAniListDesc": "Update your AniList lists with data from your local snapshots. This should be done after making offline changes.",
+    "changesIrreversible": "Changes are irreversible.",
+    "unsavedMediaBoth": "You have not saved {animeCount} anime and {mangaCount} manga that you are currently watching and reading.",
+    "unsavedMediaAnimeOnly": "You have not saved {animeCount} anime that you are currently watching.",
+    "unsavedMediaMangaOnly": "You have not saved {mangaCount} manga that you are currently reading.",
+    "localStorageSize": "Local storage size: ",
+    "localChangesNotSynced": "You have local changes that have not been synced with AniList.",
+    "autoRefreshPaused": "Automatic offline data refresh will be paused.",
+    "uploadLocalChanges": "Upload local changes",
+    "deleteLocalChanges": "Delete local changes",
+    "noTrackedMedia": "No tracked media",
+    "savedAnime": "Saved anime",
+    "savedManga": "Saved manga",
+    "syncing": "Syncing"
+  },
+  "handlePlayMedia": {
+    "externalPlayerNotSet": "External player link is not set."
+  },
+  "debridPage": {
+    "refreshed": "Refreshed"
+  },
+  "mediastream": {
+    "codecNotSupported": "Codec not supported for direct play",
+    "playbackErrorOccurred": "A playback error occurred",
+    "filePathNotFoundEpisode": "File path not found for this episode"
+  },
+  "mediaLinks": {
+    "episodeNotFound": "Episode not found.",
+    "externalPlayerLinkNotSet": "External player link is not set."
+  },
+  "serverStatus": {
+    "featureDisabled": "This feature is disabled"
+  },
+  "toast": {
+    "settings": {
+      "settingsSaved": "Settings saved"
+    },
+    "anilist": {
+      "upToDate": "AniList is up to date",
+      "entryUpdated": "Entry updated",
+      "entryDeleted": "Entry deleted"
+    },
+    "auth": {
+      "authenticated": "Successfully authenticated",
+      "loggedOut": "Successfully logged out",
+      "invalidToken": "Invalid token"
+    },
+    "autoDownloader": {
+      "started": "Auto downloader started",
+      "ruleCreated": "Rule created",
+      "ruleUpdated": "Rule updated",
+      "ruleDeleted": "Rule deleted",
+      "itemDeleted": "Item deleted",
+      "profileCreated": "Profile created",
+      "profileUpdated": "Profile updated",
+      "profileDeleted": "Profile deleted"
+    },
+    "debrid": {
+      "torrentAdded": "Torrent added",
+      "downloadStarted": "Download started",
+      "downloadCancelled": "Download cancelled",
+      "streamCancelled": "Stream cancelled"
+    },
+    "download": {
+      "filesDownloaded": "Files downloaded",
+      "updateDownloaded": "Update downloaded successfully",
+      "updateInstalled": "Update installed successfully. Please restart the application."
+    },
+    "extensions": {
+      "uninstalled": "Extension uninstalled successfully",
+      "updated": "Extension updated successfully",
+      "configSaved": "Configuration saved successfully",
+      "reloaded": "Extension reloaded successfully",
+      "permissionsGranted": "Plugin permissions granted successfully"
+    },
+    "filecache": {
+      "cacheCleared": "Cache cleared"
+    },
+    "local": {
+      "mediaAddedOffline": "Media added for offline sync",
+      "offlineDataRemoved": "Offline data removed",
+      "syncing": "Syncing local data...",
+      "anilistUpdated": "AniList data updated",
+      "offlineEnabled": "Offline mode enabled",
+      "offlineDisabled": "Offline mode disabled"
+    },
+    "localfiles": {
+      "metadataUpdated": "File metadata updated",
+      "filesDeleted": "Files deleted",
+      "emptyDirsRemoved": "Empty directories removed",
+      "imported": "Local files imported"
+    },
+    "mal": {
+      "loggedOut": "Successfully logged out of MyAnimeList"
+    },
+    "manga": {
+      "mappingAdded": "Mapping added",
+      "mappingRemoved": "Mapping removed",
+      "sourcesRefreshed": "Sources refreshed"
+    },
+    "mangaDownload": {
+      "downloading": "Downloading chapters",
+      "queueStopped": "Download queue stopped",
+      "queueCleared": "Download queue cleared",
+      "erroredReset": "Errored chapters reset",
+      "chaptersDeleted": "Chapters deleted"
+    },
+    "metadata": {
+      "fillerFetched": "Filler data fetched",
+      "fillerRemoved": "Filler data removed",
+      "updated": "Metadata updated",
+      "removed": "Metadata removed"
+    },
+    "onlinestream": {
+      "cacheEmptied": "Stream cache emptied"
+    },
+    "playlist": {
+      "created": "Playlist created",
+      "updated": "Playlist updated",
+      "deleted": "Playlist deleted"
+    },
+    "playback": {
+      "playlistCancelled": "Cancelling playlist",
+      "nextFile": "Loading next file",
+      "randomEpisode": "Playing random episode",
+      "nextEpisode": "Loading next episode"
+    },
+    "status": {
+      "logsDeleted": "Logs deleted",
+      "couldntFetchLogs": "Could not fetch logs",
+      "failedToCopyLogs": "Failed to copy logs: {error}",
+      "gcCompleted": "Garbage collection completed",
+      "generatingProfile": "Generating {profileType} profile...",
+      "profileDownloaded": "\"{profileType}\" profile downloaded",
+      "failedToDownloadProfile": "Failed to download {profileType} profile",
+      "generatingGoroutineProfile": "Generating goroutine profile...",
+      "goroutineProfileDownloaded": "Goroutine profile downloaded",
+      "failedToDownloadGoroutineProfile": "Failed to download goroutine profile",
+      "generatingCpuProfile": "Generating CPU profile for {duration} seconds...",
+      "cpuProfileDownloaded": "CPU profile ({duration}s) downloaded",
+      "failedToDownloadCpuProfile": "Failed to download CPU profile",
+      "homeUpdated": "Home screen updated"
+    },
+    "theme": {
+      "uiSettingsSaved": "UI settings saved"
+    },
+    "torrentClient": {
+      "actionPerformed": "Action performed",
+      "downloadStarted": "Download started"
+    },
+    "torrentstream": {
+      "streamStopped": "Stream stopped",
+      "torrentDropped": "Torrent dropped",
+      "downloadDirNotExist": "Download directory does not exist",
+      "downloadDirNotDir": "Download directory is not a directory"
+    },
+    "animeCollection": {
+      "mediaAdded": "Media added successfully"
+    },
+    "animeEntries": {
+      "filesMatched": "Files matched",
+      "progressUpdated": "Progress updated successfully"
+    },
+    "client": {
+      "featureDisabled": "This feature is disabled",
+      "anilistRateLimit": "AniList: Too many requests, wait a moment and try again.",
+      "anilistError": "AniList error: {error}",
+      "error": "Error: {error}",
+      "noResponse": "No response from server"
+    }
+  },
+  "anilist": {
+    "mediaEntry": {
+      "addToList": "Add to list",
+      "status": "Status",
+      "score": "Score",
+      "progress": "Progress",
+      "startDate": "Start date",
+      "completionDate": "Completion date",
+      "totalRewatches": "Total rewatches",
+      "totalRereads": "Total rereads",
+      "save": "Save"
+    }
+  },
+  "ui": {
+    "datePicker": {
+      "selectDate": "Select a date",
+      "clear": "Clear"
+    }
+  },
+  "manualMatch": {
+    "none": "No manual match",
+    "removeMapping": "Remove mapping"
+  }
+}
