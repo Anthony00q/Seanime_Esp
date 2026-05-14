@@ -156,4 +156,4 @@ Si te gusta este proyecto, considera **sponsorizar al creador original**:
 ---
 
 > [!NOTE]
-> Para consultas relacionadas con los derechos de autor, póngase en contacto con el responsable del mantenimiento utilizando la información de contacto que aparece en [el sitio web](https://seanime.app/docs/policies).
+> Para consultas relacionadas con los derechos de autor, póngase en contacto con el responsable del mantenimiento utilizando la información de contacto que aparece en [EL SITIO WEB](https://seanime.app/docs/policies).
