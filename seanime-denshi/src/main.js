@@ -246,7 +246,7 @@ const LOCAL_EMBED_HOST = "127.0.0.1"
 const DESKTOP_SERVER_HOST = "127.0.0.1"
 const DESKTOP_SERVER_DEFAULT_PORT = 43211
 const DESKTOP_SERVER_DEV_PORT = 43000
-const DEFAULT_UPDATE_FEED_URL = "https://github.com/5rahim/seanime/releases/latest/download"
+const DEFAULT_UPDATE_FEED_URL = "https://github.com/Anthony00q/Seanime_Esp/releases/latest/download"
 
 function isAllowedLocalEmbedURL(rawURL) {
     if (!localServerPort) {
@@ -1238,32 +1238,10 @@ function cleanupAndExit() {
 
 // returns true if github is ok OR url is unreachable
 // returns false if github is down and fallback should be used
+// NOTE: Fork-specific version — no longer queries seanime.app
 async function fetchGithubStatus() {
-    try {
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), 5000)
-
-        const response = await net.fetch("https://seanime.app/api/github-status", {
-            signal: controller.signal
-        })
-        clearTimeout(timeoutId)
-
-        if (!response.ok) {
-            return { ok: true, fallback: "" }
-        }
-
-        const data = await response.json()
-
-        // url is reachable, status is "down"
-        if (data.status === "down") {
-            log.warn(`[Denshi] App: Changing update channel to ${data.fallback}, reason: ${data.description}`)
-            return { ok: false, fallback: data.fallback || "seanime" }
-        }
-
-        return { ok: true, fallback: "" }
-    } catch (err) {
-        return { ok: true, fallback: "" }
-    }
+    // Always return ok: true to use the fork's GitHub releases
+    return { ok: true, fallback: "" }
 }
 
 // Initialize the app
@@ -1296,13 +1274,8 @@ app.whenReady().then(async () => {
         verifyUpdateCodeSignature: false,
     }
 
-    if (currentUpdateChannel === "seanime_nightly") {
-        updateConfig.url = "https://seanime.app/api/updates/nightly/"
-        updateConfig.allowPrerelease = true
-    } else if (currentUpdateChannel === "seanime") {
-        updateConfig.url = "https://seanime.app/api/updates/stable/"
-        updateConfig.allowPrerelease = false
-    }
+    // Fork-specific: always use GitHub releases from the fork
+    // Removed upstream seanime.app channel redirects
 
     updateConfig.url = normalizeUpdateFeedURL(updateConfig.url, DEFAULT_UPDATE_FEED_URL)
 

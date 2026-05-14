@@ -93,7 +93,10 @@
       "urlPlaceholder": "https://ejemplo.com/extension.js"
     },
     "userConfig": {
-      "title": "Configuración de la extensión"
+      "title": "Configuración de la extensión",
+      "preferences": "Preferencias",
+      "editPreferencesDesc": "Puedes editar las preferencias de esta extensión aquí.",
+      "fillRequiredConfig": "Completa las opciones de configuración requeridas."
     },
     "card": {
       "builtIn": "Integrada",

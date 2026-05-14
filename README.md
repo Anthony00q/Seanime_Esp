@@ -78,42 +78,48 @@ Este es un **fork en español** del proyecto [Seanime](https://github.com/5rahim
 
 El proyecto original no tiene i18n integrado, por lo que se implementó un sistema de traducción personalizado con archivos JSON.
 
-### ✅ Traducido
+### 🎉 Traducción Completa
 
-- Pantalla de inicio
-- Horario y descubrimiento
+La traducción al español de la interfaz de usuario está **completada**. Todos los strings visibles usan el sistema de traducción `t()`.
+
+**Resumen del sistema de traducción:**
+
+- **~2633+ keys** traducidas en 17 archivos JSON (español + inglés en paridad)
+- **~255+ componentes** React traducidos
+- **~247+ toasts** traducidos (UI, hooks de API, archivos .ts)
+- **Backend Go intacto** — toasts del servidor traducidos vía `SERVER_TOAST_MAP` en el frontend
+- **Electron Denshi** — system tray traducido directamente (3 strings)
+- **0 strings hardcodeados** visibles en inglés o español
+- **0 duplicados injustificados** en archivos JSON
+
+**Áreas traducidas:**
+
+- Pantalla de inicio, Horario y Descubrimiento
 - Navegación y barra lateral
-- Reproductor de video (video-core completo, subtítulos, HLS, Chromecast)
-- Configuración completa (App, Servidor, UI, Discord, Reproductores, etc.)
+- Reproductor de video completo (video-core, subtítulos, HLS, Chromecast, Anime4K, stats, keybindings)
+- Configuración completa (App, Servidor, Biblioteca, UI, Discord, Reproductores, Streaming, Avanzado)
 - Asistente de Configuración Inicial (Getting Started)
 - Tours interactivos de actualización (Changelog Tour)
 - Watch parties (Nakama)
-- Paleta de comandos
-- Componentes compartidos
+- Paleta de comandos (Sea Command)
 - Página de entrada (anime/manga detail completo)
 - Escáner de biblioteca (modal, resúmenes, logs, archivos no coincidentes)
 - Seguimiento de progreso y listas de reproducción
-- Biblioteca y listas (AniList stats, colección, sincronización)
+- Biblioteca y listas (AniList stats, colección, sincronización offline)
 - Extensiones (marketplace, tarjetas, playground)
-- Manga (biblioteca, lector de capítulos, descargas)
-- Streaming en línea y lista de torrents
-- Servicio Debrid
-- Descargador automático
+- Manga completo (biblioteca, lector de capítulos, descargas)
+- Streaming en línea, lista de torrents y servicio Debrid
+- Descargador automático (reglas, perfiles, cola, ajustes)
+- Búsqueda avanzada (filtros, sorting, placeholders)
+- Fuentes personalizadas
 - Electron (modal de actualización, reinicio de servidor)
 - Reporte de problemas (issue report)
-- Autoplay y Library Explorer
+- Autoplay, Library Explorer y Library Explorer Super Update
 - Biblioteca de anime (media desconocida, archivos ignorados, acciones masivas)
-- **Todos los toasts/notificaciones** (~207 toasts en componentes UI, hooks de API y archivos .ts)
+- Todos los toasts/notificaciones (~247 en componentes UI, hooks de API y archivos .ts)
 - Mediastream, MediaLinks, Sync, callback de autenticación
-
-### ⏳ Pendiente
-
-- Búsqueda
-- Sincronización (componentes restantes)
-- Fuentes personalizadas
-- Páginas de listas, autenticación, MAL
-- Webview
-- qBittorrent
+- Componentes compartidos (file-tree, file-selector, directory-selector, media-exclusion, date-picker)
+- Diccionario AniList (411 keys: géneros, formatos, temporadas, estados, tags, relaciones, roles)
 
 ---
 

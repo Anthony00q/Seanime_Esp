@@ -10,6 +10,7 @@ import ReactDOM from "react-dom/client"
 import { ErrorBoundary, FallbackProps } from "react-error-boundary"
 import { LuffyError } from "./components/shared/luffy-error"
 import { Button } from "./components/ui/button"
+import { createTranslator } from "./locales"
 import { getDenshiViewTransition } from "./lib/router/view-transitions"
 import { routeTree } from "./routeTree.gen"
 import "@fontsource-variable/inter/index.css"
@@ -98,13 +99,14 @@ function DesktopStartupReady() {
 }
 
 function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
+    const t = createTranslator("es")
     return (
         <div className="min-h-screen bg-[#0c0c0c] text-white flex items-center justify-center p-6">
             <div className="w-full max-w-lg rounded-2xl border bg-black/60 p-6 text-center backdrop-blur-sm space-y-4">
                 <LuffyError
-                    title="Client error"
+                    title={t("error.clientError")}
                 >
-                    Seanime encountered an unexpected error. Please try again.
+                    {t("error.encounteredError")}
                 </LuffyError>
 
                 {!!(error as Error)?.message && (
@@ -120,7 +122,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
                         className="rounded-full"
                         onClick={resetErrorBoundary}
                     >
-                        Retry
+                        {t("error.retry")}
                     </Button>
                     <Button
                         type="button"
@@ -128,7 +130,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
                         className="rounded-full"
                         onClick={() => window.location.reload()}
                     >
-                        Reload
+                        {t("error.reload")}
                     </Button>
                 </div>
             </div>
