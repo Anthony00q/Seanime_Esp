@@ -92,6 +92,41 @@
       "error": "An error occurred",
       "copiedToClipboard": "Copied to clipboard",
       "openingExternalPlayer": "Opening file in external player."
+    },
+    "components": {
+      "fileTree": {
+        "likelyMatch": "Likely match",
+        "searchFiles": "Search files...",
+        "noFilesFound": "No files found matching \"{search}\""
+      },
+      "fileSelector": {
+        "selectFileOrDirectory": "Select a file or directory"
+      },
+      "directorySelector": {
+        "selectDirectory": "Select a directory",
+        "changeLibrary": "Change library",
+        "suggestions": "Suggestions:"
+      },
+      "mediaExclusion": {
+        "title": "Select anime to exclude from sharing",
+        "countExcluded": "{count} anime excluded from sharing",
+        "countExcluded_plural": "{count} anime excluded from sharing",
+        "notVisibleHint": "(will not be visible to other clients)",
+        "moreCount": "+{count} more",
+        "editSelection": "Edit selection",
+        "selectAnime": "Select anime",
+        "description": "Select anime that you don't want to share with other clients. Selected anime will not be visible to connected clients.",
+        "selectAll": "Select all",
+        "deselectAll": "Deselect all",
+        "selectAdult": "Select adult",
+        "countSelected": "{count} selected (will not be shared)",
+        "countSelected_plural": "{count} selected (will not be shared)",
+        "done": "Done ({count} selected)",
+        "done_plural": "Done ({count} selected)"
+      },
+      "fields": {
+        "directory": "Directory"
+      }
     }
   }
 }

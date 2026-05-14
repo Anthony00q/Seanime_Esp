@@ -263,7 +263,19 @@
     "useAnilistAPI": "Use AniList API",
     "offlineDatabaseHelp": "Match local files with the entire AniList catalog. Scanning will be slower.",
     "anilistAPIHelp": "Slower for large libraries. Seanime will send one API request per anime title found in the library, which can lead to rate limits and slower scanning.",
-    "simulatedWarning": "Using this feature without an AniList account is not recommended if you have a large library, as it can lead to rate limits and slower scanning. Consider using an account for a better experience."
+    "simulatedWarning": "Using this feature without an AniList account is not recommended if you have a large library, as it can lead to rate limits and slower scanning. Consider using an account for a better experience.",
+    "status": {
+      "retrievingLocalFiles": "Retrieving local files...",
+      "verifyingShelvedFiles": "Verifying shelved files...",
+      "scanningLocalFiles": "Scanning local files...",
+      "verifyingFileIntegrity": "Verifying file integrity...",
+      "scanCompleted": "Scan completed",
+      "fetchingMatchingData": "Fetching additional matching data...",
+      "fetchingMedia": "Fetching media...",
+      "matchingLocalFiles": "Matching local files...",
+      "hydratingMetadata": "Hydrating metadata...",
+      "addingMissingMedia": "Adding missing media to AniList..."
+    }
   },
   "libraryWatcher": {
     "title": "Library watcher",
@@ -348,26 +360,27 @@
     "back": "Back"
   },
   "onlinestream": {
-    "watchPartyProviderNotInstalled": "Watch Party: The provider used by the host is not installed.",
-    "playbackErrorRetrying": "Playback error, trying another server...",
-    "findOtherProviders": "Find other providers",
-    "selectProvider": "Select provider",
-    "cache": "Cache",
-    "emptyCacheDescription": "Empty the cache if you are experiencing issues with the stream.",
-    "emptyStreamCache": "Empty stream cache",
-    "manualMatch": "Manual match",
-    "switchToSubs": "Switch to subtitles",
-    "switchToDub": "Switch to dub",
-    "switchToGridView": "Switch to grid view",
-    "switchToListView": "Switch to list view",
-    "noProviderSelected": "No provider selected",
-    "providerError": "Provider error",
-    "loadingStream": "Loading stream",
-    "completeMovie": "Complete movie",
-    "noWorkingProviders": "No working providers found",
-    "stoppedTryingProviders": "Stopped trying providers",
-    "startingWatchParty": "Starting online streaming watch party"
-  },
+      "watchPartyProviderNotInstalled": "Watch Party: The provider used by the host is not installed.",
+      "playbackErrorRetrying": "Playback error, trying another server...",
+      "findOtherProviders": "Find other providers",
+      "selectProvider": "Select provider",
+      "cache": "Cache",
+      "emptyCacheDescription": "Empty the cache if you are experiencing issues with the stream.",
+      "emptyStreamCache": "Empty stream cache",
+      "manualMatch": "Manual match",
+      "switchToSubs": "Switch to subtitles",
+      "switchToDub": "Switch to dub",
+      "switchToGridView": "Switch to grid view",
+      "switchToListView": "Switch to list view",
+      "noProviderSelected": "No provider selected",
+      "providerError": "Provider error",
+      "loadingStream": "Loading stream",
+      "completeMovie": "Complete movie",
+      "noWorkingProviders": "No working providers found",
+      "stoppedTryingProviders": "Stopped trying providers",
+      "startingWatchParty": "Starting online streaming watch party",
+      "dubbedSearchHelp": "Only applies to providers that support dubs in search results."
+    },
   "torrentList": {
     "failedToConnect": "Failed to connect to torrent client. Check settings and make sure it is running.",
     "downloading": "Downloading",
@@ -434,7 +447,12 @@
     "mediaUnmatched": "Media unmatched",
     "filesUnignored": "Files unignored",
     "filesLocked": "Files locked",
-    "filesUnlocked": "Files unlocked"
+    "filesUnlocked": "Files unlocked",
+    "entries": "Entries",
+    "tvShows": "TV Shows",
+    "movies": "Movies",
+    "specials": "Specials",
+    "hostsLibrary": "{host}'s Library"
   },
   "playlists": {
     "startingPlaylist": "Starting playlist...",

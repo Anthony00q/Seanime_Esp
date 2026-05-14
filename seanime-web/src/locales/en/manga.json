@@ -84,7 +84,6 @@
       "chaptersCount": "{count} chapter{plural}",
       "notInCollection": "Not in your AniList collection",
       "noChaptersDownloaded": "No chapters downloaded",
-      "chaptersAddedToQueue": "Chapters added to download queue",
       "title": "Chapter downloads",
       "noDownloads": "No downloads in progress",
       "clearCompleted": "Clear completed"

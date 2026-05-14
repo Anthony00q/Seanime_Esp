@@ -141,12 +141,12 @@ function Content({ entry }: { entry: Manga_Entry }) {
                         <div className="flex gap-2 items-center">
                             <Field.Text
                                 name="query"
-                                placeholder="Enter a title..."
+                                placeholder={t("common.placeholders.title")}
                                 leftIcon={<FiSearch className="text-xl text-[--muted]" />}
                                 fieldClass="w-full"
                             />
 
-                            <Field.Submit intent="white" loading={isMatching || searchLoading || mappingLoading} className="">Search</Field.Submit>
+                            <Field.Submit intent="white" loading={isMatching || searchLoading || mappingLoading} className="">{t("common.labels.search")}</Field.Submit>
                         </div>
                     </Form>
 

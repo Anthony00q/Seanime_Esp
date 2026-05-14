@@ -61,7 +61,7 @@ export function VideoCoreMenu(props: VideoCoreMenuProps) {
             trigger={<div>{trigger}</div>}
             allowOutsideInteraction={true}
             contentClass={cn(
-                "bg-black/85 rounded-xl p-3 backdrop-blur-sm w-[20rem] z-[100]",
+                "bg-black/85 rounded-xl p-3 backdrop-blur-sm w-[22rem] z-[100]",
                 className,
             )}
             portalContainer={isFullscreen ? containerElement || undefined : undefined}
@@ -85,7 +85,7 @@ export function VideoCoreMenu(props: VideoCoreMenuProps) {
             side="top"
             modal={false}
             className={cn(
-                "bg-black/85 rounded-xl p-3 backdrop-blur-sm w-[20rem] z-[100]",
+                "bg-black/85 rounded-xl p-3 backdrop-blur-sm w-[22rem] z-[100]",
                 className,
             )}
             portalContainer={isFullscreen ? containerElement || undefined : undefined}
@@ -141,7 +141,7 @@ export function VideoCoreMenuBody(props: { children: React.ReactNode }) {
     const { children, ...rest } = props
 
     return (
-        <div data-vc-element="menu-body" className="max-h-[18rem] overflow-y-auto">
+        <div data-vc-element="menu-body" className="max-h-[22rem] overflow-y-auto">
             {children}
         </div>
     )
@@ -230,13 +230,13 @@ export function VideoCoreMenuOption(props: {
                 <span className="w-8 flex justify-start items-center h-full">
                     <Icon className="text-xl" />
                 </span>
-                <span className="w-full flex flex-1 text-sm font-medium">
+                <span className="w-full flex flex-1 text-sm font-medium whitespace-nowrap truncate">
                     {title}
                 </span>
-                {value && <span className="text-sm font-medium tracking-wide text-[--muted] mr-2">
+                {value && <span className="text-sm font-medium tracking-wide text-[--muted] mr-2 whitespace-nowrap">
                     {value}
                 </span>}
-                <LuChevronRight className="text-lg" />
+                <LuChevronRight className="text-lg flex-shrink-0" />
             </button>}
 
             {openSection === title && (
@@ -250,10 +250,10 @@ export function VideoCoreMenuOption(props: {
                         className="w-full pb-2 h-10 mb-2 flex items-center justify-between rounded-lg transition-colors border-b"
                         onClick={() => setOpen(null)}
                     >
-                        <span className="w-8 flex justify-start items-center h-full">
+                        <span className="w-8 flex justify-start items-center h-full flex-shrink-0">
                             <LuChevronLeft className="text-lg" />
                         </span>
-                        <span className="w-full flex flex-1 text-sm font-medium">
+                        <span className="w-full flex flex-1 text-sm font-medium whitespace-nowrap truncate">
                             {title}
                         </span>
                     </button>
@@ -303,13 +303,13 @@ export function VideoCoreMenuSubOption(props: {
                 <span className="w-8 flex justify-start items-center h-full">
                     <Icon className="text-xl" />
                 </span>
-                <span className="w-full flex flex-1 text-sm font-medium">
+                <span className="w-full flex flex-1 text-sm font-medium whitespace-nowrap truncate">
                     {title}
                 </span>
-                {value && <span className="text-sm font-medium tracking-wide text-[--muted] mr-2">
+                {value && <span className="text-sm font-medium tracking-wide text-[--muted] mr-2 whitespace-nowrap">
                     {value}
                 </span>}
-                <LuChevronRight className="text-lg" />
+                <LuChevronRight className="text-lg flex-shrink-0" />
             </button>}
 
             {openSubSection === itemId && (
@@ -323,10 +323,10 @@ export function VideoCoreMenuSubOption(props: {
                         className="w-full pb-2 h-10 mb-2 flex items-center justify-between rounded-lg transition-colors border-b"
                         onClick={() => setOpenSubSection(null)}
                     >
-                        <span className="w-8 flex justify-start items-center h-full">
+                        <span className="w-8 flex justify-start items-center h-full flex-shrink-0">
                             <LuChevronLeft className="text-lg" />
                         </span>
-                        <span className="w-full flex flex-1 text-sm font-medium">
+                        <span className="w-full flex flex-1 text-sm font-medium whitespace-nowrap truncate">
                             {title}
                         </span>
                     </button>

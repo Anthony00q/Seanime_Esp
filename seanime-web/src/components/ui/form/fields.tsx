@@ -3,6 +3,7 @@ import { MediaExclusionSelector, MediaExclusionSelectorProps } from "@/component
 import { IconButton } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { useDebounce } from "@/hooks/use-debounce"
+import { createTranslator } from "@/locales"
 import { colord } from "colord"
 import React, { forwardRef, useMemo } from "react"
 import { HexColorPicker } from "react-colorful"
@@ -18,6 +19,8 @@ import { NativeSelect, NativeSelectProps } from "../native-select"
 import { NumberInput, NumberInputProps } from "../number-input"
 import { Popover } from "../popover"
 import { RadioGroup, RadioGroupProps } from "../radio-group"
+
+const t = createTranslator("es")
 import { Select, SelectProps } from "../select"
 import { SimpleDropzone, SimpleDropzoneProps } from "../simple-dropzone"
 import { Switch, SwitchProps } from "../switch"
@@ -435,7 +438,7 @@ const MultiDirectorySelectorField = React.memo(withControlledInput(forwardRef<HT
                         <DirectorySelector
                             shouldExist={shouldExist}
                             {...props}
-                            label="Directory"
+                            label={t("common.components.fields.directory")}
                             value={v ?? ""}
                             defaultValue={v ?? ""}
                             onSelect={value => {
