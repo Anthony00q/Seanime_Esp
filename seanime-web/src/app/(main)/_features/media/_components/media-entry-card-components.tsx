@@ -15,7 +15,7 @@ import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { __isElectronDesktop__ } from "@/types/constants"
 import { createTranslator } from "@/locales"
 import { addSeconds, formatDistanceToNow } from "date-fns"
-import { es } from "date-fns/locale"
+import { getDateFnsLocale } from "@/locales/date-locale"
 import { atom, useAtom } from "jotai"
 import capitalize from "lodash/capitalize"
 import React, { memo } from "react"
@@ -399,7 +399,7 @@ export function AnimeEntryCardNextAiring(props: AnimeEntryCardNextAiringProps) {
                 {/*<p className="text-xs min-[2000px]:text-md">Next episode:</p>*/}
                 <p data-anime-entry-card-next-airing className="text-justify font-normal text-xs min-[2000px]:text-md">
                     {t("entry.episode")} <span className="font-semibold">{nextAiring?.episode}</span> {formatDistanceToNow(addSeconds(new Date(),
-                    nextAiring?.timeUntilAiring), { addSuffix: true, locale: es })}
+                    nextAiring?.timeUntilAiring), { addSuffix: true, locale: getDateFnsLocale() })}
                     {/*<Badge*/}
                     {/*    size="sm"*/}
                     {/*    className="bg-transparent rounded-[--radius]"*/}

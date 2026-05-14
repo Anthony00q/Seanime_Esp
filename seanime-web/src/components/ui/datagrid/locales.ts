@@ -1,6 +1,7 @@
-import { enUS, fr } from "date-fns/locale"
+import { enUS, fr, es } from "date-fns/locale"
 
 export const dateFnsLocales = {
+    "es": es,
     "fr": fr,
     "en": enUS,
 } as {
