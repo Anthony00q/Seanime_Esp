@@ -24,7 +24,7 @@
     <img src="https://img.shields.io/github/v/release/Anthony00q/Seanime_Esp?style=flat-square&color=blue" alt="versión" />
   </a>
   <a href="https://github.com/Anthony00q/Seanime_Esp">
-    <img src="https://img.shields.io/badge/Traducción-en_progreso-orange?style=flat-square" alt="progreso traducción" />
+    <img src="https://img.shields.io/badge/Traducción-completa-green?style=flat-square" alt="traducción completa" />
   </a>
   <a href="https://discord.gg/Aruz7wdAaf">
     <img src="https://img.shields.io/discord/1224767201551192224?style=flat-square&logo=Discord&color=blue&label=Discord" alt="discord" />
