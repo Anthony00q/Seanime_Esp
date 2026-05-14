@@ -182,6 +182,7 @@ function flattenTreeNodes(
 }
 
 export function LibraryExplorer() {
+    const t = createTranslator("es")
     const { data: fileTree, isLoading } = useGetLibraryExplorerFileTree()
     const refreshMutation = useRefreshLibraryExplorerFileTree()
     const [selectedNode, setSelectedNode] = useAtom(libraryExplorer_selectedNodeAtom)
@@ -273,14 +274,14 @@ export function LibraryExplorer() {
 
     // collapse all nodes below unexpanded node if they are expanded
     const prevExpandedNodes = React.useRef<Set<string>>(expandedNodes)
-    const t = React.useRef<NodeJS.Timeout | null>(null)
+    const timeoutRef = React.useRef<NodeJS.Timeout | null>(null)
 
     React.useEffect(() => {
-        if (t.current) {
-            clearTimeout(t.current)
-            t.current = null
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current)
+            timeoutRef.current = null
         }
-        t.current = setTimeout(() => {
+        timeoutRef.current = setTimeout(() => {
             if (expandedNodes.size === 0) return
             const currentExpanded = expandedNodes
             const previousExpanded = prevExpandedNodes.current
@@ -313,9 +314,9 @@ export function LibraryExplorer() {
         }, 100)
 
         return () => {
-            if (t.current) {
-                clearTimeout(t.current)
-                t.current = null
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current)
+                timeoutRef.current = null
             }
         }
     }, [expandedNodes])
@@ -447,12 +448,12 @@ export function LibraryExplorer() {
                     <div className="p-4 border-b space-y-3">
                         <div className="flex items-center gap-2">
                             <div className="flex items-center gap-3 flex-wrap">
-                                <h2 className="text-lg font-semibold text-gray-100 2xl:block hidden">Library Explorer</h2>
+                                <h2 className="text-lg font-semibold text-gray-100 2xl:block hidden">{t("libraryExplorer.title")}</h2>
                                 {hasUnlockedFiles && (
                                     <Alert
                                         intent="info"
                                         className="text-sm py-1 px-3 cursor-pointer"
-                                        description="Lock all correctly matched files"
+                                        description={t("libraryExplorer.lockAllDesc")}
                                         onClick={() => {
                                             setSelectedFilter("UNLOCKED")
                                         }}
@@ -462,7 +463,7 @@ export function LibraryExplorer() {
                                     <Alert
                                         intent="warning"
                                         className="text-sm py-1 px-3 cursor-pointer"
-                                        description={`${unmatchedFiles.length} unmatched file${unmatchedFiles.length != 1 ? "s" : ""}`}
+                                        description={`${unmatchedFiles.length} archivo${unmatchedFiles.length != 1 ? "s" : ""} no coincidente${unmatchedFiles.length != 1 ? "s" : ""}`}
                                         onClick={() => {
                                             setSelectedFilter("UNMATCHED")
                                         }}
@@ -472,7 +473,7 @@ export function LibraryExplorer() {
                                     <Alert
                                         intent="warning"
                                         className="text-sm py-1 px-3 cursor-pointer"
-                                        description={`${unknownMediaFiles.length} file${unknownMediaFiles.length != 1 ? "s" : ""} with hidden media`}
+                                        description={`${unknownMediaFiles.length} archivo${unknownMediaFiles.length != 1 ? "s" : ""} con media oculta`}
                                         onClick={() => {
                                             setSelectedFilter("UNKNOWN_MEDIA")
                                         }}
@@ -500,20 +501,20 @@ export function LibraryExplorer() {
                                         !!selectedFilter && "animate-pulse",
                                     )}
                                 >
-                                    Filter
+                                    {t("libraryExplorer.filter")}
                                 </Button>}
                             >
                                 <Button intent="gray-link" size="sm" className="w-full" onClick={() => handleToggleFilter("UNMATCHED")}>
-                                    Unmatched files
+                                    {t("libraryExplorer.unmatchedFiles")}
                                 </Button>
                                 <Button intent="gray-link" size="sm" className="w-full" onClick={() => handleToggleFilter("UNLOCKED")}>
-                                    Unlocked files
+                                    {t("libraryExplorer.unlockedFiles")}
                                 </Button>
                                 <Button intent="gray-link" size="sm" className="w-full" onClick={() => handleToggleFilter("IGNORED")}>
-                                    Ignored files
+                                    {t("libraryExplorer.ignoredFiles")}
                                 </Button>
                                 <Button intent="gray-link" size="sm" className="w-full" onClick={() => handleToggleFilter("UNKNOWN_MEDIA")}>
-                                    Unknown media
+                                    {t("libraryExplorer.unknownMedia")}
                                 </Button>
                             </Popover>}
                             {!!selectedFilter && (
@@ -526,7 +527,7 @@ export function LibraryExplorer() {
                                         "animate-pulse",
                                     )}
                                 >
-                                    Filter: {!!selectedFilter ? upperFirst(camelCase(selectedFilter)) : ""}
+                                    Filter: {!!selectedFilter ? t(`libraryExplorer.${selectedFilter.toLowerCase()}` as any) : ""}
                                 </Button>
                             )}
                             <Button
@@ -538,7 +539,7 @@ export function LibraryExplorer() {
                                     isSelectingPaths && "animate-pulse",
                                 )}
                             >
-                                Select{isSelectingPaths ? "ing" : ""}
+                                {isSelectingPaths ? t("libraryExplorer.selecting") : t("libraryExplorer.select")}
                             </Button>
                             <IconButton
                                 icon={<LuFolderSync />}
@@ -549,7 +550,7 @@ export function LibraryExplorer() {
                             />
                         </div>
                         <TextInput
-                            placeholder="Search files and folders..."
+                            placeholder={t("libraryExplorer.searchPlaceholder")}
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             leftIcon={<BiSearch />}
@@ -559,7 +560,7 @@ export function LibraryExplorer() {
                         {hasUnscannedFiles && (
                             <Alert
                                 intent="warning"
-                                description="Some files have not been scanned yet. Please scan the library to be able to perform actions on them."
+                                description={t("libraryExplorer.notScannedDesc")}
                             />
                         )}
                     </div>
@@ -595,7 +596,7 @@ export function LibraryExplorer() {
                                 Footer: () => (
                                     <div className="p-2">
                                         <p className="text-xs text-gray-400 text-center py-2">
-                                            End
+                                            {t("libraryExplorer.end")}
                                         </p>
                                     </div>
                                 ),
@@ -646,6 +647,7 @@ type LibraryExplorerBulkActionsProps = {
 }
 
 export function LibraryExplorerBulkActions(props: LibraryExplorerBulkActionsProps) {
+    const t = createTranslator("es")
     const {
         fileNodes,
         handleMatchFiles,
@@ -689,7 +691,7 @@ export function LibraryExplorerBulkActions(props: LibraryExplorerBulkActionsProp
                         intent={shouldShowUnmatchFiles ? "warning-link" : "success-link"}
                         onClick={handleMatchOrUnmatch}
                     >
-                        {shouldShowUnmatchFiles ? "Unmatch" : "Match"} {selectedPathFileNodes.length} file{selectedPathFileNodes.length != 1
+                        {shouldShowUnmatchFiles ? t("libraryExplorer.unmatch") : t("libraryExplorer.match")} {selectedPathFileNodes.length} file{selectedPathFileNodes.length != 1
                         ? "s"
                         : ""}
                     </Button>
@@ -699,7 +701,7 @@ export function LibraryExplorerBulkActions(props: LibraryExplorerBulkActionsProp
                         intent={"gray-link"}
                         onClick={handleToggleIgnore}
                     >
-                        {shouldShowIgnoreFiles ? "Ignore" : "Un-ignore"} {selectedPathFileNodes.length} file{selectedPathFileNodes.length != 1
+                        {shouldShowIgnoreFiles ? t("libraryExplorer.ignore") : t("libraryExplorer.unignore")} {selectedPathFileNodes.length} file{selectedPathFileNodes.length != 1
                         ? "s"
                         : ""}
                     </Button>}
@@ -709,7 +711,7 @@ export function LibraryExplorerBulkActions(props: LibraryExplorerBulkActionsProp
                         intent="alert-subtle"
                         onClick={() => setDeleteModalOpen(true)}
                     >
-                        Delete {selectedPathFileNodes.length} file{selectedPathFileNodes.length != 1 ? "s" : ""}
+                        {t("libraryExplorer.delete")} {selectedPathFileNodes.length} file{selectedPathFileNodes.length != 1 ? "s" : ""}
                     </Button>
                 </>
             )}
@@ -965,18 +967,18 @@ const VirtualizedTreeNode = memo(({
     const [contextMenuOpen, setContextMenuOpen] = React.useState(false)
 
     const confirmLockDialog = useConfirmationDialog({
-        title: "Lock all files",
-        description: "This will lock all files in the directory. Are you sure you want to proceed?",
-        actionText: "Lock all",
+        title: t("libraryExplorer.lockAllFiles"),
+        description: t("libraryExplorer.lockAllFilesDesc"),
+        actionText: t("libraryExplorer.lockAllAction"),
         actionIntent: "primary",
         onConfirm: async () => {
             handleToggleLockedClick(new MouseEvent("click") as any)
         },
     })
     const confirmUnlockDialog = useConfirmationDialog({
-        title: "Unlock all files",
-        description: "This will unlock all files in the directory. Are you sure you want to proceed?",
-        actionText: "Unlock all",
+        title: t("libraryExplorer.unlockAllFiles"),
+        description: t("libraryExplorer.unlockAllFilesDesc"),
+        actionText: t("libraryExplorer.unlockAllAction"),
         actionIntent: "primary",
         onConfirm: async () => {
             handleToggleLockedClick(new MouseEvent("click") as any)
@@ -997,43 +999,43 @@ const VirtualizedTreeNode = memo(({
                         {node.mediaIds?.length === 1 && <ContextMenuItem
                             onClick={handleOpenMediaPreview}
                         >
-                            <LuEye /> Preview anime
+                            <LuEye /> {t("libraryExplorer.previewAnime")}
                         </ContextMenuItem>}
                         {isUnknownMedia && <ContextMenuItem
                             onClick={handleResolveMedia}
                         >
-                            <LuPlus /> Resolve unknown media
+                            <LuPlus /> {t("libraryExplorer.resolveUnknownMedia")}
                         </ContextMenuItem>}
                         <ContextMenuItem
                             onClick={handleOpenSuperUpdate}
                             // className={cn("text-[--violet]")}
                         >
-                            <FaRegEdit /> Super update
+                            <FaRegEdit /> {t("libraryExplorer.superUpdate")}
                         </ContextMenuItem>
                         {(isDirectory && allFileIgnored) && <ContextMenuItem
                             onClick={handleUnignoreDirectory}
                             className={cn("text-purple-300", isPending && "opacity-50 pointer-events-none")}
                         >
-                            <LuClipboardPlus className="text-lg" /> Un-ignore files
+                            <LuClipboardPlus className="text-lg" /> {t("libraryExplorer.unignoreFiles")}
                         </ContextMenuItem>}
                         {(isDirectory && !!nonIgnoredFileCount) && <>
                             {allFileMatched && <ContextMenuItem
                                 onClick={handleUnmatchDirectory}
                                 className={cn("text-[--orange]", isPending && "opacity-50 pointer-events-none")}
                             >
-                                <MdOutlineRemoveDone className="text-lg" /> Unmatch files
+                                <MdOutlineRemoveDone className="text-lg" /> {t("libraryExplorer.unmatchFiles")}
                             </ContextMenuItem>}
                             {!allFileMatched && <ContextMenuItem
                                 onClick={handleMatchDirectory}
                                 className={cn("text-[--green]", isPending && "opacity-50 pointer-events-none")}
                             >
-                                <MdOutlineAdd className="text-lg" /> Match files
+                                <MdOutlineAdd className="text-lg" /> {t("libraryExplorer.matchFiles")}
                             </ContextMenuItem>}
                             {!allFileIgnored && <ContextMenuItem
                                 onClick={handleIgnoreDirectory}
                                 className={cn("", isPending && "opacity-50 pointer-events-none")}
                             >
-                                <LuClipboardX className="text-lg" /> Ignore files
+                                <LuClipboardX className="text-lg" /> {t("libraryExplorer.ignoreFiles")}
                             </ContextMenuItem>}
                         </>}
                         {(!isDirectory && isScannedFile) && <>
@@ -1041,51 +1043,51 @@ const VirtualizedTreeNode = memo(({
                                 onClick={() => setMetadataModalOpen(true)}
                                 className={cn("text-[--blue]", isPending && "opacity-50 pointer-events-none")}
                             >
-                                <LuFilePen className="text-lg" /> Edit metadata
+                                <LuFilePen className="text-lg" /> {t("libraryExplorer.editMetadata")}
                             </ContextMenuItem>}
                             {!!node.localFile?.mediaId && <ContextMenuItem
                                 onClick={handleUnmatchSingleFile}
                                 className={cn("text-[--orange]", isPending && "opacity-50 pointer-events-none")}
                             >
-                                <MdOutlineRemoveDone className="text-lg" /> Unmatch file
+                                <MdOutlineRemoveDone className="text-lg" /> {t("libraryExplorer.unmatchFile")}
                             </ContextMenuItem>}
                             {!node.localFile?.mediaId && <ContextMenuItem
                                 onClick={handleMatchSingleFile}
                                 className={cn("text-[--green]", isPending && "opacity-50 pointer-events-none")}
                             >
-                                <MdOutlineAdd className="text-lg" /> Match file
+                                <MdOutlineAdd className="text-lg" /> {t("libraryExplorer.matchFile")}
                             </ContextMenuItem>}
                             {!node?.localFile?.ignored && <ContextMenuItem
                                 onClick={handleIgnoreSingleFile}
                                 className={cn("", isPending && "opacity-50 pointer-events-none")}
                             >
-                                <LuClipboardX className="text-lg" /> Ignore file
+                                <LuClipboardX className="text-lg" /> {t("libraryExplorer.ignoreFile")}
                             </ContextMenuItem>}
                             {node?.localFile?.ignored && <ContextMenuItem
                                 onClick={handleUnignoreSingleFile}
                                 className={cn("text-purple-300", isPending && "opacity-50 pointer-events-none")}
                             >
-                                <LuClipboardPlus className="text-lg" /> Un-ignore file
+                                <LuClipboardPlus className="text-lg" /> {t("libraryExplorer.unignoreFile")}
                             </ContextMenuItem>}
                         </>}
                         <ContextMenuSeparator className="!my-2" />
                         <ContextMenuSub
-                            triggerContent="More"
+                            triggerContent={t("libraryExplorer.more")}
                         >
                             {isDirectory && !!nonIgnoredFileCount && <ContextMenuItem
                                 onClick={handleDeleteDirectory}
                                 className={cn("text-[--red]")}
                             >
-                                <LuTrash2 className="text-lg" /> Delete files
+                                <LuTrash2 className="text-lg" /> {t("libraryExplorer.deleteFiles")}
                             </ContextMenuItem>}
                             {(!isDirectory && isScannedFile) && <ContextMenuItem
                                 onClick={handleDeleteSingleFile}
                                 className={cn("text-[--red]")}
                             >
-                                <LuTrash2 className="text-lg" /> Delete file
+                                <LuTrash2 className="text-lg" /> {t("libraryExplorer.deleteFile")}
                             </ContextMenuItem>}
                             <ContextMenuItem onClick={handleOpenInExplorerClick}>
-                                <BiFolder /> Open in explorer
+                                <BiFolder /> {t("libraryExplorer.openInExplorer")}
                             </ContextMenuItem>
                         </ContextMenuSub>
 
@@ -1153,7 +1155,7 @@ const VirtualizedTreeNode = memo(({
                                         !isDirectory && !isScannedFile && "text-red-200",
                                         !isDirectory && node.localFile?.ignored && "text-[--muted] italic",
                                     )}
-                                >{node.name === "root" ? "Anime Libraries" : node.name}</span>
+                                >{node.name === "root" ? t("libraryExplorer.animeLibraries") : node.name}</span>
                                 {(!!media || isUnknownMedia) && (
                                     <span
                                         className={cn(
@@ -1165,8 +1167,8 @@ const VirtualizedTreeNode = memo(({
                                         <span>{!isUnknownMedia ? media?.title?.userPreferred : "(?)"}</span>
                                     </span>
                                 )}
-                                {isUnknownMedia && <Tooltip trigger={<Badge intent="unstyled">Unknown media</Badge>}>
-                                    This media is not in your collection.
+                                {isUnknownMedia && <Tooltip trigger={<Badge intent="unstyled">{t("libraryExplorer.unknownMediaBadge")}</Badge>}>
+                                    {t("libraryExplorer.notInCollection")}
                                 </Tooltip>}
                                 {(allFileIgnored && isDirectory) && (
                                     <span
@@ -1176,7 +1178,7 @@ const VirtualizedTreeNode = memo(({
                                         style={{ maxWidth: 200 }}
                                     >
                                         <span> </span>
-                                        <span>(Ignored)</span>
+                                        <span>{t("libraryExplorer.ignored")}</span>
                                     </span>
                                 )}
                             </span>
@@ -1194,18 +1196,18 @@ const VirtualizedTreeNode = memo(({
                                     {matchedFileCount} / {nonIgnoredFileCount}
                                 </span>}
                             >
-                                Matched files
+                                {t("libraryExplorer.matchedFilesTooltip")}
                             </Tooltip>
                         )}
 
                         {!isDirectory && isScannedFile && !node.localFile?.mediaId && !node.localFile?.ignored && (
                             <div className="text-xs text-orange-200">
-                                Not matched
+                                {t("libraryExplorer.notMatched")}
                             </div>
                         )}
                         {!isDirectory && !isScannedFile && (
                             <div className="text-xs text-red-200">
-                                Not scanned
+                                {t("libraryExplorer.notScanned")}
                             </div>
                         )}
 
@@ -1222,7 +1224,7 @@ const VirtualizedTreeNode = memo(({
                                     />
                                 }
                             >
-                                {isLocked ? (isDirectory ? "Unlock all files" : "Unlock") : (isDirectory ? "Lock all files" : "Lock")}
+                                {isLocked ? (isDirectory ? t("libraryExplorer.unlockAllFiles") : t("libraryExplorer.unlock")) : (isDirectory ? t("libraryExplorer.lockAllFiles") : t("libraryExplorer.lock"))}
                             </Tooltip>}
                         {((isDirectory && hasDirectoryChildren && matchedFileNodes?.length > 0)) && <Tooltip
                             trigger={
@@ -1243,7 +1245,7 @@ const VirtualizedTreeNode = memo(({
                                 />
                             }
                         >
-                            {isLocked ? "Unlock all files" : "Lock all files"}
+                            {isLocked ? t("libraryExplorer.unlockAllFiles") : t("libraryExplorer.lockAllFiles")}
                         </Tooltip>}
                     </div>
                 </ContextMenuTrigger>
@@ -1252,7 +1254,7 @@ const VirtualizedTreeNode = memo(({
             {node.localFile && <Modal
                 open={isMetadataModalOpen}
                 onOpenChange={() => setMetadataModalOpen(false)}
-                title="File metadata"
+                title={t("libraryExplorer.fileMetadata")}
                 titleClass="text-center"
                 contentClass="max-w-xl"
             >
@@ -1279,26 +1281,26 @@ const VirtualizedTreeNode = memo(({
                     defaultValues={{ ...node.localFile.metadata }}
                 >
                     <Field.Number
-                        label="Episode number" name="episode"
-                        help="Relative episode number. If movie, episode number = 1"
+                        label={t("libraryExplorer.episodeNumber")} name="episode"
+                        help={t("libraryExplorer.episodeNumberHelp")}
                         required
                     />
                     <Field.Text
-                        label="AniDB episode"
+                        label={t("libraryExplorer.aniDbEpisode")}
                         name="aniDBEpisode"
-                        help="Specials typically contain the letter S"
+                        help={t("libraryExplorer.aniDbEpisodeHelp")}
                     />
                     <Field.Select
-                        label="Type"
+                        label={t("libraryExplorer.typeLabel")}
                         name="type"
                         options={[
-                            { label: "Main", value: "main" },
-                            { label: "Special", value: "special" },
-                            { label: "NC/Other", value: "nc" },
+                            { label: t("libraryExplorer.typeMain"), value: "main" },
+                            { label: t("libraryExplorer.typeSpecial"), value: "special" },
+                            { label: t("libraryExplorer.typeNcOther"), value: "nc" },
                         ]}
                     />
                     <div className="w-full flex justify-end">
-                        <Field.Submit role="save" intent="success" loading={isPending}>Save</Field.Submit>
+                        <Field.Submit role="save" intent="success" loading={isPending}>{t("libraryExplorer.save")}</Field.Submit>
                     </div>
                 </Form>
             </Modal>}
@@ -1315,6 +1317,7 @@ const VirtualizedTreeNode = memo(({
 
 
 function LibraryInfoPanel({}: { localFiles: Record<string, Anime_LocalFile> | undefined }) {
+    const t = createTranslator("es")
     const selectedNode = useAtomValue(libraryExplorer_selectedNodeAtom)
 
     const userMedia = useAtomValue(__anilist_userAnimeMediaAtom)
@@ -1335,7 +1338,7 @@ function LibraryInfoPanel({}: { localFiles: Record<string, Anime_LocalFile> | un
             <div className="p-4 flex-1 flex items-center justify-center">
                 <div className="text-center text-gray-500">
                     <FiFolder className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                    <p className="text-sm">Select a file or folder to view details</p>
+                    <p className="text-sm">{t("libraryExplorer.selectDetails")}</p>
                 </div>
             </div>
         )
@@ -1367,7 +1370,7 @@ function LibraryInfoPanel({}: { localFiles: Record<string, Anime_LocalFile> | un
                     {selectedNode.name}
                 </h3>
                 {fileExtension && (
-                    <span className="text-xs text-gray-400 mt-1">{fileExtension} File</span>
+                    <span className="text-xs text-gray-400 mt-1">{t("libraryExplorer.fileExtension", { ext: fileExtension })}</span>
                 )}
             </div>
 
@@ -1375,12 +1378,12 @@ function LibraryInfoPanel({}: { localFiles: Record<string, Anime_LocalFile> | un
 
             <div className="space-y-3 text-sm">
                 <div>
-                    <dt className="text-gray-400 text-sm uppercase tracking-wide mb-1">Type</dt>
-                    <dd className="text-gray-200">{isDirectory ? "Folder" : "File"}</dd>
+                    <dt className="text-gray-400 text-sm uppercase tracking-wide mb-1">{t("libraryExplorer.typeLabel")}</dt>
+                    <dd className="text-gray-200">{isDirectory ? t("libraryExplorer.folderType") : t("libraryExplorer.fileType")}</dd>
                 </div>
 
                 <div>
-                    <dt className="text-gray-400 text-sm uppercase tracking-wide mb-1">Path</dt>
+                    <dt className="text-gray-400 text-sm uppercase tracking-wide mb-1">{t("libraryExplorer.path")}</dt>
                     <dd className="text-gray-200 text-xs font-mono bg-gray-900 p-2 rounded break-all">
                         {selectedNode.path}
                     </dd>
@@ -1388,7 +1391,7 @@ function LibraryInfoPanel({}: { localFiles: Record<string, Anime_LocalFile> | un
 
                 {selectedNode.size && (
                     <div>
-                        <dt className="text-gray-400 text-sm uppercase tracking-wide mb-1">Size</dt>
+                        <dt className="text-gray-400 text-sm uppercase tracking-wide mb-1">{t("libraryExplorer.size")}</dt>
                         <dd className="text-gray-200">{formatFileSize(selectedNode.size)}</dd>
                     </div>
                 )}
@@ -1396,10 +1399,10 @@ function LibraryInfoPanel({}: { localFiles: Record<string, Anime_LocalFile> | un
                 {isDirectory && selectedNode.mediaIds && selectedNode.mediaIds.length > 0 && (
                     <div>
                         <dt className="text-gray-400 text-sm uppercase tracking-wide mb-1">
-                            Associated Media
+                            {t("libraryExplorer.associatedMedia")}
                         </dt>
                         <dd className="text-gray-200">
-                            {selectedNode.mediaIds.length} anime series
+                            {t("libraryExplorer.animeSeries", { count: selectedNode.mediaIds.length, plural: selectedNode.mediaIds.length })}
                         </dd>
                         {selectedNode.mediaIds.length > 1 && selectedNode.mediaIds.length <= 5 && associatedMedia?.map(media => (
                             <dd
@@ -1416,28 +1419,28 @@ function LibraryInfoPanel({}: { localFiles: Record<string, Anime_LocalFile> | un
                 {selectedNode.localFile && (
                     <div className="space-y-1.5">
                         <dt className="text-gray-400 text-sm uppercase tracking-wide">
-                            Library File
+                            {t("libraryExplorer.libraryFile")}
                         </dt>
-                        {selectedNode.localFile?.mediaId > 0 && <dd className="text-[--green] text-sm">✓ Matched</dd>}
-                        {selectedNode.localFile?.mediaId === 0 && <dd className="text-[--orange] text-sm">Not matched</dd>}
+                        {selectedNode.localFile?.mediaId > 0 && <dd className="text-[--green] text-sm">{t("libraryExplorer.matched")}</dd>}
+                        {selectedNode.localFile?.mediaId === 0 && <dd className="text-[--orange] text-sm">{t("libraryExplorer.notMatched")}</dd>}
                         <dd className="text-gray-200 text-sm">
-                            Episode: <span className="font-semibold">{selectedNode.localFile?.metadata?.episode ?? "N/A"}</span>
+                            {t("libraryExplorer.episode")} <span className="font-semibold">{selectedNode.localFile?.metadata?.episode ?? t("libraryExplorer.na")}</span>
                         </dd>
                         <dd className="text-gray-200 text-sm">
-                            AniDB Episode: <span className="font-semibold">{selectedNode.localFile?.metadata?.aniDBEpisode ?? "N/A"}</span>
+                            {t("libraryExplorer.aniDbEpisodeLabel")} <span className="font-semibold">{selectedNode.localFile?.metadata?.aniDBEpisode ?? t("libraryExplorer.na")}</span>
                         </dd>
                         <dd className="text-gray-200 text-sm">
-                            Type: <span className="font-semibold">{selectedNode.localFile?.metadata?.type?.toUpperCase()}</span>
+                            {t("libraryExplorer.typeLabel")}: <span className="font-semibold">{selectedNode.localFile?.metadata?.type?.toUpperCase()}</span>
                         </dd>
                     </div>
                 )}
 
                 {isDirectory && selectedNode.children && (
                     <div>
-                        <dt className="text-gray-400 text-sm uppercase tracking-wide mb-1">Contents</dt>
+                        <dt className="text-gray-400 text-sm uppercase tracking-wide mb-1">{t("libraryExplorer.contents")}</dt>
                         <dd className="text-gray-200">
-                            {directoryCount} folder{directoryCount != 1 ? "s" : ""}, {" "}
-                            {fileCount} file{fileCount != 1 ? "s" : ""}
+                            {directoryCount} {t("libraryExplorer.folders", { plural: directoryCount })}, {" "}
+                            {fileCount} {t("libraryExplorer.files", { plural: fileCount })}
                         </dd>
                     </div>
                 )}
@@ -1479,6 +1482,7 @@ type LibraryExplorerDeleteFileModalProps = {
 }
 
 function LibraryExplorerDeleteFileModal(props: LibraryExplorerDeleteFileModalProps) {
+    const t = createTranslator("es")
     const { open, onOpenChange, selectedPaths, isDirectory } = props
 
     const [filepaths, setFilepaths] = React.useState<string[]>([])
@@ -1494,10 +1498,10 @@ function LibraryExplorerDeleteFileModal(props: LibraryExplorerDeleteFileModalPro
     const refreshMutation = useRefreshLibraryExplorerFileTree()
 
     const confirmDelete = useConfirmationDialog({
-        title: "Delete file",
-        description: "This action cannot be undone.",
+        title: t("libraryExplorer.deleteFileTitle"),
+        description: t("libraryExplorer.deleteFileDesc"),
         actionIntent: "alert",
-        actionText: "Delete",
+        actionText: t("libraryExplorer.delete"),
         onConfirm: () => {
             if (filepaths.length === 0) return
 
@@ -1516,7 +1520,7 @@ function LibraryExplorerDeleteFileModal(props: LibraryExplorerDeleteFileModalPro
                 open={open}
                 onOpenChange={onOpenChange}
                 contentClass="max-w-2xl"
-                title={<span>Delete file</span>}
+                title={<span>{t("libraryExplorer.deleteFile")}</span>}
                 titleClass="text-center"
             >
                 <div className="space-y-2 mt-2">
@@ -1540,14 +1544,14 @@ function LibraryExplorerDeleteFileModal(props: LibraryExplorerDeleteFileModalPro
                             onClick={() => confirmDelete.open()}
                             loading={isDeleting}
                         >
-                            Delete
+                            {t("libraryExplorer.delete")}
                         </Button>
                         <Button
                             intent="white"
                             onClick={() => onOpenChange(false)}
                             disabled={isDeleting}
                         >
-                            Cancel
+                            {t("libraryExplorer.cancel")}
                         </Button>
                     </div>
                 </div>
@@ -1565,6 +1569,7 @@ type LibraryExplorerBulkDeleteModalProps = {
 }
 
 function LibraryExplorerBulkDeleteModal(props: LibraryExplorerBulkDeleteModalProps) {
+    const t = createTranslator("es")
     const { open, onOpenChange, selectedPaths, fileNodes } = props
 
     const [filepaths, setFilepaths] = React.useState<string[]>([])
@@ -1590,10 +1595,10 @@ function LibraryExplorerBulkDeleteModal(props: LibraryExplorerBulkDeleteModalPro
     const refreshMutation = useRefreshLibraryExplorerFileTree()
 
     const confirmDelete = useConfirmationDialog({
-        title: "Delete files",
-        description: "This action cannot be undone.",
+        title: t("libraryExplorer.deleteFilesTitle"),
+        description: t("libraryExplorer.deleteFileDesc"),
         actionIntent: "alert",
-        actionText: "Delete",
+        actionText: t("libraryExplorer.delete"),
         onConfirm: () => {
             if (filepaths.length === 0) return
 
@@ -1624,7 +1629,7 @@ function LibraryExplorerBulkDeleteModal(props: LibraryExplorerBulkDeleteModalPro
                 open={open}
                 onOpenChange={onOpenChange}
                 contentClass="max-w-2xl"
-                title={<span>Select files to delete</span>}
+                title={<span>{t("libraryExplorer.selectFilesToDelete")}</span>}
                 titleClass="text-center"
             >
                 <div className="space-y-2 mt-2">
@@ -1652,14 +1657,14 @@ function LibraryExplorerBulkDeleteModal(props: LibraryExplorerBulkDeleteModalPro
                             onClick={() => confirmDelete.open()}
                             loading={isDeleting}
                         >
-                            Delete
+                            {t("libraryExplorer.delete")}
                         </Button>
                         <Button
                             intent="white"
                             onClick={() => onOpenChange(false)}
                             disabled={isDeleting}
                         >
-                            Cancel
+                            {t("libraryExplorer.cancel")}
                         </Button>
                     </div>
                 </div>

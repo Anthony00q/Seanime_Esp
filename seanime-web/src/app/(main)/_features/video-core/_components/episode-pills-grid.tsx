@@ -1,6 +1,9 @@
 import { cn } from "@/components/ui/core/styling"
 import { motion } from "motion/react"
 import React from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 type Episode = {
     id: string
@@ -95,7 +98,7 @@ export function EpisodePillsGrid({
                                         "bg-orange-400",
                                         isSelected && "bg-orange-200",
                                     )}
-                                    title="Filler episode"
+                                    title={t("videoPlayer.fillerEpisode")}
                                 />
                             )}
 

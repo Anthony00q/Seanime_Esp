@@ -103,7 +103,7 @@
       "sidebarOnlyMode": "Switch to sidebar-only mode.",
       "screens": "Screens",
       "watchContinuityWarning": "Watch continuity must be enabled to use last watched sorting options.",
-      "bannerType": "Banner type",
+      "bannerTypeLabel": "Banner type",
       "dynamicBanner": "Dynamic banner",
       "customBanner": "Custom banner",
       "none": "None",

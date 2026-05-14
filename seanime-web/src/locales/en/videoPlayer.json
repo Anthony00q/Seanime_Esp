@@ -277,6 +277,7 @@
     },
     "loading": "Loading...",
     "noNextEpisode": "No next episode",
-    "noPreviousEpisode": "No previous episode"
+    "noPreviousEpisode": "No previous episode",
+    "fillerEpisode": "Filler episode"
   }
 }

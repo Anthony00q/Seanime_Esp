@@ -7,6 +7,7 @@ import { SeaImage } from "@/components/shared/sea-image"
 import { CommandGroup, CommandItem } from "@/components/ui/command"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { useDebounce } from "@/hooks/use-debounce"
+import { createTranslator } from "@/locales"
 import { useRouter } from "@/lib/navigation"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
@@ -49,6 +50,8 @@ export function SeaCommandSearch() {
     const { input, select, scrollToTop, commandListRef, command: { isCommand, command, args } } = useSeaCommandContext()
 
     const router = useRouter()
+
+    const t = createTranslator("es")
 
     const animeSearchInput = args.join(" ")
     const mangaSearchInput = args.slice(1).join(" ")
@@ -97,18 +100,18 @@ export function SeaCommandSearch() {
                 <>
                     <CommandHelperText
                         command="/search [title]"
-                        description="Search anime"
+                        description={t("seaCommand.searchAnime")}
                         show={true}
                     />
                     <CommandHelperText
                         command="/search manga [title]"
-                        description="Search manga"
+                        description={t("seaCommand.searchManga")}
                         show={true}
                     />
                 </>
             ) : (
 
-                <CommandGroup heading={`${type === "anime" ? "Anime" : "Manga"} results`}>
+                <CommandGroup heading={`${t("seaCommand.results", { type: type === "anime" ? "Anime" : "Manga" })}`}>
                     {(debouncedQuery !== "" && (!media || media.length === 0) && (isLoading || isFetching)) && (
                         <LoadingSpinner />
                     )}
@@ -127,10 +130,9 @@ export function SeaCommandSearch() {
                                     className="object-contain object-top"
                                 />
                             </div>}
-                            <h5 className="mt-4 font-semibold text-[--foreground]">Nothing
-                                                                                   found</h5>
+                            <h5 className="mt-4 font-semibold text-[--foreground]">{t("seaCommand.nothingFound")}</h5>
                             <p className="mt-2 text-[--muted]">
-                                We couldn't find anything with that name. Please try again.
+                                {t("seaCommand.noResultsDesc")}
                             </p>
                         </div>
                     )}

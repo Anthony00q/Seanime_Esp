@@ -28,6 +28,9 @@ import React from "react"
 import { AiOutlineExclamationCircle } from "react-icons/ai"
 import { BiX } from "react-icons/bi"
 import { StreamPageSkeleton } from "../../_components/stream-page-skeleton"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 type TorrentStreamPageProps = {
     children?: React.ReactNode
@@ -104,10 +107,10 @@ export function TorrentStreamPage(props: TorrentStreamPageProps) {
     }
 
     const confirmPreviousBatchAction = useConfirmationDialog({
-        title: "Disable previous torrent",
-        description: "Disable using the saved previous batch for now, or delete the saved history entirely.",
-        actionText: "Delete history",
-        cancelText: "Disable only",
+        title: t("entry.torrentStream.disablePreviousTorrent"),
+        description: t("entry.torrentStream.disablePreviousTorrentDesc"),
+        actionText: t("entry.torrentStream.deleteHistory"),
+        cancelText: t("entry.torrentStream.disableOnly"),
         onConfirm: handleDeletePreviousBatch,
         onCancel: handleDisablePreviousBatch,
     })
@@ -314,7 +317,7 @@ export function TorrentStreamPage(props: TorrentStreamPageProps) {
                         data-torrent-stream-page-content-actions-container
                     >
                         <Switch
-                            label="Auto-select"
+                            label={t("entry.torrentSearch.autoSelect")}
                             value={autoSelect}
                             onValueChange={v => {
                                 setAutoSelect(v)
@@ -325,12 +328,12 @@ export function TorrentStreamPage(props: TorrentStreamPageProps) {
 
                         {!autoSelect && !usePreviousBatch && (
                             <Switch
-                                label="Auto-select file"
+                                label={t("entry.torrentStream.autoSelectFile")}
                                 value={autoSelectFile}
                                 onValueChange={v => {
                                     setAutoSelectFile(v)
                                 }}
-                                moreHelp="The episode file will be automatically selected from your chosen batch torrent"
+                                moreHelp={t("entry.torrentStream.autoSelectFileDesc")}
                                 fieldClass="w-fit flex-none"
                                 disabled={!autoSelect && usePreviousBatch}
                             />
@@ -351,7 +354,7 @@ export function TorrentStreamPage(props: TorrentStreamPageProps) {
                                             />
                                         </div>
                                         <div className="flex-1 flex items-center gap-2">
-                                            <div className="flex items-center flex-none gap-1">Auto-selecting from previous torrent
+                                            <div className="flex items-center flex-none gap-1">{t("entry.torrentStream.autoSelectingFromBatch")}
                                                 <Popover
                                                     className="text-sm"
                                                     trigger={
@@ -372,9 +375,9 @@ export function TorrentStreamPage(props: TorrentStreamPageProps) {
 
                     {episodeCollection?.hasMappingError && (
                         <div data-torrent-stream-page-no-metadata-message-container>
-                            <p className="text-red-200 opacity-50">
-                                No metadata info available for this anime. You may need to manually select the file to stream.
-                            </p>
+                                <p className="text-red-200 opacity-50">
+                                    {t("entry.torrentStream.noMetadataAvailable")}
+                                </p>
                         </div>
 
                     )}

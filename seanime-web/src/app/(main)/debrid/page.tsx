@@ -65,9 +65,9 @@ export default function Page() {
     if (!serverStatus) return <LoadingSpinner />
 
     if (!serverStatus?.debridSettings?.enabled || !serverStatus?.debridSettings?.provider) return <LuffyError
-        title="Debrid not enabled"
+        title={t("debridPage.notEnabled")}
     >
-        Debrid service is not enabled or configured
+        {t("debridPage.notEnabledDesc")}
     </LuffyError>
 
     return (
@@ -143,7 +143,7 @@ function Content() {
                 <div>
                     <h2>{getServiceName(serverStatus?.debridSettings?.provider!)}</h2>
                     <p className="text-[--muted]">
-                        See your debrid service torrents
+                        {t("debridPage.seeTorrents")}
                     </p>
                 </div>
                 <div className="flex flex-1"></div>
@@ -155,13 +155,13 @@ function Content() {
                             refetch()
                             toast.info(t("debridPage.refreshed"))
                         }}
-                    >Refresh</Button>
+                    >{t("debridPage.refresh")}</Button>
                     {!!getDashboardLink(serverStatus?.debridSettings?.provider!) && (
                         <SeaLink href={getDashboardLink(serverStatus?.debridSettings?.provider!)} target="_blank">
                             <Button
                                 intent="primary-subtle"
                                 rightIcon={<BiLinkExternal className="text-xl" />}
-                            >Dashboard</Button>
+                            >{t("debridPage.dashboard")}</Button>
                         </SeaLink>
                     )}
                 </div>
@@ -172,8 +172,8 @@ function Content() {
 
                     <div>
                         <ul className="text-[--muted] flex flex-wrap gap-4">
-                            <li>Downloading: {data?.filter(t => t.status === "downloading" || t.status === "paused")?.length ?? 0}</li>
-                            <li>Seeding: {data?.filter(t => t.status === "seeding")?.length ?? 0}</li>
+                            <li>{t("debridPage.downloading")}: {data?.filter(t => t.status === "downloading" || t.status === "paused")?.length ?? 0}</li>
+                            <li>{t("debridPage.seeding")}: {data?.filter(t => t.status === "seeding")?.length ?? 0}</li>
                         </ul>
                     </div>
 
@@ -185,7 +185,7 @@ function Content() {
                                 downloadProgress={downloadProgressMap[torrent.id] ?? null}
                             />
                         })}
-                        {(!isLoading && !data?.length) && <LuffyError title="Nothing to see">No active torrents</LuffyError>}
+                        {(!isLoading && !data?.length) && <LuffyError title={t("common.messages.nothingToSee")}>{t("debridPage.noActiveTorrents")}</LuffyError>}
                     </Card>
                 </AppLayoutStack>
             </div>
@@ -213,17 +213,17 @@ type DownloadProgress = {
     speed: string | number
 }
 
-function getLocalDownloadStatus(torrent: Debrid_TorrentItem, downloadProgress?: DownloadProgress | null) {
+function getLocalDownloadStatus(torrent: Debrid_TorrentItem, downloadProgress?: DownloadProgress | null, t?: ReturnType<typeof createTranslator>) {
     if (downloadProgress || torrent.isDownloadingLocally) {
         return {
-            label: "Downloading",
+            label: t ? t("debridPage.downloadingLocally") : "Downloading locally",
             intent: "blue" as const,
         }
     }
 
     if (torrent.isQueuedForLocalDownload) {
         return {
-            label: torrent.isReady ? "Queued" : "Waiting...",
+            label: torrent.isReady ? (t ? t("debridPage.queued") : "Queued") : (t ? t("debridPage.waiting") : "Waiting..."),
             intent: "warning" as const,
         }
     }
@@ -240,13 +240,13 @@ const TorrentItem = React.memo(function TorrentItem({ torrent, isPending, downlo
 
     const [_, setSelectedTorrentItem] = useAtom(selectedTorrentItemAtom)
 
-    const localDownloadStatus = getLocalDownloadStatus(torrent, downloadProgress)
+    const localDownloadStatus = getLocalDownloadStatus(torrent, downloadProgress, t)
     const isDownloadingLocally = !!downloadProgress || !!torrent.isDownloadingLocally
     const canOpenDownloadModal = torrent.isReady && !isDownloadingLocally
 
     const confirmDeleteTorrentProps = useConfirmationDialog({
-        title: "Remove torrent",
-        description: "This action cannot be undone.",
+        title: t("torrentList.removeTorrent"),
+        description: t("torrentList.removeTorrentDesc"),
         onConfirm: () => {
             deleteTorrent({
                 torrentItem: torrent,
@@ -338,14 +338,14 @@ const TorrentItem = React.memo(function TorrentItem({ torrent, isPending, downlo
                             <HiFolderDownload className="text-2xl animate-pulse text-[--blue]" />
                         </p>}
                     >
-                        Downloading locally
+                        {t("debridPage.downloadingLocally")}
                     </Tooltip>
                     {downloadProgress ? (
                         <p>
                             {downloadProgress.totalBytes}<span className="text-[--muted]"> / {downloadProgress.totalSize}</span>
                         </p>
                     ) : (
-                        <p className="text-sm text-[--muted]">Preparing local files</p>
+                        <p className="text-sm text-[--muted]">{t("debridPage.preparingFiles")}</p>
                     )}
                     <Tooltip
                         trigger={<p>
@@ -359,7 +359,7 @@ const TorrentItem = React.memo(function TorrentItem({ torrent, isPending, downlo
                             />
                         </p>}
                     >
-                        Cancel download
+                        {t("debridPage.cancelDownload")}
                     </Tooltip>
                 </div>}
                 <IconButton
@@ -422,7 +422,7 @@ function TorrentItemModal(props: TorrentItemModalProps) {
             onOpenChange={() => {
                 setSelectedTorrentItem(null)
             }}
-            title="Download"
+            title={t("debridPage.downloadTitle")}
             contentClass="max-w-2xl"
         >
             <p className="text-center line-clamp-2 text-sm">
@@ -432,13 +432,13 @@ function TorrentItemModal(props: TorrentItemModalProps) {
             <div className="space-y-4 mt-4">
                 <DirectorySelector
                     name="destination"
-                    label="Destination"
+                    label={t("debridPage.destination")}
                     leftIcon={<FcFolder />}
                     value={destination}
                     defaultValue={destination}
                     onSelect={setDestination}
                     shouldExist={false}
-                    help="Where to save the torrent"
+                    help={t("debridPage.destinationHelp")}
                     libraryPathSelectionProps={libraryPathSelectionProps}
                 />
 
@@ -450,7 +450,7 @@ function TorrentItemModal(props: TorrentItemModalProps) {
                         disabled={!destination || destination.length < 2}
                         onClick={handleDownload}
                     >
-                        Download
+                        {t("debridPage.downloadTitle")}
                     </Button>
                 </div>
             </div>

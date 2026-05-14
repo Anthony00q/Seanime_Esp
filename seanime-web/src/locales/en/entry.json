@@ -102,7 +102,41 @@
       "usePreviousBatch": "Use previous batch",
       "addProviders": "Add providers",
       "noProvidersFound": "No providers found",
-      "additionalProviders": "Additional providers"
+      "additionalProviders": "Additional providers",
+      "smartSearch": "Smart search",
+      "smartSearchDesc": "Automated search based on given parameters.",
+      "notSupported": "This provider does not support smart search.",
+      "searchAcrossProviders": "Search across providers",
+      "searchAcrossDesc": "Runs the same search against saved additional providers.",
+      "episodeNumber": "Episode number",
+      "batches": "Batches",
+      "resolution": "Resolution",
+      "bestReleases": "Best releases",
+      "refineTitle": "Refine the title ({title})",
+      "search": "Search",
+      "noExtensionSelected": "No extension selected",
+      "addExtensions": "Add extensions",
+      "selectTorrentToStream": "Select a torrent to stream",
+      "save": "Save",
+      "adultContentNotSupported": "This provider does not support adult content",
+      "smartSearchNotSupported": "This provider does not support smart search",
+      "bestReleaseNotSupported": "This provider does not support best release search",
+      "previousSelection": "Previous selection"
+    },
+    "torrentDownload": {
+      "chooseDestination": "Choose the destination",
+      "downloadWithDebrid": "Download with Debrid service",
+      "destination": "Destination",
+      "downloadAll": "Download all",
+      "download": "Download",
+      "downloadWithClient": "Download with torrent client",
+      "downloadTorrentFiles": "Download '.torrent' files",
+      "chooseFiles": "Choose files to download",
+      "downloadMissingEpisodes": "Download missing episodes",
+      "downloadSelectedFiles": "Download selected files",
+      "filesSelected": "{selected} of {total} files selected",
+      "selectFiles": "Select files to download",
+      "openInBrowser": "Open in browser"
     },
     "torrentStream": {
       "title": "Torrent streaming",
@@ -129,7 +163,15 @@
       "addingTorrent": "Adding torrent \"{name}\"",
       "checkingTorrent": "Checking torrent \"{name}\"",
       "gettingMetadata": "Getting metadata...",
-      "sendingStream": "Sending stream to player..."
+      "sendingStream": "Sending stream to player...",
+      "autoSelectFile": "Auto-select file",
+      "autoSelectFileDesc": "The episode file will be automatically selected from your chosen batch torrent",
+      "autoSelectingFromBatch": "Auto-selecting from previous torrent",
+      "noMetadataAvailable": "No metadata info available for this anime. You may need to manually select the file to stream.",
+      "disablePreviousTorrent": "Disable previous torrent",
+      "disablePreviousTorrentDesc": "Disable using the saved previous batch for now, or delete the saved history entirely.",
+      "deleteHistory": "Delete history",
+      "disableOnly": "Disable only"
     },
     "debridStream": {
       "title": "Debrid streaming",
@@ -142,7 +184,9 @@
       "fileSelection": "File selection",
       "selectFilesToStream": "Select files to stream",
       "noFilesAvailable": "No files available",
-      "selectAtLeastOne": "Select at least one file"
+      "selectAtLeastOne": "Select at least one file",
+      "autoSelectFile": "Auto-select file",
+      "autoSelectFileDesc": "The episode file will be automatically selected from your chosen batch torrent"
     },
     "rankings": {
       "allTimeHighestRated": "Highest Rated{format}",

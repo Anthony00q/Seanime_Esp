@@ -20,7 +20,8 @@
       "skip": "Skip",
       "done": "Done",
       "previous": "Previous",
-      "loadMore": "Load more"
+      "loadMore": "Load more",
+      "ok": "Ok"
     },
     "labels": {
       "name": "Name",

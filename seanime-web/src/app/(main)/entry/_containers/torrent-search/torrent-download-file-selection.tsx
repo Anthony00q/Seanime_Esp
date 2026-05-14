@@ -19,6 +19,9 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai/react"
 import React from "react"
 import { BiDownload } from "react-icons/bi"
 import { FcFolder } from "react-icons/fc"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 const log = logger("TORRENT DOWNLOAD FILE SELECTION")
 
@@ -156,12 +159,12 @@ export function TorrentDownloadFileSelection({ entry }: { entry: Anime_Entry }) 
             <VaulContent className="max-w-5xl mx-auto">
                 <AppLayoutStack className="mt-4 p-3 lg:p-6">
                     <h4 className="text-center mb-4">
-                        Select files to download
+                        {t("entry.torrentDownload.selectFiles")}
                     </h4>
 
                     <DirectorySelector
                         name="destination"
-                        label="Destination"
+                        label={t("entry.torrentDownload.destination")}
                         leftIcon={<FcFolder />}
                         value={destination}
                         defaultValue={destination}
@@ -186,7 +189,7 @@ export function TorrentDownloadFileSelection({ entry }: { entry: Anime_Entry }) 
                             </ScrollArea>
 
                             <div className="text-sm text-[--muted] mb-2">
-                                {selectedFileIndices.length} of {filePreviews.length} files selected
+                                {t("entry.torrentDownload.filesSelected", { selected: selectedFileIndices.length, total: filePreviews.length })}
                             </div>
 
                             <Button
@@ -197,7 +200,7 @@ export function TorrentDownloadFileSelection({ entry }: { entry: Anime_Entry }) 
                                 loading={isPending}
                                 onClick={handleDownload}
                             >
-                                Download selected files
+                                {t("entry.torrentDownload.downloadSelectedFiles")}
                             </Button>
 
                         </AppLayoutStack>

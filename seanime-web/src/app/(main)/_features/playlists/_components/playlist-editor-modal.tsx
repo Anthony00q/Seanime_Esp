@@ -68,7 +68,7 @@ export function PlaylistEditorModal(props: PlaylistEditorModalProps) {
 
     return (
         <Modal
-            title={isUpdate ? "Edit playlist" : "Create a playlist"}
+            title={isUpdate ? t("playlists.editPlaylist") : t("playlists.createPlaylist")}
             trigger={trigger}
             open={isOpen}
             onOpenChange={v => setIsOpen(v)}
@@ -79,7 +79,7 @@ export function PlaylistEditorModal(props: PlaylistEditorModalProps) {
 
                 <div className="space-y-4">
                     <TextInput
-                        label="Name"
+                        label={t("common.labels.name")}
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
@@ -103,13 +103,13 @@ export function PlaylistEditorModal(props: PlaylistEditorModalProps) {
                             loading={isCreating || isDeleting || isUpdating}
                             className="w-full"
                         >
-                            {isUpdate ? "Update" : "Create"}
+                            {isUpdate ? t("playlists.update") : t("playlists.create")}
                         </Button>
                     </div>
                 </div>
 
                 {isUpdate && <DangerZone
-                    actionText="Delete playlist" onDelete={() => {
+                    actionText={t("playlists.deletePlaylist")} onDelete={() => {
                     if (isUpdate && !!playlist) {
                         deletePlaylist({ dbId: playlist.dbId }, {
                             onSuccess: () => {
