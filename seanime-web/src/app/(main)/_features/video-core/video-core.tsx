@@ -145,6 +145,9 @@ import { ImSpinner2 } from "react-icons/im"
 import { PiSpinnerDuotone } from "react-icons/pi"
 import { RemoveScrollBar } from "react-remove-scroll-bar"
 import { useUnmount, useUpdateEffect, useWindowSize } from "react-use"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 const log = logger("VIDEO CORE")
 
@@ -377,16 +380,15 @@ const PlayerContent = React.memo<PlayerContentProps>(({
                 >
                     <div className="text-white text-center" data-vc-element="playback-error-content">
                         {!isMiniPlayer ? (
-                            <LuffyError title="Playback Error" imageContainerClass="size-[3.5rem] lg:size-[8rem]" />
+                            <LuffyError title={t("videoPlayer.playbackError.title")} imageContainerClass="size-[3.5rem] lg:size-[8rem]" />
                         ) : (
-                            <h1 data-vc-element="playback-error-title" className={cn("text-2xl font-bold", isMiniPlayer && "text-lg")}>Playback
-                                                                                                                                       Error</h1>
+                            <h1 data-vc-element="playback-error-title" className={cn("text-2xl font-bold", isMiniPlayer && "text-lg")}>{t("videoPlayer.playbackError.title")}</h1>
                         )}
                         <p
                             data-vc-element="playback-error-message"
                             className={cn("text-base text-white/50 max-w-xl", isMiniPlayer && "text-sm max-w-lg mx-auto")}
                         >
-                            {state.playbackError || "An error occurred while playing the stream. Please try again later."}
+                            {state.playbackError || t("videoPlayer.playbackError.message")}
                         </p>
                     </div>
                 </div>
@@ -451,8 +453,8 @@ const PlayerContent = React.memo<PlayerContentProps>(({
                                                 action({ type: "seekTo", payload: { time: skipOpeningTime || 0 } })
                                             }}
                                             onPointerMove={e => e.stopPropagation()}
-                                        >
-                                            Skip Opening
+                                            >
+                                            {t("videoPlayer.skipOpening")}
                                         </Button>
                                     </div>
                                 )}
@@ -472,7 +474,7 @@ const PlayerContent = React.memo<PlayerContentProps>(({
                                             }}
                                             onPointerMove={e => e.stopPropagation()}
                                         >
-                                            Skip Ending
+                                            {t("videoPlayer.skipEnding")}
                                         </Button>
                                     </div>
                                 )}
@@ -565,7 +567,7 @@ const PlayerContent = React.memo<PlayerContentProps>(({
                                         pipManager?.togglePip()
                                     }}
                                 >
-                                    Exit PiP
+                                    {t("videoPlayer.exitPip")}
                                 </Button>
                             </div>
                         )}
@@ -626,7 +628,7 @@ const PlayerContent = React.memo<PlayerContentProps>(({
                         {!inline && <FloatingButtons part="loading" onTerminateStream={onTerminateStream} />}
                         {state.loadingState && (
                             <LoadingSpinner
-                                title={state.loadingState || "Loading..."}
+                                title={state.loadingState || t("videoPlayer.loading")}
                                 spinner={<ImSpinner2 className="size-20 text-white animate-spin" />}
                                 containerClass="z-[1]"
                             />
@@ -961,11 +963,11 @@ export function VideoCore(props: VideoCoreProps) {
         if (videoRef?.current?.paused) {
             videoRef?.current?.play().catch()
             onPlay?.()
-            showOverlayFeedback({ message: "PLAY", type: "icon" })
+            showOverlayFeedback({ message: t("videoPlayer.overlay.play"), type: "icon" })
         } else {
             videoRef?.current?.pause()
             onPause?.()
-            showOverlayFeedback({ message: "PAUSE", type: "icon" })
+            showOverlayFeedback({ message: t("videoPlayer.overlay.pause"), type: "icon" })
         }
     }
 
