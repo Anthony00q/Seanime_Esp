@@ -13,6 +13,7 @@ import { useAtomValue } from "jotai/react"
 import React from "react"
 import { BiPlus } from "react-icons/bi"
 import { TbWorldDownload } from "react-icons/tb"
+import { createTranslator } from "@/locales"
 
 type AnimeAutoDownloaderButtonProps = {
     entry: Anime_Entry
@@ -21,6 +22,7 @@ type AnimeAutoDownloaderButtonProps = {
 
 export function AnimeAutoDownloaderButton(props: AnimeAutoDownloaderButtonProps) {
 
+    const t = createTranslator("es")
     const {
         entry,
         size,
@@ -43,7 +45,7 @@ export function AnimeAutoDownloaderButton(props: AnimeAutoDownloaderButtonProps)
     return (
         <>
             <Modal
-                title="Auto Downloader"
+                title={t("misc.autoDownloader.button.title")}
                 contentClass="max-w-3xl"
                 open={isModalOpen}
                 onOpenChange={setIsModalOpen}
@@ -68,6 +70,7 @@ type ContentProps = {
 
 export function Content(props: ContentProps) {
 
+    const t = createTranslator("es")
     const {
         entry,
         rules,
@@ -87,7 +90,7 @@ export function Content(props: ContentProps) {
                 <Modal
                     open={createRuleModal.active}
                     onOpenChange={createRuleModal.set}
-                    title="Create a new rule"
+                    title={t("misc.autoDownloader.button.createRule")}
                     contentClass="max-w-3xl"
                     trigger={<Button
                         className="rounded-full"
@@ -97,7 +100,7 @@ export function Content(props: ContentProps) {
                             createRuleModal.on()
                         }}
                     >
-                        New Rule
+                        {t("misc.autoDownloader.button.newRule")}
                     </Button>}
                 >
                     <AutoDownloaderRuleForm
@@ -110,7 +113,7 @@ export function Content(props: ContentProps) {
 
             {!rules?.length && (
                 <LuffyError title={null}>
-                    No rules found for this anime.
+                    {t("misc.autoDownloader.button.noRulesFound")}
                 </LuffyError>
             )}
 

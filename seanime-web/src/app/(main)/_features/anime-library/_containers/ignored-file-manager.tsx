@@ -57,7 +57,7 @@ export function IgnoredFileManager(props: IgnoredFileManagerProps) {
             onOpenChange={() => setIsOpen(false)}
             // contentClass="max-w-5xl"
             size="xl"
-            title="Ignored files"
+            title={t("misc.ignoredFiles.title")}
         >
             <AppLayoutStack className="mt-4">
 
@@ -71,12 +71,12 @@ export function IgnoredFileManager(props: IgnoredFileManagerProps) {
                         loading={isUpdating}
                         onClick={handleUnIgnoreSelected}
                     >
-                        Un-ignore selection
+                        {t("misc.ignoredFiles.unignoreSelection")}
                     </Button>
                 </div>}
 
                 {files.length === 0 && <LuffyError title={null}>
-                    No ignored files
+                    {t("misc.ignoredFiles.noIgnoredFiles")}
                 </LuffyError>}
 
                 {files.length > 0 &&
@@ -84,7 +84,7 @@ export function IgnoredFileManager(props: IgnoredFileManagerProps) {
 
                         <div className="p-2">
                             <Checkbox
-                                label={`Select all files`}
+                                label={t("misc.ignoredFiles.selectAllFiles")}
                                 value={(selectedPaths.length === files?.length) ? true : (selectedPaths.length === 0
                                     ? false
                                     : "indeterminate")}

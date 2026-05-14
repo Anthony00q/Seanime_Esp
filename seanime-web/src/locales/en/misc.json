@@ -243,6 +243,12 @@
       "strictSeasonCheck": "Strict season check",
       "strictSeasonCheckHelp": "If enabled, torrent titles and media must contain the same season number. This may lead to false negatives.",
       "save": "Save"
+    },
+    "button": {
+      "title": "Auto Downloader",
+      "createRule": "Create a new rule",
+      "newRule": "New Rule",
+      "noRulesFound": "No rules found for this anime."
     }
   },
   "scanner": {
@@ -679,5 +685,37 @@
   "manualMatch": {
     "none": "No manual match",
     "removeMapping": "Remove mapping"
+  },
+  "emptyLibrary": {
+    "title": "Empty library",
+    "scanLibrary": "Scan your library",
+    "yourLibraryIsEmpty": "Your library is empty",
+    "setLibraryPath": "Set the path to your local library and scan it",
+    "includeOnlineStreaming": "Include online streaming in your library",
+    "includeTorrentStreaming": "Include torrent streaming in your library",
+    "includeDebridStreaming": "Include debrid streaming in your library",
+    "trendingThisSeason": "Trending this season"
+  },
+  "bulkActions": {
+    "title": "Bulk actions",
+    "lockFiles": "Lock all files",
+    "unlockFiles": "Unlock all files",
+    "removeEmptyDirectories": "Remove empty directories",
+    "removeEmptyDirectoriesDesc": "This action will remove all empty directories in the library. Are you sure you want to continue?",
+    "heading": "Library"
+  },
+  "ignoredFiles": {
+    "title": "Ignored files",
+    "unignoreSelection": "Un-ignore selection",
+    "noIgnoredFiles": "No ignored files",
+    "selectAllFiles": "Select all files"
+  },
+  "unknownMedia": {
+    "title": "Hidden Media",
+    "description": "Seanime matched {count} group{plural} to {article}series that {verb} absent from your {!hasCustomSources, select, true {AniList} other {}} collection.<br />Add the media to be able to see entries in your library or unmatch them if incorrect.",
+    "addAllToCollection": "Add all to {!hasCustomSources, select, true {AniList} other {collection}}",
+    "matchedTo": "Matched to",
+    "addToCollection": "Add to {!hasCustomSources, select, true {AniList} other {collection}}",
+    "unmatch": "Unmatch"
   }
 }
