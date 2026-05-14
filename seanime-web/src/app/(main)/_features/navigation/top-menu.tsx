@@ -15,7 +15,7 @@ export const TopMenu: React.FC<TopMenuProps> = (props) => {
 
     const serverStatus = useServerStatus()
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const pathname = usePathname()
 

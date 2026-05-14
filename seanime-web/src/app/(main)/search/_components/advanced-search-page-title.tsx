@@ -2,6 +2,9 @@ import { __advancedSearch_getValue, __advancedSearch_paramsAtom } from "@/app/(m
 import { useAtomValue } from "jotai/react"
 import React from "react"
 import { translateSeason, translateGenre } from "@/lib/anilist-translations"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export function AdvancedSearchPageTitle() {
 
@@ -15,18 +18,18 @@ export function AdvancedSearchPageTitle() {
         }
         if (params.type === "anime") str += "Anime"
         else str += "Manga"
-        if (__advancedSearch_getValue(params.sorting)?.includes("SCORE_DESC")) str += " mejor valorado"
-        if (__advancedSearch_getValue(params.sorting)?.includes("TRENDING_DESC")) str += " en tendencia"
-        if (__advancedSearch_getValue(params.sorting)?.includes("POPULARITY_DESC")) str += " popular"
-        if (__advancedSearch_getValue(params.sorting)?.includes("START_DATE_DESC")) str += " más reciente"
-        if (__advancedSearch_getValue(params.sorting)?.includes("EPISODES_DESC")) str += " con más episodios"
-        if (__advancedSearch_getValue(params.sorting)?.includes("CHAPTERS_DESC")) str += " con más capítulos"
+        if (__advancedSearch_getValue(params.sorting)?.includes("SCORE_DESC")) str += ` ${t("features.sorting.bestRatedShort")}`
+        if (__advancedSearch_getValue(params.sorting)?.includes("TRENDING_DESC")) str += ` ${t("features.sorting.trendingShort")}`
+        if (__advancedSearch_getValue(params.sorting)?.includes("POPULARITY_DESC")) str += ` ${t("features.sorting.popularShort")}`
+        if (__advancedSearch_getValue(params.sorting)?.includes("START_DATE_DESC")) str += ` ${t("features.sorting.mostRecentShort")}`
+        if (__advancedSearch_getValue(params.sorting)?.includes("EPISODES_DESC")) str += ` ${t("features.sorting.mostEpisodesShortTitle")}`
+        if (__advancedSearch_getValue(params.sorting)?.includes("CHAPTERS_DESC")) str += ` ${t("features.sorting.mostChaptersShortTitle")}`
         if (!!__advancedSearch_getValue(params.genre)) str += ` de ${params.genre?.map(g => translateGenre(g)).join(", ")}`
         if (params.season || params.year) str += ` de`
         if (params.season) str += ` ${translateSeason(params.season)}`
         if (params.year) str += ` ${params.year}`
         if (!!str) return str
-        return params.type === "anime" ? "Anime más gustado" : "Manga más gustado"
+        return params.type === "anime" ? t("features.search.mostLikedAnime") : t("features.search.mostLikedManga")
     }, [params.title, params.genre, params.sorting, params.type, params.season, params.year])
 
     return (

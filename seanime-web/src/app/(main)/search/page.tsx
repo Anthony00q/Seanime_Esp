@@ -18,7 +18,7 @@ import { MdDataSaverOn } from "react-icons/md"
 import { useMount } from "react-use"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export default function Page() {
     const router = useRouter()

@@ -6,7 +6,7 @@ import React from "react"
 import { LuFolderDown } from "react-icons/lu"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type ChapterDownloadsButtonProps = {
     children?: React.ReactNode

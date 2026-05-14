@@ -4,7 +4,7 @@ import { Link } from "@tanstack/react-router"
 import { createTranslator } from "@/locales"
 import React from "react"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export function NotFound() {
     return (

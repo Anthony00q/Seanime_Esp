@@ -51,7 +51,7 @@ export function SeaCommandSearch() {
 
     const router = useRouter()
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const animeSearchInput = args.join(" ")
     const mangaSearchInput = args.slice(1).join(" ")

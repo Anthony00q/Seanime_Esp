@@ -7,7 +7,7 @@ import React from "react"
 import { ImSpinner2 } from "react-icons/im"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export default function Template({ children }: { children: React.ReactNode }) {
     const [isConnected] = useAtom(websocketConnectedAtom)

@@ -14,7 +14,7 @@ import { useFormContext } from "react-hook-form"
 import { LuBookOpen } from "react-icons/lu"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type MangaSettingsProps = {
     isPending: boolean

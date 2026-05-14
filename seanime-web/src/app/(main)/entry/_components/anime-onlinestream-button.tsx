@@ -14,7 +14,7 @@ type AnimeOnlinestreamButtonProps = {
 
 export function AnimeOnlinestreamButton(props: AnimeOnlinestreamButtonProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         children,
         entry,

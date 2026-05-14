@@ -11,7 +11,7 @@ import { useSeaCommandContext } from "./sea-command"
 import { seaCommand_compareMediaTitles } from "./utils"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 // only rendered when typing "/anime", "/library" or "/manga"
 export function SeaCommandUserMediaNavigation() {

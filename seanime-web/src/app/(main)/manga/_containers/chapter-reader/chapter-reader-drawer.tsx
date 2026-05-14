@@ -41,7 +41,7 @@ import { TbLayoutBottombarExpandFilled } from "react-icons/tb"
 import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type ChapterDrawerProps = {
     entry: { media?: AL_BaseManga | undefined, mediaId: number, listData?: Manga_EntryListData }

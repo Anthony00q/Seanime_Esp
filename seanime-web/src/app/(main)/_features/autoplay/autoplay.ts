@@ -13,7 +13,7 @@ import { atomWithStorage } from "jotai/utils"
 import React, { useState } from "react"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const __autoplay_countdownAtom = atom(5)
 export const __autoplay_nextEpisodeAtom = atom<Anime_Episode | null>(null)

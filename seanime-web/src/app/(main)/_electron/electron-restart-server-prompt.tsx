@@ -11,7 +11,7 @@ import React from "react"
 import { toast } from "sonner"
 
 export function ElectronRestartServerPrompt() {
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     type ServerReachability = "unknown" | "reachable" | "unreachable"
 

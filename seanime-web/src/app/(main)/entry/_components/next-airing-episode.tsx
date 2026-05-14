@@ -9,7 +9,7 @@ import { BiCalendarAlt } from "react-icons/bi"
 import { capitalizeFirst } from "@/lib/utils/capitalize-date"
 
 export function NextAiringEpisode(props: { media: AL_BaseAnime }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const distance = formatDistanceToNow(addSeconds(new Date(), props.media.nextAiringEpisode?.timeUntilAiring || 0), { addSuffix: true, locale: es })
     const day = capitalizeFirst(format(addSeconds(new Date(), props.media.nextAiringEpisode?.timeUntilAiring || 0), "EEEE", { locale: es }))
     const ts = useThemeSettings()

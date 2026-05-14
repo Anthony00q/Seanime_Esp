@@ -10,7 +10,7 @@ export default function Error({
     error: Error & { digest?: string }
     reset: () => void
 }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     React.useEffect(() => {
         console.error(error)

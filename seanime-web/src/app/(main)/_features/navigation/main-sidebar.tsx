@@ -47,7 +47,7 @@ import { nakamaModalOpenAtom, useNakamaStatus } from "../nakama/nakama-manager"
 import { PluginSidebarTray } from "../plugin/tray/plugin-sidebar-tray"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export function MainSidebar() {
 

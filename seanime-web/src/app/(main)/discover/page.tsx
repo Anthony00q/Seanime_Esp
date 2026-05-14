@@ -27,7 +27,7 @@ export default function Page() {
     const searchParams = useSearchParams()
     const searchType = searchParams.get("type")
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
 
     React.useEffect(() => {

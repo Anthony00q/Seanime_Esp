@@ -7,7 +7,7 @@ import React, { useEffect, useMemo, useState } from "react"
 import { vc_miniPlayer } from "./video-core-atoms"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 interface VideoCoreStatsForNerdsProps {
     playbackInfo: VideoCore_VideoPlaybackInfo | null

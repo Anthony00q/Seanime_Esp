@@ -9,7 +9,7 @@ import React from "react"
 import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type PlaylistEditorModalProps = {
     libraryCollection: Anime_LibraryCollection | undefined

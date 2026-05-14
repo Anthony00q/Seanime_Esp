@@ -24,7 +24,7 @@ type EmptyLibraryViewProps = {
 
 export function EmptyLibraryView(props: EmptyLibraryViewProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         isLoading,
         hasEntries,

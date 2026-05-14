@@ -20,7 +20,7 @@ import React from "react"
 import { createTranslator } from "@/locales"
 import { useWebsocketMessageListener } from "./_hooks/handle-websockets"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type ServerDataWrapperProps = {
     host: string

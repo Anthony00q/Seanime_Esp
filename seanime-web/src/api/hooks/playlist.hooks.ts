@@ -9,7 +9,7 @@ import { createTranslator } from "@/locales"
 
 export function useCreatePlaylist() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<Anime_Playlist, CreatePlaylist_Variables>({
         endpoint: API_ENDPOINTS.PLAYLIST.CreatePlaylist.endpoint,
@@ -33,7 +33,7 @@ export function useGetPlaylists() {
 
 export function useUpdatePlaylist() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<Anime_Playlist, UpdatePlaylist_Variables>({
         endpoint: API_ENDPOINTS.PLAYLIST.UpdatePlaylist.endpoint,
@@ -48,7 +48,7 @@ export function useUpdatePlaylist() {
 
 export function useDeletePlaylist() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, DeletePlaylist_Variables>({
         endpoint: API_ENDPOINTS.PLAYLIST.DeletePlaylist.endpoint,

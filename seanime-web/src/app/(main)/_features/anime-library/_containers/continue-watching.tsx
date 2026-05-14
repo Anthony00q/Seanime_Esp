@@ -1,5 +1,5 @@
 import { createTranslator } from "@/locales";
-const t = createTranslator("es");
+const t = createTranslator();
 
 import { Anime_Episode, Continuity_WatchHistory } from "@/api/generated/types"
 import { translateDisplayTitle } from "@/lib/helpers/display-title"

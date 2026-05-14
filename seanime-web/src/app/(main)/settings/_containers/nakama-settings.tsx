@@ -11,7 +11,7 @@ import { useWatch } from "react-hook-form"
 import { MdOutlineConnectWithoutContact } from "react-icons/md"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type Props = {
     isPending: boolean

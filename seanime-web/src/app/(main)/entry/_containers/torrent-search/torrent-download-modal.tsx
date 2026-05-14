@@ -32,7 +32,7 @@ import { FcFilmReel, FcFolder } from "react-icons/fc"
 import { LuDownload, LuPlay } from "react-icons/lu"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const confirmationModalOpenAtom = atom(false)
 

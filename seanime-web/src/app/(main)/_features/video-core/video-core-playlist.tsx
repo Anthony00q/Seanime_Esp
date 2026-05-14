@@ -33,7 +33,7 @@ import { useUpdateEffect } from "react-use"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export type VideoCorePlaylistState = {
     type: VideoCore_PlaybackType

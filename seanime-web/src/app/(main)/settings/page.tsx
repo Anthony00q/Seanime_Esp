@@ -76,7 +76,7 @@ import { LocalSettings } from "./_containers/local-settings"
 import { NakamaSettings } from "./_containers/nakama-settings"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const tabContentClass = cn(
     "space-y-4 animate-in fade-in-0 slide-in-from-bottom-2 duration-300",

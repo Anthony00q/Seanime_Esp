@@ -22,7 +22,7 @@ export function useGetMediastreamSettings(enabled?: boolean) {
 
 export function useSaveMediastreamSettings() {
     const qc = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<Models_MediastreamSettings, SaveMediastreamSettings_Variables>({
         endpoint: API_ENDPOINTS.MEDIASTREAM.SaveMediastreamSettings.endpoint,
         method: API_ENDPOINTS.MEDIASTREAM.SaveMediastreamSettings.methods[0],

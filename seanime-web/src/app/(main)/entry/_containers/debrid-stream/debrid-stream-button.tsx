@@ -14,7 +14,7 @@ type DebridStreamButtonProps = {
 
 export function DebridStreamButton(props: DebridStreamButtonProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         children,
         entry,

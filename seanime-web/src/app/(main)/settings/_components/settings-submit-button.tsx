@@ -8,7 +8,7 @@ import { useFormContext, useFormState } from "react-hook-form"
 import { FiRotateCcw, FiSave } from "react-icons/fi"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const settingsFormIsDirtyAtom = atom(false)
 

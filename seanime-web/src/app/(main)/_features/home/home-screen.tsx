@@ -56,7 +56,7 @@ import { MediaEntryCard } from "../media/_components/media-entry-card"
 import { MediaEntryCardSkeleton } from "../media/_components/media-entry-card-skeleton"
 import { MediaEntryPageLoadingDisplay } from "../media/_components/media-entry-page-loading-display"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const __home_currentView = atom<"base" | "detailed">("base")
 

@@ -161,7 +161,7 @@ export function useMangaManualSearch(mediaId: Nullish<number>, provider: Nullish
 
 export function useMangaManualMapping() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, MangaManualMapping_Variables>({
         endpoint: API_ENDPOINTS.MANGA.MangaManualMapping.endpoint,
@@ -188,7 +188,7 @@ export function useGetMangaMapping(variables: Partial<GetMangaMapping_Variables>
 
 export function useRemoveMangaMapping() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, RemoveMangaMapping_Variables>({
         endpoint: API_ENDPOINTS.MANGA.RemoveMangaMapping.endpoint,
@@ -222,7 +222,7 @@ export function useGetMangaLatestChapterNumbersMap() {
 
 export function useRefetchMangaChapterContainers() {
     const queryClient = useQueryClient()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<boolean, RefetchMangaChapterContainers_Variables>({
         endpoint: API_ENDPOINTS.MANGA.RefetchMangaChapterContainers.endpoint,

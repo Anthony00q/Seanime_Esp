@@ -4,7 +4,7 @@ import { createTranslator } from "@/locales"
 import React from "react"
 import { AiFillExclamationCircle } from "react-icons/ai"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type UpdateChangelogBodyProps = {
     updateData: Updater_Update | undefined

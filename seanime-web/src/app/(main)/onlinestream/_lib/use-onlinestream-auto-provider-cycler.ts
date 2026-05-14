@@ -4,7 +4,7 @@ import React from "react"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type TrialState = {
     providers: string[]

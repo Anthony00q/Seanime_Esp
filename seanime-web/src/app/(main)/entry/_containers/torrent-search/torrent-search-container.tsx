@@ -41,7 +41,7 @@ import { FiSearch } from "react-icons/fi"
 import { LuCornerLeftDown, LuFileSearch, LuPlus, LuSave } from "react-icons/lu"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const __torrentSearch_selectedTorrentsAtom = atom<HibikeTorrent_AnimeTorrent[]>([])
 

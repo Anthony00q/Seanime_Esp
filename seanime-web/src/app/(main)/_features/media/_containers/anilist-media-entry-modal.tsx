@@ -85,7 +85,7 @@ function IsomorphicPopover(props: PopoverProps & ModalProps & { media?: AL_BaseA
 
 
 export const AnilistMediaEntryModal = (props: AnilistMediaEntryModalProps) => {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [open, toggle] = useToggle(false)
     const [repeat, setRepeat] = React.useState(0)
 
@@ -228,7 +228,7 @@ function Content(props: AnilistMediaEntryModalProps & {
         ...rest
     } = props
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return (
         <>

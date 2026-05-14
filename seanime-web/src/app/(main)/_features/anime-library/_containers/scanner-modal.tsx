@@ -25,7 +25,7 @@ export const __scanner_isScanningAtom = atom(false)
 export function ScannerModal() {
     const serverStatus = useServerStatus()
     const ts = useThemeSettings()
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [isOpen, setOpen] = useAtom(__scanner_modalIsOpen)
     const [, setScannerIsScanning] = useAtom(__scanner_isScanningAtom)
     const [userMedia] = useAtom(__anilist_userAnimeMediaAtom)

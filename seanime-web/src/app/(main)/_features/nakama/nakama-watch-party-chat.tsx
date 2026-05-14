@@ -218,7 +218,7 @@ function ChatContent(props: {
         handleSendMessage,
     } = props
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     function isHostMessage(msg: ChatMessage) {
         return msg.peerId === "host"

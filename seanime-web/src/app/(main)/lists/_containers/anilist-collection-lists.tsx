@@ -42,14 +42,14 @@ import { MdPersonalVideo } from "react-icons/md"
 import { RiSignalTowerLine } from "react-icons/ri"
 import { TbSwords } from "react-icons/tb"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const selectedIndexAtom = atom("-")
 const watchListSearchInputAtom = atom<string>("")
 
 export function AnilistCollectionLists() {
     const serverStatus = useServerStatus()
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [pageType, setPageType] = useAtom(__myLists_selectedTypeAtom)
     const [selectedIndex, setSelectedIndex] = useAtom(selectedIndexAtom)
     const searchInput = useAtomValue(watchListSearchInputAtom)
@@ -210,7 +210,7 @@ export function SearchOptions({
 }) {
 
     const serverStatus = useServerStatus()
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [params, setParams] = useAtom(__myListsSearch_paramsInputAtom)
     const setActualParams = useSetAtom(__myListsSearch_paramsAtom)
     const debouncedParams = useDebounce(params, 500)

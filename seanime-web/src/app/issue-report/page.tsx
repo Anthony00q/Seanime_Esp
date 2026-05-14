@@ -32,7 +32,7 @@ import { SiReactquery } from "react-icons/si"
 import { Virtuoso } from "react-virtuoso"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const DB_NAME = "seanime-issue-report-db"
 const STORE_NAME = "reports"

@@ -7,7 +7,7 @@ import { toast } from "sonner"
 import { createTranslator } from "@/locales"
 
 export function useDownloadTorrentFile(onSuccess?: () => void) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, DownloadTorrentFile_Variables>({
         endpoint: API_ENDPOINTS.DOWNLOAD.DownloadTorrentFile.endpoint,
         method: API_ENDPOINTS.DOWNLOAD.DownloadTorrentFile.methods[0],
@@ -21,7 +21,7 @@ export function useDownloadTorrentFile(onSuccess?: () => void) {
 
 export function useDownloadRelease() {
     const { mutate: openInExplorer } = useOpenInExplorer()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<DownloadReleaseResponse, DownloadRelease_Variables>({
         endpoint: API_ENDPOINTS.DOWNLOAD.DownloadRelease.endpoint,
@@ -42,7 +42,7 @@ export function useDownloadRelease() {
 }
 
 export function useDownloadMacDenshiUpdate() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<DownloadReleaseResponse, DownloadMacDenshiUpdate_Variables>({
         endpoint: API_ENDPOINTS.DOWNLOAD.DownloadMacDenshiUpdate.endpoint,
         method: API_ENDPOINTS.DOWNLOAD.DownloadMacDenshiUpdate.methods[0],

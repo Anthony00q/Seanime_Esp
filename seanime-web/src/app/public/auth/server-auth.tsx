@@ -6,7 +6,7 @@ import { useAtom } from "jotai"
 import { sha256 } from "js-sha256"
 import React, { useState } from "react"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export function ServerAuth() {
 

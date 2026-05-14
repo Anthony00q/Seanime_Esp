@@ -57,7 +57,7 @@ export function MangaLibraryView(props: MangaLibraryViewProps) {
 
     const [params, setParams] = useAtom(__mangaLibrary_paramsAtom)
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return (
         <>
@@ -257,7 +257,7 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
 
     const { inject, remove } = useSeaCommandInject()
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     React.useEffect(() => {
         if (list.type === "CURRENT") {

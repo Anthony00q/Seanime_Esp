@@ -14,7 +14,7 @@ import { LuBookOpen, LuSettings } from "react-icons/lu"
 import { PluginSidebarTray } from "../plugin/tray/plugin-sidebar-tray"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 
 export function OfflineSidebar() {

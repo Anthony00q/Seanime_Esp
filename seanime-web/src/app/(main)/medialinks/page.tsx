@@ -30,7 +30,7 @@ type LocalSubtitleFile = {
 }
 
 export default function Page() {
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const clientId = useAtomValue(clientIdAtom)
     const router = useRouter()

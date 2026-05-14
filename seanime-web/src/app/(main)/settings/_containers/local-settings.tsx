@@ -11,7 +11,7 @@ import { createTranslator } from "@/locales"
 import React from "react"
 import { LuCloudUpload, LuUserCog } from "react-icons/lu"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type Props = {
     isPending: boolean

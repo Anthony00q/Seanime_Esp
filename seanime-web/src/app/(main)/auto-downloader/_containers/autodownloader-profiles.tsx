@@ -13,7 +13,7 @@ import { BiPencil, BiPlus, BiTrash } from "react-icons/bi"
 import { PiTargetBold } from "react-icons/pi"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export function AutoDownloaderProfiles() {
     const { data: profiles, isLoading } = useGetAutoDownloaderProfiles()

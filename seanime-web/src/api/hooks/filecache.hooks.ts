@@ -13,7 +13,7 @@ export function useGetFileCacheTotalSize() {
 }
 
 export function useRemoveFileCacheBucket(onSuccess?: () => void) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean, RemoveFileCacheBucket_Variables>({
         endpoint: API_ENDPOINTS.FILECACHE.RemoveFileCacheBucket.endpoint,
         method: API_ENDPOINTS.FILECACHE.RemoveFileCacheBucket.methods[0],
@@ -34,7 +34,7 @@ export function useGetFileCacheMediastreamVideoFilesTotalSize() {
 }
 
 export function useClearFileCacheMediastreamVideoFiles(onSuccess?: () => void) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.FILECACHE.ClearFileCacheMediastreamVideoFiles.endpoint,
         method: API_ENDPOINTS.FILECACHE.ClearFileCacheMediastreamVideoFiles.methods[0],

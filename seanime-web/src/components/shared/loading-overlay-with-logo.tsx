@@ -9,7 +9,7 @@ import { stagger, useAnimate } from "motion/react"
 import React from "react"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type LoadingOverlayWithLogoProps = {
     refetch?: () => void
