@@ -29,7 +29,7 @@ import { atomWithStorage } from "jotai/utils"
 import mousetrap from "mousetrap"
 import React from "react"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const __manga_readerLoadedPagesAtom = atom<number[]>([])
 

@@ -1,6 +1,6 @@
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 function translateAnilist(prefix: string, value: string): string {
     if (!value) return value

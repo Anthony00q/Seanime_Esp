@@ -78,7 +78,7 @@ export default function Page() {
     const [isLoading, setIsLoading] = useState(true)
     const fileInputRef = useRef<HTMLInputElement>(null)
     const dragCounter = useRef(0)
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     // Load saved log on mount
     useEffect(() => {

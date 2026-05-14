@@ -15,7 +15,7 @@ import { Popover } from "../popover"
 import { Select } from "../select"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 /* -------------------------------------------------------------------------------------------------
  * Anatomy

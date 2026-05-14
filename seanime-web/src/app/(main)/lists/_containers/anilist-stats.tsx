@@ -17,7 +17,7 @@ type AnilistStatsProps = {
     isLoading?: boolean
 }
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 const statusName: Record<string, string> = {
     CURRENT: t("status.current"),

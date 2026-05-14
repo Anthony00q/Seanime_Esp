@@ -45,7 +45,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
 
     const [anilistId, setAnilistId] = React.useState(0)
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const { data: customSources } = useListCustomSourceExtensions()
     const hasCustomSources = !!customSources?.length

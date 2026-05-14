@@ -43,7 +43,7 @@ import { MdOutlineVideoLibrary } from "react-icons/md"
 import { TbCarouselHorizontal } from "react-icons/tb"
 import { toast } from "sonner"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export const __home_settingsModalOpen = atom(false)
 

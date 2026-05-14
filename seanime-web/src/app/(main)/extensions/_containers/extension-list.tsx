@@ -43,7 +43,7 @@ export const EXTENSION_TYPE = {
 
 export function ExtensionList(props: ExtensionListProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         children,
         ...rest

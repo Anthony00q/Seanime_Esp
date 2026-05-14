@@ -29,7 +29,7 @@ export const isUpdateInstalledAtom = atom<boolean>(false)
 export const isUpdatingAtom = atom<boolean>(false)
 
 export function ElectronUpdateModal(props: UpdateModalProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const serverStatus = useServerStatus()
     const [updateModalOpen, setUpdateModalOpen] = useAtom(electronUpdateModalOpenAtom)
     const [isUpdating, setIsUpdating] = useAtom(isUpdatingAtom)
@@ -249,7 +249,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                     <img src="/seanime-logo.png" alt="logo" className="w-14 h-auto" />
                 </div>
                 <p className="text-center text-lg">
-                    Update installed. Restart the app.
+                    {t("electron.updateInstalledRestart")}
                 </p>
             </div>
         </div>
@@ -262,7 +262,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                 items={[
                     {
                         iconType: AiFillExclamationCircle,
-                        name: "Update available",
+                        name: t("update.available"),
                         onClick: () => setUpdateModalOpen(true),
                     },
                 ]}
@@ -274,16 +274,13 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                 contentClass="max-w-3xl"
             >
                 <div className="space-y-2">
-                    <h3 className="text-center">A new update is available!</h3>
+                    <h3 className="text-center">{t("update.newUpdateAvailable")}</h3>
                     <h4 className="font-bold flex gap-2 text-center items-center justify-center">
                         <span className="text-[--muted]">{updateData?.current_version}</span> <FiArrowRight />
                         <span className="text-indigo-200">{updateData?.release?.version}</span></h4>
 
                     {!electronUpdate && !isMacOS && (
-                        <Alert intent="warning">
-                            This update is not yet available for desktop clients.
-                            Wait a few minutes or check the GitHub page for more information.
-                        </Alert>
+                        <Alert intent="warning-basic" description={t("electron.updateNotAvailableDesktop")} />
                     )}
 
                     <UpdateChangelogBody updateData={updateData} />
@@ -296,8 +293,8 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                             disabled={isLoading}
                         >
 
-                            {isDownloading ? `Downloading... ${downloadProgress}%` :
-                                isDownloaded ? "Install now" : "Download & Install"}
+                            {isDownloading ? t("electron.downloadingProgress", { progress: downloadProgress }) :
+                                isDownloaded ? t("electron.installNow") : t("electron.downloadAndInstall")}
                         </Button>}
                         {electronUpdate && isMacOS && <Button
                             leftIcon={<GrInstall className="text-2xl" />}
@@ -305,7 +302,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                             loading={isUpdating || isMacUpdatePending}
                             disabled={isLoading}
                         >
-                            {(isMacUpdatePending) ? "Installing..." : "Install now"}
+                            {(isMacUpdatePending) ? t("electron.installing") : t("electron.installNow")}
                         </Button>}
                         <div className="flex flex-1" />
                         {!updateData?.release?.tag_name?.includes("v2.") && <SeaLink href={updateData?.release?.html_url || ""} target="_blank">

@@ -23,7 +23,7 @@ import { LuSettings2 } from "react-icons/lu"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type SortableItem = {
     id: string

@@ -14,7 +14,7 @@ type CallbackPageProps = {}
  * - Logs the user in using the AniList token present in the URL hash
  */
 export function CallbackPage(props: CallbackPageProps) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const router = useRouter()
     const {} = props
 

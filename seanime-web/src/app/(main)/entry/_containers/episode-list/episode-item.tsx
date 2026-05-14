@@ -43,7 +43,7 @@ export const EpisodeItem = memo(({ episode, media, isWatched, watchedProgress, o
     minutesRemaining?: number
     isOffline?: boolean
 }) => {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const { updateLocalFile, isPending } = useUpdateLocalFileData()
     const [_, copyToClipboard] = useCopyToClipboard()
 
@@ -177,7 +177,7 @@ export const localFileMetadataSchema = defineSchema(({ z }) => z.object({
 
 function MetadataModal({ episode }: { episode: Anime_Episode }) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [isOpen, setIsOpen] = EpisodeItemIsolation.useAtom(__metadataModalIsOpenAtom)
 
     const { updateLocalFile, isPending } = useUpdateLocalFileData()
@@ -243,7 +243,7 @@ function MetadataModal({ episode }: { episode: Anime_Episode }) {
 }
 
 function MetadataModalButton() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [, setIsOpen] = EpisodeItemIsolation.useAtom(__metadataModalIsOpenAtom)
     return <DropdownMenuItem onClick={() => setIsOpen(true)}>
         <RiEdit2Line />
@@ -275,7 +275,7 @@ function IsomorphicPopover(props: PopoverProps & ModalProps) {
 }
 
 export function EpisodeItemInfoModalButton({ episode }: { episode: Anime_Episode }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return <IsomorphicPopover
         title={episode.displayTitle}
         trigger={<IconButton

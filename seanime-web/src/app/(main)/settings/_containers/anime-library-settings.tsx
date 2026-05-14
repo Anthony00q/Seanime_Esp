@@ -12,7 +12,7 @@ import React from "react"
 import { useFormContext, useWatch } from "react-hook-form"
 import { FcFolder } from "react-icons/fc"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type LibrarySettingsProps = {
     isPending: boolean

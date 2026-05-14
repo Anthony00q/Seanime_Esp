@@ -12,7 +12,7 @@ export function useLogin() {
     const queryClient = useQueryClient()
     const router = useRouter()
     const setServerStatus = useSetServerStatus()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<Status, Login_Variables>({
         endpoint: API_ENDPOINTS.AUTH.Login.endpoint,
@@ -46,7 +46,7 @@ export function useLogout() {
     const queryClient = useQueryClient()
     const router = useRouter()
     const setServerStatus = useSetServerStatus()
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     return useServerMutation<Status>({
         endpoint: API_ENDPOINTS.AUTH.Logout.endpoint,

@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "motion/react"
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 import { tourAtom, TourStep, TourStepPlacement, useTour } from "./tour"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type Rect = { top: number; left: number; width: number; height: number }
 

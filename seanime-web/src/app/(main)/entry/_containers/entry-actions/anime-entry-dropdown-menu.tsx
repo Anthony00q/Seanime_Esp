@@ -33,7 +33,7 @@ import { SiMyanimelist } from "react-icons/si"
 
 export function AnimeEntryDropdownMenu({ entry, details }: { entry: Anime_Entry, details?: AL_AnimeDetailsById_Media }) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const serverStatus = useServerStatus()
     const setIsMetadataManagerOpen = useSetAtom(__metadataManager_isOpenAtom)
 

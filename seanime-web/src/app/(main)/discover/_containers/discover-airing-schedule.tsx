@@ -16,7 +16,7 @@ import { LuDock, LuEye } from "react-icons/lu"
 import { capitalizeFirst } from "@/lib/utils/capitalize-date"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 
 export function DiscoverAiringSchedule() {

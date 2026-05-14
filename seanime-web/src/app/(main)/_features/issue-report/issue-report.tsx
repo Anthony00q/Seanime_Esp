@@ -89,7 +89,7 @@ const __issueReport_navigationLogsAtom = atom<NavigationLog[]>([])
 const __issueReport_screenshotsAtom = atom<ScreenshotEntry[]>([])
 
 export function IssueReport() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const router = useRouter()
     const pathname = usePathname()
     const queryClient = useQueryClient()

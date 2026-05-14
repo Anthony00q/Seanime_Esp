@@ -29,7 +29,7 @@ export default function Page() {
     const debouncedSearchQuery = useDebounce(searchQuery, 300)
     const [expandedAccordions, setExpandedAccordions] = React.useState<Set<string>>(new Set())
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const { data, isLoading } = useGetScanSummaries()
 
@@ -298,7 +298,7 @@ type ScanSummaryFileItem = {
 
 function ScanSummaryGroupItem(props: ScanSummaryFileItem) {
     const { file, searchQuery, isExpanded } = props
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const hasErrors = file.logs?.some(log => log.level === "error")
     const hasWarnings = file.logs?.some(log => log.level === "warning")

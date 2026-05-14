@@ -25,7 +25,7 @@ import { __anilist_userAnimeListDataAtom } from "../../_atoms/anilist.atoms"
 import { createTranslator } from "@/locales"
 import { capitalizeFirst } from "@/lib/utils/capitalize-date"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type CalendarParams = {
     indicateWatchedEpisodes: boolean

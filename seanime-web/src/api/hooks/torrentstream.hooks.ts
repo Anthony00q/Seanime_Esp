@@ -45,7 +45,7 @@ export function useTorrentstreamStartStream() {
 }
 
 export function useTorrentstreamStopStream() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.TORRENTSTREAM.TorrentstreamStopStream.endpoint,
         method: API_ENDPOINTS.TORRENTSTREAM.TorrentstreamStopStream.methods[0],
@@ -57,7 +57,7 @@ export function useTorrentstreamStopStream() {
 }
 
 export function useTorrentstreamDropTorrent() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return useServerMutation<boolean>({
         endpoint: API_ENDPOINTS.TORRENTSTREAM.TorrentstreamDropTorrent.endpoint,
         method: API_ENDPOINTS.TORRENTSTREAM.TorrentstreamDropTorrent.methods[0],

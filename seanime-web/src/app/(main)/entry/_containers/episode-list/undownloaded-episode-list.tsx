@@ -20,7 +20,7 @@ export function UndownloadedEpisodeList({ downloadInfo, media, watchedProgress, 
     maxCol?: number
 }) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const episodes = downloadInfo?.episodesToDownload
 
     const setTorrentSearchIsOpen = useSetAtom(__torrentSearch_selectionAtom)
@@ -29,9 +29,9 @@ export function UndownloadedEpisodeList({ downloadInfo, media, watchedProgress, 
     const { hasTorrentProvider } = useHasTorrentProvider()
 
     const text = hasTorrentProvider ? (downloadInfo?.rewatch
-            ? "No has descargado lo siguiente:"
-            : "No has visto ni descargado lo siguiente:") :
-        "Los siguientes episodios no están en tu biblioteca:"
+            ? t("entry.undownloadedNotDownloaded")
+            : t("entry.undownloadedNotWatched")) :
+        t("entry.undownloadedNotInLibrary")
 
     if (!episodes?.length) return null
 

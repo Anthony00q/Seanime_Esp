@@ -39,7 +39,7 @@ import { BiX } from "react-icons/bi"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type MangaReaderBarProps = {
     children?: React.ReactNode

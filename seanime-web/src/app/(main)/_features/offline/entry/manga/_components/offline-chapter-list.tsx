@@ -14,7 +14,7 @@ import React from "react"
 import { GiOpenBook } from "react-icons/gi"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 type OfflineChapterListProps = {
     entry: Manga_Entry | undefined

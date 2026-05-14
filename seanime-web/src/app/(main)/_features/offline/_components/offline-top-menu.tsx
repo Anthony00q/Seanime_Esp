@@ -4,7 +4,7 @@ import { usePathname } from "@/lib/navigation"
 import React, { useMemo } from "react"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 interface OfflineTopMenuProps {
     children?: React.ReactNode

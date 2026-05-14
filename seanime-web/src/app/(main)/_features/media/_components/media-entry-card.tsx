@@ -48,7 +48,7 @@ import { useAtomValue, useSetAtom } from "jotai/react"
 import React, { useState } from "react"
 import { createTranslator } from "@/locales"
 
-const t = createTranslator("es")
+const t = createTranslator()
 import { BiAddToQueue, BiPlay } from "react-icons/bi"
 import { LuBookOpen } from "react-icons/lu"
 import { LuEye, LuFolderTree } from "react-icons/lu"

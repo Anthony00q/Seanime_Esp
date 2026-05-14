@@ -4,7 +4,7 @@ import { createTranslator } from "@/locales"
 import React from "react"
 import { RiSettings3Fill } from "react-icons/ri"
 
-const t = createTranslator("es")
+const t = createTranslator()
 
 export function DenshiSettings() {
 

@@ -22,6 +22,7 @@ import { Popover } from "@/components/ui/popover"
 import { Tooltip } from "@/components/ui/tooltip"
 import { useRouter } from "@/lib/navigation"
 import { createTranslator } from "@/locales"
+import { translateExtensionInstallMessage } from "@/lib/helpers/translate-extension-toast"
 import React from "react"
 import { GrUpdate } from "react-icons/gr"
 import { LuBook, LuCode, LuEllipsisVertical, LuPower, LuRefreshCcw, LuSearch, LuSettings2 } from "react-icons/lu"
@@ -41,7 +42,7 @@ type ExtensionCardProps = {
 
 export function ExtensionCard(props: ExtensionCardProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         extension,
         updateData,
@@ -259,7 +260,7 @@ type ExtensionSettingsProps = {
 
 export function ExtensionSettings(props: ExtensionSettingsProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         extension,
         children,
@@ -299,7 +300,7 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
 
     React.useEffect(() => {
         if (installResponse) {
-            toast.success(t("extensions.toast.extensionInstalled", { message: installResponse.message }))
+            toast.success(translateExtensionInstallMessage(installResponse.message))
             reset()
         }
     }, [installResponse])

@@ -224,7 +224,7 @@ function buildFileGroups(lines: ParsedLogLine[]): FileGroup[] {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export function ScanLogViewer({ content }: { content: string }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [activePhase, setActivePhase] = useState<Phase>("overview")
     const [searchQuery, setSearchQuery] = useState("")
     const [levelFilter, setLevelFilter] = useState<LogLevel | "all">("all")
@@ -356,7 +356,7 @@ export function ScanLogViewer({ content }: { content: string }) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function OverviewPanel({ stats, lines }: { stats: ScanStats; lines: ParsedLogLine[] }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return (
         <div className="p-4 space-y-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -471,7 +471,7 @@ function ParsingPanel({ lines, searchQuery, setSearchQuery, onSelectFile }: {
     setSearchQuery: (v: string) => void;
     onSelectFile: (f: string) => void
 }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set())
 
     const toggleExpanded = (id: number) => {
@@ -527,7 +527,7 @@ function ParsedFileLine({ line, onSelectFile, isExpanded, toggleExpanded }: {
     isExpanded?: boolean;
     toggleExpanded?: () => void
 }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [internalExpanded, setInternalExpanded] = useState(false)
     const expanded = isExpanded !== undefined ? isExpanded : internalExpanded
     const handleToggle = () => {
@@ -616,7 +616,7 @@ function MatcherPanel({
     setStatusFilter: (v: "all" | "matched" | "unmatched" | "errors") => void
     onSelectFile: (f: string) => void
 }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [expandedFiles, setExpandedFiles] = useState<Set<string>>(new Set())
 
     const toggleExpanded = (filename: string) => {
@@ -711,7 +711,7 @@ function MatcherFileGroup({ group, onSelectFile, isExpanded, toggleExpanded }: {
     isExpanded?: boolean;
     toggleExpanded?: () => void
 }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [internalExpanded, setInternalExpanded] = useState(false)
     const expanded = isExpanded !== undefined ? isExpanded : internalExpanded
     const handleToggle = () => {
@@ -783,7 +783,7 @@ function MatcherFileGroup({ group, onSelectFile, isExpanded, toggleExpanded }: {
 }
 
 function MatcherLogLine({ line }: { line: ParsedLogLine }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [showDetail, setShowDetail] = useState(false)
     const d = line.raw
     const msg = d.message || ""
@@ -918,7 +918,7 @@ function HydratorPanel({
     setLevelFilter: (v: LogLevel | "all") => void
     onSelectFile: (f: string) => void
 }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [expandedFiles, setExpandedFiles] = useState<Set<string>>(new Set())
 
     const toggleExpanded = (filename: string) => {
@@ -1002,7 +1002,7 @@ function HydratorFileGroup({ group, onSelectFile, isExpanded, toggleExpanded }: 
     isExpanded?: boolean;
     toggleExpanded?: () => void
 }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [internalExpanded, setInternalExpanded] = useState(false)
     const expanded = isExpanded !== undefined ? isExpanded : internalExpanded
     const handleToggle = () => {
@@ -1108,7 +1108,7 @@ function HydratorLogLine({ line }: { line: ParsedLogLine }) {
 
 
 function IssuesPanel({ lines, searchQuery, setSearchQuery }: { lines: ParsedLogLine[]; searchQuery: string; setSearchQuery: (v: string) => void }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set())
 
     const toggleExpanded = (id: number) => {
@@ -1269,7 +1269,7 @@ function DataGrid({ data }: { data: Record<string, any> }) {
 
 
 function FileFlowPanel({ group }: { group: FileGroup }) {
-    const t = createTranslator("es")
+    const t = createTranslator()
     return (
         <div className="space-y-4">
             {/* Parsing */}

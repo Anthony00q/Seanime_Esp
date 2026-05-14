@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator"
 import { TextInput } from "@/components/ui/text-input"
 import React from "react"
 import { createTranslator } from "@/locales"
+import { translateExtensionInstallMessage } from "@/lib/helpers/translate-extension-toast"
 import { FiDownload } from "react-icons/fi"
 import { LuSearch } from "react-icons/lu"
 import { toast } from "sonner"
@@ -19,7 +20,7 @@ type AddExtensionModalProps = {
 
 export function AddExtensionModal(props: AddExtensionModalProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         extensions,
         children,
@@ -46,7 +47,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
 
     React.useEffect(() => {
         if (installResponse) {
-            toast.success(t("extensions.toast.extensionInstalled", { message: installResponse.message }))
+            toast.success(translateExtensionInstallMessage(installResponse.message))
             setOpen(false)
             reset()
         }

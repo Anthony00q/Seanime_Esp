@@ -25,7 +25,7 @@ type InvalidExtensionCardProps = {
 
 export function InvalidExtensionCard(props: InvalidExtensionCardProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         extension,
         isInstalled,
@@ -171,7 +171,7 @@ type UnauthorizedExtensionPluginCardProps = {
 
 export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPluginCardProps) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         extension,
         isInstalled,

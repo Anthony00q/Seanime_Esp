@@ -36,7 +36,7 @@ export function LibraryWatcher(props: LibraryWatcherProps) {
     const autoScanning = useBoolean(false)
     const [progress, setProgress] = useState(0)
 
-    const t = createTranslator("es")
+    const t = createTranslator()
 
     const setScannerModalOpen = useSetAtom(__scanner_modalIsOpen)
 

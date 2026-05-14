@@ -14,7 +14,7 @@ export const __bulkAction_modalAtomIsOpen = atom<boolean>(false)
 
 export function BulkActionModal() {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [isOpen, setIsOpen] = useAtom(__bulkAction_modalAtomIsOpen)
 
     const { mutate: performBulkAction, isPending } = useLocalFileBulkAction()

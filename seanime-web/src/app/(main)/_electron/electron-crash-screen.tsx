@@ -3,7 +3,7 @@ import { createTranslator } from "@/locales"
 import React from "react"
 
 export function ElectronCrashScreenError() {
-    const t = createTranslator("es")
+    const t = createTranslator()
     const [msg, setMsg] = React.useState("")
 
     React.useEffect(() => {

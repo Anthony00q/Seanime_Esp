@@ -109,7 +109,7 @@ export function useAnimeEntryPageView() {
 
 export function AnimeEntryPage() {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const serverStatus = useServerStatus()
     const router = useRouter()
     const pathname = usePathname()
@@ -429,7 +429,7 @@ type EntrySectionTabs = {
 
 export function EntrySectionTabs(props: EntrySectionTabs) {
 
-    const t = createTranslator("es")
+    const t = createTranslator()
     const {
         children,
         entry,
