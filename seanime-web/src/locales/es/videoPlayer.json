@@ -277,6 +277,7 @@
     },
     "loading": "Cargando...",
     "noNextEpisode": "No hay siguiente episodio",
-    "noPreviousEpisode": "No hay episodio anterior"
+    "noPreviousEpisode": "No hay episodio anterior",
+    "fillerEpisode": "Episodio de relleno"
   }
 }

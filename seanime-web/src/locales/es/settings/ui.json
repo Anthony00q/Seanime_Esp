@@ -103,7 +103,7 @@
       "sidebarOnlyMode": "Cambia al modo solo barra lateral.",
       "screens": "Pantallas",
       "watchContinuityWarning": "La continuidad de reproducción debe estar activada para usar las opciones de orden por último visto.",
-      "bannerType": "Tipo de banner",
+      "bannerTypeLabel": "Tipo de banner",
       "dynamicBanner": "Banner dinámico",
       "customBanner": "Banner personalizado",
       "none": "Ninguno",

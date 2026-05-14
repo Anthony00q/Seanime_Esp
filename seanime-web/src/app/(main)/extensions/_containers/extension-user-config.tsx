@@ -12,6 +12,9 @@ import { TextInput } from "@/components/ui/text-input"
 import { atomWithImmer } from "jotai-immer"
 import { useAtom } from "jotai/react"
 import React from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 type ExtensionUserConfigModalProps = {
     children?: React.ReactElement
@@ -33,7 +36,7 @@ export function ExtensionUserConfigModal(props: ExtensionUserConfigModalProps) {
             <Modal
                 contentClass="max-w-3xl"
                 trigger={children}
-                title="Preferences"
+                title={t("extensions.userConfig.preferences")}
                 // size="xl"
                 // contentClass="space-y-4"
             >
@@ -90,7 +93,7 @@ function Content({ extension, userConfigError }: { extension: Extension_Extensio
                     {extension.name}
                 </p>
                 <div className="text-sm text-[--muted]">
-                    You can edit the preferences for this extension here.
+                    {t("extensions.userConfig.editPreferencesDesc")}
                 </div>
             </div>
 
@@ -98,7 +101,7 @@ function Content({ extension, userConfigError }: { extension: Extension_Extensio
                 <Alert
                     intent="warning"
                     description={userConfigError.reason.includes("user config is missing")
-                        ? "Fill out the required configuration options."
+                        ? t("extensions.userConfig.fillRequiredConfig")
                         : userConfigError.reason}
                 />
             )}
@@ -156,7 +159,7 @@ function Content({ extension, userConfigError }: { extension: Extension_Extensio
                     onClick={handleSave}
                     className={cn(!!userConfigError && "animate-pulse")}
                 >
-                    Save
+                    {t("common.buttons.save")}
                 </Button>
                 <div className="flex flex-1"></div>
             </div>

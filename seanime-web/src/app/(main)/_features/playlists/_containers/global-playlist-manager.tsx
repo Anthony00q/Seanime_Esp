@@ -41,7 +41,7 @@ import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
 const log = logger("PLAYLIST MANAGER")
-const t = createTranslator("es")
+const t = createTranslator()
 
 type ServerEvents =
     "current-playlist" |
@@ -358,18 +358,18 @@ export function GlobalPlaylistManager() {
                     setConfirmProgress(null)
                 }
             }}
-            title="Update progress?"
+            title={t("playlistManager.updateProgress")}
         >
             <p>
-                Do you want to update the progress of the current episode?
+                {t("playlistManager.updateProgressDesc")}
             </p>
 
             <div className="flex gap-2 mt-4 justify-end">
                 <Button intent="primary" disabled={playEpisodeRequestPending} onClick={() => onConfirmedProgress(true)}>
-                    Yes
+                    {t("common.labels.yes")}
                 </Button>
                 <Button intent="white-subtle" disabled={playEpisodeRequestPending} onClick={() => onConfirmedProgress(false)}>
-                    No
+                    {t("common.labels.no")}
                 </Button>
             </div>
 
@@ -377,7 +377,7 @@ export function GlobalPlaylistManager() {
 
         {!nativePlayerState.active && <PlaylistManagerPopup position="bottom-right">
             <p className="p-3 text-sm font-semibold">
-                Playlist: {currentPlaylist.name}
+                {t("playlistManager.playlistName", { name: currentPlaylist.name })}
             </p>
             <div className="p-3 space-y-2 overflow-auto">
                 <div className="space-y-2 relative">
@@ -407,7 +407,7 @@ export function GlobalPlaylistManager() {
                         />
                     </span>}
                     >
-                        Reopen episode
+                        {t("playlistManager.reopenEpisode")}
                     </Tooltip>
                     <Tooltip
                         className="z-[99999]" trigger={<span>
@@ -419,7 +419,7 @@ export function GlobalPlaylistManager() {
                         />
                     </span>}
                     >
-                        Stop playlist
+                        {t("playlistManager.stopPlaylist")}
                     </Tooltip>
                     <div className="flex flex-1"></div>
                     <IconButton
@@ -469,8 +469,8 @@ function EpisodeItem({ episode }: { episode: Anime_PlaylistEpisode }) {
 
                 <div>
                     <div className="text-xs text-[--muted] line-clamp-1 tracking-wide">
-                        {episode.watchType === "torrent" ? "Torrent streaming" : episode.watchType === "debrid" ? "Debrid streaming" :
-                            episode.watchType === "online" ? "Online streaming" :
+                        {episode.watchType === "torrent" ? t("playlistManager.torrentStreaming") : episode.watchType === "debrid" ? t("playlistManager.debridStreaming") :
+                            episode.watchType === "online" ? t("playlistManager.onlineStreaming") :
                                 episode.episode?.localFile?.name}
                     </div>
                 </div>
