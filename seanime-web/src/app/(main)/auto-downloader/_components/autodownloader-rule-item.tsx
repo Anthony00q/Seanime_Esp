@@ -15,6 +15,9 @@ import { useBoolean } from "@/hooks/use-disclosure"
 import React from "react"
 import { BiChevronRight } from "react-icons/bi"
 import { FaSquareRss } from "react-icons/fa6"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator("es")
 
 export type AutoDownloaderRuleItemProps = {
     rule: Anime_AutoDownloaderRule
@@ -67,7 +70,7 @@ export function AutoDownloaderRuleItem(props: AutoDownloaderRuleItemProps) {
                             className={cn(
                                 "font-medium text-base tracking-wide line-clamp-1",
                             )}
-                        ><span className="text-gray-400 italic font-normal pr-1">Rule for</span> "{rule.comparisonTitle}"</p>
+                        ><span className="text-gray-400 italic font-normal pr-1">{t("autoDownloader.rules.ruleFor")}</span> "{rule.comparisonTitle}"</p>
                         <div className="text-sm text-gray-400 line-clamp-1 flex space-x-2 items-center divide-x divide-[--border] [&>span]:pl-2">
                             <FaSquareRss
                                 className={cn(
@@ -92,15 +95,15 @@ export function AutoDownloaderRuleItem(props: AutoDownloaderRuleItemProps) {
                                             ?.map(p => p.name)
                                             ?.join(", ")}</span>}
                                 >
-                                    Profiles
+                                    {t("autoDownloader.rules.profiles")}
                                 </Tooltip>}
                             {!!media ? (
                                 <>
                                     {media.status === "FINISHED" &&
-                                        <span className="text-orange-300 opacity-70">No longer airing</span>}
+                                        <span className="text-orange-300 opacity-70">{t("autoDownloader.rules.noLongerAiring")}</span>}
                                 </>
                             ) : (
-                                <span className="text-red-300">This anime is not in your library</span>
+                                <span className="text-red-300">{t("autoDownloader.rules.notInLibrary")}</span>
                             )}
                         </div>
                     </div>
@@ -113,7 +116,7 @@ export function AutoDownloaderRuleItem(props: AutoDownloaderRuleItemProps) {
             <Modal
                 open={modal.active}
                 onOpenChange={modal.off}
-                title="Edit rule"
+                title={t("autoDownloader.rules.editRule")}
                 contentClass="max-w-4xl"
 
             >
@@ -126,8 +129,8 @@ export function AutoDownloaderRuleItem(props: AutoDownloaderRuleItemProps) {
 function getEpisodeTypeName(episodeType: Anime_AutoDownloaderRule["episodeType"]) {
     switch (episodeType) {
         case "recent":
-            return "Recent releases"
+            return t("autoDownloader.rules.recentReleases")
         case "selected":
-            return "Select episodes"
+            return t("autoDownloader.rules.selectEpisodes")
     }
 }
