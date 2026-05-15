@@ -65,6 +65,7 @@
       "connecting": "Conectando..."
     },
     "messages": {
+      "areYouSure": "¿Estás seguro que deseas continuar?",
       "itemNotFound": "Elemento no encontrado",
       "itemNotFoundWithType": "Elemento no encontrado ({itemType})",
       "nothingFetched": "No se obtuvo nada, por favor actualiza las opciones.",
