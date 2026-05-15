@@ -56,18 +56,18 @@ All notable changes to this project will be documented in this file.
 
 ## v3.8.2
 
-- 🦺 VideoCore: Fixed audio selection
-- 🦺 VideoCore: Fixed auto next for local files
-- 🦺 VideoCore: Disallow miniplayer in fullscreen app mode
-- 🦺 VideoCore: Fixed torrent stream playback cancellation logic
-- 🦺 VideoCore: Refactored escape key handling
-- 🦺 Manga: Fixed incorrect progress updates on next chapter
-- 🦺 Schedule: Fixed incorrect timezone in modals
-- 🦺 Hide Spoilers: Fixed torrent selection modal handling
-- 🦺 Issue Recorder: Fixed query error serialization
-- 🦺 Torrent Search: Fixed runtime error causing fewer results
-- 🦺 Core: Disabled request body limits
-- 🦺 Denshi: Skip inital view transition on content load
+- 🦺 VideoCore: Selección de audio corregida
+- 🦺 VideoCore: Reproducción automática del siguiente archivo local corregida
+- 🦺 VideoCore: Se deshabilitó el minirreproductor en modo pantalla completa de la app
+- 🦺 VideoCore: Lógica de cancelación en transmisión por torrent corregida
+- 🦺 VideoCore: Refactorizado el manejo de la tecla escape
+- 🦺 Manga: Actualización incorrecta del progreso al pasar al siguiente capítulo corregida
+- 🦺 Calendario: Zona horaria incorrecta en los modales corregida
+- 🦺 Ocultar Spoilers: Manejo del modal de selección de torrent corregido
+- 🦺 Registro de Problemas: Serialización de errores de consultas corregida
+- 🦺 Búsqueda de Torrent: Error interno que causaba mostrar menos resultados corregido
+- 🦺 Núcleo: Límite de tamaño en peticiones al servidor desactivado
+- 🦺 Denshi: Se omite la transición visual inicial al cargar el contenido
 
 ## v3.8.1
 
