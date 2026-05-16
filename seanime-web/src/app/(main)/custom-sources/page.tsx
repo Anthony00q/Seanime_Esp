@@ -112,14 +112,14 @@ export default function Page() {
                 <div className="flex items-center gap-4">
                     <SeaLink href={`/search`}>
                         <Button leftIcon={<AiOutlineArrowLeft />} rounded intent="gray-outline" size="md">
-                            {t("misc.customSources.search")}
+                            {t("customSources.search")}
                         </Button>
                     </SeaLink>
                     {/*<h3>Discover</h3>*/}
                 </div>
                 <AppLayoutStack>
                     <h3 data-search-page-title className="text-center xl:text-left">
-                        {provider ? t("misc.customSources.titleWithProvider", { name: customSource?.name ?? "" }) : t("misc.customSources.title")}
+                        {provider ? t("customSources.titleWithProvider", { name: customSource?.name ?? "" }) : t("customSources.title")}
                     </h3>
 
                     <div className="flex gap-2">
@@ -156,7 +156,7 @@ export default function Page() {
                         />
                         <TextInput
                             leftIcon={<FiSearch />}
-                            placeholder={t("misc.customSources.searchTitles")}
+                            placeholder={t("customSources.searchTitles")}
                             className="w-full"
                             value={searchValue}
                             onValueChange={setSearchValue}
@@ -169,12 +169,12 @@ export default function Page() {
                             onClick={handleSearch}
                             loading={isLoading}
                         >
-                            {t("misc.customSources.search")}
+                            {t("customSources.search")}
                         </Button>
                     </div>
 
                     {!provider && <div className="text-center py-8 text-[--muted]">
-                        {t("misc.customSources.selectSource")}
+                        {t("customSources.selectSource")}
                     </div>}
 
                     {provider && <CustomSourceResults
@@ -274,8 +274,8 @@ function CustomSourceResults({
 
     if (error) {
         return (
-            <LuffyError title={t("misc.customSources.failedToLoad")}>
-                <p>{t("misc.customSources.errorLoading", { provider })}</p>
+            <LuffyError title={t("customSources.failedToLoad")}>
+                <p>{t("customSources.errorLoading", { provider })}</p>
             </LuffyError>
         )
     }
@@ -290,8 +290,8 @@ function CustomSourceResults({
 
     if (!media?.length) {
         return (
-            <LuffyError title={t("misc.customSources.noResults")}>
-                <p>{t("misc.customSources.noResultsDesc", { type: params.type })}</p>
+            <LuffyError title={t("customSources.noResults")}>
+                <p>{t("customSources.noResultsDesc", { type: params.type })}</p>
             </LuffyError>
         )
     }
@@ -300,7 +300,7 @@ function CustomSourceResults({
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <h4 className="text-lg font-medium">
-                    {t("misc.customSources.resultCount", { count: media.length })}
+                    {t("customSources.resultCount", { count: media.length })}
                 </h4>
                 <div className="flex items-center gap-4">
                     <Select
@@ -312,7 +312,7 @@ function CustomSourceResults({
                         })}
                         options={[20, 50, 100].map(size => ({
                             value: String(size),
-                            label: t("misc.customSources.perPage", { size }),
+                            label: t("customSources.perPage", { size }),
                         }))}
                         fieldClass="w-auto"
                         className="w-auto"
@@ -320,7 +320,7 @@ function CustomSourceResults({
                     />
                     {totalPages > 1 && (
                         <div className="text-sm text-[--muted]">
-                            {t("misc.customSources.pageOf", { current: currentPage, total: totalPages })}
+                            {t("customSources.pageOf", { current: currentPage, total: totalPages })}
                         </div>
                     )}
                 </div>

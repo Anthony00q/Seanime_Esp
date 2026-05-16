@@ -86,12 +86,12 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                 }
             }}
             size="xl"
-            title={t("misc.unknownMedia.title")}
+            title={t("unknownMedia.title")}
 
         >
             <AppLayoutStack className="mt-4">
 
-                <p className="" dangerouslySetInnerHTML={{ __html: t("misc.unknownMedia.description", {
+                <p className="" dangerouslySetInnerHTML={{ __html: t("unknownMedia.description", {
                     count: unknownGroups.length,
                     plural: unknownGroups.length === 1 ? "" : "s",
                     article: unknownGroups.length === 1 ? "a " : "",
@@ -105,7 +105,7 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                     loading={isAdding}
                     disabled={isUnmatching}
                 >
-                    {t("misc.unknownMedia.addAllToCollection", {
+                    {t("unknownMedia.addAllToCollection", {
                         hasCustomSources: hasCustomSources ? "false" : "true",
                     })}
                 </Button>
@@ -117,7 +117,7 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                             <div key={group.mediaId} className="pt-4 space-y-2">
                                 <div className="flex items-center w-full justify-between">
                                     <h4 className="font-semibold flex gap-2 items-center">
-                                        <span>{t("misc.unknownMedia.matchedTo")}{" "}</span>
+                                        <span>{t("unknownMedia.matchedTo")}{" "}</span>
                                         <p
                                             className="underline cursor-pointer text-brand-200 flex gap-1.5 items-center"
                                             onClick={() => { setPreviewModalMediaId(group.mediaId, "anime") }}
@@ -140,7 +140,7 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                                             leftIcon={<BiPlus />}
                                             className="rounded-full"
                                         >
-                                            {t("misc.unknownMedia.addToCollection", {
+                                            {t("unknownMedia.addToCollection", {
                                                 hasCustomSources: hasCustomSources ? "false" : "true",
                                             })}
                                         </Button>
@@ -151,7 +151,7 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                                             onClick={() => handleUnmatchMedia(group.mediaId)}
                                             className="rounded-full"
                                         >
-                                            {t("misc.unknownMedia.unmatch")}
+                                            {t("unknownMedia.unmatch")}
                                         </Button>
                                     </div>
                                 </div>

@@ -46,7 +46,7 @@ export function EmptyLibraryView(props: EmptyLibraryViewProps) {
                 <div className="text-center space-y-4">
                     <div className="w-fit mx-auto space-y-4">
                         {!!serverStatus?.settings?.library?.libraryPath ? <>
-                            <h2>{t("misc.emptyLibrary.title")}</h2>
+                            <h2>{t("emptyLibrary.title")}</h2>
                             <Button
                                 intent="primary-outline"
                                 leftIcon={<FiSearch />}
@@ -54,37 +54,37 @@ export function EmptyLibraryView(props: EmptyLibraryViewProps) {
                                 rounded
                                 onClick={() => setScannerModalOpen(true)}
                             >
-                                {t("misc.emptyLibrary.scanLibrary")}
+                                {t("emptyLibrary.scanLibrary")}
                             </Button>
                         </> : (
                             <LuffyError
-                                title={t("misc.emptyLibrary.yourLibraryIsEmpty")}
+                                title={t("emptyLibrary.yourLibraryIsEmpty")}
                                 className=""
                             >
                                 <div className="text-center space-y-4">
                                     <SeaLink href="/settings?tab=library">
                                         <Button intent="primary-subtle" leftIcon={<LuCog className="text-xl" />}>
-                                            {t("misc.emptyLibrary.setLibraryPath")}
+                                            {t("emptyLibrary.setLibraryPath")}
                                         </Button>
                                     </SeaLink>
                                     {serverStatus?.settings?.library?.enableOnlinestream && <p>
                                         <SeaLink href="/settings?tab=onlinestream">
                                             <Button intent="primary-subtle" leftIcon={<LuCog className="text-xl" />}>
-                                                {t("misc.emptyLibrary.includeOnlineStreaming")}
+                                                {t("emptyLibrary.includeOnlineStreaming")}
                                             </Button>
                                         </SeaLink>
                                     </p>}
                                     {serverStatus?.torrentstreamSettings?.enabled && <p>
                                         <SeaLink href="/settings?tab=torrentstream">
                                             <Button intent="primary-subtle" leftIcon={<LuCog className="text-xl" />}>
-                                                {t("misc.emptyLibrary.includeTorrentStreaming")}
+                                                {t("emptyLibrary.includeTorrentStreaming")}
                                             </Button>
                                         </SeaLink>
                                     </p>}
                                     {serverStatus?.debridSettings?.enabled && <p>
                                         <SeaLink href="/settings?tab=debrid">
                                             <Button intent="primary-subtle" leftIcon={<LuCog className="text-xl" />}>
-                                                {t("misc.emptyLibrary.includeDebridStreaming")}
+                                                {t("emptyLibrary.includeDebridStreaming")}
                                             </Button>
                                         </SeaLink>
                                     </p>}
@@ -94,7 +94,7 @@ export function EmptyLibraryView(props: EmptyLibraryViewProps) {
                     </div>
                 </div>
                 <div className="">
-                    <h3>{t("misc.emptyLibrary.trendingThisSeason")}</h3>
+                    <h3>{t("emptyLibrary.trendingThisSeason")}</h3>
                     <DiscoverTrending />
                 </div>
             </PageWrapper>

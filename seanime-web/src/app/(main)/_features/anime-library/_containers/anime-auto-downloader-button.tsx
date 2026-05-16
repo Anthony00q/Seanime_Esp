@@ -45,7 +45,7 @@ export function AnimeAutoDownloaderButton(props: AnimeAutoDownloaderButtonProps)
     return (
         <>
             <Modal
-                title={t("misc.autoDownloader.button.title")}
+                title={t("autoDownloader.button.title")}
                 contentClass="max-w-3xl"
                 open={isModalOpen}
                 onOpenChange={setIsModalOpen}
@@ -90,7 +90,7 @@ export function Content(props: ContentProps) {
                 <Modal
                     open={createRuleModal.active}
                     onOpenChange={createRuleModal.set}
-                    title={t("misc.autoDownloader.button.createRule")}
+                    title={t("autoDownloader.button.createRule")}
                     contentClass="max-w-3xl"
                     trigger={<Button
                         className="rounded-full"
@@ -100,7 +100,7 @@ export function Content(props: ContentProps) {
                             createRuleModal.on()
                         }}
                     >
-                        {t("misc.autoDownloader.button.newRule")}
+                        {t("autoDownloader.button.newRule")}
                     </Button>}
                 >
                     <AutoDownloaderRuleForm
@@ -113,7 +113,7 @@ export function Content(props: ContentProps) {
 
             {!rules?.length && (
                 <LuffyError title={null}>
-                    {t("misc.autoDownloader.button.noRulesFound")}
+                    {t("autoDownloader.button.noRulesFound")}
                 </LuffyError>
             )}
 

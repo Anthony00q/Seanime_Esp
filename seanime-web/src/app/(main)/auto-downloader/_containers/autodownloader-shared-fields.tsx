@@ -105,9 +105,9 @@ export function ReleaseGroupsField(props: ReleaseGroupsFieldProps) {
 
     return (
         <div className="border rounded-[--radius] p-4 relative !mt-8 space-y-3">
-            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("misc.autoDownloaderFields.releaseGroups")}</div>
+            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("autoDownloaderFields.releaseGroups")}</div>
             <p className="text-sm">
-                {t("misc.autoDownloaderFields.releaseGroupsDesc")}
+                {t("autoDownloaderFields.releaseGroupsDesc")}
             </p>
 
             <TextArrayField
@@ -115,7 +115,7 @@ export function ReleaseGroupsField(props: ReleaseGroupsFieldProps) {
                 control={props.control}
                 type="text"
                 placeholder="e.g. SubsPlease"
-                separatorText={t("misc.autoDownloaderFields.separatorOr")}
+                separatorText={t("autoDownloaderFields.separatorOr")}
                 suggestions={suggestions}
             />
         </div>
@@ -132,9 +132,9 @@ export function ResolutionsField(props: ResolutionsFieldProps) {
 
     return (
         <div className="border rounded-[--radius] p-4 relative !mt-8 space-y-3">
-            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("misc.autoDownloaderFields.resolutions")}</div>
+            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("autoDownloaderFields.resolutions")}</div>
             <p className="text-sm">
-                {t("misc.autoDownloaderFields.resolutionsDesc")}
+                {t("autoDownloaderFields.resolutionsDesc")}
             </p>
 
             <TextArrayField
@@ -142,7 +142,7 @@ export function ResolutionsField(props: ResolutionsFieldProps) {
                 control={props.control}
                 type="text"
                 placeholder="e.g. 1080p"
-                separatorText={t("misc.autoDownloaderFields.separatorOr")}
+                separatorText={t("autoDownloaderFields.separatorOr")}
                 suggestions={suggestions}
             />
         </div>
@@ -184,11 +184,11 @@ export function AdditionalTermsField(props: AdditionalTermsFieldProps) {
 
     return (
         <div className="border rounded-[--radius] p-4 relative !mt-8 space-y-3">
-            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("misc.autoDownloaderFields.additionalTerms")}
+            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("autoDownloaderFields.additionalTerms")}
             </div>
             <div>
                 <p className="text-sm -top-2 relative"><span className="font-semibold">
-                    {t("misc.autoDownloaderFields.additionalTermsDesc")}</span></p>
+                    {t("autoDownloaderFields.additionalTermsDesc")}</span></p>
             </div>
 
             <TextArrayField
@@ -196,7 +196,7 @@ export function AdditionalTermsField(props: AdditionalTermsFieldProps) {
                 control={props.control}
                 type="text"
                 placeholder="e.g. H265,H.265,H 265,x265"
-                separatorText={t("misc.autoDownloaderFields.separatorAnd")}
+                separatorText={t("autoDownloaderFields.separatorAnd")}
                 suggestions={suggestions.map(s => s.value)}
                 suggestionLabels={suggestions.map(s => s.label)}
             />
@@ -225,9 +225,9 @@ export function ExcludeTermsField(props: AdditionalTermsFieldProps) {
 
     return (
         <div className="border rounded-[--radius] p-4 relative !mt-8 space-y-3">
-            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("misc.autoDownloaderFields.excludeTerms")}</div>
+            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("autoDownloaderFields.excludeTerms")}</div>
             <p className="text-sm"><span className="font-semibold">
-                {t("misc.autoDownloaderFields.excludeTermsDesc")}</span>
+                {t("autoDownloaderFields.excludeTermsDesc")}</span>
             </p>
 
             <TextArrayField
@@ -235,7 +235,7 @@ export function ExcludeTermsField(props: AdditionalTermsFieldProps) {
                 control={props.control}
                 type="text"
                 placeholder="e.g. H265,H.265,H 265,x265"
-                separatorText={t("misc.autoDownloaderFields.separatorAnd")}
+                separatorText={t("autoDownloaderFields.separatorAnd")}
                 suggestions={suggestions.map(s => s.value)}
                 suggestionLabels={suggestions.map(s => s.label)}
             />
@@ -253,9 +253,9 @@ export function ProvidersField(props: ProvidersFieldProps) {
 
     return (
         <div className="border rounded-[--radius] p-4 relative !mt-8 space-y-3">
-            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("misc.autoDownloaderFields.providers")}</div>
+            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("autoDownloaderFields.providers")}</div>
             <p className="text-sm">
-                {t("misc.autoDownloaderFields.providersDesc")}
+                {t("autoDownloaderFields.providersDesc")}
             </p>
             <Field.Combobox
                 name={props.name}
@@ -265,8 +265,8 @@ export function ProvidersField(props: ProvidersFieldProps) {
                     value: ext.id,
                 })) ?? []}
                 multiple
-                label={t("misc.autoDownloaderFields.selectProviders")}
-                emptyMessage={t("misc.autoDownloaderFields.noProvidersFound")}
+                label={t("autoDownloaderFields.selectProviders")}
+                emptyMessage={t("autoDownloaderFields.noProvidersFound")}
             />
         </div>
     )
@@ -281,9 +281,9 @@ export function ProfileSelectField(props: ProfileSelectFieldProps) {
 
     return (
         <div className="border rounded-[--radius] p-4 relative !mt-8 space-y-3">
-            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("misc.autoDownloaderFields.profile")}</div>
+            <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("autoDownloaderFields.profile")}</div>
             <p className="text-sm">
-                {t("misc.autoDownloaderFields.profileDesc")}
+                {t("autoDownloaderFields.profileDesc")}
             </p>
             <Field.Combobox
                 name={props.name}
@@ -294,8 +294,8 @@ export function ProfileSelectField(props: ProfileSelectFieldProps) {
                         value: String(profile.dbId),
                     })) ?? []),
                 ]}
-                label={t("misc.autoDownloaderFields.selectProfile")}
-                emptyMessage={t("misc.autoDownloaderFields.noProfilesFound")}
+                label={t("autoDownloaderFields.selectProfile")}
+                emptyMessage={t("autoDownloaderFields.noProfilesFound")}
             />
         </div>
     )

@@ -390,7 +390,7 @@ function MediastreamPage() {
                                                     toast.error(t("mediastream.filePathNotFoundEpisode"))
                                                 }
                                             }}
-                                                    title={media?.format === "MOVIE" ? t("misc.onlinestream.completeMovie") : `${t("entry.episode")} ${episode.episodeNumber}`}
+                                                    title={media?.format === "MOVIE" ? t("onlinestream.completeMovie") : `${t("entry.episode")} ${episode.episodeNumber}`}
                                             episodeTitle={episode.episodeTitle}
                                             description={episode.episodeMetadata?.summary}
                                             image={episode.episodeMetadata?.image}
@@ -403,7 +403,7 @@ function MediastreamPage() {
                                             progressNumber={episode.episodeNumber}
                                             action={<>
                                                 <MediaEpisodeInfoModal
-                                             title={media?.format === "MOVIE" ? t("misc.onlinestream.completeMovie") : `${t("entry.episode")} ${episode.episodeNumber}`}
+                                             title={media?.format === "MOVIE" ? t("onlinestream.completeMovie") : `${t("entry.episode")} ${episode.episodeNumber}`}
                                                     image={episode.episodeMetadata?.image}
                                                     episodeTitle={episode.episodeTitle}
                                                     summary={episode.episodeMetadata?.summary}
