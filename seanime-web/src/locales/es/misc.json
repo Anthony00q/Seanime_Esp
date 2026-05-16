@@ -663,10 +663,12 @@
       "entryUpdated": "Entrada actualizada",
       "entryDeleted": "Entrada eliminada"
     },
-  "playlist": {
-    "watched": "Visto"
-  },
-  "auth": {
+    "playlist": {
+      "created": "Lista de reproducción creada",
+      "updated": "Lista de reproducción actualizada",
+      "deleted": "Lista de reproducción eliminada"
+    },
+    "auth": {
       "authenticated": "Autenticación exitosa",
       "loggedOut": "Sesión cerrada exitosamente",
       "invalidToken": "Token inválido"
@@ -739,11 +741,6 @@
     },
     "onlinestream": {
       "cacheEmptied": "Caché de stream vaciado"
-    },
-    "playlist": {
-      "created": "Lista de reproducción creada",
-      "updated": "Lista de reproducción actualizada",
-      "deleted": "Lista de reproducción eliminada"
     },
     "playback": {
       "playlistCancelled": "Cancelando lista de reproducción",
@@ -982,12 +979,11 @@
     "unknownMedia": "Media desconocida",
     "unmatched": "No coincidente",
     "unlocked": "Desbloqueado",
-    "ignored": "Ignorado",
+    "ignored": "(Ignorado)",
     "unknownMediaLabel": "Media desconocida",
     "searchPlaceholder": "Buscar archivos y carpetas...",
     "notScannedDesc": "Algunos archivos aún no han sido escaneados. Escanea la biblioteca para poder realizar acciones sobre ellos.",
     "notInCollection": "Este media no está en tu colección.",
-    "ignored": "(Ignorado)",
     "unlockAll": "Desbloquear todo",
     "lockAll": "Bloquear todo",
     "fileMetadata": "Metadatos del archivo",
@@ -1063,5 +1059,8 @@
     "criticalPatch": "Esta actualización incluye un parche crítico",
     "whatsNew": "¿Qué hay de nuevo?",
     "missedUpdates": "Otras actualizaciones que te has perdido"
+  },
+  "playlist": {
+    "watched": "Visto"
   }
 }
