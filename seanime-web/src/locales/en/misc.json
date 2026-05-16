@@ -366,25 +366,25 @@
     "back": "Back"
   },
   "onlinestream": {
-      "watchPartyProviderNotInstalled": "Watch Party: The provider used by the host is not installed.",
-      "playbackErrorRetrying": "Playback error, trying another server...",
-      "findOtherProviders": "Find other providers",
-      "selectProvider": "Select provider",
-      "cache": "Cache",
-      "emptyCacheDescription": "Empty the cache if you are experiencing issues with the stream.",
-      "emptyStreamCache": "Empty stream cache",
-      "manualMatch": "Manual match",
-      "switchToSubs": "Switch to subtitles",
-      "switchToDub": "Switch to dub",
-      "switchToGridView": "Switch to grid view",
-      "switchToListView": "Switch to list view",
-      "noProviderSelected": "No provider selected",
-      "providerError": "Provider error",
-      "loadingStream": "Loading stream",
-      "completeMovie": "Complete movie",
-      "noWorkingProviders": "No working providers found",
-      "stoppedTryingProviders": "Stopped trying providers",
-      "startingWatchParty": "Starting online streaming watch party",
+    "watchPartyProviderNotInstalled": "Watch Party: The provider used by the host is not installed.",
+    "playbackErrorRetrying": "Playback error, trying another server...",
+    "findOtherProviders": "Find other providers",
+    "selectProvider": "Select provider",
+    "cache": "Cache",
+    "emptyCacheDescription": "Empty the cache if you are experiencing issues with the stream.",
+    "emptyStreamCache": "Empty stream cache",
+    "manualMatch": "Manual match",
+    "switchToSubs": "Switch to subtitles",
+    "switchToDub": "Switch to dub",
+    "switchToGridView": "Switch to grid view",
+    "switchToListView": "Switch to list view",
+    "noProviderSelected": "No provider selected",
+    "providerError": "Provider error",
+    "loadingStream": "Loading stream",
+    "completeMovie": "Complete movie",
+    "noWorkingProviders": "No working providers found",
+    "stoppedTryingProviders": "Stopped trying providers",
+    "startingWatchParty": "Starting online streaming watch party",
     "dubbedSearchHelp": "Only applies to providers that support dubs in search results.",
     "manualMatchDesc": "Match this anime with a search result from the provider.",
     "confirmMatchDesc": "Are you sure you want to match this anime with the search result?"
@@ -698,12 +698,11 @@
     "unknownMedia": "Unknown media",
     "unmatched": "Unmatched",
     "unlocked": "Unlocked",
-    "ignored": "Ignored",
+    "ignored": "(Ignored)",
     "unknownMediaLabel": "Unknown media",
     "searchPlaceholder": "Search files and folders...",
     "notScannedDesc": "Some files have not been scanned yet. Please scan the library to be able to perform actions on them.",
     "notInCollection": "This media is not in your collection.",
-    "ignored": "(Ignored)",
     "unlockAll": "Unlock all",
     "lockAll": "Lock all",
     "fileMetadata": "File metadata",
@@ -779,5 +778,289 @@
     "criticalPatch": "This update includes a critical patch",
     "whatsNew": "What's new?",
     "missedUpdates": "Other updates you've missed"
+  },
+  "autoplay": {
+    "requestingNextEpisode": "Requesting next episode",
+    "playingNextEpisode": "Playing next episode",
+    "failedToPlayNextEpisode": "Failed to play next episode",
+    "title": "Title",
+    "playNow": "Play now"
+  },
+  "manga": {
+    "chaptersAddedToDownloadQueue": "Chapters added to download queue",
+    "doublePageModeNotSupported": "Double page mode not supported",
+    "couldNotGetPageDimensions": "Could not get page dimensions"
+  },
+  "animeLibrary": {
+    "mediaUnmatched": "Media unmatched",
+    "filesUnignored": "Files unignored",
+    "filesLocked": "Files locked",
+    "filesUnlocked": "Files unlocked",
+    "entries": "Entries",
+    "tvShows": "Tv shows",
+    "movies": "Movies",
+    "specials": "Specials",
+    "hostsLibrary": "Hosts library"
+  },
+  "playlists": {
+    "startingPlaylist": "Starting playlist",
+    "playingEpisode": "Playing episode",
+    "pleaseEnterPlaylistName": "Please enter playlist name",
+    "editPlaylist": "Edit playlist",
+    "createPlaylist": "Create playlist",
+    "update": "Update",
+    "create": "Create",
+    "deletePlaylist": "Delete playlist"
+  },
+  "playlistManager": {
+    "updateProgress": "Update progress",
+    "updateProgressDesc": "Update progress desc",
+    "playlistName": "Playlist name",
+    "reopenEpisode": "Reopen episode",
+    "stopPlaylist": "Stop playlist",
+    "torrentStreaming": "Torrent streaming",
+    "debridStreaming": "Debrid streaming",
+    "onlineStreaming": "Online streaming"
+  },
+  "update": {
+    "missingOptions": "Missing options",
+    "available": "Available",
+    "newUpdateAvailable": "New update available",
+    "updateFromDesktop": "Update from desktop",
+    "updateNow": "Update now",
+    "updateSeanime": "Update seanime",
+    "downloadReplaceInfo": "Download replace info",
+    "downloadInstall": "Download install",
+    "seeOnGitHub": "See on git hub",
+    "download": "Download",
+    "downloadRelease": "Download release",
+    "selectDestination": "Select destination"
+  },
+  "nativePlayer": {
+    "errorPlayingStream": "Error playing stream"
+  },
+  "sync": {
+    "localChangesIgnored": "Local changes ignored",
+    "selectMedia": "Select media",
+    "selectMediaButton": "Select media button",
+    "selectMediaDescription": "Select media description",
+    "saveLocally": "Save locally",
+    "removeOfflineData": "Remove offline data",
+    "removeOfflineDataDesc": "Remove offline data desc",
+    "anime": "Anime",
+    "manga": "Manga",
+    "notAuthenticated": "Not authenticated",
+    "notAuthenticatedDesc": "Not authenticated desc",
+    "disableOfflineMode": "Disable offline mode",
+    "enableOfflineMode": "Enable offline mode",
+    "offlineMedia": "Offline media",
+    "offlineMediaDesc": "Offline media desc",
+    "sync": "Sync",
+    "syncNow": "Sync now",
+    "updateLocalData": "Update local data",
+    "updateLocalDataDesc": "Update local data desc",
+    "uploadToAniList": "Upload to ani list",
+    "uploadToAniListDesc": "Upload to ani list desc",
+    "changesIrreversible": "Changes irreversible",
+    "unsavedMediaBoth": "Unsaved media both",
+    "unsavedMediaAnimeOnly": "Unsaved media anime only",
+    "unsavedMediaMangaOnly": "Unsaved media manga only",
+    "localStorageSize": "Local storage size",
+    "localChangesNotSynced": "Local changes not synced",
+    "autoRefreshPaused": "Auto refresh paused",
+    "uploadLocalChanges": "Upload local changes",
+    "deleteLocalChanges": "Delete local changes",
+    "noTrackedMedia": "No tracked media",
+    "savedAnime": "Saved anime",
+    "savedManga": "Saved manga",
+    "syncing": "Syncing"
+  },
+  "handlePlayMedia": {
+    "externalPlayerNotSet": "External player not set"
+  },
+  "debridPage": {
+    "refreshed": "Refreshed",
+    "notEnabled": "Not enabled",
+    "notEnabledDesc": "Not enabled desc",
+    "seeTorrents": "See torrents",
+    "refresh": "Refresh",
+    "dashboard": "Dashboard",
+    "downloading": "Downloading",
+    "seeding": "Seeding",
+    "noActiveTorrents": "No active torrents",
+    "downloadingLocally": "Downloading locally",
+    "queued": "Queued",
+    "waiting": "Waiting",
+    "cancelDownload": "Cancel download",
+    "preparingFiles": "Preparing files",
+    "downloadTitle": "Download title",
+    "destination": "Destination",
+    "destinationHelp": "Destination help"
+  },
+  "mediastream": {
+    "codecNotSupported": "Codec not supported",
+    "playbackErrorOccurred": "Playback error occurred",
+    "filePathNotFoundEpisode": "File path not found episode",
+    "switchToGridView": "Switch to grid view",
+    "switchToListView": "Switch to list view",
+    "playbackErrorTitle": "Playback error title",
+    "couldNotLoadMedia": "Could not load media",
+    "playback": "Playback",
+    "playbackInfo": "Playback info",
+    "codecsCompatible": "Codecs compatible",
+    "codecsNotCompatible": "Codecs not compatible",
+    "streamType": "Stream type",
+    "videoCodec": "Video codec",
+    "audioCodec": "Audio codec",
+    "mediaContainerData": "Media container data",
+    "moreData": "More data",
+    "switchToTranscoding": "Switch to transcoding",
+    "switchToTranscodingDesc": "Switch to transcoding desc",
+    "switchToDirectPlay": "Switch to direct play"
+  },
+  "mediaLinks": {
+    "episodeNotFound": "Episode not found",
+    "externalPlayerLinkNotSet": "External player link not set"
+  },
+  "serverStatus": {
+    "featureDisabled": "Feature disabled"
+  },
+  "toast": {
+    "settings": {
+      "settingsSaved": "Settings saved"
+    },
+    "anilist": {
+      "upToDate": "Up to date",
+      "entryUpdated": "Entry updated",
+      "entryDeleted": "Entry deleted"
+    },
+    "playlist": {
+      "created": "Created",
+      "updated": "Updated",
+      "deleted": "Deleted"
+    },
+    "auth": {
+      "authenticated": "Authenticated",
+      "loggedOut": "Logged out",
+      "invalidToken": "Invalid token"
+    },
+    "autoDownloader": {
+      "started": "Started",
+      "ruleCreated": "Rule created",
+      "ruleUpdated": "Rule updated",
+      "ruleDeleted": "Rule deleted",
+      "itemDeleted": "Item deleted",
+      "profileCreated": "Profile created",
+      "profileUpdated": "Profile updated",
+      "profileDeleted": "Profile deleted"
+    },
+    "debrid": {
+      "torrentAdded": "Torrent added",
+      "downloadStarted": "Download started",
+      "downloadCancelled": "Download cancelled",
+      "streamCancelled": "Stream cancelled"
+    },
+    "download": {
+      "filesDownloaded": "Files downloaded",
+      "updateDownloaded": "Update downloaded",
+      "updateInstalled": "Update installed"
+    },
+    "extensions": {
+      "uninstalled": "Uninstalled",
+      "updated": "Updated",
+      "configSaved": "Config saved",
+      "reloaded": "Reloaded",
+      "permissionsGranted": "Permissions granted"
+    },
+    "filecache": {
+      "cacheCleared": "Cache cleared"
+    },
+    "local": {
+      "mediaAddedOffline": "Media added offline",
+      "offlineDataRemoved": "Offline data removed",
+      "syncing": "Syncing",
+      "anilistUpdated": "Anilist updated",
+      "offlineEnabled": "Offline enabled",
+      "offlineDisabled": "Offline disabled"
+    },
+    "localfiles": {
+      "metadataUpdated": "Metadata updated",
+      "filesDeleted": "Files deleted",
+      "emptyDirsRemoved": "Empty dirs removed",
+      "imported": "Imported"
+    },
+    "mal": {
+      "loggedOut": "Logged out"
+    },
+    "manga": {
+      "mappingAdded": "Mapping added",
+      "mappingRemoved": "Mapping removed",
+      "sourcesRefreshed": "Sources refreshed"
+    },
+    "mangaDownload": {
+      "downloading": "Downloading",
+      "queueStopped": "Queue stopped",
+      "queueCleared": "Queue cleared",
+      "erroredReset": "Errored reset",
+      "chaptersDeleted": "Chapters deleted"
+    },
+    "metadata": {
+      "fillerFetched": "Filler fetched",
+      "fillerRemoved": "Filler removed",
+      "updated": "Updated",
+      "removed": "Removed"
+    },
+    "onlinestream": {
+      "cacheEmptied": "Cache emptied"
+    },
+    "playback": {
+      "playlistCancelled": "Playlist cancelled",
+      "nextFile": "Next file",
+      "randomEpisode": "Random episode",
+      "nextEpisode": "Next episode"
+    },
+    "status": {
+      "logsDeleted": "Logs deleted",
+      "couldntFetchLogs": "Couldnt fetch logs",
+      "failedToCopyLogs": "Failed to copy logs",
+      "gcCompleted": "Gc completed",
+      "generatingProfile": "Generating profile",
+      "profileDownloaded": "Profile downloaded",
+      "failedToDownloadProfile": "Failed to download profile",
+      "generatingGoroutineProfile": "Generating goroutine profile",
+      "goroutineProfileDownloaded": "Goroutine profile downloaded",
+      "failedToDownloadGoroutineProfile": "Failed to download goroutine profile",
+      "generatingCpuProfile": "Generating cpu profile",
+      "cpuProfileDownloaded": "Cpu profile downloaded",
+      "failedToDownloadCpuProfile": "Failed to download cpu profile",
+      "homeUpdated": "Home updated"
+    },
+    "theme": {
+      "uiSettingsSaved": "Ui settings saved"
+    },
+    "torrentClient": {
+      "actionPerformed": "Action performed",
+      "downloadStarted": "Download started"
+    },
+    "torrentstream": {
+      "streamStopped": "Stream stopped",
+      "torrentDropped": "Torrent dropped",
+      "downloadDirNotExist": "Download dir not exist",
+      "downloadDirNotDir": "Download dir not dir"
+    },
+    "animeCollection": {
+      "mediaAdded": "Media added"
+    },
+    "animeEntries": {
+      "filesMatched": "Files matched",
+      "progressUpdated": "Progress updated"
+    },
+    "client": {
+      "featureDisabled": "Feature disabled",
+      "anilistRateLimit": "Anilist rate limit",
+      "anilistError": "Anilist error",
+      "error": "Error",
+      "noResponse": "No response"
+    }
   }
 }
