@@ -23,7 +23,7 @@
     <img src="https://img.shields.io/github/v/release/Anthony00q/Seanime_Esp?style=flat-square&color=blue" alt="versión" />
   </a>
   <a href="https://github.com/Anthony00q/Seanime_Esp">
-    <img src="https://img.shields.io/badge/Traducción-completa-green?style=flat-square" alt="traducción completa" />
+    <img src="https://img.shields.io/badge/Traducción-En_mejora-orange?style=flat-square" alt="traducción en mejora" />
   </a>
   <a href="https://discord.gg/Aruz7wdAaf">
     <img src="https://img.shields.io/discord/1224767201551192224?style=flat-square&logo=Discord&color=blue&label=Discord" alt="discord" />
@@ -78,9 +78,9 @@ Este es un **fork en español** del proyecto [Seanime](https://github.com/5rahim
 
 El proyecto original no tiene i18n integrado, por lo que se implementó un sistema de traducción personalizado con archivos JSON.
 
-### 🎉 Traducción Completa
+### 🚧 Estado de la Traducción
 
-La traducción al español de la interfaz de usuario está **completada**. Todos los strings visibles usan el sistema de traducción `t()`.
+La traducción al español abarca prácticamente toda la interfaz de usuario. Sin embargo, el proyecto se encuentra en **revisión continua** para corregir pequeños errores de contexto, mejorar la naturalidad de los textos y adaptarse a las nuevas funciones del proyecto original. Todos los strings visibles usan el sistema de traducción `t()`.
 
 **Resumen del sistema de traducción:**
 
