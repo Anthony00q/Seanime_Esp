@@ -52,8 +52,8 @@ export function BulkActionModal() {
     }
 
     const confirmRemoveEmptyDirs = useConfirmationDialog({
-        title: t("misc.bulkActions.removeEmptyDirectories"),
-        description: t("misc.bulkActions.removeEmptyDirectoriesDesc"),
+        title: t("bulkActions.removeEmptyDirectories"),
+        description: t("bulkActions.removeEmptyDirectoriesDesc"),
         onConfirm: () => {
             handleRemoveEmptyDirectories()
         },
@@ -65,18 +65,18 @@ export function BulkActionModal() {
             priority: 1,
             items: [
                 {
-                    id: "lock-files", value: "lock", heading: t("misc.bulkActions.heading"),
+                    id: "lock-files", value: "lock", heading: t("bulkActions.heading"),
                     render: () => (
-                        <p>{t("misc.bulkActions.lockFiles")}</p>
+                        <p>{t("bulkActions.lockFiles")}</p>
                     ),
                     onSelect: ({ ctx }) => {
                         handleLockFiles()
                     },
                 },
                 {
-                    id: "unlock-files", value: "unlock", heading: t("misc.bulkActions.heading"),
+                    id: "unlock-files", value: "unlock", heading: t("bulkActions.heading"),
                     render: () => (
-                        <p>{t("misc.bulkActions.unlockFiles")}</p>
+                        <p>{t("bulkActions.unlockFiles")}</p>
                     ),
                     onSelect: ({ ctx }) => {
                         handleUnlockFiles()
@@ -96,7 +96,7 @@ export function BulkActionModal() {
 
     return (
         <Modal
-            open={isOpen} onOpenChange={() => setIsOpen(false)} title={t("misc.bulkActions.title")}
+            open={isOpen} onOpenChange={() => setIsOpen(false)} title={t("bulkActions.title")}
             contentClass="space-y-4"
         >
             <AppLayoutStack spacing="sm">
@@ -109,7 +109,7 @@ export function BulkActionModal() {
                         disabled={isPending || isRemoving}
                         onClick={handleLockFiles}
                     >
-                        {t("misc.bulkActions.lockFiles")}
+                        {t("bulkActions.lockFiles")}
                     </Button>
                     <Button
                         leftIcon={<BiLockOpenAlt className="text-2xl" />}
@@ -118,7 +118,7 @@ export function BulkActionModal() {
                         disabled={isPending || isRemoving}
                         onClick={handleUnlockFiles}
                     >
-                        {t("misc.bulkActions.unlockFiles")}
+                        {t("bulkActions.unlockFiles")}
                     </Button>
                 </div>
                 <Button
@@ -128,7 +128,7 @@ export function BulkActionModal() {
                     loading={isRemoving}
                     onClick={() => confirmRemoveEmptyDirs.open()}
                 >
-                    {t("misc.bulkActions.removeEmptyDirectories")}
+                    {t("bulkActions.removeEmptyDirectories")}
                 </Button>
             </AppLayoutStack>
             <ConfirmationDialog {...confirmRemoveEmptyDirs} />

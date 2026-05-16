@@ -47,19 +47,7 @@ seanime-web/src/locales/
     └── (misma estructura que es/)
 ```
 
-### Cómo funciona `createTranslator()`
-
-```typescript
-// En cualquier componente o archivo .ts/.tsx:
-import { createTranslator } from "@/locales"
-const t = createTranslator()  // Usa el defaultLocale definido en config.ts
-
-t("home.empty.title")  // → "Tu pantalla de inicio está vacía"
-t("common.buttons.save")  // → "Guardar"
-t("entry.episode", { number: 5 })  // → "Episodio 5" (con interpolación)
-```
-
-Si una key no existe en el locale activo, se usa el fallback (`en`).
+Si una traducción (key) no existe en el idioma activo, la aplicación usará automáticamente el inglés (`en`) como reemplazo.
 
 ### Cómo cambiar el idioma por defecto
 
@@ -200,64 +188,22 @@ Luego, en la app, el usuario debe agregar `"locale": "fr"` en su archivo `denshi
 
 ## Backend Go
 
-**No se modifica.** Los toasts del servidor se traducen en el frontend usando el patrón `SERVER_TOAST_MAP` en `misc-events.listeners.ts`:
-
-```typescript
-const SERVER_TOAST_MAP: Record<string, string> = {
-    "Adding chapters to download queue...": "manga.chaptersAddedToDownloadQueue",
-    "Download directory does not exist": "toast.torrentstream.downloadDirNotExist",
-}
-```
-
-Para agregar un nuevo mensaje del servidor:
-1. Añadir la key de traducción en el JSON correspondiente (`es/` y `en/`)
-2. Añadir la entrada en `SERVER_TOAST_MAP`
+**No se requiere modificar código backend.** Todos los mensajes y notificaciones que vienen del servidor (Go) ya están mapeados dinámicamente en el frontend. Al agregar un nuevo idioma, solo debes preocuparte de traducir los textos en los archivos JSON; las notificaciones del sistema se traducirán automáticamente.
 
 ---
 
-## Helpers de Traducción
+## Configuración Adicional
 
-Además de `t()`, el proyecto exporta helpers para traducir valores específicos:
+Además de los archivos JSON, si estás agregando un idioma nuevo, hay dos detalles menores a tener en cuenta:
 
-### `getDateFnsLocale()` — Locale de fechas dinámico
+### 1. Soporte de Fechas (date-fns)
 
-Devuelve el locale de `date-fns` según el `defaultLocale` configurado en `config.ts`. Todos los componentes que formatean fechas usan este helper:
+Para que las fechas se formateen correctamente en tu idioma (ej: "hace 3 días"), debes registrar el locale de fecha.
+Edita `seanime-web/src/locales/date-locale.ts` y añade el locale oficial correspondiente a tu idioma.
 
-```typescript
-import { format, formatDistanceToNow } from "date-fns"
-import { getDateFnsLocale } from "@/locales/date-locale"
+### 2. Diccionario AniList
 
-// Formato de fecha dinámico según el idioma configurado
-format(date, "MMMM yyyy", { locale: getDateFnsLocale() })  // → "Mayo 2026" en español
-formatDistanceToNow(date, { addSuffix: true, locale: getDateFnsLocale() })  // → "en 3 días"
-```
-
-El archivo `locales/date-locale.ts` centraliza esto. Para agregar soporte de fecha a un nuevo idioma, solo agregar el locale al mapa en ese archivo.
-
-### `capitalizeFirst()` — Capitalizar fechas
-
-`date-fns` con locale `es` devuelve meses y días en minúscula. Para capitalizar:
-
-```typescript
-import { capitalizeFirst } from "@/lib/utils/capitalize-date"
-import { getDateFnsLocale } from "@/locales/date-locale"
-
-capitalizeFirst(format(date, "MMMM", { locale: getDateFnsLocale() }))  // → "Mayo" en vez de "mayo"
-```
-
-> **Nota**: El componente `Calendar` ya sobrescribe `CaptionLabel` con `capitalizeFirst()` internamente. Los captions de meses en los date pickers se capitalizan automáticamente — no es necesario aplicarlo manualmente.
-
-### `translateGenre()`, `translateFormat()`, `translateSeason()`, etc. — Valores de AniList
-
-Traducen los valores crudos de la API de AniList con fallback automático al inglés:
-
-```typescript
-import { translateGenre, translateFormat, translateSeason, translateStatus, translateTag } from "@/lib/anilist-translations"
-
-{translateGenre(genre)}   // → "Acción" en vez de "Action"
-{translateFormat(format)} // → "Película" en vez de "MOVIE"
-{translateSeason(season)} // → "Invierno" en vez de "Winter"
-```
+Los valores crudos provenientes de la API de AniList (como géneros "Action" o formatos "MOVIE") se traducen centralizadamente usando el archivo `anilist.json`. Simplemente traduce esos valores en tu carpeta de idioma, y la aplicación los convertirá automáticamente. Si dejas alguno en blanco, se mostrará en inglés.
 
 ---
 
