@@ -41,7 +41,7 @@ export function OnlinestreamManualMappingModal(props: OnlinestreamManualMappingM
         <>
             <Modal
                 title={t("onlinestream.manualMatch")}
-                description={t("misc.onlinestream.manualMatchDesc")}
+                description={t("onlinestream.manualMatchDesc")}
                 trigger={children}
                 contentClass="max-w-4xl"
             >
@@ -87,7 +87,7 @@ function Content({ entry }: { entry: Anime_Entry }) {
     const [animeId, setAnimeId] = React.useState<string | null>(null)
     const confirmMatch = useConfirmationDialog({
         title: t("onlinestream.manualMatch"),
-        description: t("misc.onlinestream.confirmMatchDesc"),
+        description: t("onlinestream.confirmMatchDesc"),
         actionText: "Confirm",
         actionIntent: "success",
         onConfirm: () => {
