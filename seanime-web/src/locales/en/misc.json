@@ -787,9 +787,7 @@
     "playNow": "Play now"
   },
   "manga": {
-    "chaptersAddedToDownloadQueue": "Chapters added to download queue",
-    "doublePageModeNotSupported": "Double page mode not supported",
-    "couldNotGetPageDimensions": "Could not get page dimensions"
+    "chaptersAddedToDownloadQueue": "Chapters added to download queue"
   },
   "animeLibrary": {
     "mediaUnmatched": "Media unmatched",

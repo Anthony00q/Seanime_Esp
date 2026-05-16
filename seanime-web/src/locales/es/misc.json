@@ -516,9 +516,7 @@
     "playNow": "Reproducir ahora"
   },
   "manga": {
-    "chaptersAddedToDownloadQueue": "Capítulos añadidos a la cola de descarga",
-    "doublePageModeNotSupported": "El modo de página doble no es compatible con pantallas pequeñas.",
-    "couldNotGetPageDimensions": "No se pudieron obtener las dimensiones de página de este proveedor. Cambiando a modo paginado."
+    "chaptersAddedToDownloadQueue": "Capítulos añadidos a la cola de descarga"
   },
   "animeLibrary": {
     "mediaUnmatched": "Medio no coincidente",
