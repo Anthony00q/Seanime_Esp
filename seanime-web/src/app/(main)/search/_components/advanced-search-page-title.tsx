@@ -18,18 +18,18 @@ export function AdvancedSearchPageTitle() {
         }
         if (params.type === "anime") str += "Anime"
         else str += "Manga"
-        if (__advancedSearch_getValue(params.sorting)?.includes("SCORE_DESC")) str += ` ${t("features.sorting.bestRatedShort")}`
-        if (__advancedSearch_getValue(params.sorting)?.includes("TRENDING_DESC")) str += ` ${t("features.sorting.trendingShort")}`
-        if (__advancedSearch_getValue(params.sorting)?.includes("POPULARITY_DESC")) str += ` ${t("features.sorting.popularShort")}`
-        if (__advancedSearch_getValue(params.sorting)?.includes("START_DATE_DESC")) str += ` ${t("features.sorting.mostRecentShort")}`
-        if (__advancedSearch_getValue(params.sorting)?.includes("EPISODES_DESC")) str += ` ${t("features.sorting.mostEpisodesShortTitle")}`
-        if (__advancedSearch_getValue(params.sorting)?.includes("CHAPTERS_DESC")) str += ` ${t("features.sorting.mostChaptersShortTitle")}`
+        if (__advancedSearch_getValue(params.sorting)?.includes("SCORE_DESC")) str += ` ${t("sorting.bestRatedShort")}`
+        if (__advancedSearch_getValue(params.sorting)?.includes("TRENDING_DESC")) str += ` ${t("sorting.trendingShort")}`
+        if (__advancedSearch_getValue(params.sorting)?.includes("POPULARITY_DESC")) str += ` ${t("sorting.popularShort")}`
+        if (__advancedSearch_getValue(params.sorting)?.includes("START_DATE_DESC")) str += ` ${t("sorting.mostRecentShort")}`
+        if (__advancedSearch_getValue(params.sorting)?.includes("EPISODES_DESC")) str += ` ${t("sorting.mostEpisodesShortTitle")}`
+        if (__advancedSearch_getValue(params.sorting)?.includes("CHAPTERS_DESC")) str += ` ${t("sorting.mostChaptersShortTitle")}`
         if (!!__advancedSearch_getValue(params.genre)) str += ` de ${params.genre?.map(g => translateGenre(g)).join(", ")}`
         if (params.season || params.year) str += ` de`
         if (params.season) str += ` ${translateSeason(params.season)}`
         if (params.year) str += ` ${params.year}`
         if (!!str) return str
-        return params.type === "anime" ? t("features.search.mostLikedAnime") : t("features.search.mostLikedManga")
+        return params.type === "anime" ? t("search.mostLikedAnime") : t("search.mostLikedManga")
     }, [params.title, params.genre, params.sorting, params.type, params.season, params.year])
 
     return (
