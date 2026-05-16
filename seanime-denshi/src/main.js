@@ -704,7 +704,7 @@ function createTray() {
     tray = new Tray(icon)
 
     const contextMenu = Menu.buildFromTemplate([{
-        id: "toggle_visibility", label: trayStrings.toggleVisibility || "Show/Hide", click: () => {
+        id: "toggle_visibility", label: trayStrings.tray?.toggleVisibility || "Show/Hide", click: () => {
             if (!serverStarted) return
             if (mainWindow.isVisible()) {
                 hideMainWindow()
@@ -713,12 +713,12 @@ function createTray() {
             }
         }
     }, ...(process.platform === "darwin" ? [{
-        id: "accessory_mode", label: trayStrings.removeFromDock || "Remove from Dock", click: () => {
+        id: "accessory_mode", label: trayStrings.tray?.removeFromDock || "Remove from Dock", click: () => {
             app.dock.hide()
         }
     }
     ] : []), {
-        id: "quit", label: trayStrings.quit || "Quit Seanime", click: () => {
+        id: "quit", label: trayStrings.tray?.quit || "Quit Seanime", click: () => {
             cleanupAndExit()
         }
     }
