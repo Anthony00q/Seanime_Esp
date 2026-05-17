@@ -162,7 +162,9 @@ Al iniciar, `main.js` lee `denshiSettings.locale` (por defecto `"es"`) y carga e
 
 ### Cómo agregar un nuevo idioma
 
-Crea `seanime-denshi/locales/fr.json`:
+#### 1. Crear el archivo de traducciones
+
+Crea `seanime-denshi/locales/fr.json` con la misma estructura que los existentes:
 
 ```json
 {
@@ -174,17 +176,19 @@ Crea `seanime-denshi/locales/fr.json`:
 }
 ```
 
-Para activar el idioma, el usuario debe editar manualmente el archivo `denshi-settings.json` (ubicado en el director de datos de la app) y agregar `"locale": "fr"`:
+#### 2. Cambiar el idioma por defecto del fork
 
-```json
-{
-  "locale": "fr",
-  "minimizeToTray": true,
-  "openInBackground": false
-}
+En `seanime-denshi/src/main.js`, busca la función `initLocale()` y cambia el fallback `"es"` al código del nuevo idioma:
+
+```javascript
+// Antes
+const locale = denshiSettings.locale || "es"
+
+// Después (ejemplo: francés)
+const locale = denshiSettings.locale || "fr"
 ```
 
-> **Nota**: No hay interfaz gráfica para cambiar el locale de Denshi. Se configura editando directamente el archivo JSON.
+Eso es todo. No se requiere ningún otro cambio en el código.
 
 ---
 
