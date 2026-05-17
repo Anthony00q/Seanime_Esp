@@ -59,7 +59,9 @@
       "minutesLeft": "{min}m left",
       "date": "Date",
       "openInLibraryExplorer": "Open in Library Explorer",
-      "showAudienceScore": "Show audience score"
+      "showAudienceScore": "Show audience score",
+      "filler": "Filler",
+      "unidentified": "Unidentified"
     },
     "status": {
       "connecting": "Connecting..."

@@ -204,13 +204,13 @@ const ExtensionList = ({
                                             />}
                                         </div>}
                                     >
-                                        {isPinned(trayIcon.extensionId) ? "Desanclar" : "Anclar"}
+                                        {isPinned(trayIcon.extensionId) ? t("extensions.unpinTray") : t("extensions.pinTray")}
                                     </Tooltip>
                                 </div>
                             </div>
                         ))}
                         {!trayIcons.length && <p className="text-sm text-[--muted] py-1 text-center w-full">
-                            Sin plugins en la bandeja
+                            {t("extensions.noTrayPlugins")}
                         </p>}
 
                         {/* {developmentModeExtensions?.map(extension => (
@@ -251,7 +251,7 @@ const ExtensionList = ({
                                 Debug
                             </p>
                             <p className="text-xs text-[--muted]">
-                                Estas extensiones están cargadas en modo de desarrollo.
+                                {t("extensions.devModeExtensionsLoaded")}
                             </p>
                         </div>
                         {developmentModeExtensions?.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true })).map(extension => (
@@ -268,7 +268,7 @@ const ExtensionList = ({
                                                 onClick={() => openDebugWindow(extension.id)}
                                             />
                                         </div>}
-                                    >Registros de depuración</Tooltip>
+                                    >{t("extensions.debugLogs")}</Tooltip>
                                     <IconButton
                                         intent="warning-basic"
                                         size="sm"

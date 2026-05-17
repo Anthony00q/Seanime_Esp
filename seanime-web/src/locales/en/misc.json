@@ -304,7 +304,8 @@
     "filesScanned": "files scanned",
     "errorsFound": "Errors found",
     "warningsFound": "Warnings found",
-    "viewScannerLogs": "View scanner logs"
+    "viewScannerLogs": "View scanner logs",
+    "matching": "matching"
   },
   "unmatchedFiles": {
     "noSuggestions": "No suggestions found, try searching manually",
