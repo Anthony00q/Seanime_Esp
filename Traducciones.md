@@ -174,7 +174,7 @@ Crea `seanime-denshi/locales/fr.json`:
 }
 ```
 
-Luego, en la app, el usuario debe agregar `"locale": "fr"` en su archivo `denshi-settings.json`:
+Para activar el idioma, el usuario debe editar manualmente el archivo `denshi-settings.json` (ubicado en el director de datos de la app) y agregar `"locale": "fr"`:
 
 ```json
 {
@@ -183,6 +183,8 @@ Luego, en la app, el usuario debe agregar `"locale": "fr"` en su archivo `denshi
   "openInBackground": false
 }
 ```
+
+> **Nota**: No hay interfaz gráfica para cambiar el locale de Denshi. Se configura editando directamente el archivo JSON.
 
 ---
 
@@ -194,28 +196,23 @@ Luego, en la app, el usuario debe agregar `"locale": "fr"` en su archivo `denshi
 
 ## Configuración Adicional
 
-Además de los archivos JSON, si estás agregando un idioma nuevo, hay dos detalles menores a tener en cuenta:
-
 ### 1. Soporte de Fechas (date-fns)
 
-Para que las fechas se formateen correctamente en tu idioma (ej: "hace 3 días"), debes registrar el locale de fecha.
-Edita `seanime-web/src/locales/date-locale.ts` y añade el locale oficial correspondiente a tu idioma.
+Para que las fechas se formateen correctamente en tu idioma (ej: "hace 3 días"), registra el locale de fecha. Edita `seanime-web/src/locales/date-locale.ts` y añade el locale oficial correspondiente:
+
+```typescript
+import { fr } from "date-fns/locale"
+
+const DATE_FNS_LOCALES: Record<string, Locale> = {
+    es,
+    en: enUS,
+    fr,  // ← nuevo
+}
+```
 
 ### 2. Diccionario AniList
 
-Los valores crudos provenientes de la API de AniList (como géneros "Action" o formatos "MOVIE") se traducen centralizadamente usando el archivo `anilist.json`. Simplemente traduce esos valores en tu carpeta de idioma, y la aplicación los convertirá automáticamente. Si dejas alguno en blanco, se mostrará en inglés.
-
----
-
-## Reglas de Traducción
-
-1. **Nombres propios NO se traducen**: MPV, VLC, FFmpeg, AniList, Discord, etc.
-2. **Valores técnicos NO se traducen**: `cpu`, `nvidia`, `480p`, `HEVC`, `BluRay`, etc.
-3. **Flags de CLI NO se traducen**: `--no-config --mute=yes`, etc.
-4. **Placeholders**: Usar `{variable}` para interpolación, ej: `t("key", { count: 5 })`
-5. **JSON sin comentarios**: Los archivos `.json` no pueden tener comentarios
-6. **Paridad es/en**: Cada key en `es/` debe existir en `en/` con la misma ruta (TypeScript lo valida)
-7. **No hardcodear strings visibles**: Siempre usar `t()` en el frontend visible
+Los valores crudos de la API de AniList (géneros como "Action", formatos como "MOVIE", etc.) se traducen centralizadamente desde `anilist.json`. Traduce esos valores en tu carpeta de idioma y la aplicación los convertirá automáticamente. Si dejas alguno sin traducir, se mostrará en inglés.
 
 ---
 
@@ -228,3 +225,5 @@ node -e "JSON.parse(require('fs').readFileSync('ruta/al/archivo.json', 'utf8'));
 # Verificar TypeScript (sin errores)
 cd seanime-web && npx tsgo --noEmit
 ```
+
+> `tsgo --noEmit` valida que las keys de tu nuevo idioma coincidan con el tipo `Messages` definido por el idioma inglés. Si hay keys faltantes o rutas incorrectas, TypeScript las detectará.
