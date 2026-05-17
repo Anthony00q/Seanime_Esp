@@ -304,7 +304,8 @@
     "filesScanned": "archivos escaneados",
     "errorsFound": "Errores encontrados",
     "warningsFound": "Advertencias encontradas",
-    "viewScannerLogs": "Ver registros del escáner"
+    "viewScannerLogs": "Ver registros del escáner",
+    "matching": "coincidentes"
   },
   "unmatchedFiles": {
     "noSuggestions": "No se encontraron sugerencias, intenta buscar manualmente",
