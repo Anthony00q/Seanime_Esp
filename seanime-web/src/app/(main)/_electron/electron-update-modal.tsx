@@ -306,7 +306,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                         </Button>}
                         <div className="flex flex-1" />
                         {!updateData?.release?.tag_name?.includes("v2.") && <SeaLink href={updateData?.release?.html_url || ""} target="_blank">
-                            <Button intent="white-subtle" rightIcon={<BiLinkExternal />}>See on GitHub</Button>
+                            <Button intent="white-subtle" rightIcon={<BiLinkExternal />}>{t("update.seeOnGitHub")}</Button>
                         </SeaLink>}
                     </div>
                 </div>
