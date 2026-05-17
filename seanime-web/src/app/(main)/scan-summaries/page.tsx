@@ -156,14 +156,14 @@ export default function Page() {
                                         <p className="text-[--muted]">
                                             {t("scanSummaries.successfullyScanned", { count: selectedSummary.groups?.length ?? 0 })}
                                             {debouncedSearchQuery.trim() && (
-                                                <span className="ml-2 text-sm">({filteredGroups.length} matching)</span>
+                                                <span className="ml-2 text-sm">({filteredGroups.length} {t("scanSummaries.matching")})</span>
                                             )}
                                         </p>
                                         {!!selectedSummary?.unmatchedFiles?.length && (
                                             <p className="text-orange-300">
                                                 {selectedSummary?.unmatchedFiles?.length === 1 ? t("scanSummaries.notMatched") : t("scanSummaries.notMatched_plural")}
                                                 {debouncedSearchQuery.trim() && (
-                                                    <span className="ml-2 text-sm">({filteredUnmatchedFiles.length} matching)</span>
+                                                    <span className="ml-2 text-sm">({filteredUnmatchedFiles.length} {t("scanSummaries.matching")})</span>
                                                 )}
                                             </p>
                                         )}

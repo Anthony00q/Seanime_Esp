@@ -33,7 +33,8 @@
         "searchInLibrary": "Buscar en biblioteca",
         "bulkActions": "Acciones masivas",
         "ignoredFiles": "Archivos ignorados",
-        "scanSummaries": "Resúmenes de escaneo"
+        "scanSummaries": "Resúmenes de escaneo",
+        "playRandomAnime": "Reproducir anime aleatorio"
       }
     },
     "screen": {
