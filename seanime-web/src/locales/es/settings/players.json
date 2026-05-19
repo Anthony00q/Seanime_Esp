@@ -80,6 +80,11 @@
       "launchingExternalPlayer": "Lanzando reproductor externo",
       "mediaLink": "Enlace de medios",
       "mediaLinkHelp": "El enlace se abrirá con el esquema especificado."
+    },
+    "playbackOptions": {
+      "desktopMediaPlayerOrTranscoding": "Reproductor de escritorio o Transcodificación / Reproducción directa",
+      "externalPlayerLink": "Enlace de reproductor externo",
+      "desktopMediaPlayer": "Reproductor de escritorio"
     }
   }
 }

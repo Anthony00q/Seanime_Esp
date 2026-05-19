@@ -545,7 +545,7 @@ process.on("uncaughtException", (error) => {
     log.error("Uncaught Exception:", error)
 
     if (app.isReady()) {
-        dialog.showErrorBox("An error occurred", `Uncaught Exception: ${error.message}\n\nCheck the logs for more details.`)
+        dialog.showErrorBox(trayStrings.error?.title || "An error occurred", `${trayStrings.error?.uncaughtException || "Uncaught Exception"}: ${error.message}\n\n${trayStrings.error?.checkLogs || "Check the logs for more details."}`)
     }
 
     logStartupEvent("UNCAUGHT EXCEPTION", error.stack || error.message)

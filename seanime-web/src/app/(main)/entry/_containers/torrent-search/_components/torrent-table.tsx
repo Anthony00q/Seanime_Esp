@@ -83,7 +83,7 @@ export const TorrentTable = memo((
                 <Skeleton className="h-[96px]" />
                 <Skeleton className="h-[96px]" />
             </div> : !torrents?.length ? <div>
-                <LuffyError title="Nothing found" />
+                <LuffyError title={t("common.messages.nothingFound")} />
             </div> : (
                 <>
                     <TorrentFilterSortControls

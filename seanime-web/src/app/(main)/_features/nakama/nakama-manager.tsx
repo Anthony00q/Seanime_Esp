@@ -792,13 +792,13 @@ function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: 
                                         {isCurrentUser && <span className="text-[--muted] font-normal"> {t("nakama.me")}</span>}
                                     </span>
                                     {session.isRelayMode && participant.isHost && (
-                                        <Badge intent="unstyled" className="text-xs" leftIcon={<FaBroadcastTower />}>Relay</Badge>
+                                        <Badge intent="unstyled" className="text-xs" leftIcon={<FaBroadcastTower />}>{t("features.nakama.relay")}</Badge>
                                     )}
                                     {participant.isHost && (
-                                        <Badge className="text-xs">Host</Badge>
+                                        <Badge className="text-xs">{t("common.labels.host")}</Badge>
                                     )}
                                     {participant.isRelayOrigin && (
-                                        <Badge intent="warning" className="text-xs">Origin</Badge>
+                                        <Badge intent="warning" className="text-xs">{t("features.nakama.origin")}</Badge>
                                     )}
                                     {enablingRelayMode && !participant.isHost && !participant.isRelayOrigin && !session.isRelayMode && (
                                         <Button

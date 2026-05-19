@@ -224,8 +224,8 @@ const getGPUInfo = async () => {
         const info = (adapter as any).info || {}
 
         return {
-            gpu: info.vendor || info.architecture || "Unknown GPU",
-            vendor: info.vendor || "Unknown",
+            gpu: info.vendor || info.architecture || t("common.messages.unknownGPU"),
+            vendor: info.vendor || t("common.messages.unknown"),
         }
     }
     catch {

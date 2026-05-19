@@ -34,13 +34,13 @@ export function AutoplayCountdownModal({
     const getStreamingTypeLabel = () => {
         switch (streamingType) {
             case "local":
-                return "Local File"
+                return t("misc.streamingTypes.localFile")
             case "torrent":
-                return "Torrent Stream"
+                return t("misc.streamingTypes.torrentStream")
             case "debrid":
-                return "Debrid Stream"
+                return t("misc.streamingTypes.debridStream")
             default:
-                return "Unknown"
+                return t("misc.streamingTypes.unknown")
         }
     }
 

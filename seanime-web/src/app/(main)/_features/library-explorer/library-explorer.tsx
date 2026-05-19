@@ -463,7 +463,7 @@ export function LibraryExplorer() {
                                     <Alert
                                         intent="warning"
                                         className="text-sm py-1 px-3 cursor-pointer"
-                                        description={`${unmatchedFiles.length} archivo${unmatchedFiles.length != 1 ? "s" : ""} no coincidente${unmatchedFiles.length != 1 ? "s" : ""}`}
+                                        description={t("libraryExplorer.unmatchedFilesCount", { count: unmatchedFiles.length })}
                                         onClick={() => {
                                             setSelectedFilter("UNMATCHED")
                                         }}
@@ -473,7 +473,7 @@ export function LibraryExplorer() {
                                     <Alert
                                         intent="warning"
                                         className="text-sm py-1 px-3 cursor-pointer"
-                                        description={`${unknownMediaFiles.length} archivo${unknownMediaFiles.length != 1 ? "s" : ""} con media oculta`}
+                                        description={t("libraryExplorer.unknownMediaFilesCount", { count: unknownMediaFiles.length })}
                                         onClick={() => {
                                             setSelectedFilter("UNKNOWN_MEDIA")
                                         }}
@@ -711,7 +711,7 @@ export function LibraryExplorerBulkActions(props: LibraryExplorerBulkActionsProp
                         intent="alert-subtle"
                         onClick={() => setDeleteModalOpen(true)}
                     >
-                        {t("libraryExplorer.delete")} {selectedPathFileNodes.length} file{selectedPathFileNodes.length != 1 ? "s" : ""}
+                        {t("libraryExplorer.deleteFilesCount", { count: selectedPathFileNodes.length })}
                     </Button>
                 </>
             )}
