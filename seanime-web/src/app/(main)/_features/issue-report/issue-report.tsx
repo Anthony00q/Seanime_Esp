@@ -770,7 +770,7 @@ export function IssueReport() {
                         </div>
                         <div className="border-t border-[--border] pt-2 space-y-2">
                             <Checkbox
-                                label="Include library scanner logs"
+                                label={t("misc.issueReport.includeLibraryScannerLogs")}
                                 value={recordLocalFiles}
                                 onValueChange={v => typeof v === "boolean" && setRecordLocalFiles(v)}
                                 size="md"
@@ -782,7 +782,7 @@ export function IssueReport() {
                                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 transition-colors text-sm font-medium text-white"
                             >
                                 <PiRecordFill className="text-white animate-pulse" />
-                                Start Recording
+                                {t("misc.issueReport.startRecording")}
                             </button>
                         </div>
                     </div> : <div className="space-y-3 min-w-[320px]">
@@ -792,7 +792,7 @@ export function IssueReport() {
                                 <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
                                 <div className="absolute inset-0 w-3 h-3 rounded-full bg-red-500 animate-ping opacity-50" />
                             </div>
-                            <span className="text-sm font-semibold text-red-400">Recording</span>
+                            <span className="text-sm font-semibold text-red-400">{t("misc.issueReport.recording")}</span>
                             <span className="text-xs text-gray-400 tabular-nums font-mono bg-gray-800 px-1.5 py-0.5 rounded">
                                 {formatElapsed(recordingElapsed)}
                             </span>

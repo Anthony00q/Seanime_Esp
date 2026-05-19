@@ -507,178 +507,25 @@
     "eventsLabel": "events",
     "scanLogs": "Scan Logs",
     "firstEarliest": "First = earliest",
-    "scanLog": "Scan Log"
+    "scanLog": "Scan Log",
+    "includeLibraryScannerLogs": "Include library scanner logs",
+    "startRecording": "Start Recording",
+    "screenshot": "Screenshot",
+    "response": "Response",
+    "fullScreenshot": "Full screenshot"
   },
-  "anilist": {
-    "mediaEntry": {
-      "addToList": "Add to list",
-      "status": "Status",
-      "score": "Score",
-      "progress": "Progress",
-      "startDate": "Start date",
-      "completionDate": "Completion date",
-      "totalRewatches": "Total rewatches",
-      "totalRereads": "Total rereads",
-      "save": "Save"
-    }
+  "streamingTypes": {
+    "localFile": "Local file",
+    "torrentStream": "Torrent stream",
+    "debridStream": "Debrid stream",
+    "unknown": "Unknown"
   },
-  "ui": {
-    "datePicker": {
-      "selectDate": "Select a date",
-      "clear": "Clear"
-    }
-  },
-  "manualMatch": {
-    "none": "No manual match",
-    "removeMapping": "Remove mapping"
-  },
-  "emptyLibrary": {
-    "title": "Empty library",
-    "scanLibrary": "Scan your library",
-    "yourLibraryIsEmpty": "Your library is empty",
-    "setLibraryPath": "Set the path to your local library and scan it",
-    "includeOnlineStreaming": "Include online streaming in your library",
-    "includeTorrentStreaming": "Include torrent streaming in your library",
-    "includeDebridStreaming": "Include debrid streaming in your library",
-    "trendingThisSeason": "Trending this season"
-  },
-  "bulkActions": {
-    "title": "Bulk actions",
-    "lockFiles": "Lock all files",
-    "unlockFiles": "Unlock all files",
-    "removeEmptyDirectories": "Remove empty directories",
-    "removeEmptyDirectoriesDesc": "This action will remove all empty directories in the library. Are you sure you want to continue?",
-    "heading": "Library"
-  },
-  "ignoredFiles": {
-    "title": "Ignored files",
-    "unignoreSelection": "Un-ignore selection",
-    "noIgnoredFiles": "No ignored files",
-    "selectAllFiles": "Select all files"
-  },
-  "unknownMedia": {
-    "title": "Hidden Media",
-    "description": "Seanime matched {count} group{plural} to {article}series that {verb} absent from your {!hasCustomSources, select, true {AniList} other {}} collection.<br />Add the media to be able to see entries in your library or unmatch them if incorrect.",
-    "addAllToCollection": "Add all to {!hasCustomSources, select, true {AniList} other {collection}}",
-    "matchedTo": "Matched to",
-    "addToCollection": "Add to {!hasCustomSources, select, true {AniList} other {collection}}",
-    "unmatch": "Unmatch"
-  },
-  "playlist": {
-    "watched": "Watched"
-  },
-  "auth": {
-    "loading": "L o a d i n g",
-    "updating": "Seanime is currently updating. Refresh the page once the update is complete and the connection has been reestablished.",
-    "transcodingNotEnabled": "Transcoding not enabled",
-    "welcome": "Welcome!",
-    "passwordRequired": "Password required",
-    "authRequired": "This Seanime server requires authentication.",
-    "passwordFieldRequired": "Password is required",
-    "enterPassword": "Enter the password"
-  },
-  "customSources": {
-    "title": "Custom sources",
-    "titleWithProvider": "Custom source: {name}",
-    "search": "Search",
-    "searchTitles": "Search titles...",
-    "selectSource": "Select a source to view its content",
-    "failedToLoad": "Failed to load content",
-    "errorLoading": "Error loading content from {provider}",
-    "noResults": "No results found",
-    "noResultsDesc": "No {type} found for your search criteria",
-    "resultCount": "{count} result{plural, select, 1 {} other {s}}",
-    "perPage": "{size} per page",
-    "pageOf": "Page {current} of {total}"
-  },
-  "autoDownloaderFields": {
-    "releaseGroups": "Release Groups",
-    "releaseGroupsDesc": "List of release groups to look for. If empty, any release group will be accepted.",
-    "resolutions": "Resolutions",
-    "resolutionsDesc": "List of resolutions to look for. If empty, the highest resolution will be accepted.",
-    "additionalTerms": "Video, Audio, Source, Subs",
-    "additionalTermsDesc": "All options must be included for the torrent to be accepted. Within each option, you can include variations separated by commas. (Case insensitive)",
-    "excludeTerms": "Exclude Terms",
-    "excludeTermsDesc": "All options must be included for the torrent to be rejected. Torrents containing any of these terms will be rejected. (Case insensitive)",
-    "providers": "Providers",
-    "providersDesc": "Select specific providers to look for. If empty, the default provider will be used.",
-    "selectProviders": "Select providers",
-    "noProvidersFound": "No providers found",
-    "profile": "Profile",
-    "profileDesc": "Select a profile to apply shared filters. Local filters will override profile filters.",
-    "selectProfile": "Select a profile",
-    "noProfilesFound": "No profile found",
-    "separatorOr": "OR",
-    "separatorAnd": "AND"
-  },
-  "pluginDebug": {
-    "copy": "Copy",
-    "clear": "Clear",
-    "close": "Close",
-    "searchLogs": "Search logs...",
-    "noLogs": "No logs"
-  },
-  "error": {
-    "anErrorOccurred": "An error occurred. Closing in 10 seconds.",
-    "anotherInstance": "Make sure another instance of Seanime is not running or check the logs for more details.",
-    "clientSideError": "Client side error",
-    "unexpectedError": "An unexpected error occurred.",
-    "tryAgain": "Try again",
-    "clientError": "Client error",
-    "encounteredError": "Seanime encountered an unexpected error. Please try again.",
-    "retry": "Retry",
-    "reload": "Reload",
-    "somethingWentWrong": "Something went wrong"
-  },
-  "libraryExplorerSuper": {
-    "description": "Update multiple file names and metadata at once.",
-    "successfullyUpdated": "Successfully updated",
-    "searchFor": "Search for",
-    "searchPlaceholder": "Enter text to search for...",
-    "replaceWith": "Replace with",
-    "enumerationPatterns": "Enumeration patterns:",
-    "replacePlaceholder": "Enter replacement text...",
-    "useRegex": "Use regex",
-    "caseSensitive": "Case sensitive",
-    "matchAll": "Match all occurrences",
-    "enumerateItems": "Enumerate items",
-    "textFormatting": "Text formatting",
-    "none": "None",
-    "editMetadata": "Edit file metadata",
-    "addRule": "Add Rule",
-    "noRules": "No metadata edit rules. Click \"Add Rule\" to create one.",
-    "original": "Original ({count})",
-    "renamed": "Renamed ({count})",
-    "apply": "Apply ({count})",
-    "noFilesSelected": "No files selected",
-    "noChange": "No Change",
-    "renamedLabel": "Renamed",
-    "metadataLabel": "Metadata",
-    "episodeNumber": "Episode Number",
-    "anidbEpisode": "AniDB Episode",
-    "fileType": "File Type",
-    "filterOptional": "Filter (Optional)",
-    "findTextRegex": "Find (Text/Regex)",
-    "search": "Search",
-    "replace": "Replace",
-    "enterTextOrRegex": "Enter text or regex pattern",
-    "replacementText": "Replacement text (supports enumeration patterns)",
-    "selectNewType": "Select new type",
-    "searchHelpEpisode": "Operators: >=, <=, >, <, =, !=, ! | Types: type=main|special|nc, !type=special",
-    "searchHelpAnidb": "Supports regex patterns and case sensitivity options",
-    "searchHelpType": "Same operators as episode: >=, <=, >, <, =, !=, ! | Types: type=main, !type=special",
-    "anidbSearchHelp": "AniDB operators: anidb>=, anidb<=, anidb=, anidb!=, !anidb= | Format: numbers (1,12) or prefixed (S1,C2,T1)",
-    "anidbSearchPlaceholder": "e.g.: anidb>=1;anidb=S1;anidb!=C2;type=special",
-    "episodeSearchPlaceholder": "e.g.: >=1;<=12;!=5;type=main|special;!type=nc",
-    "typeSearchPlaceholder": "e.g.: >=1;<12;=5;type=main;!type=special",
-    "episodeReplacePlaceholder": "e.g.: increment=1, decrement=1, start=1, or direct value like 5",
-    "simpleCounter": "${} - Simple counter (0, 1, 2...)",
-    "startFrom": "${{start=5}} - Start from 5 (5, 6, 7...)",
-    "incrementBy": "${{increment=2}} - Increment by 2 (0, 2, 4...)",
-    "padZeros": "${{padding=3}} - Pad with zeros (000, 001, 002...)",
-    "combinedStart": "${{padding=3;start=10}} - Combined (010, 011, 012...)",
-    "combinedPad": "${{padding=2;increment=5}} - Pad + increment (00, 05, 10...)",
-    "combinedAll": "${{increment=2;start=1;padding=3}} - All combined (001, 003, 005...)"
+  "scanSummary": {
+    "title": "Title",
+    "episode": "Episode",
+    "season": "Season",
+    "part": "Part",
+    "episodeTitle": "Episode Title"
   },
   "libraryExplorer": {
     "title": "Library Explorer",
@@ -694,6 +541,8 @@
     "lockAllDesc": "Lock all correctly matched files",
     "filter": "Filter",
     "unmatchedFiles": "Unmatched files",
+    "unmatchedFilesCount": "{count} unmatched file(s)",
+    "unknownMediaFilesCount": "{count} file(s) with unknown media",
     "unlockedFiles": "Unlocked files",
     "ignoredFiles": "Ignored files",
     "unknownMedia": "Unknown media",
@@ -709,8 +558,8 @@
     "fileMetadata": "File metadata",
     "episodeNumber": "Episode number",
     "episodeNumberHelp": "Relative episode number. If movie, episode number = 1",
-    "aniDbEpisode": "AniDB episode",
-    "aniDbEpisodeHelp": "Specials typically contain the letter S",
+    "aniDbEpisode": "AniDB Episode",
+    "aniDbEpisodeHelp": "Specials usually contain the letter S",
     "typeLabel": "Type",
     "typeMain": "Main",
     "typeSpecial": "Special",
@@ -727,6 +576,7 @@
     "folders": "folder{plural, select, 1 {} other {s}}",
     "files": "file{plural, select, 1 {} other {s}}",
     "deleteFile": "Delete file",
+    "deleteFilesCount": "Delete {count} file(s)",
     "delete": "Delete",
     "cancel": "Cancel",
     "selectDetails": "Select a file or folder to view details",
@@ -775,10 +625,181 @@
     "ignore": "Ignore",
     "unignore": "Un-ignore"
   },
+  "libraryExplorerSuper": {
+    "description": "Update multiple file names and metadata at once.",
+    "successfullyUpdated": "Successfully updated",
+    "searchFor": "Search",
+    "searchPlaceholder": "Enter text to search...",
+    "replaceWith": "Replace with",
+    "enumerationPatterns": "Enumeration patterns:",
+    "replacePlaceholder": "Enter replacement text...",
+    "useRegex": "Use regex",
+    "caseSensitive": "Case sensitive",
+    "matchAll": "Match all occurrences",
+    "enumerateItems": "Enumerate items",
+    "textFormatting": "Text formatting",
+    "none": "None",
+    "editMetadata": "Edit file metadata",
+    "addRule": "Add rule",
+    "noRules": "No metadata editing rules. Click \"Add rule\" to create one.",
+    "original": "Original ({count})",
+    "renamed": "Renamed ({count})",
+    "apply": "Apply ({count})",
+    "noFilesSelected": "No files selected",
+    "noChange": "No change",
+    "metadataLabel": "Metadata",
+    "renamedLabel": "File Name",
+    "search": "Search",
+    "replace": "Replace",
+    "enterTextOrRegex": "Enter text or regex pattern",
+    "replacementText": "Replacement text (supports enumeration patterns)",
+    "selectNewType": "Select new type",
+    "searchHelpEpisode": "Operators: >=, <=, >, <, =, !=, ! | Types: type=main|special|nc, !type=special",
+    "searchHelpAnidb": "Supports regex patterns and case sensitivity options",
+    "searchHelpType": "Same operators as episode: >=, <=, >, <, =, !=, ! | Types: type=main, !type=special",
+    "anidbSearchHelp": "AniDB operators: anidb>=, anidb<=, anidb=, anidb!=, !anidb= | Format: numbers (1,12) or with prefix (S1,C2,T1)",
+    "anidbSearchPlaceholder": "e.g.: anidb>=1;anidb=S1;anidb!=C2;type=special",
+    "episodeSearchPlaceholder": "e.g.: >=1;<=12;!=5;type=main|special;!type=nc",
+    "typeSearchPlaceholder": "e.g.: >=1;<12;=5;type=main;!type=special",
+    "episodeReplacePlaceholder": "e.g.: increment=1, decrement=1, start=1, or direct value like 5",
+    "simpleCounter": "${} - Simple counter (0, 1, 2...)",
+    "startFrom": "${{start=5}} - Start from 5 (5, 6, 7...)",
+    "incrementBy": "${{increment=2}} - Increment by 2 (0, 2, 4...)",
+    "padZeros": "${{padding=3}} - Pad with zeros (000, 001, 002...)",
+    "combinedStart": "${{padding=3;start=10}} - Combined (010, 011, 012...)",
+    "combinedPad": "${{padding=2;increment=5}} - Pad + increment (00, 05, 10...)",
+    "combinedAll": "${{increment=2;start=1;padding=3}} - All combined (001, 003, 005...)",
+    "anidbEpisode": "AniDB Episode",
+    "fileType": "File type",
+    "filterOptional": "Filter (optional)",
+    "findTextRegex": "Find (text/regex)",
+    "episodeNumber": "Episode number"
+  },
   "changelog": {
     "criticalPatch": "This update includes a critical patch",
     "whatsNew": "What's new?",
     "missedUpdates": "Other updates you've missed"
+  },
+  "playlist": {
+    "watched": "Watched"
+  },
+  "anilist": {
+    "mediaEntry": {
+      "addToList": "Add to list",
+      "status": "Status",
+      "score": "Score",
+      "progress": "Progress",
+      "startDate": "Start date",
+      "completionDate": "Completion date",
+      "totalRewatches": "Total rewatches",
+      "totalRereads": "Total rereads",
+      "save": "Save"
+    }
+  },
+  "error": {
+    "anErrorOccurred": "An error occurred. Closing in 10 seconds.",
+    "anotherInstance": "Make sure no other instance of Seanime is running or check the logs for more details.",
+    "clientSideError": "Client side error",
+    "unexpectedError": "An unexpected error occurred.",
+    "tryAgain": "Try again",
+    "clientError": "Client error",
+    "encounteredError": "Seanime encountered an unexpected error. Please try again.",
+    "retry": "Retry",
+    "reload": "Reload",
+    "somethingWentWrong": "Something went wrong"
+  },
+  "auth": {
+    "loading": "Loading",
+    "updating": "Seanime is updating. Refresh the page once the update is complete and the connection has been re-established.",
+    "transcodingNotEnabled": "Transcoding not enabled",
+    "welcome": "Welcome!",
+    "passwordRequired": "Password required",
+    "authRequired": "This Seanime server requires authentication.",
+    "passwordFieldRequired": "Password is required",
+    "enterPassword": "Enter password"
+  },
+  "customSources": {
+    "title": "Custom sources",
+    "titleWithProvider": "Custom source: {name}",
+    "search": "Search",
+    "searchTitles": "Search titles...",
+    "selectSource": "Select a source to view its content",
+    "failedToLoad": "Failed to load content",
+    "errorLoading": "Failed to load content from {provider}",
+    "noResults": "No results found",
+    "noResultsDesc": "No {type} found for your search criteria",
+    "resultCount": "{count} result{plural, select, 1 {} other {s}}",
+    "perPage": "{size} per page",
+    "pageOf": "Page {current} of {total}"
+  },
+  "autoDownloaderFields": {
+    "releaseGroups": "Release groups",
+    "releaseGroupsDesc": "List of release groups to search for. If empty, any release group will be accepted.",
+    "resolutions": "Resolutions",
+    "resolutionsDesc": "List of resolutions to search for. If empty, the highest resolution will be accepted.",
+    "additionalTerms": "Video, Audio, Source, Subs",
+    "additionalTermsDesc": "All options must be included for the torrent to be accepted. Within each option, you can include comma-separated variations. (Case insensitive)",
+    "excludeTerms": "Exclude terms",
+    "excludeTermsDesc": "All options must be included for the torrent to be rejected. Torrents containing any of these terms will be rejected. (Case insensitive)",
+    "providers": "Providers",
+    "providersDesc": "Select specific providers to search for. If empty, the default provider will be used.",
+    "selectProviders": "Select providers",
+    "noProvidersFound": "No providers found",
+    "profile": "Profile",
+    "profileDesc": "Select a profile to apply shared filters. Local filters will override profile filters.",
+    "selectProfile": "Select a profile",
+    "noProfilesFound": "No profiles found",
+    "separatorOr": "Or",
+    "separatorAnd": "And"
+  },
+  "pluginDebug": {
+    "copy": "Copy",
+    "clear": "Clear",
+    "close": "Close",
+    "searchLogs": "Search logs...",
+    "noLogs": "No logs"
+  },
+  "bulkActions": {
+    "title": "Bulk actions",
+    "lockFiles": "Lock all files",
+    "unlockFiles": "Unlock all files",
+    "removeEmptyDirectories": "Remove empty directories",
+    "removeEmptyDirectoriesDesc": "This action will remove all empty directories in the library. Are you sure you want to continue?",
+    "heading": "Library"
+  },
+  "emptyLibrary": {
+    "title": "Empty library",
+    "scanLibrary": "Scan your library",
+    "yourLibraryIsEmpty": "Your library is empty",
+    "setLibraryPath": "Set the path to your local library and scan it",
+    "includeOnlineStreaming": "Include online streaming in your library",
+    "includeTorrentStreaming": "Include torrent streaming in your library",
+    "includeDebridStreaming": "Include debrid streaming in your library",
+    "trendingThisSeason": "Trending this season"
+  },
+  "ignoredFiles": {
+    "title": "Ignored files",
+    "unignoreSelection": "Un-ignore selection",
+    "noIgnoredFiles": "No ignored files",
+    "selectAllFiles": "Select all files"
+  },
+  "unknownMedia": {
+    "title": "Hidden media",
+    "description": "Seanime matched {count} group{plural} with {article}series that {verb} missing from your {!hasCustomSources, select, true {AniList} other {}} collection.<br />Add the media to see entries in your library or unmatch them if incorrect.",
+    "addAllToCollection": "Add all to {!hasCustomSources, select, true {AniList} other {collection}}",
+    "matchedTo": "Matched to",
+    "addToCollection": "Add to {!hasCustomSources, select, true {AniList} other {collection}}",
+    "unmatch": "Unmatch"
+  },
+  "ui": {
+    "datePicker": {
+      "selectDate": "Select a date",
+      "clear": "Clear"
+    }
+  },
+  "manualMatch": {
+    "none": "No manual match",
+    "removeMapping": "Remove mapping"
   },
   "autoplay": {
     "requestingNextEpisode": "Requesting next episode",
@@ -802,14 +823,18 @@
     "hostsLibrary": "Hosts library"
   },
   "playlists": {
+    "title": "Playlists",
     "startingPlaylist": "Starting playlist",
     "playingEpisode": "Playing episode",
     "pleaseEnterPlaylistName": "Please enter playlist name",
     "editPlaylist": "Edit playlist",
     "createPlaylist": "Create playlist",
+    "addNewPlaylist": "Add to new playlist",
+    "addToPlaylist": "Add to playlist",
     "update": "Update",
     "create": "Create",
-    "deletePlaylist": "Delete playlist"
+    "deletePlaylist": "Delete playlist",
+    "noPlaylists": "No playlists"
   },
   "playlistManager": {
     "updateProgress": "Update progress",
@@ -819,7 +844,10 @@
     "stopPlaylist": "Stop playlist",
     "torrentStreaming": "Torrent streaming",
     "debridStreaming": "Debrid streaming",
-    "onlineStreaming": "Online streaming"
+    "onlineStreaming": "Online streaming",
+    "selectAll": "Select all",
+    "deselectAll": "Deselect all",
+    "noEpisodesFound": "No episodes found"
   },
   "update": {
     "missingOptions": "Missing options",

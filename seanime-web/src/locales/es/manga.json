@@ -4,6 +4,7 @@
     "noMangaAdded": "Aún no se ha añadido manga a tu biblioteca.",
     "browseManga": "Explorar manga",
     "showAll": "Mostrar todo",
+    "showOnlyUnwatched": "Mostrar solo no vistas",
     "refreshSources": "Actualizar fuentes",
     "refetching": "Actualizando...",
     "refetchingSources": "Obteniendo datos de las fuentes...",
@@ -53,7 +54,8 @@
       "queued": "En cola",
       "chapterId": "ID de capítulo",
       "provider": "Proveedor",
-      "chapterLabel": "Capítulo {number}"
+      "chapterLabel": "Capítulo {number}",
+      "loadFiltersError": "No se pudieron cargar los filtros de capítulos. Contacta al desarrollador de la extensión: \"{error}\""
     },
     "downloadedChapters": {
       "title": "Capítulos descargados",

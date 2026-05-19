@@ -3,5 +3,10 @@
     "toggleVisibility": "Show/Hide",
     "removeFromDock": "Remove from Dock",
     "quit": "Quit Seanime"
+  },
+  "error": {
+    "title": "An error occurred",
+    "uncaughtException": "Uncaught Exception",
+    "checkLogs": "Check the logs for more details."
   }
 }

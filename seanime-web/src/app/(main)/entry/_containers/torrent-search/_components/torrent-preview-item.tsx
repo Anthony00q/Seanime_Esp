@@ -360,7 +360,7 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
                         size="sm"
                         onClick={() => openTab(link)}
                     />}
-                >Open in browser</Tooltip>}
+                >{t("entry.episodeList.openInBrowser")}</Tooltip>}
                 {action}
             </div>
         </div>

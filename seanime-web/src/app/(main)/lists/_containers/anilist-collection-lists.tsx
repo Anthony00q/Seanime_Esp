@@ -279,7 +279,7 @@ export function SearchOptions({
                 <Combobox
                     multiple
                     leftAddon={<TbSwords className={cn((params.genre !== null && !!params.genre?.length) && "text-indigo-300 font-bold text-xl")} />}
-                    emptyMessage="No se encontraron opciones"
+                    emptyMessage={t("common.messages.noOptions")}
                     label={t("common.labels.genres")} placeholder={t("common.placeholders.allGenres")}
                     className="w-full"
                     fieldClass="w-full"
@@ -295,7 +295,7 @@ export function SearchOptions({
                     multiple
                     leftAddon={!params.tags?.length &&
                         <LuTags className={cn((params.tags !== null && !!params.tags.length) && "text-indigo-300 font-bold text-xl")} />}
-                    emptyMessage="No se encontraron opciones"
+                    emptyMessage={t("common.messages.noOptions")}
                     label={t("common.labels.tags")} placeholder={t("common.placeholders.allTags")} className="w-full"
                     fieldClass="w-full min-w-0"
                     popoverClass="min-w-[280px]"

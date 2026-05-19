@@ -2,6 +2,7 @@
   "extensions": {
     "title": "Extensiones",
     "description": "Gestiona tus plugins y proveedores de contenido.",
+    "preferences": "Preferencias",
     "installed": "Instaladas",
     "marketplace": "Tienda",
     "playground": "Playground",

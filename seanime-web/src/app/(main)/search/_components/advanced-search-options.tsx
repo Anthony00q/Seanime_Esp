@@ -28,6 +28,7 @@ import { FaRegStar, FaSortAmountDown } from "react-icons/fa"
 import { FiSearch } from "react-icons/fi"
 import { LuCalendar, LuLeaf } from "react-icons/lu"
 import { MdOutlineBook, MdPersonalVideo } from "react-icons/md"
+import { translateCountry } from "@/lib/anilist-translations"
 import { RiSignalTowerLine } from "react-icons/ri"
 import { TbSwords, TbTagsFilled } from "react-icons/tb"
 import { useMount } from "react-use"
@@ -131,7 +132,7 @@ export function AdvancedSearchOptions() {
                     leftAddon={
                         <BiWorld className={cn((params.countryOfOrigin !== null && !!params.countryOfOrigin) && "text-indigo-300 font-bold text-xl")} />}
                     label={t("home.items.options.countryOfOrigin.label")} placeholder={t("common.placeholders.allCountries")} className="w-full"
-                    options={ADVANCED_SEARCH_COUNTRIES_MANGA}
+                    options={ADVANCED_SEARCH_COUNTRIES_MANGA.map(c => ({ ...c, label: translateCountry(c.value) }))}
                     value={params.countryOfOrigin || ""}
                     onValueChange={v => setParams(draft => {
                         draft.countryOfOrigin = v as any

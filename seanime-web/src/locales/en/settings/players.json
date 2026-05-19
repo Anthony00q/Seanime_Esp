@@ -80,6 +80,11 @@
       "launchingExternalPlayer": "Launching external player",
       "mediaLink": "Media link",
       "mediaLinkHelp": "The link will be opened with the specified scheme."
+    },
+    "playbackOptions": {
+      "desktopMediaPlayerOrTranscoding": "Desktop media player or Transcoding / Direct Play",
+      "externalPlayerLink": "External player link",
+      "desktopMediaPlayer": "Desktop media player"
     }
   }
 }
