@@ -362,6 +362,7 @@ function ScanSummaryGroupItem(props: ScanSummaryFileItem) {
 
 function ScanSummaryFileParsedData(props: { localFile: Anime_LocalFile }) {
     const { localFile } = props
+    const t = createTranslator()
 
     const folderTitles = localFile.parsedFolderInfo?.map(i => i.title).filter(Boolean).map(n => `"${n}"`).join(", ")
     const folderSeasons = localFile.parsedFolderInfo?.map(i => i.season).filter(Boolean).map(n => `"${n}"`).join(", ")
@@ -373,13 +374,13 @@ function ScanSummaryFileParsedData(props: { localFile: Anime_LocalFile }) {
                 <div className="flex gap-1 items-center">
                     <ul className="text-sm space-y-1 [&>li]:flex-none [&>li]:gap-1 [&>li]:line-clamp-1 [&>li]:flex [&>li]:items-center [&>li>span]:text-[--muted] [&>li>span]:uppercase">
                         <li><TbListSearch className="text-indigo-200" />
-                            <span>Title</span> "{localFile.parsedInfo?.title}"{!!folderTitles?.length && `, ${folderTitles}`}</li>
-                        <li><TbListSearch className="text-indigo-200" /> <span>Episode</span> "{localFile.parsedInfo?.episode || ""}"</li>
+                            <span>{t("misc.scanSummary.title")}</span> "{localFile.parsedInfo?.title}"{!!folderTitles?.length && `, ${folderTitles}`}</li>
+                        <li><TbListSearch className="text-indigo-200" /> <span>{t("misc.scanSummary.episode")}</span> "{localFile.parsedInfo?.episode || ""}"</li>
                         <li><TbListSearch className="text-indigo-200" />
-                            <span>Season</span> "{localFile.parsedInfo?.season || ""}"{!!folderSeasons?.length && `, ${folderSeasons}`}</li>
+                            <span>{t("misc.scanSummary.season")}</span> "{localFile.parsedInfo?.season || ""}"{!!folderSeasons?.length && `, ${folderSeasons}`}</li>
                         <li><TbListSearch className="text-indigo-200" />
-                            <span>Part</span> "{localFile.parsedInfo?.part || ""}"{!!folderParts?.length && `, ${folderParts}`}</li>
-                        <li><TbListSearch className="text-indigo-200" /> <span>Episode Title</span> "{localFile.parsedInfo?.episodeTitle || ""}"</li>
+                            <span>{t("misc.scanSummary.part")}</span> "{localFile.parsedInfo?.part || ""}"{!!folderParts?.length && `, ${folderParts}`}</li>
+                        <li><TbListSearch className="text-indigo-200" /> <span>{t("misc.scanSummary.episodeTitle")}</span> "{localFile.parsedInfo?.episodeTitle || ""}"</li>
                     </ul>
                 </div>
             </div>

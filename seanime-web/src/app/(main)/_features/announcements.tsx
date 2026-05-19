@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { useUpdateEffect } from "@/components/ui/core/hooks"
 import { cn } from "@/components/ui/core/styling"
 import { Modal } from "@/components/ui/modal"
+import { createTranslator } from "@/locales"
 import { logger } from "@/lib/helpers/debug"
 import { WSEvents } from "@/lib/server/ws-events"
 import { __isElectronDesktop__ } from "@/types/constants"
@@ -13,6 +14,8 @@ import { useAtom } from "jotai"
 import { atomWithStorage } from "jotai/utils"
 import React from "react"
 import { FiAlertTriangle, FiInfo } from "react-icons/fi"
+
+const t = createTranslator()
 import { useEffectOnce } from "react-use"
 import { toast } from "sonner"
 
@@ -127,7 +130,7 @@ export function Announcements() {
                     id: announcement.id,
                     duration: Infinity,
                     action: !announcement.notDismissible ? {
-                        label: "OK",
+                        label: t("common.buttons.ok"),
                         onClick: () => dismissAnnouncement(announcement.id),
                     } : undefined,
                     onDismiss: !announcement.notDismissible ? () => dismissAnnouncement(announcement.id) : undefined,

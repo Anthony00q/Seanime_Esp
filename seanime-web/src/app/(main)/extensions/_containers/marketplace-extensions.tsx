@@ -624,7 +624,7 @@ export function MarketplaceExtensionCard(props: MarketplaceExtensionCardProps) {
                         intent={extension.lang !== "multi" ? "blue" : "unstyled"}
                     >
                         {/*{extension.lang.toUpperCase()}*/}
-                        {LANGUAGES_LIST[extension.lang?.toLowerCase()]?.nativeName || extension.lang?.toUpperCase() || "Unknown"}
+                        {LANGUAGES_LIST[extension.lang?.toLowerCase()]?.nativeName || extension.lang?.toUpperCase() || t("common.messages.unknown")}
                     </Badge>}
                     <Badge className="border-transparent rounded-md text-[--muted] px-0" intent="unstyled">
                         {capitalize(extension.language)}

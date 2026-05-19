@@ -88,7 +88,7 @@
       "title": "Buscar torrents",
       "searchPlaceholder": "Buscar torrents...",
       "download": "Descargar",
-      "stream": "Stream",
+      "stream": "Streaming",
       "size": "Tamaño",
       "seeders": "Seeders",
       "leechers": "Leechers",
@@ -224,7 +224,14 @@
       "main": "Principal",
       "special": "Especial",
       "ncOther": "NC/Otro",
-      "updateMetadata": "Actualizar metadatos"
+      "updateMetadata": "Actualizar metadatos",
+      "openInBrowser": "Abrir en el navegador",
+      "downloadTorrents": "Descargar",
+      "downloadBatch": "lote /",
+      "downloadNext": "siguiente",
+      "downloadEpisodes": "{count} episodios",
+      "downloadEpisode": "episodio",
+      "downloadMovie": "Descargar película"
     }
   }
 }

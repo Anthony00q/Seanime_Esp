@@ -9,6 +9,8 @@ import {
 } from "@/app/(main)/entry/_containers/torrent-search/torrent-search-drawer"
 import { useSetAtom } from "jotai"
 import { createTranslator } from "@/locales"
+import { getDateFnsLocale } from "@/locales/date-locale"
+import { format } from "date-fns"
 import React, { startTransition } from "react"
 import { BiCalendarAlt, BiDownload } from "react-icons/bi"
 import { EpisodeItemInfoModalButton } from "./episode-item"
@@ -78,15 +80,15 @@ export function UndownloadedEpisodeList({ downloadInfo, media, watchedProgress, 
                             <div data-undownloaded-episode-list-episode-metadata-container className="mt-1">
                                 <p data-undownloaded-episode-list-episode-metadata-text className="flex gap-1 items-center text-sm text-[--muted]">
                                     <BiCalendarAlt /> {episode.episodeMetadata?.airDate
-                                    ? `Emitido el ${new Date(episode.episodeMetadata?.airDate).toLocaleDateString("es")}`
-                                    : "Emitido"}
+                                        ? `${t("entry.airedOn")} ${format(new Date(episode.episodeMetadata.airDate), "P", { locale: getDateFnsLocale() })}`
+                                        : t("entry.aired")}
                                 </p>
                             </div>
                         </EpisodeGridItem>
                     )
                 })}
             </EpisodeListGrid>
-            {episodes.length > 28 && <h3>Y más...</h3>}
+            {episodes.length > 28 && <h3>{t("entry.andMore")}</h3>}
         </div>
     )
 

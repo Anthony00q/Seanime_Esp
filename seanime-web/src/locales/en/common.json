@@ -74,7 +74,12 @@
       "success": "Success",
       "noResults": "No results found",
       "noOptions": "No options found",
-      "nothingToSee": "Nothing to see here"
+      "nothingToSee": "Nothing to see here",
+      "nothingFound": "Nothing found",
+      "noTrailerFound": "No trailer found",
+      "noMetadataFound": "No metadata found",
+      "unknownGPU": "Unknown GPU",
+      "unknown": "Unknown"
     },
     "placeholders": {
       "allGenres": "All genres",
@@ -130,7 +135,8 @@
       },
       "fields": {
         "directory": "Directory"
-      }
+      },
+      "selectAllFiles": "Select all files"
     }
   }
 }
