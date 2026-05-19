@@ -13,6 +13,7 @@ import enManga from "./en/manga.json"
 import enExtensions from "./en/extensions.json"
 import enAnilist from "./en/anilist.json"
 import enGettingStarted from "./en/gettingStarted.json"
+import enChangelogTour from "./en/changelogTour.json"
 import enSettingsGeneral from "./en/settings/general.json"
 import enSettingsLibrary from "./en/settings/library.json"
 import enSettingsPlayers from "./en/settings/players.json"
@@ -32,6 +33,7 @@ import esManga from "./es/manga.json"
 import esExtensions from "./es/extensions.json"
 import esAnilist from "./es/anilist.json"
 import esGettingStarted from "./es/gettingStarted.json"
+import esChangelogTour from "./es/changelogTour.json"
 
 // Secciones de settings
 import esSettingsGeneral from "./es/settings/general.json"
@@ -80,6 +82,7 @@ const en = deepMerge(
     enExtensions,
     enAnilist,
     enGettingStarted,
+    enChangelogTour,
     enSettingsGeneral,
     enSettingsLibrary,
     enSettingsPlayers,
@@ -104,6 +107,7 @@ const es = deepMerge(
     esExtensions,
     esAnilist,
     esGettingStarted,
+    esChangelogTour,
     esSettingsGeneral,
     esSettingsLibrary,
     esSettingsPlayers,
