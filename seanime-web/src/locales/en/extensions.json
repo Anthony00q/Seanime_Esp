@@ -2,6 +2,7 @@
   "extensions": {
     "title": "Extensions",
     "description": "Manage your plugins and content providers.",
+    "preferences": "Preferences",
     "installed": "Installed",
     "marketplace": "Marketplace",
     "playground": "Playground",

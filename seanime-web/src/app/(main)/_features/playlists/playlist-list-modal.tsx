@@ -98,7 +98,7 @@ export function PlaylistListModal() {
                 <div className="space-y-6">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                         <div>
-                            <h4 className="flex items-center">Playlists</h4>
+                            <h4 className="flex items-center">{t("misc.playlists.title")}</h4>
                         </div>
                         <div className="flex gap-2 items-center md:pr-8">
                             <PlaylistEditorModal
@@ -108,7 +108,7 @@ export function PlaylistListModal() {
                                         intent="white"
                                         className={cn("rounded-full", selectedMedia && "animate-pulse")}
                                     >
-                                        {selectedMedia ? "Add to new Playlist" : "Create a Playlist"}
+                                        {selectedMedia ? t("misc.playlists.addNewPlaylist") : t("misc.playlists.createPlaylist")}
                                     </Button>
                                 }
                             />
@@ -127,6 +127,7 @@ export function PlaylistListModal() {
 
 function PlaylistLists({ libraryCollection }: { libraryCollection: Anime_LibraryCollection | undefined }) {
 
+    const t = createTranslator()
     const { data: playlists, isLoading } = useGetPlaylists()
     const { selectedMedia, setModalOpen } = usePlaylistEditorManager()
 
@@ -139,7 +140,7 @@ function PlaylistLists({ libraryCollection }: { libraryCollection: Anime_Library
             <div className="text-center text-[--muted] space-y-1 py-6">
                 <MdOutlineVideoLibrary className="mx-auto text-5xl text-[--muted]" />
                 <div>
-                    No playlists
+                    {t("misc.playlists.noPlaylists")}
                 </div>
             </div>
         )
@@ -208,7 +209,7 @@ function PlaylistLists({ libraryCollection }: { libraryCollection: Anime_Library
                                             intent={selectedMedia ? "white" : "white-subtle"}
                                             size="sm"
 
-                                        >{selectedMedia ? "Add to Playlist" : "Edit"}</Button>} playlist={p}
+                                        >{selectedMedia ? t("misc.playlists.addToPlaylist") : t("common.buttons.edit")}</Button>} playlist={p}
                                     />
                                 </div>
                                 <div className="absolute w-full bottom-0 h-fit z-[6]">

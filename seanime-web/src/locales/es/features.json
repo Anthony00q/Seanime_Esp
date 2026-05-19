@@ -118,6 +118,12 @@
     "scanSummaries": "Resúmenes de Escaneo",
     "extensions": "Extensiones",
     "advancedSearch": "Búsqueda avanzada",
+    "countries": {
+      "JP": "Japón",
+      "KR": "Corea del Sur",
+      "CN": "China",
+      "TW": "Taiwán"
+    },
     "goBack": "Volver",
     "goForward": "Avanzar",
     "screens": "Pantallas",
@@ -142,7 +148,7 @@
     "chooseAction": "Elegir una acción",
     "streamingUnavailableNoAnidb": "El streaming no está disponible para este episodio porque falta el mapeo de AniDB.",
     "downloadUnavailableNoDest": "La descarga no está disponible porque no se pudo resolver un destino predeterminado.",
-    "stream": "Stream",
+    "stream": "Streaming",
     "streamPickFile": "Stream y elegir archivo",
     "streamWithDebrid": "Stream con Debrid",
     "streamWithDebridPickFile": "Stream con Debrid y elegir archivo",
@@ -279,6 +285,24 @@
     "mostLikedAnime": "Anime más gustado",
     "mostLikedManga": "Manga más gustado",
     "discoverSeries": "Descubrir series",
-    "customSources": "Fuentes personalizadas"
+    "customSources": "Fuentes personalizadas",
+    "seaCommand": {
+      "findInCollection": "Buscar en tu colección",
+      "findInLibrary": "Buscar en tu biblioteca de anime",
+      "searchOnAnilist": "Buscar en AniList",
+      "magnetLink": "Streamear o descargar vía enlace magnet",
+      "copyLogs": "Copiar los registros actuales",
+      "recordIssue": "Grabar un problema",
+      "toggleSpoilers": "Alternar spoilers de este anime",
+      "autocomplete": "Autocompletar",
+      "actions": "Acciones",
+      "copyServerLogs": "Copiar registros del servidor",
+      "suggestions": "Sugerencias",
+      "custom": "Personalizado"
+    },
+    "nakama": {
+      "relay": "Relay",
+      "origin": "Origen"
+    }
   }
 }

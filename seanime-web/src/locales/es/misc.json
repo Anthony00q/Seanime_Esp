@@ -507,7 +507,25 @@
     "eventsLabel": "eventos",
     "scanLogs": "Registros de escaneo",
     "firstEarliest": "Primero = más antiguo",
-    "scanLog": "Registro de escaneo"
+    "scanLog": "Registro de escaneo",
+    "includeLibraryScannerLogs": "Incluir registros del escáner de biblioteca",
+    "startRecording": "Iniciar grabación",
+    "screenshot": "Captura de pantalla",
+    "response": "Respuesta",
+    "fullScreenshot": "Captura de pantalla completa"
+  },
+  "streamingTypes": {
+    "localFile": "Archivo local",
+    "torrentStream": "Stream torrent",
+    "debridStream": "Stream Debrid",
+    "unknown": "Desconocido"
+  },
+  "scanSummary": {
+    "title": "Título",
+    "episode": "Episodio",
+    "season": "Temporada",
+    "part": "Parte",
+    "episodeTitle": "Título del episodio"
   },
   "autoplay": {
     "requestingNextEpisode": "Solicitando siguiente episodio",
@@ -531,14 +549,18 @@
     "hostsLibrary": "Biblioteca de {host}"
   },
   "playlists": {
+    "title": "Listas de reproducción",
     "startingPlaylist": "Iniciando lista de reproducción...",
     "playingEpisode": "Reproduciendo episodio {episode} de {anime}",
     "pleaseEnterPlaylistName": "Ingresa un nombre para la lista de reproducción",
     "editPlaylist": "Editar lista de reproducción",
     "createPlaylist": "Crear lista de reproducción",
+    "addNewPlaylist": "Añadir a nueva lista",
+    "addToPlaylist": "Añadir a lista",
     "update": "Actualizar",
     "create": "Crear",
-    "deletePlaylist": "Eliminar lista de reproducción"
+    "deletePlaylist": "Eliminar lista de reproducción",
+    "noPlaylists": "No hay listas de reproducción"
   },
   "playlistManager": {
     "updateProgress": "¿Actualizar progreso?",
@@ -546,9 +568,12 @@
     "playlistName": "Lista: {name}",
     "reopenEpisode": "Reabrir episodio",
     "stopPlaylist": "Detener lista",
-    "torrentStreaming": "Torrent streaming",
-    "debridStreaming": "Debrid streaming",
-    "onlineStreaming": "Online streaming"
+    "torrentStreaming": "Streaming torrent",
+    "debridStreaming": "Streaming Debrid",
+    "onlineStreaming": "Streaming en línea",
+    "selectAll": "Seleccionar todo",
+    "deselectAll": "Deseleccionar todo",
+    "noEpisodesFound": "No se encontraron episodios"
   },
   "update": {
     "missingOptions": "Faltan opciones",
@@ -973,6 +998,8 @@
     "lockAllDesc": "Bloquear todos los archivos coincidentes correctamente",
     "filter": "Filtro",
     "unmatchedFiles": "Archivos no coincidentes",
+    "unmatchedFilesCount": "{count} archivo(s) no coincidente(s)",
+    "unknownMediaFilesCount": "{count} archivo(s) con media oculta",
     "unlockedFiles": "Archivos desbloqueados",
     "ignoredFiles": "Archivos ignorados",
     "unknownMedia": "Media desconocida",
@@ -1006,6 +1033,7 @@
     "folders": "carpeta{plural, select, 1 {} other {s}}",
     "files": "archivo{plural, select, 1 {} other {s}}",
     "deleteFile": "Eliminar archivo",
+    "deleteFilesCount": "Eliminar {count} archivo(s)",
     "delete": "Eliminar",
     "cancel": "Cancelar",
     "selectDetails": "Selecciona un archivo o carpeta para ver detalles",

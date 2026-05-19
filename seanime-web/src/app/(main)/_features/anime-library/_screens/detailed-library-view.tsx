@@ -117,7 +117,7 @@ export function DetailedLibraryView(props: LibraryViewProps) {
                     />
                     {!isNakamaLibrary && <h3 className="text-ellipsis truncate">{t("navigation.home")}</h3>}
                     {isNakamaLibrary &&
-                        <h3 className="text-ellipsis truncate">{t("animeLibrary.hostsLibrary", { host: nakamaStatus?.hostConnectionStatus?.username || "Host" })}</h3>}
+                        <h3 className="text-ellipsis truncate">{t("animeLibrary.hostsLibrary", { host: nakamaStatus?.hostConnectionStatus?.username || t("common.labels.host") })}</h3>}
                 </div>
 
                 <SearchInput />

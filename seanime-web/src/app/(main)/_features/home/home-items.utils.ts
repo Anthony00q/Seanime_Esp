@@ -1,6 +1,7 @@
 import { Models_HomeItem, Nullish } from "@/api/generated/types"
 import { ADVANCED_SEARCH_COUNTRIES_MANGA, ADVANCED_SEARCH_MEDIA_GENRES } from "@/app/(main)/search/_lib/advanced-search-constants"
 import { createTranslator } from "@/locales"
+import { translateCountry } from "@/lib/anilist-translations"
 
 export const DEFAULT_HOME_ITEMS: Models_HomeItem[] = [
     {
@@ -166,7 +167,7 @@ const _carouselOptions = [
         label: t("home.items.options.countryOfOrigin.label"),
         type: "select",
         name: "countryOfOrigin",
-        options: ADVANCED_SEARCH_COUNTRIES_MANGA,
+        options: ADVANCED_SEARCH_COUNTRIES_MANGA.map(c => ({ ...c, label: translateCountry(c.value) })),
     },
 ]
 

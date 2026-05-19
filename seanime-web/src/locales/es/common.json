@@ -74,7 +74,12 @@
       "success": "Éxito",
       "noResults": "No se encontraron resultados",
       "noOptions": "No se encontraron opciones",
-      "nothingToSee": "Nada que ver aquí"
+      "nothingToSee": "Nada que ver aquí",
+      "nothingFound": "No se encontró nada",
+      "noTrailerFound": "No se encontró tráiler",
+      "noMetadataFound": "No se encontraron metadatos",
+      "unknownGPU": "GPU desconocida",
+      "unknown": "Desconocido"
     },
     "placeholders": {
       "allGenres": "Todos los géneros",
@@ -130,7 +135,8 @@
       },
       "fields": {
         "directory": "Directorio"
-      }
+      },
+      "selectAllFiles": "Seleccionar todos los archivos"
     }
   }
 }

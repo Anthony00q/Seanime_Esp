@@ -289,13 +289,13 @@ function SortableItem({ id, episode, setEpisodes }: {
     const streamOptions = React.useMemo(() => {
         let options: { label: string, value: string }[] = []
         if (hasTorrentStreaming) {
-            options.push({ label: "Torrent streaming", value: "torrent" })
+            options.push({ label: tr("misc.playlistManager.torrentStreaming"), value: "torrent" })
         }
         if (hasDebridService) {
-            options.push({ label: "Debrid streaming", value: "debrid" })
+            options.push({ label: tr("misc.playlistManager.debridStreaming"), value: "debrid" })
         }
         if (hasOnlineStreaming) {
-            options.push({ label: "Online streaming", value: "online" })
+            options.push({ label: tr("misc.playlistManager.onlineStreaming"), value: "online" })
         }
         return options
     }, [hasDebridService, hasOnlineStreaming, hasTorrentStreaming])
@@ -504,11 +504,11 @@ function EntryEpisodeList(props: EntryEpisodeListProps) {
                         })
                     }}
                 >
-                    {allSelected ? "Deselect all" : "Select all"}
+                    {allSelected ? tr("misc.playlistManager.deselectAll") : tr("misc.playlistManager.selectAll")}
                 </Button>
             </div>
             {isLoading && <LoadingSpinner />}
-            {data?.length === 0 && <p className="text-center text-sm text-[--muted]">No episodes found</p>}
+            {data?.length === 0 && <p className="text-center text-sm text-[--muted]">{tr("misc.playlistManager.noEpisodesFound")}</p>}
             {episodes?.map(ep => {
                 return (
                     <div

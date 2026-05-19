@@ -224,7 +224,14 @@
       "main": "Main",
       "special": "Special",
       "ncOther": "NC/Other",
-      "updateMetadata": "Update metadata"
+      "updateMetadata": "Update metadata",
+      "openInBrowser": "Open in browser",
+      "downloadTorrents": "Download",
+      "downloadBatch": "batch /",
+      "downloadNext": "next",
+      "downloadEpisodes": "{count} episodes",
+      "downloadEpisode": "episode",
+      "downloadMovie": "Download movie"
     }
   }
 }

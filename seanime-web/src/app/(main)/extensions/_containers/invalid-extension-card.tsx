@@ -130,7 +130,7 @@ export function InvalidExtensionCard(props: InvalidExtensionCardProps) {
 
                     <div>
                         <p className="font-semibold line-clamp-1">
-                            {extension.extension?.name ?? "Unknown"}
+                            {extension.extension?.name ?? t("common.messages.unknown")}
                         </p>
                         <p className="text-[--muted] text-sm line-clamp-1 italic">
                             {extension.extension?.id ?? "Invalid ID"}
@@ -342,7 +342,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
 
                     <div>
                         <p className="font-semibold line-clamp-1">
-                            {extension.extension?.name ?? "Unknown"}
+                            {extension.extension?.name ?? t("common.messages.unknown")}
                         </p>
                         <p className="text-[--muted] text-xs line-clamp-1 italic">
                             {extension.extension?.id ?? "Invalid ID"}
@@ -366,7 +366,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                     </Badge>
                     <Badge className="border-transparent rounded-md" intent="unstyled">
                         {/*{extension.extension.lang.toUpperCase()}*/}
-                        {LANGUAGES_LIST[extension.extension.lang?.toLowerCase()]?.nativeName || extension.extension.lang?.toUpperCase() || "Unknown"}
+                        {LANGUAGES_LIST[extension.extension.lang?.toLowerCase()]?.nativeName || extension.extension.lang?.toUpperCase() || t("common.messages.unknown")}
                     </Badge>
                 </div>
 

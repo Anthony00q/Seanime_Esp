@@ -526,7 +526,7 @@ export function OnlinestreamPage({ animeEntry, animeEntryLoading, hideBackButton
                 addonClass="rounded-full rounded-r-none"
             />}
             <IsomorphicPopover
-                title="Stream"
+                title={tr("features.stream")}
                 trigger={<Button
                     intent="gray-basic"
                     size="sm"

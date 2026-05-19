@@ -49,7 +49,7 @@ export function VideoCoreResolutionMenu({ state, onVideoSourceChange }: {
 
     return (
         <VideoCoreMenu
-            name="Video"
+            name={t("videoPlayer.menuVideo")}
             trigger={<VideoCoreControlButtonIcon
                 icons={[
                     ["default", LuFilm],
