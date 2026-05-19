@@ -36,6 +36,7 @@ seanime-web/src/locales/
 │   ├── extensions.json
 │   ├── anilist.json
 │   ├── gettingStarted.json
+│   ├── changelogTour.json
 │   └── settings/
 │       ├── general.json
 │       ├── library.json
@@ -79,7 +80,7 @@ export function isValidLocale(value: string): value is Locale {
 
 #### 2. Crear la carpeta de traducciones
 
-Crea `seanime-web/src/locales/fr/` con **exactamente la misma estructura** que `es/` (17 archivos JSON en total, incluyendo la subcarpeta `settings/`):
+Crea `seanime-web/src/locales/fr/` con **exactamente la misma estructura** que `es/` (18 archivos JSON en total, incluyendo la subcarpeta `settings/`):
 
 ```
 fr/
@@ -94,6 +95,7 @@ fr/
 ├── extensions.json
 ├── anilist.json
 ├── gettingStarted.json
+├── changelogTour.json
 └── settings/
     ├── general.json
     ├── library.json
