@@ -85,8 +85,8 @@ La traducción al español abarca prácticamente toda la interfaz de usuario. Si
 
 **Resumen del sistema de traducción:**
 
-- **~2633+ keys** traducidas en 17 archivos JSON (español + inglés en paridad)
-- **~255+ componentes** React traducidos
+- **~2930+ keys** traducidas en 18 archivos JSON (español + inglés en paridad)
+- **~310+ componentes** React traducidos
 - **~247+ toasts** traducidos (UI, hooks de API, archivos .ts)
 - **Backend Go intacto** — toasts del servidor traducidos vía `SERVER_TOAST_MAP` en el frontend
 - **Electron Denshi** — system tray traducido directamente (3 strings)
