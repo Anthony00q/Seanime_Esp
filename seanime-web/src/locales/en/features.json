@@ -118,6 +118,12 @@
     "scanSummaries": "Scan Summaries",
     "extensions": "Extensions",
     "advancedSearch": "Advanced search",
+    "countries": {
+      "JP": "Japan",
+      "KR": "South Korea",
+      "CN": "China",
+      "TW": "Taiwan"
+    },
     "goBack": "Go back",
     "goForward": "Go forward",
     "screens": "Screens",
@@ -279,6 +285,24 @@
     "mostLikedAnime": "Most liked anime",
     "mostLikedManga": "Most liked manga",
     "discoverSeries": "Discover series",
-    "customSources": "Custom sources"
+    "customSources": "Custom sources",
+    "seaCommand": {
+      "findInCollection": "Find in your collection",
+      "findInLibrary": "Find in your anime library",
+      "searchOnAnilist": "Search on AniList",
+      "magnetLink": "Stream or download via magnet link",
+      "copyLogs": "Copy the current logs",
+      "recordIssue": "Record an issue",
+      "toggleSpoilers": "Toggle spoilers for this anime",
+      "autocomplete": "Autocomplete",
+      "actions": "Actions",
+      "copyServerLogs": "Copy current server logs",
+      "suggestions": "Suggestions",
+      "custom": "Custom"
+    },
+    "nakama": {
+      "relay": "Relay",
+      "origin": "Origin"
+    }
   }
 }

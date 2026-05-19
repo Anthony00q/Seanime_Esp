@@ -92,7 +92,7 @@ export function ExtensionCard(props: ExtensionCardProps) {
                                                 userConfigError && "animate-bounce",
                                             )}
                                         />}
-                                    >Preferences</Tooltip>
+                                    >{t("extensions.preferences")}</Tooltip>
                                 </div>
                             </ExtensionUserConfigModal>
                         </>

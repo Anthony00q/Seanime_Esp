@@ -85,7 +85,7 @@ export function ExtensionDetails(props: ExtensionDetailsProps) {
                         {t("extensions.card.author", { author: extension.author })}
                     </Badge>}
                     {<Badge className="rounded-md" intent="unstyled">
-                        {t("extensions.card.language", { language: LANGUAGES_LIST[extension.lang?.toLowerCase()]?.nativeName || extension.lang?.toUpperCase() || "Unknown" })}
+                        {t("extensions.card.language", { language: LANGUAGES_LIST[extension.lang?.toLowerCase()]?.nativeName || extension.lang?.toUpperCase() || t("common.messages.unknown") })}
                     </Badge>}
                     {<Badge className="rounded-md" intent="unstyled">
                         {/*{extension.lang.toUpperCase()}*/}

@@ -172,7 +172,7 @@ export async function castCurrentMedia(playbackInfo: any) {
         contentType: playbackInfo.mimeType || "video/mp4",
         title: playbackInfo.media?.title?.english
             || playbackInfo.media?.title?.romaji
-            || "Unknown",
+            || t("common.messages.unknown"),
         subtitle: playbackInfo.episode?.displayTitle || "",
         imageUrl: playbackInfo.media?.coverImage?.large || "",
         serverPort,

@@ -292,7 +292,7 @@ function buildUnifiedTimeline(report: ExtendedReport, includeServerLogs: boolean
             type: "screenshot",
             timestamp: parseISO(ss.timestamp),
             pageUrl: ss.pageUrl,
-            summary: ss.caption || "Screenshot",
+            summary: ss.caption || t("misc.issueReport.screenshot"),
             level: "info",
             raw: ss,
         })
@@ -1071,7 +1071,7 @@ function TimelineEventRow({ event, isExpanded, toggleExpanded }: {
                     {event.type === "screenshot" && event.raw.data ? (
                         <div className="space-y-2">
                             {event.raw.caption && <p className="text-sm text-gray-300 italic">"{event.raw.caption}"</p>}
-                            <img src={event.raw.data} alt="Screenshot" className="max-w-full max-h-[50vh] rounded-lg border border-[--border]" />
+                            <img src={event.raw.data} alt={t("misc.issueReport.screenshot")} className="max-w-full max-h-[50vh] rounded-lg border border-[--border]" />
                         </div>
                     ) : (
                         <DataGrid data={event.raw} />
@@ -1196,7 +1196,7 @@ function NetworkPanel({ logs, searchQuery, setSearchQuery }: {
                                         )}
                                         {log.dataPreview && (
                                             <div className="space-y-1">
-                                                <p className="text-sm font-semibold text-gray-400">Response</p>
+                                                <p className="text-sm font-semibold text-gray-400">{t("misc.issueReport.response")}</p>
                                                 <pre className="text-xs font-mono text-gray-300 bg-gray-900 p-2 rounded break-all whitespace-pre-wrap max-h-[200px] overflow-auto">
                                                     {tryFormatJSON(log.dataPreview)}
                                                 </pre>
@@ -1470,7 +1470,7 @@ function ScreenshotsPanel({ screenshots }: { screenshots: Screenshot[] }) {
                 <div className="bg-gray-900 border border-[--border] rounded-lg p-4">
                     <img
                         src={screenshots[selectedIndex].data}
-                        alt="Full screenshot"
+                        alt={t("misc.issueReport.fullScreenshot")}
                         className="max-w-full max-h-[60vh] rounded-lg mx-auto"
                     />
                     {screenshots[selectedIndex].caption && (

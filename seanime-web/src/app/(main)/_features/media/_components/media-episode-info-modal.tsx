@@ -4,10 +4,13 @@ import { IconButton } from "@/components/ui/button"
 import { Modal, ModalProps } from "@/components/ui/modal"
 import { Popover, PopoverProps } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { AiFillWarning } from "react-icons/ai"
 import { MdInfo } from "react-icons/md"
 import { useWindowSize } from "react-use"
+
+const t = createTranslator()
 
 type MediaEpisodeInfoModalProps = {
     title?: Nullish<string>
@@ -69,7 +72,7 @@ export function MediaEpisodeInfoModal(props: MediaEpisodeInfoModalProps) {
                     intent="gray-basic"
                     size="xs"
                 />}
-                title={title || "Episode"}
+                title={title || t("entry.episode")}
                 // contentClass="max-w-2xl"
                 // titleClass="text-xl"
             >

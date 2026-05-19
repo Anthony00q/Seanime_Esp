@@ -4,7 +4,10 @@ import { imageShimmer } from "@/components/shared/image-helpers"
 import { SeaImage } from "@/components/shared/sea-image"
 import { Button } from "@/components/ui/button"
 import { CommandGroup, CommandItem, CommandShortcut } from "@/components/ui/command"
+import { createTranslator } from "@/locales"
 import { useSeaCommandContext } from "../sea-command"
+
+const t = createTranslator()
 
 
 export function CommandItemMedia({ media, type }: { media: AL_BaseAnime | AL_BaseManga, type: "anime" | "manga" }) {
@@ -58,7 +61,7 @@ export function SeaCommandAutocompleteSuggestions({
     return (
         <>
 
-            <CommandGroup heading="Suggestions">
+            <CommandGroup heading={t("features.seaCommand.suggestions")}>
                 {commands.filter(command => command.show === true).map(command => (
                     <CommandItem
                         key={command.command}

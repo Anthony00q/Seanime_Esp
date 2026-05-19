@@ -365,8 +365,8 @@ export function ChapterList(props: ChapterListProps) {
             <ErrorBoundary
                 fallbackRender={({ error }) => <Alert
                     intent="alert"
-                    title="Error del cliente"
-                    description={`No se pudieron cargar los filtros de capítulos. Contacta al desarrollador de la extensión: "${error}"`}
+                    title={t("misc.error.clientError")}
+                    description={t("manga.chapterList.loadFiltersError", { error })}
                 />}
             >
                 {(selectedExtension?.settings?.supportsMultiLanguage || selectedExtension?.settings?.supportsMultiScanlator) && (

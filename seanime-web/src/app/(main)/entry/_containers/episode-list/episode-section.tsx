@@ -109,10 +109,8 @@ export function EpisodeSection({ entry, details, bottomSection, hideCarousel, ma
     if (!!media && ((!entry.listData && !entry._isNakamaEntry) || !entry.libraryData) && !serverStatus?.isOffline) {
         return <div className="space-y-10">
             {media?.status !== "NOT_YET_RELEASED"
-                ? <h4 className="text-yellow-50 flex items-center gap-2"><IoLibrarySharp /> No está en {entry._isNakamaEntry
-                    ? "la biblioteca de Nakama"
-                    : "tu"} biblioteca</h4>
-                : <h5 className="text-yellow-50">Aún no lanzado</h5>}
+                ? <h4 className="text-yellow-50 flex items-center gap-2"><IoLibrarySharp /> {t("entry.notInLibrary", { library: entry._isNakamaEntry ? t("entry.nakamaLibrary") : t("entry.yourLibrary") })}</h4>
+                : <h5 className="text-yellow-50">{t("entry.notYetReleased")}</h5>}
             <div className="overflow-y-auto pt-4 lg:pt-0 space-y-10 overflow-x-hidden">
                 {!entry._isNakamaEntry && <UndownloadedEpisodeList
                     downloadInfo={entry.downloadInfo}
