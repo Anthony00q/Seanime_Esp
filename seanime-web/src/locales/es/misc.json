@@ -711,6 +711,7 @@
       "torrentAdded": "Torrent añadido",
       "downloadStarted": "Descarga iniciada",
       "downloadCancelled": "Descarga cancelada",
+      "torrentDeleted": "Torrent eliminado",
       "streamCancelled": "Stream cancelado"
     },
     "download": {
@@ -764,7 +765,9 @@
       "removed": "Metadatos eliminados"
     },
     "onlinestream": {
-      "cacheEmptied": "Caché de stream vaciado"
+      "cacheEmptied": "Caché de stream vaciado",
+      "mappingAdded": "Mapeo añadido",
+      "mappingRemoved": "Mapeo eliminado"
     },
     "playback": {
       "playlistCancelled": "Cancelando lista de reproducción",
