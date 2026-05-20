@@ -985,6 +985,7 @@
       "torrentAdded": "Torrent added",
       "downloadStarted": "Download started",
       "downloadCancelled": "Download cancelled",
+      "torrentDeleted": "Torrent deleted",
       "streamCancelled": "Stream cancelled"
     },
     "download": {
@@ -1038,7 +1039,9 @@
       "removed": "Removed"
     },
     "onlinestream": {
-      "cacheEmptied": "Cache emptied"
+      "cacheEmptied": "Cache emptied",
+      "mappingAdded": "Mapping added",
+      "mappingRemoved": "Mapping removed"
     },
     "playback": {
       "playlistCancelled": "Playlist cancelled",
