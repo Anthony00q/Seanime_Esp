@@ -149,6 +149,7 @@
       "extensionsFromRepoInstalled": "{count} extensions installed from the repository",
       "extensionUpToDate": "Extension is up to date",
       "extensionHasNoId": "Extension has no ID",
+      "updateAvailable": "Update available",
       "pleaseProvideValidUrl": "Please provide a valid URL.",
       "extensionsInstalledSuccessfully": "Extensions installed successfully.",
       "invalidFunctionSelected": "Invalid function selected.",

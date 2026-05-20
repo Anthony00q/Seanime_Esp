@@ -124,15 +124,8 @@ const translations: Record<string, Messages> = {
 }
 
 function getNestedValue(obj: any, path: string): string | undefined {
-    const keys = path.split(".")
-    let current: any = obj
-
-    for (const key of keys) {
-        if (current === undefined || current === null) return undefined
-        current = current[key]
-    }
-
-    return typeof current === "string" ? current : undefined
+    const result = path.split(".").reduce((acc, key) => acc?.[key], obj)
+    return typeof result === "string" ? result : undefined
 }
 
 function interpolate(text: string, params?: Record<string, string | number>): string {
