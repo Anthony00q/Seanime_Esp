@@ -116,7 +116,7 @@ export function SidebarNavbar(props: SidebarNavbarProps) {
                     ...(isMangaPage ? [
                         {
                             iconType: LuFolderDown,
-                            name: "Descargas de Manga",
+                            name: t("manga.chapterDownloads.mangaDownloads"),
                             onClick: () => {
                                 openDownloadQueue(true)
                             },

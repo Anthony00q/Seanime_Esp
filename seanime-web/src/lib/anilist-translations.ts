@@ -17,7 +17,7 @@ export const translateTag = (v: string) => translateAnilist("tags", v)
 
 function translateCountryAnilist(value: string): string {
     if (!value) return value
-    const key = `features.countries.${value}`
+    const key = `seaCommand.countries.${value}`
     const result = t(key)
     return result === key ? value : result
 }
