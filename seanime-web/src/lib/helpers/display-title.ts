@@ -1,3 +1,7 @@
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
+
 /**
  * translateDisplayTitle
  *
@@ -17,13 +21,13 @@ export function translateDisplayTitle(displayTitle: string | undefined | null): 
     // "Episode 7" → "Episodio 7"
     const episodeMatch = displayTitle.match(/^Episode (\d+)$/)
     if (episodeMatch) {
-        return `Episodio ${episodeMatch[1]}`
+        return t("common.labels.episodeNumber", { number: episodeMatch[1] })
     }
 
     // "Special 2" → "Especial 2"
     const specialMatch = displayTitle.match(/^Special (\S+)$/)
     if (specialMatch) {
-        return `Especial ${specialMatch[1]}`
+        return t("common.labels.specialEpisodeNumber", { number: specialMatch[1] })
     }
 
     return displayTitle

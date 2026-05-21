@@ -88,7 +88,8 @@
       "noChaptersDownloaded": "No hay capítulos descargados",
       "title": "Descargas de capítulos",
       "noDownloads": "No hay descargas en curso",
-      "clearCompleted": "Limpiar completadas"
+      "clearCompleted": "Limpiar completadas",
+      "mangaDownloads": "Descargas de manga"
     },
     "chapterReader": {
       "reloadSources": "Recargar fuentes",
