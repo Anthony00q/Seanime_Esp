@@ -112,6 +112,7 @@ skills*.json
 .github/prompts/
 .github/skills/
 *.agent.md
+AGENTS.md
 
 ##
 ## Informacion local
