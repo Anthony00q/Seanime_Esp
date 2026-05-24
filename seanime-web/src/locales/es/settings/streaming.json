@@ -64,7 +64,10 @@
       "cacheDirectory": "Directorio de caché",
       "cacheDirectoryHelp": "Donde se descargarán los torrents mientras se hace streaming. Dejar vacío para usar el directorio de caché predeterminado.",
       "chooseEmptyDirectory": "Elige un directorio vacío para evitar perder datos.",
-      "dropTorrent": "Soltar torrent"
+      "dropTorrent": "Soltar torrent",
+      "preloadNextEpisode": "Precargar siguiente episodio",
+      "preloadNextEpisodeHelp": "Empieza a descargar el siguiente episodio en segundo plano.",
+      "preloadNextEpisodeMoreHelp": "Esta función está solo parcialmente implementada. No confíes en que funcione correctamente."
     },
     "debridService": {
       "title": "Servicio Debrid",
