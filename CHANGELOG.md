@@ -18,21 +18,21 @@ All notable changes to this project will be documented in this file.
 
 ## v3.8.3
 
-- ⚡️ Plugins: ctx.appSettings now includes debrid, torrent streaming and transcode settings
-- ⚡️ Torrent streaming: Option to preload next stream (Unstable)
-- 🦺 Scanner: Fixed runtime error caused by concurrent file checking
-- 🦺 VideoCore: Fixed autonext skipping playlist episodes
-- 🦺 VideoCore: Fixed playback failure when replaying fully downloaded torrent stream
-- 🦺 VideoCore: Fixed occasional bugs caused by new React19 ref handling
-- 🦺 VideoCore(Perf): Throttle torrent stream subtitle events to avoid UI lag
-- 🦺 VideoCore(Perf): Throttle thumbnail scrobbling requests
-- 🦺 Torrentstream: Dropping torrent removes them on disk immediately
-- 🦺 MPV: Potential fix for stale events causing incorrect progress updates
-- 🦺 MPV: Generate fresh IPC sockets for each launch to avoid collisions
-- 🏗️ MPV: Refactored error messages handling
-- 🏗️ VideoCore: Use View Transitions for mini player transitions
-- 🏗️ Torrentstream: Fully downloaded files now stream from file on disk directly
-- 🏗️ UI: Replaced drawer components and built-in player drawer to avoid layout thrashing
+- ⚡️ Plugins: ctx.appSettings ahora incluye configuración de debrid, streaming por torrent y transcodificación
+- ⚡️ Torrent streaming: Opción para precargar el siguiente stream (Inestable)
+- 🦺 Escáner: Error de ejecución causado por verificación concurrente de archivos corregido
+- 🦺 VideoCore: El salto automático que omitía episodios de la lista de reproducción fue corregido
+- 🦺 VideoCore: Fallo de reproducción al repetir un stream por torrent completamente descargado corregido
+- 🦺 VideoCore: Errores ocasionales causados por el nuevo manejo de referencias de React 19 corregidos
+- 🦺 VideoCore(Perf): Limitación de eventos de subtítulos en streaming de torrents para evitar lag en la UI
+- 🦺 VideoCore(Perf): Limitación de peticiones de miniaturas
+- 🦺 Torrentstream: Soltar un torrent ahora lo elimina del disco inmediatamente
+- 🦺 MPV: Posible solución para eventos obsoletos que causaban actualizaciones de progreso incorrectas
+- 🦺 MPV: Generación de nuevos sockets IPC para cada lanzamiento para evitar colisiones
+- 🏗️ MPV: Manejo de mensajes de error refactorizado
+- 🏗️ VideoCore: Uso de transiciones de vista para las transiciones del mini reproductor
+- 🏗️ Torrentstream: Los archivos completamente descargados ahora se transmiten directamente desde el archivo en el disco
+- 🏗️ UI: Se reemplazaron los componentes del drawer y el reproductor incorporado para evitar problemas de diseño
 
 ## v3.8.2
 
