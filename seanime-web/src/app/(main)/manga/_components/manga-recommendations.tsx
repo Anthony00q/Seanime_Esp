@@ -1,4 +1,4 @@
-import { AL_MangaDetailsById_Media, Manga_Entry, Nullish } from "@/api/generated/types"
+﻿import { AL_MangaDetailsById_Media, Manga_Entry, Nullish } from "@/api/generated/types"
 import { MediaCardGrid } from "@/app/(main)/_features/media/_components/media-card-grid"
 import { MediaEntryCard } from "@/app/(main)/_features/media/_components/media-entry-card"
 import { MediaEntryDetailsSkeleton } from "@/app/(main)/_features/media/_components/media-entry-page-loading-display"
@@ -65,7 +65,7 @@ export function MangaRecommendations(props: MangaRecommendationsProps) {
                                     showTrailer
                                     overlay={<p
                                         className="font-semibold text-white bg-gray-950 z-[-1] absolute right-0 w-fit px-4 py-1.5 text-center !bg-opacity-90 text-sm lg:text-base rounded-none rounded-bl-lg"
-                                    >{(RELATION_TYPE_MAP[edge.relationType ?? ""] ?? capitalize(edge.relationType || "").replace("_", " "))}{edge?.node?.format === "MOVIE" ? ` (${t("features.movie")})` : ""}</p>}
+                                    >{(RELATION_TYPE_MAP[edge.relationType ?? ""] ?? capitalize(edge.relationType || "").replace("_", " "))}{edge?.node?.format === "MOVIE" ? ` (${t("common.labels.movie")})` : ""}</p>}
                                     type="anime"
                                 />
                             </div>
@@ -89,4 +89,5 @@ export function MangaRecommendations(props: MangaRecommendationsProps) {
         </div>
     )
 }
+
 

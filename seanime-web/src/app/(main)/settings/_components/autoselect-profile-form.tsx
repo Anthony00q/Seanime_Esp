@@ -583,7 +583,7 @@ function ProvidersFieldControlled() {
                 onValueChange={handleAdd}
                 options={availableOptions}
                 multiple
-                label={t("common.buttons.addProvider")}
+                label={t("settings.autoSelectProfile.addProvider")}
                 disabled={items.length >= 3}
                 emptyMessage={t("settings.autoSelectProfile.noProvidersFound")}
             />

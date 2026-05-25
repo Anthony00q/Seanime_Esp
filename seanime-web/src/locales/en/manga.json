@@ -55,7 +55,9 @@
       "chapterId": "Chapter ID",
       "provider": "Provider",
       "chapterLabel": "Chapter {number}",
-      "loadFiltersError": "Could not load chapter filters. Contact the extension developer: \"{error}\""
+      "loadFiltersError": "Could not load chapter filters. Contact the extension developer: \"{error}\"",
+      "nextChapter": "Next chapter",
+      "upcomingChapters": "Upcoming chapters"
     },
     "downloadedChapters": {
       "title": "Downloaded chapters",

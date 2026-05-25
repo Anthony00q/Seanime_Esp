@@ -231,7 +231,7 @@ export function PlaybackManagerProgressTracking() {
 
     const confirmPlayNext = useConfirmationDialog({
         title: t("progressTracking.playNextEpisode"),
-        description: t("videoPlayer.shortcuts.nextEpisodeDesc"),
+        description: t("videoPlayer.keybindings.nextEpisodeDesc"),
         actionText: t("common.buttons.confirm"),
         actionIntent: "success",
         onConfirm: () => {
@@ -267,7 +267,7 @@ export function PlaybackManagerProgressTracking() {
 
     const confirmNextEpisode = useConfirmationDialog({
         title: t("progressTracking.playNextEpisode"),
-        description: t("videoPlayer.shortcuts.nextEpisodeDesc"),
+        description: t("videoPlayer.keybindings.nextEpisodeDesc"),
         actionText: t("common.buttons.confirm"),
         actionIntent: "success",
         onConfirm: () => {

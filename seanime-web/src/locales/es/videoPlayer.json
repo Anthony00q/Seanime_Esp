@@ -30,7 +30,8 @@
       "enableTranslationHelp": "Traduce automáticamente las pistas de subtítulos al idioma seleccionado",
       "provider": "Proveedor",
       "targetLanguage": "Idioma Destino",
-      "deeplNote": "Nota: DeepL no soporta todos los idiomas destino."
+      "deeplNote": "Nota: DeepL no soporta todos los idiomas destino.",
+      "saved": "Configuración de traducción guardada"
     },
     "inSight": {
       "characters": "Personajes",

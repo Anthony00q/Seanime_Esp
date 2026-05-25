@@ -1,4 +1,4 @@
-import { Anime_Entry, Anime_Playlist, Anime_PlaylistEpisode, HibikeTorrent_AnimeTorrent } from "@/api/generated/types"
+﻿import { Anime_Entry, Anime_Playlist, Anime_PlaylistEpisode, HibikeTorrent_AnimeTorrent } from "@/api/generated/types"
 import { useGetAnimeEntry } from "@/api/hooks/anime_entries.hooks"
 import { useCurrentDevicePlaybackSettings } from "@/app/(main)/_atoms/playback.atoms"
 import { getNextBatchFileSelection, useAutoPlaySelectedTorrent } from "@/app/(main)/_features/autoplay/autoplay"
@@ -465,7 +465,7 @@ function EpisodeItem({ episode }: { episode: Anime_PlaylistEpisode }) {
             </div>
             <div className="max-w-full space-y-1">
                 <p className="text-sm text-[--muted]">{episode.episode?.baseAnime?.title?.userPreferred}</p>
-                <p className="">{episode.episode?.baseAnime?.format !== "MOVIE" ? `${t("entry.episode")} ${episode.episode!.episodeNumber}` : t("features.movie")}</p>
+                <p className="">{episode.episode?.baseAnime?.format !== "MOVIE" ? `${t("entry.episode")} ${episode.episode!.episodeNumber}` : t("common.labels.movie")}</p>
 
                 <div>
                     <div className="text-xs text-[--muted] line-clamp-1 tracking-wide">
@@ -478,3 +478,4 @@ function EpisodeItem({ episode }: { episode: Anime_PlaylistEpisode }) {
         </div>
     )
 }
+

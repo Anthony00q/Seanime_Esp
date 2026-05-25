@@ -55,7 +55,9 @@
       "chapterId": "ID de capítulo",
       "provider": "Proveedor",
       "chapterLabel": "Capítulo {number}",
-      "loadFiltersError": "No se pudieron cargar los filtros de capítulos. Contacta al desarrollador de la extensión: \"{error}\""
+      "loadFiltersError": "No se pudieron cargar los filtros de capítulos. Contacta al desarrollador de la extensión: \"{error}\"",
+      "nextChapter": "Siguiente capítulo",
+      "upcomingChapters": "Próximos capítulos"
     },
     "downloadedChapters": {
       "title": "Capítulos descargados",
