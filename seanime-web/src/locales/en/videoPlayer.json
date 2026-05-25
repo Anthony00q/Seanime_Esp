@@ -30,7 +30,8 @@
       "enableTranslationHelp": "Automatically translate subtitle tracks to the selected language",
       "provider": "Provider",
       "targetLanguage": "Target Language",
-      "deeplNote": "Note: DeepL does not support all target languages."
+      "deeplNote": "Note: DeepL does not support all target languages.",
+      "saved": "Translation settings saved"
     },
     "inSight": {
       "characters": "Characters",
@@ -134,12 +135,12 @@
       "lime": "Lime"
     },
     "opacity": {
-      "100": "100%",
-      "80": "80%",
-      "70": "70%",
-      "50": "50%",
+      "0": "0%",
       "25": "25%",
-      "0": "0%"
+      "50": "50%",
+      "70": "70%",
+      "80": "80%",
+      "100": "100%"
     },
     "preferences": {
       "title": "Preferences",
