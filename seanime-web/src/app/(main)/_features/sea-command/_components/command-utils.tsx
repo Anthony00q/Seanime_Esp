@@ -1,4 +1,4 @@
-import { AL_BaseAnime, AL_BaseManga } from "@/api/generated/types"
+﻿import { AL_BaseAnime, AL_BaseManga } from "@/api/generated/types"
 import { useMediaPreviewModal } from "@/app/(main)/_features/media/_containers/media-preview-modal"
 import { imageShimmer } from "@/components/shared/image-helpers"
 import { SeaImage } from "@/components/shared/sea-image"
@@ -61,7 +61,7 @@ export function SeaCommandAutocompleteSuggestions({
     return (
         <>
 
-            <CommandGroup heading={t("features.seaCommand.suggestions")}>
+            <CommandGroup heading={t("search.seaCommand.suggestions")}>
                 {commands.filter(command => command.show === true).map(command => (
                     <CommandItem
                         key={command.command}
@@ -77,3 +77,4 @@ export function SeaCommandAutocompleteSuggestions({
         </>
     )
 }
+

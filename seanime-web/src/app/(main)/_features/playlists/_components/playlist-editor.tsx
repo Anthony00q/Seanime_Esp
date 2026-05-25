@@ -1,4 +1,4 @@
-import { Anime_LibraryCollection, Anime_LibraryCollectionEntry, Anime_PlaylistEpisode, Anime_WatchType, Nullish } from "@/api/generated/types"
+﻿import { Anime_LibraryCollection, Anime_LibraryCollectionEntry, Anime_PlaylistEpisode, Anime_WatchType, Nullish } from "@/api/generated/types"
 import { useGetPlaylistEpisodes } from "@/api/hooks/playlist.hooks"
 import { usePlaylistEditorManager } from "@/app/(main)/_features/playlists/lib/playlist-editor-manager"
 import { useHasDebridService, useHasOnlineStreaming, useHasTorrentStreaming } from "@/app/(main)/_hooks/use-server-status"
@@ -364,7 +364,7 @@ function SortableItem({ id, episode, setEpisodes }: {
                     <p className="text-sm text-[--muted] font-medium">{episode.episode?.baseAnime?.title?.userPreferred}</p>
                     <p className="">{episode.episode?.baseAnime?.format !== "MOVIE"
                         ? `${tr("schedule.episodeLabel")} ${episode.episode!.episodeNumber}`
-                        : tr("features.movie")}{episode.isCompleted ? ` (${tr("playlist.watched")})` : ""}</p>
+                        : tr("common.labels.movie")}{episode.isCompleted ? ` (${tr("playlist.watched")})` : ""}</p>
 
                     {(!episode.episode?.localFile && !episode.isNakama) && <div className="flex gap-1 flex-wrap">
                         {streamOptions.map(option => {
@@ -537,7 +537,7 @@ function EntryEpisodeList(props: EntryEpisodeListProps) {
                             />}
                         </div>
                         <div className="max-w-full">
-                            <p className="">{entry.media?.format !== "MOVIE" ? `${tr("schedule.episodeLabel")} ${ep.episode!.episodeNumber}` : tr("features.movie")}</p>
+                            <p className="">{entry.media?.format !== "MOVIE" ? `${tr("schedule.episodeLabel")} ${ep.episode!.episodeNumber}` : tr("common.labels.movie")}</p>
                             {ep.episode!.localFile &&
                                 <p className="text-xs text-[--muted] tracking-wide italic max-w-full line-clamp-2">{ep.episode!.localFile?.name}</p>}
 
@@ -548,3 +548,4 @@ function EntryEpisodeList(props: EntryEpisodeListProps) {
         </div>
     )
 }
+

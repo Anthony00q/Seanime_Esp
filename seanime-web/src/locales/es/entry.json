@@ -231,7 +231,13 @@
       "downloadNext": "siguiente",
       "downloadEpisodes": "{count} episodios",
       "downloadEpisode": "episodio",
-      "downloadMovie": "Descargar película"
-    }
+      "downloadMovie": "Descargar película",
+      "minutes": "minutos",
+      "na": "N/D",
+      "noSummary": "Sin resumen disponible",
+      "type": "Tipo",
+      "unknownAirDate": "Fecha de emisión desconocida"
+    },
+    "downloadedEpisodes": "Episodios descargados"
   }
 }

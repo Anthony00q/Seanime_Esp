@@ -157,7 +157,7 @@ const KeybindingRow = ({
                     recordingKey === actionKey && "!text-xs text-white",
                 )}
             >
-                {recordingKey === actionKey ? t("videoPlayer.pressKey") : formatKeyDisplay(editedKeybindings?.[actionKey]?.key as any ?? "" as any)}
+                {recordingKey === actionKey ? t("videoPlayer.keybindings.pressKey") : formatKeyDisplay(editedKeybindings?.[actionKey]?.key as any ?? "" as any)}
             </Button>
         </div>
     </div>
@@ -299,7 +299,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
 
     return (
         <Modal
-            title={t("videoPlayer.preferences")}
+            title={t("videoPlayer.preferences.title")}
             open={open}
             onOpenChange={setOpen}
             contentClass="max-w-5xl focus:outline-none focus-visible:outline-none outline-none bg-[--background] backdrop-blur-sm z-[101]"
@@ -315,9 +315,9 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                 listClass={tabsListClass}
             >
                 <TabsList className="flex-wrap max-w-full bg-[--paper] p-2 border rounded-xl">
-                    <TabsTrigger value="keybinds">{t("videoPlayer.keyboardShortcuts")}</TabsTrigger>
-                    <TabsTrigger value="subtitles">{t("videoPlayer.subtitlesAndAudio")}</TabsTrigger>
-                    <TabsTrigger value="translation">{t("videoPlayer.translation")}</TabsTrigger>
+                    <TabsTrigger value="keybinds">{t("videoPlayer.preferences.tabs.keyboardShortcuts")}</TabsTrigger>
+                    <TabsTrigger value="subtitles">{t("videoPlayer.preferences.tabs.subtitlesAudio")}</TabsTrigger>
+                    <TabsTrigger value="translation">{t("videoPlayer.preferences.tabs.translation")}</TabsTrigger>
                     {/*<TabsTrigger value="browser-client">Rendering</TabsTrigger>*/}
                 </TabsList>
 
@@ -337,7 +337,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                         handleKeyRecord={handleKeyRecord}
                                         formatKeyDisplay={formatKeyDisplay}
                                         hasValue={true}
-                                        valueLabel={t("videoPlayer.seconds")}
+                                        valueLabel={t("videoPlayer.keybindings.valueLabels.seconds")}
                                     />
                                     <KeybindingRow
                                         action={t("videoPlayer.keybindings.seekBackwardFine")}
@@ -349,7 +349,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                         handleKeyRecord={handleKeyRecord}
                                         formatKeyDisplay={formatKeyDisplay}
                                         hasValue={true}
-                                        valueLabel={t("videoPlayer.seconds")}
+                                        valueLabel={t("videoPlayer.keybindings.valueLabels.seconds")}
                                     />
                                     <KeybindingRow
                                         action={t("videoPlayer.keybindings.seekForward")}
@@ -361,7 +361,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                         handleKeyRecord={handleKeyRecord}
                                         formatKeyDisplay={formatKeyDisplay}
                                         hasValue={true}
-                                        valueLabel={t("videoPlayer.seconds")}
+                                        valueLabel={t("videoPlayer.keybindings.valueLabels.seconds")}
                                     />
                                     <KeybindingRow
                                         action={t("videoPlayer.keybindings.seekBackward")}
@@ -373,7 +373,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                         handleKeyRecord={handleKeyRecord}
                                         formatKeyDisplay={formatKeyDisplay}
                                         hasValue={true}
-                                        valueLabel={t("videoPlayer.seconds")}
+                                        valueLabel={t("videoPlayer.keybindings.valueLabels.seconds")}
                                     />
                                     <KeybindingRow
                                         action={t("videoPlayer.keybindings.increaseSpeed")}
@@ -385,7 +385,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                         handleKeyRecord={handleKeyRecord}
                                         formatKeyDisplay={formatKeyDisplay}
                                         hasValue={true}
-                                        valueLabel={t("videoPlayer.increment")}
+                                        valueLabel={t("videoPlayer.keybindings.valueLabels.increment")}
                                     />
                                     <KeybindingRow
                                         action={t("videoPlayer.keybindings.decreaseSpeed")}
@@ -397,7 +397,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                         handleKeyRecord={handleKeyRecord}
                                         formatKeyDisplay={formatKeyDisplay}
                                         hasValue={true}
-                                        valueLabel={t("videoPlayer.increment")}
+                                        valueLabel={t("videoPlayer.keybindings.valueLabels.increment")}
                                     />
                                 </div>
                             </div>
@@ -501,7 +501,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                         handleKeyRecord={handleKeyRecord}
                                         formatKeyDisplay={formatKeyDisplay}
                                         hasValue={true}
-                                        valueLabel={t("videoPlayer.percent")}
+                                        valueLabel={t("videoPlayer.keybindings.valueLabels.percent")}
                                     />
                                     <KeybindingRow
                                         action={t("videoPlayer.keybindings.volumeDown")}
@@ -513,7 +513,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                         handleKeyRecord={handleKeyRecord}
                                         formatKeyDisplay={formatKeyDisplay}
                                         hasValue={true}
-                                        valueLabel={t("videoPlayer.percent")}
+                                        valueLabel={t("videoPlayer.keybindings.valueLabels.percent")}
                                     />
                                     <KeybindingRow
                                         action={t("videoPlayer.keybindings.mute")}
@@ -773,24 +773,24 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                                     { value: "vi", label: "Vietnamese" },
                                                 ]}
                                                 contentClass="z-[999]"
-                                                help={t("videoPlayer.translationSettings.targetLanguageHelp")}
+                                                help={t("videoPlayer.translation.targetLanguageHelp")}
                                             />
                                         </div>
 
                                         <div className="space-y-2">
                                             {provider === "openai-compatible" && (
                                                 <Field.Text
-                                                    label="Base URL"
+                                                    label={t("videoPlayer.translation.baseUrl")}
                                                     name="vcTranslateBaseUrl"
                                                     placeholder="http://localhost:1234/v1"
                                                     onKeyDown={(e) => e.stopPropagation()}
                                                     onInput={(e) => e.stopPropagation()}
-                                                    help="OpenAI-compatible /v1 endpoint, e.g. LM Studio or Ollama."
+                                                    help={t("videoPlayer.translation.baseUrlHelp")}
                                                 />
                                             )}
                                             {usesOpenAIProvider && (
                                                 <Field.Text
-                                                    label="Model"
+                                                    label={t("videoPlayer.translation.model")}
                                                     name="vcTranslateModel"
                                                     placeholder={provider === "openai-compatible" ? "local-model" : "gpt-4o-mini"}
                                                     onKeyDown={(e) => e.stopPropagation()}
@@ -799,9 +799,9 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                             )}
                                             {provider !== "google" && (
                                                 <Field.Text
-                                                    label={provider === "openai-compatible" ? "API Key (optional)" : "API Key"}
+                                                    label={provider === "openai-compatible" ? t("videoPlayer.translation.apiKeyOptional") : t("videoPlayer.translation.apiKey")}
                                                     name="vcTranslateApiKey"
-                                                    placeholder="Enter your API key"
+                                                    placeholder={t("videoPlayer.apiKeyPlaceholder")}
                                                     onKeyDown={(e) => e.stopPropagation()}
                                                     onInput={(e) => e.stopPropagation()}
                                                     type="password"
@@ -811,7 +811,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                     </div>
 
                                     <p className="text-[--muted]">
-                                        {t("videoPlayer.translationSettings.reloadNote")}
+                                        {t("videoPlayer.translation.reloadNote")}
                                     </p>
 
                                     <div className="flex items-center justify-end pt-6">
@@ -821,13 +821,13 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                                                 intent="gray-outline"
                                                 onClick={() => setOpen(false)}
                                             >
-                                                {t("videoPlayer.cancel")}
+                                                {t("common.buttons.cancel")}
                                             </Button>
                                             <Button
                                                 type="submit"
                                                 intent="primary"
                                             >
-                                                {t("videoPlayer.save")}
+                                                {t("common.buttons.save")}
                                             </Button>
                                         </div>
                                     </div>

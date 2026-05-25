@@ -248,7 +248,7 @@ export function VideoCoreStatsForNerds({ playbackInfo, videoRef }: VideoCoreStat
                             <>
                                 <div className="border-t border-gray-700 my-2 pt-2"></div>
                                 <StatLine
-                                    label={t("videoPlayer.stats.anime4KMode")}
+                                    label={t("videoPlayer.stats.anime4kMode")}
                                     value={anime4kStats.currentOption}
                                 />
                                 <StatLine
