@@ -1,5 +1,6 @@
 import { defaultLocale } from "./config"
 import { useMemo } from "react"
+import { IntlMessageFormat } from "intl-messageformat"
 
 // --- Importaciones de secciones en inglés (modular) ---
 import enCommon from "./en/common.json"
@@ -118,39 +119,64 @@ const es = deepMerge(
 
 // ---------------------------------------------------------------------------
 
-const translations: Record<string, Messages> = {
-    en,
-    es,
+function flattenMessages(nestedMessages: Record<string, any>, prefix = ""): Record<string, string> {
+    return Object.keys(nestedMessages).reduce((acc: Record<string, string>, key) => {
+        const value = nestedMessages[key]
+        const prefixedKey = prefix ? `${prefix}.${key}` : key
+
+        if (typeof value === "string") {
+            acc[prefixedKey] = value
+        } else if (value !== null && typeof value === "object" && !Array.isArray(value)) {
+            Object.assign(acc, flattenMessages(value, prefixedKey))
+        }
+        return acc
+    }, {})
 }
 
-function getNestedValue(obj: any, path: string): string | undefined {
-    const result = path.split(".").reduce((acc, key) => acc?.[key], obj)
-    return typeof result === "string" ? result : undefined
+const flatEn = flattenMessages(en)
+const flatEs = flattenMessages(es)
+
+const translations: Record<string, Record<string, string>> = {
+    en: flatEn,
+    es: flatEs,
 }
 
-function interpolate(text: string, params?: Record<string, string | number>): string {
+const formattersCache = new Map<string, IntlMessageFormat>()
+
+function interpolate(text: string, locale: string, params?: Record<string, any>): string {
     if (!params) return text
 
-    return text.replace(/\{(\w+)\}/g, (_, key) => {
-        const value = params[key]
-        return value !== undefined ? String(value) : `{${key}}`
-    })
+    try {
+        const cacheKey = `${locale}:${text}`
+        let formatter = formattersCache.get(cacheKey)
+        if (!formatter) {
+            formatter = new IntlMessageFormat(text, locale)
+            formattersCache.set(cacheKey, formatter)
+        }
+        return formatter.format(params) as string
+    } catch (e) {
+        console.warn(`[i18n] Fallo al parsear sintaxis ICU para el texto: "${text}". Fallback a regex.`, e)
+        return text.replace(/\{(\w+)\}/g, (_, key) => {
+            const value = params[key]
+            return value !== undefined ? String(value) : `{${key}}`
+        })
+    }
 }
 
 export function createTranslator(locale?: string) {
     const resolved = locale ?? defaultLocale
     const messages = translations[resolved] || translations.en
 
-    return function t(key: string, params?: Record<string, string | number>): string {
-        const translation = getNestedValue(messages, key)
+    return function t(key: string, params?: Record<string, any>): string {
+        const translation = messages[key]
 
         if (translation) {
-            return interpolate(translation, params)
+            return interpolate(translation, resolved, params)
         }
 
-        const fallback = getNestedValue(translations.en, key)
+        const fallback = translations.en[key]
         if (fallback) {
-            return interpolate(fallback, params)
+            return interpolate(fallback, "en", params)
         }
 
         console.warn(`[i18n] Missing translation for key: ${key}`)

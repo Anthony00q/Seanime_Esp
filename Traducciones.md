@@ -143,6 +143,12 @@ En `config.ts`:
 export const defaultLocale: Locale = "fr"
 ```
 
+### Formateo y Variables (ICU)
+
+Los textos que contienen llaves como `{count}` o `{name}` son variables dinámicas inyectadas por el código. **No traduzcas nunca los nombres de las variables** (ej. `{address}` no debe traducirse como `{dirección}`).
+
+> **Soporte Avanzado (ICU)**: El sistema de traducciones (`intl-messageformat`) soporta nativamente la sintaxis avanzada de "ICU Message Format". Si el idioma al que estás traduciendo tiene reglas de pluralización complejas, puedes usar de forma totalmente segura el formato estándar: `{count, plural, one {1 elemento} other {# elementos}}`.
+
 ---
 
 ## Electron Denshi (System Tray)

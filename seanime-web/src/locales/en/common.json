@@ -92,7 +92,8 @@
       "allScores": "All scores",
       "allCountries": "All countries",
       "timeless": "Any year",
-      "title": "Title"
+      "title": "Title",
+      "all": "All"
     },
     "toast": {
       "saved": "Saved successfully",

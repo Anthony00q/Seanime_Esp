@@ -28,7 +28,8 @@
       "cpu": "CPU",
       "durationSeconds": "Duración (segundos)",
       "downloadCPUProfile": "Descargar Perfil CPU",
-      "cpuProfilingHelp": "El perfilado de CPU se ejecutará durante la duración especificada (1-300 segundos)"
+      "cpuProfilingHelp": "El perfilado de CPU se ejecutará durante la duración especificada (1-300 segundos)",
+      "clickRefreshToLoadMemory": "Haz clic en actualizar para cargar el uso de memoria"
     },
     "anilist": {
       "title": "AniList",
@@ -99,7 +100,7 @@
       "noItemsSelected": "No hay elementos seleccionados",
       "navbar": "Barra de navegación",
       "hideTopNavbar": "Ocultar barra de navegación superior",
-      "hideTopNavbarWeb": "Ocultar barra de navegación superior (Interfaz web)",
+      "hideTopNavbarWeb": "Ocultar barra de navegación superior (interfaz web)",
       "sidebarOnlyMode": "Cambia al modo solo barra lateral.",
       "screens": "Pantallas",
       "watchContinuityWarning": "La continuidad de reproducción debe estar activada para usar las opciones de orden por último visto.",
@@ -191,10 +192,7 @@
       "episodeItemsHideFilename": "Episodios: ocultar nombre de archivo",
       "disableCarouselAutoScroll": "Desactivar desplazamiento automático del carrusel",
       "smallerCarouselEpisodeCards": "Tarjetas de episodio más pequeñas en carrusel",
-      "disableSidebarTransparency": "Desactivar transparencia de la barra lateral",
-      "hideTopNavbar": "Ocultar barra de navegación superior",
-      "hideTopNavbarWeb": "Ocultar barra de navegación superior (interfaz web)",
-      "sidebarOnlyMode": "Cambia al modo solo barra lateral."
+      "disableSidebarTransparency": "Desactivar transparencia de la barra lateral"
     },
     "data": {
       "localFiles": "Archivos locales",

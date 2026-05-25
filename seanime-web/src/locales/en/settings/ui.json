@@ -28,7 +28,8 @@
       "cpu": "CPU",
       "durationSeconds": "Duration (seconds)",
       "downloadCPUProfile": "Download CPU Profile",
-      "cpuProfilingHelp": "CPU profiling will run for the specified duration (1-300 seconds)"
+      "cpuProfilingHelp": "CPU profiling will run for the specified duration (1-300 seconds)",
+      "clickRefreshToLoadMemory": "Click refresh to load memory usage"
     },
     "anilist": {
       "title": "AniList",
@@ -99,7 +100,7 @@
       "noItemsSelected": "No items selected",
       "navbar": "Navbar",
       "hideTopNavbar": "Hide top navbar",
-      "hideTopNavbarWeb": "Hide top navbar (Web UI)",
+      "hideTopNavbarWeb": "Hide top navbar (web UI)",
       "sidebarOnlyMode": "Switch to sidebar-only mode.",
       "screens": "Screens",
       "watchContinuityWarning": "Watch continuity must be enabled to use last watched sorting options.",
@@ -191,10 +192,7 @@
       "episodeItemsHideFilename": "Episodes: hide filename",
       "disableCarouselAutoScroll": "Disable carousel auto scroll",
       "smallerCarouselEpisodeCards": "Smaller episode cards in carousel",
-      "disableSidebarTransparency": "Disable sidebar transparency",
-      "hideTopNavbar": "Hide top navbar",
-      "hideTopNavbarWeb": "Hide top navbar (web UI)",
-      "sidebarOnlyMode": "Switch to sidebar-only mode."
+      "disableSidebarTransparency": "Disable sidebar transparency"
     },
     "data": {
       "localFiles": "Local files",

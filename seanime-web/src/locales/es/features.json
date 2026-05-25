@@ -63,7 +63,7 @@
     "cannotConnectToHostInHostMode": "No se puede conectar a un host mientras está en modo host.",
     "typeMessage": "Escribe un mensaje...",
     "nakamaServerURL": "URL del Servidor Nakama",
-    "nakamaServerURLPlaceholder": "https://{dirección} o room://{id}",
+    "nakamaServerURLPlaceholder": "https://{address} o room://{id}",
     "nakamaServerURLHelp": "La URL del host Nakama al que conectarse.",
     "nakamaPasscode": "Contraseña de Nakama",
     "nakamaPasscodeHelp": "La contraseña para conectarse al host Nakama.",
@@ -230,7 +230,7 @@
     "trendingManhua": "Manhua en tendencia",
     "searchManga": "Buscar manga"
   },
-    "sorting": {
+  "sorting": {
     "trending": "En tendencia",
     "highestScore": "Puntuación más alta",
     "lowestScore": "Puntuación más baja",

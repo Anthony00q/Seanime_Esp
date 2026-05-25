@@ -1,4 +1,4 @@
-import { useTorrentstreamDropTorrent } from "@/api/hooks/torrentstream.hooks"
+﻿import { useTorrentstreamDropTorrent } from "@/api/hooks/torrentstream.hooks"
 import { __issueReport_overlayOpenAtom, __issueReport_recordingAtom } from "@/app/(main)/_features/issue-report/issue-report"
 import { useHandleCopyLatestLogs } from "@/app/(main)/_hooks/logs"
 import { CommandGroup, CommandItem, CommandShortcut } from "@/components/ui/command"
@@ -26,7 +26,7 @@ export function SeaCommandActions() {
     return (
         <>
             {command === "logs" && (
-                <CommandGroup heading={t("features.seaCommand.actions")}>
+                <CommandGroup heading={t("search.seaCommand.actions")}>
                     <CommandItem
                         value="Logs"
                         onSelect={() => {
@@ -35,13 +35,13 @@ export function SeaCommandActions() {
                             })
                         }}
                     >
-                        {t("features.seaCommand.copyServerLogs")}
+                        {t("search.seaCommand.copyServerLogs")}
                         <CommandShortcut>Enter</CommandShortcut>
                     </CommandItem>
                 </CommandGroup>
             )}
             {command === "issue" && (
-                <CommandGroup heading={t("features.seaCommand.actions")}>
+                <CommandGroup heading={t("search.seaCommand.actions")}>
                     <CommandItem
                         value="Issue"
                         onSelect={() => {
@@ -56,7 +56,7 @@ export function SeaCommandActions() {
                             })
                         }}
                     >
-                        {t("features.seaCommand.recordIssue")}
+                        {t("search.seaCommand.recordIssue")}
                         <CommandShortcut>Enter</CommandShortcut>
                     </CommandItem>
                 </CommandGroup>
@@ -99,3 +99,4 @@ export function SeaCommandActions() {
         </>
     )
 }
+

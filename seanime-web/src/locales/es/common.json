@@ -92,7 +92,8 @@
       "allScores": "Todas las puntuaciones",
       "allCountries": "Todos los países",
       "timeless": "Cualquier año",
-      "title": "Título"
+      "title": "Título",
+      "all": "Todos"
     },
     "toast": {
       "saved": "Guardado correctamente",

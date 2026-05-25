@@ -1,4 +1,4 @@
-import { CommandGroup, CommandItem, CommandShortcut } from "@/components/ui/command"
+﻿import { CommandGroup, CommandItem, CommandShortcut } from "@/components/ui/command"
 import { createTranslator } from "@/locales"
 import { usePathname, useSearchParams } from "@/lib/navigation"
 import { useSeaCommandContext } from "./sea-command"
@@ -18,37 +18,37 @@ export function SeaCommandList() {
     const commands = [
         {
             command: "anime",
-            description: t("features.seaCommand.findInCollection"),
+            description: t("search.seaCommand.findInCollection"),
             show: true,
         },
         {
             command: "manga",
-            description: t("features.seaCommand.findInCollection"),
+            description: t("search.seaCommand.findInCollection"),
             show: true,
         },
         {
             command: "library",
-            description: t("features.seaCommand.findInLibrary"),
+            description: t("search.seaCommand.findInLibrary"),
             show: true,
         },
         {
             command: "search",
-            description: t("features.seaCommand.searchOnAnilist"),
+            description: t("search.seaCommand.searchOnAnilist"),
             show: true,
         },
         {
             command: "magnet",
-            description: t("features.seaCommand.magnetLink"),
+            description: t("search.seaCommand.magnetLink"),
             show: true,
         },
         {
             command: "logs",
-            description: t("features.seaCommand.copyLogs"),
+            description: t("search.seaCommand.copyLogs"),
             show: true,
         },
         {
             command: "issue",
-            description: t("features.seaCommand.recordIssue"),
+            description: t("search.seaCommand.recordIssue"),
             show: true,
         },
         {
@@ -63,7 +63,7 @@ export function SeaCommandList() {
         },
         {
             command: "spoilers",
-            description: t("features.seaCommand.toggleSpoilers"),
+            description: t("search.seaCommand.toggleSpoilers"),
             show: isAnimePage,
         },
     ]
@@ -74,7 +74,7 @@ export function SeaCommandList() {
 
     return (
         <>
-            <CommandGroup heading={t("features.seaCommand.autocomplete")}>
+            <CommandGroup heading={t("search.seaCommand.autocomplete")}>
                 {filtered.map(command => (
                     <CommandItem
                         key={command.command}
@@ -90,3 +90,4 @@ export function SeaCommandList() {
         </>
     )
 }
+

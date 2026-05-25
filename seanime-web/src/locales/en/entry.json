@@ -231,7 +231,13 @@
       "downloadNext": "next",
       "downloadEpisodes": "{count} episodes",
       "downloadEpisode": "episode",
-      "downloadMovie": "Download movie"
-    }
+      "downloadMovie": "Download movie",
+      "minutes": "minutes",
+      "na": "N/A",
+      "noSummary": "No summary available",
+      "type": "Type",
+      "unknownAirDate": "Unknown air date"
+    },
+    "downloadedEpisodes": "Downloaded episodes"
   }
 }
