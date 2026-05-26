@@ -18,6 +18,73 @@ import { LuRefreshCcw, LuShieldCheck } from "react-icons/lu"
 import { Tooltip } from "@/components/ui/tooltip"
 import { toast } from "sonner"
 
+const PERMISSION_KEYS = {
+    "No permissions requested.": "noPermissions",
+    "Application:": "application",
+    "Storage: Store plugin data locally": "storage",
+    "Database: Read and write non-auth data": "database",
+    "Playback: Control media playback and media players": "playback",
+    "Debrid: Manage debrid providers, torrents, and stream selection": "debrid",
+    "AniList: View and edit your AniList lists": "anilist",
+    "AniList Token: View and use your AniList token": "anilistToken",
+    "Custom Client: Swap app clients after approval": "customClient",
+    "System: Access OS functions (detailed below)": "system",
+    "Cron: Schedule automated tasks": "cron",
+    "Notification: Send system notifications": "notification",
+    "Discord: Set Discord Rich Presence": "discord",
+    "Torrent Client: Control torrent clients": "torrentClient",
+    "Auth: Log in or log out after approval": "auth",
+    "Extensions: Enable or disable extensions after approval": "extensionsScope",
+    "Settings: View or edit app settings after approval": "settings",
+    "File System:": "fileSystem",
+    "• Read files in:": "readFilesIn",
+    "• Modify/deletes files in:": "modifyFilesIn",
+    "Commands:": "commands",
+    " [any arguments]": "anyArguments",
+    " [any file path]": "anyFilePath",
+    " [pattern: ": "pattern",
+    "Purpose: ": "purpose",
+    "Network Access:": "networkAccess",
+    "Domain:": "domain",
+    "* Unsafe flags:": "unsafeFlagsTitle",
+    "dom-script-manipulation: Can execute arbitrary JavaScript code in the app's DOM.": "domScriptManipulation",
+    "dom-link-manipulation: Can insert arbitrary links into the app's DOM.": "domLinkManipulation",
+    "Reason: ": "reason"
+}
+
+function translatePermissionLine(line: string, t: ReturnType<typeof createTranslator>): string {
+    // Exact match
+    if (PERMISSION_KEYS[line as keyof typeof PERMISSION_KEYS]) {
+        return t(`extensions.permissionTranslations.${PERMISSION_KEYS[line as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: line })
+    }
+
+    // Partial matches
+    let mappedLine = line
+    const prefixesToCheck = ["• Read files in:", "• Modify/deletes files in:", "Domain:", "Reason: "]
+    for (const prefix of prefixesToCheck) {
+        if (mappedLine.startsWith(prefix)) {
+            const translatedPrefix = t(`extensions.permissionTranslations.${PERMISSION_KEYS[prefix as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: prefix })
+            mappedLine = mappedLine.replace(prefix, translatedPrefix)
+        }
+    }
+
+    const substringsToCheck = [" [any arguments]", " [any file path]", " [pattern: "]
+    for (const sub of substringsToCheck) {
+        if (mappedLine.includes(sub)) {
+            const translatedSub = t(`extensions.permissionTranslations.${PERMISSION_KEYS[sub as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: sub })
+            mappedLine = mappedLine.replace(sub, translatedSub)
+        }
+    }
+
+    if (mappedLine.includes("\n\t  Purpose: ")) {
+        const translatedPurpose = t(`extensions.permissionTranslations.${PERMISSION_KEYS["Purpose: " as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: "Purpose: " })
+        mappedLine = mappedLine.replace("\n\t  Purpose: ", "\n\t  " + translatedPurpose)
+    }
+
+    return mappedLine
+}
+
+
 type InvalidExtensionCardProps = {
     extension: Extension_InvalidExtension
     isInstalled: boolean
@@ -227,16 +294,19 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                     <p className="whitespace-pre-wrap w-full max-w-full overflow-x-auto text-md leading-relaxed text-left bg-[--subtle] p-3 rounded-xl">
                         {extension.pluginPermissionDescription?.split("\n").map((line, index) => {
                             line = line.trimEnd()
+                            line = translatePermissionLine(line, t)
+                            
                             if (line.startsWith("•") && !line.startsWith("*")) {
                                 const l = line.replace("• ", "")
+                                const domainPrefix = t("extensions.permissionTranslations.domain", { defaultValue: "Domain:" })
                                 return <span key={index} className="pl-4 mb-1 block">
-                                    {l.startsWith("Domain:") ? <>
+                                    {(l.startsWith("Domain:") || l.startsWith(domainPrefix)) ? <>
                                             <span className="font-bold bg-gray-950 border px-2 py-[0.1rem] rounded-lg inline-block">{l
                                                 .split(":")[0].trim()}</span>: {l.substring(l.indexOf(":") + 1)}<br />
                                         </> :
                                         <>
                                             <span className="font-bold bg-gray-950 border px-2 py-[0.1rem] rounded-lg inline-block">{l
-                                                .split(":")[0].trim()}</span>: {l.split(":")[1]}<br />
+                                                .split(":")[0].trim()}</span>: {l.substring(l.indexOf(":") + 1)}<br />
                                         </>}
                                 </span>
                             }
