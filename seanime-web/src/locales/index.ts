@@ -69,7 +69,7 @@ function deepMerge(target: Record<string, any>, ...sources: Record<string, any>[
     return target
 }
 
-// Construye el objeto de traducciones en inglés mergeando todos los archivos
+// Construye el objeto de traducciones en inglés mergeando todos los archivos (para uso en runtime)
 const en = deepMerge(
     {},
     enCommon,
@@ -92,7 +92,37 @@ const en = deepMerge(
     enSettingsUi,
 )
 
-type Messages = typeof en
+// Generar la inferencia estricta mediante intersección de todos los JSON base en inglés
+type BaseMessages = typeof enCommon 
+    & typeof enHome 
+    & typeof enNavigation 
+    & typeof enVideoPlayer 
+    & typeof enFeatures 
+    & typeof enMisc 
+    & typeof enEntry 
+    & typeof enManga 
+    & typeof enExtensions 
+    & typeof enAnilist 
+    & typeof enGettingStarted 
+    & typeof enChangelogTour 
+    & typeof enSettingsGeneral 
+    & typeof enSettingsLibrary 
+    & typeof enSettingsPlayers 
+    & typeof enSettingsStreaming 
+    & typeof enSettingsAdvanced 
+    & typeof enSettingsUi;
+
+// Tipos auxiliares para extraer rutas en formato "padre.hijo"
+type Join<K, P> = K extends string | number ? P extends string | number ? `${K}${"" extends P ? "" : "."}${P}` : never : never;
+
+type Paths<T> = T extends object ? {
+    [K in keyof T]-?: K extends string | number ? `${K}` | Join<K, Paths<T[K]>> : never
+}[keyof T] : never;
+
+// El tipo estricto de todas las keys permitidas
+export type TranslationKeys = Paths<BaseMessages>;
+
+type Messages = BaseMessages
 
 // Construye el objeto de traducciones en español mergeando todos los archivos
 const es = deepMerge(
@@ -167,20 +197,20 @@ export function createTranslator(locale?: string) {
     const resolved = locale ?? defaultLocale
     const messages = translations[resolved] || translations.en
 
-    return function t(key: string, params?: Record<string, any>): string {
-        const translation = messages[key]
+    return function t(key: TranslationKeys, params?: Record<string, any>): string {
+        const translation = messages[key as string]
 
         if (translation) {
             return interpolate(translation, resolved, params)
         }
 
-        const fallback = translations.en[key]
+        const fallback = translations.en[key as string]
         if (fallback) {
             return interpolate(fallback, "en", params)
         }
 
-        console.warn(`[i18n] Missing translation for key: ${key}`)
-        return key
+        console.warn(`[i18n] Missing translation for key: ${key as string}`)
+        return key as string
     }
 }
 
