@@ -367,7 +367,7 @@ export function MediaEntryCard<T extends "anime" | "manga">(props: MediaEntryCar
 
                             {(listData?.status && listData?.status !== "CURRENT") &&
                                 <p className="text-center text-xs text-[--muted] w-full">
-                                    {t(`status.${listData?.status?.toLowerCase() ?? ""}`)}
+                                    {t(`status.${listData?.status?.toLowerCase() ?? ""}` as any)}
                                     {/*{listData?.status === "CURRENT" ? type === "anime" ? "Watching" : "Reading"*/}
                                     {/*    : capitalize(listData?.status ?? "")}*/}
                                 </p>}

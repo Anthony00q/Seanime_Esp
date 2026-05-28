@@ -1,4 +1,4 @@
-﻿import { Anime_LibraryCollection, Anime_LibraryCollectionEntry, Anime_PlaylistEpisode, Anime_WatchType, Nullish } from "@/api/generated/types"
+import { Anime_LibraryCollection, Anime_LibraryCollectionEntry, Anime_PlaylistEpisode, Anime_WatchType, Nullish } from "@/api/generated/types"
 import { useGetPlaylistEpisodes } from "@/api/hooks/playlist.hooks"
 import { usePlaylistEditorManager } from "@/app/(main)/_features/playlists/lib/playlist-editor-manager"
 import { useHasDebridService, useHasOnlineStreaming, useHasTorrentStreaming } from "@/app/(main)/_hooks/use-server-status"
@@ -289,13 +289,13 @@ function SortableItem({ id, episode, setEpisodes }: {
     const streamOptions = React.useMemo(() => {
         let options: { label: string, value: string }[] = []
         if (hasTorrentStreaming) {
-            options.push({ label: tr("misc.playlistManager.torrentStreaming"), value: "torrent" })
+            options.push({ label: tr("playlistManager.torrentStreaming"), value: "torrent" })
         }
         if (hasDebridService) {
-            options.push({ label: tr("misc.playlistManager.debridStreaming"), value: "debrid" })
+            options.push({ label: tr("playlistManager.debridStreaming"), value: "debrid" })
         }
         if (hasOnlineStreaming) {
-            options.push({ label: tr("misc.playlistManager.onlineStreaming"), value: "online" })
+            options.push({ label: tr("playlistManager.onlineStreaming"), value: "online" })
         }
         return options
     }, [hasDebridService, hasOnlineStreaming, hasTorrentStreaming])
@@ -504,11 +504,11 @@ function EntryEpisodeList(props: EntryEpisodeListProps) {
                         })
                     }}
                 >
-                    {allSelected ? tr("misc.playlistManager.deselectAll") : tr("misc.playlistManager.selectAll")}
+                    {allSelected ? tr("playlistManager.deselectAll") : tr("playlistManager.selectAll")}
                 </Button>
             </div>
             {isLoading && <LoadingSpinner />}
-            {data?.length === 0 && <p className="text-center text-sm text-[--muted]">{tr("misc.playlistManager.noEpisodesFound")}</p>}
+            {data?.length === 0 && <p className="text-center text-sm text-[--muted]">{tr("playlistManager.noEpisodesFound")}</p>}
             {episodes?.map(ep => {
                 return (
                     <div

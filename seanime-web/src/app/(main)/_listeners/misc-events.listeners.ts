@@ -15,7 +15,7 @@ const SERVER_TOAST_MAP: Record<string, string> = {
 function translateServerMessage(msg: string): string {
     const key = SERVER_TOAST_MAP[msg]
     if (key) {
-        return t(key)
+        return t(key as any)
     }
     return msg
 }

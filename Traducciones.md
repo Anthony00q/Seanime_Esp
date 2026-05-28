@@ -111,14 +111,13 @@ fr/
 
 Edita `seanime-web/src/locales/index.ts`:
 
-```typescript
-// Agregar imports
+// 1. Agregar imports
 import frCommon from "./fr/common.json"
 import frHome from "./fr/home.json"
 import frNavigation from "./fr/navigation.json"
 // ... (todos los archivos de fr/)
 
-// Agregar al deepMerge
+// 2. Agregar al deepMerge (al igual que 'es')
 const fr = deepMerge(
     {},
     frCommon,
@@ -127,11 +126,14 @@ const fr = deepMerge(
     // ... (todos los archivos de fr/)
 ) as Messages
 
-// Agregar al registro de traducciones
-const translations: Record<string, Messages> = {
-    en,
-    es,
-    fr,  // ← nuevo
+// 3. Aplanar los mensajes (flatten)
+const flatFr = flattenMessages(fr)
+
+// 4. Agregar al registro de traducciones
+const translations: Record<string, Record<string, string>> = {
+    en: flatEn,
+    es: flatEs,
+    fr: flatFr,  // ← nuevo
 }
 ```
 
