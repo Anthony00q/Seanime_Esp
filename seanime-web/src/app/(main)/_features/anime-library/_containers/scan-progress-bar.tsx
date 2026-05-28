@@ -25,7 +25,7 @@ const SCAN_STATUS_MAP: Record<string, string> = {
 
 function translateScanStatus(status: string, t: ReturnType<typeof createTranslator>): string {
     const key = SCAN_STATUS_MAP[status]
-    if (key) return t(key)
+    if (key) return t(key as any)
     return status
 }
 

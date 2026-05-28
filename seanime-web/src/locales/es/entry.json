@@ -140,6 +140,7 @@
     },
     "torrentStream": {
       "title": "Streaming por torrent",
+      "loading": "Cargando...",
       "close": "Cerrar streaming por torrent",
       "playbackError": "Error de reproducción",
       "couldNotLoadMedia": "No se pudo cargar el contenedor multimedia.",

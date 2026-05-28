@@ -193,7 +193,7 @@ function StepIndicator({ currentStep, totalSteps, onStepClick }: { currentStep: 
                                     "group-hover:text-[--brand]",
                                 )}
                             >
-                                {t(`gettingStarted.steps.${step.id}.title`)}
+                                {t(`gettingStarted.steps.${step.id}.title` as any)}
                             </h3>
                             {/* <p className="text-xs text-gray-500 mt-1 max-w-20">
                              {step.description}

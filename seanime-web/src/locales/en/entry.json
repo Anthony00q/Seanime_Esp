@@ -140,6 +140,7 @@
     },
     "torrentStream": {
       "title": "Torrent streaming",
+      "loading": "Loading...",
       "close": "Close torrent streaming",
       "playbackError": "Playback error",
       "couldNotLoadMedia": "Could not load the media container.",
