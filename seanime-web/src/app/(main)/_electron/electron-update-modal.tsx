@@ -100,7 +100,8 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
             const removeUpdateError = window.electron.on("update-error", (error: string) => {
                 logger("ELECTRON").error("Update error", error)
                 if (!isMacOS) {
-                    toast.error(t("electron.updateError", { error }))
+                    const errorMsg = typeof error === "string" ? error : (error as any)?.message || JSON.stringify(error)
+                    toast.error(t("electron.updateError", { error: errorMsg }))
                     setIsUpdating(false)
                     setIsDownloading(false)
                 }
