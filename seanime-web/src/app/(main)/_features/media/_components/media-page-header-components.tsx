@@ -38,6 +38,7 @@ import { Tooltip } from "@/components/ui/tooltip"
 import { getScoreColor } from "@/lib/helpers/score"
 import { getImageUrl } from "@/lib/server/assets"
 import { capitalizeFirst } from "@/lib/utils/capitalize-date"
+import { getDateFnsLocale } from "@/locales/date-locale"
 import {
     ThemeMediaPageBannerSize,
     ThemeMediaPageBannerType,
@@ -484,10 +485,10 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
                                 data-media-page-header-entry-details-date-container
                             >
                                 <p className="text-lg text-[--foreground] flex gap-1 items-center">
-                                    <LuCalendar /> {new Intl.DateTimeFormat("es", {
+                                    <LuCalendar /> {capitalizeFirst(new Intl.DateTimeFormat(getDateFnsLocale().code, {
                                     year: "numeric",
                                     month: "short",
-                                }).format(new Date(startDate?.year || 0, startDate?.month ? startDate?.month - 1 : 0))}{!!season
+                                }).format(new Date(startDate?.year || 0, startDate?.month ? startDate?.month - 1 : 0)))}{!!season
                                     ? ` - ${SEASON_MAP[season] ?? capitalize(season)}`
                                     : ""}
                                 </p>
