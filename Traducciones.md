@@ -22,7 +22,7 @@ El proyecto tiene **3 capas** de traducción:
 
 ```
 seanime-web/src/locales/
-├── index.ts                    # deepMerge + createTranslator() + useTranslation()
+├── index.ts                    # validación estricta + aplanamiento + createTranslator()
 ├── config.ts                   # Locale type, defaultLocale, localeNames
 ├── es/                         # Traducciones al español (idioma por defecto)
 │   ├── common.json
@@ -107,29 +107,33 @@ fr/
 
 > **Nota**: Cada archivo JSON debe tener las **mismas keys** que su equivalente en `en/`. Los valores pueden ser traducciones directas o dejar el inglés como fallback.
 
-#### 3. Importar y merge en `index.ts`
+#### 3. Añadir el nuevo idioma en `index.ts`
 
 Edita `seanime-web/src/locales/index.ts`:
 
-// 1. Agregar imports
+```typescript
+// 1. Agregar los imports
 import frCommon from "./fr/common.json"
 import frHome from "./fr/home.json"
-import frNavigation from "./fr/navigation.json"
 // ... (todos los archivos de fr/)
 
-// 2. Agregar al deepMerge (al igual que 'es')
-const fr = deepMerge(
-    {},
-    frCommon,
-    frHome,
-    frNavigation,
-    // ... (todos los archivos de fr/)
-) as Messages
+// 2. Agruparlos en un nuevo arreglo de módulos
+const frModules = [
+    frCommon, frHome, /* ... todos los demás ... */
+] as const;
 
-// 3. Aplanar los mensajes (flatten)
-const flatFr = flattenMessages(fr)
+// 3. Generar la inferencia estricta de tipos
+type FrMessages = UnionToIntersection<typeof frModules[number]>;
+type FrPaths = Paths<FrMessages>;
+export type MissingInFr = Exclude<EnPaths, FrPaths>;
 
-// 4. Agregar al registro de traducciones
+// 4. Agregar a la validación de paridad bidireccional (sumando el nuevo idioma)
+type _VerifyParity = AssertParity<MissingInEn, MissingInEs | MissingInFr>;
+
+// 5. Aplanar y fusionar de forma automatizada
+const flatFr = flattenAndMerge(...frModules);
+
+// 6. Agregar al registro de traducciones final
 const translations: Record<string, Record<string, string>> = {
     en: flatEn,
     es: flatEs,
