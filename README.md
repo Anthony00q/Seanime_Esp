@@ -54,73 +54,56 @@ Este es un **fork en español** del proyecto [Seanime](https://github.com/5rahim
 
 ## Características
 
-- **Multiplataforma**: Interfaz web y app de escritorio para Windows, Linux y macOS
-- **Seanime Denshi**: Cliente de escritorio con reproductor de video integrado (soporte para subtítulos SSA/ASS, Anime4K, traducción automática y más)
-- **Integración con AniList**: Gestiona tus listas, descubre anime y manga
-- **Fuentes Personalizadas**: Soporte para añadir series de anime y manga fuera de AniList
-- **Gestión de Biblioteca**: Escaneo rápido e inteligente de archivos locales sin convenciones de nombres estrictas
-- **Integración con Torrents**: Buscador de torrents integrado vía extensiones y descarga con qBittorrent, Transmission, TorBox y Real-Debrid
-- **Streaming de Torrents**: Reproduce torrents directamente sin esperar la descarga completa
-- **Streaming en Línea**: Mira anime desde fuentes en línea directamente en la app vía extensiones
-- **Descargador Automático**: Rastrea y descarga nuevos episodios automáticamente con filtros personalizables
-- **Tienda de Extensiones**: Repositorio integrado para instalar y gestionar extensiones
-- **Lector de Manga**: Lee capítulos desde tu biblioteca local o vía extensiones
-- **Transcoding y Direct Play**: Transmite tu biblioteca a cualquier navegador con transcoding en tiempo real
-- **Reproductores Externos**: Integración con MPV, VLC y MPC-HC
-- **Listas de Reproducción**: Crea y gestiona listas para maratones
-- **UI Personalizable**: Temas de color, imágenes de fondo y opciones de diseño
-- **Discord Rich Presence**: Muestra tu actividad automáticamente
-- **Modo Sin Conexión**: Accede a tu biblioteca sin internet
-- **Horario**: Rastrea próximos estrenos y episodios perdidos
+🎬 **Streaming y Reproducción**
+- **Múltiples Fuentes**: Streaming en línea, reproducción directa de Torrents y visualización local.
+- **Seanime Denshi**: Cliente de escritorio con reproductor de video integrado (soporte para subtítulos SSA/ASS, Anime4K y más).
+- **Flexibilidad de Reproductores**: Integración impecable con MPV, VLC y MPC-HC, además de Transcoding en tiempo real para navegadores.
+
+📚 **Gestión de Biblioteca y Colecciones**
+- **Escaneo Inteligente**: Reconocimiento automático de tus archivos locales sin forzar convenciones de nombres estrictas.
+- **Ecosistema AniList**: Integración total para gestionar tus listas, descubrir anime y rastrear estrenos (Horario).
+- **Lector de Manga y Auto-Descargas**: Lector integrado y rastreo/descarga automática de nuevos episodios.
+- **Fuentes Personalizadas y Offline**: Añade series fuera de AniList y accede a tu biblioteca sin conexión a internet.
+
+💻 **Sistema y Personalización**
+- **Multiplataforma**: Compatible con Windows, Linux y macOS.
+- **Tienda de Extensiones**: Repositorio integrado para potenciar la búsqueda y el streaming.
+- **Personalización Visual**: Temas de color, imágenes de fondo personalizadas y opciones avanzadas de diseño.
+- **Discord Rich Presence**: Comparte automáticamente lo que estás viendo.
 
 ---
 
-## Progreso de Traducción
+## 📥 Cómo Empezar (Instalación)
 
-El proyecto original no tiene i18n integrado, por lo que se implementó un sistema de traducción personalizado con archivos JSON.
+1. Ve a la página de [Releases](https://github.com/Anthony00q/Seanime_Esp/releases).
+2. Descarga la versión correspondiente a tu sistema operativo (Windows, macOS o Linux).
+3. Descomprime y ejecuta la aplicación.
 
-### 🚧 Estado de la Traducción
+> [!CAUTION]
+> **Instalación Limpia Requerida:** Si ya tenías instalada la versión original de Seanime (en inglés), **debes eliminarla por completo** antes de instalar esta nueva versión. Esto es crucial para evitar conflictos críticos o errores con las bases de datos y configuraciones del programa anterior.
 
-La traducción al español abarca prácticamente toda la interfaz de usuario. Sin embargo, el proyecto se encuentra en **revisión continua** para corregir pequeños errores de contexto, mejorar la naturalidad de los textos y adaptarse a las nuevas funciones del proyecto original. Todos los strings visibles usan el sistema de traducción `t()`.
+---
 
-**Resumen del sistema de traducción:**
+## Arquitectura y Progreso de Traducción
 
-- **~3550+ keys** traducidas en 18 archivos JSON (español + inglés en paridad)
-- **~310+ componentes** React traducidos
-- **~247+ toasts** traducidos (UI, hooks de API, archivos .ts)
-- **Backend Go intacto** — toasts del servidor traducidos vía `SERVER_TOAST_MAP` en el frontend
-- **Electron Denshi** — system tray traducido directamente (3 strings)
-- **0 strings hardcodeados** visibles en inglés o español
-- **0 duplicados injustificados** en archivos JSON
+El proyecto original no tiene soporte nativo para múltiples idiomas (i18n), por lo que se implementó desde cero una robusta arquitectura de traducción basada en JSON.
 
-**Áreas traducidas:**
+### 🚧 Estado Actual (En Revisión Continua)
 
-- Pantalla de inicio, Horario y Descubrimiento
-- Navegación y barra lateral
-- Reproductor de video completo (video-core, subtítulos, HLS, Chromecast, Anime4K, stats, keybindings)
-- Configuración completa (App, Servidor, Biblioteca, UI, Discord, Reproductores, Streaming, Avanzado)
-- Asistente de Configuración Inicial (Getting Started)
-- Tours interactivos de actualización (Changelog Tour)
-- Watch parties (Nakama)
-- Paleta de comandos (Sea Command)
-- Página de entrada (anime/manga detail completo)
-- Escáner de biblioteca (modal, resúmenes, logs, archivos no coincidentes)
-- Seguimiento de progreso y listas de reproducción
-- Biblioteca y listas (AniList stats, colección, sincronización offline)
-- Extensiones (marketplace, tarjetas, playground)
-- Manga completo (biblioteca, lector de capítulos, descargas)
-- Streaming en línea, lista de torrents y servicio Debrid
-- Descargador automático (reglas, perfiles, cola, ajustes)
-- Búsqueda avanzada (filtros, sorting, placeholders)
-- Fuentes personalizadas
-- Electron (modal de actualización, reinicio de servidor)
-- Reporte de problemas (issue report)
-- Autoplay, Library Explorer y Library Explorer Super Update
-- Biblioteca de anime (media desconocida, archivos ignorados, acciones masivas)
-- Todos los toasts/notificaciones (~247 en componentes UI, hooks de API y archivos .ts)
-- Mediastream, MediaLinks, Sync, callback de autenticación
-- Componentes compartidos (file-tree, file-selector, directory-selector, media-exclusion, date-picker)
-- Diccionario AniList (411 keys: géneros, formatos, temporadas, estados, tags, relaciones, roles)
+La traducción al español abarca prácticamente toda la interfaz de usuario. Sin embargo, el proyecto se mantiene en **revisión continua** para pulir contextos, mejorar la naturalidad gramatical y garantizar que cualquier nueva función añadida en el proyecto original sea adaptada sin demoras.
+
+**Detalles Técnicos del Sistema:**
+- **~3550+ keys** en 18 archivos JSON, con validación de tipo estricta para evitar errores.
+- **Backend Go intacto** — Los mensajes nativos del servidor se interceptan y traducen en el frontend (`SERVER_TOAST_MAP`).
+- **Fechas y Calendarios** — Adaptación dinámica total del formato de fechas usando `date-fns` y parches de capitalización idiomática.
+- **Cero Hardcoding** — Ni un solo string visible "quemado" directamente en el código de React.
+
+**Áreas y Componentes Traducidos:**
+Se han adaptado más de **310 componentes React** y **247 notificaciones**, cubriendo absolutamente toda la experiencia:
+- **Core Visual:** Navegación, Paleta de Comandos (Sea Command), Pantalla de Inicio, Descubrimiento y Asistente de Configuración.
+- **Consumo:** Reproductor de Video integral (Subtítulos, Chromecast, Anime4K), Lector de Manga interactivo y Watch Parties (Nakama).
+- **Gestión:** Configuraciones Avanzadas, Escáner de Biblioteca local, Explorador, Descargador Automático y Tienda de Extensiones.
+- **AniList y Metadatos:** Diccionario completo integrado (411 keys para géneros, formatos, estados), Seguimiento de Progreso y Listas offline.
 
 ---
 
