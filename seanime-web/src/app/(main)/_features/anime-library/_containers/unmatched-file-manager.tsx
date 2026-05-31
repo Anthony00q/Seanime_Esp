@@ -16,6 +16,8 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { NumberInput } from "@/components/ui/number-input"
 import { RadioGroup } from "@/components/ui/radio-group"
 import { upath } from "@/lib/helpers/upath"
+import { capitalizeFirst } from "@/lib/utils/capitalize-date"
+import { getDateFnsLocale } from "@/locales/date-locale"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import React from "react"
@@ -372,9 +374,9 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                                             className="text-gray-200 font-semibold"
                                         >{media.format}</span>
                                         </p>
-                                        <p>Aired: {media.startDate?.year ? new Intl.DateTimeFormat("es", {
+                                        <p>Aired: {media.startDate?.year ? capitalizeFirst(new Intl.DateTimeFormat(getDateFnsLocale().code, {
                                             year: "numeric",
-                                        }).format(new Date(media.startDate?.year || 0, media.startDate?.month || 0)) : "-"}</p>
+                                        }).format(new Date(media.startDate?.year || 0, media.startDate?.month || 0))) : "-"}</p>
                                         <p>Status: {media.status}</p>
                                         <SeaLink href={`https://anilist.co/anime/${media.id}`} target="_blank">
                                             <Button

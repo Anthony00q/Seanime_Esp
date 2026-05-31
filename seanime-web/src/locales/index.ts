@@ -1,5 +1,5 @@
 import { defaultLocale } from "./config"
-import { useMemo } from "react"
+import { isValidElement, useMemo } from "react"
 import { IntlMessageFormat } from "intl-messageformat"
 
 // --- Importaciones de secciones en inglés (modular) ---
@@ -35,8 +35,6 @@ import esExtensions from "./es/extensions.json"
 import esAnilist from "./es/anilist.json"
 import esGettingStarted from "./es/gettingStarted.json"
 import esChangelogTour from "./es/changelogTour.json"
-
-// Secciones de settings
 import esSettingsGeneral from "./es/settings/general.json"
 import esSettingsLibrary from "./es/settings/library.json"
 import esSettingsPlayers from "./es/settings/players.json"
@@ -46,75 +44,42 @@ import esSettingsUi from "./es/settings/ui.json"
 
 // ---------------------------------------------------------------------------
 
-/**
- * Deep merge de objetos. Las propiedades del source sobreescriben las del target.
- */
-function deepMerge(target: Record<string, any>, ...sources: Record<string, any>[]): Record<string, any> {
-    for (const source of sources) {
-        for (const key in source) {
-            if (
-                source[key] !== null &&
-                typeof source[key] === "object" &&
-                !Array.isArray(source[key])
-            ) {
-                if (!target[key] || typeof target[key] !== "object") {
-                    target[key] = {}
-                }
-                deepMerge(target[key], source[key])
-            } else {
-                target[key] = source[key]
+function flattenMessages(nestedMessages: Record<string, any>, prefix = "", acc: Record<string, string> = {}): Record<string, string> {
+    for (const key in nestedMessages) {
+        if (Object.prototype.hasOwnProperty.call(nestedMessages, key)) {
+            const value = nestedMessages[key];
+            const prefixedKey = prefix ? `${prefix}.${key}` : key;
+            if (typeof value === "string") {
+                acc[prefixedKey] = value;
+            } else if (value !== null && typeof value === "object" && !Array.isArray(value)) {
+                flattenMessages(value, prefixedKey, acc);
             }
         }
     }
-    return target
+    return acc;
 }
 
-// Construye el objeto de traducciones en inglés mergeando todos los archivos (para uso en runtime)
-const en = deepMerge(
-    {},
-    enCommon,
-    enHome,
-    enNavigation,
-    enVideoPlayer,
-    enFeatures,
-    enMisc,
-    enEntry,
-    enManga,
-    enExtensions,
-    enAnilist,
-    enGettingStarted,
-    enChangelogTour,
-    enSettingsGeneral,
-    enSettingsLibrary,
-    enSettingsPlayers,
-    enSettingsStreaming,
-    enSettingsAdvanced,
-    enSettingsUi,
-)
+const enModules = [
+    enCommon, enHome, enNavigation, enVideoPlayer, enFeatures, enMisc, enEntry, 
+    enManga, enExtensions, enAnilist, enGettingStarted, enChangelogTour, 
+    enSettingsGeneral, enSettingsLibrary, enSettingsPlayers, enSettingsStreaming, 
+    enSettingsAdvanced, enSettingsUi
+] as const;
 
-// Generar la inferencia estricta mediante intersección de todos los JSON base en inglés
-type BaseMessages = typeof enCommon 
-    & typeof enHome 
-    & typeof enNavigation 
-    & typeof enVideoPlayer 
-    & typeof enFeatures 
-    & typeof enMisc 
-    & typeof enEntry 
-    & typeof enManga 
-    & typeof enExtensions 
-    & typeof enAnilist 
-    & typeof enGettingStarted 
-    & typeof enChangelogTour 
-    & typeof enSettingsGeneral 
-    & typeof enSettingsLibrary 
-    & typeof enSettingsPlayers 
-    & typeof enSettingsStreaming 
-    & typeof enSettingsAdvanced 
-    & typeof enSettingsUi;
+const esModules = [
+    esCommon, esHome, esNavigation, esVideoPlayer, esFeatures, esMisc, esEntry, 
+    esManga, esExtensions, esAnilist, esGettingStarted, esChangelogTour, 
+    esSettingsGeneral, esSettingsLibrary, esSettingsPlayers, esSettingsStreaming, 
+    esSettingsAdvanced, esSettingsUi
+] as const;
+
+// Inferencia estricta de la intersección de todos los JSON base
+type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends ((k: infer I) => void) ? I : never;
+type BaseMessages = UnionToIntersection<typeof enModules[number]>;
+type EsMessages = UnionToIntersection<typeof esModules[number]>;
 
 // Tipos auxiliares para extraer rutas en formato "padre.hijo"
 type Join<K, P> = K extends string | number ? P extends string | number ? `${K}${"" extends P ? "" : "."}${P}` : never : never;
-
 type Paths<T> = T extends object ? {
     [K in keyof T]-?: K extends string | number ? `${K}` | Join<K, Paths<T[K]>> : never
 }[keyof T] : never;
@@ -122,49 +87,34 @@ type Paths<T> = T extends object ? {
 // El tipo estricto de todas las keys permitidas
 export type TranslationKeys = Paths<BaseMessages>;
 
-type Messages = BaseMessages
+// Tipos para identificar rutas faltantes en caso de disparidad
+type EnPaths = Paths<BaseMessages>;
+type EsPaths = Paths<EsMessages>;
+export type MissingInEn = Exclude<EsPaths, EnPaths>;
+export type MissingInEs = Exclude<EnPaths, EsPaths>;
 
-// Construye el objeto de traducciones en español mergeando todos los archivos
-const es = deepMerge(
-    {},
-    esCommon,
-    esHome,
-    esNavigation,
-    esVideoPlayer,
-    esFeatures,
-    esMisc,
-    esEntry,
-    esManga,
-    esExtensions,
-    esAnilist,
-    esGettingStarted,
-    esChangelogTour,
-    esSettingsGeneral,
-    esSettingsLibrary,
-    esSettingsPlayers,
-    esSettingsStreaming,
-    esSettingsAdvanced,
-    esSettingsUi,
-) as Messages
+// Validación bidireccional (Falla con TS2344 si faltan keys)
+type AssertParity<MissingEn extends never, MissingEs extends never> = true;
+type _VerifyParity = AssertParity<MissingInEn, MissingInEs>;
 
-// ---------------------------------------------------------------------------
-
-function flattenMessages(nestedMessages: Record<string, any>, prefix = ""): Record<string, string> {
-    return Object.keys(nestedMessages).reduce((acc: Record<string, string>, key) => {
-        const value = nestedMessages[key]
-        const prefixedKey = prefix ? `${prefix}.${key}` : key
-
-        if (typeof value === "string") {
-            acc[prefixedKey] = value
-        } else if (value !== null && typeof value === "object" && !Array.isArray(value)) {
-            Object.assign(acc, flattenMessages(value, prefixedKey))
+function flattenAndMerge(...modules: readonly Record<string, any>[]) {
+    const result: Record<string, string> = {};
+    for (const mod of modules) {
+        const flat = flattenMessages(mod);
+        for (const key in flat) {
+            if (key in result) {
+                console.error(`[i18n] 💥 COLISIÓN DETECTADA: La key "${key}" está duplicada en múltiples archivos JSON.`);
+            }
+            result[key] = flat[key];
         }
-        return acc
-    }, {})
+    }
+    return result;
 }
 
-const flatEn = flattenMessages(en)
-const flatEs = flattenMessages(es)
+const flatEn = flattenAndMerge(...enModules);
+const flatEs = flattenAndMerge(...esModules);
+
+// ---------------------------------------------------------------------------
 
 const translations: Record<string, Record<string, string>> = {
     en: flatEn,
@@ -199,6 +149,17 @@ export function createTranslator(locale?: string) {
 
     return function t(key: TranslationKeys, params?: Record<string, any>): string {
         const translation = messages[key as string]
+
+        // Prevenir crashes de React por objetos crudos (Error #31)
+        if (params) {
+            for (const k in params) {
+                const val = params[k];
+                if (val !== null && typeof val === 'object' && !Array.isArray(val) && !isValidElement(val)) {
+                    console.warn(`[i18n] 🛡️ Prevención de crash: Se pasó un objeto crudo en el parámetro "${k}" para la key "${key}". Se convirtió a string.`);
+                    params[k] = val instanceof Error ? val.message : String(val);
+                }
+            }
+        }
 
         if (translation) {
             return interpolate(translation, resolved, params)
