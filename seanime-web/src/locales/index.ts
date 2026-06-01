@@ -21,6 +21,7 @@ import enSettingsPlayers from "./en/settings/players.json"
 import enSettingsStreaming from "./en/settings/streaming.json"
 import enSettingsAdvanced from "./en/settings/advanced.json"
 import enSettingsUi from "./en/settings/ui.json"
+import enSettingsLocale from "./en/settings/locale.json"
 
 // --- Importaciones de secciones en español ---
 import esCommon from "./es/common.json"
@@ -41,6 +42,7 @@ import esSettingsPlayers from "./es/settings/players.json"
 import esSettingsStreaming from "./es/settings/streaming.json"
 import esSettingsAdvanced from "./es/settings/advanced.json"
 import esSettingsUi from "./es/settings/ui.json"
+import esSettingsLocale from "./es/settings/locale.json"
 
 // ---------------------------------------------------------------------------
 
@@ -63,14 +65,14 @@ const enModules = [
     enCommon, enHome, enNavigation, enVideoPlayer, enFeatures, enMisc, enEntry, 
     enManga, enExtensions, enAnilist, enGettingStarted, enChangelogTour, 
     enSettingsGeneral, enSettingsLibrary, enSettingsPlayers, enSettingsStreaming, 
-    enSettingsAdvanced, enSettingsUi
+    enSettingsAdvanced, enSettingsUi, enSettingsLocale
 ] as const;
 
 const esModules = [
     esCommon, esHome, esNavigation, esVideoPlayer, esFeatures, esMisc, esEntry, 
     esManga, esExtensions, esAnilist, esGettingStarted, esChangelogTour, 
     esSettingsGeneral, esSettingsLibrary, esSettingsPlayers, esSettingsStreaming, 
-    esSettingsAdvanced, esSettingsUi
+    esSettingsAdvanced, esSettingsUi, esSettingsLocale
 ] as const;
 
 // Inferencia estricta de la intersección de todos los JSON base

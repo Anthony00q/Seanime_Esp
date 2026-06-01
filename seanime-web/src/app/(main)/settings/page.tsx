@@ -35,6 +35,7 @@ import { Field, Form } from "@/components/ui/form"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ConfirmationDialog, useConfirmationDialog } from "@/components/shared/confirmation-dialog"
 import { useRouter, useSearchParams } from "@/lib/navigation"
 import { DEFAULT_TORRENT_CLIENT, DEFAULT_TORRENT_PROVIDER, settingsSchema, TORRENT_PROVIDER } from "@/lib/server/settings"
 import { THEME_DEFAULT_VALUES } from "@/lib/theme/theme-hooks"
@@ -75,6 +76,7 @@ import { DiscordRichPresenceSettings } from "./_containers/discord-rich-presence
 import { LocalSettings } from "./_containers/local-settings"
 import { NakamaSettings } from "./_containers/nakama-settings"
 import { createTranslator } from "@/locales"
+import { defaultLocale } from "@/locales/config"
 
 const t = createTranslator()
 
@@ -115,6 +117,30 @@ export default function Page() {
     const { mutate: checkForUpdates, isPending: isCheckingForUpdates } = useCheckForUpdates()
     const setWebUpdateModalOpen = useSetAtom(webUpdateModalOpenAtom)
     const setElectronUpdateModalOpen = useSetAtom(electronUpdateModalOpenAtom)
+
+    const [pendingLocale, setPendingLocale] = React.useState<string | null>(null)
+    const confirmRestart = useConfirmationDialog({
+        title: t("settings.locale.restartRequired"),
+        description: t("settings.locale.restartDescription"),
+        onConfirm: async () => {
+            if (pendingLocale) {
+                localStorage.setItem("seanime-locale", pendingLocale)
+                if (__isElectronDesktop__ && window.electron?.denshiSettings) {
+                    const denshiSettings = await window.electron.denshiSettings.get()
+                    await window.electron.denshiSettings.set({
+                        ...denshiSettings,
+                        locale: pendingLocale,
+                    })
+                    window.electron.send("restart-app")
+                } else {
+                    window.location.reload()
+                }
+            }
+        },
+        onCancel: () => {
+            setPendingLocale(null)
+        },
+    })
 
     React.useEffect(() => {
         if (!isPending && !!data?.settings) {
@@ -158,6 +184,7 @@ export default function Page() {
 
     return (
         <>
+            <ConfirmationDialog {...confirmRestart} />
             <CustomLibraryBanner discrete />
             <PageWrapper data-settings-page-container className="p-4 sm:p-8 space-y-4 relative">
                 {/*<Separator/>*/}
@@ -479,6 +506,11 @@ export default function Page() {
                                         updateChannel: data.updateChannel || "github",
                                     })
                                 }
+                                
+                                if (data.locale && data.locale !== defaultLocale) {
+                                    setPendingLocale(data.locale)
+                                    confirmRestart.open()
+                                }
                             }}
                             defaultValues={{
                                 libraryPath: status?.settings?.library?.libraryPath,
@@ -581,6 +613,7 @@ export default function Page() {
                                 hideAnimeSpoilerTitles: status?.themeSettings?.hideAnimeSpoilerTitles ?? THEME_DEFAULT_VALUES.hideAnimeSpoilerTitles,
                                 hideAnimeSpoilerDescriptions: status?.themeSettings?.hideAnimeSpoilerDescriptions ?? THEME_DEFAULT_VALUES.hideAnimeSpoilerDescriptions,
                                 hideAnimeSpoilerSkipNextEpisode: status?.themeSettings?.hideAnimeSpoilerSkipNextEpisode ?? THEME_DEFAULT_VALUES.hideAnimeSpoilerSkipNextEpisode,
+                                locale: defaultLocale,
                             }}
                             stackClass="space-y-0 relative"
                         >
