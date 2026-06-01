@@ -13,7 +13,7 @@
     "doublePageModeNotSupported": "El modo de página doble no es compatible en pantallas pequeñas",
     "couldNotGetPageDimensions": "No se pudieron obtener las dimensiones de página",
     "readingModes": {
-      "longStrip": "Tira larga",
+      "longStrip": "Cascada",
       "singlePage": "Página individual",
       "doublePage": "Página doble"
     },
@@ -34,7 +34,7 @@
     "chapterList": {
       "title": "Capítulos",
       "name": "Nombre",
-      "scanlator": "Scanlator",
+      "scanlator": "Scan",
       "language": "Idioma",
       "number": "Número",
       "date": "Fecha",
@@ -110,7 +110,7 @@
       "pageFit": "Ajuste de página",
       "pageContainerWidth": "Ancho del contenedor de página",
       "pageStretch": "Estiramiento de página",
-      "stretchHelp": "'Estirar' obliga a todas las páginas a tener el mismo ancho que el contenedor en modo 'Tira larga'.",
+      "stretchHelp": "'Estirar' obliga a todas las páginas a tener el mismo ancho que el contenedor en modo 'Cascada'.",
       "resetDefaults": "Restablecer valores predeterminados",
       "resetDefaultsFor": "Restablecer valores predeterminados para {mode}",
       "pageGap": "Espacio entre páginas",
