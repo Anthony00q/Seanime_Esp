@@ -8,7 +8,7 @@
 
 <p align="center">
 <img src="docs/images/hero_mockup.png" alt="preview" width="100%"/>
-  <b>Fork Multilingüe de Seanime (Español & Português)</b> — Media server con interfaz web y app de escritorio para anime y manga
+  <b>Fork Multilingüe de Seanime (con foco principal en Español)</b> — Media server con interfaz web y app de escritorio para anime y manga
 </p>
 
 <p align="center">
@@ -41,7 +41,7 @@ Si te gusta el proyecto, ¡deja una estrella en este y en el <a href="https://gi
 
 Este es un **fork multilingüe** del proyecto [Seanime](https://github.com/5rahim/seanime) creado por [5rahim](https://github.com/5rahim).
 
-**Objetivo:** Traducir toda la interfaz de usuario al Español y Portugués Brasileño, implementando una arquitectura de internacionalización (que el original no posee) y manteniendo el proyecto intacto y actualizado.
+**Objetivo:** Transformar el proyecto en un servidor escalable a múltiples idiomas (Español, Portugués, etc.) con foco principal en la comunidad hispanohablante, implementando una arquitectura de internacionalización (que el original no posee) y manteniendo el proyecto intacto y actualizado.
 
 **Estructura de ramas:**
 - `main` → espejo puro del upstream (sin modificaciones)
@@ -90,7 +90,7 @@ El proyecto original no tiene soporte nativo para múltiples idiomas (i18n), por
 
 ### 🌍 Estado Actual (Traducción Completa)
 
-La traducción abarca el **100% de la interfaz tanto en Español como en Portugués (pt-BR)**. El proyecto se mantiene en revisión continua para pulir contextos, asegurar la naturalidad gramatical y garantizar que cualquier nueva función añadida en el proyecto original sea adaptada sin demoras.
+Actualmente, la traducción abarca el **100% de la interfaz de forma nativa para Español y Portugués (pt-BR)**, y el proyecto está diseñado arquitectónicamente para soportar cualquier idioma adicional con facilidad. Se mantiene en revisión continua para pulir contextos, asegurar la naturalidad gramatical y garantizar que cualquier nueva función añadida en el original sea adaptada sin demoras.
 
 **Detalles Técnicos del Sistema:**
 - **~3550+ keys** en 18 archivos JSON, con validación de tipo estricta para evitar errores.
