@@ -139,6 +139,7 @@ export default function Page() {
         },
         onCancel: () => {
             setPendingLocale(null)
+            formRef.current?.setValue("locale", defaultLocale)
         },
     })
 
@@ -613,7 +614,7 @@ export default function Page() {
                                 hideAnimeSpoilerTitles: status?.themeSettings?.hideAnimeSpoilerTitles ?? THEME_DEFAULT_VALUES.hideAnimeSpoilerTitles,
                                 hideAnimeSpoilerDescriptions: status?.themeSettings?.hideAnimeSpoilerDescriptions ?? THEME_DEFAULT_VALUES.hideAnimeSpoilerDescriptions,
                                 hideAnimeSpoilerSkipNextEpisode: status?.themeSettings?.hideAnimeSpoilerSkipNextEpisode ?? THEME_DEFAULT_VALUES.hideAnimeSpoilerSkipNextEpisode,
-                                locale: defaultLocale,
+                                locale: pendingLocale || defaultLocale,
                             }}
                             stackClass="space-y-0 relative"
                         >
