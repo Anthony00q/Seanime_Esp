@@ -50,9 +50,11 @@ seanime-web/src/locales/
 
 Si una traducción (key) no existe en el idioma activo, la aplicación usará automáticamente el inglés (`en`) como reemplazo.
 
-### Cómo cambiar el idioma por defecto
+### El idioma es dinámico
 
-Edita **un solo archivo**: `seanime-web/src/locales/config.ts`
+El idioma actual de la aplicación se gestiona mediante el selector de "Idioma / Language" en la sección Ajustes > App. Al cambiarlo ahí, se guarda en el navegador (`localStorage`) y se notifica al proceso de Electron para reiniciar la aplicación.
+
+Si deseas cambiar el idioma de "respaldo" por defecto (el que se usa si el usuario nunca ha guardado una preferencia), puedes editar `seanime-web/src/locales/config.ts`:
 
 ```typescript
 export const defaultLocale: Locale = "es"  // Cambiar a "en", "fr", "pt", etc.
@@ -141,13 +143,19 @@ const translations: Record<string, Record<string, string>> = {
 }
 ```
 
-#### 4. (Opcional) Cambiar el idioma por defecto
+#### 4. Añadir el idioma al selector de la Interfaz (UI)
 
-En `config.ts`:
+Para que los usuarios puedan elegir el nuevo idioma, agrégalo al selector visual. Edita `seanime-web/src/app/(main)/settings/_containers/server-settings.tsx`:
 
-```typescript
-export const defaultLocale: Locale = "fr"
+```tsx
+const localeOptions = [
+    { label: "Español", value: "es" },
+    { label: "English", value: "en" },
+    { label: "Français", value: "fr" }, // ← nuevo
+]
 ```
+
+Con esto, el usuario podrá seleccionarlo libremente en los Ajustes y el sistema se recargará en el nuevo idioma.
 
 ### Formateo y Variables (ICU)
 
@@ -190,9 +198,9 @@ Crea `seanime-denshi/locales/fr.json` con la misma estructura que los existentes
 }
 ```
 
-#### 2. Cambiar el idioma por defecto del fork
+#### 2. Configurar el idioma por defecto del fork (opcional)
 
-En `seanime-denshi/src/main.js`, busca la función `initLocale()` y cambia el fallback `"es"` al código del nuevo idioma:
+Al igual que en la web, el idioma se rige dinámicamente según lo que guarde el usuario en los Ajustes (lo cual modifica el archivo `denshi-settings.json`). Sin embargo, si quieres cambiar el idioma *de primer inicio* por defecto, edita `seanime-denshi/src/main.js` en la función `initLocale()`:
 
 ```javascript
 // Antes
@@ -202,7 +210,7 @@ const locale = denshiSettings.locale || "es"
 const locale = denshiSettings.locale || "fr"
 ```
 
-Eso es todo. No se requiere ningún otro cambio en el código.
+Eso es todo. Al recargar, Electron leerá el nuevo JSON y la bandeja del sistema estará traducida.
 
 ---
 
