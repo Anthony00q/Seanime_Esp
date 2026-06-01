@@ -3,8 +3,8 @@
     "locale": {
       "title": "Language",
       "description": "Change the application language. Requires a restart to apply.",
-      "restartRequired": "Restart Required",
-      "restartDescription": "The language has been saved. Do you want to restart the application now to apply the changes everywhere?"
+      "restartRequired": "Restart to apply language",
+      "restartDescription": "A restart is required right now to apply the new language. If you cancel, the change will be discarded."
     }
   }
 }
