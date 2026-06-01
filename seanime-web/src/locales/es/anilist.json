@@ -50,7 +50,7 @@
       "CURRENT_MANGA": "Leyendo",
       "COMPLETED": "Completado",
       "PAUSED": "En pausa",
-      "DROPPED": "Abandonado",
+      "DROPPED": "Droppeado",
       "PLANNING": "Planeado",
       "REPEATING": "Reviendo"
     },
@@ -60,7 +60,7 @@
       "roles": {
         "MAIN": "Principal",
         "SUPPORTING": "Secundario",
-        "BACKGROUND": "Secundario"
+        "BACKGROUND": "Extra"
       }
     },
     "relationTypes": {
@@ -261,7 +261,7 @@
       "Lacrosse": "Lacrosse",
       "Language Barrier": "Barrera lingüística",
       "LGBTQ+ Themes": "Temas LGBTQ+",
-      "Long Strip": "Tira larga",
+      "Long Strip": "Cascada",
       "Lost Civilization": "Civilización perdida",
       "Love Triangle": "Triángulo amoroso",
       "Mafia": "Mafia",
