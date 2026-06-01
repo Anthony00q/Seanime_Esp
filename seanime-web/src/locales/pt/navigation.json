@@ -1,0 +1,49 @@
+{
+  "navigation": {
+    "home": "Início",
+    "schedule": "Calendário",
+    "manga": "Mangá",
+    "myLists": "Minhas Listas",
+    "discover": "Descobrir",
+    "search": "Buscar",
+    "torrentList": "Lista de Torrents",
+    "torrentListSeeding": "Lista de Torrents ({count} seeding)",
+    "debrid": "Debrid",
+    "scanSummaries": "Resumos do Scanner",
+    "autoDownloader": "Download Automático",
+    "more": "Mais",
+    "refreshAniList": "Atualizar AniList",
+    "nakama": "Nakama",
+    "extensions": "Extensões",
+    "offline": "Offline",
+    "settings": "Configurações",
+    "signIn": "Entrar",
+    "signOut": "Sair",
+    "login": "Login",
+    "loginWithAniList": "Entrar com AniList",
+    "loginDescription": "É recomendado usar uma conta do AniList.",
+    "getAniListToken": "Obter Token do AniList",
+    "enterToken": "Insira o token",
+    "tokenRequired": "O token é obrigatório",
+    "continue": "Continuar",
+    "authenticating": "Autenticando..."
+  },
+  "dialog": {
+    "signOut": {
+      "title": "Sair",
+      "description": "Tem certeza que deseja sair?"
+    },
+    "disableOfflineMode": {
+      "title": "Desativar modo offline",
+      "description": "Tem certeza que deseja desativar o modo offline?",
+      "confirm": "Sim"
+    }
+  },
+  "offline": {
+    "animeLibrary": "Biblioteca de Anime",
+    "manga": "Mangá",
+    "disableOfflineMode": "Desativar modo offline",
+    "settings": "Configurações",
+    "offline": "Offline"
+  }
+}

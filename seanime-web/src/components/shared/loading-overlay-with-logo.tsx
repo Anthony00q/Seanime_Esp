@@ -52,7 +52,15 @@ const splashBrandLetters = "Seanime".split("")
 
 function SplashBrandLockup({ compactSpacing }: { compactSpacing?: boolean }) {
     const currentLocale = window.localStorage.getItem("seanime-locale") || "es"
-    const splashSubBrandLetters = currentLocale === "es" ? "ESP".split("") : []
+    
+    let subBrand = ""
+    if (currentLocale === "es") {
+        subBrand = "ESP"
+    } else if (currentLocale === "pt") {
+        subBrand = "POR"
+    }
+    
+    const splashSubBrandLetters = subBrand ? subBrand.split("") : []
     const [scope, animate] = useAnimate()
 
     React.useEffect(() => {

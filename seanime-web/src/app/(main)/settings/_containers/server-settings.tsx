@@ -13,6 +13,7 @@ import { Separator } from "@/components/ui/separator"
 import { Switch } from "@/components/ui/switch"
 import { __isElectronDesktop__ } from "@/types/constants"
 import { createTranslator } from "@/locales"
+import { localeNames } from "@/locales/config"
 import { useAtom } from "jotai/react"
 import React from "react"
 import { useFormContext, useWatch } from "react-hook-form"
@@ -455,10 +456,7 @@ export function ServerSettings(props: ServerSettingsProps) {
             >
                 <Field.Select
                     name="locale"
-                    options={[
-                        { label: "Español", value: "es" },
-                        { label: "English", value: "en" },
-                    ]}
+                    options={Object.entries(localeNames).map(([value, label]) => ({ value, label }))}
                 />
             </SettingsCard>
 

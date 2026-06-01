@@ -1,192 +1,108 @@
-# Guía de Traducciones — Seanime_Esp
+# Guía para Contribuir Traducciones — Seanime_Esp
 
-Este documento explica cómo funciona el sistema de internacionalización (i18n) de este fork y cómo agregar un nuevo idioma.
+¡Gracias por tu interés en traducir Seanime_Esp a tu idioma! 
 
----
-
-## Arquitectura
-
-El proyecto tiene **3 capas** de traducción:
-
-| Capa | Ubicación | Sistema |
-|------|-----------|---------|
-| **Frontend Web** | `seanime-web/src/locales/` | React + JSON modular + `createTranslator()` |
-| **Electron Denshi** | `seanime-denshi/locales/` | JSON simple cargado en el main process |
-| **Backend Go** | No se modifica | Mensajes traducidos en el frontend vía `SERVER_TOAST_MAP` |
+Actualmente, el proyecto soporta de forma nativa **Español (`es`)**, **Inglés (`en`)** y **Português (`pt-BR`)**. Si deseas agregar un idioma nuevo (por ejemplo, Francés, Alemán o Ruso), esta guía te explicará cómo hacerlo paso a paso sin romper la aplicación.
 
 ---
 
-## Frontend Web
+## Reglas de Oro antes de empezar (CRÍTICO)
 
-### Estructura de archivos
+Para que tu traducción sea aprobada e integrada, debes seguir estas reglas de diseño:
 
-```
-seanime-web/src/locales/
-├── index.ts                    # validación estricta + aplanamiento + createTranslator()
-├── config.ts                   # Locale type, defaultLocale, localeNames
-├── es/                         # Traducciones al español (idioma por defecto)
-│   ├── common.json
-│   ├── home.json
-│   ├── navigation.json
-│   ├── videoPlayer.json
-│   ├── features.json
-│   ├── misc.json
-│   ├── entry.json
-│   ├── manga.json
-│   ├── extensions.json
-│   ├── anilist.json
-│   ├── gettingStarted.json
-│   ├── changelogTour.json
-│   └── settings/
-│       ├── general.json
-│       ├── library.json
-│       ├── players.json
-│       ├── streaming.json
-│       ├── advanced.json
-│       └── ui.json
-└── en/                         # Traducciones al inglés (fallback)
-    └── (misma estructura que es/)
-```
+1. **Conservación de Terminología Específica**: Evite traducir forzosamente términos técnicos o palabras que la comunidad de consumo de medios y anime ya utiliza como estándares universales (en inglés o japonés). Términos como *Fansubs, Seeding, Offset, Isekai, Shounen, Slice of Life* deben mantenerse en su idioma original para preservar su significado exacto.
+2. **Optimización de la Longitud en la Interfaz (UI)**: La traducción no debe alterar el diseño ni romper los componentes visuales. Compare siempre la longitud de sus textos con los de `es/` o `en/`. Si una traducción resulta excesivamente larga, busque una alternativa más compacta.
+   - *Ejemplo: En lugar de "Transcodificação / Reprodução Direta", se prefiere la versión concisa "Transcoding / Direct Play" para evitar que el menú de ajustes se desborde.*
+3. **Paridad Estricta**: Cada archivo y cada clave ("key") de traducción DEBE existir de forma idéntica a la estructura de la carpeta base en inglés (`en/`). La omisión de una sola clave provocará fallos en la compilación.
 
-Si una traducción (key) no existe en el idioma activo, la aplicación usará automáticamente el inglés (`en`) como reemplazo.
+---
 
-### El idioma es dinámico
+## Cómo agregar un nuevo idioma (Paso a Paso)
 
-El idioma actual de la aplicación se gestiona mediante el selector de "Idioma / Language" en la sección Ajustes > App. Al cambiarlo ahí, se guarda en el navegador (`localStorage`) y se notifica al proceso de Electron para reiniciar la aplicación.
+Usaremos **Francés (`fr`)** como ejemplo.
 
-Si deseas cambiar el idioma de "respaldo" por defecto (el que se usa si el usuario nunca ha guardado una preferencia), puedes editar `seanime-web/src/locales/config.ts`:
+### 1. Duplica la base de datos de traducciones
 
-```typescript
-export const defaultLocale: Locale = "es"  // Cambiar a "en", "fr", "pt", etc.
-```
+Ve a la carpeta `seanime-web/src/locales/` y copia la carpeta `en/` entera. Renombra la copia con el código de tu idioma (ej. `fr/`).
+- Mantén la misma estructura de archivos (incluyendo la subcarpeta `settings/`).
+- No agregues comentarios (`//`) dentro de los archivos JSON.
+- Traduce los valores, pero **nunca** traduzcas las variables entre llaves (ej. `{address}` se queda como `{address}`).
 
-### Cómo agregar un nuevo idioma (ejemplo: francés)
-
-#### 1. Agregar el código al tipo `Locale`
+### 2. Registra el Idioma en la Configuración
 
 Edita `seanime-web/src/locales/config.ts`:
 
 ```typescript
-export type Locale = "en" | "es" | "fr"
+// Agrega tu idioma al tipo Locale
+export type Locale = "en" | "es" | "pt" | "fr"
 
+// Ponle un nombre nativo para el selector de la UI
 export const localeNames: Record<Locale, string> = {
     en: "English",
     es: "Español",
-    fr: "Français",
-}
-
-export function isValidLocale(value: string): value is Locale {
-    return value === "en" || value === "es" || value === "fr"
+    pt: "Português",
+    fr: "Français", // ← nuevo
 }
 ```
 
-#### 2. Crear la carpeta de traducciones
-
-Crea `seanime-web/src/locales/fr/` con **exactamente la misma estructura** que `es/` (18 archivos JSON en total, incluyendo la subcarpeta `settings/`):
-
-```
-fr/
-├── common.json
-├── home.json
-├── navigation.json
-├── videoPlayer.json
-├── features.json
-├── misc.json
-├── entry.json
-├── manga.json
-├── extensions.json
-├── anilist.json
-├── gettingStarted.json
-├── changelogTour.json
-└── settings/
-    ├── general.json
-    ├── library.json
-    ├── players.json
-    ├── streaming.json
-    ├── advanced.json
-    └── ui.json
-```
-
-> **Nota**: Cada archivo JSON debe tener las **mismas keys** que su equivalente en `en/`. Los valores pueden ser traducciones directas o dejar el inglés como fallback.
-
-#### 3. Añadir el nuevo idioma en `index.ts`
-
-Edita `seanime-web/src/locales/index.ts`:
-
-```typescript
-// 1. Agregar los imports
-import frCommon from "./fr/common.json"
-import frHome from "./fr/home.json"
-// ... (todos los archivos de fr/)
-
-// 2. Agruparlos en un nuevo arreglo de módulos
-const frModules = [
-    frCommon, frHome, /* ... todos los demás ... */
-] as const;
-
-// 3. Generar la inferencia estricta de tipos
-type FrMessages = UnionToIntersection<typeof frModules[number]>;
-type FrPaths = Paths<FrMessages>;
-export type MissingInFr = Exclude<EnPaths, FrPaths>;
-
-// 4. Agregar a la validación de paridad bidireccional (sumando el nuevo idioma)
-type _VerifyParity = AssertParity<MissingInEn, MissingInEs | MissingInFr>;
-
-// 5. Aplanar y fusionar de forma automatizada
-const flatFr = flattenAndMerge(...frModules);
-
-// 6. Agregar al registro de traducciones final
-const translations: Record<string, Record<string, string>> = {
-    en: flatEn,
-    es: flatEs,
-    fr: flatFr,  // ← nuevo
-}
-```
-
-#### 4. Añadir el idioma al selector de la Interfaz (UI)
-
-Para que los usuarios puedan elegir el nuevo idioma, agrégalo al selector visual. Edita `seanime-web/src/app/(main)/settings/_containers/server-settings.tsx`:
+Luego, agrégalo al menú visual editando `seanime-web/src/app/(main)/settings/_containers/server-settings.tsx`:
 
 ```tsx
 const localeOptions = [
     { label: "Español", value: "es" },
     { label: "English", value: "en" },
+    { label: "Português", value: "pt" },
     { label: "Français", value: "fr" }, // ← nuevo
 ]
 ```
 
-Con esto, el usuario podrá seleccionarlo libremente en los Ajustes y el sistema se recargará en el nuevo idioma.
+### 3. Integra tu idioma en el Validador Estricto (`index.ts`)
 
-### Formateo y Variables (ICU)
+Edita `seanime-web/src/locales/index.ts` para conectar tu carpeta al motor de la aplicación:
 
-Los textos que contienen llaves como `{count}` o `{name}` son variables dinámicas inyectadas por el código. **No traduzcas nunca los nombres de las variables** (ej. `{address}` no debe traducirse como `{dirección}`).
+```typescript
+// 1. Importa todos tus archivos JSON
+import frCommon from "./fr/common.json"
+import frHome from "./fr/home.json"
+// ... (importa todos)
 
-> **Soporte Avanzado (ICU)**: El sistema de traducciones (`intl-messageformat`) soporta nativamente la sintaxis avanzada de "ICU Message Format". Si el idioma al que estás traduciendo tiene reglas de pluralización complejas, puedes usar de forma totalmente segura el formato estándar: `{count, plural, one {1 elemento} other {# elementos}}`.
+// 2. Agrúpalos en un array
+const frModules = [
+    frCommon, frHome, /* ... */
+] as const;
 
----
+// 3. Genera la validación estricta (¡IMPORTANTÍSIMO!)
+// Esto arrojará error si te faltan keys o si tienes keys de sobra
+type FrMessages = UnionToIntersection<typeof frModules[number]>;
+type _VerifyFr = AssertParity<CheckParity<Paths<FrMessages>>>;
 
-## Electron Denshi (System Tray)
-
-### Estructura
-
+// 4. Agrégalo al registro de módulos lazy-loaded
+const languageModules: Record<string, readonly Record<string, any>[]> = {
+    en: enModules,
+    es: esModules,
+    pt: ptModules,
+    fr: frModules, // ← nuevo
+};
 ```
-seanime-denshi/
-├── locales/
-│   ├── es.json   { "tray": { "toggleVisibility": "Mostrar/Ocultar", ... } }
-│   └── en.json   { "tray": { "toggleVisibility": "Show/Hide", ... } }
-└── src/
-    └── main.js   // Carga el locale según denshiSettings.locale
+
+### 4. Soporte de Fechas Nativas (Calendarios)
+
+Para que el calendario muestre los meses en tu idioma, añade el locale oficial de `date-fns` en `seanime-web/src/locales/date-locale.ts`:
+
+```typescript
+import { fr } from "date-fns/locale"
+
+const DATE_FNS_LOCALES: Record<string, Locale> = {
+    es,
+    en: enUS,
+    pt: ptBR,
+    fr,  // ← nuevo
+}
 ```
 
-### Cómo funciona
+### 5. Traducir el System Tray (Electron)
 
-Al iniciar, `main.js` lee `denshiSettings.locale` (por defecto `"es"`) y carga el archivo JSON correspondiente. Los strings del system tray se resuelven desde ese objeto.
-
-### Cómo agregar un nuevo idioma
-
-#### 1. Crear el archivo de traducciones
-
-Crea `seanime-denshi/locales/fr.json` con la misma estructura que los existentes:
+Seanime tiene un ícono minimizado en la barra de tareas de Windows. Crea un archivo JSON para tu idioma en `seanime-denshi/locales/fr.json` usando como plantilla `es.json` o `en.json`.
 
 ```json
 {
@@ -198,58 +114,31 @@ Crea `seanime-denshi/locales/fr.json` con la misma estructura que los existentes
 }
 ```
 
-#### 2. Configurar el idioma por defecto del fork (opcional)
+### 6. (Opcional) Animación de Inicio (Splash Screen)
 
-Al igual que en la web, el idioma se rige dinámicamente según lo que guarde el usuario en los Ajustes (lo cual modifica el archivo `denshi-settings.json`). Sin embargo, si quieres cambiar el idioma *de primer inicio* por defecto, edita `seanime-denshi/src/main.js` en la función `initLocale()`:
+La pantalla de carga cuenta con una animación que dibuja letras sutiles debajo del logo según el idioma. Edita `seanime-web/src/components/shared/loading-overlay-with-logo.tsx`:
 
-```javascript
-// Antes
-const locale = denshiSettings.locale || "es"
-
-// Después (ejemplo: francés)
-const locale = denshiSettings.locale || "fr"
+```tsx
+    let subBrand = ""
+    if (currentLocale === "es") {
+        subBrand = "ESP"
+    } else if (currentLocale === "pt") {
+        subBrand = "POR"
+    } else if (currentLocale === "fr") { // ← nuevo
+        subBrand = "FRA"
+    }
 ```
 
-Eso es todo. Al recargar, Electron leerá el nuevo JSON y la bandeja del sistema estará traducida.
-
 ---
 
-## Backend Go
+## Verificación Final antes de enviar tu aporte
 
-**No se requiere modificar código backend.** Todos los mensajes y notificaciones que vienen del servidor (Go) ya están mapeados dinámicamente en el frontend. Al agregar un nuevo idioma, solo debes preocuparte de traducir los textos en los archivos JSON; las notificaciones del sistema se traducirán automáticamente.
+Antes de solicitar que añadamos tu idioma, **debes asegurarte de que no hayas cometido ningún error tipográfico ni te falten claves**.
 
----
-
-## Configuración Adicional
-
-### 1. Soporte de Fechas (date-fns)
-
-Para que las fechas se formateen correctamente en tu idioma (ej: "hace 3 días"), registra el locale de fecha. Edita `seanime-web/src/locales/date-locale.ts` y añade el locale oficial correspondiente:
-
-```typescript
-import { fr } from "date-fns/locale"
-
-const DATE_FNS_LOCALES: Record<string, Locale> = {
-    es,
-    en: enUS,
-    fr,  // ← nuevo
-}
-```
-
-### 2. Diccionario AniList
-
-Los valores crudos de la API de AniList (géneros como "Action", formatos como "MOVIE", etc.) se traducen centralizadamente desde `anilist.json`. Traduce esos valores en tu carpeta de idioma y la aplicación los convertirá automáticamente. Si dejas alguno sin traducir, se mostrará en inglés.
-
----
-
-## Verificación
-
+Abre la terminal en la raíz del proyecto y ejecuta:
 ```bash
-# Validar JSON
-node -e "JSON.parse(require('fs').readFileSync('ruta/al/archivo.json', 'utf8')); console.log('JSON válido')"
-
-# Verificar TypeScript (sin errores)
-cd seanime-web && npx tsgo --noEmit
+cd seanime-web
+npx tsgo --noEmit
 ```
 
-> `tsgo --noEmit` valida que las keys de tu nuevo idioma coincidan con el tipo `Messages` definido por el idioma inglés. Si hay keys faltantes o rutas incorrectas, TypeScript las detectará.
+Si el comando termina sin mostrar ningún error, ¡Felicidades! Tu traducción está en paridad perfecta y lista para ser integrada a Seanime_Esp.
