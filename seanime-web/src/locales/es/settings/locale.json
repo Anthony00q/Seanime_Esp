@@ -3,7 +3,7 @@
     "locale": {
       "title": "Idioma",
       "description": "Cambiar el idioma de la aplicación. Requiere un reinicio para aplicarse.",
-      "restartRequired": "Reiniciar para aplicar idioma",
+      "restartRequired": "Cambio de idioma",
       "restartDescription": "Es obligatorio reiniciar la aplicación ahora para aplicar el nuevo idioma. Si cancelas, el cambio será descartado."
     }
   }
