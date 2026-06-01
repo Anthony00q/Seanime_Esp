@@ -1600,6 +1600,13 @@ app.whenReady().then(async () => {
         }
     })
 
+    // Restart app handler
+    ipcMain.on("restart-app", () => {
+        console.log("EVENT restart-app")
+        app.relaunch()
+        cleanupAndExit()
+    })
+
     // Quit app handler
     ipcMain.on("quit-app", () => {
         console.log("EVENT quit-app")
