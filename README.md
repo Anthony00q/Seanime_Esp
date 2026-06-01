@@ -8,7 +8,7 @@
 
 <p align="center">
 <img src="docs/images/hero_mockup.png" alt="preview" width="100%"/>
-  <b>Fork en Español de Seanime</b> — Media server con interfaz web y app de escritorio para anime y manga
+  <b>Fork Multilingüe de Seanime (Español & Português)</b> — Media server con interfaz web y app de escritorio para anime y manga
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
     <img src="https://img.shields.io/github/v/release/Anthony00q/Seanime_Esp?style=flat-square&color=blue" alt="versión" />
   </a>
   <a href="https://github.com/Anthony00q/Seanime_Esp">
-    <img src="https://img.shields.io/badge/Traducción-En_mejora-orange?style=flat-square" alt="traducción en mejora" />
+    <img src="https://img.shields.io/badge/Idiomas-ES%20%7C%20PT%20%7C%20EN-blue?style=flat-square" alt="idiomas soportados" />
   </a>
   <a href="https://discord.gg/Aruz7wdAaf">
     <img src="https://img.shields.io/discord/1224767201551192224?style=flat-square&logo=Discord&color=blue&label=Discord" alt="discord" />
@@ -39,9 +39,9 @@ Si te gusta el proyecto, ¡deja una estrella en este y en el <a href="https://gi
 
 ## ¿Qué es este fork?
 
-Este es un **fork en español** del proyecto [Seanime](https://github.com/5rahim/seanime) creado por [5rahim](https://github.com/5rahim).
+Este es un **fork multilingüe** del proyecto [Seanime](https://github.com/5rahim/seanime) creado por [5rahim](https://github.com/5rahim).
 
-**Objetivo:** Traducir toda la interfaz de usuario al español, manteniendo el proyecto original intacto y actualizado.
+**Objetivo:** Traducir toda la interfaz de usuario al Español y Portugués Brasileño, implementando una arquitectura de internacionalización (que el original no posee) y manteniendo el proyecto intacto y actualizado.
 
 **Estructura de ramas:**
 - `main` → espejo puro del upstream (sin modificaciones)
@@ -88,15 +88,16 @@ Este es un **fork en español** del proyecto [Seanime](https://github.com/5rahim
 
 El proyecto original no tiene soporte nativo para múltiples idiomas (i18n), por lo que se implementó desde cero una robusta arquitectura de traducción basada en JSON.
 
-### 🚧 Estado Actual (En Revisión Continua)
+### 🌍 Estado Actual (Traducción Completa)
 
-La traducción al español abarca prácticamente toda la interfaz de usuario. Sin embargo, el proyecto se mantiene en **revisión continua** para pulir contextos, mejorar la naturalidad gramatical y garantizar que cualquier nueva función añadida en el proyecto original sea adaptada sin demoras.
+La traducción abarca el **100% de la interfaz tanto en Español como en Portugués (pt-BR)**. El proyecto se mantiene en revisión continua para pulir contextos, asegurar la naturalidad gramatical y garantizar que cualquier nueva función añadida en el proyecto original sea adaptada sin demoras.
 
 **Detalles Técnicos del Sistema:**
 - **~3550+ keys** en 18 archivos JSON, con validación de tipo estricta para evitar errores.
 - **Backend Go intacto** — Los mensajes nativos del servidor se interceptan y traducen en el frontend (`SERVER_TOAST_MAP`).
 - **Fechas y Calendarios** — Adaptación dinámica total del formato de fechas usando `date-fns` y parches de capitalización idiomática.
 - **Cero Hardcoding** — Ni un solo string visible "quemado" directamente en el código de React.
+- **Soporte Escalable** — Arquitectura modular que permite a cualquier contribuidor agregar nuevos idiomas fácilmente siguiendo la guía `Traducciones.md`.
 
 **Áreas y Componentes Traducidos:**
 Se han adaptado más de **310 componentes React** y **247 notificaciones**, cubriendo absolutamente toda la experiencia:

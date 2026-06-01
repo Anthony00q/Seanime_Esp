@@ -1,0 +1,145 @@
+{
+  "common": {
+    "buttons": {
+      "save": "Salvar",
+      "cancel": "Cancelar",
+      "add": "Adicionar",
+      "delete": "Excluir",
+      "confirm": "Confirmar",
+      "close": "Fechar",
+      "edit": "Editar",
+      "refresh": "Atualizar",
+      "scan": "Escanear",
+      "retry": "Tentar novamente",
+      "reload": "Recarregar",
+      "reset": "Redefinir",
+      "open": "Abrir",
+      "start": "Iniciar",
+      "next": "Próximo",
+      "back": "Voltar",
+      "skip": "Pular",
+      "done": "Concluído",
+      "previous": "Anterior",
+      "loadMore": "Carregar mais",
+      "ok": "Ok"
+    },
+    "labels": {
+      "name": "Nome",
+      "type": "Tipo",
+      "status": "Status",
+      "loading": "Carregando...",
+      "search": "Buscar",
+      "settings": "Configurações",
+      "yes": "Sim",
+      "no": "Não",
+      "all": "Todos",
+      "allLists": "Todas as listas",
+      "none": "Nenhum",
+      "custom": "Personalizado",
+      "optional": "Opcional",
+      "host": "Host",
+      "port": "Porta",
+      "username": "Usuário",
+      "password": "Senha",
+      "slowerForLargeLibraries": "Mais lento para bibliotecas grandes",
+      "bestScore": "melhor pontuação",
+      "tags": "Tags",
+      "genres": "Gêneros",
+      "adult": "Adulto",
+      "sorting": "Ordenação",
+      "format": "Formato",
+      "season": "Temporada",
+      "year": "Ano",
+      "openDirectory": "Abrir diretório",
+      "anilistId": "ID do AniList",
+      "mediaId": "ID da Mídia",
+      "episodeNumber": "Episódio {number}",
+      "specialEpisodeNumber": "Especial {number}",
+      "episodeNumberLabel": "Número do episódio",
+      "ep": "Ep",
+      "movie": "Filme",
+      "minutesLeft": "{min}m restantes",
+      "date": "Data",
+      "openInLibraryExplorer": "Abrir no Explorador de Biblioteca",
+      "showAudienceScore": "Mostrar pontuação do público",
+      "filler": "Filler",
+      "unidentified": "Não identificado"
+    },
+    "status": {
+      "connecting": "Conectando..."
+    },
+    "messages": {
+      "areYouSure": "Tem certeza que deseja continuar?",
+      "itemNotFound": "Item não encontrado",
+      "itemNotFoundWithType": "Item não encontrado ({itemType})",
+      "nothingFetched": "Nada carregado, atualize as opções.",
+      "success": "Sucesso",
+      "noResults": "Nenhum resultado encontrado",
+      "noOptions": "Nenhuma opção encontrada",
+      "nothingToSee": "Nada para ver aqui",
+      "nothingFound": "Nada encontrado",
+      "noTrailerFound": "Nenhum trailer encontrado",
+      "noMetadataFound": "Nenhum metadado encontrado",
+      "unknownGPU": "GPU desconhecida",
+      "unknown": "Desconhecido"
+    },
+    "placeholders": {
+      "allGenres": "Todos os gêneros",
+      "allTags": "Todas as tags",
+      "allFormats": "Todos os formatos",
+      "allSeasons": "Todas as temporadas",
+      "allStatuses": "Todos os status",
+      "allScores": "Todas as pontuações",
+      "allCountries": "Todos os países",
+      "timeless": "Qualquer ano",
+      "title": "Título",
+      "all": "Todos"
+    },
+    "toast": {
+      "saved": "Salvo com sucesso",
+      "deleted": "Excluído com sucesso",
+      "added": "Adicionado com sucesso",
+      "removed": "Removido com sucesso",
+      "updated": "Atualizado com sucesso",
+      "error": "Ocorreu um erro",
+      "copiedToClipboard": "Copiado para a área de transferência",
+      "openingExternalPlayer": "Abrindo arquivo em reprodutor externo."
+    },
+    "components": {
+      "fileTree": {
+        "likelyMatch": "Correspondência provável",
+        "searchFiles": "Buscar arquivos...",
+        "noFilesFound": "Nenhum arquivo encontrado correspondente a \"{search}\""
+      },
+      "fileSelector": {
+        "selectFileOrDirectory": "Selecione um arquivo ou diretório"
+      },
+      "directorySelector": {
+        "selectDirectory": "Selecione um diretório",
+        "changeLibrary": "Mudar biblioteca",
+        "suggestions": "Sugestões:"
+      },
+      "mediaExclusion": {
+        "title": "Selecione animes para excluir do compartilhamento",
+        "countExcluded": "{count} anime excluído do compartilhamento",
+        "countExcluded_plural": "{count} animes excluídos do compartilhamento",
+        "notVisibleHint": "(não será visível para outros clientes)",
+        "moreCount": "+{count} mais",
+        "editSelection": "Editar seleção",
+        "selectAnime": "Selecionar anime",
+        "description": "Selecione animes que você não deseja compartilhar com outros clientes. Animes selecionados não serão visíveis para clientes conectados.",
+        "selectAll": "Selecionar todos",
+        "deselectAll": "Desmarcar todos",
+        "selectAdult": "Selecionar adulto",
+        "countSelected": "{count} selecionado (não será compartilhado)",
+        "countSelected_plural": "{count} selecionados (não serão compartilhados)",
+        "done": "Concluído ({count} selecionado)",
+        "done_plural": "Concluído ({count} selecionados)"
+      },
+      "fields": {
+        "directory": "Diretório"
+      },
+      "selectAllFiles": "Selecionar todos os arquivos"
+    }
+  }
+}
