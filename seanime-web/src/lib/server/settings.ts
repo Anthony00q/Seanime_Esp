@@ -134,6 +134,7 @@ export const settingsSchema = z.object({
     hideAnimeSpoilerTitles: z.boolean().optional().default(true),
     hideAnimeSpoilerDescriptions: z.boolean().optional().default(true),
     hideAnimeSpoilerSkipNextEpisode: z.boolean().optional().default(false),
+    locale: z.string().optional(),
 })
 
 export const gettingStartedSchema = _gettingStartedSchema.extend(settingsSchema.shape)

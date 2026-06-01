@@ -447,6 +447,21 @@ export function ServerSettings(props: ServerSettingsProps) {
             {/*</Accordion>*/}
 
 
+            <Separator />
+
+            <SettingsCard
+                title={t("settings.locale.title")}
+                description={t("settings.locale.description")}
+            >
+                <Field.Select
+                    name="locale"
+                    options={[
+                        { label: "Español", value: "es" },
+                        { label: "English", value: "en" },
+                    ]}
+                />
+            </SettingsCard>
+
             <SettingsSubmitButton isPending={isPending} />
 
         </div>
