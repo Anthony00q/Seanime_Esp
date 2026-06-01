@@ -44,6 +44,27 @@ import esSettingsAdvanced from "./es/settings/advanced.json"
 import esSettingsUi from "./es/settings/ui.json"
 import esSettingsLocale from "./es/settings/locale.json"
 
+// --- Importaciones de secciones en portugués ---
+import ptCommon from "./pt/common.json"
+import ptHome from "./pt/home.json"
+import ptNavigation from "./pt/navigation.json"
+import ptVideoPlayer from "./pt/videoPlayer.json"
+import ptFeatures from "./pt/features.json"
+import ptMisc from "./pt/misc.json"
+import ptEntry from "./pt/entry.json"
+import ptManga from "./pt/manga.json"
+import ptExtensions from "./pt/extensions.json"
+import ptAnilist from "./pt/anilist.json"
+import ptGettingStarted from "./pt/gettingStarted.json"
+import ptChangelogTour from "./pt/changelogTour.json"
+import ptSettingsGeneral from "./pt/settings/general.json"
+import ptSettingsLibrary from "./pt/settings/library.json"
+import ptSettingsPlayers from "./pt/settings/players.json"
+import ptSettingsStreaming from "./pt/settings/streaming.json"
+import ptSettingsAdvanced from "./pt/settings/advanced.json"
+import ptSettingsUi from "./pt/settings/ui.json"
+import ptSettingsLocale from "./pt/settings/locale.json"
+
 // ---------------------------------------------------------------------------
 
 function flattenMessages(nestedMessages: Record<string, any>, prefix = "", acc: Record<string, string> = {}): Record<string, string> {
@@ -75,6 +96,13 @@ const esModules = [
     esSettingsAdvanced, esSettingsUi, esSettingsLocale
 ] as const;
 
+const ptModules = [
+    ptCommon, ptHome, ptNavigation, ptVideoPlayer, ptFeatures, ptMisc, ptEntry, 
+    ptManga, ptExtensions, ptAnilist, ptGettingStarted, ptChangelogTour, 
+    ptSettingsGeneral, ptSettingsLibrary, ptSettingsPlayers, ptSettingsStreaming, 
+    ptSettingsAdvanced, ptSettingsUi, ptSettingsLocale
+] as const;
+
 // Inferencia estricta de la intersección de todos los JSON base
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends ((k: infer I) => void) ? I : never;
 type BaseMessages = UnionToIntersection<typeof enModules[number]>;
@@ -89,15 +117,18 @@ type Paths<T> = T extends object ? {
 // El tipo estricto de todas las keys permitidas
 export type TranslationKeys = Paths<BaseMessages>;
 
-// Tipos para identificar rutas faltantes en caso de disparidad
-type EnPaths = Paths<BaseMessages>;
-type EsPaths = Paths<EsMessages>;
-export type MissingInEn = Exclude<EsPaths, EnPaths>;
-export type MissingInEs = Exclude<EnPaths, EsPaths>;
+// Validación de paridad bidireccional
+type CheckParity<TargetPaths, BasePaths = TranslationKeys> = 
+    Exclude<BasePaths, TargetPaths> extends never 
+    ? (Exclude<TargetPaths, BasePaths> extends never ? true : "Error: Keys extra en el idioma")
+    : "Error: Faltan keys en el idioma";
 
-// Validación bidireccional (Falla con TS2344 si faltan keys)
-type AssertParity<MissingEn extends never, MissingEs extends never> = true;
-type _VerifyParity = AssertParity<MissingInEn, MissingInEs>;
+type AssertParity<T extends true> = T;
+
+// Validadores por idioma (Arroja TS2344 si hay disparidad con el inglés)
+type _VerifyEs = AssertParity<CheckParity<Paths<EsMessages>>>;
+type PtMessages = UnionToIntersection<typeof ptModules[number]>;
+type _VerifyPt = AssertParity<CheckParity<Paths<PtMessages>>>;
 
 function flattenAndMerge(...modules: readonly Record<string, any>[]) {
     const result: Record<string, string> = {};
@@ -113,14 +144,23 @@ function flattenAndMerge(...modules: readonly Record<string, any>[]) {
     return result;
 }
 
-const flatEn = flattenAndMerge(...enModules);
-const flatEs = flattenAndMerge(...esModules);
-
 // ---------------------------------------------------------------------------
+// Diccionarios e inicialización diferida (Lazy Evaluation)
 
-const translations: Record<string, Record<string, string>> = {
-    en: flatEn,
-    es: flatEs,
+const languageModules: Record<string, readonly Record<string, any>[]> = {
+    en: enModules,
+    es: esModules,
+    pt: ptModules,
+};
+
+const translationsCache: Record<string, Record<string, string>> = {};
+
+function getTranslations(locale: string): Record<string, string> {
+    if (!translationsCache[locale]) {
+        const modules = languageModules[locale] || languageModules.en;
+        translationsCache[locale] = flattenAndMerge(...modules);
+    }
+    return translationsCache[locale];
 }
 
 const formattersCache = new Map<string, IntlMessageFormat>()
@@ -147,7 +187,10 @@ function interpolate(text: string, locale: string, params?: Record<string, any>)
 
 export function createTranslator(locale?: string) {
     const resolved = locale ?? defaultLocale
-    const messages = translations[resolved] || translations.en
+    
+    // Carga diferida del idioma activo y el fallback (inglés)
+    const messages = getTranslations(resolved)
+    const fallbackMessages = getTranslations("en")
 
     return function t(key: TranslationKeys, params?: Record<string, any>): string {
         const translation = messages[key as string]
@@ -167,7 +210,7 @@ export function createTranslator(locale?: string) {
             return interpolate(translation, resolved, params)
         }
 
-        const fallback = translations.en[key as string]
+        const fallback = fallbackMessages[key as string]
         if (fallback) {
             return interpolate(fallback, "en", params)
         }
