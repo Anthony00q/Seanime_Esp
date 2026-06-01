@@ -49,9 +49,10 @@ export function LoadingOverlayWithLogo({ refetch, title, compactBrandSpacing }: 
 }
 
 const splashBrandLetters = "Seanime".split("")
-const splashSubBrandLetters = "ESP".split("")
 
 function SplashBrandLockup({ compactSpacing }: { compactSpacing?: boolean }) {
+    const currentLocale = window.localStorage.getItem("seanime-locale") || "es"
+    const splashSubBrandLetters = currentLocale === "es" ? "ESP".split("") : []
     const [scope, animate] = useAnimate()
 
     React.useEffect(() => {
@@ -70,23 +71,25 @@ function SplashBrandLockup({ compactSpacing }: { compactSpacing?: boolean }) {
                 },
             )
 
-            await animate(
-                "[data-splash-brand-sub-letter]",
-                {
-                    opacity: 1,
-                    y: 0,
-                    filter: "blur(0px)",
-                },
-                {
-                    duration: 0.35,
-                    delay: stagger(0.06),
-                    ease: "easeOut",
-                },
-            )
+            if (splashSubBrandLetters.length > 0) {
+                await animate(
+                    "[data-splash-brand-sub-letter]",
+                    {
+                        opacity: 1,
+                        y: 0,
+                        filter: "blur(0px)",
+                    },
+                    {
+                        duration: 0.35,
+                        delay: stagger(0.06),
+                        ease: "easeOut",
+                    },
+                )
+            }
         }
 
         void runAnimation()
-    }, [animate])
+    }, [animate, splashSubBrandLetters.length])
 
     return (
         <div
@@ -112,21 +115,23 @@ function SplashBrandLockup({ compactSpacing }: { compactSpacing?: boolean }) {
                 ))}
             </div>
 
-            <div
-                data-splash-brand-sub
-                className="flex items-center justify-center gap-1 text-xs font-semibold uppercase leading-none tracking-[0.28em] text-[--muted] opacity-80"
-            >
-                {splashSubBrandLetters.map((letter, idx) => (
-                    <span
-                        key={`${letter}-${idx}`}
-                        data-splash-brand-sub-letter
-                        className="inline-block"
-                        style={{ opacity: 0, transform: "translateY(4px)", filter: "blur(5px)" }}
-                    >
-                        {letter}
-                    </span>
-                ))}
-            </div>
+            {splashSubBrandLetters.length > 0 && (
+                <div
+                    data-splash-brand-sub
+                    className="flex items-center justify-center gap-1 text-xs font-semibold uppercase leading-none tracking-[0.28em] text-[--muted] opacity-80"
+                >
+                    {splashSubBrandLetters.map((letter, idx) => (
+                        <span
+                            key={`${letter}-${idx}`}
+                            data-splash-brand-sub-letter
+                            className="inline-block"
+                            style={{ opacity: 0, transform: "translateY(4px)", filter: "blur(5px)" }}
+                        >
+                            {letter}
+                        </span>
+                    ))}
+                </div>
+            )}
         </div>
     )
 }
