@@ -498,7 +498,13 @@ export default function Page() {
                                     })
                                 }
 
-                                formRef.current?.reset(formRef.current.getValues())
+                                const newLocale = (data.locale && data.locale !== defaultLocale) ? data.locale : null
+
+                                if (newLocale) {
+                                    setPendingLocale(newLocale)
+                                }
+
+                                formRef.current?.reset(data)
 
                                 if (__isElectronDesktop__ && window.electron?.denshiSettings) {
                                     const denshiSettings = await window.electron.denshiSettings.get()
@@ -508,8 +514,7 @@ export default function Page() {
                                     })
                                 }
                                 
-                                if (data.locale && data.locale !== defaultLocale) {
-                                    setPendingLocale(data.locale)
+                                if (newLocale) {
                                     confirmRestart.open()
                                 }
                             }}
