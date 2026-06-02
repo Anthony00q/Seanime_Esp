@@ -6,14 +6,15 @@ Actualmente, el proyecto soporta de forma nativa **Español (`es`)**, **Inglés 
 
 ---
 
-## Reglas de Oro antes de empezar (CRÍTICO)
+## Directrices de Diseño y Estilo
 
-Para que tu traducción sea aprobada e integrada, debes seguir estas reglas de diseño:
+Para garantizar la consistencia visual y técnica del proyecto, toda nueva traducción debe cumplir con las siguientes directrices:
 
 1. **Conservación de Terminología Específica**: Evite traducir forzosamente términos técnicos o palabras que la comunidad de consumo de medios y anime ya utiliza como estándares universales (en inglés o japonés). Términos como *Fansubs, Seeding, Offset, Isekai, Shounen, Slice of Life* deben mantenerse en su idioma original para preservar su significado exacto.
 2. **Optimización de la Longitud en la Interfaz (UI)**: La traducción no debe alterar el diseño ni romper los componentes visuales. Compare siempre la longitud de sus textos con los de `es/` o `en/`. Si una traducción resulta excesivamente larga, busque una alternativa más compacta.
    - *Ejemplo: En lugar de "Transcodificação / Reprodução Direta", se prefiere la versión concisa "Transcoding / Direct Play" para evitar que el menú de ajustes se desborde.*
 3. **Paridad Estricta**: Cada archivo y cada clave ("key") de traducción DEBE existir de forma idéntica a la estructura de la carpeta base en inglés (`en/`). La omisión de una sola clave provocará fallos en la compilación.
+4. **Puntuación y Espacios Finales**: Preste especial atención a los espacios en blanco o signos de puntuación al final de las frases originales (ej. `"Tamaño: "`). Si el inglés tiene un espacio al final de la cadena, su traducción también debe conservarlo para evitar que el texto choque visualmente con los números o variables dinámicas en la interfaz.
 
 ---
 
@@ -21,14 +22,14 @@ Para que tu traducción sea aprobada e integrada, debes seguir estas reglas de d
 
 Usaremos **Francés (`fr`)** como ejemplo.
 
-### 1. Duplica la base de datos de traducciones
+### 1. Preparación de Archivos de Traducción
 
 Ve a la carpeta `seanime-web/src/locales/` y copia la carpeta `en/` entera. Renombra la copia con el código de tu idioma (ej. `fr/`).
 - Mantén la misma estructura de archivos (incluyendo la subcarpeta `settings/`).
 - No agregues comentarios (`//`) dentro de los archivos JSON.
 - Traduce los valores, pero **nunca** traduzcas las variables entre llaves (ej. `{address}` se queda como `{address}`).
 
-### 2. Registra el Idioma en la Configuración
+### 2. Registro del Idioma
 
 Edita `seanime-web/src/locales/config.ts`:
 
@@ -36,7 +37,7 @@ Edita `seanime-web/src/locales/config.ts`:
 // Agrega tu idioma al tipo Locale
 export type Locale = "en" | "es" | "pt" | "fr"
 
-// Ponle un nombre nativo para el selector de la UI
+// Ponle un nombre nativo para que aparezca automáticamente en el selector de la UI
 export const localeNames: Record<Locale, string> = {
     en: "English",
     es: "Español",
@@ -45,18 +46,7 @@ export const localeNames: Record<Locale, string> = {
 }
 ```
 
-Luego, agrégalo al menú visual editando `seanime-web/src/app/(main)/settings/_containers/server-settings.tsx`:
-
-```tsx
-const localeOptions = [
-    { label: "Español", value: "es" },
-    { label: "English", value: "en" },
-    { label: "Português", value: "pt" },
-    { label: "Français", value: "fr" }, // ← nuevo
-]
-```
-
-### 3. Integra tu idioma en el Validador Estricto (`index.ts`)
+### 3. Integración en el Validador Estricto (`index.ts`)
 
 Edita `seanime-web/src/locales/index.ts` para conectar tu carpeta al motor de la aplicación:
 
