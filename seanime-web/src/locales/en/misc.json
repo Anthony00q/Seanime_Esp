@@ -778,7 +778,7 @@
     "unsavedMediaBoth": "You have not saved {animeCount} anime and {mangaCount} manga that you are currently watching and reading.",
     "unsavedMediaAnimeOnly": "You have not saved {animeCount} anime that you are currently watching.",
     "unsavedMediaMangaOnly": "You have not saved {mangaCount} manga that you are currently reading.",
-    "localStorageSize": "Local storage size",
+    "localStorageSize": "Local storage size: ",
     "localChangesNotSynced": "Local changes not synced",
     "autoRefreshPaused": "Auto refresh paused",
     "uploadLocalChanges": "Upload local changes",

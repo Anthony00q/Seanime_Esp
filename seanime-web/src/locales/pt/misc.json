@@ -778,7 +778,7 @@
     "unsavedMediaBoth": "Você possui {animeCount} anime e {mangaCount} mangá em andamento que ainda não foram salvos localmente.",
     "unsavedMediaAnimeOnly": "Você possui {animeCount} anime em andamento que ainda não foi salvo localmente.",
     "unsavedMediaMangaOnly": "Você possui {mangaCount} mangá em andamento que ainda não foi salvo localmente.",
-    "localStorageSize": "Tamanho do armazenamento local",
+    "localStorageSize": "Tamanho do armazenamento local: ",
     "localChangesNotSynced": "Há alterações locais não sincronizadas",
     "autoRefreshPaused": "A atualização automática está pausada",
     "uploadLocalChanges": "Fazer upload das alterações locais",
