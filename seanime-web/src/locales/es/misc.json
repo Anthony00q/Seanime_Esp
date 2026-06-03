@@ -17,7 +17,8 @@
     "rereadPlural": "Re-leídas",
     "allLists": "Todas las listas",
     "lists": "Listas",
-    "all": "Todos"
+    "all": "Todos",
+    "showOnlyUnwatched": "Mostrar solo no vistos"
   },
   "shared": {
     "pageNotFoundTitle": "Página No Encontrada",
