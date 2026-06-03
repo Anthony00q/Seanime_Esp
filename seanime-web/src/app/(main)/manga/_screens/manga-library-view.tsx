@@ -315,7 +315,7 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
                             })
                         }}
                     >
-                        {t("manga.showAll")}
+                        {t("common.labels.showAll")}
                     </Button>
                 )}
 
@@ -353,7 +353,7 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
                             })
                         }}
                     >
-                        <LuBookOpenCheck /> {params.unreadOnly ? t("manga.showAll") : t("manga.unreadOnly")}
+                        <LuBookOpenCheck /> {params.unreadOnly ? t("common.labels.showAll") : t("manga.unreadOnly")}
                     </DropdownMenuItem>
                     <PluginMangaLibraryDropdownItems />
                 </DropdownMenu>}

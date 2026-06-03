@@ -143,7 +143,7 @@ export const LibraryCollectionListItem = React.memo(({ list, streamingMediaIds, 
                             })
                         }}
                     >
-                        {params.continueWatchingOnly ? t("manga.showAll") : t("manga.showOnlyUnwatched")}
+                        {params.continueWatchingOnly ? t("common.labels.showAll") : t("status.showOnlyUnwatched")}
                     </DropdownMenuItem>
                 </DropdownMenu>}
             </div>
