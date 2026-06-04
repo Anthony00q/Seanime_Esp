@@ -41,7 +41,7 @@ Si te gusta el proyecto, ¡deja una estrella en este y en el <a href="https://gi
 
 Este es un **fork multilingüe** del proyecto [Seanime](https://github.com/5rahim/seanime) creado por [5rahim](https://github.com/5rahim).
 
-**Objetivo:** Transformar el proyecto en un servidor escalable a múltiples idiomas (Español, Portugués, etc.) con foco principal en la comunidad hispanohablante, implementando una arquitectura de internacionalización (que el original no posee) y manteniendo el proyecto intacto y actualizado.
+**Misión:** Transformar Seanime en una plataforma accesible globalmente mediante una arquitectura robusta de internacionalización (i18n), característica ausente en el proyecto base. Nuestro enfoque principal es la comunidad hispanohablante y luso-parlante, asegurando paridad total e inmediata con las actualizaciones del proyecto original.
 
 **Estructura de ramas:**
 - `main` → espejo puro del upstream (sin modificaciones)
@@ -75,12 +75,12 @@ Este es un **fork multilingüe** del proyecto [Seanime](https://github.com/5rahi
 
 ## 📥 Cómo Empezar (Instalación)
 
-1. Ve a la página de [Releases](https://github.com/Anthony00q/Seanime_Esp/releases).
-2. Descarga la versión correspondiente a tu sistema operativo (Windows, macOS o Linux).
-3. Descomprime y ejecuta la aplicación.
+1. Dirígete a la sección de [Releases](https://github.com/Anthony00q/Seanime_Esp/releases).
+2. Descarga el archivo comprimido correspondiente a tu sistema operativo (Windows, Linux o macOS).
+3. Descomprime el archivo en una carpeta de tu preferencia y ejecuta la aplicación.
 
 > [!CAUTION]
-> **Instalación Limpia Requerida:** Si ya tenías instalada la versión original de Seanime (en inglés), **debes eliminarla por completo** antes de instalar esta nueva versión. Esto es crucial para evitar conflictos críticos o errores con las bases de datos y configuraciones del programa anterior.
+> **⚠️ Migración desde la versión original:** Si vienes de usar la versión original de Seanime (en inglés), es **estrictamente necesario** que realices una instalación limpia. Debes eliminar por completo la carpeta y los datos de la versión anterior antes de ejecutar este fork. Esto es vital para prevenir incompatibilidades con la base de datos y evitar que configuraciones previas corrompan el nuevo sistema de traducción.
 
 ---
 
@@ -90,7 +90,7 @@ El proyecto original no tiene soporte nativo para múltiples idiomas (i18n), por
 
 ### 🌍 Estado Actual (Traducción Completa)
 
-Actualmente, la traducción abarca el **100% de la interfaz de forma nativa para Español y Portugués (pt-BR)**, y el proyecto está diseñado arquitectónicamente para soportar cualquier idioma adicional con facilidad. Se mantiene en revisión continua para pulir contextos, asegurar la naturalidad gramatical y garantizar que cualquier nueva función añadida en el original sea adaptada sin demoras.
+El ecosistema actual cubre el **100% de la interfaz de forma nativa en Español y Portugués (pt-BR)**. La arquitectura modular diseñada permite escalar a cualquier idioma adicional sin fricciones. Se realiza un mantenimiento constante para pulir el contexto, asegurar la naturalidad del lenguaje y garantizar que cada actualización del proyecto original sea adaptada inmediatamente al lanzarse.
 
 **Detalles Técnicos del Sistema:**
 - **~3550+ keys** en 18 archivos JSON, con validación de tipo estricta para evitar errores.
