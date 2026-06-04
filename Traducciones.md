@@ -34,10 +34,19 @@ Ve a la carpeta `seanime-web/src/locales/` y copia la carpeta `en/` entera. Reno
 Edita `seanime-web/src/locales/config.ts`:
 
 ```typescript
-// Agrega tu idioma al tipo Locale
+// 1. Agrega tu idioma al tipo Locale
 export type Locale = "en" | "es" | "pt" | "fr"
 
-// Ponle un nombre nativo para que aparezca automáticamente en el selector de la UI
+// 2. IMPORTANTE: Agrega tu idioma a la validación de defaultLocale para que la app permita cargarlo
+export const defaultLocale: Locale = (() => {
+    if (typeof window !== "undefined") {
+        const saved = window.localStorage.getItem("seanime-locale")
+        if (saved === "en" || saved === "es" || saved === "pt" || saved === "fr") return saved as Locale // ← Agrega tu idioma aquí
+    }
+    return "es"
+})()
+
+// 3. Ponle un nombre nativo para que aparezca automáticamente en el selector de la UI
 export const localeNames: Record<Locale, string> = {
     en: "English",
     es: "Español",

@@ -838,7 +838,7 @@ function MatcherLogLine({ line }: { line: ParsedLogLine }) {
                         </span>
                     )}
                     {isCandidates && (
-                        <><span className="text-white">{d.candidates}</span> candidates found</>
+                        <><span className="text-white">{d.candidates}</span> {t("scanLogViewer.candidatesFound")}</>
                     )}
                     {isMetadata && (
                         <>

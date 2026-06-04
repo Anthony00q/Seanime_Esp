@@ -409,6 +409,7 @@ function ScanSummaryLog(props: { log: Summary_ScanSummaryLog }) {
 
 function ScanSummaryLogMessage(props: { message: string, level: string }) {
     const { message, level } = props
+    const t = createTranslator()
 
     if (!message.startsWith("PANIC")) {
         return <div
@@ -422,7 +423,7 @@ function ScanSummaryLogMessage(props: { message: string, level: string }) {
 
     return (
         <div className="w-full text-sm">
-            <p className="text-red-300 text-sm font-bold">Please report this issue on the GitHub repository</p>
+            <p className="text-red-300 text-sm font-bold">{t("scanSummaries.reportIssue")}</p>
             <pre className="p-4">
                 {message}
             </pre>
