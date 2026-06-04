@@ -1,14 +1,26 @@
-name: Sugerencia de Traducción
-description: Sugiere una mejora para una traducción existente
-title: 'sugerencia: '
+name: Reporte / Sugerencia de Traducción
+description: Reporta un error de traducción, texto en inglés o sugiere una mejora
+title: 'traducción: '
 labels:
-  - sugerencia
+  - traduccion
 body:
   - type: markdown
     attributes:
       value: |
         ⚠️ **Nota:** Este repositorio está dedicado a las **traducciones multilingües** de Seanime (Español, Portugués, etc) y a características exclusivas de este fork.
         Para bugs generales de la aplicación o nuevas funcionalidades principales, abre un issue en el [repositorio original](https://github.com/5rahim/seanime/issues).
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de Reporte
+      options:
+        - "🚨 Error grave (Texto en inglés, interfaz rota, caracteres extraños)"
+        - "💡 Sugerencia de mejora (El texto es funcional, pero podría sonar más natural)"
+        - "🔍 Error tipográfico / Gramatical"
+        - "Otro"
+    validations:
+      required: true
 
   - type: dropdown
     id: seccion
@@ -37,17 +49,17 @@ body:
   - type: textarea
     id: texto-actual
     attributes:
-      label: Traducción Actual
-      description: La traducción que existe ahora
+      label: Texto Actual
+      description: Qué dice ahora (copia el texto exacto o adjunta una captura abajo)
       placeholder: 'Ej: "Habilitar la reproducción automática"'
     validations:
       required: true
 
   - type: textarea
-    id: sugerencia
+    id: propuesta
     attributes:
-      label: Traducción Sugerida
-      description: La traducción alternativa que propones
+      label: Texto Propuesto / Sugerido
+      description: Qué debería decir
       placeholder: 'Ej: "Activar reproducción automática"'
     validations:
       required: true
@@ -55,14 +67,11 @@ body:
   - type: textarea
     id: razon
     attributes:
-      label: Razón
-      description: Por qué tu sugerencia es mejor (más natural, más precisa, más consistente con el resto, etc.)
-    validations:
-      required: true
+      label: Razón / Contexto (Opcional)
+      description: Por qué tu sugerencia es mejor, o en qué parte exacta de la pantalla viste el error.
 
   - type: textarea
-    id: contexto
+    id: captura
     attributes:
-      label: Contexto
-      description: Dónde se usa este texto (ayuda a decidir si el cambio es apropiado)
-      placeholder: "Ej: Es el label de un checkbox en Ajustes → Reproducción"
+      label: Captura de Pantalla
+      description: Si aplica, adjunta una captura del error
