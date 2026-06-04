@@ -306,7 +306,8 @@
     "errorsFound": "Errores encontrados",
     "warningsFound": "Advertencias encontradas",
     "viewScannerLogs": "Ver registros del escáner",
-    "matching": "coincidentes"
+    "matching": "coincidentes",
+    "reportIssue": "Por favor reporta este problema en el repositorio de GitHub"
   },
   "unmatchedFiles": {
     "noSuggestions": "No se encontraron sugerencias, intenta buscar manualmente",
@@ -364,8 +365,9 @@
     "restoredLog": "Registro de escaneo anterior restaurado",
     "failedToSaveLogStorage": "Error al guardar registro en almacenamiento del navegador",
     "loadingSavedLogs": "Cargando registros guardados...",
-    "dropLogFile": "Soltar archivo de registro",
-    "back": "Volver"
+    "dropLogFile": "Suelta el archivo de registro",
+    "back": "Volver",
+    "candidatesFound": "candidatos encontrados"
   },
   "onlinestream": {
     "watchPartyProviderNotInstalled": "Watch Party: El proveedor usado por el host no está instalado.",
