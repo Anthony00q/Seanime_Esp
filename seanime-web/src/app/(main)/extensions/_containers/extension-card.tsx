@@ -237,7 +237,7 @@ export function ExtensionCard(props: ExtensionCardProps) {
                     </Badge>}
                     {extension.lang?.toUpperCase() !== "MULTI" && <Badge className="border-transparent rounded-md !px-0" intent="unstyled">
                         {/*{extension.lang.toUpperCase()}*/}
-                        {LANGUAGES_LIST[extension.lang?.toLowerCase()]?.nativeName || extension.lang?.toUpperCase() || "Unknown"}
+                        {LANGUAGES_LIST[extension.lang?.toLowerCase()]?.nativeName || extension.lang?.toUpperCase() || t("common.messages.unknown")}
                     </Badge>}
                     {/*<Badge className="rounded-md" intent="unstyled">*/}
                     {/*    {capitalize(extension.language)}*/}

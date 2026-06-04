@@ -91,7 +91,8 @@
       "importFromRepo": "Importar do repositório",
       "importFromRepoDesc": "Importe e instale extensões automaticamente inserindo uma URL de repositório.",
       "importAll": "Importar todas",
-      "installAll": "Instalar todas"
+      "installAll": "Instalar todas",
+      "repoPlaceholder": "https://example.com/extensions.json ou { \"urls\": [...] }"
     },
     "addExtensionModal": {
       "title": "Adicionar extensão",

@@ -306,7 +306,8 @@
     "errorsFound": "Errors found",
     "warningsFound": "Warnings found",
     "viewScannerLogs": "View scanner logs",
-    "matching": "matching"
+    "matching": "matching",
+    "reportIssue": "Please report this issue on the GitHub repository"
   },
   "unmatchedFiles": {
     "noSuggestions": "No suggestions found, try searching manually",
@@ -365,7 +366,8 @@
     "failedToSaveLogStorage": "Failed to save log to browser storage",
     "loadingSavedLogs": "Loading saved logs...",
     "dropLogFile": "Drop log file",
-    "back": "Back"
+    "back": "Back",
+    "candidatesFound": "candidates found"
   },
   "onlinestream": {
     "watchPartyProviderNotInstalled": "Watch Party: The provider used by the host is not installed.",

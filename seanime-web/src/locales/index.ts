@@ -185,39 +185,58 @@ function interpolate(text: string, locale: string, params?: Record<string, any>)
     }
 }
 
+let defaultTranslator: ((key: TranslationKeys, params?: Record<string, any>) => string) | null = null;
+
 export function createTranslator(locale?: string) {
+    if (!locale && defaultTranslator) {
+        return defaultTranslator;
+    }
+
     const resolved = locale ?? defaultLocale
     
     // Carga diferida del idioma activo y el fallback (inglés)
     const messages = getTranslations(resolved)
     const fallbackMessages = getTranslations("en")
 
-    return function t(key: TranslationKeys, params?: Record<string, any>): string {
+    function t(key: TranslationKeys, params?: Record<string, any>): string {
         const translation = messages[key as string]
 
+        let safeParams = params;
+
         // Prevenir crashes de React por objetos crudos (Error #31)
-        if (params) {
-            for (const k in params) {
-                const val = params[k];
+        if (safeParams) {
+            let paramsCloned = false;
+            for (const k in safeParams) {
+                const val = safeParams[k];
                 if (val !== null && typeof val === 'object' && !Array.isArray(val) && !isValidElement(val)) {
+                    if (!paramsCloned) {
+                        safeParams = { ...safeParams };
+                        paramsCloned = true;
+                    }
                     console.warn(`[i18n] 🛡️ Prevención de crash: Se pasó un objeto crudo en el parámetro "${k}" para la key "${key}". Se convirtió a string.`);
-                    params[k] = val instanceof Error ? val.message : String(val);
+                    safeParams[k] = val instanceof Error ? val.message : String(val);
                 }
             }
         }
 
         if (translation) {
-            return interpolate(translation, resolved, params)
+            return interpolate(translation, resolved, safeParams)
         }
 
         const fallback = fallbackMessages[key as string]
         if (fallback) {
-            return interpolate(fallback, "en", params)
+            return interpolate(fallback, "en", safeParams)
         }
 
         console.warn(`[i18n] Missing translation for key: ${key as string}`)
         return key as string
     }
+
+    if (!locale) {
+        defaultTranslator = t;
+    }
+
+    return t;
 }
 
 export function useTranslation() {
