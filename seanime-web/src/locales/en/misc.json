@@ -848,7 +848,12 @@
     "anilist": {
       "upToDate": "Up to date",
       "entryUpdated": "Entry updated",
-      "entryDeleted": "Entry deleted"
+      "entryDeleted": "Entry deleted",
+      "rateLimited": "AniList: Rate limited, retrying in {seconds} seconds",
+      "apiBackOnline": "The AniList API is back online",
+      "apiIssues": "The AniList API is experiencing issues ({count} failures in {time}), switching to cache-only mode.",
+      "sessionExpired": "Your AniList session has expired. Please log in again.",
+      "updateProgressFailed": "Failed to update progress on AniList"
     },
     "playlist": {
       "created": "Created",
