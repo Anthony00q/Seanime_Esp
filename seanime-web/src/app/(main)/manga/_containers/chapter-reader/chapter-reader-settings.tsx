@@ -441,7 +441,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
 
                         <div className="flex gap-2 items-end">
                             <NumberInput
-                                label="Zoom"
+                                label={t("manga.chapterReader.zoom")}
                                 max={MANGA_PAGE_ZOOM_MAX * 100}
                                 min={MANGA_PAGE_ZOOM_MIN * 100}
                                 step={MANGA_PAGE_ZOOM_STEP * 100}
@@ -457,7 +457,7 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                                 disabled={pageZoom === MANGA_PAGE_ZOOM_DEFAULT}
                                 onClick={resetZoom}
                             >
-                                Reset
+                                {t("manga.chapterReader.reset")}
                             </Button>
                         </div>
 
@@ -499,8 +499,9 @@ export function ChapterReaderSettings(props: ChapterReaderSettingsProps) {
                             }}
                         >
                             <span className="flex flex-none items-center">
-                                {t("manga.chapterReader.resetDefaults")}
-                                for <span className="w-2"></span> {readingMode === MangaReadingMode.LONG_STRIP ? t("manga.readingModes.longStrip") : readingMode === MangaReadingMode.PAGED ? t("manga.readingModes.singlePage") : t("manga.readingModes.doublePage")}
+                                {t("manga.chapterReader.resetDefaultsFor", {
+                                    mode: readingMode === MangaReadingMode.LONG_STRIP ? t("manga.readingModes.longStrip") : readingMode === MangaReadingMode.PAGED ? t("manga.readingModes.singlePage") : t("manga.readingModes.doublePage")
+                                } as any)}
                             </span>
                         </Button>
                     </Card>

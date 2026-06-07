@@ -98,6 +98,8 @@
       "pageStretch": "Estiramiento de página",
       "stretchHelp": "'Estirar' obliga a todas las páginas a tener el mismo ancho que el contenedor en modo 'Cascada'.",
       "resetDefaults": "Restablecer valores predeterminados",
+      "resetDefaultsFor": "Restablecer para {mode}",
+      "zoom": "Zoom",
       "pageGap": "Espacio entre páginas",
       "pageGapShadow": "Sombra del espacio entre páginas",
       "readingDirection": "Dirección de lectura",
