@@ -93,7 +93,9 @@ El proyecto original no tiene soporte nativo para múltiples idiomas (i18n), por
 El ecosistema actual cubre el **100% de la interfaz de forma nativa en Español y Portugués (pt-BR)**. La arquitectura modular diseñada permite escalar a cualquier idioma adicional sin fricciones. Se realiza un mantenimiento constante para pulir el contexto, asegurar la naturalidad del lenguaje y garantizar que cada actualización del proyecto original sea adaptada inmediatamente al lanzarse.
 
 **Detalles Técnicos del Sistema:**
-- **~3550+ keys** en 18 archivos JSON, con validación de tipo estricta para evitar errores.
+- **Prevención de Errores (Anti-Colisiones)** — Motor estricto que aborta la ejecución con un Error Crítico si detecta llaves de traducción duplicadas, además de escudos anti-crash para variables de React (Error #31).
+- **Arquitectura de Módulos (Sharding)** — Separación de contextos amplios en múltiples submódulos especializados para facilitar el mantenimiento y evitar sobrecarga en archivos únicos.
+- **~3550+ keys** en más de 20 archivos JSON, con validación bidireccional y de tipo estricto en TypeScript para evitar llaves rotas u omitidas.
 - **Backend Go intacto** — Los mensajes nativos del servidor se interceptan y traducen en el frontend (`SERVER_TOAST_MAP`).
 - **Fechas y Calendarios** — Adaptación dinámica total del formato de fechas usando `date-fns` y parches de capitalización idiomática.
 - **Cero Hardcoding** — Ni un solo string visible "quemado" directamente en el código de React.
