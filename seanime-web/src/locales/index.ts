@@ -8,8 +8,14 @@ import enHome from "./en/home.json"
 import enNavigation from "./en/navigation.json"
 import enVideoPlayer from "./en/videoPlayer.json"
 import enFeatures from "./en/features.json"
-import enMisc from "./en/misc.json"
 import enEntry from "./en/entry.json"
+import enToasts from "./en/modules/toasts.json"
+import enDownloader from "./en/modules/downloader.json"
+import enLibrary from "./en/modules/library.json"
+import enStreaming from "./en/modules/streaming.json"
+import enPlayback from "./en/modules/playback.json"
+import enUiStatus from "./en/modules/ui-status.json"
+import enServices from "./en/modules/services.json"
 import enManga from "./en/manga.json"
 import enExtensions from "./en/extensions.json"
 import enAnilist from "./en/anilist.json"
@@ -29,8 +35,14 @@ import esHome from "./es/home.json"
 import esNavigation from "./es/navigation.json"
 import esVideoPlayer from "./es/videoPlayer.json"
 import esFeatures from "./es/features.json"
-import esMisc from "./es/misc.json"
 import esEntry from "./es/entry.json"
+import esToasts from "./es/modules/toasts.json"
+import esDownloader from "./es/modules/downloader.json"
+import esLibrary from "./es/modules/library.json"
+import esStreaming from "./es/modules/streaming.json"
+import esPlayback from "./es/modules/playback.json"
+import esUiStatus from "./es/modules/ui-status.json"
+import esServices from "./es/modules/services.json"
 import esManga from "./es/manga.json"
 import esExtensions from "./es/extensions.json"
 import esAnilist from "./es/anilist.json"
@@ -50,8 +62,14 @@ import ptHome from "./pt/home.json"
 import ptNavigation from "./pt/navigation.json"
 import ptVideoPlayer from "./pt/videoPlayer.json"
 import ptFeatures from "./pt/features.json"
-import ptMisc from "./pt/misc.json"
 import ptEntry from "./pt/entry.json"
+import ptToasts from "./pt/modules/toasts.json"
+import ptDownloader from "./pt/modules/downloader.json"
+import ptLibrary from "./pt/modules/library.json"
+import ptStreaming from "./pt/modules/streaming.json"
+import ptPlayback from "./pt/modules/playback.json"
+import ptUiStatus from "./pt/modules/ui-status.json"
+import ptServices from "./pt/modules/services.json"
 import ptManga from "./pt/manga.json"
 import ptExtensions from "./pt/extensions.json"
 import ptAnilist from "./pt/anilist.json"
@@ -83,21 +101,24 @@ function flattenMessages(nestedMessages: Record<string, any>, prefix = "", acc: 
 }
 
 const enModules = [
-    enCommon, enHome, enNavigation, enVideoPlayer, enFeatures, enMisc, enEntry, 
+    enCommon, enHome, enNavigation, enVideoPlayer, enFeatures, enEntry,
+    enToasts, enDownloader, enLibrary, enStreaming, enPlayback, enUiStatus, enServices,
     enManga, enExtensions, enAnilist, enGettingStarted, enChangelogTour, 
     enSettingsGeneral, enSettingsLibrary, enSettingsPlayers, enSettingsStreaming, 
     enSettingsAdvanced, enSettingsUi, enSettingsLocale
 ] as const;
 
 const esModules = [
-    esCommon, esHome, esNavigation, esVideoPlayer, esFeatures, esMisc, esEntry, 
+    esCommon, esHome, esNavigation, esVideoPlayer, esFeatures, esEntry,
+    esToasts, esDownloader, esLibrary, esStreaming, esPlayback, esUiStatus, esServices,
     esManga, esExtensions, esAnilist, esGettingStarted, esChangelogTour, 
     esSettingsGeneral, esSettingsLibrary, esSettingsPlayers, esSettingsStreaming, 
     esSettingsAdvanced, esSettingsUi, esSettingsLocale
 ] as const;
 
 const ptModules = [
-    ptCommon, ptHome, ptNavigation, ptVideoPlayer, ptFeatures, ptMisc, ptEntry, 
+    ptCommon, ptHome, ptNavigation, ptVideoPlayer, ptFeatures, ptEntry,
+    ptToasts, ptDownloader, ptLibrary, ptStreaming, ptPlayback, ptUiStatus, ptServices,
     ptManga, ptExtensions, ptAnilist, ptGettingStarted, ptChangelogTour, 
     ptSettingsGeneral, ptSettingsLibrary, ptSettingsPlayers, ptSettingsStreaming, 
     ptSettingsAdvanced, ptSettingsUi, ptSettingsLocale
@@ -136,7 +157,7 @@ function flattenAndMerge(...modules: readonly Record<string, any>[]) {
         const flat = flattenMessages(mod);
         for (const key in flat) {
             if (key in result) {
-                console.error(`[i18n] 💥 COLISIÓN DETECTADA: La key "${key}" está duplicada en múltiples archivos JSON.`);
+                throw new Error(`[i18n] 💥 COLISIÓN DETECTADA: La key "${key}" está duplicada en múltiples archivos JSON. El sistema i18n abortará para proteger la integridad estructural.`);
             }
             result[key] = flat[key];
         }

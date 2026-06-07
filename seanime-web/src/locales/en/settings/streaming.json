@@ -31,7 +31,8 @@
       "ffmpegPath": "FFmpeg path",
       "ffmpegPathHelp": "Path to the FFmpeg binary. Leave empty if the binary is already in your PATH.",
       "ffprobePath": "FFprobe path",
-      "ffprobePathHelp": "Path to the FFprobe binary. Leave empty if the binary is already in your PATH."
+      "ffprobePathHelp": "Path to the FFprobe binary. Leave empty if the binary is already in your PATH.",
+      "hwAccelIntelLowPower": "Intel Low Power"
     },
     "torrentstream": {
       "title": "Torrent Streaming",

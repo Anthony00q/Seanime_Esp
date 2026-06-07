@@ -31,7 +31,8 @@
       "ffmpegPath": "Caminho do FFmpeg",
       "ffmpegPathHelp": "Caminho para o binário do FFmpeg. Deixe vazio se o binário já estiver no seu PATH.",
       "ffprobePath": "Caminho do FFprobe",
-      "ffprobePathHelp": "Caminho para o binário do FFprobe. Deixe vazio se o binário já estiver no seu PATH."
+      "ffprobePathHelp": "Caminho para o binário do FFprobe. Deixe vazio se o binário já estiver no seu PATH.",
+      "hwAccelIntelLowPower": "Baixo Consumo Intel (Low Power)"
     },
     "torrentstream": {
       "title": "Streaming de Torrent",

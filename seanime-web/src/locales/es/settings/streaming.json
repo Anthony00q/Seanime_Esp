@@ -31,7 +31,8 @@
       "ffmpegPath": "Ruta de FFmpeg",
       "ffmpegPathHelp": "Ruta al binario de FFmpeg. Dejar vacío si el binario ya está en tu PATH.",
       "ffprobePath": "Ruta de FFprobe",
-      "ffprobePathHelp": "Ruta al binario de FFprobe. Dejar vacío si el binario ya está en tu PATH."
+      "ffprobePathHelp": "Ruta al binario de FFprobe. Dejar vacío si el binario ya está en tu PATH.",
+      "hwAccelIntelLowPower": "Bajo Consumo Intel (Low Power)"
     },
     "torrentstream": {
       "title": "Streaming Torrent",
@@ -77,9 +78,9 @@
       "apiKey": "Clave API",
       "apiKeyHelp": "Clave API de tu servicio debrid.",
       "none": "Ninguno",
-      "autoDownloaderNotUsingDebrid": "Descargador Automático no está usando Debrid",
-      "autoDownloaderNotUsingDebridDescription": "El Descargador Automático está activado pero no está usando Debrid. Cambia los",
-      "autoDownloaderSettings": "ajustes del Descargador Automático",
+      "autoDownloaderNotUsingDebrid": "Descargas Automáticas no está usando Debrid",
+      "autoDownloaderNotUsingDebridDescription": "Las Descargas Automáticas están activadas pero no están usando Debrid. Cambia los",
+      "autoDownloaderSettings": "ajustes de Descargas Automáticas",
       "toUseYourDebridService": "para usar tu servicio Debrid.",
       "debridStreaming": "Streaming Debrid",
       "debridStreamingDescription": "Configurar cómo se transmiten los programas desde tu servicio Debrid",

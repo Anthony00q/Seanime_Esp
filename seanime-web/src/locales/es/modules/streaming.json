@@ -1,0 +1,53 @@
+{
+  "onlinestream": {
+    "watchPartyProviderNotInstalled": "Watch Party: El proveedor usado por el host no está instalado.",
+    "findOtherProviders": "Buscar otros proveedores",
+    "selectProvider": "Seleccionar proveedor",
+    "cache": "Caché",
+    "emptyCacheDescription": "Vacía el caché si estás experimentando problemas con el stream.",
+    "emptyStreamCache": "Vaciar caché de stream",
+    "manualMatch": "Emparejamiento manual",
+    "switchToSubs": "Cambiar a subtítulos",
+    "switchToDub": "Cambiar a doblaje",
+    "switchToGridView": "Cambiar a vista de cuadrícula",
+    "switchToListView": "Cambiar a vista de lista",
+    "noProviderSelected": "Ningún proveedor seleccionado",
+    "providerError": "Error del proveedor",
+    "loadingStream": "Cargando stream",
+    "completeMovie": "Película completa",
+    "noWorkingProviders": "No se encontraron proveedores funcionales",
+    "stoppedTryingProviders": "Se detuvo la búsqueda de proveedores",
+    "startingWatchParty": "Iniciando watch party de streaming en línea",
+    "dubbedSearchHelp": "Solo aplica a proveedores que admiten doblajes en los resultados de búsqueda.",
+    "manualMatchDesc": "Emparejar este anime con un resultado de búsqueda del proveedor.",
+    "confirmMatchDesc": "¿Estás seguro de que quieres emparejar este anime con el resultado de búsqueda?"
+  },
+  "nativePlayer": {
+    "errorPlayingStream": "Ocurrió un error al reproducir el stream. {error}"
+  },
+  "mediastream": {
+    "codecNotSupported": "Codec no compatible para reproducción directa",
+    "playbackErrorOccurred": "Ocurrió un error de reproducción",
+    "filePathNotFoundEpisode": "Ruta de archivo no encontrada para este episodio",
+    "switchToGridView": "Cambiar a vista de cuadrícula",
+    "switchToListView": "Cambiar a vista de lista",
+    "playbackErrorTitle": "Error de reproducción",
+    "couldNotLoadMedia": "No se pudo cargar el contenedor de medios.",
+    "playback": "Reproducción",
+    "playbackInfo": "Información de reproducción",
+    "codecsCompatible": "Los codecs de video y audio del archivo son compatibles con este cliente. Se recomienda reproducción directa.",
+    "codecsNotCompatible": "Los codecs de video y audio del archivo no son compatibles con este cliente. Se necesita transcodificación.",
+    "streamType": "Tipo de stream",
+    "videoCodec": "Codec de video",
+    "audioCodec": "Codec de audio",
+    "mediaContainerData": "Datos del contenedor de medios",
+    "moreData": "Más datos",
+    "switchToTranscoding": "Cambiar a transcodificación",
+    "switchToTranscodingDesc": "Activa 'Preferir transcodificación' en los ajustes de streaming de medios si quieres cambiar a transcodificación",
+    "switchToDirectPlay": "Cambiar a reproducción directa"
+  },
+  "mediaLinks": {
+    "episodeNotFound": "Episodio no encontrado.",
+    "externalPlayerLinkNotSet": "El enlace de reproductor externo no está configurado."
+  }
+}
