@@ -2,7 +2,6 @@
   "home": {
     "empty": {
       "title": "Sua tela inicial está vazia",
-      "description": "Adicione itens para personalizar sua tela inicial.",
       "scanLibrary": "Escanear sua biblioteca de anime",
       "addSeries": "Adicionar séries à sua coleção",
       "addCurrentlyWatching": "Adicionar 'Assistindo' à biblioteca",
@@ -66,8 +65,7 @@
       "toasts": {
         "itemAdded": "Item inicial adicionado",
         "itemRemoved": "Item inicial removido",
-        "layoutUpdated": "Layout inicial atualizado",
-        "itemsUpdated": "Itens iniciais atualizados"
+        "layoutUpdated": "Layout inicial atualizado"
       }
     },
     "settingsButton": {
@@ -143,7 +141,6 @@
         "description": "Exibe uma lista de mangás que você tem na sua biblioteca por status."
       },
       "options": {
-        "name": "Nome",
         "text": "Texto",
         "sorting": {
           "label": "Ordenação",

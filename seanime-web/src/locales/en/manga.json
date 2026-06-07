@@ -7,7 +7,6 @@
     "refetching": "Refreshing...",
     "refetchingSources": "Fetching data from sources...",
     "unreadOnly": "Unread only",
-    "currentlyReading": "Currently reading",
     "doublePageModeNotSupported": "Double page mode is not supported on small screens",
     "couldNotGetPageDimensions": "Could not get page dimensions",
     "readingModes": {
@@ -35,14 +34,8 @@
       "scanlator": "Scanlator",
       "language": "Language",
       "number": "Number",
-      "date": "Date",
-      "pages": "Pages",
-      "downloaded": "Downloaded",
-      "read": "Read",
       "noChaptersFound": "No chapters found",
       "tryAnotherSource": "Try another source",
-      "selectProvider": "Select provider",
-      "missingEpisodes": "Missing chapters",
       "showUnread": "Show unread",
       "showDownloaded": "Show downloaded",
       "source": "Source",
@@ -50,7 +43,6 @@
       "reload": "Reload",
       "all": "All",
       "queued": "Queued",
-      "chapterId": "Chapter ID",
       "provider": "Provider",
       "chapterLabel": "Chapter {number}",
       "loadFiltersError": "Could not load chapter filters. Contact the extension developer: \"{error}\"",
@@ -86,15 +78,11 @@
       "chaptersCount": "{count} chapter{plural}",
       "notInCollection": "Not in your AniList collection",
       "noChaptersDownloaded": "No chapters downloaded",
-      "title": "Chapter downloads",
-      "noDownloads": "No downloads in progress",
-      "clearCompleted": "Clear completed",
       "mangaDownloads": "Manga downloads"
     },
     "chapterReader": {
       "reloadSources": "Reload sources",
       "reloadSourcesDescription": "This action will clear the cache of manga sources. You will need to reload chapters.",
-      "noPagesFound": "No pages found",
       "failedToLoadPages": "Failed to load pages",
       "loadPagesError": "An error occurred while trying to load the pages of this chapter.",
       "reloadPageOrSources": "Reload the page, reload sources, or change the source.",
@@ -110,7 +98,6 @@
       "pageStretch": "Page stretch",
       "stretchHelp": "'Stretch' forces all pages to have the same width as the container in 'Long strip' mode.",
       "resetDefaults": "Reset defaults",
-      "resetDefaultsFor": "Reset defaults for {mode}",
       "pageGap": "Page gap",
       "pageGapShadow": "Page gap shadow",
       "readingDirection": "Reading direction",
@@ -139,17 +126,7 @@
       "page": "Page {index}"
     },
     "entry": {
-      "read": "Read",
-      "chapters": "Chapters",
-      "downloadChapters": "Download chapters",
-      "markAsRead": "Mark as read",
-      "markAsUnread": "Mark as unread",
-      "tracking": "Tracking",
-      "recommendations": "Recommendations",
-      "relations": "Relations"
-    },
-    "libraryHeader": {
-      "title": "Manga Library"
+      "chapters": "Chapters"
     },
     "manualMapping": {
       "description": "Match this manga with a search result",

@@ -2,7 +2,6 @@
   "home": {
     "empty": {
       "title": "Your home screen is empty",
-      "description": "Add items to customize your home screen.",
       "scanLibrary": "Scan your anime library",
       "addSeries": "Add series to your collection",
       "addCurrentlyWatching": "Add currently watching series to library",
@@ -66,8 +65,7 @@
       "toasts": {
         "itemAdded": "Home item added",
         "itemRemoved": "Home item removed",
-        "layoutUpdated": "Home layout updated",
-        "itemsUpdated": "Home items updated"
+        "layoutUpdated": "Home layout updated"
       }
     },
     "settingsButton": {
@@ -143,7 +141,6 @@
         "description": "Displays a list of manga you have in your library by status."
       },
       "options": {
-        "name": "Name",
         "text": "Text",
         "sorting": {
           "label": "Sorting",
