@@ -7,7 +7,6 @@
     "refetching": "Atualizando...",
     "refetchingSources": "Buscando dados das fontes...",
     "unreadOnly": "Apenas não lidos",
-    "currentlyReading": "Lendo atualmente",
     "doublePageModeNotSupported": "O modo de página dupla não é suportado em telas pequenas",
     "couldNotGetPageDimensions": "Não foi possível obter as dimensões da página",
     "readingModes": {
@@ -35,14 +34,8 @@
       "scanlator": "Scan",
       "language": "Idioma",
       "number": "Número",
-      "date": "Data",
-      "pages": "Páginas",
-      "downloaded": "Baixado",
-      "read": "Lido",
       "noChaptersFound": "Nenhum capítulo encontrado",
       "tryAnotherSource": "Tentar outra fonte",
-      "selectProvider": "Selecionar provedor",
-      "missingEpisodes": "Capítulos ausentes",
       "showUnread": "Mostrar não lidos",
       "showDownloaded": "Mostrar baixados",
       "source": "Fonte",
@@ -50,7 +43,6 @@
       "reload": "Recarregar",
       "all": "Todos",
       "queued": "Na fila",
-      "chapterId": "ID do Capítulo",
       "provider": "Provedor",
       "chapterLabel": "Capítulo {number}",
       "loadFiltersError": "Não foi possível carregar os filtros do capítulo. Contate o desenvolvedor da extensão: \"{error}\"",
@@ -86,15 +78,11 @@
       "chaptersCount": "{count} capítulo{plural}",
       "notInCollection": "Não está na sua coleção AniList",
       "noChaptersDownloaded": "Nenhum capítulo baixado",
-      "title": "Downloads de Capítulos",
-      "noDownloads": "Nenhum download em andamento",
-      "clearCompleted": "Limpar concluídos",
       "mangaDownloads": "Downloads de Mangá"
     },
     "chapterReader": {
       "reloadSources": "Recarregar fontes",
       "reloadSourcesDescription": "Esta ação limpará o cache das fontes de mangá. Você precisará recarregar os capítulos.",
-      "noPagesFound": "Nenhuma página encontrada",
       "failedToLoadPages": "Falha ao carregar páginas",
       "loadPagesError": "Ocorreu um erro ao tentar carregar as páginas deste capítulo.",
       "reloadPageOrSources": "Recarregue a página, recarregue as fontes ou altere a fonte.",
@@ -110,7 +98,6 @@
       "pageStretch": "Esticar página",
       "stretchHelp": "'Esticar' força todas as páginas a terem a mesma largura do contêiner no modo 'Página longa'.",
       "resetDefaults": "Restaurar padrões",
-      "resetDefaultsFor": "Restaurar padrões para {mode}",
       "pageGap": "Espaçamento entre páginas",
       "pageGapShadow": "Sombra do espaçamento",
       "readingDirection": "Direção de leitura",
@@ -139,17 +126,7 @@
       "page": "Página {index}"
     },
     "entry": {
-      "read": "Ler",
-      "chapters": "Capítulos",
-      "downloadChapters": "Baixar capítulos",
-      "markAsRead": "Marcar como lido",
-      "markAsUnread": "Marcar como não lido",
-      "tracking": "Acompanhamento",
-      "recommendations": "Recomendações",
-      "relations": "Relações"
-    },
-    "libraryHeader": {
-      "title": "Biblioteca de Mangás"
+      "chapters": "Capítulos"
     },
     "manualMapping": {
       "description": "Corresponder este mangá com um resultado de busca",

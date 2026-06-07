@@ -81,7 +81,6 @@
       "roomCreatedSuccessfully": "Room created successfully",
       "disconnectedFromRoom": "Disconnected from room",
       "failedToDisconnectFromRoom": "Failed to disconnect from room: {error}",
-      "translationSettingsSaved": "Translation settings saved",
       "errorInitializingLibass": "Error initializing libass renderer: {error}",
       "failedToLoadSubtitle": "Failed to load subtitle track",
       "failedToConvertSubtitle": "Failed to convert subtitle track",
@@ -230,7 +229,7 @@
     "trendingManhua": "Trending manhua",
     "searchManga": "Search manga"
   },
-    "sorting": {
+  "sorting": {
     "trending": "Trending",
     "highestScore": "Highest score",
     "lowestScore": "Lowest score",
@@ -272,16 +271,6 @@
     "mostChaptersShortTitle": "with most chapters"
   },
   "search": {
-    "highestRated": "Highest rated",
-    "trending": "Trending",
-    "popular": "Popular",
-    "latest": "Latest",
-    "mostEpisodes": "Most episodes",
-    "mostChapters": "Most chapters",
-    "shows": "shows",
-    "manga": "manga",
-    "from": "from",
-    "mostLikedShows": "Most liked shows",
     "mostLikedAnime": "Most liked anime",
     "mostLikedManga": "Most liked manga",
     "discoverSeries": "Discover series",
