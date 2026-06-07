@@ -24,17 +24,17 @@ All notable changes to this project will be documented in this file.
 
 ## v3.8.4
 
-- ✨ Built-in torrent client (Experimental)
-  - Only available as a feature flag
-- ⚡️ Transcode: Support for Low-power Intel QSV
-- ⚡️ Manga: Support for zooming
-- ⚡️ AniList: Support for animated profile pictures
-- ⚡️ Plugin: Added dropdown actions for manga
-- ⚡️ Plugin: Option to change fetch redirect policy
-- ⚡️ VideoCore(Perf): Optimized subtitle parsing
-- 🦺 VideoCore: Fixed keybinds handling and input focus in mini player
-- 🦺 Extension: Fixed unified code diff
-- 🏗️ Core: Experimental support for gomobile
+- ✨ Cliente Torrent incorporado (Experimental)
+  - Solo disponible como flag de característica (feature flag)
+- ⚡️ Transcodificación: Soporte para Intel QSV de bajo consumo
+- ⚡️ Manga: Soporte para zoom
+- ⚡️ AniList: Soporte para fotos de perfil animadas
+- ⚡️ Plugin: Acciones desplegables añadidas para manga
+- ⚡️ Plugin: Opción para cambiar la política de redirección de "fetch"
+- ⚡️ VideoCore(Perf): Análisis de subtítulos optimizado
+- 🦺 VideoCore: Manejo de atajos de teclado y enfoque de entrada en el mini reproductor corregidos
+- 🦺 Extensión: Comparación (diff) de código unificada corregida
+- 🏗️ Núcleo: Soporte experimental para gomobile
 
 ## v3.8.3
 
