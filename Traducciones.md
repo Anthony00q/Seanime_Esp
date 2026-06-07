@@ -25,7 +25,7 @@ Usaremos **Francés (`fr`)** como ejemplo.
 ### 1. Preparación de Archivos de Traducción
 
 Ve a la carpeta `seanime-web/src/locales/` y copia la carpeta `en/` entera. Renombra la copia con el código de tu idioma (ej. `fr/`).
-- Mantén la misma estructura de archivos (incluyendo la subcarpeta `settings/`).
+- Mantén la misma estructura de archivos (incluyendo las subcarpetas `settings/` y `modules/`).
 - No agregues comentarios (`//`) dentro de los archivos JSON.
 - Traduce los valores, pero **nunca** traduzcas las variables entre llaves (ej. `{address}` se queda como `{address}`).
 
@@ -63,6 +63,7 @@ Edita `seanime-web/src/locales/index.ts` para conectar tu carpeta al motor de la
 // 1. Importa todos tus archivos JSON
 import frCommon from "./fr/common.json"
 import frHome from "./fr/home.json"
+import frToasts from "./fr/modules/toasts.json"
 // ... (importa todos)
 
 // 2. Agrúpalos en un array
@@ -71,7 +72,8 @@ const frModules = [
 ] as const;
 
 // 3. Genera la validación estricta (¡IMPORTANTÍSIMO!)
-// Esto arrojará error si te faltan keys o si tienes keys de sobra
+// Esto arrojará error TS2344 en compilación si te faltan/sobran keys, 
+// y lanzará un Error Crítico en ejecución si duplicas la misma key en dos archivos.
 type FrMessages = UnionToIntersection<typeof frModules[number]>;
 type _VerifyFr = AssertParity<CheckParity<Paths<FrMessages>>>;
 
