@@ -34,6 +34,9 @@ All notable changes to this project will be documented in this file.
 - ⚡️ VideoCore(Perf): Análisis de subtítulos optimizado
 - 🦺 VideoCore: Manejo de atajos de teclado y enfoque de entrada en el mini reproductor corregidos
 - 🦺 Extensión: Comparación (diff) de código unificada corregida
+- 🌐 Multilenguaje (Fork): ¡Nuevo soporte multi-idioma! Ahora puedes cambiar entre Español, Inglés y Portugués directamente desde los ajustes.
+- ⚡️ Multilenguaje (Fork): El idioma ahora es dinámico y se aplica en toda la interfaz (calendarios, fechas, notificaciones y bandeja del sistema).
+- 🦺 i18n (Fork): Motor de traducción interno completamente rediseñado para ser más rápido, modular y a prueba de errores de la interfaz.
 - 🏗️ Núcleo: Soporte experimental para gomobile
 
 ## v3.8.3
