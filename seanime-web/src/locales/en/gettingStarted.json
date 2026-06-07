@@ -1,11 +1,5 @@
 {
   "gettingStarted": {
-    "title": "Getting Started",
-    "description": "Let's set up Seanime for the best experience.",
-    "next": "Next",
-    "previous": "Previous",
-    "skip": "Skip",
-    "finish": "Finish",
     "steps": {
       "library": {
         "title": "Local Library",

@@ -1,10 +1,5 @@
 {
   "videoPlayer": {
-    "tabs": {
-      "subtitles": "Subtítulos",
-      "translation": "Traducción",
-      "keybindings": "Atajos de Teclado"
-    },
     "defaults": "Valores Predeterminados",
     "rendering": "Renderizado",
     "preferredSubtitleLanguage": "Idioma de Subtítulos Preferido",
@@ -38,7 +33,7 @@
       "mayContainSpoilers": "Puede contener spoilers.",
       "searchCharacters": "Buscar personajes...",
       "noResults": "Sin resultados",
-        "loading": "Cargando...",
+      "loading": "Cargando...",
       "noDetailsAvailable": "No hay detalles disponibles."
     },
     "settingsMenu": {
@@ -135,12 +130,12 @@
       "lime": "Lima"
     },
     "opacity": {
-      "100": "100%",
-      "80": "80%",
-      "70": "70%",
-      "50": "50%",
+      "0": "0%",
       "25": "25%",
-      "0": "0%"
+      "50": "50%",
+      "70": "70%",
+      "80": "80%",
+      "100": "100%"
     },
     "preferences": {
       "title": "Preferencias",
@@ -152,45 +147,26 @@
     },
     "keybindings": {
       "seekForwardFine": "Avanzar (Preciso)",
-      "seekForwardFineDesc": "Avanzar (preciso)",
       "seekBackwardFine": "Retroceder (Preciso)",
-      "seekBackwardFineDesc": "Retroceder (preciso)",
       "seekForward": "Avanzar",
-      "seekForwardDesc": "Avanzar",
       "seekBackward": "Retroceder",
-      "seekBackwardDesc": "Retroceder",
       "increaseSpeed": "Aumentar Velocidad",
-      "increaseSpeedDesc": "Aumentar velocidad de reproducción",
       "decreaseSpeed": "Reducir Velocidad",
-      "decreaseSpeedDesc": "Reducir velocidad de reproducción",
       "nextChapter": "Siguiente Capítulo",
-      "nextChapterDesc": "Saltar al siguiente capítulo",
       "previousChapter": "Capítulo Anterior",
-      "previousChapterDesc": "Saltar al capítulo anterior",
       "nextEpisode": "Siguiente Episodio",
       "nextEpisodeDesc": "Reproducir siguiente episodio",
       "previousEpisode": "Episodio Anterior",
-      "previousEpisodeDesc": "Reproducir episodio anterior",
       "cycleSubtitles": "Cambiar Subtítulos",
-      "cycleSubtitlesDesc": "Cambiar entre pistas de subtítulos",
       "fullscreen": "Pantalla Completa",
-      "fullscreenDesc": "Alternar pantalla completa",
       "pictureInPicture": "Imagen en Imagen",
-      "pictureInPictureDesc": "Alternar imagen en imagen",
       "takeScreenshot": "Captura de Pantalla",
-      "takeScreenshotDesc": "Tomar captura de pantalla",
       "volumeUp": "Subir Volumen",
-      "volumeUpDesc": "Aumentar volumen",
       "volumeDown": "Bajar Volumen",
-      "volumeDownDesc": "Reducir volumen",
       "mute": "Silenciar",
-      "muteDesc": "Alternar silencio",
       "cycleAudio": "Cambiar Audio",
-      "cycleAudioDesc": "Cambiar entre pistas de audio",
       "displayCharacters": "Mostrar Personajes",
-      "displayCharactersDesc": "Alternar panel de personajes",
       "statsForNerds": "Stats for Nerds",
-      "statsForNerdsDesc": "Alternar stats for nerds",
       "valueLabels": {
         "seconds": "Segundos",
         "percent": "Porcentaje",
@@ -277,8 +253,6 @@
       "auto": "Auto"
     },
     "loading": "Cargando...",
-    "noNextEpisode": "No hay siguiente episodio",
-    "noPreviousEpisode": "No hay episodio anterior",
     "fillerEpisode": "Episodio de relleno",
     "menuAudio": "Audio",
     "menuVideo": "Video",

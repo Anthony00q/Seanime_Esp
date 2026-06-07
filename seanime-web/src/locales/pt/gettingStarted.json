@@ -1,11 +1,5 @@
 {
   "gettingStarted": {
-    "title": "Primeiros Passos",
-    "description": "Vamos configurar o Seanime para a melhor experiência.",
-    "next": "Próximo",
-    "previous": "Anterior",
-    "skip": "Pular",
-    "finish": "Concluir",
     "steps": {
       "library": {
         "title": "Biblioteca Local",

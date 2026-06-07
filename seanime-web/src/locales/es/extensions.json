@@ -96,11 +96,9 @@
     },
     "addExtensionModal": {
       "title": "Añadir extensión",
-      "description": "Introduce la URL del archivo .js o .json de la extensión.",
-      "urlPlaceholder": "https://ejemplo.com/extension.js"
+      "description": "Introduce la URL del archivo .js o .json de la extensión."
     },
     "userConfig": {
-      "title": "Configuración de la extensión",
       "preferences": "Preferencias",
       "editPreferencesDesc": "Puedes editar las preferencias de esta extensión aquí.",
       "fillRequiredConfig": "Completa las opciones de configuración requeridas."
@@ -108,7 +106,6 @@
     "card": {
       "builtIn": "Integrada",
       "disabled": "Desactivada",
-      "preferences": "Preferencias",
       "info": "Información",
       "documentation": "Documentación",
       "code": "Código",
@@ -177,7 +174,6 @@
       "failedToFetchExtensionsDefault": "Error al obtener extensiones de la URL por defecto",
       "installingUpdates": "Instalando actualizaciones...",
       "skippedUnsafeFlags": "Omitido \"{extensionID}\" porque usa flags inseguros. Actualízalo manualmente.",
-      "extensionInstalled": "{message}",
       "extensionSuccessfullyInstalled": "\"{name}\" instalada exitosamente",
       "extensionSuccessfullyUpdated": "\"{name}\" actualizada exitosamente",
       "extensionsFromRepoInstalled": "{count} extensiones instaladas desde el repositorio",

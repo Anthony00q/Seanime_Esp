@@ -42,7 +42,6 @@
     "openExternalPlayer": "Abrir no player externo",
     "playlistTitle": "Playlist",
     "remainingEpisodes": "{count} episódio depois deste",
-    "remainingEpisodes_plural": "{count} episódios depois deste",
     "nextLabel": "Próximo",
     "playNext": "Reproduzir próximo",
     "playerClosed": "Player fechado"
@@ -140,7 +139,6 @@
       "delete": "Excluir",
       "edit": "Editar",
       "global": "Global",
-      "globalHelp": "Aplicar este perfil a todas as regras automaticamente",
       "conditions": "condições"
     },
     "ruleForm": {
@@ -371,7 +369,6 @@
   },
   "onlinestream": {
     "watchPartyProviderNotInstalled": "Watch Party: O provedor usado pelo host não está instalado.",
-    "playbackErrorRetrying": "Erro de reprodução, tentando outro servidor...",
     "findOtherProviders": "Procurar outros provedores",
     "selectProvider": "Selecionar provedor",
     "cache": "Cache",
@@ -790,9 +787,6 @@
     "savedAnime": "Animes salvos",
     "savedManga": "Mangás salvos",
     "syncing": "Sincronizando"
-  },
-  "handlePlayMedia": {
-    "externalPlayerNotSet": "Player externo não configurado"
   },
   "debridPage": {
     "refreshed": "Atualizado",
