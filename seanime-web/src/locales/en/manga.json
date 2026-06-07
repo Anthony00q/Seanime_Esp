@@ -98,6 +98,8 @@
       "pageStretch": "Page stretch",
       "stretchHelp": "'Stretch' forces all pages to have the same width as the container in 'Long strip' mode.",
       "resetDefaults": "Reset defaults",
+      "resetDefaultsFor": "Reset defaults for {mode}",
+      "zoom": "Zoom",
       "pageGap": "Page gap",
       "pageGapShadow": "Page gap shadow",
       "readingDirection": "Reading direction",

@@ -98,6 +98,8 @@
       "pageStretch": "Esticar página",
       "stretchHelp": "'Esticar' força todas as páginas a terem a mesma largura do contêiner no modo 'Página longa'.",
       "resetDefaults": "Restaurar padrões",
+      "resetDefaultsFor": "Restaurar padrões para {mode}",
+      "zoom": "Zoom",
       "pageGap": "Espaçamento entre páginas",
       "pageGapShadow": "Sombra do espaçamento",
       "readingDirection": "Direção de leitura",
