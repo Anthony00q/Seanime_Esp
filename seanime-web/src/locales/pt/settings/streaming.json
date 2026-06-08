@@ -68,7 +68,8 @@
       "dropTorrent": "Descartar torrent",
       "preloadNextEpisode": "Pré-carregar o próximo episódio",
       "preloadNextEpisodeHelp": "Começa a baixar o próximo episódio em segundo plano.",
-      "preloadNextEpisodeMoreHelp": "Esta funcionalidade está apenas parcialmente implementada. Não confie que funcionará corretamente."
+      "preloadNextEpisodeMoreHelp": "Esta funcionalidade está apenas parcialmente implementada. Não confie que funcionará corretamente.",
+      "badgeUnstable": "Instável"
     },
     "debridService": {
       "title": "Serviço Debrid",
