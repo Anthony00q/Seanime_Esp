@@ -68,7 +68,8 @@
       "dropTorrent": "Drop torrent",
       "preloadNextEpisode": "Preload next episode",
       "preloadNextEpisodeHelp": "Starts downloading the next episode in the background.",
-      "preloadNextEpisodeMoreHelp": "This feature is only partially implemented. Do not rely on it working correctly."
+      "preloadNextEpisodeMoreHelp": "This feature is only partially implemented. Do not rely on it working correctly.",
+      "badgeUnstable": "Unstable"
     },
     "debridService": {
       "title": "Debrid Service",

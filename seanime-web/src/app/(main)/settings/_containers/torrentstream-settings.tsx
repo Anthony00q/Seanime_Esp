@@ -156,7 +156,7 @@ export function TorrentstreamSettings(props: TorrentstreamSettingsProps) {
                             <Field.Switch
                                 side="right"
                                 name="preloadNextStream"
-                                label={<span>{t("settings.torrentstream.preloadNextEpisode")} <ExperimentalBadge title="Unstable" /></span>}
+                                label={<span>{t("settings.torrentstream.preloadNextEpisode")} <ExperimentalBadge title={t("settings.torrentstream.badgeUnstable")} /></span>}
                                 help={t("settings.torrentstream.preloadNextEpisodeHelp")}
                                 moreHelp={t("settings.torrentstream.preloadNextEpisodeMoreHelp")}
                             />
