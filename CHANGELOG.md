@@ -12,15 +12,12 @@ All notable changes to this project will be documented in this file.
 
 ## v3.8.6
 
-- 🦺 Fixed settings regression introduced in v3.8.5
-
-## v3.8.5
-
-- 🦺 Built-in Torrent Client: Fixed runtime error causing by pausing
-- 🦺 Built-in Torrent Client: Added in-memory map fallback
-- 🦺 VideoCore: Potential fix for body pointer events
-- 🦺 Manga: Potential fix for image format and size detection failing
-- 🏗️ Core: Improved support for gomobile
+- 🦺 Ajustes: Se corrigió una regresión introducida en los ajustes en la v3.8.5
+- 🦺 Cliente Torrent Integrado: Se corrigió un error de ejecución causado al pausar
+- 🦺 Cliente Torrent Integrado: Se añadió un mapa en memoria de respaldo
+- 🦺 VideoCore: Posible solución para eventos de puntero (pointer events)
+- 🦺 Manga: Posible corrección para la detección del formato y tamaño de las imágenes
+- 🏗️ Núcleo: Soporte mejorado para gomobile
 
 ## v3.8.4
 
