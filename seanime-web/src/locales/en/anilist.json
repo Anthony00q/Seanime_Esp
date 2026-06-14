@@ -54,6 +54,15 @@
       "PLANNING": "Planning",
       "REPEATING": "Rewatching"
     },
+    "listTitles": {
+      "CURRENT_ANIME": "Watching",
+      "CURRENT_MANGA": "Reading",
+      "COMPLETED": "Completed",
+      "PAUSED": "Paused",
+      "DROPPED": "Dropped",
+      "PLANNING": "Planning",
+      "REPEATING": "Rewatching"
+    },
     "characters": {
       "title": "Characters",
       "yearsOld": "{age} years old",

@@ -20,6 +20,15 @@
     "all": "Todos",
     "showOnlyUnwatched": "Mostrar apenas não assistidos"
   },
+  "listTitles": {
+    "current": "Assistindo",
+    "currentManga": "Lendo",
+    "repeating": "Reassistindo",
+    "planning": "Planejados",
+    "paused": "Pausados",
+    "completed": "Concluídos",
+    "dropped": "Descartados"
+  },
   "serverStatus": {
     "featureDisabled": "Recurso desativado"
   },

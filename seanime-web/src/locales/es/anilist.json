@@ -54,6 +54,15 @@
       "PLANNING": "Planeado",
       "REPEATING": "Reviendo"
     },
+    "listTitles": {
+      "CURRENT_ANIME": "Viendo",
+      "CURRENT_MANGA": "Leyendo",
+      "COMPLETED": "Completados",
+      "PAUSED": "Pausados",
+      "DROPPED": "Droppeados",
+      "PLANNING": "Planeados",
+      "REPEATING": "Reviendo"
+    },
     "characters": {
       "title": "Personajes",
       "yearsOld": "{age} años",
