@@ -300,7 +300,7 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
         <React.Fragment>
 
             <div className="flex gap-3 items-center" data-manga-library-view-collection-list-item-header-container>
-                <h2 data-manga-library-view-collection-list-item-header-title>{list.type === "CURRENT" ? t("status.continueReading") : list.type === "PLANNING" ? t("status.planning") : list.type === "PAUSED" ? t("status.paused") : list.type === "COMPLETED" ? t("status.completed") : list.type}</h2>
+                <h2 data-manga-library-view-collection-list-item-header-title>{list.type === "CURRENT" ? t("status.continueReading") : list.type === "PLANNING" ? t("listTitles.planning") : list.type === "PAUSED" ? t("listTitles.paused") : list.type === "COMPLETED" ? t("listTitles.completed") : list.type === "DROPPED" ? t("listTitles.dropped") : list.type === "REPEATING" ? t("listTitles.repeating") : list.type}</h2>
                 <div className="flex flex-1" data-manga-library-view-collection-list-item-header-spacer></div>
 
                 {list.type === "CURRENT" && params.unreadOnly && (

@@ -54,6 +54,15 @@
       "PLANNING": "Planejando",
       "REPEATING": "Reassistindo"
     },
+    "listTitles": {
+      "CURRENT_ANIME": "Assistindo",
+      "CURRENT_MANGA": "Lendo",
+      "COMPLETED": "Concluídos",
+      "PAUSED": "Pausados",
+      "DROPPED": "Descartados",
+      "PLANNING": "Planejados",
+      "REPEATING": "Reassistindo"
+    },
     "characters": {
       "title": "Personagens",
       "yearsOld": "{age} anos",

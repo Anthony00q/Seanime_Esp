@@ -125,7 +125,7 @@ export const LibraryCollectionListItem = React.memo(({ list, streamingMediaIds, 
                     className={cn(
                         "p-0 m-0",
                     )}
-                >{list.type === "CURRENT" ? t("status.currentlyWatching") : list.type === "PLANNING" ? t("status.planning") : list.type === "PAUSED" ? t("status.paused") : list.type === "COMPLETED" ? t("status.completed") : list.type === "DROPPED" ? t("status.dropped") : list.type === "REPEATING" ? t("status.repeating") : list.type}</h2>
+                >{list.type === "CURRENT" ? t("listTitles.current") : list.type === "PLANNING" ? t("listTitles.planning") : list.type === "PAUSED" ? t("listTitles.paused") : list.type === "COMPLETED" ? t("listTitles.completed") : list.type === "DROPPED" ? t("listTitles.dropped") : list.type === "REPEATING" ? t("listTitles.repeating") : list.type}</h2>
                 {type === "grid" && <div className="flex flex-1"></div>}
                 {isCurrentlyWatching && <DropdownMenu
                     trigger={<IconButton

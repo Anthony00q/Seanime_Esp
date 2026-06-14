@@ -963,15 +963,15 @@ function MyLists(props: { item: Models_HomeItem }) {
                 <AnilistAnimeEntryList type={item.options?.type ?? "anime"} layout={item.options?.layout} list={planningList} />
             </>}
             {(!!pausedList?.entries?.length && !isCustomList && (!item.options?.statuses?.length || item.options?.statuses?.includes("PAUSED"))) && <>
-                <h2>{t("status.paused")} <span className="text-[--muted] font-medium ml-3">{pausedList?.entries?.length}</span></h2>
+                <h2>{t("listTitles.paused")} <span className="text-[--muted] font-medium ml-3">{pausedList?.entries?.length}</span></h2>
                 <AnilistAnimeEntryList type={item.options?.type ?? "anime"} layout={item.options?.layout} list={pausedList} />
             </>}
             {(!!completedList?.entries?.length && !isCustomList && (!item.options?.statuses?.length || item.options?.statuses?.includes("COMPLETED"))) && <>
-                <h2>{t("status.completed")} <span className="text-[--muted] font-medium ml-3">{completedList?.entries?.length}</span></h2>
+                <h2>{t("listTitles.completed")} <span className="text-[--muted] font-medium ml-3">{completedList?.entries?.length}</span></h2>
                 <AnilistAnimeEntryList type={item.options?.type ?? "anime"} layout={item.options?.layout} list={completedList} />
             </>}
             {(!!droppedList?.entries?.length && !isCustomList && (!item.options?.statuses?.length || item.options?.statuses?.includes("DROPPED"))) && <>
-                <h2>{t("status.dropped")} <span className="text-[--muted] font-medium ml-3">{droppedList?.entries?.length}</span></h2>
+                <h2>{t("listTitles.dropped")} <span className="text-[--muted] font-medium ml-3">{droppedList?.entries?.length}</span></h2>
                 <AnilistAnimeEntryList type={item.options?.type ?? "anime"} layout={item.options?.layout} list={droppedList} />
             </>}
             {customLists?.map(list => {

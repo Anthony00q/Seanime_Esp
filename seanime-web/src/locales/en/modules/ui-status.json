@@ -20,6 +20,15 @@
     "all": "All",
     "showOnlyUnwatched": "Show only unwatched"
   },
+  "listTitles": {
+    "current": "Watching",
+    "currentManga": "Reading",
+    "repeating": "Repeating",
+    "planning": "Planning",
+    "paused": "Paused",
+    "completed": "Completed",
+    "dropped": "Dropped"
+  },
   "serverStatus": {
     "featureDisabled": "Feature disabled"
   },

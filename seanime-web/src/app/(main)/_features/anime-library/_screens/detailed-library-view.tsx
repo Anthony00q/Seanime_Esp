@@ -183,7 +183,7 @@ const LibraryCollectionListItem = React.memo(({ list, streamingMediaIds, type }:
 
     return (
         <React.Fragment key={list.type}>
-            <h2>{list.type === "CURRENT" ? t("status.currentlyWatching") : list.type === "PLANNING" ? t("status.planning") : list.type === "PAUSED" ? t("status.paused") : list.type === "COMPLETED" ? t("status.completed") : list.type === "DROPPED" ? t("status.dropped") : list.type === "REPEATING" ? t("status.repeating") : list.type} <span className="text-[--muted] font-medium ml-3">{list?.entries?.length ?? 0}</span></h2>
+            <h2>{list.type === "CURRENT" ? t("listTitles.current") : list.type === "PLANNING" ? t("listTitles.planning") : list.type === "PAUSED" ? t("listTitles.paused") : list.type === "COMPLETED" ? t("listTitles.completed") : list.type === "DROPPED" ? t("listTitles.dropped") : list.type === "REPEATING" ? t("listTitles.repeating") : list.type} <span className="text-[--muted] font-medium ml-3">{list?.entries?.length ?? 0}</span></h2>
             {type === "grid" && <MediaCardLazyGrid itemCount={list?.entries?.length || 0}>
                 {list.entries?.map(entry => {
                     return <LibraryCollectionEntryItem key={entry.mediaId} entry={entry} streamingMediaIds={streamingMediaIds} type={type} />
@@ -307,11 +307,11 @@ export function SearchOptions() {
                     items={[
                         { name: t("status.lists"), isCurrent: selectedIndex === "-", onClick: () => setSelectedIndex("-") },
                         { name: t("status.all"), isCurrent: selectedIndex === "all", onClick: () => setSelectedIndex("all") },
-                        { name: t("status.current"), isCurrent: selectedIndex === "CURRENT", onClick: () => setSelectedIndex("CURRENT") },
-                        { name: t("status.planning"), isCurrent: selectedIndex === "PLANNING", onClick: () => setSelectedIndex("PLANNING") },
-                        { name: t("status.paused"), isCurrent: selectedIndex === "PAUSED", onClick: () => setSelectedIndex("PAUSED") },
-                        { name: t("status.completed"), isCurrent: selectedIndex === "COMPLETED", onClick: () => setSelectedIndex("COMPLETED") },
-                        { name: t("status.dropped"), isCurrent: selectedIndex === "DROPPED", onClick: () => setSelectedIndex("DROPPED") },
+                        { name: t("listTitles.current"), isCurrent: selectedIndex === "CURRENT", onClick: () => setSelectedIndex("CURRENT") },
+                        { name: t("listTitles.planning"), isCurrent: selectedIndex === "PLANNING", onClick: () => setSelectedIndex("PLANNING") },
+                        { name: t("listTitles.paused"), isCurrent: selectedIndex === "PAUSED", onClick: () => setSelectedIndex("PAUSED") },
+                        { name: t("listTitles.completed"), isCurrent: selectedIndex === "COMPLETED", onClick: () => setSelectedIndex("COMPLETED") },
+                        { name: t("listTitles.dropped"), isCurrent: selectedIndex === "DROPPED", onClick: () => setSelectedIndex("DROPPED") },
                     ]}
                 />
             </div>

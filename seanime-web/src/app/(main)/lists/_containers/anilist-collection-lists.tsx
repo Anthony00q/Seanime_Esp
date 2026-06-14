@@ -124,27 +124,27 @@ export function AnilistCollectionLists() {
 
                     <div className="py-6 space-y-6" data-anilist-collection-lists-stack>
                         {(!!currentList?.entries?.length && ["-", "CURRENT"].includes(selectedIndex)) && <>
-                            <h2>{pageType === "manga" ? t("anilist.listStatuses.CURRENT_MANGA") : t("anilist.listStatuses.CURRENT_ANIME")} <span className="text-[--muted] font-medium ml-3">{currentList?.entries?.length}</span></h2>
+                            <h2>{pageType === "manga" ? t("anilist.listTitles.CURRENT_MANGA") : t("anilist.listTitles.CURRENT_ANIME")} <span className="text-[--muted] font-medium ml-3">{currentList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={currentList} />
                         </>}
                         {(!!repeatingList?.entries?.length && ["-", "REPEATING"].includes(selectedIndex)) && <>
-                            <h2>{t("anilist.listStatuses.REPEATING")} <span className="text-[--muted] font-medium ml-3">{repeatingList?.entries?.length}</span></h2>
+                            <h2>{t("anilist.listTitles.REPEATING")} <span className="text-[--muted] font-medium ml-3">{repeatingList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={repeatingList} />
                         </>}
                         {(!!planningList?.entries?.length && ["-", "PLANNING"].includes(selectedIndex)) && <>
-                            <h2>{t("anilist.listStatuses.PLANNING")} <span className="text-[--muted] font-medium ml-3">{planningList?.entries?.length}</span></h2>
+                            <h2>{t("anilist.listTitles.PLANNING")} <span className="text-[--muted] font-medium ml-3">{planningList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={planningList} />
                         </>}
                         {(!!pausedList?.entries?.length && ["-", "PAUSED"].includes(selectedIndex)) && <>
-                            <h2>{t("anilist.listStatuses.PAUSED")} <span className="text-[--muted] font-medium ml-3">{pausedList?.entries?.length}</span></h2>
+                            <h2>{t("anilist.listTitles.PAUSED")} <span className="text-[--muted] font-medium ml-3">{pausedList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={pausedList} />
                         </>}
                         {(!!completedList?.entries?.length && ["-", "COMPLETED"].includes(selectedIndex)) && <>
-                            <h2>{t("anilist.listStatuses.COMPLETED")} <span className="text-[--muted] font-medium ml-3">{completedList?.entries?.length}</span></h2>
+                            <h2>{t("anilist.listTitles.COMPLETED")} <span className="text-[--muted] font-medium ml-3">{completedList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={completedList} />
                         </>}
                         {(!!droppedList?.entries?.length && ["-", "DROPPED"].includes(selectedIndex)) && <>
-                            <h2>{t("anilist.listStatuses.DROPPED")} <span className="text-[--muted] font-medium ml-3">{droppedList?.entries?.length}</span></h2>
+                            <h2>{t("anilist.listTitles.DROPPED")} <span className="text-[--muted] font-medium ml-3">{droppedList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={droppedList} />
                         </>}
                         {customLists?.map(list => {
@@ -236,12 +236,12 @@ export function SearchOptions({
                     fieldClass="lg:w-[200px]"
                     options={[
                         { value: "-", label: t("common.labels.allLists") },
-                        { value: "CURRENT", label: pageType === "manga" ? t("anilist.listStatuses.CURRENT_MANGA") : t("anilist.listStatuses.CURRENT_ANIME") },
-                        { value: "REPEATING", label: t("anilist.listStatuses.REPEATING") },
-                        { value: "PLANNING", label: t("anilist.listStatuses.PLANNING") },
-                        { value: "PAUSED", label: t("anilist.listStatuses.PAUSED") },
-                        { value: "COMPLETED", label: t("anilist.listStatuses.COMPLETED") },
-                        { value: "DROPPED", label: t("anilist.listStatuses.DROPPED") },
+                        { value: "CURRENT", label: pageType === "manga" ? t("anilist.listTitles.CURRENT_MANGA") : t("anilist.listTitles.CURRENT_ANIME") },
+                        { value: "REPEATING", label: t("anilist.listTitles.REPEATING") },
+                        { value: "PLANNING", label: t("anilist.listTitles.PLANNING") },
+                        { value: "PAUSED", label: t("anilist.listTitles.PAUSED") },
+                        { value: "COMPLETED", label: t("anilist.listTitles.COMPLETED") },
+                        { value: "DROPPED", label: t("anilist.listTitles.DROPPED") },
                         ...(customLists || []).map(list => ({ value: list.name || "N/A", label: list.name || "N/A" })),
                     ]}
                     value={selectedIndex || "-"}
