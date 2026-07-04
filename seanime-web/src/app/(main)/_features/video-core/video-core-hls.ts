@@ -7,6 +7,9 @@ import { atom, useAtomValue } from "jotai"
 import { useAtom, useSetAtom } from "jotai/react"
 import React, { useEffect, useRef } from "react"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export interface HlsQualityLevel {
     index: number
@@ -309,7 +312,7 @@ export function useVideoCoreHls({
             setSetAudioTrack(() => {})
         } else {
             hlsLog.error("HLS not supported on this browser")
-            toast.error("HLS playback not supported on this browser")
+            toast.error(t("nakama.toast.hlsPlaybackNotSupported"))
         }
     }, [streamUrl, videoElement, streamType])
 

@@ -21,220 +21,222 @@ All notable changes to this project will be documented in this file.
 - 🦺 UI: Fixed manga list disappearing due to unread only option (regression)
 - 🦺 Plugins: Fixed DOM observe method incorrectly firing twice
 
+- ⚡️ Manga: Botón de actualización más prominente
+- 🦺 Capa de caché: Corregido cierre de sesión al detectar un token inválido
+- 🦺 UI: Corregida la regresión que hacía desaparecer la lista de manga al usar la opción de "solo no leídos"
+- 🦺 Plugins: Corregido el método DOM observe que se disparaba incorrectamente dos veces
+
 ## v3.10.0
 
-- ⚡️ Manga: Improved source refresh
-  - Refresh saved sources, find missing sources, or compare all installed providers
-  - Retry failed entries or find alternatives when a source stops working
-- ⚡️ Built-in Players: Configure extra chapters to skip
-  - Custom patterns for auto-skip, skip buttons, and timeline highlighting
-- ⚡️ VideoCore: Faster and more reliable subtitles
-- ⚡️ Torrent: Optional availability badges for recently released episodes
-- ⚡️ Online Streaming: Improvement to reliability
-  - Refresh stale source urls before switching providers
-  - Keep provider, server, quality, audio, and subtitle choices during recovery
-  - Remember HLS quality between episodes
-  - Respect provider defaults and per-anime subtitle choices
-  - Support subtitles that require provider headers
-- ⚡️ Denshi: Restore scroll position on Search and Lists
-- ⚡️ Denshi: Export MpvCore logs from Video Playback settings
-- ⚡️ Plugins: Show badge counts for unpinned tray plugins
-- ⚡️ Plugins: Added APIs for custom Discord Rich Presence activities and AniList avatar URLs
-- 🦺 Transcoding / Direct Play: Fixed codec and container detection and stopped reusing stale media containers
-- 🦺 MpvCore: Fixed the player background color
-- 🦺 Nakama: Fixed watch parties using custom-source media
-- 🦺 VideoCore: Fixed stale playback sessions blocking a new client
-- 🦺 MPV/IINA: Restoring watch progress now waits until media is ready
-- 🦺 Cache: Fixed deleted file cache entries remaining active in memory
-- 🦺 UI: Fixed some visual bugs
-- ⬆️ MpvCore: Updated mpv-prism to 0.1.8
-  - Better support for dual-gpu setups
-  - Fixed startup race causing infinite loading
-  - Fixed logging on Windows
-- ⬆️ Updated dependencies
+- ⚡️ Manga: Actualización de fuentes mejorada
+  - Actualiza fuentes guardadas, encuentra fuentes faltantes o compara todos los proveedores instalados
+  - Reintenta entradas fallidas o encuentra alternativas cuando una fuente deja de funcionar
+- ⚡️ Reproductores Integrados: Configuración de capítulos extra a omitir
+  - Patrones personalizados para omisión automática, botones de omisión y resaltado en la línea de tiempo
+- ⚡️ VideoCore: Subtítulos más rápidos y fiables
+- ⚡️ Torrent: Insignias opcionales de disponibilidad para episodios recién lanzados
+- ⚡️ Online Streaming: Mejoras en la fiabilidad
+  - Actualiza URLs de fuentes caducadas antes de cambiar de proveedor
+  - Mantiene las elecciones de proveedor, servidor, calidad, audio y subtítulos durante la recuperación
+  - Recuerda la calidad HLS entre episodios
+  - Respeta los valores predeterminados del proveedor y las elecciones de subtítulos por anime
+  - Soporte para subtítulos que requieren cabeceras del proveedor
+- ⚡️ Denshi: Restaura la posición de desplazamiento en Búsqueda y Listas
+- ⚡️ Denshi: Exportación de logs de MpvCore desde los ajustes de Reproducción de Video
+- ⚡️ Plugins: Muestra el conteo de insignias para los plugins del tray no anclados
+- ⚡️ Plugins: Añadidas APIs para actividades personalizadas de Discord Rich Presence y URLs de avatar de AniList
+- 🦺 Transcoding / Direct Play: Corregida la detección de códecs y contenedores, y se dejó de reutilizar contenedores de medios obsoletos
+- 🦺 MpvCore: Corregido el color de fondo del reproductor
+- 🦺 Nakama: Corregidas las salas para ver en grupo (watch parties) usando medios de fuentes personalizadas
+- 🦺 VideoCore: Corregido que las sesiones de reproducción obsoletas bloquearan a un nuevo cliente
+- 🦺 MPV/IINA: La restauración del progreso de reproducción ahora espera hasta que el medio esté listo
+- 🦺 Caché: Corregido que las entradas de caché de archivos eliminados permanecieran activas en memoria
+- 🦺 UI: Corregidos algunos errores visuales
+- ⬆️ MpvCore: Actualizado mpv-prism a 0.1.8
+  - Mejor soporte para configuraciones de doble GPU
+  - Corregida condición de carrera al inicio que causaba carga infinita
+  - Corregidos los registros (logs) en Windows
+- ⬆️ Dependencias actualizadas
 
 ## v3.9.1
 
-- 🦺 VideoCore/MpvCore: Fixed preferred track selection
-- 🦺 VideoCore/MpvCore: Enforce absolute path for screenshot dir
-- 🦺 VideoCore: Fixed subtitles not appearing until after cycling
-- 🦺 Nakama: Fixed online streaming watch parties (regression)
-- 🦺 MpvCore: Fixed watch parties not working
-- 🦺 Library: Update library size stats after a scan
-- 🦺 Nakama: Send media to peers and host relay, fixes custom sources
-  - Progress tracking is still not supported
-- 🦺 Nakama: Fixed interference with connected peers not in watch party
-- 🦺 Plugins: Fixed missing fields in Discord RPC API event payload
-- 🦺 Plugins: Fixed tray icon badge state handling after remounts
-- 🦺 Torrent Download: Fixed filename detection when downloading file
-- 🦺 Manga: Workaround for AVIF file type when downloading
-- 🦺 MpvCore: Fixed logging on Windows
-- 🦺 MpvCore: Updated mpv-prism to 0.1.1
-  - Linux: Removed bundled graphics libraries
-  - Linux: Fixed EGL not working for certain configs
-  - Linux: Fixed flickering issues when using shaders
-  - Linux: Potential fix for GPU mismatches
-  - Windows: Fixed UNC path handling
-  - Windows: Potential fix for GPU mismatches
-- 🦺 UI: Fixed minor UI bugs
+- 🦺 VideoCore/MpvCore: Corregida la selección de pista preferida
+- 🦺 VideoCore/MpvCore: Se obliga a usar una ruta absoluta para el directorio de capturas de pantalla
+- 🦺 VideoCore: Corregido que los subtítulos no aparecieran hasta cambiar de pista
+- 🦺 Nakama: Corregidas las salas para ver en grupo (watch parties) en streaming online (regresión)
+- 🦺 MpvCore: Corregido que las salas para ver en grupo no funcionaran
+- 🦺 Biblioteca: Se actualizan las estadísticas de tamaño de la biblioteca tras un escaneo
+- 🦺 Nakama: Envío de medios a pares y relay del host, corrige fuentes personalizadas
+  - El seguimiento del progreso aún no está soportado
+- 🦺 Nakama: Corregida la interferencia con pares conectados que no están en la sala para ver en grupo
+- 🦺 Plugins: Corregidos campos faltantes en el payload del evento de la API de Discord RPC
+- 🦺 Plugins: Corregido el manejo del estado de la insignia del tray tras desmontarse
+- 🦺 Descarga de torrents: Corregida la detección de nombre de archivo al descargar
+- 🦺 Manga: Solución de soporte para el tipo de archivo AVIF al descargar
+- 🦺 MpvCore: Corregidos los registros (logs) en Windows
+- 🦺 MpvCore: Actualizado mpv-prism a 0.1.1
+  - Linux: Eliminadas las librerías gráficas empaquetadas
+  - Linux: Corregido que EGL no funcionara en ciertas configuraciones
+  - Linux: Corregidos los parpadeos al usar shaders
+  - Linux: Posible solución para discrepancias de GPU
+  - Windows: Corregido el soporte para rutas UNC
+  - Windows: Posible solución para discrepancias de GPU
+- 🦺 UI: Corregidos pequeños errores de interfaz
 
 ## v3.9.0
 
-- 🎉 Denshi: New libmpv-based Built-in Player (Experimental)
-  - Enable in 'Settings > Video Playback'
-  - Hardware-accelerated rendering directly in the app viewport (no external window)
-  - Flawless codec and subtitle support on all platforms
-  - Supports many 'mpv.conf' options and shaders
-- ⚡️ UI: New splashcreen, updated components and colors
-- ⚡️ Torrent Streaming: Up to 20% faster startup depending on seeding
-- ⚡️ Debrid Streaming: Up to 5 seconds faster launch for cached streams
-- ⚡️ UI: Support for alt + mouse wheel horizontal scrolling on carousels
-- ⚡️ VideoCore: Support for screenshot directory
-- ⚡️ Plugins: Added new ChromeDP APIs
-- ⚡️ Discord: Seanime logo no longer displayed in Rich Presence
-- ⚡️ Debrid: Premiumize support #845
-- 🦺 Torrent Streaming: Fixed batch selection
-- 🦺 VideoCore: Ability to exit fullscreen when next stream is loading
-- 🦺 MPV/IINA: Fixed progress tracking dropping when media path is temporarily unavailable #836
-- 🦺 AllDebrid: Fixed batch torrent streaming #841
-- 🦺 Manga: Fixed unnecessary image proxy
-- 🦺 Torrent Streaming: More accurate download progress reporting
-- 🦺 Nakama: Refresh collection when turning off host library sharing
-- 🦺 Torrent Client: Fixed runtime error when display name is null
-- 🦺 Torrent Client: Use classic file-based downloading instead of memory-mapped files
-- 🦺 Mobile: Potential fixes for debrid downloading
-- ⬆️ Updated Electron to 42.4.0
-  - Fixes AC3/EAC3 audio support detection on Windows for HTML5 player
-  - Fixes security vulnerabilities
-- ⬆️ Upgraded to Rust-based React Compiler
+- 🎉 Denshi: Nuevo reproductor integrado basado en libmpv (Experimental)
+  - Actívalo en 'Ajustes > Reproducción de Video'
+  - Renderizado acelerado por hardware directamente en la pantalla de la app (sin ventana externa)
+  - Soporte impecable de códecs y subtítulos en todas las plataformas
+  - Soporta múltiples opciones de 'mpv.conf' y shaders
+- ⚡️ UI: Nueva pantalla de carga (splashscreen), componentes y colores actualizados
+- ⚡️ Torrent Streaming: Inicio hasta un 20% más rápido dependiendo del seeding
+- ⚡️ Debrid Streaming: Lanzamiento hasta 5 segundos más rápido para streams en caché
+- ⚡️ UI: Soporte para scroll horizontal con Alt + rueda del ratón en carruseles
+- ⚡️ VideoCore: Soporte para directorio de capturas de pantalla
+- ⚡️ Plugins: Añadidas nuevas APIs de ChromeDP
+- ⚡️ Discord: El logo de Seanime ya no se muestra en el Rich Presence
+- ⚡️ Debrid: Soporte para Premiumize #845
+- 🦺 Torrent Streaming: Corregida la selección por lotes
+- 🦺 VideoCore: Posibilidad de salir de pantalla completa mientras se carga el siguiente stream
+- 🦺 MPV/IINA: Corregido el fallo donde el seguimiento de progreso se perdía si la ruta del archivo no estaba disponible temporalmente #836
+- 🦺 AllDebrid: Corregido el torrent streaming por lotes #841
+- 🦺 Manga: Corregido el proxy de imagen innecesario
+- 🦺 Torrent Streaming: Reporte de progreso de descarga más preciso
+- 🦺 Nakama: Actualizar colección al desactivar el uso compartido de la biblioteca del host
+- 🦺 Torrent Client: Corregido error en tiempo de ejecución cuando el nombre a mostrar es nulo
+- 🦺 Torrent Client: Uso de descarga clásica basada en archivos en lugar de archivos mapeados en memoria
+- 🦺 Mobile: Posibles correcciones para descargas de debrid
+- ⬆️ Actualizado Electron a 42.4.0
+  - Corrige la detección de soporte de audio AC3/EAC3 en Windows para el reproductor HTML5
+  - Corrige vulnerabilidades de seguridad
+- ⬆️ Actualizado al compilador de React basado en Rust
 
 ## v3.8.7
 
-- ⚡️ VideoCore: Improved hls.js error handling
-- 🦺 iOS: Fixes for media paths
-- 🦺 UI: Fixed media entry modal number inputs
-- 🦺 Torrent: Fixed search caching #827
-- ⬆️ Updated hls.js
+- ⚡️ VideoCore: Manejo de errores de hls.js mejorado
+- 🦺 iOS: Rutas de medios corregidas
+- 🦺 UI: Entradas numéricas del modal de medios corregidas
+- 🦺 Torrent: Caché de búsqueda corregido #827
+- ⬆️ hls.js actualizado
 
 ## v3.8.6
 
-- 🦺 Fixed settings regression introduced in v3.8.5
-
-## v3.8.5
-
-- 🦺 Built-in Torrent Client: Fixed runtime error causing by pausing
-- 🦺 Built-in Torrent Client: Added in-memory map fallback
-- 🦺 VideoCore: Potential fix for body pointer events
-- 🦺 Manga: Potential fix for image format and size detection failing
-- 🏗️ Core: Improved support for gomobile
+- 🦺 Ajustes: Se corrigió una regresión introducida en los ajustes en la v3.8.5
+- 🦺 Cliente Torrent Integrado: Se corrigió un error de ejecución causado al pausar
+- 🦺 Cliente Torrent Integrado: Se añadió un mapa en memoria de respaldo
+- 🦺 VideoCore: Posible solución para eventos de puntero (pointer events)
+- 🦺 Manga: Posible corrección para la detección del formato y tamaño de las imágenes
+- 🏗️ Núcleo: Soporte mejorado para gomobile
 
 ## v3.8.4
 
-- ✨ Built-in torrent client (Experimental)
-  - Only available as a feature flag
-- ⚡️ Transcode: Support for Low-power Intel QSV
-- ⚡️ Manga: Support for zooming
-- ⚡️ AniList: Support for animated profile pictures
-- ⚡️ Plugin: Added dropdown actions for manga
-- ⚡️ Plugin: Option to change fetch redirect policy
-- ⚡️ VideoCore(Perf): Optimized subtitle parsing
-- 🦺 VideoCore: Fixed keybinds handling and input focus in mini player
-- 🦺 Extension: Fixed unified code diff
-- 🏗️ Core: Experimental support for gomobile
+- ✨ Cliente Torrent incorporado (Experimental)
+  - Solo disponible como flag de característica (feature flag)
+- ⚡️ Transcodificación: Soporte para Intel QSV de bajo consumo
+- ⚡️ Manga: Soporte para zoom
+- ⚡️ AniList: Soporte para fotos de perfil animadas
+- ⚡️ Plugin: Acciones desplegables añadidas para manga
+- ⚡️ Plugin: Opción para cambiar la política de redirección de "fetch"
+- ⚡️ VideoCore(Perf): Análisis de subtítulos optimizado
+- 🦺 VideoCore: Manejo de atajos de teclado y enfoque de entrada en el mini reproductor corregidos
+- 🦺 Extensión: Comparación (diff) de código unificada corregida
+- 🌐 Multilenguaje (Fork): ¡Nuevo soporte multi-idioma! Ahora puedes cambiar entre Español, Inglés y Portugués directamente desde los ajustes.
+- ⚡️ Multilenguaje (Fork): El idioma ahora es dinámico y se aplica en toda la interfaz (calendarios, fechas, notificaciones y bandeja del sistema).
+- 🦺 i18n (Fork): Motor de traducción interno completamente rediseñado para ser más rápido, modular y a prueba de errores de la interfaz.
+- 🏗️ Núcleo: Soporte experimental para gomobile
 
 ## v3.8.3
 
-- ⚡️ Plugins: ctx.appSettings now includes debrid, torrent streaming and transcode settings
-- ⚡️ Torrent streaming: Option to preload next stream (Unstable)
-- 🦺 Scanner: Fixed runtime error caused by concurrent file checking
-- 🦺 VideoCore: Fixed autonext skipping playlist episodes
-- 🦺 VideoCore: Fixed playback failure when replaying fully downloaded torrent stream
-- 🦺 VideoCore: Fixed occasional bugs caused by new React19 ref handling
-- 🦺 VideoCore(Perf): Throttle torrent stream subtitle events to avoid UI lag
-- 🦺 VideoCore(Perf): Throttle thumbnail scrobbling requests
-- 🦺 Torrentstream: Dropping torrent removes them on disk immediately
-- 🦺 MPV: Potential fix for stale events causing incorrect progress updates
-- 🦺 MPV: Generate fresh IPC sockets for each launch to avoid collisions
-- 🏗️ MPV: Refactored error messages handling
-- 🏗️ VideoCore: Use View Transitions for mini player transitions
-- 🏗️ Torrentstream: Fully downloaded files now stream from file on disk directly
-- 🏗️ UI: Replaced drawer components and built-in player drawer to avoid layout thrashing
+- ⚡️ Plugins: ctx.appSettings ahora incluye configuración de debrid, streaming por torrent y transcodificación
+- ⚡️ Torrent streaming: Opción para precargar el siguiente stream (Inestable)
+- 🦺 Escáner: Error de ejecución causado por verificación concurrente de archivos corregido
+- 🦺 VideoCore: El salto automático que omitía episodios de la lista de reproducción fue corregido
+- 🦺 VideoCore: Fallo de reproducción al repetir un stream por torrent completamente descargado corregido
+- 🦺 VideoCore: Errores ocasionales causados por el nuevo manejo de referencias de React 19 corregidos
+- 🦺 VideoCore(Perf): Limitación de eventos de subtítulos en streaming de torrents para evitar lag en la UI
+- 🦺 VideoCore(Perf): Limitación de peticiones de miniaturas
+- 🦺 Torrentstream: Soltar un torrent ahora lo elimina del disco inmediatamente
+- 🦺 MPV: Posible solución para eventos obsoletos que causaban actualizaciones de progreso incorrectas
+- 🦺 MPV: Generación de nuevos sockets IPC para cada lanzamiento para evitar colisiones
+- 🏗️ MPV: Manejo de mensajes de error refactorizado
+- 🏗️ VideoCore: Uso de transiciones de vista para las transiciones del mini reproductor
+- 🏗️ Torrentstream: Los archivos completamente descargados ahora se transmiten directamente desde el archivo en el disco
+- 🏗️ UI: Se reemplazaron los componentes del drawer y el reproductor incorporado para evitar problemas de diseño
 
 ## v3.8.2
 
-- 🦺 VideoCore: Fixed audio selection
-- 🦺 VideoCore: Fixed auto next for local files
-- 🦺 VideoCore: Disallow miniplayer in fullscreen app mode
-- 🦺 VideoCore: Fixed torrent stream playback cancellation logic
-- 🦺 VideoCore: Refactored escape key handling
-- 🦺 Manga: Fixed incorrect progress updates on next chapter
-- 🦺 Schedule: Fixed incorrect timezone in modals
-- 🦺 Hide Spoilers: Fixed torrent selection modal handling
-- 🦺 Issue Recorder: Fixed query error serialization
-- 🦺 Torrent Search: Fixed runtime error causing fewer results
-- 🦺 Core: Disabled request body limits
-- 🦺 Denshi: Skip inital view transition on content load
+- 🦺 VideoCore: Selección de audio corregida
+- 🦺 VideoCore: Reproducción automática del siguiente archivo local corregida
+- 🦺 VideoCore: Se deshabilitó el minirreproductor en modo pantalla completa de la app
+- 🦺 VideoCore: Lógica de cancelación en transmisión por torrent corregida
+- 🦺 VideoCore: Refactorizado el manejo de la tecla escape
+- 🦺 Manga: Actualización incorrecta del progreso al pasar al siguiente capítulo corregida
+- 🦺 Calendario: Zona horaria incorrecta en los modales corregida
+- 🦺 Ocultar Spoilers: Manejo del modal de selección de torrent corregido
+- 🦺 Registro de Problemas: Serialización de errores de consultas corregida
+- 🦺 Búsqueda de Torrent: Error interno que causaba mostrar menos resultados corregido
+- 🦺 Núcleo: Límite de tamaño en peticiones al servidor desactivado
+- 🦺 Denshi: Se omite la transición visual inicial al cargar el contenido
 
 ## v3.8.1
 
-- 🦺 Online streaming: Fixed sidebar visibility in fullscreen mode
-
-## v3.8.0
-
-- ✨ Torrent Search: Search from multiple providers at once
-  - Seanime can now aggregate torrent results from multiple providers
-- ⚡️ Subtitle Translator: Support for OpenAI-compatible local LLMs
-- ⚡️ UI: Route preloading and faster transitions
-  - Media entries in your collection will open virtually instantly
-  - Media pages loading time has been reduced by 40%
-- ⚡️ Denshi: Window position and size are now remembered
-- ⚡️ VideoCore: Auto-import local subtitle files
-  - The native player will now automatically import subtitle files from the same directory as the video file
-- ⚡️ External Player Link: New '{subtitleUrl}' placeholder for local sub files
-- ⚡️ UI: Ability to hide spoilers
-  - New '/spoilers' command to toggle spoilers on/off for a specific anime
-- ⚡️ Online streaming: New HTTP/1-based video proxy
-- ⚡️ Online streaming: Option to automatically cycle through providers
-  - Seanime can now try providers until a working one is found
-- ⚡️ Extensions: Ability to disable extensions
-- ⚡️ Streaming: Ability to delete previous batch selection
-- ⚡️ Debrid: Improved downloading handling
-  - Fixes some edge cases encountered while downloading from TorBox and RD
-- ⚡️ Plugins: More APIs
-  - 'ctx.settings', 'ctx.auth', 'ctx.extensions' to securily manage the app systems
-- ⚡️ Settings: New 'Extension Secure Mode'
-  - Confirmation prompts whenever an extension tries to perform a sensitive action
-- 🦺 qBittorrent: Fixed support for 5.2.x
-- 🦺 Cache mode: Queued updates are deleted on manual mutation
-- 🦺 VideoCore: Potential fix for duplicated subtitles
-- 🦺 VideoCore: Potential fix for media session not being ended
-- 🦺 Online streaming: Fixed video source selection
-- 🦺 Online streaming: Fixed occasional HTTP/2 related errors
-- 🦺 Plugins: Faster reads for '$storage' and '$store'
-- 🦺 UI: Fixed some UI issues
-- 🦺 Auto Downloader: Fixed handling of debrid downloads
-- 🦺 Manga: Fixed chapter page image height
-- 🦺 Core: Fixed handling of stale cookies
-- ⬆️ Updated Go to 1.26.2
+- 🦺 Streaming online: Se solucionó la visibilidad de la barra lateral en modo pantalla completa
+- ✨ Búsqueda de Torrents: Búsqueda simultánea en múltiples proveedores
+  - Seanime ahora puede agregar resultados de torrents de múltiples proveedores
+- ⚡️ Traductor de subtítulos: Soporte para LLMs locales compatibles con OpenAI
+- ⚡️ UI: Precarga de rutas y transiciones más rápidas
+  - Las entradas de medios en tu colección se abrirán casi al instante
+  - El tiempo de carga de las páginas de medios se redujo en un 40%
+- ⚡️ Denshi: Ahora se recuerda la posición y el tamaño de la ventana
+- ⚡️ VideoCore: Auto-importar archivos de subtítulos locales
+  - El reproductor nativo ahora importará automáticamente los archivos de subtítulos desde el mismo directorio que el archivo de video
+- ⚡️ Enlace de reproductor externo: Nuevo marcador '{subtitleUrl}' para archivos de subtítulos locales
+- ⚡️ UI: Capacidad de ocultar spoilers
+  - Nuevo comando '/spoilers' para activar/desactivar spoilers en un anime específico
+- ⚡️ Streaming online: Nuevo proxy de video basado en HTTP/1
+- ⚡️ Streaming online: Opción para alternar automáticamente entre proveedores
+  - Seanime ahora puede intentar con diferentes proveedores hasta encontrar uno que funcione
+- ⚡️ Extensiones: Capacidad para desactivar extensiones
+- ⚡️ Streaming: Capacidad para eliminar selecciones anteriores de lotes
+- ⚡️ Debrid: Mejora en el manejo de descargas
+  - Soluciona algunos casos extremos encontrados al descargar desde TorBox y RD
+- ⚡️ Plugins: Más APIs
+  - 'ctx.settings', 'ctx.auth', 'ctx.extensions' para manejar de forma segura los sistemas de la aplicación
+- ⚡️ Ajustes: Nuevo 'Modo Seguro para Extensiones'
+  - Avisos de confirmación cada vez que una extensión intente realizar una acción sensible
+- 🦺 qBittorrent: Soporte corregido para 5.2.x
+- 🦺 Modo Caché: Las actualizaciones en cola se eliminan al hacer mutación manual
+- 🦺 VideoCore: Posible corrección para subtítulos duplicados
+- 🦺 VideoCore: Posible corrección para la sesión de medios que no finaliza
+- 🦺 Streaming online: Selección de fuente de video corregida
+- 🦺 Streaming online: Errores ocasionales relacionados con HTTP/2 solucionados
+- 🦺 Plugins: Lecturas más rápidas para '$storage' y '$store'
+- 🦺 UI: Se corrigieron algunos problemas de la interfaz
+- 🦺 Auto Descargador: Manejo de descargas por debrid corregido
+- 🦺 Manga: Altura de las imágenes de las páginas del capítulo corregida
+- 🦺 Núcleo: Manejo de cookies expiradas corregido
+- ⬆️ Go actualizado a 1.26.2
 
 ## v3.7.1
 
-- ⚡️ Cache mode: Ability to update entries in the cache (Experimental)
-  - You can now update progress while AniList is down. Data will be auto-synced when AniList is back online.
-- ⚡️ VideoCore: Ability to save screenshots to disk
-- ⚡️ Plugin: Added more APIs
-  - Added '$shared' API for sharing pure functions between hooks and runtimes
-  - Added 'ctx.jobs', 'ctx.settings', 'ctx.cache' for less boilerplate
-  - Added '$debug' API for looking at plugin logs on the client
-- 🦺 Cache mode: Fixed certain queries bypassing the cache layer
-- 🦺 Home: Fixed 'not authenticated' errors for local accounts
-- 🦺 Torrentstream: Fixed 'Disable IPV6' option not working
-- 🦺 Plugin: Fixed potential crash caused by concurrent shared map writes
-- 🦺 Torrentstream: Fixed HEAD requests
-- 🦺 MPV: Fixed player launch when using '--terminal=no --really-quiet'
-- 🦺 Auto-select: Fixed form fields showing empty values after saving
-- 🦺 Settings: Fixed form fields showing empty values after saving
-- 🦺 UI: Fixed some UI issues
+- ⚡️ Modo caché: Capacidad de actualizar entradas en la caché (Experimental)
+  - Ahora puedes actualizar tu progreso mientras AniList está caído. Los datos se sincronizarán automáticamente cuando AniList vuelva en línea.
+- ⚡️ VideoCore: Capacidad de guardar capturas de pantalla en disco
+- ️ Plugin: Se añadieron más APIs
+  - Se añadió la API '$shared' para compartir funciones puras entre hooks y runtimes
+  - Se añadieron 'ctx.jobs', 'ctx.settings', 'ctx.cache' para reducir código repetitivo
+  - Se añadió la API '$debug' para ver los logs del plugin en el cliente
+- 🦺 Modo caché: Se corrigió que ciertas consultas evitaban la capa de caché
+- 🦺 Inicio: Se corrigieron errores de 'no autenticado' para cuentas locales
+- 🦺 Torrentstream: Se corrigió que la opción 'Desactivar IPV6' no funcionaba
+- 🦺 Plugin: Se corrigió un posible crash causado por escrituras concurrentes en mapas compartidos
+- 🦺 Torrentstream: Se corrigieron las solicitudes HEAD
+- 🦺 MPV: Se corrigió el lanzamiento del reproductor al usar '--terminal=no --really-quiet'
+- 🦺 Auto-selección: Se corrigieron campos del formulario que mostraban valores vacíos después de guardar
+-  Ajustes: Se corrigieron campos del formulario que mostraban valores vacíos después de guardar
+- 🦺 UI: Se corrigieron algunos problemas de interfaz
 
 ## v3.7.0
 

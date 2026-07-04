@@ -45,8 +45,10 @@ import { preloadMediaEntry } from "@/lib/entry-preloader"
 import { useRouter } from "@/lib/navigation"
 import { __navigationPreloadModeAtom, shouldWarmEntryOnIntent } from "@/lib/navigation-preload-settings"
 import { useAtomValue, useSetAtom } from "jotai/react"
-import capitalize from "lodash/capitalize"
 import React, { useState } from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 import { BiAddToQueue, BiPlay } from "react-icons/bi"
 import { LuBookOpen } from "react-icons/lu"
 import { LuEye, LuFolderTree } from "react-icons/lu"
@@ -266,17 +268,17 @@ export function MediaEntryCard<T extends "anime" | "manga">(props: MediaEntryCar
                     {!serverStatus?.isOffline && <ContextMenuItem
                         onClick={handlePreviewClick}
                     >
-                        <LuEye /> Preview
+                        <LuEye /> {t("mediaCard.preview")}
                     </ContextMenuItem>}
                     {((libraryData || nakamaLibraryData || (listData && hasStreamingEnabled)) && type === "anime") && <ContextMenuItem
                         onClick={handleAddToPlaylistClick}
                     >
-                        <BiAddToQueue /> Add to Playlist
+                        <BiAddToQueue /> {t("mediaCard.addToPlaylist")}
                     </ContextMenuItem>}
                     {(!!libraryData && type === "anime") && <ContextMenuItem
                         onClick={handleOpenInExplorerClick}
                     >
-                        <LuFolderTree /> Open in Library Explorer
+                        <LuFolderTree /> {t("common.labels.openInLibraryExplorer")}
                     </ContextMenuItem>}
 
                     <PluginMediaCardContextMenuItems for={type} media={media} />
@@ -336,8 +338,8 @@ export function MediaEntryCard<T extends "anime" | "manga">(props: MediaEntryCar
                                     onClick={handleWatchButtonClicked}
                                 >
                                     {!!listData?.progress && (listData?.status === "CURRENT" || listData?.status === "PAUSED")
-                                        ? "Continue"
-                                        : "Watch"}
+                                        ? t("mediaCard.continue")
+                                        : t("mediaCard.watch")}
                                 </Button>}
 
                                 {type === "manga" && <SeaLink
@@ -354,8 +356,8 @@ export function MediaEntryCard<T extends "anime" | "manga">(props: MediaEntryCar
                                         tabIndex={-1}
                                     >
                                         {!!listData?.progress && (listData?.status === "CURRENT" || listData?.status === "PAUSED")
-                                            ? "Continue"
-                                            : "Start Reading"}
+                                            ? t("mediaCard.continue")
+                                            : t("status.startReading")}
                                     </Button>
                                 </SeaLink>}
                             </div>
@@ -366,7 +368,7 @@ export function MediaEntryCard<T extends "anime" | "manga">(props: MediaEntryCar
 
                             {(listData?.status && listData?.status !== "CURRENT") &&
                                 <p className="text-center text-xs text-[--muted] w-full">
-                                    {capitalize(listData?.status ?? "")}
+                                    {t(`status.${listData?.status?.toLowerCase() ?? ""}` as any)}
                                     {/*{listData?.status === "CURRENT" ? type === "anime" ? "Watching" : "Reading"*/}
                                     {/*    : capitalize(listData?.status ?? "")}*/}
                                 </p>}

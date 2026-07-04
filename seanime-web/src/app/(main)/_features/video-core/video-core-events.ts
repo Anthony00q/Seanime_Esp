@@ -28,6 +28,9 @@ import { WSEvents } from "@/lib/server/ws-events"
 import { useAtomValue, useSetAtom } from "jotai"
 import React, { useCallback } from "react"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export type ClientSubtitleFileUploadedEventPayload = {
     filename: string
@@ -442,7 +445,7 @@ export function useVideoCoreSetupEvents(id: string,
     }
     const handleUpload = useCallback(async (e: UploadEvent & Event) => {
         e.preventDefault()
-        toast.info("Adding subtitle file...")
+        toast.info(t("nakama.toast.addingSubtitleFile"))
         log.info("Upload event", e)
         const items = [...(e.dataTransfer ?? e.clipboardData)?.items ?? []]
 
@@ -479,7 +482,7 @@ export function useVideoCoreSetupEvents(id: string,
                     const type = detectSubtitleType(str)
                     log.info("Detected subtitle type", type)
                     if (type === "unknown") {
-                        toast.error("Unknown subtitle type")
+                        toast.error(t("nakama.toast.unknownSubtitleType"))
                         log.info("Unknown subtitle type, skipping")
                         return
                     }
