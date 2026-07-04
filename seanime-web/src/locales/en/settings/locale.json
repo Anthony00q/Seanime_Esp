@@ -1,0 +1,10 @@
+{
+  "settings": {
+    "locale": {
+      "title": "Language",
+      "description": "Change the application language. Requires a restart to apply.",
+      "restartRequired": "Language Change",
+      "restartDescription": "A restart is required right now to apply the new language. If you cancel, the change will be discarded."
+    }
+  }
+}

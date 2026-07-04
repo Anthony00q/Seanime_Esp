@@ -1,9 +1,12 @@
 import capitalize from "lodash/capitalize"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export function getLibraryCollectionTitle(type?: string) {
     switch (type) {
         case "CURRENT":
-            return "Currently watching"
+            return t("status.currentlyWatching")
         default:
             return capitalize(type ?? "")
     }
@@ -12,7 +15,7 @@ export function getLibraryCollectionTitle(type?: string) {
 export function getMangaCollectionTitle(type?: string) {
     switch (type) {
         case "CURRENT":
-            return "Currently reading"
+            return t("status.currentlyReading")
         default:
             return capitalize(type ?? "")
     }

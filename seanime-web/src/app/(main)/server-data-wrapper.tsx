@@ -17,7 +17,10 @@ import { __isDesktop__ } from "@/types/constants"
 import { useQueryClient } from "@tanstack/react-query"
 import { useAtomValue } from "jotai"
 import React from "react"
+import { createTranslator } from "@/locales"
 import { useWebsocketMessageListener } from "./_hooks/handle-websockets"
+
+const t = createTranslator()
 
 type ServerDataWrapperProps = {
     host: string
@@ -97,7 +100,7 @@ export function ServerDataWrapper(props: ServerDataWrapperProps) {
      * If the server status is loading or doesn't exist, show the loading overlay
      */
     if (isLoading || !resolvedServerStatus || !authenticated) return <LoadingOverlayWithLogo />
-    if (!resolvedServerStatus.serverReady) return <LoadingOverlayWithLogo title="L o a d i n g" />
+    if (!resolvedServerStatus.serverReady) return <LoadingOverlayWithLogo title={t("auth.loading")} />
 
     const currentServerStatus = resolvedServerStatus
 
@@ -122,7 +125,7 @@ export function ServerDataWrapper(props: ServerDataWrapperProps) {
                 <img src="/seanime-logo.png" alt="logo" className="w-14 h-auto" />
             </div>
             <p className="text-center text-lg">
-                Seanime is currently updating. Refresh the page once the update is complete and the connection has been reestablished.
+                {t("auth.updating")}
             </p>
         </div>
     }
@@ -132,7 +135,7 @@ export function ServerDataWrapper(props: ServerDataWrapperProps) {
      */
 
     if (!currentServerStatus.mediastreamSettings?.transcodeEnabled && pathname.startsWith("/mediastream")) {
-        return <LuffyError title="Transcoding not enabled" />
+        return <LuffyError title={t("auth.transcodingNotEnabled")} />
     }
 
     if (!currentServerStatus.user && host === "127.0.0.1:43211" && !__isDesktop__) {
@@ -143,7 +146,7 @@ export function ServerDataWrapper(props: ServerDataWrapperProps) {
                         <div className="mb-4 flex justify-center w-full">
                             <img src="/seanime-logo.png" alt="logo" className="w-24 h-auto" />
                         </div>
-                        <h3>Welcome!</h3>
+                        <h3>{t("auth.welcome")}</h3>
                         <Button
                             onClick={() => {
                                 const url = currentServerStatus.anilistClientId
@@ -161,7 +164,7 @@ export function ServerDataWrapper(props: ServerDataWrapperProps) {
                             </svg>}
                             intent="primary"
                             size="xl"
-                        >Log in with AniList</Button>
+                        >{t("navigation.loginWithAniList")}</Button>
                     </div>
                 </AppLayoutStack>
             </Card>
@@ -174,7 +177,7 @@ export function ServerDataWrapper(props: ServerDataWrapperProps) {
                         <div className="mb-4 flex justify-center w-full">
                             <img src="/seanime-logo.png" alt="logo" className="w-24 h-auto" />
                         </div>
-                        <h3>Welcome!</h3>
+                        <h3>{t("auth.welcome")}</h3>
                         <a
                             href={ANILIST_PIN_URL}
                             target="_blank"
@@ -191,12 +194,12 @@ export function ServerDataWrapper(props: ServerDataWrapperProps) {
                                 </svg>}
                                 intent="white"
                                 size="md"
-                            >Get AniList token</Button>
+                            >{t("navigation.getAniListToken")}</Button>
                         </a>
 
                         <Form
                             schema={defineSchema(({ z }) => z.object({
-                                token: z.string().min(1, "Token is required"),
+                                token: z.string().min(1, t("navigation.tokenRequired")),
                             }))}
                             onSubmit={data => {
                                 router.push("/auth/callback#access_token=" + data.token.trim())
@@ -204,10 +207,10 @@ export function ServerDataWrapper(props: ServerDataWrapperProps) {
                         >
                             <Field.Textarea
                                 name="token"
-                                label="Enter the token"
+                                label={t("navigation.enterToken")}
                                 fieldClass="px-4"
                             />
-                            <Field.Submit showLoadingOverlayOnSuccess>Continue</Field.Submit>
+                            <Field.Submit showLoadingOverlayOnSuccess>{t("navigation.continue")}</Field.Submit>
                         </Form>
                     </div>
                 </AppLayoutStack>

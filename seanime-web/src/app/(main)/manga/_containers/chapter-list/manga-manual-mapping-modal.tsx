@@ -23,6 +23,9 @@ import { useRouter } from "@/lib/navigation"
 import React from "react"
 import { FiSearch } from "react-icons/fi"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type MangaManualMappingModalProps = {
     entry: Manga_Entry
@@ -41,8 +44,8 @@ export function MangaManualMappingModal(props: MangaManualMappingModalProps) {
         <>
             <Modal
                 data-manga-manual-mapping-modal
-                title="Manual match"
-                description="Match this manga to a search result"
+                title={t("onlinestream.manualMatch")}
+                description={t("manga.manualMapping.description")}
                 trigger={children}
                 contentClass="max-w-4xl"
             >
@@ -98,29 +101,30 @@ function Content({ entry }: { entry: Manga_Entry }) {
 
     const [selectedResult, setSelectedResult] = React.useState<HibikeManga_SearchResult | null>(null)
     const confirmMatch = useConfirmationDialog({
-        title: "Manual match",
+        title: t("onlinestream.manualMatch"),
         description: selectedResult && mappingPreview ? (
             <div className="space-y-3 text-left">
-                <p>Match this entry to <span className="font-medium">{selectedResult.title}</span>?</p>
+                <p>{t("manga.manualMapping.confirmMatchToTitle", { title: selectedResult.title })}</p>
                 <div className="grid grid-cols-2 gap-3 rounded-[--radius-md] border p-3 text-sm">
                     <div>
-                        <p className="text-[--muted]">Distinct chapters</p>
+                        <p className="text-[--muted]">{t("manga.manualMapping.distinctChapters")}</p>
                         <p className="font-medium">{mappingPreview.chapterCount}</p>
                     </div>
                     <div>
-                        <p className="text-[--muted]">Latest chapter</p>
-                        <p className="font-medium">{mappingPreview.latest || "Unknown"}</p>
+                        <p className="text-[--muted]">{t("manga.manualMapping.latestChapter")}</p>
+                        <p className="font-medium">{mappingPreview.latest || t("manga.manualMapping.unknown")}</p>
                     </div>
                 </div>
                 {!!mappingPreview.languages?.length && (
-                    <p className="text-sm"><span className="text-[--muted]">Languages:</span> {mappingPreview.languages.join(", ")}</p>
+                    <p className="text-sm"><span className="text-[--muted]">{t("manga.manualMapping.languages")}:</span> {mappingPreview.languages.join(", ")}</p>
                 )}
                 {!!mappingPreview.scanlators?.length && (
-                    <p className="text-sm"><span className="text-[--muted]">Scanlators:</span> {mappingPreview.scanlators.join(", ")}</p>
+                    <p className="text-sm"><span className="text-[--muted]">{t("manga.manualMapping.scanlators")}:</span> {mappingPreview.scanlators.join(", ")}</p>
                 )}
             </div>
-        ) : "Review the provider result before saving this match.",
-        actionText: "Confirm",
+        ) : t("manga.manualMapping.reviewPreview"),
+        actionText: t("common.buttons.confirm"),
+        cancelText: t("common.buttons.cancel"),
         actionIntent: "success",
         onCancel: () => {
             resetPreview()
@@ -162,11 +166,11 @@ function Content({ entry }: { entry: Manga_Entry }) {
                                     }
                                 }}
                                 >
-                                    Remove mapping
+                                    {t("manualMatch.removeMapping")}
                                 </Button>
                             </AppLayoutStack>
                         ) : (
-                            <p className="text-[--muted] italic">No manual match</p>
+                            <p className="text-[--muted] italic">{t("manualMatch.none")}</p>
                         )}
                     </div>
 
@@ -176,7 +180,7 @@ function Content({ entry }: { entry: Manga_Entry }) {
                         <div className="flex gap-2 items-center">
                             <Field.Text
                                 name="query"
-                                placeholder="Enter a title..."
+                                placeholder={t("common.placeholders.title")}
                                 leftIcon={<FiSearch className="text-xl text-[--muted]" />}
                                 fieldClass="w-full"
                             />
@@ -185,7 +189,7 @@ function Content({ entry }: { entry: Manga_Entry }) {
                                 intent="white"
                                 loading={isMatching || previewLoading || searchLoading || mappingLoading}
                                 className=""
-                            >Search</Field.Submit>
+                            >{t("common.labels.search")}</Field.Submit>
                         </div>
                     </Form>
 

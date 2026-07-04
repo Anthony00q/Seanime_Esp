@@ -10,6 +10,7 @@ import { HibikeTorrent_AnimeTorrent, Nullish, TorrentClient_Torrent } from "@/ap
 import { useQueryClient } from "@tanstack/react-query"
 import React from "react"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export type BuiltInTorrentFile = {
     index: number
@@ -65,6 +66,7 @@ export function useGetActiveTorrentList(enabled: boolean, category: string, sort
 
 export function useTorrentClientAction(onSuccess?: (variables: TorrentClientAction_Variables) => void) {
     const queryClient = useQueryClient()
+    const t = createTranslator()
 
     return useServerMutation<boolean, TorrentClientAction_Variables>({
         endpoint: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientAction.endpoint,
@@ -76,22 +78,24 @@ export function useTorrentClientAction(onSuccess?: (variables: TorrentClientActi
 
             if (variables.action === "set-limits") {
                 await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.STATUS.GetStatus.key] })
-                toast.success("Global speed limits updated")
+                toast.success(t("toast.torrentClient.globalSpeedLimitsUpdated"))
             } else if (variables.action === "move-storage") {
-                toast.success("Torrent files moved successfully")
+                toast.success(t("toast.torrentClient.torrentFilesMoved"))
             } else if (variables.action === "rename") {
-                toast.success("Torrent renamed")
+                toast.success(t("toast.torrentClient.torrentRenamed"))
             } else if (variables.action === "add-magnet") {
-                toast.success("Magnet link added")
+                toast.success(t("toast.torrentClient.magnetLinkAdded"))
             } else if (variables.action === "reannounce") {
-                toast.success("Reannounced to trackers")
+                toast.success(t("toast.torrentClient.reannouncedToTrackers"))
             } else if (variables.action === "add-tracker") {
-                toast.success("Tracker added")
+                toast.success(t("toast.torrentClient.trackerAdded"))
             } else if (variables.action === "remove-tracker") {
-                toast.success("Tracker removed")
+                toast.success(t("toast.torrentClient.trackerRemoved"))
+            } else {
+                toast.success(t("toast.torrentClient.actionPerformed"))
             }
 
-            onSuccess?.(variables)
+            onSuccess?.(variables as any)
         },
     })
 }
@@ -108,12 +112,13 @@ export function useGetBuiltInTorrentDetails(hash: string | undefined) {
 }
 
 export function useTorrentClientDownload(onSuccess?: () => void) {
+    const t = createTranslator()
     return useServerMutation<boolean, TorrentClientDownload_Variables>({
         endpoint: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientDownload.endpoint,
         method: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientDownload.methods[0],
         mutationKey: [API_ENDPOINTS.TORRENT_CLIENT.TorrentClientDownload.key],
         onSuccess: async () => {
-            toast.success("Download started")
+            toast.success(t("toast.torrentClient.downloadStarted"))
             onSuccess?.()
         },
     })
@@ -121,13 +126,14 @@ export function useTorrentClientDownload(onSuccess?: () => void) {
 
 export function useTorrentClientAddMagnetFromRule() {
     const queryClient = useQueryClient()
+    const t = createTranslator()
 
     return useServerMutation<boolean, TorrentClientAddMagnetFromRule_Variables>({
         endpoint: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientAddMagnetFromRule.endpoint,
         method: API_ENDPOINTS.TORRENT_CLIENT.TorrentClientAddMagnetFromRule.methods[0],
         mutationKey: [API_ENDPOINTS.TORRENT_CLIENT.TorrentClientAddMagnetFromRule.key],
         onSuccess: async () => {
-            toast.success("Download started")
+            toast.success(t("toast.torrentClient.downloadStarted"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.AUTO_DOWNLOADER.GetAutoDownloaderItems.key] })
         },
     })

@@ -14,6 +14,7 @@ import { Separator } from "@/components/ui/separator"
 import { TextInput } from "@/components/ui/text-input"
 import { Vaul, VaulContent } from "@/components/vaul"
 import { useAtom, useAtomValue } from "jotai"
+import { createTranslator } from "@/locales"
 import React, { useMemo, useState } from "react"
 import { AiOutlineExclamationCircle } from "react-icons/ai"
 import { BiListCheck, BiPlus, BiTrash } from "react-icons/bi"
@@ -553,6 +554,7 @@ function getNewFileName(originalName: string, options: SuperUpdateFormData & { t
 }
 
 export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpdateDrawerProps) {
+    const t = createTranslator()
     const { fileNodes } = props
 
     const [isOpen, setIsOpen] = useAtom(libraryExplorer_superUpdateDrawerOpenAtom)
@@ -622,7 +624,7 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
         })
 
         if (validChanges.length === 0) {
-            toast.error("No valid changes to apply. Please check your settings.")
+            toast.error(t("libraryExplorer.noValidChangesToApply"))
             return
         }
 
@@ -634,7 +636,7 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
 
         if (validChanges.length < changedItems.length) {
             const skipped = changedItems.length - validChanges.length
-            toast.warning(`Applying ${validChanges.length} changes, skipping ${skipped} invalid changes`)
+            toast.warning(t("libraryExplorer.applyingChangesSkippingInvalid", { valid: validChanges.length, skipped }))
         }
 
         console.log("filesToUpdate", filesToUpdate)
@@ -646,7 +648,7 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                 const renamedCount = filesToUpdate.filter(f => f.newName).length
                 const metadataCount = filesToUpdate.filter(f => f.metadata).length
 
-                let message = "Successfully updated "
+                let message = t("libraryExplorerSuper.successfullyUpdated") + " "
                 if (renamedCount > 0 && metadataCount > 0) {
                     message += `${renamedCount} filename(s) and ${metadataCount} metadata`
                 } else if (renamedCount > 0) {
@@ -671,7 +673,7 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                 setMetadataEdits([])
             },
             onError: (error) => {
-                toast.error("Failed to rename files: " + error.message)
+                toast.error(t("libraryExplorer.failedToRenameFiles", { error: error.message }))
             },
         })
     }
@@ -709,7 +711,7 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
             >
                 <p className="p-4 pb-0">
                     <span className="text-sm text-[--muted]">
-                        Update multiple file names and metadata at once.
+                        {t("libraryExplorerSuper.description")}
                     </span>
                 </p>
                 <div className="p-6 flex-1 overflow-hidden flex flex-col">
@@ -726,33 +728,33 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
                                         <Field.Text
                                             name="searchText"
-                                            label="Search for"
-                                            placeholder="Enter text to search for..."
+                                            label={t("libraryExplorerSuper.searchFor")}
+                                            placeholder={t("libraryExplorerSuper.searchPlaceholder")}
                                         />
                                         <Field.Text
                                             name="replaceText"
                                             label={<div className="flex items-center gap-1">
-                                                <span>Replace with</span>
+                                                <span>{t("libraryExplorerSuper.replaceWith")}</span>
                                                 <Popover
                                                     className="w-full max-w-2xl"
                                                     trigger={
                                                         <AiOutlineExclamationCircle className="transition-opacity opacity-45 hover:opacity-90" />}
                                                 >
                                                     <div className="p-3 bg-gray-800 rounded-md">
-                                                        <p className="text-sm text-gray-300 mb-2">Enumeration patterns:</p>
+                                                        <p className="text-sm text-gray-300 mb-2">{t("libraryExplorerSuper.enumerationPatterns")}</p>
                                                         <div className="text-xs text-gray-400 space-y-1 font-mono">
-                                                            <div>${"{}"} - Simple counter (0, 1, 2...)</div>
-                                                            <div>${"{start=5}"} - Start from 5 (5, 6, 7...)</div>
-                                                            <div>${"{increment=2}"} - Increment by 2 (0, 2, 4...)</div>
-                                                            <div>${"{padding=3}"} - Pad with zeros (000, 001, 002...)</div>
-                                                            <div>${"{padding=3;start=10}"} - Combined (010, 011, 012...)</div>
-                                                            <div>${"{padding=2;increment=5}"} - Pad + increment (00, 05, 10...)</div>
-                                                            <div>${"{increment=2;start=1;padding=3}"} - All combined (001, 003, 005...)</div>
+                                                            <div>{t("libraryExplorerSuper.simpleCounter")}</div>
+                                                            <div>{t("libraryExplorerSuper.startFrom")}</div>
+                                                            <div>{t("libraryExplorerSuper.incrementBy")}</div>
+                                                            <div>{t("libraryExplorerSuper.padZeros")}</div>
+                                                            <div>{t("libraryExplorerSuper.combinedStart")}</div>
+                                                            <div>{t("libraryExplorerSuper.combinedPad")}</div>
+                                                            <div>{t("libraryExplorerSuper.combinedAll")}</div>
                                                         </div>
                                                     </div>
                                                 </Popover>
                                             </div>}
-                                            placeholder="Enter replacement text..."
+                                            placeholder={t("libraryExplorerSuper.replacePlaceholder")}
 
                                         />
                                     </div>
@@ -760,31 +762,31 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                                     <div className="flex flex-wrap gap-4 mb-4">
                                         <Field.Checkbox
                                             name="useRegex"
-                                            label="Use regex"
+                                            label={t("libraryExplorerSuper.useRegex")}
                                             fieldClass="w-fit"
                                         />
                                         <Field.Checkbox
                                             name="caseSensitive"
-                                            label="Case sensitive"
+                                            label={t("libraryExplorerSuper.caseSensitive")}
                                             fieldClass="w-fit"
                                         />
                                         <Field.Checkbox
                                             name="matchAllOccurrences"
-                                            label="Match all occurrences"
+                                            label={t("libraryExplorerSuper.matchAll")}
                                             fieldClass="w-fit"
                                         />
                                         <Field.Checkbox
                                             name="enumerateItems"
-                                            label="Enumerate items"
+                                            label={t("libraryExplorerSuper.enumerateItems")}
                                             fieldClass="w-fit"
                                         />
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="block text-sm font-medium text-gray-300 mb-2">Text formatting</label>
+                                        <label className="block text-sm font-medium text-gray-300 mb-2">{t("libraryExplorerSuper.textFormatting")}</label>
                                         <div className="flex gap-2">
                                             {[
-                                                { value: "none", label: "None" },
+                                                { value: "none", label: t("libraryExplorerSuper.none") },
                                                 { value: "lowercase", label: "aa" },
                                                 { value: "uppercase", label: "AA" },
                                                 { value: "titlecase", label: "Aa" },
@@ -810,7 +812,7 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                                     <div className="mb-4">
                                         <Field.Checkbox
                                             name="editMetadata"
-                                            label="Edit file metadata"
+                                            label={t("libraryExplorerSuper.editMetadata")}
                                             fieldClass="w-fit"
                                         />
                                     </div>
@@ -825,13 +827,13 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                                                     size="sm"
                                                     onClick={addMetadataEdit}
                                                 >
-                                                    Add Rule
+                                                    {t("libraryExplorerSuper.addRule")}
                                                 </Button>
                                             </div>
 
                                             {metadataEdits.length === 0 ? (
                                                 <p className="text-sm text-gray-500 text-center py-4">
-                                                    No metadata edit rules. Click "Add Rule" to create one.
+                                                    {t("libraryExplorerSuper.noRules")}
                                                 </p>
                                             ) : (
                                                 <div className="space-y-4">
@@ -860,10 +862,10 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                         <div className="mb-4 flex justify-between items-center">
                             <div className="flex gap-6">
                                 <span className="text-sm text-gray-300">
-                                    Original ({selectedFileNodes.length})
+                                    {t("libraryExplorerSuper.original", { count: selectedFileNodes.length })}
                                 </span>
                                 <span className="text-sm text-gray-300">
-                                    Renamed ({changedItems.length})
+                                    {t("libraryExplorerSuper.renamed", { count: changedItems.length })}
                                 </span>
                             </div>
                             <Button
@@ -875,14 +877,14 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                                 intent="white"
                                 size="sm"
                             >
-                                Apply ({changedItems.length})
+                                {t("libraryExplorerSuper.apply", { count: changedItems.length })}
                             </Button>
                         </div>
 
                         <div className={cn("overflow-y-auto flex-1 bg-gray-950 border rounded-md p-2 h-[calc(100%-55px)]")}>
                             {previewItems.length === 0 ? (
                                 <div className="text-center text-gray-500 py-8">
-                                    No files selected
+                                    {t("libraryExplorerSuper.noFilesSelected")}
                                 </div>
                             ) : (
                                 <div className="space-y-2">
@@ -928,11 +930,11 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                                                                 item.newName === item.originalName ? "text-yellow-500" : "text-green-500",
                                                             )}
                                                         >
-                                                            {item.newName === item.originalName ? "No Change" : "Renamed"}
+                                                            {item.newName === item.originalName ? t("libraryExplorerSuper.noChange") : t("libraryExplorerSuper.renamedLabel")}
                                                         </div>
                                                     )}
                                                     {item.metadataWillChange && (
-                                                        <div className="text-blue-500">Metadata</div>
+                                                        <div className="text-blue-500">{t("libraryExplorerSuper.metadataLabel")}</div>
                                                     )}
                                                 </div>
                                             )}
@@ -956,31 +958,32 @@ type MetadataEditRuleProps = {
 }
 
 function MetadataEditRule({ edit, index, onUpdate, onRemove }: MetadataEditRuleProps) {
+    const t = createTranslator()
     const getSearchPlaceholder = () => {
         switch (edit.type) {
             case "episode":
-                return "e.g.: >=1;<=12;!=5;type=main|special;!type=nc"
+                return t("libraryExplorerSuper.episodeSearchPlaceholder")
             case "anidb":
-                return "Enter text or regex pattern"
+                return t("libraryExplorerSuper.enterTextOrRegex")
             case "type":
-                return "e.g.: >=1;<12;=5;type=main;!type=special"
+                return t("libraryExplorerSuper.typeSearchPlaceholder")
             default:
                 return ""
         }
     }
 
     const getAnidbSearchPlaceholder = () => {
-        return "e.g.: anidb>=1;anidb=S1;anidb!=C2;type=special"
+        return t("libraryExplorerSuper.anidbSearchPlaceholder")
     }
 
     const getReplacePlaceholder = () => {
         switch (edit.type) {
             case "episode":
-                return "e.g.: increment=1, decrement=1, start=1, or direct value like 5"
+                return t("libraryExplorerSuper.episodeReplacePlaceholder")
             case "anidb":
-                return "Replacement text (supports enumeration patterns)"
+                return t("libraryExplorerSuper.replacementText")
             case "type":
-                return "Select new type"
+                return t("libraryExplorerSuper.selectNewType")
             default:
                 return ""
         }
@@ -989,18 +992,18 @@ function MetadataEditRule({ edit, index, onUpdate, onRemove }: MetadataEditRuleP
     const getSearchHelp = () => {
         switch (edit.type) {
             case "episode":
-                return "Operators: >=, <=, >, <, =, !=, ! | Types: type=main|special|nc, !type=special"
+                return t("libraryExplorerSuper.searchHelpEpisode")
             case "anidb":
-                return "Supports regex patterns and case sensitivity options"
+                return t("libraryExplorerSuper.searchHelpAnidb")
             case "type":
-                return "Same operators as episode: >=, <=, >, <, =, !=, ! | Types: type=main, !type=special"
+                return t("libraryExplorerSuper.searchHelpType")
             default:
                 return ""
         }
     }
 
     const getAnidbSearchHelp = () => {
-        return "AniDB operators: anidb>=, anidb<=, anidb=, anidb!=, !anidb= | Format: numbers (1,12) or prefixed (S1,C2,T1)"
+        return t("libraryExplorerSuper.anidbSearchHelp")
     }
 
     return (
@@ -1009,9 +1012,9 @@ function MetadataEditRule({ edit, index, onUpdate, onRemove }: MetadataEditRuleP
                 <span className="text-xs font-mono text-gray-400">#{index + 1}</span>
                 <Select
                     options={[
-                        { value: "episode", label: "Episode Number" },
-                        { value: "anidb", label: "AniDB Episode" },
-                        { value: "type", label: "File Type" },
+                        { value: "episode", label: t("libraryExplorerSuper.episodeNumber") },
+                        { value: "anidb", label: t("libraryExplorerSuper.anidbEpisode") },
+                        { value: "type", label: t("libraryExplorerSuper.fileType") },
                     ]}
                     value={edit.type}
                     onValueChange={(value) => {
@@ -1038,7 +1041,7 @@ function MetadataEditRule({ edit, index, onUpdate, onRemove }: MetadataEditRuleP
                 <div className="flex flex-col lg:flex-row gap-3">
                     {edit.type === "anidb" && (
                         <div className="flex-1">
-                            <label className="block text-xs font-medium text-gray-300 mb-1">Filter (Optional)</label>
+                            <label className="block text-xs font-medium text-gray-300 mb-1">{t("libraryExplorerSuper.filterOptional")}</label>
                             <TextInput
                                 placeholder={getAnidbSearchPlaceholder()}
                                 value={edit.anidbSearchText || ""}
@@ -1050,27 +1053,27 @@ function MetadataEditRule({ edit, index, onUpdate, onRemove }: MetadataEditRuleP
                     )}
                     <div className="flex-1">
                         <label className="block text-xs font-medium text-gray-300 mb-1">
-                            {edit.type === "anidb" ? "Find (Text/Regex)" : "Search"}
+                            {edit.type === "anidb" ? t("libraryExplorerSuper.findTextRegex") : t("libraryExplorerSuper.search")}
                         </label>
                         <TextInput
-                            placeholder={edit.type === "anidb" ? "Enter text or regex pattern" : getSearchPlaceholder()}
+                            placeholder={edit.type === "anidb" ? t("libraryExplorerSuper.enterTextOrRegex") : getSearchPlaceholder()}
                             value={edit.searchText}
                             onValueChange={(value: string | undefined) => onUpdate({ searchText: value || "" })}
                             size="sm"
                         />
                     </div>
                     <div className="flex-1">
-                        <label className="block text-xs font-medium text-gray-300 mb-1">Replace</label>
+                        <label className="block text-xs font-medium text-gray-300 mb-1">{t("libraryExplorerSuper.replace")}</label>
                         {edit.type === "type" ? (
                             <Select
                                 options={[
-                                    { value: "main", label: "Main" },
-                                    { value: "special", label: "Special" },
-                                    { value: "nc", label: "NC" },
+                                    { value: "main", label: t("libraryExplorer.episodeType") },
+                                    { value: "special", label: t("libraryExplorer.specialType") },
+                                    { value: "nc", label: t("libraryExplorer.ncType") },
                                 ]}
                                 value={edit.replaceText}
                                 onValueChange={(value: string | undefined) => onUpdate({ replaceText: value || "" })}
-                                placeholder="Select type"
+                                placeholder={t("libraryExplorer.selectType")}
                                 size="sm"
                             />
                         ) : (
@@ -1088,14 +1091,14 @@ function MetadataEditRule({ edit, index, onUpdate, onRemove }: MetadataEditRuleP
             {edit.type === "anidb" && (
                 <div className="flex gap-4 mb-2">
                     <Checkbox
-                        label="Use regex"
+                        label={t("libraryExplorerSuper.useRegex")}
                         value={edit.useRegex || false}
                         onValueChange={(value: boolean | "indeterminate") => onUpdate({ useRegex: !!value })}
                         size="sm"
                         labelClass="text-xs text-gray-300"
                     />
                     <Checkbox
-                        label="Case sensitive"
+                        label={t("libraryExplorerSuper.caseSensitive")}
                         value={edit.caseSensitive || false}
                         onValueChange={(value: boolean | "indeterminate") => onUpdate({ caseSensitive: !!value })}
                         size="sm"

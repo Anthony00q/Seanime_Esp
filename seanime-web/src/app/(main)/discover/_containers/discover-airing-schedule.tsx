@@ -10,8 +10,13 @@ import { useRouter } from "@/lib/navigation"
 import { format, isSameMonth, isToday, subDays } from "date-fns"
 import { addDays } from "date-fns/addDays"
 import { isSameDay } from "date-fns/isSameDay"
+import { getDateFnsLocale } from "@/locales/date-locale"
 import React from "react"
 import { LuDock, LuEye } from "react-icons/lu"
+import { capitalizeFirst } from "@/lib/utils/capitalize-date"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 
 export function DiscoverAiringSchedule() {
@@ -91,7 +96,7 @@ export function DiscoverAiringSchedule() {
 
     return (
         <div className="space-y-4 z-[5] relative" data-discover-airing-schedule-container>
-            <h2 className="text-center">Airing Schedule</h2>
+            <h2 className="text-center">{t("discover.airingSchedule")}</h2>
             <div className="space-y-6">
                 {days.map((day, index) => {
                     if (day.events.length === 0) return null
@@ -99,8 +104,8 @@ export function DiscoverAiringSchedule() {
                         <React.Fragment key={day.date}>
                             <div className="flex flex-col gap-2">
                                 <div className="flex items-center gap-2">
-                                    <h3 className="font-semibold">{format(new Date(day.date), "EEEE, PP")}</h3>
-                                    {day.isToday && <span className="text-[--muted]">Today</span>}
+                                    <h3 className="font-semibold">{capitalizeFirst(format(new Date(day.date), "EEEE, PP", { locale: getDateFnsLocale() }))}</h3>
+                                    {day.isToday && <span className="text-[--muted]">{t("discover.today")}</span>}
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                                     {day.events?.toSorted((a, b) => a.datetime.localeCompare(b.datetime))?.map((event, index) => {
@@ -116,14 +121,14 @@ export function DiscoverAiringSchedule() {
                                                                 setPreviewModalMediaId(event.media?.id || 0, "anime")
                                                             }}
                                                         >
-                                                            <LuEye /> Preview
+                                                            <LuEye /> {t("discover.preview")}
                                                         </ContextMenuItem>
                                                         <ContextMenuItem
                                                             onClick={() => {
                                                                 router.push(`/entry?id=${event.media?.id}`)
                                                             }}
                                                         >
-                                                            <LuDock /> Open page
+                                                            <LuDock /> {t("discover.openPage")}
                                                         </ContextMenuItem>
                                                     </ContextMenuGroup>}
                                                 >
@@ -153,7 +158,7 @@ export function DiscoverAiringSchedule() {
                                                                 >{event.media?.title?.userPreferred}</SeaLink>
 
                                                                 <p className="text-[--muted]">
-                                                                    Ep {event.episode} airing at {event.time}
+                                                                    {t("discover.episode")} {event.episode} {t("discover.episodeAiringAt", { time: event.time })}
                                                                 </p>
                                                             </div>
                                                         </div>
