@@ -4,10 +4,13 @@ import { IconButton } from "@/components/ui/button"
 import { Modal, ModalProps } from "@/components/ui/modal"
 import { Popover, PopoverProps } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { AiFillWarning } from "react-icons/ai"
 import { MdInfo } from "react-icons/md"
 import { useWindowSize } from "react-use"
+
+const t = createTranslator()
 
 type MediaEpisodeInfoModalProps = {
     title?: Nullish<string>
@@ -69,7 +72,7 @@ export function MediaEpisodeInfoModal(props: MediaEpisodeInfoModalProps) {
                     intent="gray-basic"
                     size="xs"
                 />}
-                title={title || "Episode"}
+                title={title || t("entry.episode")}
                 // contentClass="max-w-2xl"
                 // titleClass="text-xl"
             >
@@ -99,10 +102,10 @@ export function MediaEpisodeInfoModal(props: MediaEpisodeInfoModalProps) {
                         {isInvalid && <AiFillWarning />}
                     </p>
                     {!(!airDate && !length) && <p className="text-[--muted]">
-                        {airDate || "Unknown airing date"} - {length || "N/A"} minutes
+                        {airDate || t("entry.episodeList.unknownAirDate")} - {length || t("entry.episodeList.na")} {t("entry.episodeList.minutes")}
                     </p>}
                     <p className="text-gray-300">
-                        {summary?.replaceAll("`", "'") || "No summary"}
+                        {summary?.replaceAll("`", "'") || t("entry.noSummary")}
                     </p>
 
                     {filename && <>

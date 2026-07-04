@@ -23,6 +23,7 @@ import { useWindowSize } from "@uidotdev/usehooks"
 import { useAtom } from "jotai/react"
 import { atom } from "jotai/vanilla"
 import React from "react"
+import { createTranslator } from "@/locales"
 import { LuSquareTerminal } from "react-icons/lu"
 import { LuBlocks, LuCircleDashed, LuCircuitBoard, LuComponent, LuRefreshCw } from "react-icons/lu"
 import { TbPinned, TbPinnedFilled } from "react-icons/tb"
@@ -65,6 +66,8 @@ const ExtensionList = ({
     settings: ExtensionRepo_StoredPluginSettingsData | undefined;
     width: number | null;
 }) => {
+
+    const t = createTranslator()
 
     const { mutate: setPluginSettingsPinnedTrays, isPending: isSettingPluginSettingsPinnedTrays } = useSetPluginSettingsPinnedTrays()
 
@@ -125,7 +128,7 @@ const ExtensionList = ({
                                 icon={<LuComponent className="size-5 text-[--muted]" />}
                                 className="rounded-full hover:rotate-360 transition-all duration-300"
                             />}
-                        >Tray Plugins</Tooltip>
+                        >{t("extensions.trayPlugins")}</Tooltip>
                     </div>}
                     className="p-2 w-[300px]"
                     data-plugin-sidebar-debug-popover
@@ -202,13 +205,13 @@ const ExtensionList = ({
                                             />}
                                         </div>}
                                     >
-                                        {isPinned(trayIcon.extensionId) ? "Unpin" : "Pin"}
+                                        {isPinned(trayIcon.extensionId) ? t("extensions.unpinTray") : t("extensions.pinTray")}
                                     </Tooltip>
                                 </div>
                             </div>
                         ))}
                         {!trayIcons.length && <p className="text-sm text-[--muted] py-1 text-center w-full">
-                            No tray plugins
+                            {t("extensions.noTrayPlugins")}
                         </p>}
 
                         {/* {developmentModeExtensions?.map(extension => (
@@ -249,7 +252,7 @@ const ExtensionList = ({
                                 Debug
                             </p>
                             <p className="text-xs text-[--muted]">
-                                These extensions are loaded in development mode.
+                                {t("extensions.devModeExtensionsLoaded")}
                             </p>
                         </div>
                         {developmentModeExtensions?.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true })).map(extension => (
@@ -266,7 +269,7 @@ const ExtensionList = ({
                                                 onClick={() => openDebugWindow(extension.id)}
                                             />
                                         </div>}
-                                    >Debug logs</Tooltip>
+                                    >{t("extensions.debugLogs")}</Tooltip>
                                     <IconButton
                                         intent="warning-basic"
                                         size="sm"

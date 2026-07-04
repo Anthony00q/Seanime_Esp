@@ -1,0 +1,112 @@
+{
+  "changelogTour": {
+    "3_5_0": {
+      "introTitle": "¿Qué hay de nuevo en 3.5.0?",
+      "introDesc": "Veamos algunas de las nuevas funciones.",
+      "scanner": {
+        "title": "Nuevo escáner",
+        "content": "La lógica interna del escáner ha sido completamente renovada. Ahora usa un algoritmo más contextual y preciso."
+      },
+      "scanner2": {
+        "title": "Nuevo escáner",
+        "content": "El escáner ahora admite Anime Offline Database para el emparejamiento de datos."
+      },
+      "scanner3": {
+        "title": "Configuración del escáner",
+        "content": "Ahora puedes ajustar con precisión el comportamiento de emparejamiento del escáner. Consulta la documentación para más información."
+      },
+      "issueRecorder": {
+        "title": "Grabador de problemas",
+        "contentText": "El grabador de problemas ha mejorado y ahora puede grabar la UI, haciendo los informes de errores más detallados."
+      },
+      "transcodeNewPlayer": {
+        "title": "Reproductor de transcodificación",
+        "content": "La transcodificación/reproducción directa ahora usa el reproductor personalizado de Seanime, también utilizado por Seanime Denshi y el streaming en línea."
+      },
+      "search": {
+        "title": "Búsqueda",
+        "content": "El elemento de menú Búsqueda ahora abre la página de búsqueda. También puedes buscar rápidamente desde cualquier página pulsando 'S'."
+      },
+      "entry": {
+        "title": "Nuevas funciones del reproductor",
+        "contentText": "Pulsa 'H' para buscar personajes rápidamente mientras ves. Pulsa 'Z' para activar las Estadísticas para frikis."
+      }
+    },
+    "3_7_0": {
+      "introTitle": "¿Qué hay de nuevo en 3.7.0?",
+      "introDesc": "Veamos algunas de las nuevas funciones.",
+      "security": {
+        "title": "Mejoras de seguridad",
+        "content": "3.7.0 incluye varias mejoras de seguridad, incluyendo modos seguros. Consulta la documentación para más información."
+      },
+      "tags": {
+        "title": "Etiquetas",
+        "content": "La página de búsqueda ahora permite buscar por etiquetas."
+      },
+      "adultContent": {
+        "title": "Contenido adulto en la búsqueda global",
+        "content": "La búsqueda global ya no filtra el contenido adulto si lo tienes activado. (Recuerda: pulsa 'S' para abrir la búsqueda global)"
+      },
+      "bugFixes": {
+        "title": "Correcciones de errores",
+        "content": "Se han corregido varios errores en esta versión, incluidos algunos relacionados con Seanime Denshi y los plugins. Lee el changelog completo para más detalles."
+      }
+    },
+    "3_8_0": {
+      "introTitle": "¿Qué hay de nuevo en 3.8.0?",
+      "introDesc": "Veamos las mayores incorporaciones de esta versión.",
+      "torrentSearch": {
+        "title": "Búsqueda y descargas de torrents",
+        "content": "La búsqueda de torrents ahora puede expandirse entre múltiples proveedores a la vez. Esta versión también soluciona algunos casos límite en descargas Debrid."
+      },
+      "subtitleTranslation": {
+        "title": "Traducción de subtítulos",
+        "content": "El Traductor de subtítulos ahora admite LLMs locales compatibles con OpenAI, por lo que herramientas como LM Studio y Ollama pueden usarse como backends de traducción local."
+      },
+      "externalPlayerLink": {
+        "title": "Archivos de subtítulos locales",
+        "content": "Los archivos de subtítulos locales ahora se detectan automáticamente desde la carpeta del video, y los enlaces de reproductor externo pueden usar el nuevo marcador '{subtitleUrl}' para esos archivos."
+      },
+      "spoilers": {
+        "title": "Ocultar spoilers",
+        "content": "Ahora puedes ocultar spoilers en toda la app. En las páginas de anime, el nuevo comando '/spoilers' te permite activar u ocultar los spoilers de ese anime específico."
+      },
+      "onlineStreaming": {
+        "title": "Streaming en línea",
+        "content": "El streaming en línea ahora usa un nuevo proxy basado en HTTP/1 y puede cambiar automáticamente entre proveedores hasta encontrar uno que funcione."
+      },
+      "defaultEpisodeSource": {
+        "title": "Fuente de episodio predeterminada",
+        "content": "Elige qué fuente de episodios debe abrir Seanime de forma predeterminada cuando accedas a la página de un anime."
+      },
+      "uiSettingsRedesign": {
+        "title": "Ajustes de UI rediseñados",
+        "content": "El panel de ajustes de la Interfaz de Usuario ha sido rediseñado para facilitar la navegación."
+      },
+      "precarga": {
+        "title": "Precarga de rutas",
+        "content": "Seanime ahora puede precargar rutas en segundo plano para que la navegación sea instantánea. Puedes ajustar el comportamiento de precarga en el nuevo panel de ajustes de UI."
+      },
+      "entryHeader": {
+        "title": "Actualizaciones de UI",
+        "content": "El encabezado de medios ha sido ligeramente rediseñado. También hay nuevas animaciones y transiciones para una experiencia más fluida."
+      },
+      "extensions": {
+        "title": "Extensiones",
+        "content": "Las extensiones ahora pueden desactivarse sin desinstalarlas, y los plugins tienen nuevas APIs para ajustes, autenticación y gestión de extensiones."
+      },
+      "extensionSecureMode": {
+        "title": "Modo seguro de extensiones",
+        "content": "Activa el Modo seguro de extensiones para recibir un aviso de confirmación cada vez que una extensión intente realizar una acción sensible."
+      },
+      "denshi": {
+        "title": "Estado de ventana de Denshi",
+        "content": "Seanime Denshi ahora recuerda la posición y el tamaño de la ventana, por lo que al reabrir la app vuelves al mismo diseño de escritorio."
+      },
+      "bugFixes": {
+        "title": "Correcciones de errores",
+        "content": "Se han corregido varios errores en esta versión, incluidos algunos relacionados con el reproductor integrado. Lee el changelog completo para más detalles."
+      }
+    }
+  }
+}

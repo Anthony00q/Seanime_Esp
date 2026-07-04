@@ -5,11 +5,13 @@ import { websocketConnectedAtom, websocketConnectionErrorCountAtom } from "@/app
 import { LuffyError } from "@/components/shared/luffy-error"
 import { Button } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
+import { createTranslator } from "@/locales"
 import { useAtomValue } from "jotai/react"
 import React from "react"
 import { toast } from "sonner"
 
 export function ElectronRestartServerPrompt() {
+    const t = createTranslator()
 
     type ServerReachability = "unknown" | "reachable" | "unreachable"
 
@@ -89,10 +91,10 @@ export function ElectronRestartServerPrompt() {
     }, [hasRendered, isConnected, probeServerHealth])
 
     const handleRestart = async () => {
-        if (import.meta.env.MODE === "development") return toast.warning("Dev mode: Not restarting server")
+        if (import.meta.env.MODE === "development") return toast.warning(t("electron.devModeNotRestarting"))
 
         setHasClickedRestarted(true)
-        toast.info("Restarting server...")
+        toast.info(t("electron.restartingServer"))
         if (window.electron) {
             window.electron.emit("restart-server")
             React.startTransition(() => {
@@ -139,8 +141,8 @@ export function ElectronRestartServerPrompt() {
             {(!isConnected && connectionErrorCount > 2 && connectionErrorCount < threshold && !isUpdating && !isUpdatedInstalled) && (
                 <div className="fixed top-4 left-1/2 z-[9999] -translate-x-1/2 rounded-full border bg-orange-950/85 px-4 py-2 text-sm text-gray-200 shadow-lg backdrop-blur-sm">
                     {isServerUnavailable
-                        ? "The background server is not responding. Trying to recover..."
-                        : "Reconnecting to the background server..."}
+                        ? t("electron.serverNotRespondingRecovering")
+                        : t("electron.reconnectingToServer")}
                 </div>
             )}
 
@@ -150,10 +152,10 @@ export function ElectronRestartServerPrompt() {
                 hideCloseButton
                 contentClass="max-w-2xl"
             >
-                <LuffyError>
+                <LuffyError title={t("error.oops")}>
                     <div className="space-y-4 flex flex-col items-center">
                         <p className="text-lg max-w-sm">
-                            The background server process has stopped responding. Please restart it to continue.
+                            {t("electron.serverStoppedResponding")}
                         </p>
 
                         <Button
@@ -163,10 +165,10 @@ export function ElectronRestartServerPrompt() {
                             size="lg"
                             className="rounded-full"
                         >
-                            Restart server
+                            {t("electron.restartServerButton")}
                         </Button>
                         <p className="text-[--muted] text-sm max-w-xl">
-                            If this message persists after multiple tries, please relaunch the application.
+                            {t("electron.relaunchAppInstruction")}
                         </p>
                     </div>
                 </LuffyError>

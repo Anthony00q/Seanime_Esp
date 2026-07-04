@@ -59,131 +59,128 @@ All notable changes to this project will be documented in this file.
 
 ## v3.8.7
 
-- ⚡️ VideoCore: Improved hls.js error handling
-- 🦺 iOS: Fixes for media paths
-- 🦺 UI: Fixed media entry modal number inputs
-- 🦺 Torrent: Fixed search caching #827
-- ⬆️ Updated hls.js
+- ⚡️ VideoCore: Manejo de errores de hls.js mejorado
+- 🦺 iOS: Rutas de medios corregidas
+- 🦺 UI: Entradas numéricas del modal de medios corregidas
+- 🦺 Torrent: Caché de búsqueda corregido #827
+- ⬆️ hls.js actualizado
 
 ## v3.8.6
 
-- 🦺 Fixed settings regression introduced in v3.8.5
-
-## v3.8.5
-
-- 🦺 Built-in Torrent Client: Fixed runtime error causing by pausing
-- 🦺 Built-in Torrent Client: Added in-memory map fallback
-- 🦺 VideoCore: Potential fix for body pointer events
-- 🦺 Manga: Potential fix for image format and size detection failing
-- 🏗️ Core: Improved support for gomobile
+- 🦺 Ajustes: Se corrigió una regresión introducida en los ajustes en la v3.8.5
+- 🦺 Cliente Torrent Integrado: Se corrigió un error de ejecución causado al pausar
+- 🦺 Cliente Torrent Integrado: Se añadió un mapa en memoria de respaldo
+- 🦺 VideoCore: Posible solución para eventos de puntero (pointer events)
+- 🦺 Manga: Posible corrección para la detección del formato y tamaño de las imágenes
+- 🏗️ Núcleo: Soporte mejorado para gomobile
 
 ## v3.8.4
 
-- ✨ Built-in torrent client (Experimental)
-  - Only available as a feature flag
-- ⚡️ Transcode: Support for Low-power Intel QSV
-- ⚡️ Manga: Support for zooming
-- ⚡️ AniList: Support for animated profile pictures
-- ⚡️ Plugin: Added dropdown actions for manga
-- ⚡️ Plugin: Option to change fetch redirect policy
-- ⚡️ VideoCore(Perf): Optimized subtitle parsing
-- 🦺 VideoCore: Fixed keybinds handling and input focus in mini player
-- 🦺 Extension: Fixed unified code diff
-- 🏗️ Core: Experimental support for gomobile
+- ✨ Cliente Torrent incorporado (Experimental)
+  - Solo disponible como flag de característica (feature flag)
+- ⚡️ Transcodificación: Soporte para Intel QSV de bajo consumo
+- ⚡️ Manga: Soporte para zoom
+- ⚡️ AniList: Soporte para fotos de perfil animadas
+- ⚡️ Plugin: Acciones desplegables añadidas para manga
+- ⚡️ Plugin: Opción para cambiar la política de redirección de "fetch"
+- ⚡️ VideoCore(Perf): Análisis de subtítulos optimizado
+- 🦺 VideoCore: Manejo de atajos de teclado y enfoque de entrada en el mini reproductor corregidos
+- 🦺 Extensión: Comparación (diff) de código unificada corregida
+- 🌐 Multilenguaje (Fork): ¡Nuevo soporte multi-idioma! Ahora puedes cambiar entre Español, Inglés y Portugués directamente desde los ajustes.
+- ⚡️ Multilenguaje (Fork): El idioma ahora es dinámico y se aplica en toda la interfaz (calendarios, fechas, notificaciones y bandeja del sistema).
+- 🦺 i18n (Fork): Motor de traducción interno completamente rediseñado para ser más rápido, modular y a prueba de errores de la interfaz.
+- 🏗️ Núcleo: Soporte experimental para gomobile
 
 ## v3.8.3
 
-- ⚡️ Plugins: ctx.appSettings now includes debrid, torrent streaming and transcode settings
-- ⚡️ Torrent streaming: Option to preload next stream (Unstable)
-- 🦺 Scanner: Fixed runtime error caused by concurrent file checking
-- 🦺 VideoCore: Fixed autonext skipping playlist episodes
-- 🦺 VideoCore: Fixed playback failure when replaying fully downloaded torrent stream
-- 🦺 VideoCore: Fixed occasional bugs caused by new React19 ref handling
-- 🦺 VideoCore(Perf): Throttle torrent stream subtitle events to avoid UI lag
-- 🦺 VideoCore(Perf): Throttle thumbnail scrobbling requests
-- 🦺 Torrentstream: Dropping torrent removes them on disk immediately
-- 🦺 MPV: Potential fix for stale events causing incorrect progress updates
-- 🦺 MPV: Generate fresh IPC sockets for each launch to avoid collisions
-- 🏗️ MPV: Refactored error messages handling
-- 🏗️ VideoCore: Use View Transitions for mini player transitions
-- 🏗️ Torrentstream: Fully downloaded files now stream from file on disk directly
-- 🏗️ UI: Replaced drawer components and built-in player drawer to avoid layout thrashing
+- ⚡️ Plugins: ctx.appSettings ahora incluye configuración de debrid, streaming por torrent y transcodificación
+- ⚡️ Torrent streaming: Opción para precargar el siguiente stream (Inestable)
+- 🦺 Escáner: Error de ejecución causado por verificación concurrente de archivos corregido
+- 🦺 VideoCore: El salto automático que omitía episodios de la lista de reproducción fue corregido
+- 🦺 VideoCore: Fallo de reproducción al repetir un stream por torrent completamente descargado corregido
+- 🦺 VideoCore: Errores ocasionales causados por el nuevo manejo de referencias de React 19 corregidos
+- 🦺 VideoCore(Perf): Limitación de eventos de subtítulos en streaming de torrents para evitar lag en la UI
+- 🦺 VideoCore(Perf): Limitación de peticiones de miniaturas
+- 🦺 Torrentstream: Soltar un torrent ahora lo elimina del disco inmediatamente
+- 🦺 MPV: Posible solución para eventos obsoletos que causaban actualizaciones de progreso incorrectas
+- 🦺 MPV: Generación de nuevos sockets IPC para cada lanzamiento para evitar colisiones
+- 🏗️ MPV: Manejo de mensajes de error refactorizado
+- 🏗️ VideoCore: Uso de transiciones de vista para las transiciones del mini reproductor
+- 🏗️ Torrentstream: Los archivos completamente descargados ahora se transmiten directamente desde el archivo en el disco
+- 🏗️ UI: Se reemplazaron los componentes del drawer y el reproductor incorporado para evitar problemas de diseño
 
 ## v3.8.2
 
-- 🦺 VideoCore: Fixed audio selection
-- 🦺 VideoCore: Fixed auto next for local files
-- 🦺 VideoCore: Disallow miniplayer in fullscreen app mode
-- 🦺 VideoCore: Fixed torrent stream playback cancellation logic
-- 🦺 VideoCore: Refactored escape key handling
-- 🦺 Manga: Fixed incorrect progress updates on next chapter
-- 🦺 Schedule: Fixed incorrect timezone in modals
-- 🦺 Hide Spoilers: Fixed torrent selection modal handling
-- 🦺 Issue Recorder: Fixed query error serialization
-- 🦺 Torrent Search: Fixed runtime error causing fewer results
-- 🦺 Core: Disabled request body limits
-- 🦺 Denshi: Skip inital view transition on content load
+- 🦺 VideoCore: Selección de audio corregida
+- 🦺 VideoCore: Reproducción automática del siguiente archivo local corregida
+- 🦺 VideoCore: Se deshabilitó el minirreproductor en modo pantalla completa de la app
+- 🦺 VideoCore: Lógica de cancelación en transmisión por torrent corregida
+- 🦺 VideoCore: Refactorizado el manejo de la tecla escape
+- 🦺 Manga: Actualización incorrecta del progreso al pasar al siguiente capítulo corregida
+- 🦺 Calendario: Zona horaria incorrecta en los modales corregida
+- 🦺 Ocultar Spoilers: Manejo del modal de selección de torrent corregido
+- 🦺 Registro de Problemas: Serialización de errores de consultas corregida
+- 🦺 Búsqueda de Torrent: Error interno que causaba mostrar menos resultados corregido
+- 🦺 Núcleo: Límite de tamaño en peticiones al servidor desactivado
+- 🦺 Denshi: Se omite la transición visual inicial al cargar el contenido
 
 ## v3.8.1
 
-- 🦺 Online streaming: Fixed sidebar visibility in fullscreen mode
-
-## v3.8.0
-
-- ✨ Torrent Search: Search from multiple providers at once
-  - Seanime can now aggregate torrent results from multiple providers
-- ⚡️ Subtitle Translator: Support for OpenAI-compatible local LLMs
-- ⚡️ UI: Route preloading and faster transitions
-  - Media entries in your collection will open virtually instantly
-  - Media pages loading time has been reduced by 40%
-- ⚡️ Denshi: Window position and size are now remembered
-- ⚡️ VideoCore: Auto-import local subtitle files
-  - The native player will now automatically import subtitle files from the same directory as the video file
-- ⚡️ External Player Link: New '{subtitleUrl}' placeholder for local sub files
-- ⚡️ UI: Ability to hide spoilers
-  - New '/spoilers' command to toggle spoilers on/off for a specific anime
-- ⚡️ Online streaming: New HTTP/1-based video proxy
-- ⚡️ Online streaming: Option to automatically cycle through providers
-  - Seanime can now try providers until a working one is found
-- ⚡️ Extensions: Ability to disable extensions
-- ⚡️ Streaming: Ability to delete previous batch selection
-- ⚡️ Debrid: Improved downloading handling
-  - Fixes some edge cases encountered while downloading from TorBox and RD
-- ⚡️ Plugins: More APIs
-  - 'ctx.settings', 'ctx.auth', 'ctx.extensions' to securily manage the app systems
-- ⚡️ Settings: New 'Extension Secure Mode'
-  - Confirmation prompts whenever an extension tries to perform a sensitive action
-- 🦺 qBittorrent: Fixed support for 5.2.x
-- 🦺 Cache mode: Queued updates are deleted on manual mutation
-- 🦺 VideoCore: Potential fix for duplicated subtitles
-- 🦺 VideoCore: Potential fix for media session not being ended
-- 🦺 Online streaming: Fixed video source selection
-- 🦺 Online streaming: Fixed occasional HTTP/2 related errors
-- 🦺 Plugins: Faster reads for '$storage' and '$store'
-- 🦺 UI: Fixed some UI issues
-- 🦺 Auto Downloader: Fixed handling of debrid downloads
-- 🦺 Manga: Fixed chapter page image height
-- 🦺 Core: Fixed handling of stale cookies
-- ⬆️ Updated Go to 1.26.2
+- 🦺 Streaming online: Se solucionó la visibilidad de la barra lateral en modo pantalla completa
+- ✨ Búsqueda de Torrents: Búsqueda simultánea en múltiples proveedores
+  - Seanime ahora puede agregar resultados de torrents de múltiples proveedores
+- ⚡️ Traductor de subtítulos: Soporte para LLMs locales compatibles con OpenAI
+- ⚡️ UI: Precarga de rutas y transiciones más rápidas
+  - Las entradas de medios en tu colección se abrirán casi al instante
+  - El tiempo de carga de las páginas de medios se redujo en un 40%
+- ⚡️ Denshi: Ahora se recuerda la posición y el tamaño de la ventana
+- ⚡️ VideoCore: Auto-importar archivos de subtítulos locales
+  - El reproductor nativo ahora importará automáticamente los archivos de subtítulos desde el mismo directorio que el archivo de video
+- ⚡️ Enlace de reproductor externo: Nuevo marcador '{subtitleUrl}' para archivos de subtítulos locales
+- ⚡️ UI: Capacidad de ocultar spoilers
+  - Nuevo comando '/spoilers' para activar/desactivar spoilers en un anime específico
+- ⚡️ Streaming online: Nuevo proxy de video basado en HTTP/1
+- ⚡️ Streaming online: Opción para alternar automáticamente entre proveedores
+  - Seanime ahora puede intentar con diferentes proveedores hasta encontrar uno que funcione
+- ⚡️ Extensiones: Capacidad para desactivar extensiones
+- ⚡️ Streaming: Capacidad para eliminar selecciones anteriores de lotes
+- ⚡️ Debrid: Mejora en el manejo de descargas
+  - Soluciona algunos casos extremos encontrados al descargar desde TorBox y RD
+- ⚡️ Plugins: Más APIs
+  - 'ctx.settings', 'ctx.auth', 'ctx.extensions' para manejar de forma segura los sistemas de la aplicación
+- ⚡️ Ajustes: Nuevo 'Modo Seguro para Extensiones'
+  - Avisos de confirmación cada vez que una extensión intente realizar una acción sensible
+- 🦺 qBittorrent: Soporte corregido para 5.2.x
+- 🦺 Modo Caché: Las actualizaciones en cola se eliminan al hacer mutación manual
+- 🦺 VideoCore: Posible corrección para subtítulos duplicados
+- 🦺 VideoCore: Posible corrección para la sesión de medios que no finaliza
+- 🦺 Streaming online: Selección de fuente de video corregida
+- 🦺 Streaming online: Errores ocasionales relacionados con HTTP/2 solucionados
+- 🦺 Plugins: Lecturas más rápidas para '$storage' y '$store'
+- 🦺 UI: Se corrigieron algunos problemas de la interfaz
+- 🦺 Auto Descargador: Manejo de descargas por debrid corregido
+- 🦺 Manga: Altura de las imágenes de las páginas del capítulo corregida
+- 🦺 Núcleo: Manejo de cookies expiradas corregido
+- ⬆️ Go actualizado a 1.26.2
 
 ## v3.7.1
 
-- ⚡️ Cache mode: Ability to update entries in the cache (Experimental)
-  - You can now update progress while AniList is down. Data will be auto-synced when AniList is back online.
-- ⚡️ VideoCore: Ability to save screenshots to disk
-- ⚡️ Plugin: Added more APIs
-  - Added '$shared' API for sharing pure functions between hooks and runtimes
-  - Added 'ctx.jobs', 'ctx.settings', 'ctx.cache' for less boilerplate
-  - Added '$debug' API for looking at plugin logs on the client
-- 🦺 Cache mode: Fixed certain queries bypassing the cache layer
-- 🦺 Home: Fixed 'not authenticated' errors for local accounts
-- 🦺 Torrentstream: Fixed 'Disable IPV6' option not working
-- 🦺 Plugin: Fixed potential crash caused by concurrent shared map writes
-- 🦺 Torrentstream: Fixed HEAD requests
-- 🦺 MPV: Fixed player launch when using '--terminal=no --really-quiet'
-- 🦺 Auto-select: Fixed form fields showing empty values after saving
-- 🦺 Settings: Fixed form fields showing empty values after saving
-- 🦺 UI: Fixed some UI issues
+- ⚡️ Modo caché: Capacidad de actualizar entradas en la caché (Experimental)
+  - Ahora puedes actualizar tu progreso mientras AniList está caído. Los datos se sincronizarán automáticamente cuando AniList vuelva en línea.
+- ⚡️ VideoCore: Capacidad de guardar capturas de pantalla en disco
+- ️ Plugin: Se añadieron más APIs
+  - Se añadió la API '$shared' para compartir funciones puras entre hooks y runtimes
+  - Se añadieron 'ctx.jobs', 'ctx.settings', 'ctx.cache' para reducir código repetitivo
+  - Se añadió la API '$debug' para ver los logs del plugin en el cliente
+- 🦺 Modo caché: Se corrigió que ciertas consultas evitaban la capa de caché
+- 🦺 Inicio: Se corrigieron errores de 'no autenticado' para cuentas locales
+- 🦺 Torrentstream: Se corrigió que la opción 'Desactivar IPV6' no funcionaba
+- 🦺 Plugin: Se corrigió un posible crash causado por escrituras concurrentes en mapas compartidos
+- 🦺 Torrentstream: Se corrigieron las solicitudes HEAD
+- 🦺 MPV: Se corrigió el lanzamiento del reproductor al usar '--terminal=no --really-quiet'
+- 🦺 Auto-selección: Se corrigieron campos del formulario que mostraban valores vacíos después de guardar
+-  Ajustes: Se corrigieron campos del formulario que mostraban valores vacíos después de guardar
+- 🦺 UI: Se corrigieron algunos problemas de interfaz
 
 ## v3.7.0
 

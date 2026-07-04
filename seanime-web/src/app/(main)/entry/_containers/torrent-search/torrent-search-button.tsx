@@ -2,9 +2,12 @@ import { Anime_Entry } from "@/api/generated/types"
 import { AnimeMetaActionButton } from "@/app/(main)/entry/_components/meta-section"
 import { useAnimeEntryPageView } from "@/app/(main)/entry/_containers/anime-entry-page"
 import { __torrentSearch_selectionAtom } from "@/app/(main)/entry/_containers/torrent-search/torrent-search-drawer"
+import { createTranslator } from "@/locales"
 import { useSetAtom } from "jotai/react"
 import React, { useMemo } from "react"
 import { BiDownload } from "react-icons/bi"
+
+const t = createTranslator()
 
 export function TorrentSearchButton({ entry, onClick }: { entry: Anime_Entry, onClick?: () => void }) {
 
@@ -31,10 +34,10 @@ export function TorrentSearchButton({ entry, onClick }: { entry: Anime_Entry, on
                 data-torrent-search-button
             >
                 {(!entry.downloadInfo?.hasInaccurateSchedule && !!count) ? <>
-                    {(!isMovie) && `Download ${entry.downloadInfo?.batchAll ? "batch /" : "next"} ${count > 1 ? `${count} episodes` : "episode"}`}
-                    {(isMovie) && `Download movie`}
+                    {(!isMovie) && `${t("entry.episodeList.downloadTorrents")} ${entry.downloadInfo?.batchAll ? t("entry.episodeList.downloadBatch") : t("entry.episodeList.downloadNext")} ${count > 1 ? t("entry.episodeList.downloadEpisodes", { count }) : t("entry.episodeList.downloadEpisode")}`}
+                    {(isMovie) && t("entry.episodeList.downloadMovie")}
                 </> : <>
-                    Download
+                    {t("entry.episodeList.downloadTorrents")}
                 </>}
             </AnimeMetaActionButton>
         </div>

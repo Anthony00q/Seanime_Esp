@@ -8,6 +8,9 @@ import { VideoCore_VideoSource, VideoCoreLifecycleState } from "@/app/(main)/_fe
 import { atom, useAtomValue } from "jotai"
 import React from "react"
 import { LuFilm } from "react-icons/lu"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export const vc_videoSources = atom<VideoCore_VideoSource[]>([])
 
@@ -46,7 +49,7 @@ export function VideoCoreResolutionMenu({ state, onVideoSourceChange }: {
 
     return (
         <VideoCoreMenu
-            name="Video"
+            name={t("videoPlayer.menuVideo")}
             trigger={<VideoCoreControlButtonIcon
                 icons={[
                     ["default", LuFilm],
@@ -56,14 +59,14 @@ export function VideoCoreResolutionMenu({ state, onVideoSourceChange }: {
                 className="text-xl lg:text-2xl"
             />}
         >
-            <VideoCoreMenuTitle>Quality</VideoCoreMenuTitle>
+            <VideoCoreMenuTitle>{t("videoPlayer.resolution.quality")}</VideoCoreMenuTitle>
             <VideoCoreMenuBody>
                 <VideoCoreSettingSelect
                     isFullscreen={isFullscreen}
                     containerElement={containerElement}
                     options={[
                         ...(isHls ? [{
-                            label: "Auto",
+                            label: t("videoPlayer.resolution.auto"),
                             value: -1,
                         }] : []),
                         ...levels.map(level => ({

@@ -81,6 +81,42 @@ function saveDenshiSettings(settings) {
 }
 
 let denshiSettings = { ...DENSHI_SETTINGS_DEFAULTS }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Localization
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function getLocalesDir() {
+    return path.join(__dirname, "../locales")
+}
+
+function loadDenshiLocale(locale) {
+    try {
+        const localePath = path.join(getLocalesDir(), `${locale}.json`)
+        if (fs.existsSync(localePath)) {
+            return JSON.parse(fs.readFileSync(localePath, "utf-8"))
+        }
+    } catch (err) {
+        log.error("[Denshi] Failed to load locale:", locale, err)
+    }
+    try {
+        const fallbackPath = path.join(getLocalesDir(), "en.json")
+        if (fs.existsSync(fallbackPath)) {
+            return JSON.parse(fs.readFileSync(fallbackPath, "utf-8"))
+        }
+    } catch (err) {
+        log.error("[Denshi] Failed to load fallback locale:", err)
+    }
+    return { tray: { toggleVisibility: "Show/Hide", removeFromDock: "Remove from Dock", quit: "Quit Seanime" } }
+}
+
+let trayStrings = {}
+
+function initLocale() {
+    const locale = denshiSettings.locale || "es"
+    trayStrings = loadDenshiLocale(locale)
+    log.info(`[Denshi] Loaded locale: ${locale}`)
+}
 let shouldMaximizeMainWindow = false
 
 // validates and returns safe window bounds based on the provided raw bounds and current display configurations
@@ -275,7 +311,7 @@ const LOCAL_EMBED_HOST = "127.0.0.1"
 const DESKTOP_SERVER_HOST = "127.0.0.1"
 const DESKTOP_SERVER_DEFAULT_PORT = 43211
 const DESKTOP_SERVER_DEV_PORT = 43000
-const DEFAULT_UPDATE_FEED_URL = "https://github.com/5rahim/seanime/releases/latest/download"
+const DEFAULT_UPDATE_FEED_URL = "https://github.com/Anthony00q/Seanime_Esp/releases/latest/download"
 
 function isAllowedLocalEmbedURL(rawURL) {
     if (!localServerPort) {
@@ -538,7 +574,7 @@ process.on("uncaughtException", (error) => {
     log.error("Uncaught Exception:", error)
 
     if (app.isReady()) {
-        dialog.showErrorBox("An error occurred", `Uncaught Exception: ${error.message}\n\nCheck the logs for more details.`)
+        dialog.showErrorBox(trayStrings.error?.title || "An error occurred", `${trayStrings.error?.uncaughtException || "Uncaught Exception"}: ${error.message}\n\n${trayStrings.error?.checkLogs || "Check the logs for more details."}`)
     }
 
     logStartupEvent("UNCAUGHT EXCEPTION", error.stack || error.message)
@@ -892,7 +928,7 @@ function createTray() {
     tray = new Tray(icon)
 
     const contextMenu = Menu.buildFromTemplate([{
-        id: "toggle_visibility", label: "Toggle Visibility", click: () => {
+        id: "toggle_visibility", label: trayStrings.tray?.toggleVisibility || "Show/Hide", click: () => {
             if (!serverStarted) return
             if (mainWindow.isVisible()) {
                 hideMainWindow()
@@ -901,12 +937,12 @@ function createTray() {
             }
         }
     }, ...(process.platform === "darwin" ? [{
-        id: "accessory_mode", label: "Remove from Dock", click: () => {
+        id: "accessory_mode", label: trayStrings.tray?.removeFromDock || "Remove from Dock", click: () => {
             app.dock.hide()
         }
     }
     ] : []), {
-        id: "quit", label: "Quit Seanime", click: () => {
+        id: "quit", label: trayStrings.tray?.quit || "Quit Seanime", click: () => {
             cleanupAndExit()
         }
     }
@@ -1483,32 +1519,10 @@ function cleanupAndExit() {
 
 // returns true if github is ok OR url is unreachable
 // returns false if github is down and fallback should be used
+// NOTE: Fork-specific version — no longer queries seanime.app
 async function fetchGithubStatus() {
-    try {
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), 5000)
-
-        const response = await net.fetch("https://seanime.app/api/github-status", {
-            signal: controller.signal
-        })
-        clearTimeout(timeoutId)
-
-        if (!response.ok) {
-            return { ok: true, fallback: "" }
-        }
-
-        const data = await response.json()
-
-        // url is reachable, status is "down"
-        if (data.status === "down") {
-            log.warn(`[Denshi] App: Changing update channel to ${data.fallback}, reason: ${data.description}`)
-            return { ok: false, fallback: data.fallback || "seanime" }
-        }
-
-        return { ok: true, fallback: "" }
-    } catch (err) {
-        return { ok: true, fallback: "" }
-    }
+    // Always return ok: true to use the fork's GitHub releases
+    return { ok: true, fallback: "" }
 }
 
 // Initialize the app
@@ -1517,6 +1531,8 @@ app.whenReady().then(async () => {
 
     // Load denshi settings early so environment variables are registered prior to DLL import
     denshiSettings = loadDenshiSettings()
+    // Initialize locale based on settings
+    initLocale()
 
     if (_mpvPrismLogging || denshiSettings.mpvPrismLogging) {
         setMpvCoreLoggingEnabled(true)
@@ -1561,13 +1577,8 @@ app.whenReady().then(async () => {
         verifyUpdateCodeSignature: false,
     }
 
-    if (currentUpdateChannel === "seanime_nightly") {
-        updateConfig.url = "https://seanime.app/api/updates/nightly/"
-        updateConfig.allowPrerelease = true
-    } else if (currentUpdateChannel === "seanime") {
-        updateConfig.url = "https://seanime.app/api/updates/stable/"
-        updateConfig.allowPrerelease = false
-    }
+    // Fork-specific: always use GitHub releases from the fork
+    // Removed upstream seanime.app channel redirects
 
     updateConfig.url = normalizeUpdateFeedURL(updateConfig.url, DEFAULT_UPDATE_FEED_URL)
 
@@ -1912,6 +1923,13 @@ app.whenReady().then(async () => {
         if (process.platform === "darwin") {
             app.dock.show()
         }
+    })
+
+    // Restart app handler
+    ipcMain.on("restart-app", () => {
+        console.log("EVENT restart-app")
+        app.relaunch()
+        cleanupAndExit()
     })
 
     // Quit app handler

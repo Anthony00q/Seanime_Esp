@@ -1,0 +1,146 @@
+{
+  "common": {
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "add": "Add",
+      "delete": "Delete",
+      "confirm": "Confirm",
+      "close": "Close",
+      "edit": "Edit",
+      "refresh": "Refresh",
+      "scan": "Scan",
+      "retry": "Retry",
+      "reload": "Reload",
+      "reset": "Reset",
+      "open": "Open",
+      "start": "Start",
+      "next": "Next",
+      "back": "Back",
+      "skip": "Skip",
+      "done": "Done",
+      "previous": "Previous",
+      "loadMore": "Load more",
+      "ok": "Ok"
+    },
+    "labels": {
+      "name": "Name",
+      "type": "Type",
+      "status": "Status",
+      "loading": "Loading...",
+      "search": "Search",
+      "settings": "Settings",
+      "yes": "Yes",
+      "no": "No",
+      "all": "All",
+      "showAll": "Show all",
+      "allLists": "All lists",
+      "none": "None",
+      "custom": "Custom",
+      "optional": "Optional",
+      "host": "Host",
+      "port": "Port",
+      "username": "Username",
+      "password": "Password",
+      "slowerForLargeLibraries": "Slower for large libraries",
+      "bestScore": "best score",
+      "tags": "Tags",
+      "genres": "Genres",
+      "adult": "Adult",
+      "sorting": "Sorting",
+      "format": "Format",
+      "season": "Season",
+      "year": "Year",
+      "openDirectory": "Open directory",
+      "anilistId": "AniList ID",
+      "mediaId": "Media ID",
+      "episodeNumber": "Episode {number}",
+      "specialEpisodeNumber": "Special {number}",
+      "episodeNumberLabel": "Episode number",
+      "ep": "Ep",
+      "movie": "Movie",
+      "minutesLeft": "{min}m left",
+      "date": "Date",
+      "openInLibraryExplorer": "Open in Library Explorer",
+      "showAudienceScore": "Show audience score",
+      "filler": "Filler",
+      "unidentified": "Unidentified"
+    },
+    "status": {
+      "connecting": "Connecting..."
+    },
+    "messages": {
+      "areYouSure": "Are you sure you want to continue?",
+      "itemNotFound": "Item not found",
+      "itemNotFoundWithType": "Item not found ({itemType})",
+      "nothingFetched": "Nothing fetched, please refresh options.",
+      "success": "Success",
+      "noResults": "No results found",
+      "noOptions": "No options found",
+      "nothingToSee": "Nothing to see here",
+      "nothingFound": "Nothing found",
+      "noTrailerFound": "No trailer found",
+      "noMetadataFound": "No metadata found",
+      "unknownGPU": "Unknown GPU",
+      "unknown": "Unknown"
+    },
+    "placeholders": {
+      "allGenres": "All genres",
+      "allTags": "All tags",
+      "allFormats": "All formats",
+      "allSeasons": "All seasons",
+      "allStatuses": "All statuses",
+      "allScores": "All scores",
+      "allCountries": "All countries",
+      "timeless": "Any year",
+      "title": "Title",
+      "all": "All"
+    },
+    "toast": {
+      "saved": "Saved successfully",
+      "deleted": "Deleted successfully",
+      "added": "Added successfully",
+      "removed": "Removed successfully",
+      "updated": "Updated successfully",
+      "error": "An error occurred",
+      "copiedToClipboard": "Copied to clipboard",
+      "openingExternalPlayer": "Opening file in external player."
+    },
+    "components": {
+      "fileTree": {
+        "likelyMatch": "Likely match",
+        "searchFiles": "Search files...",
+        "noFilesFound": "No files found matching \"{search}\""
+      },
+      "fileSelector": {
+        "selectFileOrDirectory": "Select a file or directory"
+      },
+      "directorySelector": {
+        "selectDirectory": "Select a directory",
+        "changeLibrary": "Change library",
+        "suggestions": "Suggestions:"
+      },
+      "mediaExclusion": {
+        "title": "Select anime to exclude from sharing",
+        "countExcluded": "{count} anime excluded from sharing",
+        "countExcluded_plural": "{count} anime excluded from sharing",
+        "notVisibleHint": "(will not be visible to other clients)",
+        "moreCount": "+{count} more",
+        "editSelection": "Edit selection",
+        "selectAnime": "Select anime",
+        "description": "Select anime that you don't want to share with other clients. Selected anime will not be visible to connected clients.",
+        "selectAll": "Select all",
+        "deselectAll": "Deselect all",
+        "selectAdult": "Select adult",
+        "countSelected": "{count} selected (will not be shared)",
+        "countSelected_plural": "{count} selected (will not be shared)",
+        "done": "Done ({count} selected)",
+        "done_plural": "Done ({count} selected)"
+      },
+      "fields": {
+        "directory": "Directory"
+      },
+      "selectAllFiles": "Select all files"
+    }
+  }
+}
