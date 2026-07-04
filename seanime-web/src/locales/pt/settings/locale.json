@@ -1,0 +1,10 @@
+{
+  "settings": {
+    "locale": {
+      "title": "Idioma",
+      "description": "Altere o idioma da aplicação.",
+      "restartRequired": "Requer Reinício",
+      "restartDescription": "A alteração do idioma requer um reinício. Deseja reiniciar agora?"
+    }
+  }
+}

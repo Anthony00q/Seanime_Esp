@@ -194,7 +194,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>((props, r
                         aria-label={basicFieldProps.name || "Select"}
                         {...rest}
                     >
-                        <SelectPrimitive.Value placeholder={placeholder} />
+                        <span className="truncate"><SelectPrimitive.Value placeholder={placeholder} /></span>
 
                         <SelectPrimitive.Icon className={cn(!!rightIcon && "hidden")}>
                             <svg

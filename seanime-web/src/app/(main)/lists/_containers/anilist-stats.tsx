@@ -14,8 +14,11 @@ import { cn } from "@/components/ui/core/styling"
 import { Skeleton } from "@/components/ui/skeleton"
 import { StaticTabs } from "@/components/ui/tabs"
 import React from "react"
+import { translateFormat, translateGenre } from "@/lib/anilist-translations"
+import { createTranslator } from "@/locales"
+import { FaRegStar } from "react-icons/fa"
 import { FiBarChart2, FiBookOpen, FiClock } from "react-icons/fi"
-import { LuStar, LuTrendingUp } from "react-icons/lu"
+import { LuHourglass, LuStar, LuTrendingUp } from "react-icons/lu"
 import { PiTelevisionSimpleBold } from "react-icons/pi"
 
 type AnilistStatsProps = {
@@ -23,23 +26,15 @@ type AnilistStatsProps = {
     isLoading?: boolean
 }
 
-const formatName: Record<string, string> = {
-    TV: "TV",
-    TV_SHORT: "TV Short",
-    MOVIE: "Movie",
-    SPECIAL: "Special",
-    OVA: "OVA",
-    ONA: "ONA",
-    MUSIC: "Music",
-}
+const t = createTranslator()
 
 const statusName: Record<string, string> = {
-    CURRENT: "Watching",
-    PLANNING: "Planning",
-    COMPLETED: "Completed",
-    DROPPED: "Dropped",
-    PAUSED: "Paused",
-    REPEATING: "Repeating",
+    CURRENT: t("status.current"),
+    PLANNING: t("status.planning"),
+    COMPLETED: t("status.completed"),
+    DROPPED: t("status.dropped"),
+    PAUSED: t("status.paused"),
+    REPEATING: t("status.repeating"),
 }
 
 const statusColors: Record<string, ChartColor> = {
@@ -48,7 +43,6 @@ const statusColors: Record<string, ChartColor> = {
     PLANNING: "blue",
     PAUSED: "amber",
     DROPPED: "red",
-    REPEATING: "purple",
 }
 
 const statusOrder = ["CURRENT", "COMPLETED", "PLANNING", "PAUSED", "DROPPED", "REPEATING"]
@@ -81,8 +75,8 @@ export function AnilistStats(props: AnilistStatsProps) {
                     triggerClass="px-6 py-2 h-full rounded-full"
                     pillClass="rounded-full border-transparent"
                     items={[
-                        { name: "Anime", isCurrent: activeTab === "anime", onClick: () => setActiveTab("anime") },
-                        { name: "Manga", isCurrent: activeTab === "manga", onClick: () => setActiveTab("manga") },
+                        { name: t("anilistStats.anime"), isCurrent: activeTab === "anime", onClick: () => setActiveTab("anime") },
+                        { name: t("anilistStats.manga"), isCurrent: activeTab === "manga", onClick: () => setActiveTab("manga") },
                     ]}
                 />
             </div>
@@ -105,7 +99,7 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
     const scoreData = React.useMemo(() => toScoreData(anime?.scores), [anime?.scores])
     const statusData = React.useMemo(() => toStatusData(anime?.statuses), [anime?.statuses])
     const formatData = React.useMemo(() => toFormatRows(anime?.formats), [anime?.formats])
-    const genreData = React.useMemo(() => toRankingRows(anime?.genres, "titles"), [anime?.genres])
+    const genreData = React.useMemo(() => toRankingRows(anime?.genres, t("anilistStats.titles").toLowerCase()), [anime?.genres])
     const startYearData = React.useMemo(() => toStartYearData(anime?.startYears), [anime?.startYears])
     const releaseYearData = React.useMemo(() => toReleaseYearData(anime?.releaseYears), [anime?.releaseYears])
     const studioData = React.useMemo(() => toStudioRows(anime?.studios), [anime?.studios])
@@ -114,7 +108,7 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
         statuses: anime?.statuses,
         genres: anime?.genres,
         startYears: anime?.startYears,
-        unit: "titles",
+        unit: t("anilistStats.titles").toLowerCase(),
     }), [anime?.scores, anime?.statuses, anime?.genres, anime?.startYears])
 
     return (
@@ -122,37 +116,37 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" data-anilist-stats-anime-hero>
                 <MetricCard
                     icon={<PiTelevisionSimpleBold />}
-                    label="Total Anime"
+                    label={t("anilistStats.totalAnime")}
                     value={anime?.count ?? 0}
                 />
                 <MetricCard
                     icon={<FiBarChart2 />}
-                    label="Episodes"
+                    label={t("anilistStats.episodes")}
                     value={(anime?.episodesWatched ?? 0).toLocaleString()}
                 />
                 <MetricCard
                     icon={<FiClock />}
-                    label="Watch Time"
+                    label={t("anilistStats.watchTime")}
                     value={daysWatched}
-                    sub={`${hoursWatched.toLocaleString()} hours`}
+                    sub={`${hoursWatched.toLocaleString()} ${t("anilistStats.hours")}`}
                 />
                 <MetricCard
                     icon={<LuStar />}
-                    label="Mean Score"
+                    label={t("anilistStats.averageScore")}
                     value={formatScore(anime?.meanScore)}
                     accent
                 />
                 <MetricCard
                     icon={<LuTrendingUp />}
-                    label="Started This Year"
+                    label={t("anilistStats.startedThisYear")}
                     value={thisYearData?.count ?? 0}
-                    sub={thisYearData ? `${thisYear}` : "No activity"}
+                    sub={thisYearData ? `${thisYear}` : t("anilistStats.noActivity")}
                 />
                 <MetricCard
                     icon={<LuTrendingUp />}
-                    label="Started Last Year"
+                    label={t("anilistStats.startedLastYear")}
                     value={lastYearData?.count ?? 0}
-                    sub={lastYearData ? `${thisYear - 1}` : "No activity"}
+                    sub={lastYearData ? `${thisYear - 1}` : t("anilistStats.noActivity")}
                 />
             </div>
 
@@ -163,15 +157,15 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" data-anilist-stats-anime-charts>
                 {scoreData.length > 0 && (
                     <ChartSection
-                        title="Score Distribution"
-                        description="Titles by score"
+                        title={t("anilistStats.scoreDistribution")}
+                        description={t("anilistStats.titlesByScore")}
                         data-anilist-stats-anime-scores
                     >
                         <BarChart
                             className="h-64"
                             data={scoreData}
                             index="name"
-                            categories={["Titles"]}
+                            categories={[t("anilistStats.titles")]}
                             colors={["blue"]}
                             showLegend={false}
                             allowDecimals={false}
@@ -181,7 +175,7 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
 
                 {statusData.length > 0 && (
                     <StatusChart
-                        title="List Status"
+                        title={t("anilistStats.listStatus")}
                         data={statusData}
                         data-anilist-stats-anime-statuses
                     />
@@ -189,8 +183,8 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
 
                 {formatData.length > 0 && (
                     <ChartSection
-                        title="Formats"
-                        description="Format mix by title count"
+                        title={t("anilistStats.formats")}
+                        description={t("anilistStats.formatMix")}
                         className="lg:col-span-2"
                         data-anilist-stats-anime-formats
                     >
@@ -200,8 +194,8 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
 
                 {genreData.length > 0 && (
                     <ChartSection
-                        title="Top Genres"
-                        description="Most watched genres"
+                        title={t("anilistStats.genres")}
+                        description={t("anilistStats.mostWatchedGenres")}
                         className="lg:col-span-2"
                         data-anilist-stats-anime-genres
                     >
@@ -212,14 +206,14 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
 
             {startYearData.length > 0 && (
                 <ChartSection
-                    title="Started by Year"
-                    description="Titles started each year"
+                    title={t("anilistStats.startedByYear")}
+                    description={t("anilistStats.titlesStartedEachYear")}
                     data-anilist-stats-anime-activity
                 >
                     <AreaChart
                         data={startYearData}
                         index="name"
-                        categories={["Titles"]}
+                        categories={[t("anilistStats.titles")]}
                         colors={["blue"]}
                         curveType="linear"
                         showDots={false}
@@ -231,14 +225,14 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
 
             {releaseYearData.length > 0 && (
                 <ChartSection
-                    title="Release Years"
-                    description="Titles grouped by original release year"
+                    title={t("anilistStats.releaseYears")}
+                    description={t("anilistStats.titlesGroupedReleaseYear")}
                     data-anilist-stats-anime-years
                 >
                     <BarChart
                         data={releaseYearData}
                         index="name"
-                        categories={["Titles"]}
+                        categories={[t("anilistStats.titles")]}
                         colors={["blue"]}
                         showLegend={false}
                         allowDecimals={false}
@@ -248,8 +242,8 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
 
             {studioData.length > 0 && (
                 <ChartSection
-                    title="Top Studios"
-                    description="Studios with the most watched titles"
+                    title={t("anilistStats.topStudios")}
+                    description={t("anilistStats.studiosMostWatched")}
                     data-anilist-stats-anime-studios
                 >
                     <RankingGrid rows={studioData.slice(0, 10)} />
@@ -267,7 +261,7 @@ function MangaStatsView({ stats }: { stats?: AL_Stats }) {
 
     const scoreData = React.useMemo(() => toScoreData(manga?.scores), [manga?.scores])
     const statusData = React.useMemo(() => toStatusData(manga?.statuses, "Reading"), [manga?.statuses])
-    const genreData = React.useMemo(() => toRankingRows(manga?.genres, "titles", "chapters"), [manga?.genres])
+    const genreData = React.useMemo(() => toRankingRows(manga?.genres, t("anilistStats.titles").toLowerCase(), "chapters"), [manga?.genres])
     const startYearData = React.useMemo(() => toStartYearData(manga?.startYears), [manga?.startYears])
     const releaseYearData = React.useMemo(() => toReleaseYearData(manga?.releaseYears), [manga?.releaseYears])
     const highlights = React.useMemo(() => toHighlights({
@@ -275,7 +269,7 @@ function MangaStatsView({ stats }: { stats?: AL_Stats }) {
         statuses: manga?.statuses,
         genres: manga?.genres,
         startYears: manga?.startYears,
-        unit: "titles",
+        unit: t("anilistStats.titles").toLowerCase(),
     }), [manga?.scores, manga?.statuses, manga?.genres, manga?.startYears])
 
     return (
@@ -283,31 +277,31 @@ function MangaStatsView({ stats }: { stats?: AL_Stats }) {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" data-anilist-stats-manga-hero>
                 <MetricCard
                     icon={<FiBookOpen />}
-                    label="Total Manga"
+                    label={t("anilistStats.totalManga")}
                     value={manga?.count ?? 0}
                 />
                 <MetricCard
                     icon={<FiBarChart2 />}
-                    label="Chapters"
+                    label={t("anilistStats.chapters")}
                     value={(manga?.chaptersRead ?? 0).toLocaleString()}
                 />
                 <MetricCard
                     icon={<LuStar />}
-                    label="Mean Score"
+                    label={t("anilistStats.averageScore")}
                     value={formatScore(manga?.meanScore)}
                     accent
                 />
                 <MetricCard
                     icon={<LuTrendingUp />}
-                    label="Started This Year"
+                    label={t("anilistStats.startedThisYear")}
                     value={thisYearData?.count ?? 0}
-                    sub={thisYearData ? `${thisYear}` : "No activity"}
+                    sub={thisYearData ? `${thisYear}` : t("anilistStats.noActivity")}
                 />
                 <MetricCard
                     icon={<LuTrendingUp />}
-                    label="Started Last Year"
+                    label={t("anilistStats.startedLastYear")}
                     value={lastYearData?.count ?? 0}
-                    sub={lastYearData ? `${thisYear - 1}` : "No activity"}
+                    sub={lastYearData ? `${thisYear - 1}` : t("anilistStats.noActivity")}
                 />
             </div>
 
@@ -318,15 +312,15 @@ function MangaStatsView({ stats }: { stats?: AL_Stats }) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" data-anilist-stats-manga-charts>
                 {scoreData.length > 0 && (
                     <ChartSection
-                        title="Score Distribution"
-                        description="Titles by score"
+                        title={t("anilistStats.scoreDistribution")}
+                        description={t("anilistStats.titlesByScore")}
                         data-anilist-stats-manga-scores
                     >
                         <BarChart
                             className="h-64"
                             data={scoreData}
                             index="name"
-                            categories={["Titles"]}
+                            categories={[t("anilistStats.titles")]}
                             colors={["blue"]}
                             showLegend={false}
                             allowDecimals={false}
@@ -336,7 +330,7 @@ function MangaStatsView({ stats }: { stats?: AL_Stats }) {
 
                 {statusData.length > 0 && (
                     <StatusChart
-                        title="List Status"
+                        title={t("anilistStats.listStatus")}
                         data={statusData}
                         data-anilist-stats-manga-statuses
                     />
@@ -344,8 +338,8 @@ function MangaStatsView({ stats }: { stats?: AL_Stats }) {
 
                 {genreData.length > 0 && (
                     <ChartSection
-                        title="Top Genres"
-                        description="Most read genres"
+                        title={t("anilistStats.genres")}
+                        description={t("anilistStats.mostReadGenres")}
                         className="lg:col-span-2"
                         data-anilist-stats-manga-genres
                     >
@@ -356,14 +350,14 @@ function MangaStatsView({ stats }: { stats?: AL_Stats }) {
 
             {startYearData.length > 0 && (
                 <ChartSection
-                    title="Started by Year"
-                    description="Titles started each year"
+                    title={t("anilistStats.startedByYear")}
+                    description={t("anilistStats.titlesStartedEachYear")}
                     data-anilist-stats-manga-activity
                 >
                     <AreaChart
                         data={startYearData}
                         index="name"
-                        categories={["Titles"]}
+                        categories={[t("anilistStats.titles")]}
                         colors={["blue"]}
                         curveType="linear"
                         showDots={false}
@@ -375,14 +369,14 @@ function MangaStatsView({ stats }: { stats?: AL_Stats }) {
 
             {releaseYearData.length > 0 && (
                 <ChartSection
-                    title="Release Years"
-                    description="Titles grouped by original release year"
+                    title={t("anilistStats.releaseYears")}
+                    description={t("anilistStats.titlesGroupedReleaseYear")}
                     data-anilist-stats-manga-years
                 >
                     <BarChart
                         data={releaseYearData}
                         index="name"
-                        categories={["Titles"]}
+                        categories={[t("anilistStats.titles")]}
                         colors={["blue"]}
                         showLegend={false}
                         allowDecimals={false}
@@ -422,7 +416,7 @@ function toScoreData(scores: AL_UserScoreStats[] | undefined) {
         .sort((a, b) => (a.score ?? 0) - (b.score ?? 0))
         .map(s => ({
             name: formatScoreBucket(s.score),
-            Titles: s.count,
+            [t("anilistStats.titles")]: s.count,
         }))
 }
 
@@ -462,24 +456,24 @@ function toHighlights({
 
     return [
         modeScore && {
-            label: "Most Used Score",
+            label: t("anilistStats.mostUsedScore"),
             value: modeScore.score,
             detail: `${modeScore.count.toLocaleString()} ${unit}`,
         },
         completion && {
-            label: "Completion",
+            label: t("anilistStats.completion"),
             value: `${completion.rate}%`,
-            detail: `${completion.completed.toLocaleString()} of ${completion.started.toLocaleString()} started`,
+            detail: t("anilistStats.completedOfStarted", { completed: completion.completed.toLocaleString(), started: completion.started.toLocaleString() }),
         },
         topGenre && {
-            label: "Top Genre",
+            label: t("anilistStats.topGenre"),
             value: topGenre.genre,
             detail: joinMeta(`${topGenre.count.toLocaleString()} ${unit}`, formatAvg(topGenre.meanScore)),
         },
         peakYear && {
-            label: "Peak Start Year",
+            label: t("anilistStats.peakStartYear"),
             value: String(peakYear.year),
-            detail: `${peakYear.count.toLocaleString()} ${unit} started`,
+            detail: t("anilistStats.titlesStartedCount", { count: peakYear.count.toLocaleString(), unit: unit }),
         },
     ].filter(Boolean) as Highlight[]
 }
@@ -556,7 +550,7 @@ function toFormatRows(formats: AL_UserFormatStats[] | undefined): RankingRow[] {
     const maxCount = rows[0]?.count ?? 1
 
     return rows.map(f => {
-        const name = formatName[f.format ?? ""] ?? f.format ?? "Unknown"
+        const name = translateFormat(f.format ?? "")
         const hours = Math.round(f.minutesWatched / 60)
 
         return {
@@ -564,8 +558,8 @@ function toFormatRows(formats: AL_UserFormatStats[] | undefined): RankingRow[] {
             name,
             count: f.count,
             maxCount,
-            valueLabel: `${f.count.toLocaleString()} titles`,
-            meta: joinMeta(`${hours.toLocaleString()}h watched`, formatAvg(f.meanScore)),
+            valueLabel: `${f.count.toLocaleString()} ${t("anilistStats.titles").toLowerCase()}`,
+            meta: joinMeta(t("anilistStats.hoursWatchedCount", { hours: hours.toLocaleString() }), formatAvg(f.meanScore)),
         }
     })
 }
@@ -584,7 +578,7 @@ function toRankingRows(
 
     return rows.map(item => {
         const countLabel = `${item.count.toLocaleString()} ${unit}`
-        const secondaryLabel = secondaryUnit ? `${item.chaptersRead.toLocaleString()} chapters` : undefined
+        const secondaryLabel = secondaryUnit ? `${item.chaptersRead.toLocaleString()} ${t("anilistStats.chapters").toLowerCase()}` : undefined
 
         return {
             id: item.genre ?? "Unknown",
@@ -610,7 +604,7 @@ function toStudioRows(studios: AL_UserStudioStats[] | undefined): RankingRow[] {
         name: item.studio?.name ?? "Unknown",
         count: item.count,
         maxCount,
-        valueLabel: `${item.count.toLocaleString()} titles`,
+        valueLabel: `${item.count.toLocaleString()} ${t("anilistStats.titles").toLowerCase()}`,
         meta: formatAvg(item.meanScore),
     }))
 }
@@ -623,7 +617,7 @@ function toStartYearData(years: AL_UserStartYearStats[] | undefined) {
         .sort((a, b) => (a.startYear ?? 0) - (b.startYear ?? 0))
         .map(y => ({
             name: y.startYear,
-            Titles: y.count,
+            [t("anilistStats.titles")]: y.count,
         }))
 }
 
@@ -635,7 +629,7 @@ function toReleaseYearData(years: AL_UserReleaseYearStats[] | undefined) {
         .sort((a, b) => (a.releaseYear ?? 0) - (b.releaseYear ?? 0))
         .map(y => ({
             name: y.releaseYear,
-            Titles: y.count,
+            [t("anilistStats.titles")]: y.count,
         }))
 }
 
@@ -646,7 +640,7 @@ function formatScore(score: number | undefined) {
 
 function formatAvg(score: number | undefined) {
     if (!score) return undefined
-    return `Score Avg ${formatScore(score)}`
+    return t("anilistStats.scoreAvg", { score: formatScore(score) })
 }
 
 function formatScoreBucket(score: number | undefined) {
@@ -711,7 +705,7 @@ function StatusChart({ title, data, className, ...rest }: {
     className?: string
 } & React.HTMLAttributes<HTMLDivElement>) {
     return (
-        <ChartSection title={title} description="Title count by current list status" className={className} {...rest}>
+        <ChartSection title={title} description={t("anilistStats.titlesByScore")} className={className} {...rest}>
             <DonutChart
                 data={data}
                 index="name"

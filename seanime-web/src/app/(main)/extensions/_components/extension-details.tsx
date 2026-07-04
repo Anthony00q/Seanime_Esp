@@ -9,6 +9,9 @@ import capitalize from "lodash/capitalize"
 import React from "react"
 import { FaFileAlt, FaLink } from "react-icons/fa"
 import { FaArrowRight } from "react-icons/fa6"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type ExtensionDetailsProps = {
     extension: Extension_Extension
@@ -62,7 +65,7 @@ export function ExtensionDetails(props: ExtensionDetailsProps) {
                             intent="gray-outline"
                             leftIcon={<FaLink />}
                         >
-                            Website
+                            {t("extensions.card.website")}
                         </Button>
                     </SeaLink>}
                 </div>
@@ -73,17 +76,16 @@ export function ExtensionDetails(props: ExtensionDetailsProps) {
 
                 <div className="flex gap-2 flex-wrap">
                     {isBuiltin && <Badge className="rounded-md tracking-wide border-transparent px-0 italic opacity-50" intent="unstyled">
-                        Built-in
+                        {t("extensions.card.builtIn")}
                     </Badge>}
                     {<Badge className="rounded-md tracking-wide" intent={"unstyled"}>
                         ID: {extension.id}
                     </Badge>}
                     {!isBuiltin && <Badge className="rounded-md" intent="unstyled">
-                        Author: {extension.author}
+                        {t("extensions.card.author", { author: extension.author })}
                     </Badge>}
                     {<Badge className="rounded-md" intent="unstyled">
-                        {/*{extension.lang.toUpperCase()}*/}
-                        Language: {LANGUAGES_LIST[extension.lang?.toLowerCase()]?.nativeName || extension.lang?.toUpperCase() || "Unknown"}
+                        {t("extensions.card.language", { language: LANGUAGES_LIST[extension.lang?.toLowerCase()]?.nativeName || extension.lang?.toUpperCase() || t("common.messages.unknown") })}
                     </Badge>}
                     {<Badge className="rounded-md" intent="unstyled">
                         {/*{extension.lang.toUpperCase()}*/}
@@ -92,7 +94,7 @@ export function ExtensionDetails(props: ExtensionDetailsProps) {
                 </div>
 
                 {(!!extension.manifestURI && !isBuiltin) && <p className="text-sm w-full tracking-wide">
-                    <span className="text-[--muted]">Manifest URL:</span> <span className="select-all break-all">{extension.manifestURI}</span>
+                    <span className="text-[--muted]">{t("extensions.card.manifestUrl")}</span> <span className="select-all break-all">{extension.manifestURI}</span>
                 </p>}
 
                 {!!extension.readme && <div className="">
@@ -102,12 +104,12 @@ export function ExtensionDetails(props: ExtensionDetailsProps) {
                         rightIcon={<FaArrowRight />}
                         onClick={() => openTab(extension.readme)}
                     >
-                        Documentation
+                        {t("extensions.card.documentation")}
                     </Button>
                 </div>}
 
                 {(!!extension.notes) && <div className="text-md w-full tracking-wide space-y-1 py-2">
-                    <p className="text-[--muted] text-sm">Notes:</p>
+                    <p className="text-[--muted] text-sm">{t("extensions.card.notes")}</p>
                     <div className="text-pretty space-y-1">{extension.notes.split("\n").map((line, i) => {
                         // return <p>
                         //     {line.replaceAll("\t", "    ")}

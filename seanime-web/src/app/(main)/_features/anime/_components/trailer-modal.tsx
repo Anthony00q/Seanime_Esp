@@ -3,8 +3,11 @@ import { LuffyError } from "@/components/shared/luffy-error"
 import { cn } from "@/components/ui/core/styling"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { Modal } from "@/components/ui/modal"
+import { createTranslator } from "@/locales"
 import { __isElectronDesktop__ } from "@/types/constants"
 import React from "react"
+
+const t = createTranslator()
 
 type PlaylistsModalProps = {
     trigger?: React.ReactElement
@@ -50,7 +53,7 @@ export function Content(props: ContentProps) {
 
     const [loaded, setLoaded] = React.useState(true)
 
-    if (!trailerId) return <LuffyError title="No trailer found" />
+    if (!trailerId) return <LuffyError title={t("common.messages.noTrailerFound")} />
 
     return (
         <>

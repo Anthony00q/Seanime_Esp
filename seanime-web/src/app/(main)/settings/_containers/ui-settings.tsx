@@ -14,9 +14,9 @@ import { THEME_COLOR_BANK } from "@/lib/theme/theme-bank"
 import {
     THEME_DEFAULT_VALUES,
     ThemeLibraryScreenBannerType,
-    ThemeMediaPageBannerSizeOptions,
     ThemeMediaPageBannerType,
     ThemeMediaPageBannerTypeOptions,
+    ThemeMediaPageBannerSizeOptions,
     useThemeSettings,
 } from "@/lib/theme/theme-hooks.ts"
 import { __isDesktop__ } from "@/types/constants"
@@ -33,6 +33,9 @@ import { useIsSimulatedUser } from "../../_hooks/use-server-status"
 import { useServerStatus } from "../../_hooks/use-server-status"
 import { SettingsCard } from "../_components/settings-card"
 import { SettingsIsDirty } from "../_components/settings-submit-button"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 const themeSchema = defineSchema(({ z }) => z.object({
     animeEntryScreenLayout: z.string().min(0).default(THEME_DEFAULT_VALUES.animeEntryScreenLayout),
@@ -164,7 +167,7 @@ const libraryBannerTypeOptions = [
                         <div className="h-px w-5 rounded-full bg-white/20" />
                     </div>
                 </SelThumb>
-                <span>Dynamic</span>
+                <span>{t("settings.ui.bannerType.dynamic")}</span>
             </span>
         ),
     },
@@ -180,7 +183,7 @@ const libraryBannerTypeOptions = [
                         </svg>
                     </div>
                 </SelThumb>
-                <span>Custom</span>
+                <span>{t("settings.ui.bannerType.custom")}</span>
             </span>
         ),
     },
@@ -193,21 +196,37 @@ const libraryBannerTypeOptions = [
                         <div className="h-px w-7 bg-white/20 rotate-12" />
                     </div>
                 </SelThumb>
-                <span>None</span>
+                <span>{t("settings.ui.bannerType.none")}</span>
             </span>
         ),
     },
 ]
+
+const bannerBehaviorTranslations: Record<string, { label: string, description: string }> = {
+    "default": { label: t("settings.ui.bannerTypeOptions.default"), description: t("settings.ui.bannerTypeOptions.defaultDesc") },
+    "blur-when-unavailable": { label: t("settings.ui.bannerTypeOptions.blurWhenUnavailable"), description: t("settings.ui.bannerTypeOptions.blurWhenUnavailableDesc") },
+    "dim-when-unavailable": { label: t("settings.ui.bannerTypeOptions.dimWhenUnavailable"), description: t("settings.ui.bannerTypeOptions.dimWhenUnavailableDesc") },
+    "hide-when-unavailable": { label: t("settings.ui.bannerTypeOptions.hideWhenUnavailable"), description: t("settings.ui.bannerTypeOptions.hideWhenUnavailableDesc") },
+    "dim": { label: t("settings.ui.bannerTypeOptions.dim"), description: t("settings.ui.bannerTypeOptions.dimDesc") },
+    "blur": { label: t("settings.ui.bannerTypeOptions.blur"), description: t("settings.ui.bannerTypeOptions.blurDesc") },
+    "hide": { label: t("settings.ui.bannerTypeOptions.hide"), description: t("settings.ui.bannerTypeOptions.hideDesc") },
+}
 
 const bannerBehaviorOptions = ThemeMediaPageBannerTypeOptions.map(n => ({
     value: n.value,
     label: (
         <span className="flex items-center gap-3">
             <BannerBehaviorThumb type={n.value} />
-            <span>{n.label}</span>
+            <span>{bannerBehaviorTranslations[n.value]?.label ?? n.label}</span>
         </span>
     ),
+    description: bannerBehaviorTranslations[n.value]?.description ?? n.description,
 }))
+
+const bannerSizeTranslations: Record<string, { label: string, description: string }> = {
+    "default": { label: t("settings.ui.bannerSizeOptions.large"), description: t("settings.ui.bannerSizeOptions.largeDesc") },
+    "small": { label: t("settings.ui.bannerSizeOptions.smaller"), description: t("settings.ui.bannerSizeOptions.smallerDesc") },
+}
 
 const bannerSizeOptions = ThemeMediaPageBannerSizeOptions.map(n => ({
     value: n.value,
@@ -219,7 +238,7 @@ const bannerSizeOptions = ThemeMediaPageBannerSizeOptions.map(n => ({
                     style={{ height: n.value === "default" ? "65%" : "35%" }}
                 />
             </SelThumb>
-            <span>{n.label}</span>
+            <span>{bannerSizeTranslations[n.value]?.label ?? n.label}</span>
         </span>
     ),
 }))
@@ -277,23 +296,23 @@ const navigationPreloadOptions: Array<{
 }> = [
     {
         value: "disable",
-        title: "Disabled",
-        description: "No preloading",
+        title: t("settings.ui.navPreload.disable"),
+        description: t("settings.ui.navPreload.disableDesc"),
     },
     {
         value: "default",
-        title: "Intent",
-        description: "Preload on hover",
+        title: t("settings.ui.navPreload.intent"),
+        description: t("settings.ui.navPreload.intentDesc"),
     },
     {
         value: "faster",
-        title: "Faster Intent",
-        description: "Preload more aggressively",
+        title: t("settings.ui.navPreload.fasterIntent"),
+        description: t("settings.ui.navPreload.fasterIntentDesc"),
     },
     {
         value: "viewport",
-        title: "Viewport",
-        description: "When visible in the viewport",
+        title: t("settings.ui.navPreload.viewport"),
+        description: t("settings.ui.navPreload.viewportDesc"),
     },
 ]
 
@@ -432,7 +451,7 @@ export function UISettings() {
 
     function handleSave(data: z.infer<typeof themeSchema>) {
         if (colord(data.backgroundColor).isLight()) {
-            toast.error("Seanime does not support light themes")
+            toast.error(t("settings.ui.lightThemeNotSupported"))
             return
         }
 
@@ -521,8 +540,8 @@ export function UISettings() {
                         listClass={tabsListClass}
                     >
                         <TabsList data-settings-ui-panel-tabs>
-                            <TabsTrigger value="main">General</TabsTrigger>
-                            <TabsTrigger value="css">CSS</TabsTrigger>
+                            <TabsTrigger value="main">{t("settings.ui.tabGeneral")}</TabsTrigger>
+                            <TabsTrigger value="css">{t("settings.ui.tabCSS")}</TabsTrigger>
                         </TabsList>
 
                         <TabsContent value="css" className={cn(tabContentClass)} data-settings-ui-panel-css>
@@ -540,32 +559,31 @@ export function UISettings() {
                                             })
                                         }}
                                     >
-                                        Apply to this client
+                                        {t("settings.ui.applyToThisClient")}
                                     </Button>
                                 )}
 
                                 <p className="text-[--muted] text-sm">
-                                    The custom CSS will be saved on the server and needs to be applied manually to each client.
+                                    {t("settings.ui.customCSSSaved")}
                                     <br />
-                                    In case of an error rendering the UI unusable, you can always remove it from the local storage using the
-                                    devtools.
+                                    {t("settings.ui.customCSSErrors")}
                                 </p>
 
                                 <div className="flex flex-col md:flex-row gap-3">
 
                                     <Field.Textarea
-                                        label="Custom CSS"
+                                        label={t("settings.ui.customCSS")}
                                         name="customCSS"
-                                        placeholder="Custom CSS"
-                                        help="Applied above 1024px screen size."
+                                        placeholder={t("settings.ui.customCSS")}
+                                        help={t("settings.ui.customCSSDesktopHelp")}
                                         className="min-h-[500px]"
                                     />
 
                                     <Field.Textarea
-                                        label="Mobile custom CSS"
+                                        label={t("settings.ui.mobileCustomCSS")}
                                         name="mobileCustomCSS"
-                                        placeholder="Custom CSS"
-                                        help="Applied below 1024px screen size."
+                                        placeholder={t("settings.ui.customCSS")}
+                                        help={t("settings.ui.customCSSMobileHelp")}
                                         className="min-h-[500px]"
                                     />
 
@@ -578,7 +596,7 @@ export function UISettings() {
 
                         <TabsContent value="main" className={tabContentClass} data-settings-ui-panel-general>
 
-                            <SettingsCard title="Sorting">
+                            <SettingsCard title={t("settings.ui.sortingTitle")}>
 
                                 {!serverStatus?.settings?.library?.enableWatchContinuity && (
                                     f.watch("continueWatchingDefaultSorting").includes("LAST_WATCHED") ||
@@ -586,26 +604,26 @@ export function UISettings() {
                                 ) && (
                                     <Alert
                                         intent="alert"
-                                        description="Watch continuity needs to be enabled to use the last watched sorting options."
+                                        description={t("settings.ui.watchContinuityWarning")}
                                     />
                                 )}
 
 
                                 <Field.Select
-                                    label="Continue watching sorting"
+                                    label={t("settings.ui.continueWatchingSorting")}
                                     name="continueWatchingDefaultSorting"
                                     options={CONTINUE_WATCHING_SORTING_OPTIONS.map(n => ({ value: n.value, label: n.label }))}
                                 />
 
                                 <Field.Select
-                                    label="Anime library sorting"
+                                    label={t("settings.ui.animeLibrarySorting")}
                                     name="animeLibraryCollectionDefaultSorting"
                                     options={ANIME_COLLECTION_SORTING_OPTIONS.filter(n => !n.value.includes("END"))
                                         .map(n => ({ value: n.value, label: n.label }))}
                                 />
 
                                 <Field.Select
-                                    label="Manga library sorting"
+                                    label={t("settings.ui.mangaLibrarySorting")}
                                     name="mangaLibraryCollectionDefaultSorting"
                                     options={MANGA_COLLECTION_SORTING_OPTIONS.filter(n => !n.value.includes("END"))
                                         .map(n => ({ value: n.value, label: n.label }))}
@@ -626,7 +644,7 @@ export function UISettings() {
                                             <div className="absolute inset-0 bg-black/40" />
                                             <div className="absolute inset-1 rounded-full border border-white/20 bg-gray-950/80" />
                                         </SwThumb>,
-                                        "Enable color settings",
+                                        t("settings.ui.enableColorSettings"),
                                     )}
                                     name="enableColorSettings"
                                 />
@@ -634,9 +652,9 @@ export function UISettings() {
                                     <>
                                         <Switch
                                             side="right"
-                                            label="Live preview"
+                                            label={t("settings.ui.livePreview")}
                                             name="enableLivePreview"
-                                            help={enableLivePreview && "Disabling will reload the page without applying the changes."}
+                                            help={enableLivePreview && t("settings.ui.livePreviewDisabled")}
                                             value={enableLivePreview}
                                             onValueChange={(value) => {
                                                 setEnableLivePreview(value)
@@ -652,13 +670,13 @@ export function UISettings() {
                                         <div className="flex flex-col md:flex-row gap-3">
                                             <Field.ColorPicker
                                                 name="backgroundColor"
-                                                label="Background color"
-                                                help="Default: #070707"
+                                                label={t("settings.ui.backgroundColor")}
+                                                help={t("settings.ui.defaultBgColor")}
                                             />
                                             <Field.ColorPicker
                                                 name="accentColor"
-                                                label="Accent color"
-                                                help="Default: #6152df"
+                                                label={t("settings.ui.accentColor")}
+                                                help={t("settings.ui.defaultAccentColor")}
                                             />
                                         </div>
                                     </>
@@ -716,19 +734,19 @@ export function UISettings() {
 
                             </SettingsCard>
 
-                            <SettingsCard title="Banners & Background">
+                            <SettingsCard title={t("settings.ui.bannersBackground")}>
                                 <div className="flex flex-col md:flex-row gap-3">
                                     <Field.Text
-                                        label="Background image path"
+                                        label={t("settings.ui.backgroundImagePath")}
                                         name="libraryScreenCustomBackgroundImage"
-                                        placeholder="e.g. image.png"
-                                        help="Background image for all pages. Dimmed on non-library screens."
+                                        placeholder={t("settings.ui.imagePathPlaceholder")}
+                                        help={t("settings.ui.backgroundImageHelp")}
                                     />
 
                                     <Field.Number
-                                        label="Background image opacity"
+                                        label={t("settings.ui.backgroundImageOpacity")}
                                         name="libraryScreenCustomBackgroundOpacity"
-                                        placeholder="Default: 10"
+                                        placeholder={t("settings.ui.defaultOpacity")}
                                         min={1}
                                         max={100}
                                     />
@@ -747,20 +765,20 @@ export function UISettings() {
                                 </div>
                                 <div className="flex flex-col md:flex-row gap-3">
                                     <Field.Text
-                                        label="Banner image path"
+                                        label={t("settings.ui.bannerImagePath")}
                                         name="libraryScreenCustomBannerImage"
-                                        placeholder="e.g. image.gif"
-                                        help="Banner image for all pages."
+                                        placeholder={t("settings.ui.imagePathPlaceholder")}
+                                        help={t("settings.ui.backgroundImageHelp")}
                                     />
                                     <Field.Text
-                                        label="Banner position"
+                                        label={t("settings.ui.bannerPosition")}
                                         name="libraryScreenCustomBannerPosition"
-                                        placeholder="Default: 50% 50%"
+                                        placeholder={t("settings.ui.defaultPosition")}
                                     />
                                     <Field.Number
-                                        label="Banner opacity"
+                                        label={t("settings.ui.bannerOpacity")}
                                         name="libraryScreenCustomBannerOpacity"
-                                        placeholder="Default: 10"
+                                        placeholder={t("settings.ui.defaultOpacity")}
                                         min={1}
                                         max={100}
                                     />
@@ -778,43 +796,43 @@ export function UISettings() {
                                 </div>
 
                                 <Field.RadioCards
-                                    label="Home screen banner type"
+                                    label={t("settings.ui.homeScreenBannerType")}
                                     name="libraryScreenBannerType"
                                     options={libraryBannerTypeOptions}
                                     stackClass="flex flex-col md:flex-row flex-wrap gap-2 space-y-0"
                                     itemLabelClass={thumbLabelClass}
                                     itemContainerClass={thumbContainerClass}
-                                    help={f.watch("libraryScreenBannerType") === ThemeLibraryScreenBannerType.Custom && "Use the banner image on all library screens."}
+                                    help={f.watch("libraryScreenBannerType") === ThemeLibraryScreenBannerType.Custom && t("settings.ui.useBannerOnAllScreens")}
                                 />
 
                                 <Field.RadioCards
-                                    label="Media screen banner image"
+                                    label={t("settings.ui.mediaScreenBannerImage")}
                                     name="mediaPageBannerType"
                                     options={bannerBehaviorOptions}
                                     stackClass="flex flex-col md:flex-row flex-wrap gap-2 space-y-0"
                                     itemLabelClass={thumbLabelClass}
                                     itemContainerClass={thumbContainerClass}
                                     radioGroupStackClass="flex-wrap"
-                                    help={ThemeMediaPageBannerTypeOptions.find(n => n.value === f.watch("mediaPageBannerType"))?.description}
+                                    help={bannerBehaviorTranslations[f.watch("mediaPageBannerType")]?.description ?? ThemeMediaPageBannerTypeOptions.find(n => n.value === f.watch("mediaPageBannerType"))?.description}
                                 />
 
                                 <Field.RadioCards
-                                    label="Media screen banner size"
+                                    label={t("settings.ui.mediaScreenBannerSize")}
                                     name="mediaPageBannerSize"
                                     options={bannerSizeOptions}
                                     stackClass="flex flex-col md:flex-row flex-wrap gap-2 space-y-0"
                                     itemLabelClass={thumbLabelClass}
                                     itemContainerClass={thumbContainerClass}
                                     radioGroupStackClass="flex-wrap"
-                                    help={ThemeMediaPageBannerSizeOptions.find(n => n.value === f.watch("mediaPageBannerSize"))?.description}
+                                    help={bannerSizeTranslations[f.watch("mediaPageBannerSize")]?.description ?? ThemeMediaPageBannerSizeOptions.find(n => n.value === f.watch("mediaPageBannerSize"))?.description}
                                 />
                             </SettingsCard>
 
 
-                            <SettingsCard title="Tweaks">
+                            <SettingsCard title={t("settings.ui.tweaks")}>
 
                                 <RadioGroup
-                                    label="Navigation preloading"
+                                    label={t("settings.ui.navigationPreloading")}
                                     value={isSimulatedUser ? "disable" : navigationPreloadMode}
                                     onValueChange={(value) => setNavigationPreloadMode(value as NavigationPreloadMode)}
                                     options={navigationPreloadOptions.map(option => ({
@@ -852,11 +870,11 @@ export function UISettings() {
                                     itemLabelClass="font-medium justify-center flex flex-col items-center data-[state=unchecked]:hover:text-[--foreground] data-[state=checked]:text-[--brand] text-[--muted] cursor-pointer"
                                     // stackClass="flex flex-col md:flex-row flex-wrap gap-2 space-y-0"
                                     stackClass={cn("flex flex-col md:flex-row gap-2 space-y-0 flex-wrap")}
-                                    help="Applies to media pages on this client. Preloading can cause you to hit rate limits faster."
+                                    help={t("settings.ui.navPreloadHelp")}
                                 />
                                 {isSimulatedUser && (
                                     <p className="text-orange-300/50 text-sm">
-                                        Navigation preloading is disabled for use without an AniList account due to rate limits.
+                                        {t("settings.ui.navPreloadDisabledNoAccount")}
                                     </p>
                                 )}
 
@@ -873,7 +891,7 @@ export function UISettings() {
                                                 <div className="h-px w-9 bg-white/25 rotate-[20deg] origin-left" />
                                             </div>
                                         </SwThumb>,
-                                        "Remove genre selector",
+                                        t("settings.ui.removeGenreSelector"),
                                     )}
                                     name="disableLibraryScreenGenreSelector"
                                 />
@@ -893,9 +911,9 @@ export function UISettings() {
                                             <div className="absolute inset-0 bg-gradient-to-br from-gray-600/60 to-gray-900/60" />
                                             <div className="absolute inset-1 rounded-sm bg-white/[0.08] border border-white/10" />
                                         </SwThumb>,
-                                        "Enable blurring effects",
+                                        t("settings.ui.enableBlurringEffects"),
                                     )}
-                                    help="May impact performance on some devices."
+                                    help={t("settings.ui.blurringEffectsHelp")}
                                     name="enableBlurringEffects"
                                 />
 
@@ -907,10 +925,10 @@ export function UISettings() {
                                             <div className="absolute inset-x-0 top-0 h-[90%] bg-gradient-to-b from-gray-600/60 to-transparent [filter:blur(3px)] scale-105 origin-top" />
                                             <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-gray-600/20 to-transparent" />
                                         </SwThumb>,
-                                        "Media screen blurred background",
+                                        t("settings.ui.mediaScreenBlurredBackground"),
                                     )}
                                     name="enableMediaPageBlurredBackground"
-                                    help="Can cause performance issues."
+                                    help={t("settings.ui.mediaScreenBlurredBackgroundHelp")}
                                 />
 
                                 <Field.Switch
@@ -923,7 +941,7 @@ export function UISettings() {
                                                 <span className="text-[5px] text-white leading-none font-bold">3</span>
                                             </div>
                                         </SwThumb>,
-                                        "Anime card unwatched count",
+                                        t("settings.ui.animeCardUnwatchedCount"),
                                     )}
                                     name="showAnimeUnwatchedCount"
                                 />
@@ -938,7 +956,7 @@ export function UISettings() {
                                                 <span className="text-[5px] text-white leading-none font-bold">5</span>
                                             </div>
                                         </SwThumb>,
-                                        "Manga card unread count",
+                                        t("settings.ui.mangaCardUnreadCount"),
                                     )}
                                     name="showMangaUnreadCount"
                                 />
@@ -950,7 +968,7 @@ export function UISettings() {
                                             <div className="absolute inset-0 bg-gradient-to-br from-gray-600/40 to-gray-950" />
                                             <div className="absolute inset-1 rounded-sm bg-white/[0.07] border border-white/10" />
                                         </SwThumb>,
-                                        "Media card glassy background",
+                                        t("settings.ui.mediaCardGlassyBackground"),
                                     )}
                                     name="enableMediaCardBlurredBackground"
                                 />
@@ -969,7 +987,7 @@ export function UISettings() {
                                                 </div>
                                             </div>
                                         </SwThumb>,
-                                        "Episode cards: Legacy layout",
+                                        t("settings.ui.episodeCardsLegacyLayout"),
                                     )}
                                     name="useLegacyEpisodeCard"
                                 />
@@ -999,7 +1017,7 @@ export function UISettings() {
                                                 <div className="h-px w-9 bg-white/25 rotate-[20deg] origin-left" />
                                             </div>
                                         </SwThumb>,
-                                        "Episode items: Hide summary",
+                                        t("settings.ui.episodeItemsHideSummary"),
                                     )}
                                     name="hideEpisodeCardDescription"
                                 />
@@ -1019,7 +1037,7 @@ export function UISettings() {
                                                 <div className="h-px w-9 bg-white/25 rotate-[20deg] origin-left" />
                                             </div>
                                         </SwThumb>,
-                                        "Episode items: Hide filename",
+                                        t("settings.ui.episodeItemsHideFilename"),
                                     )}
                                     name="hideDownloadedEpisodeCardFilename"
                                 />
@@ -1039,7 +1057,7 @@ export function UISettings() {
                                                 <div className="h-px w-9 bg-white/25 rotate-[20deg] origin-left" />
                                             </div>
                                         </SwThumb>,
-                                        "Disable carousel auto-scroll",
+                                        t("settings.ui.disableCarouselAutoScroll"),
                                     )}
                                     name="disableCarouselAutoScroll"
                                 />
@@ -1056,7 +1074,7 @@ export function UISettings() {
                                                 <div className="w-4 bg-gray-800/40 rounded-sm shrink-0" />
                                             </div>
                                         </SwThumb>,
-                                        "Smaller carousel episode cards",
+                                        t("settings.ui.smallerCarouselEpisodeCards"),
                                     )}
                                     name="smallerEpisodeCarouselSize"
                                 />
@@ -1073,10 +1091,10 @@ export function UISettings() {
                                                 <div className="h-0.5 w-1.5 bg-white/20 rounded" />
                                             </div>
                                         </SwThumb>,
-                                        "Expand sidebar on hover",
+                                        t("settings.ui.expandSidebarOnHover"),
                                     )}
                                     name="expandSidebarOnHover"
-                                    help="Causes visual glitches with plugin tray."
+                                    help={t("settings.ui.expandSidebarGlitch")}
                                 />
 
                                 <Field.Switch
@@ -1091,7 +1109,7 @@ export function UISettings() {
                                                 <div className="h-0.5 w-1.5 bg-white/20 rounded" />
                                             </div>
                                         </SwThumb>,
-                                        "Disable sidebar transparency",
+                                        t("settings.ui.disableSidebarTransparency"),
                                     )}
                                     name="disableSidebarTransparency"
                                 />
@@ -1108,61 +1126,61 @@ export function UISettings() {
                                                 <div className="h-px w-7 bg-white/10 rounded" />
                                             </div>
                                         </SwThumb>,
-                                        __isDesktop__ ? "Hide top navbar (web interface)" : "Hide top navbar",
+                                        __isDesktop__ ? t("settings.ui.hideTopNavbarWeb") : t("settings.ui.hideTopNavbar"),
                                     )}
                                     name="hideTopNavbar"
-                                    help="Switches to sidebar-only mode."
+                                    help={t("settings.ui.sidebarOnlyMode")}
                                 />
 
                                 <Field.Combobox
-                                    label="Unpinned menu items"
+                                    label={t("settings.ui.unpinnedMenuItems")}
                                     name="unpinnedMenuItems"
-                                    emptyMessage="No items selected"
+                                    emptyMessage={t("settings.ui.noItemsSelected")}
                                     multiple
                                     options={[
                                         {
-                                            label: "Schedule",
-                                            textValue: "Schedule",
+                                            label: t("navigation.schedule"),
+                                            textValue: t("settings.server.schedule"),
                                             value: "schedule",
                                         },
                                         {
-                                            label: "Manga",
-                                            textValue: "Manga",
+                                            label: t("navigation.manga"),
+                                            textValue: t("settings.server.manga"),
                                             value: "manga",
                                         },
                                         {
-                                            label: "Discover",
-                                            textValue: "Discover",
+                                            label: t("navigation.discover"),
+                                            textValue: t("settings.server.discover"),
                                             value: "discover",
                                         },
                                         {
-                                            label: "My lists",
-                                            textValue: "My lists",
+                                            label: t("navigation.myLists"),
+                                            textValue: t("settings.server.myLists"),
                                             value: "lists",
                                         },
                                         {
-                                            label: "Auto Downloader",
-                                            textValue: "Auto Downloader",
+                                            label: t("navigation.autoDownloader"),
+                                            textValue: t("settings.server.autoDownloader"),
                                             value: "auto-downloader",
                                         },
                                         {
-                                            label: "Torrent list",
-                                            textValue: "Torrent list",
+                                            label: t("navigation.torrentList"),
+                                            textValue: t("settings.server.torrentList"),
                                             value: "torrent-list",
                                         },
                                         {
-                                            label: "Debrid",
-                                            textValue: "Debrid",
+                                            label: t("navigation.debrid"),
+                                            textValue: t("settings.server.debrid"),
                                             value: "debrid",
                                         },
                                         {
-                                            label: "Scan summaries",
-                                            textValue: "Scan summaries",
+                                            label: t("navigation.scanSummaries"),
+                                            textValue: t("settings.server.scanSummaries"),
                                             value: "scan-summaries",
                                         },
                                         {
-                                            label: "Search",
-                                            textValue: "Search",
+                                            label: t("navigation.search"),
+                                            textValue: t("settings.server.search"),
                                             value: "search",
                                         },
                                     ]}
@@ -1195,7 +1213,7 @@ export function UISettings() {
                         {/*</TabsContent>*/}
 
                         {tab !== "browser-client" && <div className="mt-4">
-                            <Field.Submit role="save" intent="white" rounded loading={isPending}>Save</Field.Submit>
+                            <Field.Submit role="save" intent="white" rounded loading={isPending}>{t("common.buttons.save")}</Field.Submit>
                         </div>}
 
                     </Tabs>

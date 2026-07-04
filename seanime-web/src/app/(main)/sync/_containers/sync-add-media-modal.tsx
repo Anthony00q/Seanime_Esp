@@ -13,6 +13,9 @@ import { useAtomValue } from "jotai/react"
 import React from "react"
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6"
 import { MdOutlineDownloadForOffline } from "react-icons/md"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type SyncAddMediaModalProps = {
     savedMediaIds: number[]
@@ -38,7 +41,7 @@ export function SyncAddMediaModal(props: SyncAddMediaModalProps) {
 
     return (
         <Modal
-            title="Saved media"
+            title={t("sync.selectMedia")}
             contentClass="max-w-4xl"
             trigger={<Button
                 intent="gray-subtle"
@@ -46,12 +49,12 @@ export function SyncAddMediaModal(props: SyncAddMediaModalProps) {
                 leftIcon={<MdOutlineDownloadForOffline className="text-2xl" />}
                 loading={isAdding}
             >
-                Select media to save
+                {t("sync.selectMediaButton")}
             </Button>}
         >
 
             <p className="text-[--muted]">
-                Select the media you want to save locally. Click on already saved media to remove it from local storage.
+                {t("sync.selectMediaDescription")}
             </p>
 
             <MediaSelector
@@ -150,12 +153,12 @@ function MediaSelector(props: MediaSelectorProps) {
                     rounded
                     leftIcon={<MdOutlineDownloadForOffline className="text-2xl" />}
                 >
-                    Save locally
+                    {t("sync.saveLocally")}
                 </Button>
             </div>
 
             {animeLibraryCollection && <>
-                <h2 className="text-center">Anime</h2>
+                <h2 className="text-center">{t("sync.anime")}</h2>
                 <MediaList
                     collection={animeLibraryCollection}
                     selectedMedia={selectedMedia}
@@ -176,7 +179,7 @@ function MediaSelector(props: MediaSelectorProps) {
                 />
             </>}
             {mangaLibraryCollection && <>
-                <h2 className="text-center">Manga</h2>
+                <h2 className="text-center">{t("sync.manga")}</h2>
                 <MediaList
                     collection={mangaLibraryCollection}
                     selectedMedia={selectedMedia}
@@ -209,6 +212,8 @@ function MediaList(props: {
 }) {
     const { collection, entry, selectedMedia, savedMediaIds, onBatchSelect } = props
 
+    const t = createTranslator()
+
     const lists = React.useMemo(() => {
         return {
             CURRENT: collection.lists?.find(n => n.type === "CURRENT")
@@ -239,7 +244,7 @@ function MediaList(props: {
             {!!lists.CURRENT.length && (
                 <MediaListSection
                     listType="CURRENT"
-                    title="Current"
+                    title={t("status.current")}
                     entries={lists.CURRENT}
                     selectedMedia={selectedMedia}
                     savedMediaIds={savedMediaIds}
@@ -250,7 +255,7 @@ function MediaList(props: {
             {!!lists.PAUSED.length && (
                 <MediaListSection
                     listType="PAUSED"
-                    title="Paused"
+                    title={t("status.paused")}
                     entries={lists.PAUSED}
                     selectedMedia={selectedMedia}
                     savedMediaIds={savedMediaIds}
@@ -261,7 +266,7 @@ function MediaList(props: {
             {!!lists.PLANNING.length && (
                 <MediaListSection
                     listType="PLANNING"
-                    title="Planning"
+                    title={t("status.planning")}
                     entries={lists.PLANNING}
                     selectedMedia={selectedMedia}
                     savedMediaIds={savedMediaIds}
@@ -272,7 +277,7 @@ function MediaList(props: {
             {!!lists.COMPLETED.length && (
                 <MediaListSection
                     listType="COMPLETED"
-                    title="Completed"
+                    title={t("status.completed")}
                     entries={lists.COMPLETED}
                     selectedMedia={selectedMedia}
                     savedMediaIds={savedMediaIds}
@@ -283,7 +288,7 @@ function MediaList(props: {
             {!!lists.DROPPED.length && (
                 <MediaListSection
                     listType="DROPPED"
-                    title="Dropped"
+                    title={t("status.dropped")}
                     entries={lists.DROPPED}
                     selectedMedia={selectedMedia}
                     savedMediaIds={savedMediaIds}
@@ -358,8 +363,8 @@ function MediaItem(props: {
     const { entry, onClick, isSelected, isSaved, onUntrack, isPending } = props
 
     const confirmUntrack = useConfirmationDialog({
-        title: "Remove offline data",
-        description: "This action will remove the offline data for this media entry. Are you sure you want to proceed?",
+        title: t("sync.removeOfflineData"),
+        description: t("sync.removeOfflineDataDesc"),
         onConfirm: () => {
             onUntrack()
         },

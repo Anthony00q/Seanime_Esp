@@ -16,6 +16,8 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { NumberInput } from "@/components/ui/number-input"
 import { RadioGroup } from "@/components/ui/radio-group"
 import { upath } from "@/lib/helpers/upath"
+import { capitalizeFirst } from "@/lib/utils/capitalize-date"
+import { getDateFnsLocale } from "@/locales/date-locale"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import React from "react"
@@ -24,6 +26,7 @@ import { FcFolder } from "react-icons/fc"
 import { FiSearch } from "react-icons/fi"
 import { TbFileSad } from "react-icons/tb"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export const __unmatchedFileManagerIsOpen = atom(false)
 
@@ -43,6 +46,8 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
     const [selectedPaths, setSelectedPaths] = React.useState<string[]>([])
 
     const [anilistId, setAnilistId] = React.useState(0)
+
+    const t = createTranslator()
 
     const { data: customSources } = useListCustomSourceExtensions()
     const hasCustomSources = !!customSources?.length
@@ -123,7 +128,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
             onSuccess: data => {
                 setTimeout(() => {
                     if (!data?.length) {
-                        toast.warning("No suggestions found, try searching manually")
+                        toast.warning(t("unmatchedFiles.noSuggestions"))
                     }
                 }, 500)
             },
@@ -138,7 +143,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
             }, {
                 onSuccess: () => {
                     onActionSuccess()
-                    toast.success("Files ignored")
+                    toast.success(t("unmatchedFiles.filesIgnored"))
                 },
             })
         }
@@ -181,7 +186,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
             onOpenChange={() => setIsOpen(false)}
             // contentClass="max-w-5xl"
             size="xl"
-            title="Unmatched files"
+            title={t("scanSummaries.unmatchedFiles")}
         >
             <AppLayoutStack className="mt-4">
 
@@ -194,7 +199,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                             setPage(p => p - 1)
                         }}
                         className={cn("transition-opacity", { "opacity-0": page === 0 })}
-                    >Previous</Button>
+                    >{t("common.buttons.previous")}</Button>
 
                     <p>
                         {page + 1} / {maxPage + 1}
@@ -208,7 +213,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                             setPage(p => p + 1)
                         }}
                         className={cn("transition-opacity", { "opacity-0": page >= maxPage })}
-                    >Next</Button>
+                    >{t("common.buttons.next")}</Button>
                 </div>
 
                 <div
@@ -223,7 +228,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
 
                 <div className="flex items-center flex-wrap gap-2">
                     <div className="flex gap-2 items-center w-full">
-                        <p className="flex-none text-lg mr-2 font-semibold">{!hasCustomSources ? "AniList" : "Media"} ID</p>
+                        <p className="flex-none text-lg mr-2 font-semibold">{!hasCustomSources ? t("common.labels.anilistId") : t("common.labels.mediaId")}</p>
                         <NumberInput
                             // key={String(_r) + (currentGroup?.dir || "")}
                             value={anilistId}
@@ -236,7 +241,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                             intent="white"
                             onClick={handleMatchSelected}
                             disabled={isUpdating}
-                        >Match selection</Button>
+                        >{t("unmatchedFiles.matchSelection")}</Button>
                     </div>
 
                     {/*<div className="flex flex-1">*/}
@@ -247,7 +252,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
 
                     <div className="p-2">
                         <Checkbox
-                            label={`Select all files`}
+                            label={t("unmatchedFiles.selectAllFiles")}
                             value={(selectedPaths.length === currentGroup?.localFiles?.length) ? true : (selectedPaths.length === 0
                                 ? false
                                 : "indeterminate")}
@@ -306,7 +311,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                         intent="white-link"
                         onClick={handleFetchSuggestions}
                     >
-                        Fetch suggestions
+                        {t("unmatchedFiles.fetchSuggestions")}
                     </Button>
 
                     {/*<SeaLink*/}
@@ -317,7 +322,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                         intent="white-subtle"
                         onClick={handleSearchAnime}
                     >
-                        Search on AniList
+                        {t("unmatchedFiles.searchOnAnilist")}
                     </Button>
                     {/*</SeaLink>*/}
 
@@ -333,7 +338,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                         disabled={isUpdating}
                         onClick={handleIgnoreSelected}
                     >
-                        Ignore selection
+                        {t("unmatchedFiles.ignoreSelection")}
                     </Button>
                 </div>
 
@@ -343,7 +348,7 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                     defaultValue="1"
                     fieldClass="w-full"
                     fieldLabelClass="text-md"
-                    label="Select Anime"
+                    label={t("unmatchedFiles.selectAnime")}
                     value={String(anilistId)}
                     onValueChange={handleSelectAnime}
                     options={suggestions?.map((media) => (
@@ -369,16 +374,16 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                                             className="text-gray-200 font-semibold"
                                         >{media.format}</span>
                                         </p>
-                                        <p>Aired: {media.startDate?.year ? new Intl.DateTimeFormat("en-US", {
+                                        <p>Aired: {media.startDate?.year ? capitalizeFirst(new Intl.DateTimeFormat(getDateFnsLocale().code, {
                                             year: "numeric",
-                                        }).format(new Date(media.startDate?.year || 0, media.startDate?.month || 0)) : "-"}</p>
+                                        }).format(new Date(media.startDate?.year || 0, media.startDate?.month || 0))) : "-"}</p>
                                         <p>Status: {media.status}</p>
                                         <SeaLink href={`https://anilist.co/anime/${media.id}`} target="_blank">
                                             <Button
                                                 intent="primary-link"
                                                 size="sm"
                                                 className="px-0"
-                                            >Open on AniList</Button>
+                                            >{t("unmatchedFiles.openOnAnilist")}</Button>
                                         </SeaLink>
                                     </div>
                                 </div>

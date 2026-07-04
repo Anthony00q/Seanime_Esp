@@ -1,8 +1,11 @@
 import { Checkbox } from "@/components/ui/checkbox"
 import { cn } from "@/components/ui/core/styling"
 import { Separator } from "@/components/ui/separator"
+import { createTranslator } from "@/locales"
 import { upath } from "@/lib/helpers/upath"
 import React from "react"
+
+const t = createTranslator()
 
 type FilepathSelectorProps = {
     filepaths: string[]
@@ -34,7 +37,7 @@ export function FilepathSelector(props: FilepathSelectorProps) {
 
                 <div className="">
                     <Checkbox
-                        label="Select all files"
+                        label={t("common.components.selectAllFiles")}
                         value={allFilesChecked ? true : filepaths.length === 0 ? false : "indeterminate"}
                         onValueChange={checked => {
                             if (typeof checked === "boolean") {

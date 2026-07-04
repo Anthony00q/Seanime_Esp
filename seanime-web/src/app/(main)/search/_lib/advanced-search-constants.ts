@@ -1,4 +1,7 @@
 import { AL_MediaFormat } from "@/api/generated/types"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export const ADVANCED_SEARCH_MEDIA_GENRES = [
     "Action",
@@ -59,19 +62,19 @@ export const ADVANCED_SEARCH_STATUS = [
 ]
 
 export const ADVANCED_SEARCH_SORTING = [
-    { value: "TRENDING_DESC", label: "Trending" },
-    { value: "START_DATE_DESC", label: "Release date" },
-    { value: "SCORE_DESC", label: "Highest score" },
-    { value: "POPULARITY_DESC", label: "Most popular" },
-    { value: "EPISODES_DESC", label: "Number of episodes" },
+    { value: "TRENDING_DESC", label: t("sorting.trending") },
+    { value: "START_DATE_DESC", label: t("sorting.releaseDate") },
+    { value: "SCORE_DESC", label: t("sorting.highestScore") },
+    { value: "POPULARITY_DESC", label: t("sorting.mostPopular") },
+    { value: "EPISODES_DESC", label: t("sorting.mostEpisodesShort") },
 ]
 
 export const ADVANCED_SEARCH_SORTING_MANGA = [
-    { value: "TRENDING_DESC", label: "Trending" },
-    { value: "START_DATE_DESC", label: "Release date" },
-    { value: "SCORE_DESC", label: "Highest score" },
-    { value: "POPULARITY_DESC", label: "Most popular" },
-    { value: "CHAPTERS_DESC", label: "Number of chapters" },
+    { value: "TRENDING_DESC", label: t("sorting.trending") },
+    { value: "START_DATE_DESC", label: t("sorting.releaseDate") },
+    { value: "SCORE_DESC", label: t("sorting.highestScore") },
+    { value: "POPULARITY_DESC", label: t("sorting.mostPopular") },
+    { value: "CHAPTERS_DESC", label: t("sorting.mostChaptersShort") },
 ]
 
 export const ADVANCED_SEARCH_TYPE = [

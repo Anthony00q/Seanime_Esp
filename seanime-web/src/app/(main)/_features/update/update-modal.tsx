@@ -20,6 +20,7 @@ import { AiFillExclamationCircle } from "react-icons/ai"
 import { BiDownload, BiLinkExternal } from "react-icons/bi"
 import { FiArrowRight } from "react-icons/fi"
 import { GrInstall } from "react-icons/gr"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
 
 type UpdateModalProps = {
@@ -31,6 +32,7 @@ export const updateModalOpenAtom = atom<boolean>(false)
 const downloaderOpenAtom = atom<boolean>(false)
 
 export function UpdateModal(props: UpdateModalProps) {
+    const t = createTranslator()
     const serverStatus = useServerStatus()
     const [updateModalOpen, setUpdateModalOpen] = useAtom(updateModalOpenAtom)
     const [downloaderOpen, setDownloaderOpen] = useAtom(downloaderOpenAtom)
@@ -81,7 +83,7 @@ export function UpdateModal(props: UpdateModalProps) {
                 items={[
                     {
                         iconType: AiFillExclamationCircle,
-                        name: "Update available",
+                        name: t("update.available"),
                         onClick: () => setUpdateModalOpen(true),
                     },
                 ]}
@@ -95,42 +97,41 @@ export function UpdateModal(props: UpdateModalProps) {
                 <Downloader release={updateData?.release} />
 
                 <div className="space-y-2">
-                    <h3 className="text-center">A new update is available!</h3>
+                    <h3 className="text-center">{t("update.newUpdateAvailable")}</h3>
                     <h4 className="font-bold flex gap-2 text-center items-center justify-center">
                         <span className="text-[--muted]">{updateData?.current_version}</span> <FiArrowRight />
                         <span className="text-indigo-200">{updateData?.release?.version}</span></h4>
 
                     {serverStatus?.isDesktopSidecar && <Alert
                         intent="info"
-                        description="Update Seanime from the desktop application."
+                        description={t("update.updateFromDesktop")}
                     />}
 
                     <UpdateChangelogBody updateData={updateData} />
 
                     <div className="flex gap-2 w-full items-center !mt-4">
                         {!serverStatus?.isDesktopSidecar && <Modal
-                            trigger={<Button leftIcon={<GrInstall className="text-2xl" />}>
-                                Update now
+                            trigger={                            <Button leftIcon={<GrInstall className="text-2xl" />}>
+                                {t("update.updateNow")}
                             </Button>}
                             contentClass="max-w-xl"
-                            title={<span>Update Seanime</span>}
+                            title={<span>{t("update.updateSeanime")}</span>}
                         >
                             <div className="space-y-4">
                                 <p>
-                                    Seanime will perform an update by downloading and replacing existing files.
-                                    Refer to the documentation for more information.
+                                    {t("update.downloadReplaceInfo")}
                                 </p>
                                 <Button className="w-full" onClick={handleInstallUpdate} disabled={isPending}>
-                                    Download and Install
+                                    {t("update.downloadInstall")}
                                 </Button>
                             </div>
                         </Modal>}
                         <div className="flex flex-1" />
                         <SeaLink href={updateData?.release?.html_url || ""} target="_blank">
-                            <Button intent="white-subtle" rightIcon={<BiLinkExternal />}>See on GitHub</Button>
+                            <Button intent="white-subtle" rightIcon={<BiLinkExternal />}>{t("update.seeOnGitHub")}</Button>
                         </SeaLink>
                         {!serverStatus?.isDesktopSidecar &&
-                            <Button intent="white" leftIcon={<BiDownload />} onClick={() => setDownloaderOpen(true)}>Download</Button>}
+                            <Button intent="white" leftIcon={<BiDownload />} onClick={() => setDownloaderOpen(true)}>{t("update.download")}</Button>}
                     </div>
                 </div>
             </Modal>
@@ -145,6 +146,7 @@ type DownloaderProps = {
 }
 
 export function Downloader(props: DownloaderProps) {
+    const t = createTranslator()
 
     const [downloaderOpen, setDownloaderOpen] = useAtom(downloaderOpenAtom)
     const [destination, setDestination] = React.useState<string>("")
@@ -160,7 +162,7 @@ export function Downloader(props: DownloaderProps) {
 
     function handleDownloadRelease() {
         if (!asset || !destination) {
-            return toast.error("Missing options")
+            return toast.error(t("update.missingOptions"))
         }
         mutate({ destination, download_url: asset }, {
             onSuccess: () => {
@@ -175,7 +177,7 @@ export function Downloader(props: DownloaderProps) {
         <Modal
             open={downloaderOpen}
             onOpenChange={() => setDownloaderOpen(false)}
-            title="Download new release"
+            title={t("update.downloadRelease")}
             contentClass="space-y-4 max-w-2xl overflow-hidden"
         >
             <div>
@@ -203,13 +205,13 @@ export function Downloader(props: DownloaderProps) {
                 />
             </div>
             <DirectorySelector
-                label="Select destination"
+                label={t("update.selectDestination")}
                 onSelect={setDestination}
                 value={destination}
                 rightAddon={`/seanime-${release.version}`}
             />
             <div className="flex gap-2 justify-end mt-2">
-                <Button intent="white" leftIcon={<BiDownload />} onClick={handleDownloadRelease} loading={isPending}>Download</Button>
+                <Button intent="white" leftIcon={<BiDownload />} onClick={handleDownloadRelease} loading={isPending}>{t("update.download")}</Button>
             </div>
         </Modal>
     )

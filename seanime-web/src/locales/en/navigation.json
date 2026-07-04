@@ -1,0 +1,49 @@
+{
+  "navigation": {
+    "home": "Home",
+    "schedule": "Schedule",
+    "manga": "Manga",
+    "myLists": "My Lists",
+    "discover": "Discover",
+    "search": "Search",
+    "torrentList": "Torrent List",
+    "torrentListSeeding": "Torrent List ({count} seeding)",
+    "debrid": "Debrid",
+    "scanSummaries": "Scan Summaries",
+    "autoDownloader": "Auto Downloader",
+    "more": "More",
+    "refreshAniList": "Refresh AniList",
+    "nakama": "Nakama",
+    "extensions": "Extensions",
+    "offline": "Offline",
+    "settings": "Settings",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "login": "Login",
+    "loginWithAniList": "Login with AniList",
+    "loginDescription": "Using an AniList account is recommended.",
+    "getAniListToken": "Get AniList Token",
+    "enterToken": "Enter the token",
+    "tokenRequired": "Token is required",
+    "continue": "Continue",
+    "authenticating": "Authenticating..."
+  },
+  "dialog": {
+    "signOut": {
+      "title": "Sign Out",
+      "description": "Are you sure you want to sign out?"
+    },
+    "disableOfflineMode": {
+      "title": "Disable offline mode",
+      "description": "Are you sure you want to disable offline mode?",
+      "confirm": "Yes"
+    }
+  },
+  "offline": {
+    "animeLibrary": "Anime Library",
+    "manga": "Manga",
+    "disableOfflineMode": "Disable offline mode",
+    "settings": "Settings",
+    "offline": "Offline"
+  }
+}

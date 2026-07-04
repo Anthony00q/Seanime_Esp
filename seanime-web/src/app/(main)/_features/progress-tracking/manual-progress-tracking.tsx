@@ -5,6 +5,7 @@ import { Button, IconButton } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { Modal } from "@/components/ui/modal"
 import { openTab } from "@/lib/helpers/browser"
+import { createTranslator } from "@/locales"
 import { WSEvents } from "@/lib/server/ws-events"
 import { atom, useAtomValue } from "jotai"
 import { useAtom } from "jotai/react"
@@ -26,6 +27,8 @@ export function ManualProgressTrackingButton(props: ManualProgressTrackingProps)
         asSidebarButton,
         ...rest
     } = props
+
+    const t = createTranslator()
 
     const [isWatching, setIsWatching] = useAtom(__mpt_isWatchingAtom)
     const [showModal, setShowModal] = useAtom(__mpt_showModalAtom)
@@ -50,7 +53,7 @@ export function ManualProgressTrackingButton(props: ManualProgressTrackingProps)
                             leftIcon={<PiPopcornFill />}
                             onClick={() => setShowModal(true)}
                         >
-                            Currently watching
+                            {t("progressTracking.buttonLabel")}
                         </Button>)}
                 </>
             )}
@@ -63,6 +66,7 @@ export function ManualProgressTracking() {
     const [isWatching, setIsWatching] = useAtom(__mpt_isWatchingAtom)
     const stateRef = React.useRef<PlaybackManager_PlaybackState | null>(null)
     const [state, setState] = React.useState<PlaybackManager_PlaybackState | null>(null)
+    const t = createTranslator()
     const [showModal, setShowModal] = useAtom(__mpt_showModalAtom)
     const currentExternalPlayerLink = useAtomValue(__mpt_currentExternalPlayerLinkAtom)
 
@@ -117,12 +121,12 @@ export function ManualProgressTracking() {
                 contentClass="!space-y-2 relative max-w-2xl rounded-2xl"
             >
                 {state && <div data-manual-progress-tracking-modal-content className="text-center relative overflow-hidden space-y-2">
-                    <p className="text-[--muted]">Playing externally</p>
+                    <p className="text-[--muted]">{t("progressTracking.playingExternally")}</p>
                     {state.mediaCoverImage && <div className="size-16 rounded-full relative mx-auto overflow-hidden mb-3">
                         <SeaImage src={state.mediaCoverImage} alt="cover image" fill className="object-cover object-center" />
                     </div>}
                     <h3 className="text-lg font-medium line-clamp-1">{state?.mediaTitle}</h3>
-                    <p className="text-2xl font-bold">Episode {state?.episodeNumber}
+                    <p className="text-2xl font-bold">{t("common.labels.episodeNumber", { number: state?.episodeNumber })}
                         <span className="text-[--muted]">{" / "}{(!!state?.mediaTotalEpisodes && state?.mediaTotalEpisodes > 0)
                             ? state?.mediaTotalEpisodes
                             : "-"}</span></p>
@@ -136,7 +140,7 @@ export function ManualProgressTracking() {
                         className="w-full"
                         loading={isSyncing}
                     >
-                        Update progress now
+                        {t("progressTracking.updateProgressNow")}
                     </Button>
                     <Button
                         intent="alert-subtle"
@@ -145,14 +149,14 @@ export function ManualProgressTracking() {
                         className="w-full"
                         loading={isCanceling}
                     >
-                        Stop
+                        {t("progressTracking.stop")}
                     </Button>
                 </div>
 
                 {!!currentExternalPlayerLink && (
                     <div className="flex justify-center w-full">
                         <Button intent="gray-link" size="sm" onClick={() => { openTab(currentExternalPlayerLink!) }}>
-                            Open in external player
+                            {t("progressTracking.openExternalPlayer")}
                         </Button>
                     </div>
                 )}

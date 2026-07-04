@@ -43,7 +43,10 @@ import { FcFolder } from "react-icons/fc"
 import { LuTextCursorInput } from "react-icons/lu"
 import { MdFilterAlt, MdVerified } from "react-icons/md"
 import { useMount } from "react-use"
+import { createTranslator } from "@/locales"
 import { toast } from "sonner"
+
+const t = createTranslator()
 
 type AutoDownloaderRuleFormProps = {
     type: "create" | "edit"
@@ -92,6 +95,7 @@ export function useAutoDownloaderMediaList(allMedia: AL_BaseAnime[]) {
 }
 
 export function AutoDownloaderRuleForm(props: AutoDownloaderRuleFormProps) {
+    const t = createTranslator()
 
     const {
         type,
@@ -119,7 +123,7 @@ export function AutoDownloaderRuleForm(props: AutoDownloaderRuleFormProps) {
 
     function handleSave(data: InferType<typeof schema>) {
         if (data.episodeType === "selected" && data.episodeNumbers.length === 0) {
-            return toast.error("You must specify at least one episode number")
+            return toast.error(t("autoDownloader.youMustSpecifyEpisode"))
         }
         if (type === "create") {
             createRule({
@@ -150,7 +154,7 @@ export function AutoDownloaderRuleForm(props: AutoDownloaderRuleFormProps) {
     }
 
     if (type === "create" && allMedia.length === 0) {
-        return <div className="p-4 text-[--muted] text-center">No media found in your library</div>
+        return <div className="p-4 text-[--muted] text-center">{t("autoDownloader.ruleForm.noMediaFound")}</div>
     }
 
     return (
@@ -178,7 +182,7 @@ export function AutoDownloaderRuleForm(props: AutoDownloaderRuleFormProps) {
                     profileId: rule?.profileId ? [String(rule.profileId)] : [],
                 }}
                 onError={() => {
-                    toast.error("An error occurred, verify the fields.")
+                    toast.error(t("autoDownloader.errorOccurred"))
                 }}
             >
                 {(f) => (
@@ -197,7 +201,7 @@ export function AutoDownloaderRuleForm(props: AutoDownloaderRuleFormProps) {
                 )}
             </Form>
             {type === "edit" && <DangerZone
-                actionText="Delete this rule"
+                actionText={t("autoDownloader.rules.deleteRule")}
                 onDelete={() => {
                     if (rule?.dbId) {
                         deleteRule()
@@ -241,7 +245,7 @@ export function AutoDownloaderMediaCombobox(props: {
                 //     if(props.mediaId) setPreviewModalMediaId(props.mediaId, "anime")
                 // }}
             >
-                Anime
+                {t("autoDownloader.ruleForm.anime")}
             </p>
             {props.type !== "edit" && <Button
                 leftIcon={<MdFilterAlt />} intent="gray-link" className="!text-[--muted] cursor-pointer hover:underline underline-offset-2 py-0 px-2"
@@ -251,9 +255,9 @@ export function AutoDownloaderMediaCombobox(props: {
                     return listActiveMediaOptions[nextIndex]
                 })}
             >
-                {showReleasingOnly === "airing" && "Showing airing only"}
-                {showReleasingOnly === "airing-upcoming" && "Showing airing & upcoming"}
-                {showReleasingOnly === "all" && "Showing all"}
+                {showReleasingOnly === "airing" && t("autoDownloader.ruleForm.showingAiringOnly")}
+                {showReleasingOnly === "airing-upcoming" && t("autoDownloader.ruleForm.showingAiringUpcoming")}
+                {showReleasingOnly === "all" && t("autoDownloader.ruleForm.showingAll")}
             </Button>}
         </div>}
         options={props.mediaList.map(media => ({
@@ -277,7 +281,7 @@ export function AutoDownloaderMediaCombobox(props: {
         onValueChange={props.onValueChange}
         disabled={props.type === "edit" || !!props.mediaId}
         multiple={false}
-        emptyMessage="No media found"
+        emptyMessage={t("autoDownloader.ruleForm.noMediaFoundCombobox")}
     />
 }
 
@@ -363,13 +367,13 @@ export function RuleFormFields(props: RuleFormFieldsProps) {
     }, [form_mediaId, selectedMedia, libraryCollection, rule, animeFolderName])
 
     if (!selectedMedia) {
-        return <div className="p-4 text-[--muted] text-center">Media is not in your library</div>
+        return <div className="p-4 text-[--muted] text-center">{t("autoDownloader.ruleForm.mediaNotInLibrary")}</div>
     }
 
     return (
         <>
             <div className="flex flex-col gap-2 md:flex-row justify-between items-center">
-                <Field.Switch name="enabled" label="Enabled" />
+                <Field.Switch name="enabled" label={t("autoDownloader.ruleForm.enabled")} />
             </div>
             <Separator />
             <div
@@ -387,41 +391,39 @@ export function RuleFormFields(props: RuleFormFieldsProps) {
                     />
                 </div>}
 
-                {selectedMedia?.status === "FINISHED" && <div className="py-2 text-[--orange] text-center">No longer airing</div>}
+                {selectedMedia?.status === "FINISHED" && <div className="py-2 text-[--orange] text-center">{t("autoDownloader.ruleForm.noLongerAiring")}</div>}
 
                 <Field.DirectorySelector
                     name="destination"
-                    label="Destination"
-                    help="Folder in your local library where the files will be saved"
+                    label={t("autoDownloader.ruleForm.destination")}
+                    help={t("autoDownloader.ruleForm.destinationHelp")}
                     leftIcon={<FcFolder />}
                     shouldExist={false}
                     libraryPathSelectionProps={libraryPathSelectionProps}
                 />
 
                 <div className="border rounded-[--radius] p-4 relative !mt-8 space-y-3">
-                    <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">Title</div>
+                    <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("autoDownloader.ruleForm.title")}</div>
                     <Field.Text
                         name="comparisonTitle"
-                        label="Comparison title"
+                        label={t("autoDownloader.ruleForm.comparisonTitle")}
                     />
                     <Field.RadioCards
-                        label="Type of search"
+                        label={t("autoDownloader.ruleForm.typeOfSearch")}
                         name="titleComparisonType"
                         itemContainerClass="w-full"
                         options={[
                             {
                                 label: <div className="w-full">
-                                    <p className="mb-1 flex items-center"><MdVerified className="text-lg inline-block mr-2" />Most likely</p>
-                                    <p className="font-normal text-sm text-[--muted]">The torrent name will be parsed and analyzed using a comparison
-                                                                                      algorithm</p>
+                                    <p className="mb-1 flex items-center"><MdVerified className="text-lg inline-block mr-2" />{t("autoDownloader.ruleForm.mostLikely")}</p>
+                                    <p className="font-normal text-sm text-[--muted]">{t("autoDownloader.ruleForm.mostLikelyDesc")}</p>
                                 </div>,
                                 value: "likely",
                             },
                             {
                                 label: <div className="w-full">
-                                    <p className="mb-1 flex items-center"><LuTextCursorInput className="text-lg inline-block mr-2" />Exact match</p>
-                                    <p className="font-normal text-sm text-[--muted]">The torrent name must contain the comparison title you set (case
-                                                                                      insensitive)</p>
+                                    <p className="mb-1 flex items-center"><LuTextCursorInput className="text-lg inline-block mr-2" />{t("autoDownloader.ruleForm.exactMatch")}</p>
+                                    <p className="font-normal text-sm text-[--muted]">{t("autoDownloader.ruleForm.exactMatchDesc")}</p>
                                 </div>,
                                 value: "contains",
                             },
@@ -429,7 +431,7 @@ export function RuleFormFields(props: RuleFormFieldsProps) {
                     />
 
                     {titleComparisonType === "likely" && <div className="text-sm text-[--muted]">
-                        <p className="!text-[--foreground]">Will also use these titles:</p>
+                        <p className="!text-[--foreground]">{t("autoDownloader.ruleForm.willAlsoUseTitles")}</p>
                         {selectedMedia?.title?.english && <p className="font-medium">{selectedMedia?.title?.english}</p>}
                         {selectedMedia?.title?.romaji && <p className="font-medium">{selectedMedia?.title?.romaji}</p>}
                         {!!selectedMedia?.synonyms?.length &&
@@ -442,24 +444,24 @@ export function RuleFormFields(props: RuleFormFieldsProps) {
                         (selectedMedia?.format === "MOVIE" || (!!selectedMedia.episodes && selectedMedia.episodes === 1)) && "opacity-50 pointer-events-none",
                     )}
                 >
-                    <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">Episodes</div>
+                    <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("autoDownloader.ruleForm.episodes")}</div>
                     <Field.RadioCards
                         name="episodeType"
-                        label="Episodes to look for"
+                        label={t("autoDownloader.ruleForm.episodesToLookFor")}
                         fieldClass="w-full"
                         itemContainerClass="!w-full"
                         options={[
                             {
                                 label: <div className="w-full">
-                                    <p>Recent releases</p>
-                                    <p className="font-normal text-sm text-[--muted]">New episodes you have not yet watched</p>
+                                    <p>{t("autoDownloader.ruleForm.recentReleases")}</p>
+                                    <p className="font-normal text-sm text-[--muted]">{t("autoDownloader.ruleForm.recentReleasesDesc")}</p>
                                 </div>,
                                 value: "recent",
                             },
                             {
                                 label: <div className="w-full">
-                                    <p>Select</p>
-                                    <p className="font-normal text-sm text-[--muted]">Only the specified episodes that aren't in your library</p>
+                                    <p>{t("autoDownloader.ruleForm.select")}</p>
+                                    <p className="font-normal text-sm text-[--muted]">{t("autoDownloader.ruleForm.selectDesc")}</p>
                                 </div>,
                                 value: "selected",
                             },
@@ -467,7 +469,7 @@ export function RuleFormFields(props: RuleFormFieldsProps) {
                     />
 
                     {form_episodeType === "selected" && <TextArrayField
-                        label="Episode numbers"
+                        label={t("autoDownloader.ruleForm.episodeNumbers")}
                         name="episodeNumbers"
                         control={form.control}
                         type="number"
@@ -475,8 +477,8 @@ export function RuleFormFields(props: RuleFormFieldsProps) {
 
                     {form_episodeType === "recent" && <Field.Number
                         name="customEpisodeNumberAbsoluteOffset"
-                        label="Episode number absolute offset"
-                        help="For example, if the release group starts numbering at 13 instead of 1, set this to 12."
+                        label={t("autoDownloader.ruleForm.episodeNumberOffset")}
+                        help={t("autoDownloader.ruleForm.episodeNumberOffsetHelp")}
                         className="w-32"
                         hideControls
                     />}
@@ -489,24 +491,24 @@ export function RuleFormFields(props: RuleFormFieldsProps) {
                 <ResolutionsField name="resolutions" control={form.control} />
 
                 <div className="border rounded-[--radius] p-4 relative !mt-8 space-y-3">
-                    <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">Constraints</div>
+                    <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("autoDownloader.ruleForm.constraints")}</div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <Field.Number
                             name="minSeeders"
-                            label="Min Seeders"
+                            label={t("autoDownloader.ruleForm.minSeeders")}
                             min={0}
                             fieldClass="w-full"
                         />
                         <Field.Text
                             name="minSize"
-                            label="Min Size"
-                            placeholder="e.g. 100MB"
+                            label={t("autoDownloader.ruleForm.minSize")}
+                            placeholder="ej. 100MB"
                             fieldClass="w-full"
                         />
                         <Field.Text
                             name="maxSize"
-                            label="Max Size"
-                            placeholder="e.g. 2GB or 10GiB"
+                            label={t("autoDownloader.ruleForm.maxSize")}
+                            placeholder="ej. 2GB o 10GiB"
                             fieldClass="w-full"
                         />
                     </div>
@@ -526,19 +528,19 @@ export function RuleFormFields(props: RuleFormFieldsProps) {
                         onClick={() => runSimulation({ ruleIds: [rule?.dbId] })}
                         loading={isSimulationPending || isPending}
                     >
-                        Run simulation
+                        {t("autoDownloader.ruleForm.runSimulation")}
                     </Button>
                 </div>}
                 <div className="flex-1"></div>
                 <div className="flex items-center gap-2">
                     {type === "create" &&
-                        <Field.Submit role="create" loading={isPending} disableOnSuccess={false} showLoadingOverlayOnSuccess>Create</Field.Submit>}
-                    {type === "edit" && <Field.Submit role="update" loading={isPending}>Update</Field.Submit>}
+                        <Field.Submit role="create" loading={isPending} disableOnSuccess={false} showLoadingOverlayOnSuccess>{t("autoDownloader.ruleForm.create")}</Field.Submit>}
+                    {type === "edit" && <Field.Submit role="update" loading={isPending}>{t("autoDownloader.ruleForm.update")}</Field.Submit>}
                 </div>
             </div>
 
             <Modal
-                title="Result"
+                title={t("autoDownloader.ruleForm.result")}
                 open={showSimulationResults}
                 onOpenChange={v => {
                     setShowSimulationResults(v)
@@ -547,10 +549,10 @@ export function RuleFormFields(props: RuleFormFieldsProps) {
                 contentClass="max-w-3xl"
             >
                 <p>
-                    Simulation results for rule "<strong>{rule?.comparisonTitle}</strong>" (ID: {rule?.dbId})
+                    {t("autoDownloader.ruleForm.simulationResult", { title: rule?.comparisonTitle || "", id: rule?.dbId || 0 })}
                 </p>
                 <p className="text-[--muted] text-sm">
-                    Check the server logs for more details.
+                    {t("autoDownloader.ruleForm.checkServerLogs")}
                 </p>
                 <pre className="overflow-x-auto overflow-y-auto max-h-[calc(100dvh-300px)] whitespace-pre-wrap p-2 rounded-[--radius-md] bg-gray-900">
                     {JSON.stringify(simulationResults, null, 2)}

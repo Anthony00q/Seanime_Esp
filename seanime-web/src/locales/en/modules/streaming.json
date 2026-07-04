@@ -1,0 +1,53 @@
+{
+  "onlinestream": {
+    "watchPartyProviderNotInstalled": "Watch Party: The provider used by the host is not installed.",
+    "findOtherProviders": "Find other providers",
+    "selectProvider": "Select provider",
+    "cache": "Cache",
+    "emptyCacheDescription": "Empty the cache if you are experiencing issues with the stream.",
+    "emptyStreamCache": "Empty stream cache",
+    "manualMatch": "Manual match",
+    "switchToSubs": "Switch to subtitles",
+    "switchToDub": "Switch to dub",
+    "switchToGridView": "Switch to grid view",
+    "switchToListView": "Switch to list view",
+    "noProviderSelected": "No provider selected",
+    "providerError": "Provider error",
+    "loadingStream": "Loading stream",
+    "completeMovie": "Complete movie",
+    "noWorkingProviders": "No working providers found",
+    "stoppedTryingProviders": "Stopped trying providers",
+    "startingWatchParty": "Starting online streaming watch party",
+    "dubbedSearchHelp": "Only applies to providers that support dubs in search results.",
+    "manualMatchDesc": "Match this anime with a search result from the provider.",
+    "confirmMatchDesc": "Are you sure you want to match this anime with the search result?"
+  },
+  "nativePlayer": {
+    "errorPlayingStream": "Error playing stream. {error}"
+  },
+  "mediastream": {
+    "codecNotSupported": "Codec not supported",
+    "playbackErrorOccurred": "Playback error occurred",
+    "filePathNotFoundEpisode": "File path not found episode",
+    "switchToGridView": "Switch to grid view",
+    "switchToListView": "Switch to list view",
+    "playbackErrorTitle": "Playback error title",
+    "couldNotLoadMedia": "Could not load media",
+    "playback": "Playback",
+    "playbackInfo": "Playback info",
+    "codecsCompatible": "Codecs compatible",
+    "codecsNotCompatible": "Codecs not compatible",
+    "streamType": "Stream type",
+    "videoCodec": "Video codec",
+    "audioCodec": "Audio codec",
+    "mediaContainerData": "Media container data",
+    "moreData": "More data",
+    "switchToTranscoding": "Switch to transcoding",
+    "switchToTranscodingDesc": "Switch to transcoding desc",
+    "switchToDirectPlay": "Switch to direct play"
+  },
+  "mediaLinks": {
+    "episodeNotFound": "Episode not found",
+    "externalPlayerLinkNotSet": "External player link not set"
+  }
+}

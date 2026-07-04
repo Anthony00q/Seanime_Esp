@@ -5,9 +5,11 @@ import { cn } from "@/components/ui/core/styling"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import React from "react"
 import { AiOutlinePlusCircle } from "react-icons/ai"
+import { createTranslator } from "@/locales"
 
 export function AdvancedSearchList() {
 
+    const t = createTranslator()
     const { isLoading, data, fetchNextPage, hasNextPage, type } = useAnilistAdvancedSearch()
 
     const items = data?.pages.filter(Boolean).flatMap(n => n.Page?.media).filter(Boolean)
@@ -35,7 +37,7 @@ export function AdvancedSearchList() {
                 onClick={() => fetchNextPage()}
             >
                 <AiOutlinePlusCircle className="text-4xl" />
-                <p className="text-lg font-medium">Load more</p>
+                <p className="text-lg font-medium">{t("common.buttons.loadMore")}</p>
             </div>}
     </>
 }

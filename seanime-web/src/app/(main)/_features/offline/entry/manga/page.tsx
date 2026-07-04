@@ -6,6 +6,9 @@ import { PageWrapper } from "@/components/shared/page-wrapper"
 import { usePathname } from "@/lib/navigation"
 import { useRouter, useSearchParams } from "@/lib/navigation"
 import React from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export default function Page() {
     const router = useRouter()
@@ -29,7 +32,7 @@ export default function Page() {
             <OfflineMetaSection type="manga" entry={mangaEntry} />
             <PageWrapper className="p-4 space-y-6">
 
-                <h2>Chapters</h2>
+                <h2>{t("manga.entry.chapters")}</h2>
 
                 <OfflineChapterList entry={mangaEntry} />
             </PageWrapper>

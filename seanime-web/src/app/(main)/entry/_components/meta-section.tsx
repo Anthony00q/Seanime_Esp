@@ -1,3 +1,6 @@
+import { createTranslator } from "@/locales";
+const t = createTranslator();
+
 import { AL_AnimeDetailsById_Media, Anime_Entry } from "@/api/generated/types"
 import { AnimeAutoDownloaderButton } from "@/app/(main)/_features/anime-library/_containers/anime-auto-downloader-button"
 import { ToggleLockFilesButton } from "@/app/(main)/_features/anime-library/_containers/toggle-lock-files-button"
@@ -243,8 +246,8 @@ export function MetaSection(props: { entry: Anime_Entry, details: AL_AnimeDetail
                     )}
                     data-anime-meta-section-inaccurate-schedule-message
                 >
-                    <span className="block">Could not retrieve accurate scheduling information for this show.</span>
-                    <span className="block text-[--muted]">Please check the schedule online for more information.</span>
+                    <span className="block">{t("entry.inaccurateSchedule")}</span>
+                    <span className="block text-[--muted]">{t("entry.inaccurateScheduleOnline")}</span>
                 </p>}
 
 
@@ -257,7 +260,7 @@ export function MetaSection(props: { entry: Anime_Entry, details: AL_AnimeDetail
                         data-anime-meta-section-no-metadata-message
                     >
                         <IoInformationCircle />
-                        Episode metadata retrieval not available for this entry.
+                        {t("entry.noMetadata")}
                     </p>
                 )}
 

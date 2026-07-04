@@ -1,0 +1,77 @@
+name: Reporte / Sugerencia de Traducción
+description: Reporta un error de traducción, texto en inglés o sugiere una mejora
+title: 'traducción: '
+labels:
+  - traduccion
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Nota:** Este repositorio está dedicado a las **traducciones multilingües** de Seanime (Español, Portugués, etc) y a características exclusivas de este fork.
+        Para bugs generales de la aplicación o nuevas funcionalidades principales, abre un issue en el [repositorio original](https://github.com/5rahim/seanime/issues).
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de Reporte
+      options:
+        - "🚨 Error grave (Texto en inglés, interfaz rota, caracteres extraños)"
+        - "💡 Sugerencia de mejora (El texto es funcional, pero podría sonar más natural)"
+        - "🔍 Error tipográfico / Gramatical"
+        - "Otro"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: seccion
+    attributes:
+      label: Sección Afectada
+      options:
+        - Inicio (Home)
+        - Horario (Schedule)
+        - Descubrir (Discover)
+        - Listas de Anime (AniList)
+        - Página de un Anime/Manga
+        - Colección de Manga
+        - Reproductor de Video
+        - Nakama (Watch Parties)
+        - Descargador Automático (Auto Downloader)
+        - Torrent y Streaming (Lista de torrents)
+        - Extensiones
+        - Paleta de Comandos (Sea Command)
+        - Ajustes (Settings)
+        - Bienvenida y Login
+        - Avisos emergentes (Toasts / Notificaciones)
+        - Otro / No estoy seguro
+    validations:
+      required: true
+
+  - type: textarea
+    id: texto-actual
+    attributes:
+      label: Texto Actual
+      description: Qué dice ahora (copia el texto exacto o adjunta una captura abajo)
+      placeholder: 'Ej: "Habilitar la reproducción automática"'
+    validations:
+      required: true
+
+  - type: textarea
+    id: propuesta
+    attributes:
+      label: Texto Propuesto / Sugerido
+      description: Qué debería decir
+      placeholder: 'Ej: "Activar reproducción automática"'
+    validations:
+      required: true
+
+  - type: textarea
+    id: razon
+    attributes:
+      label: Razón / Contexto (Opcional)
+      description: Por qué tu sugerencia es mejor, o en qué parte exacta de la pantalla viste el error.
+
+  - type: textarea
+    id: captura
+    attributes:
+      label: Captura de Pantalla
+      description: Si aplica, adjunta una captura del error

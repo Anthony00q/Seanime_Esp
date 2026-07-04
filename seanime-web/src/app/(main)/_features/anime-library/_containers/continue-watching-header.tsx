@@ -1,4 +1,5 @@
 import { Anime_Episode } from "@/api/generated/types"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { getEpisodeMinutesRemaining, getEpisodePercentageComplete, useGetContinuityWatchHistory } from "@/api/hooks/continuity.hooks"
 import { usePlayNext } from "@/app/(main)/_atoms/playback.atoms"
 import { EpisodeCard } from "@/app/(main)/_features/anime/_components/episode-card"
@@ -307,7 +308,7 @@ function EpisodeCardSidebar({ episode, isTransitioning }: EpisodeCardSidebarProp
                         spoilerSafeTopTitle={episode?.baseAnime?.title?.userPreferred}
                         spoilerMode="replace"
                         spoilerActive={spoilerActive}
-                        title={episode.displayTitle}
+                        title={translateDisplayTitle(episode.displayTitle)}
                         isInvalid={episode.isInvalid}
                         progressTotal={episode.baseAnime?.episodes}
                         progressNumber={episode.progressNumber}

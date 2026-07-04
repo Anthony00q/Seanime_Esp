@@ -39,6 +39,9 @@ import { FcFolder } from "react-icons/fc"
 import { LuTextCursorInput } from "react-icons/lu"
 import { MdVerified } from "react-icons/md"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type AutoDownloaderBatchRuleFormProps = {
     onRuleCreated: () => void
@@ -65,6 +68,7 @@ const schema = defineSchema(({ z, presets }) => z.object({
 }))
 
 export function AutoDownloaderBatchRuleForm(props: AutoDownloaderBatchRuleFormProps) {
+    const t = createTranslator()
 
     const {
         onRuleCreated,
@@ -114,7 +118,7 @@ export function AutoDownloaderBatchRuleForm(props: AutoDownloaderBatchRuleFormPr
     }
 
     if (allMedia.length === 0) {
-        return <div className="p-4 text-[--muted] text-center">No media found in your library</div>
+        return <div className="p-4 text-[--muted] text-center">{t("autoDownloader.ruleForm.noMediaFound")}</div>
     }
 
     return (
@@ -124,7 +128,7 @@ export function AutoDownloaderBatchRuleForm(props: AutoDownloaderBatchRuleFormPr
                 onSubmit={handleSave}
                 onError={errors => {
                     console.log(errors)
-                    toast.error("An error occurred, verify the fields.")
+                    toast.error(t("autoDownloader.errorOccurred"))
                 }}
                 defaultValues={{
                     enabled: true,
@@ -176,7 +180,7 @@ function RuleFormFields(props: RuleFormFieldsProps) {
     return (
         <>
             <div className="flex flex-col gap-2 md:flex-row justify-between items-center">
-                <Field.Switch name="enabled" label="Enabled" />
+                <Field.Switch name="enabled" label={t("autoDownloader.ruleForm.enabled")} />
             </div>
             <Separator />
             <div
@@ -191,32 +195,30 @@ function RuleFormFields(props: RuleFormFieldsProps) {
                     libraryPath={serverStatus?.settings?.library?.libraryPath || ""}
                     name="entries"
                     control={form.control}
-                    label="Anime"
-                    separatorText="AND"
+                    label={t("autoDownloader.ruleForm.anime")}
+                    separatorText={t("autoDownloader.batchRule.and")}
                     form={form}
                     libraryCollection={libraryCollection}
                     rules={rules}
                 />
 
                 <div className="border rounded-[--radius] p-4 relative !mt-8 space-y-3">
-                    <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">Title</div>
+                    <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("autoDownloader.ruleForm.title")}</div>
                     <Field.RadioCards
-                        label="Type of search"
+                        label={t("autoDownloader.ruleForm.typeOfSearch")}
                         name="titleComparisonType"
                         options={[
                             {
                                 label: <div className="w-full">
-                                    <p className="mb-1 flex items-center"><MdVerified className="text-lg inline-block mr-2" />Most likely</p>
-                                    <p className="font-normal text-sm text-[--muted]">The torrent name will be parsed and analyzed using a comparison
-                                                                                      algorithm</p>
+                                    <p className="mb-1 flex items-center"><MdVerified className="text-lg inline-block mr-2" />{t("autoDownloader.ruleForm.mostLikely")}</p>
+                                    <p className="font-normal text-sm text-[--muted]">{t("autoDownloader.ruleForm.mostLikelyDesc")}</p>
                                 </div>,
                                 value: "likely",
                             },
                             {
                                 label: <div className="w-full">
-                                    <p className="mb-1 flex items-center"><LuTextCursorInput className="text-lg inline-block mr-2" />Exact match</p>
-                                    <p className="font-normal text-sm text-[--muted]">The torrent name must contain the comparison title you set (case
-                                                                                      insensitive)</p>
+                                    <p className="mb-1 flex items-center"><LuTextCursorInput className="text-lg inline-block mr-2" />{t("autoDownloader.ruleForm.exactMatch")}</p>
+                                    <p className="font-normal text-sm text-[--muted]">{t("autoDownloader.ruleForm.exactMatchDesc")}</p>
                                 </div>,
                                 value: "contains",
                             },
@@ -231,24 +233,24 @@ function RuleFormFields(props: RuleFormFieldsProps) {
                 <ResolutionsField name="resolutions" control={form.control} />
 
                 <div className="border rounded-[--radius] p-4 relative !mt-8 space-y-3">
-                    <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">Constraints</div>
+                    <div className="absolute -top-2.5 tracking-wide font-semibold uppercase text-sm left-4 bg-gray-950 px-2">{t("autoDownloader.ruleForm.constraints")}</div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <Field.Number
                             name="minSeeders"
-                            label="Min Seeders"
+                            label={t("autoDownloader.ruleForm.minSeeders")}
                             min={0}
                             fieldClass="w-full"
                         />
                         <Field.Text
                             name="minSize"
-                            label="Min Size"
-                            placeholder="e.g. 100MB"
+                            label={t("autoDownloader.ruleForm.minSize")}
+                            placeholder="ej. 100MB"
                             fieldClass="w-full"
                         />
                         <Field.Text
                             name="maxSize"
-                            label="Max Size"
-                            placeholder="e.g. 2GB or 10GiB"
+                            label={t("autoDownloader.ruleForm.maxSize")}
+                            placeholder="ej. 2GB o 10GiB"
                             fieldClass="w-full"
                         />
                     </div>
@@ -262,7 +264,7 @@ function RuleFormFields(props: RuleFormFieldsProps) {
 
             </div>
             <div className="flex gap-2">
-                <Field.Submit role="create" loading={isPending} disableOnSuccess={false} showLoadingOverlayOnSuccess>Create</Field.Submit>
+                <Field.Submit role="create" loading={isPending} disableOnSuccess={false} showLoadingOverlayOnSuccess>{t("autoDownloader.ruleForm.create")}</Field.Submit>
             </div>
         </>
     )
@@ -291,6 +293,7 @@ interface FormValues {
 }
 
 export function MediaArrayField(props: MediaArrayFieldProps) {
+    const t = createTranslator()
     const { fields, append, remove, update } = useFieldArray<FormValues>({
         control: props.control,
         name: props.name,
@@ -398,7 +401,7 @@ export function MediaArrayField(props: MediaArrayFieldProps) {
                     onClick={handleAddCurrentlyWatching}
                     leftIcon={<BiPlus />}
                 >
-                    All Currently Watching
+                    {t("autoDownloader.allCurrentlyWatching")}
                 </Button>}
                 {!entriesAdded?.length && <Button
                     intent="gray-subtle"
@@ -406,7 +409,7 @@ export function MediaArrayField(props: MediaArrayFieldProps) {
                     onClick={handleAddUpcoming}
                     leftIcon={<BiPlus />}
                 >
-                    All Upcoming
+                    {t("autoDownloader.allUpcoming")}
                 </Button>}
             </div>
         </div>
@@ -469,8 +472,8 @@ function MediaFieldItem(props: MediaFieldItemProps) {
                         </div>
                         <Field.DirectorySelector
                             name={`entries.${index}.destination`}
-                            label="Destination"
-                            help="Folder in your local library where the files will be saved"
+                            label={t("autoDownloader.ruleForm.destination")}
+                            help={t("autoDownloader.ruleForm.destinationHelp")}
                             leftIcon={<FcFolder />}
                             shouldExist={false}
                             value={field.destination}
@@ -478,8 +481,8 @@ function MediaFieldItem(props: MediaFieldItemProps) {
                             libraryPathSelectionProps={libraryPathSelectionProps}
                         />
                         <TextInput
-                            label="Comparison title"
-                            help="Used for comparison purposes. When using 'Exact match', use a title most likely to be used in a torrent name."
+                            label={t("autoDownloader.ruleForm.comparisonTitle")}
+                            help={t("autoDownloader.ruleForm.comparisonTitleHelp")}
                             {...form.register(`entries.${index}.comparisonTitle`)}
                         />
                     </div>

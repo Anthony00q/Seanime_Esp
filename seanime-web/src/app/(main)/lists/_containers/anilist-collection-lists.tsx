@@ -32,6 +32,8 @@ import { atom } from "jotai"
 import { useAtom, useAtomValue, useSetAtom } from "jotai/react"
 import { AnimatePresence } from "motion/react"
 import React from "react"
+import { createTranslator } from "@/locales"
+import { translateGenre, translateTag, translateFormat, translateStatus, translateSeason } from "@/lib/anilist-translations"
 import { BiTrash } from "react-icons/bi"
 import { FaSortAmountDown } from "react-icons/fa"
 import { FiSearch } from "react-icons/fi"
@@ -40,11 +42,14 @@ import { MdPersonalVideo } from "react-icons/md"
 import { RiSignalTowerLine } from "react-icons/ri"
 import { TbSwords } from "react-icons/tb"
 
+const t = createTranslator()
+
 const selectedIndexAtom = atom("-")
 const watchListSearchInputAtom = atom<string>("")
 
 export function AnilistCollectionLists() {
     const serverStatus = useServerStatus()
+    const t = createTranslator()
     const [pageType, setPageType] = useAtom(__myLists_selectedTypeAtom)
     const [selectedIndex, setSelectedIndex] = useAtom(selectedIndexAtom)
     const searchInput = useAtomValue(watchListSearchInputAtom)
@@ -87,14 +92,14 @@ export function AnilistCollectionLists() {
                     triggerClass="px-4 py-2 h-full rounded-full"
                     pillClass="rounded-full border-transparent"
                     items={[
-                        { name: "Anime", isCurrent: pageType === "anime", onClick: () => setPageType("anime") },
+                        { name: t("anilistStats.anime"), isCurrent: pageType === "anime", onClick: () => setPageType("anime") },
                         ...[serverStatus?.settings?.library?.enableManga && {
-                            name: "Manga",
+                            name: t("anilistStats.manga"),
                             isCurrent: pageType === "manga",
                             onClick: () => setPageType("manga"),
                         }],
                         ...[!serverStatus?.user?.isSimulated && {
-                            name: "Stats",
+                            name: t("anilistStats.statistics"),
                             isCurrent: pageType === "stats",
                             onClick: () => setPageType("stats"),
                         }],
@@ -120,27 +125,27 @@ export function AnilistCollectionLists() {
 
                     <div className="py-6 space-y-6" data-anilist-collection-lists-stack>
                         {(!!currentList?.entries?.length && ["-", "CURRENT"].includes(selectedIndex)) && <>
-                            <h2>Current <span className="text-[--muted] font-medium ml-3">{currentList?.entries?.length}</span></h2>
+                            <h2>{pageType === "manga" ? t("anilist.listTitles.CURRENT_MANGA") : t("anilist.listTitles.CURRENT_ANIME")} <span className="text-[--muted] font-medium ml-3">{currentList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={currentList} />
                         </>}
                         {(!!repeatingList?.entries?.length && ["-", "REPEATING"].includes(selectedIndex)) && <>
-                            <h2>Repeating <span className="text-[--muted] font-medium ml-3">{repeatingList?.entries?.length}</span></h2>
+                            <h2>{t("anilist.listTitles.REPEATING")} <span className="text-[--muted] font-medium ml-3">{repeatingList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={repeatingList} />
                         </>}
                         {(!!planningList?.entries?.length && ["-", "PLANNING"].includes(selectedIndex)) && <>
-                            <h2>Planning <span className="text-[--muted] font-medium ml-3">{planningList?.entries?.length}</span></h2>
+                            <h2>{t("anilist.listTitles.PLANNING")} <span className="text-[--muted] font-medium ml-3">{planningList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={planningList} />
                         </>}
                         {(!!pausedList?.entries?.length && ["-", "PAUSED"].includes(selectedIndex)) && <>
-                            <h2>Paused <span className="text-[--muted] font-medium ml-3">{pausedList?.entries?.length}</span></h2>
+                            <h2>{t("anilist.listTitles.PAUSED")} <span className="text-[--muted] font-medium ml-3">{pausedList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={pausedList} />
                         </>}
                         {(!!completedList?.entries?.length && ["-", "COMPLETED"].includes(selectedIndex)) && <>
-                            <h2>Completed <span className="text-[--muted] font-medium ml-3">{completedList?.entries?.length}</span></h2>
+                            <h2>{t("anilist.listTitles.COMPLETED")} <span className="text-[--muted] font-medium ml-3">{completedList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={completedList} />
                         </>}
                         {(!!droppedList?.entries?.length && ["-", "DROPPED"].includes(selectedIndex)) && <>
-                            <h2>Dropped <span className="text-[--muted] font-medium ml-3">{droppedList?.entries?.length}</span></h2>
+                            <h2>{t("anilist.listTitles.DROPPED")} <span className="text-[--muted] font-medium ml-3">{droppedList?.entries?.length}</span></h2>
                             <AnilistAnimeEntryList type={pageType} list={droppedList} />
                         </>}
                         {customLists?.map(list => {
@@ -206,6 +211,7 @@ export function SearchOptions({
 }) {
 
     const serverStatus = useServerStatus()
+    const t = createTranslator()
     const [params, setParams] = useAtom(__myListsSearch_paramsInputAtom)
     const setActualParams = useSetAtom(__myListsSearch_paramsAtom)
     const debouncedParams = useDebounce(params, 500)
@@ -230,13 +236,13 @@ export function SearchOptions({
                     className="w-full"
                     fieldClass="lg:w-[200px]"
                     options={[
-                        { value: "-", label: "All lists" },
-                        { value: "CURRENT", label: "Watching" },
-                        { value: "REPEATING", label: "Repeating" },
-                        { value: "PLANNING", label: "Planning" },
-                        { value: "PAUSED", label: "Paused" },
-                        { value: "COMPLETED", label: "Completed" },
-                        { value: "DROPPED", label: "Dropped" },
+                        { value: "-", label: t("common.labels.allLists") },
+                        { value: "CURRENT", label: pageType === "manga" ? t("anilist.listTitles.CURRENT_MANGA") : t("anilist.listTitles.CURRENT_ANIME") },
+                        { value: "REPEATING", label: t("anilist.listTitles.REPEATING") },
+                        { value: "PLANNING", label: t("anilist.listTitles.PLANNING") },
+                        { value: "PAUSED", label: t("anilist.listTitles.PAUSED") },
+                        { value: "COMPLETED", label: t("anilist.listTitles.COMPLETED") },
+                        { value: "DROPPED", label: t("anilist.listTitles.DROPPED") },
                         ...(customLists || []).map(list => ({ value: list.name || "N/A", label: list.name || "N/A" })),
                     ]}
                     value={selectedIndex || "-"}
@@ -274,11 +280,11 @@ export function SearchOptions({
                 <Combobox
                     multiple
                     leftAddon={<TbSwords className={cn((params.genre !== null && !!params.genre?.length) && "text-indigo-300 font-bold text-xl")} />}
-                    emptyMessage="No options found"
-                    label="Genre" placeholder="All genres"
+                    emptyMessage={t("common.messages.noOptions")}
+                    label={t("common.labels.genres")} placeholder={t("common.placeholders.allGenres")}
                     className="w-full"
                     fieldClass="w-full"
-                    options={ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({ value: genre, label: genre, textValue: genre }))}
+                    options={ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({ value: genre, label: translateGenre(genre), textValue: genre }))}
                     value={params.genre ? params.genre : []}
                     onValueChange={v => setParams(draft => {
                         draft.genre = v
@@ -290,8 +296,10 @@ export function SearchOptions({
                     multiple
                     leftAddon={!params.tags?.length &&
                         <LuTags className={cn((params.tags !== null && !!params.tags.length) && "text-indigo-300 font-bold text-xl")} />}
-                    emptyMessage="No options found"
-                    label="Tags" placeholder="All tags" className="w-full"
+                    emptyMessage={t("common.messages.noOptions")}
+                    label={t("common.labels.tags")} placeholder={t("common.placeholders.allTags")} className="w-full"
+                    fieldClass="w-full min-w-0"
+                    popoverClass="min-w-[280px]"
                     options={ADVANCED_SEARCH_MEDIA_TAGS
                         .filter(tag => {
                             if (params.isAdult && serverStatus?.settings?.anilist?.enableAdultContent) {
@@ -299,7 +307,7 @@ export function SearchOptions({
                             }
                             return tag.isAdult === false
                         })
-                        .map(tag => ({ value: tag.name, label: tag.name, textValue: tag.name }))}
+                        .map(tag => ({ value: tag.name, label: translateTag(tag.name), textValue: tag.name }))}
                     value={params.tags ? params.tags : []}
                     onValueChange={v => setParams(draft => {
                         draft.tags = v
@@ -308,7 +316,7 @@ export function SearchOptions({
                     fieldLabelClass="hidden"
                 />
                 <Select
-                    label="Sorting"
+                    label={t("common.labels.sorting")}
                     leftAddon={<FaSortAmountDown className={cn((params.sorting !== "SCORE_DESC") && "text-indigo-300 font-bold text-xl")} />}
                     className="w-full"
                     fieldClass="flex items-center"
@@ -325,10 +333,10 @@ export function SearchOptions({
                 {pageType === "anime" && <Select
                     leftAddon={
                         <MdPersonalVideo className={cn((params.format !== null && !!params.format?.length) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Format" placeholder="All formats"
+                    label={t("common.labels.format")} placeholder={t("common.placeholders.allFormats")}
                     className="w-full"
                     fieldClass="w-full"
-                    options={ADVANCED_SEARCH_FORMATS}
+                    options={ADVANCED_SEARCH_FORMATS.map(f => ({ ...f, label: translateFormat(f.value) }))}
                     value={params.format || ""}
                     onValueChange={v => setParams(draft => {
                         draft.format = v as any
@@ -339,11 +347,11 @@ export function SearchOptions({
                 <Select
                     leftAddon={
                         <RiSignalTowerLine className={cn((params.status !== null && !!params.status?.length) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Status" placeholder="All statuses"
+                    label={t("common.labels.status")} placeholder={t("common.placeholders.allStatuses")}
                     className="w-full"
                     fieldClass="w-full"
                     options={[
-                        ...ADVANCED_SEARCH_STATUS,
+                        ...ADVANCED_SEARCH_STATUS.map(s => ({ ...s, label: translateStatus(s.value) })),
                     ]}
                     value={params.status || ""}
                     onValueChange={v => setParams(draft => {
@@ -354,12 +362,12 @@ export function SearchOptions({
                 />
                 {pageType === "anime" && <Select
                     leftAddon={<LuLeaf className={cn((params.season !== null && !!params.season?.length) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Season"
-                    placeholder="All seasons"
+                    label={t("common.labels.season")}
+                    placeholder={t("common.placeholders.allSeasons")}
                     className="w-full"
-                    fieldClass="w-full flex items-center"
+                    fieldClass="w-full"
                     inputContainerClass="w-full"
-                    options={ADVANCED_SEARCH_SEASONS.map(season => ({ value: season.toUpperCase(), label: season }))}
+                    options={ADVANCED_SEARCH_SEASONS.map(season => ({ value: season.toUpperCase(), label: translateSeason(season.toUpperCase()) }))}
                     value={params.season || ""}
                     onValueChange={v => setParams(draft => {
                         draft.season = v as any
@@ -369,7 +377,7 @@ export function SearchOptions({
                 />}
                 <Select
                     leftAddon={<LuCalendar className={cn((params.year !== null && !!params.year?.length) && "text-indigo-300 font-bold text-xl")} />}
-                    label="Year" placeholder="Timeless"
+                    label={t("common.labels.year")} placeholder={t("common.placeholders.timeless")}
                     className="w-full"
                     fieldClass="w-full"
                     options={[...Array(70)].map((v, idx) => getYear(new Date()) + 2 - idx).map(year => ({
@@ -386,7 +394,7 @@ export function SearchOptions({
             </div>
 
             {serverStatus?.settings?.anilist?.enableAdultContent && <Switch
-                label="Adult"
+                label={t("common.labels.adult")}
                 value={params.isAdult}
                 onValueChange={v => setParams(draft => {
                     draft.isAdult = v

@@ -1,8 +1,10 @@
 import { Alert } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
+import { createTranslator } from "@/locales"
 import React from "react"
 
 export function ElectronCrashScreenError() {
+    const t = createTranslator()
     const [msg, setMsg] = React.useState("")
     const [isRendererCrash, setIsRendererCrash] = React.useState(false)
 
@@ -46,14 +48,14 @@ export function ElectronCrashScreenError() {
     return (
         <div className="px-4 space-y-4 px-10">
             <p>
-                {msg || "An error occurred. Closing in 10 seconds."}
+                {msg || t("error.anErrorOccurred")}
             </p>
 
             <Alert
                 intent="warning"
                 description={isRendererCrash 
-                    ? "You can try reloading the window to resume your session." 
-                    : "Make sure another instance of Seanime is not running or check the logs for more details."
+                    ? t("error.rendererCrashHelp") 
+                    : t("error.anotherInstance")
                 }
             />
 
@@ -67,7 +69,7 @@ export function ElectronCrashScreenError() {
                             }
                         }}
                     >
-                        Reload
+                        {t("error.reload")}
                     </Button>
                 )}
                 <Button
@@ -78,7 +80,7 @@ export function ElectronCrashScreenError() {
                         }
                     }}
                 >
-                    Close
+                    {t("common.close" as any)}
                 </Button>
             </div>
         </div>

@@ -169,5 +169,6 @@ declare global {
         openInBackground: boolean;
         openAtLaunch: boolean;
         updateChannel?: string;
+        locale?: string;
     }
 }

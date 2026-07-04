@@ -1,10 +1,13 @@
-import { AL_BaseAnime, AL_BaseManga } from "@/api/generated/types"
+﻿import { AL_BaseAnime, AL_BaseManga } from "@/api/generated/types"
 import { useMediaPreviewModal } from "@/app/(main)/_features/media/_containers/media-preview-modal"
 import { imageShimmer } from "@/components/shared/image-helpers"
 import { SeaImage } from "@/components/shared/sea-image"
 import { Button } from "@/components/ui/button"
 import { CommandGroup, CommandItem, CommandShortcut } from "@/components/ui/command"
+import { createTranslator } from "@/locales"
 import { useSeaCommandContext } from "../sea-command"
+
+const t = createTranslator()
 
 
 export function CommandItemMedia({ media, type }: { media: AL_BaseAnime | AL_BaseManga, type: "anime" | "manga" }) {
@@ -58,7 +61,7 @@ export function SeaCommandAutocompleteSuggestions({
     return (
         <>
 
-            <CommandGroup heading="Suggestions">
+            <CommandGroup heading={t("search.seaCommand.suggestions")}>
                 {commands.filter(command => command.show === true).map(command => (
                     <CommandItem
                         key={command.command}
@@ -74,3 +77,4 @@ export function SeaCommandAutocompleteSuggestions({
         </>
     )
 }
+

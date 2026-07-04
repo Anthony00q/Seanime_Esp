@@ -37,6 +37,9 @@ import { useAtom, useAtomValue } from "jotai/react"
 import React from "react"
 import { BiX } from "react-icons/bi"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type MangaReaderBarProps = {
     children?: React.ReactNode
@@ -247,7 +250,7 @@ export function MangaReaderBar(props: MangaReaderBarProps) {
                 {!!selectedChapter &&
                     <div data-manga-reader-bar-chapter-nav-container className="flex gap-3 items-center flex-none whitespace-nowrap ">
                         <ChapterNavButton dir="left" />
-                        <span className="hidden md:inline-block">Chapter </span>
+                        <span className="hidden md:inline-block">{t("manga.downloadedChapters.chapter")} </span>
                         {`${selectedChapter?.chapterNumber}`}
                         <ChapterNavButton dir="right" />
                     </div>}

@@ -19,7 +19,10 @@ import { LuffyError } from "@/components/shared/luffy-error"
 import { ScrollAreaBox } from "@/components/shared/scroll-area-box"
 import { cn } from "@/components/ui/core/styling"
 import { Skeleton } from "@/components/ui/skeleton"
+import { createTranslator } from "@/locales"
 import React from "react"
+
+const t = createTranslator()
 
 type TorrentPreviewList = {
     entry: Anime_Entry
@@ -62,7 +65,7 @@ export const TorrentPreviewList = React.memo((
     </div>
 
     if (!isLoading && !previews?.length) {
-        return <LuffyError title="Nothing found" />
+        return <LuffyError title={t("common.messages.nothingFound")} />
     }
 
     // Apply filters using the generic helper
