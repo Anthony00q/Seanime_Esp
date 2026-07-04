@@ -19,7 +19,6 @@ import { cn } from "@/components/ui/core/styling"
 import { DropdownMenu, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { useDebounce } from "@/hooks/use-debounce"
 import { useRouter } from "@/lib/navigation"
-import { getMangaCollectionTitle } from "@/lib/server/utils"
 import { ThemeLibraryScreenBannerType, useThemeSettings } from "@/lib/theme/theme-hooks"
 import { useSetAtom } from "jotai"
 import { useAtom, useAtomValue } from "jotai/react"
@@ -29,6 +28,8 @@ import { BiDotsVertical } from "react-icons/bi"
 import { LuBookOpenCheck, LuRefreshCcw } from "react-icons/lu"
 import { toast } from "sonner"
 import { CommandItemMedia } from "../../_features/sea-command/_components/command-utils"
+import { createTranslator } from "@/locales"
+import { translateGenre } from "@/lib/anilist-translations"
 
 type MangaLibraryViewProps = {
     collection: Manga_Collection
@@ -57,6 +58,8 @@ export function MangaLibraryView(props: MangaLibraryViewProps) {
 
     const [params, setParams] = useAtom(__mangaLibrary_paramsAtom)
 
+    const t = createTranslator()
+
     return (
         <>
             <PageWrapper
@@ -70,17 +73,17 @@ export function MangaLibraryView(props: MangaLibraryViewProps) {
                 <AnimatePresence mode="wait" initial={false}>
 
                     {!!collection && !hasManga && <LuffyError
-                        title="No manga found"
+                        title={t("manga.noMangaFound")}
                     >
                         <div className="space-y-2">
                             <p>
-                                No manga has been added to your library yet.
+                                {t("manga.noMangaAdded")}
                             </p>
 
                             <div className="!mt-4">
                                 <SeaLink href="/discover?type=manga">
                                     <Button intent="white-outline" rounded>
-                                        Browse manga
+                                        {t("manga.browseManga")}
                                     </Button>
                                 </SeaLink>
                             </div>
@@ -255,6 +258,8 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
 
     const { inject, remove } = useSeaCommandInject()
 
+    const t = createTranslator()
+
     React.useEffect(() => {
         if (list.type === "CURRENT") {
             if (currentHeaderImage === null && list.entries?.[0]?.media?.bannerImage) {
@@ -271,7 +276,7 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
                     data: entry,
                     id: `manga-${entry.mediaId}`,
                     value: entry.media?.title?.userPreferred || "",
-                    heading: "Currently Reading",
+                    heading: t("status.currentlyReading"),
                     priority: 100,
                     render: () => (
                         <CommandItemMedia media={entry.media!} type="manga" />
@@ -295,8 +300,7 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
         <React.Fragment>
 
             <div className="flex gap-3 items-center" data-manga-library-view-collection-list-item-header-container>
-                <h2 data-manga-library-view-collection-list-item-header-title>{list.type === "CURRENT" ? "Continue reading" : getMangaCollectionTitle(
-                    list.type)}</h2>
+                <h2 data-manga-library-view-collection-list-item-header-title>{list.type === "CURRENT" ? t("status.continueReading") : list.type === "PLANNING" ? t("listTitles.planning") : list.type === "PAUSED" ? t("listTitles.paused") : list.type === "COMPLETED" ? t("listTitles.completed") : list.type === "DROPPED" ? t("listTitles.dropped") : list.type === "REPEATING" ? t("listTitles.repeating") : list.type}</h2>
                 <div className="flex flex-1" data-manga-library-view-collection-list-item-header-spacer></div>
 
                 {list.type === "CURRENT" && params.unreadOnly && (
@@ -311,7 +315,7 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
                             })
                         }}
                     >
-                        Show all
+                        {t("common.labels.showAll")}
                     </Button>
                 )}
 
@@ -333,13 +337,13 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
                         onClick={() => {
                             if (isRefetchingMangaChapterContainers) return
 
-                            toast.info("Refetching from sources...")
+                            toast.info(t("manga.refetchingSources"))
                             refetchMangaChapterContainers({
                                 selectedProviderMap: storedProviders,
                             })
                         }}
                     >
-                        <LuRefreshCcw /> {isRefetchingMangaChapterContainers ? "Refetching..." : "Refresh sources"}
+                        <LuRefreshCcw /> {isRefetchingMangaChapterContainers ? t("manga.refetching") : t("manga.refreshSources")}
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         onClick={() => {
@@ -349,7 +353,7 @@ const CollectionListItem = memo(({ list, storedProviders, showStatuses, type, wi
                             })
                         }}
                     >
-                        <LuBookOpenCheck /> {params.unreadOnly ? "Show all" : "Unread chapters only"}
+                        <LuBookOpenCheck /> {params.unreadOnly ? t("common.labels.showAll") : t("manga.unreadOnly")}
                     </DropdownMenuItem>
                     <PluginMangaLibraryDropdownItems />
                 </DropdownMenu>}
@@ -448,7 +452,7 @@ function GenreSelector({
             staticTabsClass=""
             items={[
                 ...genres.map(genre => ({
-                    name: genre,
+                    name: translateGenre(genre),
                     isCurrent: params!.genre?.includes(genre) ?? false,
                     onClick: () => setParams(draft => {
                         if (draft.genre?.includes(genre)) {

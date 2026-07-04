@@ -1,7 +1,9 @@
 import { VideoCoreSettings } from "@/app/(main)/_features/video-core/video-core.atoms"
+import { createTranslator } from "@/locales"
 import { logger } from "@/lib/helpers/debug"
 import type { Anime4KPipeline } from "anime4k-webgpu"
 
+const t = createTranslator()
 const log = logger("VIDEO CORE ANIME 4K MANAGER")
 
 const anime4kCaptureShader = /* wgsl */`
@@ -806,8 +808,8 @@ export class VideoCoreAnime4KManager extends EventTarget {
             const info = (adapter as any).info || {}
 
             return {
-                gpu: info.vendor || info.architecture || "Unknown GPU",
-                vendor: info.vendor || "Unknown",
+                gpu: info.vendor || info.architecture || t("common.messages.unknownGPU"),
+                vendor: info.vendor || t("common.messages.unknown"),
                 device,
             }
         }

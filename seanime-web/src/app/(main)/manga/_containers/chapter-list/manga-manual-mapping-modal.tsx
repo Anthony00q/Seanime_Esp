@@ -16,6 +16,9 @@ import { Tooltip } from "@/components/ui/tooltip"
 import { useRouter } from "@/lib/navigation"
 import React from "react"
 import { FiSearch } from "react-icons/fi"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type MangaManualMappingModalProps = {
     entry: Manga_Entry
@@ -34,8 +37,8 @@ export function MangaManualMappingModal(props: MangaManualMappingModalProps) {
         <>
             <Modal
                 data-manga-manual-mapping-modal
-                title="Manual match"
-                description="Match this manga to a search result"
+                title={t("onlinestream.manualMatch")}
+                description={t("manga.manualMapping.description")}
                 trigger={children}
                 contentClass="max-w-4xl"
             >
@@ -85,9 +88,10 @@ function Content({ entry }: { entry: Manga_Entry }) {
 
     const [mangaId, setMangaId] = React.useState<string | null>(null)
     const confirmMatch = useConfirmationDialog({
-        title: "Manual match",
-        description: "Are you sure you want to match this manga to the search result?",
-        actionText: "Confirm",
+        title: t("onlinestream.manualMatch"),
+        description: t("manga.manualMapping.confirmMatchDesc"),
+        actionText: t("common.buttons.confirm"),
+        cancelText: t("common.buttons.cancel"),
         actionIntent: "success",
         onConfirm: () => {
             if (mangaId && selectedProvider) {
@@ -124,11 +128,11 @@ function Content({ entry }: { entry: Manga_Entry }) {
                                     }
                                 }}
                                 >
-                                    Remove mapping
+                                    {t("manualMatch.removeMapping")}
                                 </Button>
                             </AppLayoutStack>
                         ) : (
-                            <p className="text-[--muted] italic">No manual match</p>
+                            <p className="text-[--muted] italic">{t("manualMatch.none")}</p>
                         )}
                     </div>
 
@@ -138,12 +142,12 @@ function Content({ entry }: { entry: Manga_Entry }) {
                         <div className="flex gap-2 items-center">
                             <Field.Text
                                 name="query"
-                                placeholder="Enter a title..."
+                                placeholder={t("common.placeholders.title")}
                                 leftIcon={<FiSearch className="text-xl text-[--muted]" />}
                                 fieldClass="w-full"
                             />
 
-                            <Field.Submit intent="white" loading={isMatching || searchLoading || mappingLoading} className="">Search</Field.Submit>
+                            <Field.Submit intent="white" loading={isMatching || searchLoading || mappingLoading} className="">{t("common.labels.search")}</Field.Submit>
                         </div>
                     </Form>
 

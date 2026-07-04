@@ -13,6 +13,9 @@ import { AiOutlineDownload } from "react-icons/ai"
 import { HiDownload } from "react-icons/hi"
 import { IoLibrary } from "react-icons/io5"
 import { LuBellOff } from "react-icons/lu"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export function MissingEpisodes({ isLoading, data }: {
     data: Anime_MissingEpisodes | undefined
@@ -33,7 +36,7 @@ export function MissingEpisodes({ isLoading, data }: {
 
                 {!!missingEpisodes?.length && (
                     <>
-                        <h2 className="flex gap-3 items-center"><IoLibrary /> Missing from your library</h2>
+                        <h2 className="flex gap-3 items-center"><IoLibrary /> {t("schedule.missingFromLibrary")}</h2>
 
                         <Carousel
                             className="w-full max-w-full"
@@ -93,7 +96,7 @@ export function MissingEpisodes({ isLoading, data }: {
                         >
                             <AccordionItem value="item-1">
                                 <AccordionTrigger>
-                                    <p className="flex gap-3 items-center text-lg text-inherit"><LuBellOff /> Silenced episodes</p>
+                                    <p className="flex gap-3 items-center text-lg text-inherit"><LuBellOff /> {t("schedule.silencedEpisodes")}</p>
                                 </AccordionTrigger>
                                 <AccordionContent className="bg-gray-950 rounded-[--radius]">
                                     <Carousel

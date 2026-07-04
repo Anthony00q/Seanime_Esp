@@ -20,6 +20,9 @@ import { BiAddToQueue } from "react-icons/bi"
 import { FaCirclePlay } from "react-icons/fa6"
 import { LuDock, LuEye } from "react-icons/lu"
 import { PluginEpisodeCardContextMenuItems } from "../../plugin/actions/plugin-actions"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type EpisodeCardProps = {
     title: React.ReactNode
@@ -176,7 +179,7 @@ export function EpisodeCard(props: EpisodeCardProps) {
                                 setPreviewModalMediaId(anime?.id || 0, "anime")
                             }}
                         >
-                            <LuEye /> Preview
+                            <LuEye /> {t("mediaCard.preview")}
                         </ContextMenuItem>}
                         <ContextMenuItem
                             onClick={() => {
@@ -187,7 +190,7 @@ export function EpisodeCard(props: EpisodeCardProps) {
                                 }
                             }}
                         >
-                            <LuDock /> Open page
+                            <LuDock /> {t("mediaCard.openPage")}
                         </ContextMenuItem>
                     </>}
                     {(props.episode && anime?.id && props.episode?.aniDBEpisode) && <ContextMenuItem
@@ -195,7 +198,7 @@ export function EpisodeCard(props: EpisodeCardProps) {
                             selectEpisodeToAddAndOpenEditor(anime.id!, props.episode?.aniDBEpisode!)
                         }}
                     >
-                        <BiAddToQueue /> Add to Playlist
+                        <BiAddToQueue /> {t("mediaCard.addToPlaylist")}
                     </ContextMenuItem>}
 
                     {additionalContextMenuItems}
@@ -285,7 +288,7 @@ export function EpisodeCard(props: EpisodeCardProps) {
                                         isSingleContainer && "right-4 bottom-4 ",
                                     )}
                                 >
-                                    <span>{minutesRemaining}m left</span>
+                                    <span>{t("common.labels.minutesLeft", { min: minutesRemaining })}</span>
                                 </div>}
                             </div>}
 

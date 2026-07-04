@@ -2,6 +2,9 @@ import { ExtensionRepo_OnlinestreamProviderExtensionItem, Onlinestream_EpisodeLi
 import { logger, useLatestFunction } from "@/lib/helpers/debug"
 import React from "react"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type TrialState = {
     providers: string[]
@@ -97,7 +100,7 @@ export function useOnlinestreamAutoProviderCycler(props: UseOnlinestreamAutoProv
         setTrialState(null)
         setUrl(null)
         setPlaybackError("No working providers found")
-        toast.error("No working providers found")
+        toast.error(t("onlinestream.noWorkingProviders"))
     })
 
     const advanceProvider = useLatestFunction((reason: string) => {
@@ -202,7 +205,7 @@ export function useOnlinestreamAutoProviderCycler(props: UseOnlinestreamAutoProv
         if (!trialRef.current) return
         setTrialState(null)
         setDetectedFailure(null)
-        toast.info("Stopped trying providers")
+        toast.info(t("onlinestream.stoppedTryingProviders"))
     })
 
     React.useEffect(() => {

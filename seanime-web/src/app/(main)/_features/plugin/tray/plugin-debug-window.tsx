@@ -1,6 +1,7 @@
 import { Plugin_Server_DebugLogEventPayload } from "@/app/(main)/_features/plugin/generated/plugin-events.ts"
 import { IconButton } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling.ts"
+import { createTranslator } from "@/locales"
 import { TextInput } from "@/components/ui/text-input"
 import { Tooltip } from "@/components/ui/tooltip"
 import React from "react"
@@ -89,6 +90,8 @@ export function PluginDebugWindow({
     onClear: () => void
     onClose: () => void
 }) {
+    const t = createTranslator()
+
     const initialHeight = React.useMemo(() => getInitHeight(), [])
     const [height, setHeight] = React.useState(initialHeight)
     const [position, setPosition] = React.useState(() => ({
@@ -265,7 +268,7 @@ export function PluginDebugWindow({
                                 onClick={copyLogs}
                             />
                         </div>}
-                    >Copy</Tooltip>
+                    >{t("pluginDebug.copy")}</Tooltip>
                     <Tooltip
                         trigger={<div>
                             <IconButton
@@ -276,7 +279,7 @@ export function PluginDebugWindow({
                                 onClick={onClear}
                             />
                         </div>}
-                    >Clear</Tooltip>
+                    >{t("pluginDebug.clear")}</Tooltip>
                     <Tooltip
                         trigger={<div>
                             <IconButton
@@ -287,7 +290,7 @@ export function PluginDebugWindow({
                                 onClick={onClose}
                             />
                         </div>}
-                    >Close</Tooltip>
+                    >{t("pluginDebug.close")}</Tooltip>
                 </div>
             </div>
             <div className="flex flex-col gap-2 border-b border-[--border] px-3 py-2 sm:flex-row sm:items-center sm:justify-between">
@@ -295,7 +298,7 @@ export function PluginDebugWindow({
                     <TextInput
                         value={search}
                         onChange={event => setSearch(event.target.value)}
-                        placeholder="Search logs..."
+                        placeholder={t("pluginDebug.searchLogs")}
                         size="sm"
                         leftIcon={<LuSearch className="size-3.5" />}
                         fieldClass="w-full max-w-xs"
@@ -322,7 +325,7 @@ export function PluginDebugWindow({
             </div>
             <div ref={listRef} onScroll={onListScroll} className="min-h-0 flex-1 space-y-2 overflow-y-auto p-3">
                 {!visibleLogs.length && <div className="flex h-full items-center justify-center text-sm text-[--muted]">
-                    No logs
+                    {t("pluginDebug.noLogs")}
                 </div>}
                 {visibleLogs.map(log => (
                     <div key={log.id} className="rounded-md border border-[--border] bg-[--paper] p-2 hover:bg-[--subtle]">

@@ -12,6 +12,9 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { useSetAtom } from "jotai"
 import React from "react"
 import { GiOpenBook } from "react-icons/gi"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type OfflineChapterListProps = {
     entry: Manga_Entry | undefined
@@ -56,18 +59,18 @@ export function OfflineChapterList(props: OfflineChapterListProps) {
     const columns = React.useMemo(() => defineDataGridColumns<HibikeManga_ChapterDetails>(() => [
         {
             accessorKey: "title",
-            header: "Name",
+            header: t("manga.chapterList.name"),
             size: 90,
         },
         {
             accessorKey: "provider",
-            header: "Provider",
+            header: t("manga.chapterList.provider"),
             size: 10,
             enableSorting: true,
         },
         {
             id: "number",
-            header: "Number",
+            header: t("manga.chapterList.number"),
             size: 10,
             enableSorting: true,
             accessorFn: (row) => {
@@ -133,7 +136,7 @@ export function OfflineChapterList(props: OfflineChapterListProps) {
 
                 <div className="flex flex-wrap items-center gap-4">
                     <Checkbox
-                        label="Show unread"
+                        label={t("manga.chapterList.showUnread")}
                         value={showUnreadChapter}
                         onValueChange={v => setShowUnreadChapter(v as boolean)}
                         fieldClass="w-fit"

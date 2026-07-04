@@ -30,6 +30,7 @@ web-desktop/
 web-denshi/
 out/
 ./assets/
+seanime.exe
 
 test/testdata/**/*.json
 test/sample
@@ -115,3 +116,14 @@ skills*.json
 .github/prompts/
 .github/skills/
 *.agent.md
+AGENTS.md
+
+##
+## Informacion local
+##
+informacion/
+
+##
+## Scripts locales
+##
+*.bat

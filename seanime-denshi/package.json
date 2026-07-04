@@ -47,7 +47,7 @@
     "generateUpdatesFilesForAllChannels": true,
     "publish": {
       "provider": "generic",
-      "url": "https://github.com/5rahim/seanime/releases/latest/download",
+      "url": "https://github.com/Anthony00q/Seanime_Esp/releases/latest/download",
       "channel": "latest",
       "publishAutoUpdate": true,
       "useMultipleRangeRequest": false
@@ -116,6 +116,7 @@
       "src/**/*",
       "web-denshi/**/*",
       "assets/**/*",
+      "locales/**/*",
       "package.json",
       "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
       "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
