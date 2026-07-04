@@ -3,10 +3,13 @@ import { useMangaReaderUtils } from "@/app/(main)/manga/_lib/handle-manga-utils"
 import { IconButton } from "@/components/ui/button"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { logger } from "@/lib/helpers/debug"
-import { HIDE_IMAGES } from "@/types/constants.ts"
+import { HIDE_IMAGES } from "@/types/constants"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { FaRedo } from "react-icons/fa"
 import { useUpdateEffect } from "react-use"
+
+const t = createTranslator()
 
 type ChapterPageProps = {
     children?: React.ReactNode
@@ -99,7 +102,7 @@ export function ChapterPage(props: ChapterPageProps) {
                     data-chapter-page-image
                     data-page-index={index}
                     src={pageUrl}
-                    alt={`Page ${index}`}
+                    alt={t("manga.chapterReader.page", { index: String(index) })}
                     crossOrigin="anonymous"
                     draggable={false}
                     className={imageClass}

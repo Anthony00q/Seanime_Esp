@@ -1,4 +1,8 @@
+import { createTranslator } from "@/locales";
+const t = createTranslator();
+
 import { Anime_Episode, Continuity_WatchHistory } from "@/api/generated/types"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { getEpisodeMinutesRemaining, getEpisodePercentageComplete, useGetContinuityWatchHistory } from "@/api/hooks/continuity.hooks"
 import { usePlayNext } from "@/app/(main)/_atoms/playback.atoms"
 import { __libraryHeaderImageAtom } from "@/app/(main)/_features/anime-library/_components/library-header"
@@ -116,7 +120,7 @@ export function ContinueWatching({ episodes, isLoading, linkTemplate, withTitle 
                 data: episode,
                 id: `${episode.localFile?.path || episode.baseAnime?.title?.userPreferred || ""}-${episode.episodeNumber || 1}`,
                 value: `${episode.episodeNumber || 1}`,
-                heading: "Continue Watching",
+                heading: t("continueWatching.heading"),
                 priority: 100,
                 render: () => (
                     <>
@@ -131,9 +135,9 @@ export function ContinueWatching({ episodes, isLoading, linkTemplate, withTitle 
                         <div className="flex gap-1 items-center w-full">
                             <p className="max-w-[70%] truncate">{episode.baseAnime?.title?.userPreferred || ""}</p>&nbsp;-&nbsp;
                             {!anilist_animeIsMovie(episode.baseAnime) ? <>
-                                <p className="text-[--muted]">Ep</p><span>{episode.episodeNumber}</span>
+                                <p className="text-[--muted]">{t("common.labels.ep")}</p><span>{episode.episodeNumber}</span>
                             </> : <>
-                                <p className="text-[--muted]">Movie</p>
+                                <p className="text-[--muted]">{t("common.labels.movie")}</p>
                             </>}
 
                         </div>
@@ -156,7 +160,7 @@ export function ContinueWatching({ episodes, isLoading, linkTemplate, withTitle 
 
     if (episodes.length > 0) return (
         <PageWrapper className="space-y-3 lg:space-y-6 p-4 relative z-[4]" data-continue-watching-container>
-            <h2 data-continue-watching-title>Continue watching</h2>
+            <h2 data-continue-watching-title>{t("continueWatching.title")}</h2>
             {(ts.libraryScreenBannerType === ThemeLibraryScreenBannerType.Dynamic && headerEpisode?.baseAnime && withTitle) && <TextGenerateEffect
                 data-continue-watching-media-title
                 words={headerEpisode?.baseAnime?.title?.userPreferred || ""}
@@ -237,7 +241,7 @@ const _EpisodeCard = React.memo(({ episode, mRef, overrideLink, spoilerActive, w
             disableAnimation={true}
             spoilerMode="replace"
             spoilerActive={spoilerActive}
-            title={episode.displayTitle}
+            title={translateDisplayTitle(episode.displayTitle)}
             isInvalid={episode.isInvalid}
             progressTotal={episode.baseAnime?.episodes}
             progressNumber={episode.progressNumber}

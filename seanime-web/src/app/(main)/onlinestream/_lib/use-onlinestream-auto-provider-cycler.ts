@@ -3,6 +3,9 @@ import { logger, useLatestFunction } from "@/lib/helpers/debug"
 import React from "react"
 import { toast } from "sonner"
 import { getRefreshKey, markSourceRefreshed, orderProviders, shouldRecoverStartup } from "./onlinestream-provider-trial"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type TrialState = {
     providers: string[]
@@ -107,7 +110,7 @@ export function useOnlinestreamAutoProviderCycler(props: UseOnlinestreamAutoProv
         setTrialState(null)
         setUrl(null)
         setPlaybackError("No working providers found")
-        toast.error("No working providers found")
+        toast.error(t("onlinestream.noWorkingProviders"))
     })
 
     const goToNextProvider = useLatestFunction((reason: string) => {
@@ -256,7 +259,7 @@ export function useOnlinestreamAutoProviderCycler(props: UseOnlinestreamAutoProv
         if (!trialRef.current) return
         setTrialState(null)
         setDetectedFailure(null)
-        toast.info("Stopped trying providers")
+        toast.info(t("onlinestream.stoppedTryingProviders"))
     })
 
     React.useEffect(() => {

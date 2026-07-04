@@ -1,0 +1,53 @@
+{
+  "onlinestream": {
+    "watchPartyProviderNotInstalled": "Watch Party: O provedor usado pelo host não está instalado.",
+    "findOtherProviders": "Procurar outros provedores",
+    "selectProvider": "Selecionar provedor",
+    "cache": "Cache",
+    "emptyCacheDescription": "Esvazie o cache se você estiver tendo problemas com o stream.",
+    "emptyStreamCache": "Esvaziar cache do stream",
+    "manualMatch": "Vinculação manual",
+    "switchToSubs": "Mudar para legendado",
+    "switchToDub": "Mudar para dublado",
+    "switchToGridView": "Mudar para visualização em grade",
+    "switchToListView": "Mudar para visualização em lista",
+    "noProviderSelected": "Nenhum provedor selecionado",
+    "providerError": "Erro do provedor",
+    "loadingStream": "Carregando stream",
+    "completeMovie": "Filme completo",
+    "noWorkingProviders": "Nenhum provedor funcional encontrado",
+    "stoppedTryingProviders": "Parou de tentar provedores",
+    "startingWatchParty": "Iniciando Watch Party de streaming online",
+    "dubbedSearchHelp": "Aplica-se apenas a provedores que suportam dublagem nos resultados de busca.",
+    "manualMatchDesc": "Vincular este anime a um resultado de busca do provedor.",
+    "confirmMatchDesc": "Tem certeza de que deseja vincular este anime com este resultado de busca?"
+  },
+  "nativePlayer": {
+    "errorPlayingStream": "Erro ao reproduzir o stream. {error}"
+  },
+  "mediastream": {
+    "codecNotSupported": "Codec não suportado",
+    "playbackErrorOccurred": "Ocorreu um erro de reprodução",
+    "filePathNotFoundEpisode": "Caminho do arquivo não encontrado para o episódio",
+    "switchToGridView": "Mudar para grade",
+    "switchToListView": "Mudar para lista",
+    "playbackErrorTitle": "Erro de Reprodução",
+    "couldNotLoadMedia": "Não foi possível carregar a mídia",
+    "playback": "Reprodução",
+    "playbackInfo": "Informações de reprodução",
+    "codecsCompatible": "Codecs compatíveis",
+    "codecsNotCompatible": "Codecs incompatíveis",
+    "streamType": "Tipo de stream",
+    "videoCodec": "Codec de vídeo",
+    "audioCodec": "Codec de áudio",
+    "mediaContainerData": "Dados do container da mídia",
+    "moreData": "Mais dados",
+    "switchToTranscoding": "Mudar para transcodificação",
+    "switchToTranscodingDesc": "Força o player a usar transcodificação",
+    "switchToDirectPlay": "Mudar para reprodução direta"
+  },
+  "mediaLinks": {
+    "episodeNotFound": "Episódio não encontrado",
+    "externalPlayerLinkNotSet": "Link do player externo não configurado"
+  }
+}

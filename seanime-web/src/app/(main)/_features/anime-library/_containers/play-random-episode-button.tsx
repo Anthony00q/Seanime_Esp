@@ -1,5 +1,6 @@
 import { usePlaybackPlayRandomVideo } from "@/api/hooks/playback_manager.hooks"
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { LiaRandomSolid } from "react-icons/lia"
 
@@ -14,13 +15,14 @@ export function PlayRandomEpisodeButton(props: PlayRandomEpisodeButtonProps) {
         ...rest
     } = props
 
+    const t = createTranslator()
     const { mutate: playRandom, isPending } = usePlaybackPlayRandomVideo()
 
     return (
         <>
             <DropdownMenuItem>
                 <LiaRandomSolid className="text-2xl" />
-                <span>Play random anime</span>
+                <span>{t("home.toolbar.dropdown.playRandomAnime")}</span>
             </DropdownMenuItem>
         </>
     )

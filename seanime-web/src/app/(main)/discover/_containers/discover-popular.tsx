@@ -12,6 +12,10 @@ import { ADVANCED_SEARCH_MEDIA_GENRES } from "@/app/(main)/search/_lib/advanced-
 import { Carousel, CarouselContent, CarouselDotButtons } from "@/components/ui/carousel"
 import { useAtom } from "jotai/react"
 import React from "react"
+import { createTranslator } from "@/locales"
+import { translateGenre } from "@/lib/anilist-translations"
+
+const t = createTranslator()
 
 export function DiscoverPopular() {
 
@@ -69,12 +73,12 @@ export function DiscoverThisSeason() {
             <MediaGenreSelector
                 items={[
                     {
-                        name: "All",
+                        name: t("discover.all"),
                         isCurrent: selectedGenre.length === 0,
                         onClick: () => setSelectedGenre([]),
                     },
                     ...ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({
-                        name: genre,
+                        name: translateGenre(genre),
                         isCurrent: selectedGenre.includes(genre),
                         onClick: () => setSelectedGenre([genre]),
                     })),
@@ -121,12 +125,12 @@ export function DiscoverPastSeason() {
             <MediaGenreSelector
                 items={[
                     {
-                        name: "All",
+                        name: t("discover.all"),
                         isCurrent: selectedGenre.length === 0,
                         onClick: () => setSelectedGenre([]),
                     },
                     ...ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({
-                        name: genre,
+                        name: translateGenre(genre),
                         isCurrent: selectedGenre.includes(genre),
                         onClick: () => setSelectedGenre([genre]),
                     })),

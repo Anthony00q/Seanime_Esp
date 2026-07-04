@@ -31,6 +31,7 @@ import { Modal } from "@/components/ui/modal"
 import { TextInput } from "@/components/ui/text-input"
 import { Tooltip } from "@/components/ui/tooltip"
 import { copyToClipboard } from "@/lib/helpers/browser"
+import { createTranslator } from "@/locales"
 import { WSEvents } from "@/lib/server/ws-events"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { __isElectronDesktop__ } from "@/types/constants"
@@ -85,6 +86,7 @@ export function useNakamaWatchParty() {
 }
 
 export function NakamaManager() {
+    const t = createTranslator()
     const { sendMessage } = useWebsocketSender()
     const queryClient = useQueryClient()
     const [isModalOpen, setIsModalOpen] = useAtom(nakamaModalOpenAtom)
@@ -173,11 +175,11 @@ export function NakamaManager() {
     const handleReconnect = React.useCallback(() => {
         reconnectToHost({}, {
             onSuccess: () => {
-                toast.success("Reconnection initiated")
+                toast.success(t("nakama.toast.reconnectionInitiated"))
                 refetchStatus()
             },
             onError: (error) => {
-                toast.error(`Failed to reconnect: ${error.message}`)
+                toast.error(t("nakama.toast.failedToReconnect", { error: error.message }))
             },
         })
     }, [reconnectToHost, refetchStatus])
@@ -185,11 +187,11 @@ export function NakamaManager() {
     const handleCleanupStaleConnections = React.useCallback(() => {
         removeStaleConnections({}, {
             onSuccess: () => {
-                toast.success("Stale connections cleaned up")
+                toast.success(t("nakama.toast.staleConnectionsCleaned"))
                 refetchStatus()
             },
             onError: (error) => {
-                toast.error(`Failed to cleanup: ${error.message}`)
+                toast.error(t("nakama.toast.failedToCleanup", { error: error.message }))
             },
         })
     }, [removeStaleConnections, refetchStatus])
@@ -197,11 +199,11 @@ export function NakamaManager() {
     const handleCreateWatchParty = React.useCallback(() => {
         createWatchParty({ settings: watchPartySettings }, {
             onSuccess: () => {
-                toast.success("Watch party created")
+                toast.success(t("nakama.toast.watchPartyCreated"))
                 refetchStatus()
             },
             onError: (error) => {
-                toast.error(`Failed to create watch party: ${error.message}`)
+                toast.error(t("nakama.toast.failedToCreateWatchParty", { error: error.message }))
             },
         })
     }, [createWatchParty, watchPartySettings, refetchStatus])
@@ -211,7 +213,7 @@ export function NakamaManager() {
             clientId: clientId || "",
         }, {
             onSuccess: () => {
-                toast.info("Joining watch party")
+                toast.info(t("nakama.toast.joiningWatchParty"))
                 refetchStatus()
             },
         })
@@ -220,7 +222,7 @@ export function NakamaManager() {
     const handleLeaveWatchParty = React.useCallback(() => {
         leaveWatchParty(undefined, {
             onSuccess: () => {
-                toast.info("Leaving watch party")
+                toast.info(t("nakama.toast.leavingWatchParty"))
                 refetchStatus()
             },
         })
@@ -229,7 +231,7 @@ export function NakamaManager() {
     const handleCreateRoom = React.useCallback(() => {
         createAndJoinRoom(undefined, {
             onSuccess: () => {
-                toast.success("Room created successfully")
+                toast.success(t("nakama.toast.roomCreatedSuccessfully"))
                 refetchStatus()
             },
         })
@@ -238,11 +240,11 @@ export function NakamaManager() {
     const handleDisconnectFromRoom = React.useCallback(() => {
         disconnectFromRoom(undefined, {
             onSuccess: () => {
-                toast.info("Disconnected from room")
+                toast.info(t("nakama.toast.disconnectedFromRoom"))
                 refetchStatus()
             },
             onError: (error) => {
-                toast.error(`Failed to disconnect from room: ${error.message}`)
+                toast.error(t("nakama.toast.failedToDisconnectFromRoom", { error: error.message }))
             },
         })
     }, [disconnectFromRoom, refetchStatus])
@@ -326,8 +328,8 @@ export function NakamaManager() {
     })
 
     const confirmRoom = useConfirmationDialog({
-        title: "Create a Cloud Room",
-        description: "By continuing, you agree to broadcast your playback state through Seanime's servers to sync with peers while the room is active. You are limited to 10 rooms per day and 4 peers per room (subject to change).",
+        title: t("seaCommand.createCloudRoom"),
+        description: t("seaCommand.createCloudRoomDesc"),
         onConfirm: () => {
             handleCreateRoom()
         },
@@ -378,7 +380,7 @@ export function NakamaManager() {
                         intent="gray-basic"
                         leftIcon={<MdRefresh />}
                     >
-                        {isReconnecting ? "Reconnecting..." : "Reconnect"}
+                        {isReconnecting ? t("seaCommand.reconnecting") : t("seaCommand.reconnect")}
                     </Button>
                 </div>
             )}
@@ -389,7 +391,7 @@ export function NakamaManager() {
                     {nakamaStatus?.isHost && (
                         <>
                             <div className="flex items-center justify-between">
-                                <Badge intent="success-solid" className="px-0 text-indigo-300 bg-transparent">Currently hosting</Badge>
+                                <Badge intent="success-solid" className="px-0 text-indigo-300 bg-transparent">{t("seaCommand.currentlyHostingBadge")}</Badge>
                                 <Button
                                     onClick={handleCleanupStaleConnections}
                                     disabled={isCleaningUp}
@@ -397,7 +399,7 @@ export function NakamaManager() {
                                     intent="gray-basic"
                                     leftIcon={<MdCleaningServices />}
                                 >
-                                    {isCleaningUp ? "Cleaning up..." : "Remove stale connections"}
+                                    {isCleaningUp ? t("seaCommand.cleaningUp") : t("seaCommand.removeStaleConnections")}
                                 </Button>
                             </div>
 
@@ -406,26 +408,26 @@ export function NakamaManager() {
                                 ? (
                                     <div className="space-y-2">
                                         <div className="flex items-center justify-between">
-                                            <h4>Cloud Room</h4>
+                                            <h4>{t("seaCommand.cloudRoomH4")}</h4>
                                             <Button
                                                 onClick={handleDisconnectFromRoom}
                                                 disabled={isDisconnectingFromRoom}
                                                 size="sm"
                                                 intent="alert-link"
                                             >
-                                                {isDisconnectingFromRoom ? "Disconnecting..." : "Disconnect"}
+                                                {isDisconnectingFromRoom ? t("seaCommand.disconnecting") : t("seaCommand.disconnect")}
                                             </Button>
                                         </div>
                                         <p className="text-sm text-[--muted]">
-                                            Cloud Rooms do not support local file and debrid playback.
+                                            {t("seaCommand.cloudRoomNoSupport")}
                                         </p>
                                         <div className="p-4 border rounded-lg bg-gray-950 space-y-3">
                                             <div className="space-y-1">
-                                                <span className="text-sm text-[--muted]">Nakama Host URL and Passcode</span>
+                                                <span className="text-sm text-[--muted]">{t("seaCommand.hostUrlPasscode")}</span>
                                                 <div className="flex items-center gap-2">
                                                     <TextInput
                                                         readOnly
-                                                        leftAddon="Host URL"
+                                                        leftAddon={t("seaCommand.hostUrl")}
                                                         value={`room://${roomInfo.roomId}`}
                                                         onClick={(e) => e.currentTarget.select()}
                                                         addonClass="font-bold tracking-wide text-sm pr-2"
@@ -435,7 +437,7 @@ export function NakamaManager() {
                                                                 intent="gray-basic"
                                                                 onClick={() => {
                                                                     copyToClipboard(`room://${roomInfo.roomId}`)
-                                                                        .then(() => toast.success("Copied to clipboard"))
+                                                                        .then(() => toast.success(t("common.toast.copiedToClipboard")))
                                                                 }}
                                                                 icon={<LuClipboard />}
                                                             />
@@ -445,8 +447,8 @@ export function NakamaManager() {
                                                 <div className="flex items-center gap-2">
                                                     <TextInput
                                                         readOnly
-                                                        leftAddon="Passcode"
-                                                        value={serverStatus?.settings?.nakama?.hostPassword || "No password set"}
+                                                        leftAddon={t("seaCommand.passcodeLabel")}
+                                                        value={serverStatus?.settings?.nakama?.hostPassword || t("seaCommand.noPasswordSet")}
                                                         onClick={(e) => e.currentTarget.select()}
                                                         addonClass="font-bold tracking-wide text-sm pr-2"
                                                         rightAddon={<>
@@ -455,7 +457,7 @@ export function NakamaManager() {
                                                                 intent="gray-basic"
                                                                 onClick={() => {
                                                                     copyToClipboard(serverStatus?.settings?.nakama?.hostPassword || "")
-                                                                        .then(() => toast.success("Copied to clipboard"))
+                                                                        .then(() => toast.success(t("common.toast.copiedToClipboard")))
                                                                 }}
                                                                 icon={<LuClipboard />}
                                                             />
@@ -464,7 +466,7 @@ export function NakamaManager() {
                                                 </div>
                                             </div>
                                             {roomInfo.expiresAt && <div className="flex items-center gap-1">
-                                                <span className="text-sm text-[--muted]">Expires: </span>
+                                                <span className="text-sm text-[--muted]">{t("seaCommand.expires")} </span>
                                                 <span className="text-sm font-semibold">{new Date(roomInfo.expiresAt).toLocaleString()}</span>
                                             </div>}
                                         </div>
@@ -476,11 +478,10 @@ export function NakamaManager() {
                                         <div className="flex items-center justify-between">
                                             <div className="space-y-1">
                                                 <p className="font-bold">
-                                                    Cloud Room
+                                                    {t("seaCommand.cloudRoomH4")}
                                                 </p>
                                                 <p className="text-sm text-[--muted] pr-4">
-                                                    Cloud Rooms use Seanime's API to enable hosting watch parties without exposing your server to the
-                                                    internet.
+                                                    {t("seaCommand.cloudRoomDesc")}
                                                 </p>
                                             </div>
                                             <Tooltip
@@ -491,10 +492,10 @@ export function NakamaManager() {
                                                     intent="white-subtle"
                                                     leftIcon={<TbCloudPlus className="text-2xl" />}
                                                 >
-                                                    {isCreatingRoom ? "Creating..." : "Create a Cloud Room"}
+                                                    {isCreatingRoom ? t("seaCommand.creating") : t("seaCommand.createCloudRoomBtn")}
                                                 </Button>}
                                             >
-                                                You will automatically join the room.
+                                                {t("seaCommand.autoJoinRoom")}
                                             </Tooltip>
                                         </div>
                                     </div>
@@ -502,10 +503,10 @@ export function NakamaManager() {
                             )}
 
                             {nakamaStatus.connectionMode === "direct" && <>
-                                <h4>Direct connections ({nakamaStatus?.connectedPeers?.length ?? 0})</h4>
+                                <h4>{t("seaCommand.directConnections", { count: nakamaStatus?.connectedPeers?.length ?? 0 })}</h4>
                                 <div className="p-4 border rounded-lg bg-gray-950">
                                     {!nakamaStatus?.connectedPeers?.length &&
-                                        <p className="text-center text-sm text-[--muted]">No connected peers</p>}
+                                        <p className="text-center text-sm text-[--muted]">{t("seaCommand.noConnectedPeers")}</p>}
                                     {nakamaStatus?.connectedPeers?.map((peer, index) => (
                                         <div key={index} className="flex items-center justify-between py-1">
                                             <span className="font-medium">{peer}</span>
@@ -519,19 +520,19 @@ export function NakamaManager() {
                     {(nakamaStatus?.isConnectedToHost && !nakamaStatus?.isHost) && (
                         <>
 
-                            <h4>Host connection</h4>
+                            <h4>{t("seaCommand.hostConnection")}</h4>
                             <div className="p-4 border rounded-lg bg-gray-950">
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-sm text-[--muted]">Host</span>
+                                        <span className="text-sm text-[--muted]">{t("seaCommand.hostLabel")}</span>
                                         <span className="font-medium text-sm tracking-wide">
-                                            {nakamaStatus?.hostConnectionStatus?.username || "Unknown"}
+                                            {nakamaStatus?.hostConnectionStatus?.username || t("seaCommand.unknown")}
                                         </span>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <span className="text-sm text-[--muted]">Connection Mode</span>
+                                        <span className="text-sm text-[--muted]">{t("seaCommand.connectionMode")}</span>
                                         <Badge intent={nakamaStatus?.hostConnectionStatus?.connectionMode === "rooms" ? "primary" : "gray"}>
-                                            {nakamaStatus?.hostConnectionStatus?.connectionMode === "rooms" ? "Cloud Room" : "Direct"}
+                                            {nakamaStatus?.hostConnectionStatus?.connectionMode === "rooms" ? t("seaCommand.cloudRoomH4") : t("seaCommand.direct")}
                                         </Badge>
                                     </div>
                                 </div>
@@ -584,9 +585,9 @@ export function NakamaManager() {
 
             {!nakamaStatus?.isHost && !nakamaStatus?.isConnectedToHost && nakamaStatus !== undefined && (
                 <div className="text-center py-8">
-                    <p className="text-[--muted]">Nakama is not active</p>
+                    <p className="text-[--muted]">{t("seaCommand.nakamaNotActive")}</p>
                     <p className="text-sm text-[--muted] mt-2">
-                        Configure Nakama in settings to connect to a host or start hosting
+                        {t("seaCommand.nakamaNotActiveDesc")}
                     </p>
                 </div>
             )}
@@ -619,9 +620,10 @@ function WatchPartyCreation({
     isCreating,
     isJoining,
 }: WatchPartyCreationProps) {
+    const t = createTranslator()
     return (
         <div className="space-y-4">
-            <h4 className="flex items-center gap-2"><LuPopcorn className="size-6" /> Watch Party</h4>
+            <h4 className="flex items-center gap-2"><LuPopcorn className="size-6" /> {t("seaCommand.watchParty")}</h4>
             {isHost && (
                 <div className="p-4 border rounded-lg bg-gray-950">
                     <div className="space-y-4">
@@ -671,7 +673,7 @@ function WatchPartyCreation({
                             intent="primary"
                             leftIcon={<MdAdd />}
                         >
-                            {isCreating ? "Creating..." : "Create Watch Party"}
+                            {isCreating ? t("seaCommand.creatingWatchParty") : t("seaCommand.createWatchParty")}
                         </Button>
                     </div>
                 </div>
@@ -681,7 +683,7 @@ function WatchPartyCreation({
                 <div className="p-4 border rounded-lg bg-gray-950">
                     <div className="space-y-4">
                         <p className="text-sm text-[--muted]">
-                            There's an active watch party! Join to watch content together in sync.
+                            {t("seaCommand.activeWatchPartyDesc")}
                         </p>
                         <Button
                             onClick={onJoinWatchParty}
@@ -690,7 +692,7 @@ function WatchPartyCreation({
                             intent="primary"
                             leftIcon={<MdPlayArrow />}
                         >
-                            {isJoining ? "Joining..." : "Join Watch Party"}
+                            {isJoining ? t("seaCommand.joiningWatchParty") : t("seaCommand.joinWatchParty")}
                         </Button>
                     </div>
                 </div>
@@ -698,13 +700,13 @@ function WatchPartyCreation({
 
             {!isHost && !isConnectedToHost && (
                 <div className="text-center py-8">
-                    <p className="text-[--muted]">Connect to a host to join a watch party</p>
+                    <p className="text-[--muted]">{t("seaCommand.connectToHostDesc")}</p>
                 </div>
             )}
 
             {!isHost && isConnectedToHost && !hasActiveSession && (
                 <div className="text-center py-8">
-                    <p className="text-[--muted]">No active watch party</p>
+                    <p className="text-[--muted]">{t("seaCommand.noActiveWatchParty")}</p>
                 </div>
             )}
         </div>
@@ -720,6 +722,7 @@ interface WatchPartySessionViewProps {
 }
 
 function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: WatchPartySessionViewProps) {
+    const t = createTranslator()
     const { sendMessage } = useWebsocketSender()
     const nakamaStatus = useNakamaStatus()
     const participants = Object.values(session.participants || {})
@@ -741,7 +744,7 @@ function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: 
     return (
         <div className="space-y-4">
             <div className="flex items-center justify-between">
-                <h4 className="flex items-center gap-2"><LuPopcorn className="size-6" /> Watch Party</h4>
+                <h4 className="flex items-center gap-2"><LuPopcorn className="size-6" /> {t("seaCommand.watchParty")}</h4>
                 <div className="flex items-center gap-2">
                     {/*Enable relay mode*/}
                     {isHost && !session.isRelayMode && !isRoom && (
@@ -754,7 +757,7 @@ function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: 
                                 className={cn(enablingRelayMode && "animate-pulse")}
                             />}
                         >
-                            Enable relay mode
+                            {t("seaCommand.enableRelayMode")}
                         </Tooltip>
                     )}
                     <Button
@@ -764,7 +767,7 @@ function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: 
                         intent="alert-basic"
                         // leftIcon={isHost ? <MdStop /> : <MdExitToApp />}
                     >
-                        {isLeaving ? "Leaving..." : isHost ? "Stop" : "Leave"}
+                        {isLeaving ? t("seaCommand.leaving") : isHost ? t("seaCommand.stop") : t("seaCommand.leave")}
                     </Button>
                 </div>
             </div>
@@ -785,7 +788,7 @@ function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: 
              <>
              <div className="flex items-center justify-between">
              <span className="text-sm text-[--muted]">Current Media:</span>
-             <span className="text-sm">Episode {session.currentMediaInfo.episodeNumber}</span>
+              <span className="text-sm">{t("entry.episode")} {session.currentMediaInfo.episodeNumber}</span>
              </div>
              <div className="flex items-center justify-between">
              <span className="text-sm text-[--muted]">Stream Type:</span>
@@ -798,7 +801,7 @@ function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: 
              </div>
              </SettingsCard> */}
 
-            <h5>Participants ({participantCount})</h5>
+            <h5>{t("seaCommand.participants", { count: participantCount })}</h5>
             <div className="p-4 border rounded-lg bg-gray-950">
                 <div className="space-y-0">
                     {participants.map((participant) => {
@@ -808,29 +811,29 @@ function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: 
                                 <div className="flex items-center gap-2">
                                     <span className="font-medium text-sm tracking-wide">
                                         {participant.username}
-                                        {isCurrentUser && <span className="text-[--muted] font-normal"> (me)</span>}
+                                        {isCurrentUser && <span className="text-[--muted] font-normal"> {t("seaCommand.me")}</span>}
                                     </span>
                                     {session.isRelayMode && participant.isHost && (
-                                        <Badge intent="unstyled" className="text-xs" leftIcon={<FaBroadcastTower />}>Relay</Badge>
+                                        <Badge intent="unstyled" className="text-xs" leftIcon={<FaBroadcastTower />}>{t("search.nakama.relay")}</Badge>
                                     )}
                                     {participant.isHost && (
-                                        <Badge className="text-xs">Host</Badge>
+                                        <Badge className="text-xs">{t("common.labels.host")}</Badge>
                                     )}
                                     {participant.isRelayOrigin && (
-                                        <Badge intent="warning" className="text-xs">Origin</Badge>
+                                        <Badge intent="warning" className="text-xs">{t("search.nakama.origin")}</Badge>
                                     )}
                                     {enablingRelayMode && !participant.isHost && !participant.isRelayOrigin && !session.isRelayMode && (
                                         <Button
                                             size="sm" intent="white" leftIcon={<HiOutlinePlay />}
                                             onClick={() => handleEnableRelayMode(participant.id)}
-                                        >Promote to origin</Button>
+                                        >{t("seaCommand.promoteToOrigin")}</Button>
                                     )}
                                 </div>
                                 <div className="flex items-center gap-2 text-xs text-[--muted]">
                                     {!participant.isHost && participant.bufferHealth !== undefined && (
                                         <Tooltip
                                             trigger={<div className="flex items-center gap-1">
-                                                <span className="text-xs">Buffer</span>
+                                                <span className="text-xs">{t("seaCommand.buffer")}</span>
                                                 <div className="w-8 h-1 bg-gray-300 rounded-full overflow-hidden">
                                                     <div
                                                         className="h-full bg-green-500 transition-all duration-300"
@@ -840,7 +843,7 @@ function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: 
                                                 <span className="text-xs">{Math.round(participant.bufferHealth * 100)}%</span>
                                             </div>}
                                         >
-                                            Synchronization buffer health
+                                            {t("seaCommand.bufferHealth")}
                                         </Tooltip>
                                     )}
                                     {participant.latency > 0 && (
@@ -848,7 +851,7 @@ function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: 
                                     )}
                                     {participant.isBuffering ? (
                                         <Badge intent="alert-solid" className="text-xs">
-                                            Buffering
+                                            {t("seaCommand.buffering")}
                                         </Badge>
                                     ) : null}
                                 </div>
@@ -879,3 +882,4 @@ function WatchPartySessionView({ session, isHost, onLeave, isLeaving, isRoom }: 
         </div>
     )
 }
+

@@ -7,7 +7,7 @@ import { useInView } from "motion/react"
 import React from "react"
 
 
-export function DiscoverMissedSequelsSection({ title = "You Might Have Missed" }: { title?: string }) {
+export function DiscoverMissedSequelsSection({ title }: { title?: string }) {
     const ref = React.useRef(null)
     const isInView = useInView(ref, { once: true })
     const { data, isLoading } = useAnilistListMissedSequels(isInView)

@@ -8,6 +8,7 @@ import { ProgressBar } from "@/components/ui/progress-bar"
 import { getImageUrl } from "@/lib/server/assets"
 import { useEpisodeSpoilerState } from "@/lib/theme/anime-spoilers"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { AiFillWarning } from "react-icons/ai"
 import { FaCirclePlay } from "react-icons/fa6"
@@ -77,6 +78,7 @@ export const EpisodeGridItem = React.memo((props: EpisodeGridItemProps & React.C
 
     const serverStatus = useServerStatus()
     const ts = useThemeSettings()
+    const t = createTranslator()
     const spoiler = useEpisodeSpoilerState(ts, {
         mediaId: media.id,
         episodeNumber,
@@ -123,7 +125,7 @@ export const EpisodeGridItem = React.memo((props: EpisodeGridItemProps & React.C
                     )}
                     intent="gray"
                     size="lg"
-                >Filler</Badge>
+                                >{t("common.labels.filler")}</Badge>
             )}
 
             <div
@@ -208,7 +210,7 @@ export const EpisodeGridItem = React.memo((props: EpisodeGridItemProps & React.C
                 <div data-episode-grid-item-content className="relative overflow-hidden">
                     {isInvalid && <p data-episode-grid-item-invalid-metadata className="flex gap-2 text-red-300 items-center"><AiFillWarning
                         className="text-lg text-red-500"
-                    /> Unidentified</p>}
+                    /> {t("common.labels.unidentified")}</p>}
                     {/*{isInvalid &&*/}
                     {/*    <p data-episode-grid-item-invalid-metadata className="flex gap-2 text-red-200 text-sm items-center">No metadata found</p>}*/}
 

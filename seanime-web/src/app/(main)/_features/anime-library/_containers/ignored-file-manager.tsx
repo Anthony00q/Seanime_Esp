@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Drawer } from "@/components/ui/drawer"
 import { upath } from "@/lib/helpers/upath"
+import { createTranslator } from "@/locales"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import React from "react"
@@ -21,6 +22,7 @@ type IgnoredFileManagerProps = {
 
 export function IgnoredFileManager(props: IgnoredFileManagerProps) {
 
+    const t = createTranslator()
     const { files } = props
 
     const [isOpen, setIsOpen] = useAtom(__ignoredFileManagerIsOpen)
@@ -42,7 +44,7 @@ export function IgnoredFileManager(props: IgnoredFileManagerProps) {
                 action: "unignore",
             }, {
                 onSuccess: () => {
-                    toast.success("Files un-ignored")
+                    toast.success(t("animeLibrary.filesUnignored"))
                 },
             })
         }
@@ -55,7 +57,7 @@ export function IgnoredFileManager(props: IgnoredFileManagerProps) {
             onOpenChange={() => setIsOpen(false)}
             // contentClass="max-w-5xl"
             size="xl"
-            title="Ignored files"
+            title={t("ignoredFiles.title")}
         >
             <AppLayoutStack className="mt-4">
 
@@ -69,12 +71,12 @@ export function IgnoredFileManager(props: IgnoredFileManagerProps) {
                         loading={isUpdating}
                         onClick={handleUnIgnoreSelected}
                     >
-                        Un-ignore selection
+                        {t("ignoredFiles.unignoreSelection")}
                     </Button>
                 </div>}
 
                 {files.length === 0 && <LuffyError title={null}>
-                    No ignored files
+                    {t("ignoredFiles.noIgnoredFiles")}
                 </LuffyError>}
 
                 {files.length > 0 &&
@@ -82,7 +84,7 @@ export function IgnoredFileManager(props: IgnoredFileManagerProps) {
 
                         <div className="p-2">
                             <Checkbox
-                                label={`Select all files`}
+                                label={t("ignoredFiles.selectAllFiles")}
                                 value={(selectedPaths.length === files?.length) ? true : (selectedPaths.length === 0
                                     ? false
                                     : "indeterminate")}

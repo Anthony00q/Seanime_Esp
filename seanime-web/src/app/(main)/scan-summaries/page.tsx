@@ -13,6 +13,7 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { Select } from "@/components/ui/select"
 import { TextInput } from "@/components/ui/text-input"
 import { useDebounce } from "@/hooks/use-debounce"
+import { createTranslator } from "@/locales"
 import { formatDateAndTimeShort } from "@/lib/server/utils"
 import React from "react"
 import { AiFillWarning } from "react-icons/ai"
@@ -28,6 +29,8 @@ export default function Page() {
     const [searchQuery, setSearchQuery] = React.useState("")
     const debouncedSearchQuery = useDebounce(searchQuery, 300)
     const [expandedAccordions, setExpandedAccordions] = React.useState<Set<string>>(new Set())
+
+    const t = createTranslator()
 
     const { data, isLoading } = useGetScanSummaries()
 
@@ -112,9 +115,9 @@ export default function Page() {
                 <div className="flex justify-between items-center w-full relative">
                     <div className="space-y-4">
                         <div>
-                            <h2>Scan summaries</h2>
+                            <h2>{t("scanSummaries.title")}</h2>
                             <p className="text-[--muted]">
-                                View the logs of your latest scans
+                                {t("scanSummaries.subtitle")}
                             </p>
                         </div>
                     </div>
@@ -122,7 +125,7 @@ export default function Page() {
 
                 <div className="">
                     {isLoading && <LoadingSpinner />}
-                    {(!isLoading && !data?.length) && <div className="p-4 text-[--muted] text-center">No scan summaries available</div>}
+                    {(!isLoading && !data?.length) && <div className="p-4 text-[--muted] text-center">{t("scanSummaries.noSummaries")}</div>}
                     {!!data?.length && (
                         <div className="space-y-4">
                             <div className="flex gap-2 items-center">
@@ -140,7 +143,7 @@ export default function Page() {
                                 {!!selectedSummary && (
                                     <div className="w-full">
                                         <TextInput
-                                            placeholder="Search filenames..."
+                                            placeholder={t("scanSummaries.searchPlaceholder")}
                                             value={searchQuery}
                                             onValueChange={setSearchQuery}
                                             leftIcon={<LuFileSearch className="text-[--muted]" />}
@@ -152,25 +155,23 @@ export default function Page() {
                                 <Card className="p-4">
                                     <div>
                                         <p className="text-[--muted]">
-                                            Seanime successfully scanned {selectedSummary.groups?.length} media
+                                            {t("scanSummaries.successfullyScanned", { count: selectedSummary.groups?.length ?? 0 })}
                                             {debouncedSearchQuery.trim() && (
-                                                <span className="ml-2 text-sm">({filteredGroups.length} matching)</span>
+                                                <span className="ml-2 text-sm">({filteredGroups.length} {t("scanSummaries.matching")})</span>
                                             )}
                                         </p>
                                         {!!selectedSummary?.unmatchedFiles?.length && (
                                             <p className="text-orange-300">
-                                                {selectedSummary?.unmatchedFiles?.length} file{selectedSummary?.unmatchedFiles?.length > 1
-                                                ? "s were "
-                                                : " was "}not matched
+                                                {selectedSummary?.unmatchedFiles?.length === 1 ? t("scanSummaries.notMatched") : t("scanSummaries.notMatched_plural")}
                                                 {debouncedSearchQuery.trim() && (
-                                                    <span className="ml-2 text-sm">({filteredUnmatchedFiles.length} matching)</span>
+                                                    <span className="ml-2 text-sm">({filteredUnmatchedFiles.length} {t("scanSummaries.matching")})</span>
                                                 )}
                                             </p>
                                         )}
                                     </div>
 
                                     {!!filteredUnmatchedFiles?.length && <div className="space-y-2">
-                                        <h5>Unmatched files</h5>
+                                        <h5>{t("scanSummaries.unmatchedFiles")}</h5>
                                         <Accordion
                                             type="single"
                                             collapsible
@@ -189,7 +190,7 @@ export default function Page() {
                                     </div>}
 
                                     {!!filteredGroups?.length && <div>
-                                        <h5>Media scanned</h5>
+                                        <h5>{t("scanSummaries.mediaScanned")}</h5>
 
                                         <div className="space-y-4 divide-y">
                                             {filteredGroups?.sort((a, b) => a.mediaTitle?.localeCompare(b.mediaTitle,
@@ -218,13 +219,13 @@ export default function Page() {
                                                                 className="font-medium tracking-wide"
                                                             >{group.mediaTitle}</SeaLink>
                                                             <p className="flex gap-1 items-center text-sm text-[--muted]">
-                                                                <span className="text-lg">{group.mediaIsInCollection ?
-                                                                    <BiCheckCircle className="text-green-200" /> :
-                                                                    <BiXCircle className="text-red-300" />}</span> Anime {group.mediaIsInCollection
-                                                                ? "is present"
-                                                                : "is not present"} in your AniList collection</p>
+                                                                 <span className="text-lg">{group.mediaIsInCollection ?
+                                                                     <BiCheckCircle className="text-green-200" /> :
+                                                                     <BiXCircle className="text-red-300" />}</span> Anime {group.mediaIsInCollection
+                                                                 ? t("scanSummaries.presentInCollection")
+                                                                 : t("scanSummaries.notPresentInCollection")}</p>
                                                             <p className="text-sm flex gap-1 items-center text-[--muted]">
-                                                                <span className="text-base"><LuFileSearch className="text-brand-200" /></span>{group.files.length} file{group.files.length > 1 && "s"} scanned
+                                                                <span className="text-base"><LuFileSearch className="text-brand-200" /></span>{group.files.length} {t("scanSummaries.filesScanned")}
                                                             </p>
                                                         </div>
 
@@ -232,11 +233,11 @@ export default function Page() {
 
                                                     {group.files.flatMap(n => n.logs).some(n => n?.level === "error") &&
                                                         <p className="text-sm flex gap-1 text-red-300 items-center text-[--muted]">
-                                                            <span className="text-base"><BiXCircle className="" /></span> Errors found
+                                                            <span className="text-base"><BiXCircle className="" /></span> {t("scanSummaries.errorsFound")}
                                                         </p>}
                                                     {group.files.flatMap(n => n.logs).some(n => n?.level === "warning") &&
                                                         <p className="text-sm flex gap-1 text-orange-300 items-center text-[--muted]">
-                                                            <span className="text-base"><AiFillWarning className="" /></span> Warnings found
+                                                            <span className="text-base"><AiFillWarning className="" /></span> {t("scanSummaries.warningsFound")}
                                                         </p>}
 
                                                     <div>
@@ -248,7 +249,7 @@ export default function Page() {
                                                                 leftIcon={<LuFolderTree />}
                                                                 onClick={() => openDirInLibraryExplorer(group.files?.[0]?.localFile?.path || "")}
                                                             >
-                                                                Open in Library Explorer
+                                                                {t("common.labels.openInLibraryExplorer")}
                                                             </Button>
                                                         </div>
 
@@ -256,9 +257,7 @@ export default function Page() {
                                                         <Accordion type="single" collapsible value={expandedAccordions.has("i1") ? "i1" : undefined}>
                                                             <AccordionItem value="i1">
                                                                 <AccordionTrigger className="p-0 dark:hover:bg-transparent text-[--muted] dark:hover:text-white">
-                                                                    <span className="inline-flex text-base items-center gap-2"><LuTextSelect /> View
-                                                                                                                                                scanner
-                                                                                                                                                logs</span>
+                                                                    <span className="inline-flex text-base items-center gap-2"><LuTextSelect /> {t("scanSummaries.viewScannerLogs")}</span>
                                                                 </AccordionTrigger>
                                                                 <AccordionContent className="p-0 bg-[--paper] border mt-4 rounded-[--radius] overflow-hidden relative">
                                                                     <Accordion type="single" collapsible>
@@ -300,6 +299,7 @@ type ScanSummaryFileItem = {
 
 function ScanSummaryGroupItem(props: ScanSummaryFileItem) {
     const { file, searchQuery, isExpanded } = props
+    const t = createTranslator()
 
     const hasErrors = file.logs?.some(log => log.level === "error")
     const hasWarnings = file.logs?.some(log => log.level === "warning")
@@ -348,7 +348,7 @@ function ScanSummaryGroupItem(props: ScanSummaryFileItem) {
                         leftIcon={<LuFolderTree />}
                         onClick={() => openDirInLibraryExplorer(file.localFile?.path || "")}
                     >
-                        Open in Library Explorer
+                        {t("common.labels.openInLibraryExplorer")}
                     </Button>
                 </div>
                 <ScanSummaryFileParsedData localFile={file.localFile} />
@@ -363,6 +363,7 @@ function ScanSummaryGroupItem(props: ScanSummaryFileItem) {
 
 function ScanSummaryFileParsedData(props: { localFile: Anime_LocalFile }) {
     const { localFile } = props
+    const t = createTranslator()
 
     const folderTitles = localFile.parsedFolderInfo?.map(i => i.title).filter(Boolean).map(n => `"${n}"`).join(", ")
     const folderSeasons = localFile.parsedFolderInfo?.map(i => i.season).filter(Boolean).map(n => `"${n}"`).join(", ")
@@ -374,13 +375,13 @@ function ScanSummaryFileParsedData(props: { localFile: Anime_LocalFile }) {
                 <div className="flex gap-1 items-center">
                     <ul className="text-sm space-y-1 [&>li]:flex-none [&>li]:gap-1 [&>li]:line-clamp-1 [&>li]:flex [&>li]:items-center [&>li>span]:text-[--muted] [&>li>span]:uppercase">
                         <li><TbListSearch className="text-indigo-200" />
-                            <span>Title</span> "{localFile.parsedInfo?.title}"{!!folderTitles?.length && `, ${folderTitles}`}</li>
-                        <li><TbListSearch className="text-indigo-200" /> <span>Episode</span> "{localFile.parsedInfo?.episode || ""}"</li>
+                            <span>{t("misc.scanSummary.title")}</span> "{localFile.parsedInfo?.title}"{!!folderTitles?.length && `, ${folderTitles}`}</li>
+                        <li><TbListSearch className="text-indigo-200" /> <span>{t("misc.scanSummary.episode")}</span> "{localFile.parsedInfo?.episode || ""}"</li>
                         <li><TbListSearch className="text-indigo-200" />
-                            <span>Season</span> "{localFile.parsedInfo?.season || ""}"{!!folderSeasons?.length && `, ${folderSeasons}`}</li>
+                            <span>{t("misc.scanSummary.season")}</span> "{localFile.parsedInfo?.season || ""}"{!!folderSeasons?.length && `, ${folderSeasons}`}</li>
                         <li><TbListSearch className="text-indigo-200" />
-                            <span>Part</span> "{localFile.parsedInfo?.part || ""}"{!!folderParts?.length && `, ${folderParts}`}</li>
-                        <li><TbListSearch className="text-indigo-200" /> <span>Episode Title</span> "{localFile.parsedInfo?.episodeTitle || ""}"</li>
+                            <span>{t("misc.scanSummary.part")}</span> "{localFile.parsedInfo?.part || ""}"{!!folderParts?.length && `, ${folderParts}`}</li>
+                        <li><TbListSearch className="text-indigo-200" /> <span>{t("misc.scanSummary.episodeTitle")}</span> "{localFile.parsedInfo?.episodeTitle || ""}"</li>
                     </ul>
                 </div>
             </div>
@@ -409,6 +410,7 @@ function ScanSummaryLog(props: { log: Summary_ScanSummaryLog }) {
 
 function ScanSummaryLogMessage(props: { message: string, level: string }) {
     const { message, level } = props
+    const t = createTranslator()
 
     if (!message.startsWith("PANIC")) {
         return <div
@@ -422,7 +424,7 @@ function ScanSummaryLogMessage(props: { message: string, level: string }) {
 
     return (
         <div className="w-full text-sm">
-            <p className="text-red-300 text-sm font-bold">Please report this issue on the GitHub repository</p>
+            <p className="text-red-300 text-sm font-bold">{t("scanSummaries.reportIssue")}</p>
             <pre className="p-4">
                 {message}
             </pre>

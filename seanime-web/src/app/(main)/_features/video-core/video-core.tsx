@@ -141,6 +141,9 @@ import { FiMinimize2 } from "react-icons/fi"
 import { RemoveScrollBar } from "react-remove-scroll-bar"
 import { useUnmount, useUpdateEffect, useWindowSize } from "react-use"
 import { VideoCoreScreenshotDirPrompt } from "./video-core-screenshot-prompt"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 const log = logger("VIDEO CORE")
 
@@ -365,7 +368,6 @@ const PlayerContent = React.memo<PlayerContentProps>(({
     return (
         <>
 
-
             <MediaCoreErrorOverlay playbackError={state.playbackError} isMiniPlayer={isMiniPlayer} onClose={onTerminateStream} />
 
             <div
@@ -422,7 +424,7 @@ const PlayerContent = React.memo<PlayerContentProps>(({
                                             }}
                                             onPointerMove={e => e.stopPropagation()}
                                         >
-                                            Skip {skipChapter.label}
+                                            {`${t("videoPlayer.skipOpening").split(" ")[0]} ${t(`videoPlayer.chapters.${skipChapter.label.toLowerCase()}` as any, { defaultValue: skipChapter.label })}`}
                                         </Button>
                                     </div>
                                 )}
@@ -515,7 +517,7 @@ const PlayerContent = React.memo<PlayerContentProps>(({
                                         pipManager?.togglePip()
                                     }}
                                 >
-                                    Exit PiP
+                                    {t("videoPlayer.exitPip")}
                                 </Button>
                             </div>
                         )}
@@ -920,11 +922,11 @@ export function VideoCore(props: VideoCoreProps) {
         if (videoRef?.current?.paused) {
             videoRef?.current?.play().catch()
             onPlay?.()
-            showOverlayFeedback({ message: "PLAY", type: "icon" })
+            showOverlayFeedback({ message: t("videoPlayer.overlay.play"), type: "icon" })
         } else {
             videoRef?.current?.pause()
             onPause?.()
-            showOverlayFeedback({ message: "PAUSE", type: "icon" })
+            showOverlayFeedback({ message: t("videoPlayer.overlay.pause"), type: "icon" })
         }
     }
 

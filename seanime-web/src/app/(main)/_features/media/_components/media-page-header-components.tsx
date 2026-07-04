@@ -1,3 +1,30 @@
+import capitalize from "lodash/capitalize";
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
+
+// Maps AniList uppercase enum → Spanish translation
+const SEASON_MAP: Record<string, string> = {
+    WINTER: t("anilist.seasons.WINTER"),
+    SPRING: t("anilist.seasons.SPRING"),
+    SUMMER: t("anilist.seasons.SUMMER"),
+    FALL:   t("anilist.seasons.FALL"),
+}
+
+const STATUS_MAP: Record<string, string> = {
+    FINISHED:         t("anilist.statuses.FINISHED"),
+    RELEASING:        t("anilist.statuses.RELEASING"),
+    NOT_YET_RELEASED: t("anilist.statuses.NOT_YET_RELEASED"),
+    CANCELLED:        t("anilist.statuses.CANCELLED"),
+    HIATUS:           t("anilist.statuses.HIATUS"),
+}
+
+const LIST_STATUS_MAP: Record<string, string> = {
+    COMPLETED: t("anilist.listStatuses.COMPLETED"),
+    PAUSED:    t("anilist.listStatuses.PAUSED"),
+    DROPPED:   t("anilist.listStatuses.DROPPED"),
+    PLANNING:  t("anilist.listStatuses.PLANNING"),
+}
 import { AL_BaseAnime, AL_BaseManga, AL_MediaStatus, Anime_EntryListData, Manga_EntryListData, Nullish } from "@/api/generated/types"
 import { TRANSPARENT_SIDEBAR_BANNER_IMG_STYLE } from "@/app/(main)/_features/custom-ui/styles"
 import { AnilistMediaEntryModal } from "@/app/(main)/_features/media/_containers/anilist-media-entry-modal"
@@ -10,6 +37,8 @@ import { Popover } from "@/components/ui/popover"
 import { Tooltip } from "@/components/ui/tooltip"
 import { getScoreColor } from "@/lib/helpers/score"
 import { getImageUrl } from "@/lib/server/assets"
+import { capitalizeFirst } from "@/lib/utils/capitalize-date"
+import { getDateFnsLocale } from "@/locales/date-locale"
 import {
     ThemeMediaPageBannerSize,
     ThemeMediaPageBannerType,
@@ -17,7 +46,6 @@ import {
     useIsMobile,
     useThemeSettings,
 } from "@/lib/theme/theme-hooks.ts"
-import capitalize from "lodash/capitalize"
 import { motion } from "motion/react"
 import React from "react"
 import { BiSolidStar, BiStar } from "react-icons/bi"
@@ -426,9 +454,9 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
                                 <div
                                     data-media-page-header-entry-details-status
                                     className="text-base text-white md:text-md font-medium tracking-wide flex items-center"
-                                >{capitalize(listData?.status === "CURRENT"
-                                    ? type === "anime" ? "watching" : "reading"
-                                    : listData?.status)}
+                                >{listData?.status === "CURRENT"
+                                    ? type === "anime" ? t("anilist.listStatuses.CURRENT_ANIME") : t("anilist.listStatuses.CURRENT_MANGA")
+                                    : (LIST_STATUS_MAP[listData?.status ?? ""] ?? capitalize(listData?.status))}
                                     {listData?.repeat && <Tooltip
                                         trigger={<Badge
                                             size="md"
@@ -440,8 +468,8 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
 
                                         </Badge>}
                                     >
-                                        {listData?.repeat} {type === "anime" ? "rewatch" : "reread"}{listData?.repeat > 1
-                                        ? type === "anime" ? "es" : "s"
+                                        {listData?.repeat} {type === "anime" ? t("anilist.listStatuses.REPEATING") : t("anilist.listStatuses.REPEATING")}{listData?.repeat > 1
+                                        ? ""
                                         : ""}
                                     </Tooltip>}
                                 </div>}
@@ -457,11 +485,11 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
                                 data-media-page-header-entry-details-date-container
                             >
                                 <p className="text-lg text-[--foreground] flex gap-1 items-center">
-                                    <LuCalendar /> {new Intl.DateTimeFormat("en-US", {
+                                    <LuCalendar /> {capitalizeFirst(new Intl.DateTimeFormat(getDateFnsLocale().code, {
                                     year: "numeric",
                                     month: "short",
-                                }).format(new Date(startDate?.year || 0, startDate?.month ? startDate?.month - 1 : 0))}{!!season
-                                    ? ` - ${capitalize(season)}`
+                                }).format(new Date(startDate?.year || 0, startDate?.month ? startDate?.month - 1 : 0)))}{!!season
+                                    ? ` - ${SEASON_MAP[season] ?? capitalize(season)}`
                                     : ""}
                                 </p>
 
@@ -472,7 +500,7 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
                                     leftIcon={<RiSignalTowerFill />}
                                     data-media-page-header-entry-details-date-badge
                                 >
-                                    {capitalize(status || "")?.replaceAll("_", " ")}
+                                    {STATUS_MAP[status ?? ""] ?? capitalize(status || "")?.replaceAll("_", " ")}
                                 </Badge>}
 
                                 {/*{ts.mediaPageBannerSize === ThemeMediaPageBannerSize.Small && <Popover*/}

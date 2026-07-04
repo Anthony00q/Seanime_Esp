@@ -21,6 +21,8 @@ import { Modal } from "@/components/ui/modal"
 import { Popover } from "@/components/ui/popover"
 import { Tooltip } from "@/components/ui/tooltip"
 import { useRouter } from "@/lib/navigation"
+import { createTranslator } from "@/locales"
+import { translateExtensionInstallMessage } from "@/lib/helpers/translate-extension-toast"
 import React from "react"
 import { GrUpdate } from "react-icons/gr"
 import { LuBook, LuCode, LuEllipsisVertical, LuPower, LuRefreshCcw, LuSearch, LuSettings2 } from "react-icons/lu"
@@ -40,6 +42,7 @@ type ExtensionCardProps = {
 
 export function ExtensionCard(props: ExtensionCardProps) {
 
+    const t = createTranslator()
     const {
         extension,
         updateData,
@@ -89,7 +92,7 @@ export function ExtensionCard(props: ExtensionCardProps) {
                                                 userConfigError && "animate-bounce",
                                             )}
                                         />}
-                                    >Preferences</Tooltip>
+                                    >{t("extensions.preferences")}</Tooltip>
                                 </div>
                             </ExtensionUserConfigModal>
                         </>
@@ -110,7 +113,7 @@ export function ExtensionCard(props: ExtensionCardProps) {
                                     intent={!updateData ? "gray-basic" : "gray-subtle"}
                                     icon={<LuEllipsisVertical />}
                                 />}
-                            >Info</Tooltip>
+                            >{t("extensions.card.info")}</Tooltip>
                         </div>
                     </ExtensionSettings>
                 </div>
@@ -126,7 +129,7 @@ export function ExtensionCard(props: ExtensionCardProps) {
                                     icon={<LuBook />}
                                 />}
                             >
-                                Documentation
+                                {t("extensions.card.documentation")}
                             </Tooltip>
                         </div>
                     )}
@@ -140,7 +143,7 @@ export function ExtensionCard(props: ExtensionCardProps) {
                                         icon={<LuCode />}
                                     />}
                                     side="right"
-                                >Code</Tooltip>
+                                >{t("extensions.card.code")}</Tooltip>
                             </div>
                         </ExtensionCodeModal>
                     )}
@@ -153,7 +156,7 @@ export function ExtensionCard(props: ExtensionCardProps) {
                      intent="gray-basic"
                      icon={<LuRefreshCcw />}
                      onClick={() => {
-                     if (!extension.id) return toast.error("Extension has no ID")
+                     if (!extension.id) return toast.error(t("extensions.toast.extensionHasNoId"))
                      reloadExternalExtension({ id: extension.id })
                      }}
                      disabled={isReloadingExtension}
@@ -216,10 +219,10 @@ export function ExtensionCard(props: ExtensionCardProps) {
 
                 <div className="flex gap-2 flex-wrap pt-4 flex-1 items-end">
                     {isBuiltin && <Badge className="rounded-md tracking-wide border-transparent px-0 italic opacity-50" intent="unstyled">
-                        Built-in
+                        {t("extensions.card.builtIn")}
                     </Badge>}
                     {isDisabled && <Badge className="rounded-md tracking-wide border-transparent bg-transparent opacity-50 px-0" intent="warning">
-                        Disabled
+                        {t("extensions.card.disabled")}
                     </Badge>}
                     {!!extension.version && !updateData && <Badge className="rounded-md tracking-wide" intent={!!updateData ? "success" : "unstyled"}>
                         {extension.version}
@@ -234,7 +237,7 @@ export function ExtensionCard(props: ExtensionCardProps) {
                     </Badge>}
                     {extension.lang?.toUpperCase() !== "MULTI" && <Badge className="border-transparent rounded-md !px-0" intent="unstyled">
                         {/*{extension.lang.toUpperCase()}*/}
-                        {LANGUAGES_LIST[extension.lang?.toLowerCase()]?.nativeName || extension.lang?.toUpperCase() || "Unknown"}
+                        {LANGUAGES_LIST[extension.lang?.toLowerCase()]?.nativeName || extension.lang?.toUpperCase() || t("common.messages.unknown")}
                     </Badge>}
                     {/*<Badge className="rounded-md" intent="unstyled">*/}
                     {/*    {capitalize(extension.language)}*/}
@@ -257,6 +260,7 @@ type ExtensionSettingsProps = {
 
 export function ExtensionSettings(props: ExtensionSettingsProps) {
 
+    const t = createTranslator()
     const {
         extension,
         children,
@@ -279,8 +283,8 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
 
 
     const confirmUninstall = useConfirmationDialog({
-        title: `Remove ${extension.name}`,
-        description: "This action cannot be undone.",
+        title: t("extensions.removeExtension", { name: extension.name }),
+        description: t("extensions.removeExtensionDescription"),
         onConfirm: () => {
             uninstall({
                 id: extension.id,
@@ -296,7 +300,7 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
 
     React.useEffect(() => {
         if (installResponse) {
-            toast.success(installResponse.message)
+            toast.success(translateExtensionInstallMessage(installResponse.message))
             reset()
         }
     }, [installResponse])
@@ -316,9 +320,9 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
             checkingForUpdatesRef.current = false
 
             if (fetchedExtensionData.version !== extension.version) {
-                toast.success("Update available")
+                toast.success(t("extensions.toast.updateAvailable"))
             } else {
-                toast.info("The extension is up to date")
+                toast.info(t("extensions.toast.extensionUpToDate"))
             }
         }
     }, [fetchedExtensionData])
@@ -345,7 +349,7 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
                                     onClick={handleCheckUpdate}
                                     loading={isFetchingData}
                                 >
-                                    Check for updates
+                                    {t("extensions.card.checkForUpdates")}
                                 </Button>}
 
                                 <Button
@@ -353,11 +357,11 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
                                     leftIcon={<LuPower className="text-lg" />}
                                     loading={isTogglingDisabled}
                                     onClick={() => {
-                                        if (!extension.id) return toast.error("Extension has no ID")
+                                        if (!extension.id) return toast.error(t("extensions.toast.extensionHasNoId"))
                                         setExternalExtensionDisabled({ id: extension.id, disabled: !isDisabled })
                                     }}
                                 >
-                                    {isDisabled ? "Enable" : "Disable"}
+                                    {isDisabled ? t("extensions.card.enable") : t("extensions.card.disable")}
                                 </Button>
 
                                 <Button
@@ -365,7 +369,7 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
                                     leftIcon={<RiDeleteBinLine className="text-xl" />}
                                     onClick={confirmUninstall.open}
                                 >
-                                    Uninstall
+                                    {t("extensions.card.uninstall")}
                                 </Button>
 
                                 <div className="flex flex-1"></div>
@@ -378,12 +382,12 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
                                             intent="gray-basic"
                                             icon={<LuRefreshCcw />}
                                             onClick={() => {
-                                                if (!extension.id) return toast.error("Extension has no ID")
+                                                if (!extension.id) return toast.error(t("extensions.toast.extensionHasNoId"))
                                                 reloadExternalExtension({ id: extension.id })
                                             }}
                                             disabled={isReloadingExtension}
                                         />}
-                                        >Reload</Tooltip>
+                                        >{t("extensions.card.reload")}</Tooltip>
                                     </div>
                                 )}
                             </>
@@ -394,7 +398,7 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
                     {((!!fetchedExtensionData && fetchedExtensionData?.version !== extension.version) || !!updateData) && (
                         <AppLayoutStack>
                             <p className="">
-                                Update available: <span className="font-bold text-white">{fetchedExtensionData?.version || updateData?.version}</span>
+                                {t("extensions.updateAvailable")} <span className="font-bold text-white">{fetchedExtensionData?.version || updateData?.version}</span>
                             </p>
                             <div className="flex gap-2">
                                 <ExtensionCodeModal extension={extension} diff={updateData?.payload ?? ""} readOnly>
@@ -402,7 +406,7 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
                                         size="md"
                                         intent="gray-subtle"
                                     >
-                                        View updated code
+                                        {t("extensions.card.viewUpdatedCode")}
                                     </Button>
                                 </ExtensionCodeModal>
                                 <Button
@@ -415,7 +419,7 @@ export function ExtensionSettings(props: ExtensionSettingsProps) {
                                         })
                                     }}
                                 >
-                                    Install update
+                                    {t("extensions.card.installUpdate")}
                                 </Button>
                             </div>
                         </AppLayoutStack>

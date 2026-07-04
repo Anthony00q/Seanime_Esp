@@ -1,10 +1,13 @@
 import { cn } from "@/components/ui/core/styling"
 import { TextInput } from "@/components/ui/text-input"
 import { useDebounce } from "@/hooks/use-debounce"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { FcFolder } from "react-icons/fc"
 import { FiChevronDown, FiChevronRight, FiFile, FiSearch } from "react-icons/fi"
 import { MdVerified } from "react-icons/md"
+
+const t = createTranslator()
 
 const filterFilePreviews = (filePreviews: any[], searchTerm: string): any[] => {
     if (!searchTerm.trim()) {
@@ -165,7 +168,7 @@ const FileTreeNodeComponent: React.FC<FileTreeNodeProps> = ({
                             {isLikelyMatch && (
                                 <p className="flex items-center">
                                     <MdVerified className="text-[--green] mr-1" />
-                                    <span className="text-white text-sm">Likely match</span>
+                                    <span className="text-white text-sm">{t("common.components.fileTree.likelyMatch")}</span>
                                 </p>
                             )}
                             <p className="font-normal line-clamp-2 text-sm text-[--muted]">{node.filePreview.displayPath}</p>
@@ -228,7 +231,7 @@ export const FileTreeSelector: React.FC<FileTreeSelectorProps> = ({
             <TextInput
                 value={searchTerm}
                 onValueChange={setSearchTerm}
-                placeholder="Search files..."
+                placeholder={t("common.components.fileTree.searchFiles")}
                 className="focus:ring-0 active:ring-0"
             />
 
@@ -250,7 +253,7 @@ export const FileTreeSelector: React.FC<FileTreeSelectorProps> = ({
                 ) : debouncedSearchTerm.trim() ? (
                     <div className="text-center py-8 text-[--muted]">
                         <FiSearch className="mx-auto mb-2 size-8 opacity-50" />
-                        <p>No files found matching "{debouncedSearchTerm}"</p>
+                        <p>{t("common.components.fileTree.noFilesFound", { search: debouncedSearchTerm })}</p>
                     </div>
                 ) : null}
             </div>
@@ -486,7 +489,7 @@ export const FileTreeMultiSelector: React.FC<FileTreeMultiSelectorProps> = ({
             <TextInput
                 value={searchTerm}
                 onValueChange={setSearchTerm}
-                placeholder="Search files..."
+                placeholder={t("common.components.fileTree.searchFiles")}
                 className="focus:ring-0 active:ring-0"
             />
 
@@ -505,7 +508,7 @@ export const FileTreeMultiSelector: React.FC<FileTreeMultiSelectorProps> = ({
                 ) : debouncedSearchTerm.trim() ? (
                     <div className="text-center py-8 text-[--muted]">
                         <FiSearch className="mx-auto mb-2 size-8 opacity-50" />
-                        <p>No files found matching "{debouncedSearchTerm}"</p>
+                        <p>{t("common.components.fileTree.noFilesFound", { search: debouncedSearchTerm })}</p>
                     </div>
                 ) : null}
             </div>

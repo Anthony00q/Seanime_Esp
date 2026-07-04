@@ -1,0 +1,68 @@
+{
+  "continueWatching": {
+    "heading": "Continue Watching",
+    "title": "Continue watching"
+  },
+  "progressTracking": {
+    "buttonLabel": "Currently watching",
+    "playNextEpisode": "Play next episode",
+    "stopPlaylist": "Play next",
+    "stopPlaylistDesc": "Are you sure you want to stop the playlist? It will be deleted.",
+    "progressUpdated": "Progress updated",
+    "autoUpdateInfo": "Your progress will be updated automatically",
+    "updateProgressNow": "Update progress now",
+    "playingExternally": "Playing externally",
+    "stop": "Stop",
+    "openExternalPlayer": "Open in external player",
+    "playlistTitle": "Playlist",
+    "remainingEpisodes": "{count} episode after this",
+    "nextLabel": "Next",
+    "playNext": "Play next",
+    "playerClosed": "Player closed"
+  },
+  "autoplay": {
+    "requestingNextEpisode": "Requesting next episode",
+    "playingNextEpisode": "Playing next episode",
+    "failedToPlayNextEpisode": "Failed to play next episode",
+    "title": "Title",
+    "playNow": "Play now"
+  },
+  "playlist": {
+    "watched": "Watched"
+  },
+  "playlists": {
+    "title": "Playlists",
+    "startingPlaylist": "Starting playlist",
+    "playingEpisode": "Playing episode {episode} of {anime}",
+    "pleaseEnterPlaylistName": "Please enter playlist name",
+    "editPlaylist": "Edit playlist",
+    "createPlaylist": "Create playlist",
+    "addNewPlaylist": "Add to new playlist",
+    "addToPlaylist": "Add to playlist",
+    "update": "Update",
+    "create": "Create",
+    "deletePlaylist": "Delete playlist",
+    "noPlaylists": "No playlists"
+  },
+  "playlistEditor": {
+    "addEpisodes": "Add episodes",
+    "notInLibraryOrWatching": "This anime is not in your library or currently watching collection.",
+    "selectAnime": "Select an anime",
+    "episodeAlreadyAdded": "Episode already added",
+    "episodeAdded": "Episode added to playlist",
+    "maxEpisodes": "You cannot add more than 20 episodes to a playlist"
+  },
+  "playlistManager": {
+    "updateProgress": "Update progress",
+    "updateProgressDesc": "Update progress desc",
+    "playlistName": "Playlist: {name}",
+    "reopenEpisode": "Reopen episode",
+    "stopPlaylist": "Stop playlist",
+    "torrentStreaming": "Torrent streaming",
+    "debridStreaming": "Debrid streaming",
+    "onlineStreaming": "Online streaming",
+    "selectAll": "Select all",
+    "deselectAll": "Deselect all",
+    "noEpisodesFound": "No episodes found"
+  }
+}

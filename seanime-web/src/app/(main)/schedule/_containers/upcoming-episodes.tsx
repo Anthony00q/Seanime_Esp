@@ -8,7 +8,11 @@ import { useRouter } from "@/lib/navigation"
 import { useMissingEpisodeSpoilers } from "@/lib/theme/anime-spoilers"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { addSeconds, formatDistanceToNow } from "date-fns"
+import { getDateFnsLocale } from "@/locales/date-locale"
 import React from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 /**
  * @description
@@ -31,8 +35,8 @@ export function UpcomingEpisodes() {
             {data?.episodes.length > 0 && (
                 <>
                     <div>
-                        <h2>Upcoming episodes</h2>
-                        <p className="text-[--muted]">Based on your anime list</p>
+                        <h2>{t("schedule.upcomingEpisodes")}</h2>
+                        <p className="text-[--muted]">{t("schedule.subtitle")}</p>
                     </div>
 
                     <Carousel
@@ -61,7 +65,7 @@ export function UpcomingEpisodes() {
                                             spoilerActive={spoilerActive}
                                             title={`Episode ${item.episodeNumber}`}
                                             meta={formatDistanceToNow(addSeconds(new Date(), item.timeUntilAiring!),
-                                                { addSuffix: true })}
+                                                { addSuffix: true, locale: getDateFnsLocale() })}
                                             imageClass="opacity-50"
                                             actionIcon={null}
                                             onClick={() => {

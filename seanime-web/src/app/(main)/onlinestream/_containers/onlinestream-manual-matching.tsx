@@ -16,6 +16,9 @@ import { Modal } from "@/components/ui/modal"
 import { Separator } from "@/components/ui/separator"
 import { Tooltip } from "@/components/ui/tooltip"
 import React from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 import { BiLinkExternal } from "react-icons/bi"
 import { FiSearch } from "react-icons/fi"
 
@@ -37,8 +40,8 @@ export function OnlinestreamManualMappingModal(props: OnlinestreamManualMappingM
     return (
         <>
             <Modal
-                title="Manual match"
-                description="Match this anime to a search result from the provider."
+                title={t("onlinestream.manualMatch")}
+                description={t("onlinestream.manualMatchDesc")}
                 trigger={children}
                 contentClass="max-w-4xl"
             >
@@ -83,8 +86,8 @@ function Content({ entry, provider }: { entry: Anime_Entry, provider: string }) 
 
     const [animeId, setAnimeId] = React.useState<string | null>(null)
     const confirmMatch = useConfirmationDialog({
-        title: "Manual match",
-        description: "Are you sure you want to match this anime to the search result?",
+        title: t("onlinestream.manualMatch"),
+        description: t("onlinestream.confirmMatchDesc"),
         actionText: "Confirm",
         actionIntent: "success",
         onConfirm: () => {
@@ -122,11 +125,11 @@ function Content({ entry, provider }: { entry: Anime_Entry, provider: string }) 
                                     }
                                 }}
                                 >
-                                    Remove mapping
+                                    {t("manualMatch.removeMapping")}
                                 </Button>
                             </AppLayoutStack>
                         ) : (
-                            <p className="text-[--muted] italic">No manual match</p>
+                            <p className="text-[--muted] italic">{t("manualMatch.none")}</p>
                         )}
                     </div>
 
@@ -136,19 +139,19 @@ function Content({ entry, provider }: { entry: Anime_Entry, provider: string }) 
                         <div className="space-y-2">
                             <Field.Text
                                 name="query"
-                                placeholder="Enter a title..."
+                                placeholder={t("common.placeholders.title")}
                                 leftIcon={<FiSearch className="text-xl text-[--muted]" />}
                                 fieldClass="w-full"
                             />
 
                             <Field.Switch
                                 name="dubbed"
-                                label="Look for dubs"
+                                label={t("extensions.dubbed")}
                                 side="right"
-                                moreHelp="Only applies to providers that support dubs in search results."
+                                moreHelp={t("onlinestream.dubbedSearchHelp")}
                             />
 
-                            <Field.Submit intent="white" loading={isMatching || searchLoading || mappingLoading} className="">Search</Field.Submit>
+                            <Field.Submit intent="white" loading={isMatching || searchLoading || mappingLoading} className="">{t("common.labels.search")}</Field.Submit>
                         </div>
                     </Form>
 

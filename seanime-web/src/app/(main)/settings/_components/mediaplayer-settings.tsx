@@ -7,7 +7,8 @@ import { Alert } from "@/components/ui/alert"
 import { Field } from "@/components/ui/form"
 import { Switch } from "@/components/ui/switch"
 import { TextInput } from "@/components/ui/text-input"
-import { getDefaultIinaSocket } from "@/lib/server/settings"
+import { getDefaultIinaSocket, getDefaultMpvSocket } from "@/lib/server/settings"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { useWatch } from "react-hook-form"
 import { FcClapperboard, FcVideoCall, FcVlc } from "react-icons/fc"
@@ -15,6 +16,8 @@ import { HiPlay } from "react-icons/hi"
 import { IoPlayForwardCircleSharp } from "react-icons/io5"
 import { LuCircleArrowOutUpRight, LuMonitorPlay } from "react-icons/lu"
 import { RiSettings3Fill } from "react-icons/ri"
+
+const t = createTranslator()
 
 type MediaplayerSettingsProps = {
     isPending: boolean
@@ -32,49 +35,47 @@ export function MediaplayerSettings(props: MediaplayerSettingsProps) {
     return (
         <>
             <SettingsPageHeader
-                title="Desktop Media Player"
-                description="Seanime has built-in support for MPV, VLC, IINA, and MPC-HC."
+                title={t("settings.mediaPlayer.title")}
+                description={t("settings.mediaPlayer.description")}
                 icon={LuMonitorPlay}
             />
 
             <SettingsCard>
                 <Field.Select
                     name="defaultPlayer"
-                    label="Default player"
+                    label={t("settings.mediaPlayer.defaultPlayer")}
                     leftIcon={<FcVideoCall />}
                     options={[
-                        { label: "MPV", value: "mpv" },
-                        { label: "VLC", value: "vlc" },
-                        { label: "MPC-HC (Windows)", value: "mpc-hc" },
-                        { label: "IINA (macOS)", value: "iina" },
+                        { label: t("settings.mediaPlayer.playerMpv"), value: "mpv" },
+                        { label: t("settings.mediaPlayer.playerVlc"), value: "vlc" },
+                        { label: t("settings.mediaPlayer.playerMpcHc"), value: "mpc-hc" },
+                        { label: t("settings.mediaPlayer.playerIina"), value: "iina" },
                     ]}
-                    help="Player that will be used to open files and track your progress automatically."
+                    help={t("settings.mediaPlayer.defaultPlayerHelp")}
                 />
                 {selectedPlayer === "iina" && <Alert
                     intent="info-basic"
-                    description={<p>For IINA to work correctly with Seanime, make sure <strong>Quit after all windows are closed</strong> is <span
-                        className="underline"
-                    >checked</span> and <strong>Keep window open after playback finishes</strong> is <span className="underline">unchecked</span> in
-                        your IINA general settings.</p>}
+                    description={<p>{t("settings.mediaPlayer.iinaSettingsNote")} <strong>{t("settings.mediaPlayer.quitAfterAllWindowsClosed")}</strong> {t("settings.mediaPlayer.areChecked")} <span
+                    >{t("settings.mediaPlayer.keepWindowOpenAfterPlaybackFinished")}</span> {t("settings.mediaPlayer.isUnchecked")} {t("settings.mediaPlayer.inYourIinaGeneralSettings")}</p>}
                 />}
             </SettingsCard>
 
-            <SettingsCard title="Playback">
+            <SettingsCard title={t("settings.mediaPlayer.playback")}>
                 <Field.Switch
                     side="right"
                     name="autoPlayNextEpisode"
-                    label="Automatically play next episode"
-                    help="If enabled, Seanime will play the next episode after a delay when the current episode is completed."
+                    label={t("settings.mediaPlayer.automaticallyPlayNextEpisode")}
+                    help={t("settings.mediaPlayer.automaticallyPlayNextEpisodeHelp")}
                 />
             </SettingsCard>
 
-            <SettingsCard title="Configuration">
+            <SettingsCard title={t("settings.mediaPlayer.configuration")}>
 
 
                 <Field.Text
                     name="mediaPlayerHost"
-                    label="Host"
-                    help="VLC/MPC-HC"
+                    label={t("settings.mediaPlayer.host")}
+                    help={t("settings.mediaPlayer.vlc")}
                 />
 
                 <Accordion
@@ -86,46 +87,46 @@ export function MediaplayerSettings(props: MediaplayerSettingsProps) {
                     collapsible
                     defaultValue={serverStatus?.settings?.mediaPlayer?.defaultPlayer}
                 >
-                    <AccordionItem value="vlc">
-                        <AccordionTrigger>
-                            <h4 className="flex gap-2 items-center"><FcVlc /> VLC</h4>
-                        </AccordionTrigger>
-                        <AccordionContent className="space-y-4">
-                            <div className="flex flex-col md:flex-row gap-4">
+                        <AccordionItem value="vlc">
+                            <AccordionTrigger>
+                                <h4 className="flex gap-2 items-center"><FcVlc /> {t("settings.mediaPlayer.vlc")}</h4>
+                            </AccordionTrigger>
+                            <AccordionContent className="space-y-4">
+                                <div className="flex flex-col md:flex-row gap-4">
+                                    <Field.Text
+                                        name="vlcUsername"
+                                        label={t("settings.mediaPlayer.username")}
+                                    />
+                                    <Field.Text
+                                        name="vlcPassword"
+                                        label={t("settings.mediaPlayer.password")}
+                                        type="password"
+                                    />
+                                    <Field.Number
+                                        name="vlcPort"
+                                        label={t("settings.mediaPlayer.port")}
+                                        formatOptions={{
+                                            useGrouping: false,
+                                        }}
+                                        hideControls
+                                    />
+                                </div>
                                 <Field.Text
-                                    name="vlcUsername"
-                                    label="Username"
+                                    name="vlcPath"
+                                    label={t("settings.mediaPlayer.applicationPath")}
                                 />
-                                <Field.Text
-                                    name="vlcPassword"
-                                    label="Password"
-                                    type="password"
-                                />
-                                <Field.Number
-                                    name="vlcPort"
-                                    label="Port"
-                                    formatOptions={{
-                                        useGrouping: false,
-                                    }}
-                                    hideControls
-                                />
-                            </div>
-                            <Field.Text
-                                name="vlcPath"
-                                label="Application path"
-                            />
-                        </AccordionContent>
-                    </AccordionItem>
+                            </AccordionContent>
+                        </AccordionItem>
 
                     <AccordionItem value="mpc-hc">
                         <AccordionTrigger>
-                            <h4 className="flex gap-2 items-center"><FcClapperboard /> MPC-HC</h4>
+                            <h4 className="flex gap-2 items-center"><FcClapperboard /> {t("settings.mediaPlayer.mpcHc")}</h4>
                         </AccordionTrigger>
                         <AccordionContent>
                             <div className="flex flex-col md:flex-row gap-4">
                                 <Field.Number
                                     name="mpcPort"
-                                    label="Port"
+                                    label={t("settings.mediaPlayer.port")}
                                     formatOptions={{
                                         useGrouping: false,
                                     }}
@@ -133,7 +134,7 @@ export function MediaplayerSettings(props: MediaplayerSettingsProps) {
                                 />
                                 <Field.Text
                                     name="mpcPath"
-                                    label="Application path"
+                                    label={t("settings.mediaPlayer.applicationPath")}
                                 />
                             </div>
                         </AccordionContent>
@@ -141,30 +142,29 @@ export function MediaplayerSettings(props: MediaplayerSettingsProps) {
 
                     <AccordionItem value="mpv">
                         <AccordionTrigger>
-                            <h4 className="flex gap-2 items-center"><HiPlay className="mr-1 text-purple-100" /> MPV</h4>
+                            <h4 className="flex gap-2 items-center"><HiPlay className="mr-1 text-purple-100" /> {t("settings.mediaPlayer.mpv")}</h4>
                         </AccordionTrigger>
                         <AccordionContent>
                             <div className="flex gap-4">
                                 <Field.Text
                                     name="mpvSocket"
-                                    label="Socket"
-                                    placeholder="Leave empty for an auto-generated socket"
-                                    help="Set this only if you want Seanime to attach to a specific mpv IPC socket."
+                                    label={t("settings.mediaPlayer.socket")}
+                                    placeholder={t("settings.mediaPlayer.defaultSocket", { default: getDefaultMpvSocket(serverStatus?.os ?? "") })}
                                 />
                                 <Field.Text
                                     name="mpvPath"
-                                    label="Application path"
-                                    placeholder={serverStatus?.os === "windows" ? "e.g. C:/Program Files/mpv/mpv.exe" : serverStatus?.os === "darwin"
-                                        ? "e.g. /Applications/mpv.app/Contents/MacOS/mpv"
-                                        : "Defaults to CLI"}
-                                    help="Leave empty to use the CLI."
+                                    label={t("settings.mediaPlayer.applicationPath")}
+                                    placeholder={serverStatus?.os === "windows" ? t("settings.mediaPlayer.mpvPathWinPlaceholder") : serverStatus?.os === "darwin"
+                                        ? t("settings.mediaPlayer.mpvPathMacPlaceholder")
+                                        : t("settings.mediaPlayer.mpvPathLinuxPlaceholder")}
+                                    help={t("settings.mediaPlayer.mpvHelp")}
                                 />
                             </div>
                             <div className="mt-4">
                                 <Field.Text
                                     name="mpvArgs"
-                                    label="Options"
-                                    placeholder="e.g. --no-config --mute=yes"
+                                    label={t("settings.mediaPlayer.options")}
+                                    placeholder={t("settings.mediaPlayer.mpvArgsPlaceholder")}
                                 />
                             </div>
                         </AccordionContent>
@@ -172,27 +172,27 @@ export function MediaplayerSettings(props: MediaplayerSettingsProps) {
 
                     <AccordionItem value="iina">
                         <AccordionTrigger>
-                            <h4 className="flex gap-2 items-center"><IoPlayForwardCircleSharp className="mr-1 text-purple-100" /> IINA</h4>
+                            <h4 className="flex gap-2 items-center"><IoPlayForwardCircleSharp className="mr-1 text-purple-100" /> {t("settings.mediaPlayer.iina")}</h4>
                         </AccordionTrigger>
                         <AccordionContent>
                             <div className="flex gap-4">
                                 <Field.Text
                                     name="iinaSocket"
-                                    label="Socket"
-                                    placeholder={`Default: '${getDefaultIinaSocket(serverStatus?.os ?? "")}'`}
+                                    label={t("settings.mediaPlayer.socket")}
+                                    placeholder={t("settings.mediaPlayer.defaultSocket", { default: getDefaultIinaSocket(serverStatus?.os ?? "") })}
                                 />
                                 <Field.Text
                                     name="iinaPath"
-                                    label="CLI path"
-                                    placeholder={"Path to the IINA CLI"}
-                                    help="Leave empty to use the CLI."
+                                    label={t("settings.mediaPlayer.cliPath")}
+                                    placeholder={t("settings.mediaPlayer.iinaCliPathPlaceholder")}
+                                    help={t("settings.mediaPlayer.iinaHelp")}
                                 />
                             </div>
                             <div>
                                 <Field.Text
                                     name="iinaArgs"
-                                    label="Options"
-                                    placeholder="e.g. --mpv-mute=yes"
+                                    label={t("settings.mediaPlayer.options")}
+                                    placeholder={t("settings.mediaPlayer.iinaArgsPlaceholder")}
                                 />
                             </div>
                         </AccordionContent>
@@ -213,22 +213,22 @@ export function ExternalPlayerLinkSettings() {
     return (
         <>
             <SettingsPageHeader
-                title="External player link"
-                description="Send streams to an external player on this device."
+                title={t("settings.mediaPlayer.externalPlayerLink")}
+                description={t("settings.mediaPlayer.externalPlayerLinkDescription")}
                 icon={LuCircleArrowOutUpRight}
             />
 
             <Alert
                 intent="info" description={<>
-                    Only applies to this device.
-                </>}
+                {t("settings.mediaPlayer.onlyAppliesToThisDevice")}
+            </>}
             />
 
             <SettingsCard>
                 <div data-settings-external-player-link-scheme>
                     <TextInput
-                        label="Custom scheme"
-                        placeholder="Example: outplayer://{url}"
+                        label={t("settings.mediaPlayer.customScheme")}
+                        placeholder={t("settings.mediaPlayer.customSchemePlaceholder")}
                         value={externalPlayerLink}
                         onValueChange={setExternalPlayerLink}
                     />
@@ -239,8 +239,8 @@ export function ExternalPlayerLinkSettings() {
                 <Switch
                     side="right"
                     name="encodePath"
-                    label="Encode file path in URL (library only)"
-                    help="If enabled, the file path will be base64 encoded in the URL to avoid issues with special characters."
+                    label={t("settings.mediaPlayer.encodeFilePathInUrl")}
+                    help={t("settings.mediaPlayer.encodeFilePathInUrlHelp")}
                     value={encodePath}
                     onValueChange={setEncodePath}
                 />
@@ -248,7 +248,7 @@ export function ExternalPlayerLinkSettings() {
 
             <div className="flex items-center gap-2 text-sm text-gray-500 bg-gray-50 dark:bg-gray-900/30 rounded-lg p-3 border border-gray-200 dark:border-gray-800 border-dashed">
                 <RiSettings3Fill className="text-base" />
-                <span>Settings are saved automatically</span>
+                <span>{t("settings.mediaPlayer.settingsAutoSaved")}</span>
             </div>
         </>
     )

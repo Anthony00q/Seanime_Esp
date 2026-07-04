@@ -4,6 +4,9 @@ import { usePathname } from "@/lib/navigation"
 import { useSetAtom } from "jotai/react"
 import React from "react"
 import { LuFolderDown } from "react-icons/lu"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type ChapterDownloadsButtonProps = {
     children?: React.ReactNode
@@ -31,7 +34,7 @@ export function ChapterDownloadsButton(props: ChapterDownloadsButtonProps) {
                 size="sm"
                 leftIcon={<LuFolderDown />}
             >
-                Downloads
+                {t("manga.chapterDownloads.downloads")}
             </Button>
         </>
     )

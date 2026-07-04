@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
 import { logger } from "@/lib/helpers/debug"
 import { BiSolidSkipNextCircle } from "react-icons/bi"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 interface AutoplayCountdownModalProps {
     autoplayState: AutoplayState
@@ -31,13 +34,13 @@ export function AutoplayCountdownModal({
     const getStreamingTypeLabel = () => {
         switch (streamingType) {
             case "local":
-                return "Local File"
+                return t("misc.streamingTypes.localFile")
             case "torrent":
-                return "Torrent Stream"
+                return t("misc.streamingTypes.torrentStream")
             case "debrid":
-                return "Debrid Stream"
+                return t("misc.streamingTypes.debridStream")
             default:
-                return "Unknown"
+                return t("misc.streamingTypes.unknown")
         }
     }
 
@@ -69,7 +72,7 @@ export function AutoplayCountdownModal({
             }}
             titleClass="text-center"
             hideCloseButton
-            title="Playing next episode in"
+            title={t("autoplay.title")}
             contentClass="!space-y-4 relative max-w-xl border-transparent !rounded-3xl"
             closeClass="!text-[--red]"
         >
@@ -118,7 +121,7 @@ export function AutoplayCountdownModal({
                         className="flex-1"
                         size="sm"
                     >
-                        Cancel
+                        {t("common.buttons.cancel")}
                     </Button>
 
                     {onPlayNow && (
@@ -129,7 +132,7 @@ export function AutoplayCountdownModal({
                             size="sm"
                             leftIcon={<BiSolidSkipNextCircle />}
                         >
-                            Play Now
+                            {t("autoplay.playNow")}
                         </Button>
                     )}
                 </div>

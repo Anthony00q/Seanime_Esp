@@ -8,6 +8,7 @@ import { Alert } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
 import { VerticalMenu } from "@/components/ui/vertical-menu"
+import { createTranslator } from "@/locales"
 import { logger } from "@/lib/helpers/debug"
 import { WSEvents } from "@/lib/server/ws-events"
 import { atom } from "jotai"
@@ -28,6 +29,7 @@ export const isUpdateInstalledAtom = atom<boolean>(false)
 export const isUpdatingAtom = atom<boolean>(false)
 
 export function ElectronUpdateModal(props: UpdateModalProps) {
+    const t = createTranslator()
     const serverStatus = useServerStatus()
     const [updateModalOpen, setUpdateModalOpen] = useAtom(electronUpdateModalOpenAtom)
     const [isUpdating, setIsUpdating] = useAtom(isUpdatingAtom)
@@ -88,7 +90,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
             // Register listeners for update events
             const removeUpdateDownloaded = window.electron.on("update-downloaded", () => {
                 if (!isMacOS) {
-                    toast.success("Update downloaded and ready to install")
+                    toast.success(t("electron.updateDownloadedReady"))
                     setIsDownloading(false)
                     setIsDownloaded(true)
                     setDownloadProgress(100)
@@ -98,7 +100,8 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
             const removeUpdateError = window.electron.on("update-error", (error: string) => {
                 logger("ELECTRON").error("Update error", error)
                 if (!isMacOS) {
-                    toast.error(`Update error: ${error}`)
+                    const errorMsg = typeof error === "string" ? error : (error as any)?.message || JSON.stringify(error)
+                    toast.error(t("electron.updateError", { error: errorMsg }))
                     setIsUpdating(false)
                     setIsDownloading(false)
                 }
@@ -115,7 +118,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                 setIsDownloaded(false)
                 setDownloadProgress(0)
                 if (!isMacOS) {
-                    toast.info("Update found, downloading...")
+                    toast.info(t("electron.updateFoundDownloading"))
                 }
             })
 
@@ -154,7 +157,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                 // macOS: Use manual download and install flow
                 if (isMacOS) {
                     if (!updateData?.release?.version) {
-                        toast.error("Update version not found")
+                        toast.error(t("electron.updateVersionNotFound"))
                         setIsUpdating(false)
                         return
                     }
@@ -168,12 +171,12 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                     )
 
                     if (!macAsset) {
-                        toast.error("macOS update asset not found")
+                        toast.error(t("electron.macosUpdateAssetNotFound"))
                         setIsUpdating(false)
                         return
                     }
 
-                    toast.info("Downloading and installing update...")
+                    toast.info(t("electron.downloadingInstallingUpdate"))
                     setIsDownloading(true)
 
                     downloadMacUpdate({
@@ -182,7 +185,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                     }, {
                         onSuccess: () => {
                             setIsInstalled(true)
-                            toast.success("Update installed! Closing app...")
+                            toast.success(t("electron.updateInstalledClosing"))
                             // Close the app after a short delay
                             setTimeout(() => {
                                 window.electron?.send("quit-app")
@@ -190,7 +193,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                         },
                         onError: (error) => {
                             logger("ELECTRON").error("Failed to install macOS update", error)
-                            toast.error(`Failed to install update: ${error.message}`)
+                            toast.error(t("electron.failedToInstallUpdate", { error: error.message }))
                             setIsUpdating(false)
                             setIsDownloading(false)
                         },
@@ -201,7 +204,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                 // Windows/Linux: Use electron-updater flow
                 // If not downloaded yet, trigger download first
                 if (!isDownloaded) {
-                    toast.info("Downloading update...")
+                    toast.info(t("electron.downloadingUpdate"))
                     setIsDownloading(true)
 
                     // Trigger update check which will start download
@@ -214,7 +217,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
 
                 // Kill the currently running server before installing update
                 try {
-                    toast.info("Shutting down server...")
+                    toast.info(t("electron.shuttingDownServer"))
                     await window.electron.killServer()
                 }
                 catch (e) {
@@ -222,17 +225,17 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                 }
 
                 // Install update
-                toast.info("Installing update...")
+                toast.info(t("electron.installingUpdate"))
                 await window.electron.installUpdate()
                 setIsInstalled(true)
 
                 // Electron will automatically restart the app
-                toast.info("Update installed. Restarting app...")
+                toast.info(t("electron.updateInstalledRestarting"))
             }
         }
         catch (e) {
             logger("ELECTRON").error("Failed to install update", e)
-            toast.error(`Failed to install update: ${JSON.stringify(e)}`)
+            toast.error(t("electron.failedToInstallUpdate", { error: JSON.stringify(e) }))
             setIsUpdating(false)
             setIsDownloading(false)
         }
@@ -247,7 +250,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                     <img src="/seanime-logo.png" alt="logo" className="w-14 h-auto" />
                 </div>
                 <p className="text-center text-lg">
-                    Update installed. Restart the app.
+                    {t("electron.updateInstalledRestart")}
                 </p>
             </div>
         </div>
@@ -260,7 +263,7 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                 items={[
                     {
                         iconType: AiFillExclamationCircle,
-                        name: "Update available",
+                        name: t("update.available"),
                         onClick: () => setUpdateModalOpen(true),
                     },
                 ]}
@@ -272,16 +275,13 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                 contentClass="max-w-3xl"
             >
                 <div className="space-y-2">
-                    <h3 className="text-center">A new update is available!</h3>
+                    <h3 className="text-center">{t("update.newUpdateAvailable")}</h3>
                     <h4 className="font-bold flex gap-2 text-center items-center justify-center">
                         <span className="text-[--muted]">{updateData?.current_version}</span> <FiArrowRight />
                         <span className="text-indigo-200">{updateData?.release?.version}</span></h4>
 
                     {!electronUpdate && !isMacOS && (
-                        <Alert intent="warning">
-                            This update is not yet available for desktop clients.
-                            Wait a few minutes or check the GitHub page for more information.
-                        </Alert>
+                        <Alert intent="warning-basic" description={t("electron.updateNotAvailableDesktop")} />
                     )}
 
                     <UpdateChangelogBody updateData={updateData} />
@@ -294,8 +294,8 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                             disabled={isLoading}
                         >
 
-                            {isDownloading ? `Downloading... ${downloadProgress}%` :
-                                isDownloaded ? "Install now" : "Download & Install"}
+                            {isDownloading ? t("electron.downloadingProgress", { progress: downloadProgress }) :
+                                isDownloaded ? t("electron.installNow") : t("electron.downloadAndInstall")}
                         </Button>}
                         {electronUpdate && isMacOS && <Button
                             leftIcon={<GrInstall className="text-2xl" />}
@@ -303,11 +303,11 @@ export function ElectronUpdateModal(props: UpdateModalProps) {
                             loading={isUpdating || isMacUpdatePending}
                             disabled={isLoading}
                         >
-                            {(isMacUpdatePending) ? "Installing..." : "Install now"}
+                            {(isMacUpdatePending) ? t("electron.installing") : t("electron.installNow")}
                         </Button>}
                         <div className="flex flex-1" />
                         {!updateData?.release?.tag_name?.includes("v2.") && <SeaLink href={updateData?.release?.html_url || ""} target="_blank">
-                            <Button intent="white-subtle" rightIcon={<BiLinkExternal />}>See on GitHub</Button>
+                            <Button intent="white-subtle" rightIcon={<BiLinkExternal />}>{t("update.seeOnGitHub")}</Button>
                         </SeaLink>}
                     </div>
                 </div>

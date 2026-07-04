@@ -1,5 +1,6 @@
 import { useNakamaSendChatMessage } from "@/api/hooks/nakama.hooks"
 import { useWebsocketMessageListener } from "@/app/(main)/_hooks/handle-websockets"
+import { createTranslator } from "@/locales"
 import { IconButton } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { TextInput } from "@/components/ui/text-input"
@@ -217,6 +218,8 @@ function ChatContent(props: {
         handleSendMessage,
     } = props
 
+    const t = createTranslator()
+
     function isHostMessage(msg: ChatMessage) {
         return msg.peerId === "host"
     }
@@ -274,7 +277,7 @@ function ChatContent(props: {
                         value={inputValue}
                         onValueChange={setInputValue}
                         onKeyDown={handleKeyPress}
-                        placeholder="Type a message..."
+                        placeholder={t("nakama.typeMessage")}
                         disabled={isSending}
                         className="flex-1 h-10"
                         size="sm"

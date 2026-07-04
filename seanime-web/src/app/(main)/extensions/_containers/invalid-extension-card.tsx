@@ -11,10 +11,79 @@ import { Button, IconButton } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { Modal } from "@/components/ui/modal"
 import React from "react"
+import { createTranslator } from "@/locales"
 import { BiCog, BiInfoCircle } from "react-icons/bi"
 import { FaCode } from "react-icons/fa"
 import { LuRefreshCcw, LuShieldCheck } from "react-icons/lu"
+import { Tooltip } from "@/components/ui/tooltip"
 import { toast } from "sonner"
+
+const PERMISSION_KEYS = {
+    "No permissions requested.": "noPermissions",
+    "Application:": "application",
+    "Storage: Store plugin data locally": "storage",
+    "Database: Read and write non-auth data": "database",
+    "Playback: Control media playback and media players": "playback",
+    "Debrid: Manage debrid providers, torrents, and stream selection": "debrid",
+    "AniList: View and edit your AniList lists": "anilist",
+    "AniList Token: View and use your AniList token": "anilistToken",
+    "Custom Client: Swap app clients after approval": "customClient",
+    "System: Access OS functions (detailed below)": "system",
+    "Cron: Schedule automated tasks": "cron",
+    "Notification: Send system notifications": "notification",
+    "Discord: Set Discord Rich Presence": "discord",
+    "Torrent Client: Control torrent clients": "torrentClient",
+    "Auth: Log in or log out after approval": "auth",
+    "Extensions: Enable or disable extensions after approval": "extensionsScope",
+    "Settings: View or edit app settings after approval": "settings",
+    "File System:": "fileSystem",
+    "• Read files in:": "readFilesIn",
+    "• Modify/deletes files in:": "modifyFilesIn",
+    "Commands:": "commands",
+    " [any arguments]": "anyArguments",
+    " [any file path]": "anyFilePath",
+    " [pattern: ": "pattern",
+    "Purpose: ": "purpose",
+    "Network Access:": "networkAccess",
+    "Domain:": "domain",
+    "* Unsafe flags:": "unsafeFlagsTitle",
+    "dom-script-manipulation: Can execute arbitrary JavaScript code in the app's DOM.": "domScriptManipulation",
+    "dom-link-manipulation: Can insert arbitrary links into the app's DOM.": "domLinkManipulation",
+    "Reason: ": "reason"
+}
+
+function translatePermissionLine(line: string, t: ReturnType<typeof createTranslator>): string {
+    // Exact match
+    if (PERMISSION_KEYS[line as keyof typeof PERMISSION_KEYS]) {
+        return t(`extensions.permissionTranslations.${PERMISSION_KEYS[line as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: line })
+    }
+
+    // Partial matches
+    let mappedLine = line
+    const prefixesToCheck = ["• Read files in:", "• Modify/deletes files in:", "Domain:", "Reason: "]
+    for (const prefix of prefixesToCheck) {
+        if (mappedLine.startsWith(prefix)) {
+            const translatedPrefix = t(`extensions.permissionTranslations.${PERMISSION_KEYS[prefix as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: prefix })
+            mappedLine = mappedLine.replace(prefix, translatedPrefix)
+        }
+    }
+
+    const substringsToCheck = [" [any arguments]", " [any file path]", " [pattern: "]
+    for (const sub of substringsToCheck) {
+        if (mappedLine.includes(sub)) {
+            const translatedSub = t(`extensions.permissionTranslations.${PERMISSION_KEYS[sub as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: sub })
+            mappedLine = mappedLine.replace(sub, translatedSub)
+        }
+    }
+
+    if (mappedLine.includes("\n\t  Purpose: ")) {
+        const translatedPurpose = t(`extensions.permissionTranslations.${PERMISSION_KEYS["Purpose: " as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: "Purpose: " })
+        mappedLine = mappedLine.replace("\n\t  Purpose: ", "\n\t  " + translatedPurpose)
+    }
+
+    return mappedLine
+}
+
 
 type InvalidExtensionCardProps = {
     extension: Extension_InvalidExtension
@@ -23,6 +92,7 @@ type InvalidExtensionCardProps = {
 
 export function InvalidExtensionCard(props: InvalidExtensionCardProps) {
 
+    const t = createTranslator()
     const {
         extension,
         isInstalled,
@@ -52,11 +122,11 @@ export function InvalidExtensionCard(props: InvalidExtensionCardProps) {
                         intent="alert-basic"
                         icon={<BiInfoCircle />}
                     />}
-                    title="Error details"
+                    title={t("extensions.card.errorDetails")}
                     contentClass="max-w-2xl"
                 >
                     <p>
-                        Seanime failed to load this extension. If you aren't sure what this means, please contact the author.
+                        {t("extensions.card.failedToLoad")}
                     </p>
                     <p>
                         Code: <strong>{extension.code}</strong>
@@ -91,16 +161,18 @@ export function InvalidExtensionCard(props: InvalidExtensionCardProps) {
                     />
                 </ExtensionCodeModal>
 
-                <IconButton
-                    size="sm"
-                    intent="gray-basic"
-                    icon={<LuRefreshCcw />}
-                    onClick={() => {
-                        if (!extension.extension?.id) return toast.error("Extension has no ID")
-                        reloadExternalExtension({ id: extension.extension?.id ?? "" })
-                    }}
-                    disabled={isReloadingExtension}
-                />
+                <Tooltip trigger={
+                    <IconButton
+                        size="sm"
+                        intent="gray-basic"
+                        icon={<LuRefreshCcw />}
+                        onClick={() => {
+                            if (!extension.extension?.id) return toast.error(t("extensions.toast.extensionHasNoId"))
+                            reloadExternalExtension({ id: extension.extension?.id ?? "" })
+                        }}
+                        disabled={isReloadingExtension}
+                    />
+                }>{t("extensions.card.reload")}</Tooltip>
             </div>
 
             <div className="z-[1] relative space-y-3">
@@ -125,7 +197,7 @@ export function InvalidExtensionCard(props: InvalidExtensionCardProps) {
 
                     <div>
                         <p className="font-semibold line-clamp-1">
-                            {extension.extension?.name ?? "Unknown"}
+                            {extension.extension?.name ?? t("common.messages.unknown")}
                         </p>
                         <p className="text-[--muted] text-sm line-clamp-1 italic">
                             {extension.extension?.id ?? "Invalid ID"}
@@ -135,9 +207,9 @@ export function InvalidExtensionCard(props: InvalidExtensionCardProps) {
 
                 <div>
                     <p className="text-red-400 text-sm">
-                        {extension.code === "invalid_manifest" && "Manifest error"}
-                        {extension.code === "invalid_semver_constraint" && "Incompatible with this version of Seanime"}
-                        {extension.code === "invalid_payload" && "Invalid or incompatible code"}
+                        {extension.code === "invalid_manifest" && t("extensions.card.manifestError")}
+                        {extension.code === "invalid_semver_constraint" && t("extensions.card.incompatibleVersion")}
+                        {extension.code === "invalid_payload" && t("extensions.card.invalidCode")}
                     </p>
                 </div>
 
@@ -166,6 +238,7 @@ type UnauthorizedExtensionPluginCardProps = {
 
 export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPluginCardProps) {
 
+    const t = createTranslator()
     const {
         extension,
         isInstalled,
@@ -210,27 +283,30 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                         intent="warning-basic"
                         leftIcon={<LuShieldCheck />}
                         className="animate-bounce"
-                    >Grant</Button>}
-                    title="Permissions required"
+                    >{t("extensions.card.grant")}</Button>}
+                    title={t("extensions.card.grantPermissions")}
                     contentClass="max-w-2xl"
                 >
                     <p>
-                        The plugin <span className="font-bold">{extension.extension?.name}</span> is requesting the following permissions:
+                        {t("extensions.card.pluginIsRequesting", { name: extension.extension?.name })}
                     </p>
 
                     <p className="whitespace-pre-wrap w-full max-w-full overflow-x-auto text-md leading-relaxed text-left bg-gray-800 border p-3 rounded-xl">
                         {extension.pluginPermissionDescription?.split("\n").map((line, index) => {
                             line = line.trimEnd()
+                            line = translatePermissionLine(line, t)
+                            
                             if (line.startsWith("•") && !line.startsWith("*")) {
                                 const l = line.replace("• ", "")
+                                const domainPrefix = t("extensions.permissionTranslations.domain", { defaultValue: "Domain:" })
                                 return <span key={index} className="mb-1 block">
-                                    {l.startsWith("Domain:") ? <>
+                                    {(l.startsWith("Domain:") || l.startsWith(domainPrefix)) ? <>
                                             <span className="font-bold bg-gray-900 border px-2 py-[0.08rem] rounded-lg inline-block">{l
                                                 .split(":")[0].trim()}</span>: {l.substring(l.indexOf(":") + 1)}<br />
                                         </> :
                                         <>
                                             <span className="font-bold bg-gray-950 border px-2 py-[0.1rem] rounded-lg inline-block">{l
-                                                .split(":")[0].trim()}</span>: {l.split(":")[1]}<br />
+                                                .split(":")[0].trim()}</span>: {l.substring(l.indexOf(":") + 1)}<br />
                                         </>}
                                 </span>
                             }
@@ -248,8 +324,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                     {isUnsafe && <Alert
                         intent="warning"
                         className="!text-[--muted] !bg-gray-800"
-                        description="This plugin relies on unsafe flags to function. Seanime cannot guarantee that it is safe to use."
-                        // className="mb-4"
+                        description={t("extensions.card.unsafeWarning")}
                     />}
 
                     <p className="whitespace-pre-wrap w-full max-w-full overflow-x-auto text-sm text-center text-[--muted]">
@@ -273,7 +348,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                             leftIcon={<LuShieldCheck className="size-5" />}
                             className="w-full"
                             onClick={() => {
-                                if (!extension.extension?.id) return toast.error("Extension has no ID")
+                                if (!extension.extension?.id) return toast.error(t("extensions.toast.extensionHasNoId"))
                                 pendingGrantRef.current = true
                                 React.startTransition(() => {
                                     grantPluginPermissions({ id: extension.extension?.id ?? "", clientId: "" })
@@ -281,7 +356,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                             }}
                             loading={isGrantingPluginPermissions}
                         >
-                            Grant permissions
+                            {t("extensions.card.grantPermissions")}
                         </Button>
                     </div>
                 </Modal>
@@ -312,7 +387,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                  intent="gray-basic"
                  icon={<LuRefreshCcw />}
                  onClick={() => {
-                 if (!extension.extension?.id) return toast.error("Extension has no ID")
+                 if (!extension.extension?.id) return toast.error(t("extensions.toast.extensionHasNoId"))
                  reloadExternalExtension({ id: extension.extension?.id ?? "" })
                  }}
                  disabled={isReloadingExtension}
@@ -341,7 +416,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
 
                     <div>
                         <p className="font-semibold line-clamp-1">
-                            {extension.extension?.name ?? "Unknown"}
+                            {extension.extension?.name ?? t("common.messages.unknown")}
                         </p>
                         <p className="text-[--muted] text-xs line-clamp-1 italic">
                             {extension.extension?.id ?? "Invalid ID"}
@@ -351,8 +426,8 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
 
                 <div>
                     <p className="text-red-400 text-sm">
-                        {extension.code === "invalid_manifest" && "Manifest error"}
-                        {extension.code === "invalid_payload" && "Invalid or incompatible code"}
+                        {extension.code === "invalid_manifest" && t("extensions.card.manifestError")}
+                        {extension.code === "invalid_payload" && t("extensions.card.invalidCode")}
                     </p>
                 </div>
 
@@ -365,7 +440,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                     </Badge>
                     <Badge className="border-transparent rounded-md" intent="unstyled">
                         {/*{extension.extension.lang.toUpperCase()}*/}
-                        {LANGUAGES_LIST[extension.extension.lang?.toLowerCase()]?.nativeName || extension.extension.lang?.toUpperCase() || "Unknown"}
+                        {LANGUAGES_LIST[extension.extension.lang?.toLowerCase()]?.nativeName || extension.extension.lang?.toUpperCase() || t("common.messages.unknown")}
                     </Badge>
                 </div>
 

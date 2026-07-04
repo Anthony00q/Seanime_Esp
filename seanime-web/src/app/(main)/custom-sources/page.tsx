@@ -20,6 +20,9 @@ import React from "react"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { FiSearch } from "react-icons/fi"
 import { MdDataSaverOn } from "react-icons/md"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export default function Page() {
 
@@ -114,20 +117,20 @@ export default function Page() {
                 <div className="flex items-center gap-4">
                     <SeaLink href={`/search`}>
                         <Button leftIcon={<AiOutlineArrowLeft />} rounded intent="gray-outline" size="md">
-                            Search
+                            {t("customSources.search")}
                         </Button>
                     </SeaLink>
                     {/*<h3>Discover</h3>*/}
                 </div>
                 <AppLayoutStack>
                     <h3 data-search-page-title className="text-center xl:text-left">
-                        Custom source{provider ? `: ${customSource?.name ?? ""}` : "s"}
+                        {provider ? t("customSources.titleWithProvider", { name: customSource?.name ?? "" }) : t("customSources.title")}
                     </h3>
 
                     <div className="flex gap-2">
                         <Select
                             leftAddon={<MdDataSaverOn className={cn("text-indigo-300 font-bold text-xl")} />}
-                            placeholder="Select a source" className="w-full"
+                            placeholder={t("common.placeholders.all")} className="w-full"
                             options={customSources?.map(s => ({
                                 label: s.name,
                                 value: s.id,
@@ -159,7 +162,7 @@ export default function Page() {
                         />
                         <TextInput
                             leftIcon={<FiSearch />}
-                            placeholder="Search titles..."
+                            placeholder={t("customSources.searchTitles")}
                             className="w-full"
                             value={searchValue}
                             onValueChange={setSearchValue}
@@ -172,12 +175,12 @@ export default function Page() {
                             onClick={handleSearch}
                             loading={isLoading}
                         >
-                            Search
+                            {t("customSources.search")}
                         </Button>
                     </div>
 
                     {!provider && <div className="text-center py-8 text-[--muted]">
-                        Select a source to view its content
+                        {t("customSources.selectSource")}
                     </div>}
 
                     {provider && <CustomSourceResults
@@ -277,8 +280,8 @@ function CustomSourceResults({
 
     if (error) {
         return (
-            <LuffyError title="Failed to load content">
-                <p>Error loading content from {provider}</p>
+            <LuffyError title={t("customSources.failedToLoad")}>
+                <p>{t("customSources.errorLoading", { provider })}</p>
             </LuffyError>
         )
     }
@@ -293,8 +296,8 @@ function CustomSourceResults({
 
     if (!media?.length) {
         return (
-            <LuffyError title="No results found">
-                <p>No {params.type} found for your search criteria</p>
+            <LuffyError title={t("customSources.noResults")}>
+                <p>{t("customSources.noResultsDesc", { type: params.type })}</p>
             </LuffyError>
         )
     }
@@ -303,7 +306,7 @@ function CustomSourceResults({
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <h4 className="text-lg font-medium">
-                    {media.length} result{media.length === 1 ? "" : "s"}
+                    {t("customSources.resultCount", { count: media.length })}
                 </h4>
                 <div className="flex items-center gap-4">
                     <Select
@@ -315,7 +318,7 @@ function CustomSourceResults({
                         })}
                         options={[20, 50, 100].map(size => ({
                             value: String(size),
-                            label: `${size} per page`,
+                            label: t("customSources.perPage", { size }),
                         }))}
                         fieldClass="w-auto"
                         className="w-auto"
@@ -323,7 +326,7 @@ function CustomSourceResults({
                     />
                     {totalPages > 1 && (
                         <div className="text-sm text-[--muted]">
-                            Page {currentPage} of {totalPages}
+                            {t("customSources.pageOf", { current: currentPage, total: totalPages })}
                         </div>
                     )}
                 </div>

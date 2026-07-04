@@ -2,9 +2,12 @@ import { useAnimeEntryBulkAction } from "@/api/hooks/anime_entries.hooks"
 import { IconButton, IconButtonProps } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { Tooltip } from "@/components/ui/tooltip"
+import { createTranslator } from "@/locales"
 import React, { memo } from "react"
 import { BiLockOpenAlt } from "react-icons/bi"
 import { VscVerified } from "react-icons/vsc"
+
+const t = createTranslator()
 
 type ToggleLockFilesButtonProps = {
     mediaId: number
@@ -45,7 +48,7 @@ export const ToggleLockFilesButton = memo((props: ToggleLockFilesButtonProps) =>
                 />
             }
         >
-            {isLocked ? "Unlock all files" : "Lock all files"}
+            {isLocked ? t("libraryExplorer.unlockAllFiles") : t("libraryExplorer.lockAllFiles")}
         </Tooltip>
     )
 })

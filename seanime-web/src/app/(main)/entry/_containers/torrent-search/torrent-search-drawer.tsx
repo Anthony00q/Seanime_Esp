@@ -7,7 +7,10 @@ import { AppLayoutStack } from "@/components/ui/app-layout"
 import { cn } from "@/components/ui/core/styling"
 import { Vaul, VaulContent } from "@/components/vaul"
 import { usePathname, useRouter, useSearchParams } from "@/lib/navigation"
+import { createTranslator } from "@/locales"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
+
+const t = createTranslator()
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import React, { useEffect } from "react"
@@ -106,7 +109,7 @@ function EpisodeList({ episodes }: { episodes: Anime_EntryDownloadEpisode[] | un
 
     return (
         <div className="space-y-2" data-torrent-search-drawer-episode-list>
-            <p><span className="font-semibold">Missing episode{missingEpisodes.length > 1 ? "s" : ""}</span>: {missingEpisodes.slice(0, 5)
+            <p><span className="font-semibold">{t("entry.missingEpisodes")}{missingEpisodes.length > 1 ? "" : ""}</span>: {missingEpisodes.slice(0, 5)
                 .map(n => n.episodeNumber)
                 .join(", ")}{missingEpisodes.length > 5
                 ? `, ..., ${missingEpisodes[missingEpisodes.length - 1].episodeNumber}`

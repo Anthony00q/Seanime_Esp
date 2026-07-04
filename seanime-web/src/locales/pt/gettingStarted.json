@@ -1,0 +1,113 @@
+{
+  "gettingStarted": {
+    "steps": {
+      "library": {
+        "title": "Biblioteca Local",
+        "description": "Escolha sua pasta de biblioteca de anime"
+      },
+      "player": {
+        "title": "Player",
+        "description": "Configure seu player de vídeo"
+      },
+      "torrents": {
+        "title": "Downloads",
+        "description": "Configure os downloads"
+      },
+      "debrid": {
+        "title": "Serviço Debrid",
+        "description": "Streaming premium opcional"
+      },
+      "features": {
+        "title": "Recursos",
+        "description": "Ativar recursos adicionais"
+      }
+    },
+    "note": "Estas configurações podem ser alteradas depois",
+    "library": {
+      "title": "Biblioteca de Anime",
+      "description": "Escolha a pasta onde seus arquivos de anime estão armazenados. É aqui que o Seanime fará a varredura (scan) da sua coleção.",
+      "addFolder": "Adicionar pasta",
+      "removeFolder": "Remover pasta",
+      "noFolders": "Nenhuma pasta adicionada ainda.",
+      "selectFolder": "Selecione uma pasta",
+      "path": "Caminho da Biblioteca de Anime",
+      "pathHelp": "Selecione a pasta principal que contém sua coleção de anime. Você pode adicionar mais pastas depois."
+    },
+    "player": {
+      "title": "Player de Vídeo",
+      "description": "Configure seu media player externo preferido para assistir animes e rastrear o progresso automaticamente.",
+      "desktopPlayer": "Player Desktop",
+      "webPlayer": "Player Web",
+      "externalPlayer": "Player Externo",
+      "playerPath": "Caminho do executável do player",
+      "playerPathHelp": "ex. C:/Program Files/mpv/mpv.exe",
+      "playerArgs": "Argumentos do player",
+      "playerArgsHelp": "Argumentos adicionais para passar ao player",
+      "denshiNotice": "O Seanime Denshi inclui um player de mídia integrado que vem ativado por padrão. Você ainda pode configurar um player externo.",
+      "titleExternal": "Player Externo",
+      "mpvHelp": "O MPV é recomendado para melhor renderização de legendas e streaming de torrent.",
+      "iinaHelp": "Tanto o MPV quanto o IINA são recomendados para macOS.",
+      "mpvRecommended": "MPV (Recomendado)",
+      "mpvInstallNote": "No Windows, instale o MPV facilmente usando o Scoop ou Chocolatey. No macOS, instale o MPV usando o Homebrew.",
+      "mpvConfig": "Configuração do MPV",
+      "socketPath": "Caminho do Socket / Pipe",
+      "mpvSocketHelp": "Caminho para comunicação IPC do MPV",
+      "iinaConfig": "Configuração do IINA",
+      "iinaSocketHelp": "Caminho para comunicação IPC do IINA",
+      "iinaAlert": "Para que o IINA funcione corretamente com o Seanime, certifique-se de que <strong>Encerrar após fechar todas as janelas</strong> esteja <span className=\"underline\">marcado</span> e <strong>Manter a janela aberta após o término da reprodução</strong> esteja <span className=\"underline\">desmarcado</span> nas configurações gerais do seu IINA.",
+      "vlcConfig": "Configuração do VLC",
+      "vlcPath": "Caminho do Executável do VLC",
+      "mpcConfig": "Configuração do MPC-HC",
+      "mpcPath": "Caminho do Executável do MPC-HC"
+    },
+    "torrents": {
+      "title": "Downloads",
+      "description": "Configure seu cliente torrent para download.",
+      "torrentClient": "Cliente torrent",
+      "torrentStreaming": "Streaming de torrent",
+      "clientType": "Tipo de cliente",
+      "clientUrl": "URL do cliente",
+      "clientUsername": "Nome de usuário do cliente",
+      "clientPassword": "Senha do cliente",
+      "client": "Cliente Torrent",
+      "clientHelp": "Cliente usado para baixar torrents de anime",
+      "qbittorrentSettings": "Configurações do qBittorrent",
+      "transmissionSettings": "Configurações do Transmission",
+      "executablePath": "Caminho do Executável"
+    },
+    "debrid": {
+      "title": "Serviço Debrid",
+      "description": "Serviços Debrid oferecem downloads mais rápidos e streaming instantâneo na nuvem.",
+      "serviceType": "Tipo de serviço",
+      "apiKey": "Chave da API",
+      "apiKeyHelp": "A chave de API fornecida pelo serviço Debrid."
+    },
+    "features": {
+      "title": "Recursos Adicionais",
+      "description": "Escolha quais recursos adicionais deseja ativar. Você pode ativá-los ou desativá-los mais tarde nas configurações.",
+      "anilist": "Integração com AniList",
+      "anilistHelp": "Sincronize seu progresso de anime e mangá com o AniList",
+      "discord": "Discord Rich Presence",
+      "discordHelp": "Mostre o que você está assistindo no Discord",
+      "notifications": "Notificações do sistema",
+      "notificationsHelp": "Seja notificado sobre novos episódios e atualizações",
+      "items": {
+        "manga": "Mangá",
+        "mangaDesc": "Leia e baixe capítulos de mangá",
+        "torrentStreaming": "Streaming de Torrent",
+        "torrentStreamingDesc": "Faça streaming de torrents sem esperar que baixem",
+        "adultContent": "Conteúdo Adulto",
+        "adultContentDesc": "Mostrar conteúdo adulto na biblioteca e na busca",
+        "onlineStream": "Streaming Online",
+        "onlineStreamDesc": "Assista a animes de fontes online",
+        "richPresence": "Discord Rich Presence",
+        "richPresenceDesc": "Mostre o que você está assistindo no Discord",
+        "transcoding": "Transcoding / Direct Play",
+        "transcodingDesc": "Transmita arquivos baixados para outros dispositivos"
+      }
+    },
+    "buttons": {
+      "launch": "Iniciar Seanime"
+    }
+  }
+}

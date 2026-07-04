@@ -13,6 +13,9 @@ import { Tooltip } from "@/components/ui/tooltip"
 import { openTab } from "@/lib/helpers/browser"
 import { formatDistanceToNowSafe } from "@/lib/helpers/date"
 import uniqBy from "lodash/uniqBy"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 import React, { memo } from "react"
 import { AiFillWarning } from "react-icons/ai"
 import { BiCalendarAlt, BiLinkExternal } from "react-icons/bi"
@@ -144,7 +147,7 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
             if (!!displayName) return displayName
 
             if (episodeNumbers?.length === 1) return (
-                `Episode ${parseInt(episodeNumbers[0])}`
+                `${t("entry.episode")} ${parseInt(episodeNumbers[0])}`
             )
 
             if (episodeNumbers?.length === 0) return (
@@ -154,7 +157,7 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
             if (metadata?.formatted_title) return metadata.formatted_title
             return ""
         }
-        let t = ""
+        let titleText = ""
         const seasonNumbers = metadata?.season_number
         const partNumbers = metadata?.part_number
         if (partNumbers?.length && partNumbers.length > 1) {
@@ -162,10 +165,10 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
             const lastS = parseInt(partNumbers[partNumbers.length - 1])
             if (s1 != lastS) {
                 if (uniqBy(partNumbers, n => parseInt(n)).length === 2 && lastS - s1 === 1)
-                    t = `Part ${s1} and ${lastS}`
+                    titleText = `Part ${s1} and ${lastS}`
                 else
-                    t = `Parts ${s1} to ${lastS}`
-                return t
+                    titleText = `Parts ${s1} to ${lastS}`
+                return titleText
             } else {
                 return `Part ${s1}`
             }
@@ -175,20 +178,20 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
             const lastS = parseInt(seasonNumbers[seasonNumbers.length - 1])
             if (s1 != lastS) {
                 if (uniqBy(seasonNumbers, n => parseInt(n)).length === 2 && lastS - s1 === 1)
-                    t = `Season ${s1} and ${lastS}`
+                    titleText = `Season ${s1} and ${lastS}`
                 else
-                    t = `Seasons ${s1} to ${lastS}`
-                return t
+                    titleText = `Seasons ${s1} to ${lastS}`
+                return titleText
             } else {
                 return `Season ${s1}`
             }
         }
         if (episodeNumbers?.length && episodeNumbers?.length > 1) {
-            t = `Episodes ${parseInt(episodeNumbers[0])} to ${parseInt(episodeNumbers[episodeNumbers.length - 1])}`
+            titleText = `Episodes ${parseInt(episodeNumbers[0])} to ${parseInt(episodeNumbers[episodeNumbers.length - 1])}`
             if (seasonNumbers?.length === 1) {
-                t += ` (Season ${parseInt(seasonNumbers[0])})`
+                titleText += ` (Season ${parseInt(seasonNumbers[0])})`
             }
-            return t
+            return titleText
         } else if (seasonNumbers?.length && seasonNumbers.length === 1) {
             return `Season ${parseInt(seasonNumbers[0])}`
         }
@@ -357,7 +360,7 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
                         size="sm"
                         onClick={() => openTab(link)}
                     />}
-                >Open in browser</Tooltip>}
+                >{t("entry.episodeList.openInBrowser")}</Tooltip>}
                 {action}
             </div>
         </div>

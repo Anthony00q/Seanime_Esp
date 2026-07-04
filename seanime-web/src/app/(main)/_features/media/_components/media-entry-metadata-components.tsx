@@ -1,3 +1,5 @@
+import { translateGenre, translateFormat, translateSeason } from "@/lib/anilist-translations";
+import capitalize from "lodash/capitalize";
 import { AL_AnimeDetailsById_Media_Rankings, AL_MangaDetailsById_Media_Rankings } from "@/api/generated/types"
 import { useServerStatus } from "@/app/(main)/_hooks/use-server-status"
 import { SeaLink } from "@/components/shared/sea-link"
@@ -7,11 +9,13 @@ import { cn } from "@/components/ui/core/styling"
 import { Disclosure, DisclosureContent, DisclosureItem, DisclosureTrigger } from "@/components/ui/disclosure"
 import { Tooltip } from "@/components/ui/tooltip"
 import { getScoreColor } from "@/lib/helpers/score"
-import capitalize from "lodash/capitalize"
 import React from "react"
 import { AiOutlineHeart, AiOutlineStar } from "react-icons/ai"
 import { BiHeart, BiHide } from "react-icons/bi"
 import { LuTrophy } from "react-icons/lu"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type MediaEntryGenresListProps = {
     genres?: Array<string | null> | null | undefined
@@ -47,7 +51,7 @@ export function MediaEntryGenresList(props: MediaEntryGenresListProps) {
                             size="lg"
                             data-media-entry-genres-list-item
                         >
-                            {genre}
+                            {translateGenre(genre!)}
                         </Badge>
                     })}
                 </div>
@@ -68,7 +72,7 @@ export function MediaEntryGenresList(props: MediaEntryGenresListProps) {
                                 size="lg"
                                 data-media-entry-genres-list-item
                             >
-                                {genre}
+                                {translateGenre(genre!)}
                             </Badge>
                         </SeaLink>
                     })}
@@ -112,7 +116,7 @@ export function MediaEntryAudienceScore(props: MediaEntryAudienceScoreProps) {
                                 size="sm"
                             />
                         </DisclosureTrigger>}
-                    >Show audience score</Tooltip>
+                    >{t("common.labels.showAudienceScore")}</Tooltip>
                     <DisclosureContent>
                         <Badge
                             data-media-entry-audience-score
@@ -154,7 +158,15 @@ export function AnimeEntryRankings(props: AnimeEntryRankingsProps) {
 
     const formatFormat = React.useCallback((format: string) => {
         if (format === "MANGA") return ""
-        return (format === "TV" ? "" : format).replace("_", " ")
+        if (format === "TV") return ""
+        return translateFormat(format)
+    }, [])
+
+    const seasonText = React.useCallback((season: string | undefined, year: number | undefined) => {
+        const parts: string[] = []
+        if (season) parts.push(translateSeason(season))
+        if (year) parts.push(String(year))
+        return parts.join(" ")
     }, [])
 
     const Link = React.useCallback((props: { children: React.ReactNode, href: string }) => {
@@ -186,7 +198,7 @@ export function AnimeEntryRankings(props: AnimeEntryRankingsProps) {
                             iconClass="text-yellow-500/70 group-hover/badge:text-yellow-400"
                             className="transition-all hover:opacity-100 rounded-full bg-transparent dark:text-[--muted] border-transparent px-0 hover:bg-transparent dark:hover:text-[--foreground]"
                         >
-                            #{String(allTimeHighestRated.rank)} Highest Rated {formatFormat(allTimeHighestRated.format)}
+                            #{String(allTimeHighestRated.rank)} {t("entry.rankings.allTimeHighestRated", { format: formatFormat(allTimeHighestRated.format) ? ` ${formatFormat(allTimeHighestRated.format)}` : "" })}
                         </Badge>
                     </Link>}
                     {seasonHighestRated && <Link
@@ -203,7 +215,7 @@ export function AnimeEntryRankings(props: AnimeEntryRankingsProps) {
                             iconClass="text-yellow-500/70 group-hover/badge:text-yellow-400"
                             className="transition-all hover:opacity-100 rounded-full bg-transparent dark:text-[--muted] border-transparent px-0 hover:bg-transparent dark:hover:text-[--foreground]"
                         >
-                            #{String(seasonHighestRated.rank)} {capitalize(seasonHighestRated.season!)} {seasonHighestRated.year}
+                            #{String(seasonHighestRated.rank)} {t("entry.rankings.seasonHighestRated", { seasonText: seasonText(seasonHighestRated.season, seasonHighestRated.year) })}
                         </Badge>
                     </Link>}
                     {(seasonMostPopular && !seasonHighestRated) && <Link
@@ -222,7 +234,7 @@ export function AnimeEntryRankings(props: AnimeEntryRankingsProps) {
                             iconClass="text-[--muted] group-hover/badge:text-pink-400/70"
                             className="transition-all hover:opacity-100 rounded-full bg-transparent dark:text-[--muted] border-transparent px-0 hover:bg-transparent dark:hover:text-[--foreground]"
                         >
-                            #{(String(seasonMostPopular.rank))} Popular {formatFormat(seasonMostPopular.format)} {capitalize(seasonMostPopular.season!)} {seasonMostPopular.year}
+                            #{String(seasonMostPopular.rank)} {t("entry.rankings.seasonMostPopular", { format: formatFormat(seasonMostPopular.format) ? ` ${formatFormat(seasonMostPopular.format)}` : "", seasonText: seasonText(seasonMostPopular.season, seasonMostPopular.year) })}
                         </Badge>
                     </Link>}
                 </div>}

@@ -32,6 +32,9 @@ import { useAtom, useSetAtom } from "jotai/react"
 import React from "react"
 import { useUpdateEffect } from "react-use"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export type VideoCorePlaylistState = {
     type: VideoCore_PlaybackType
@@ -257,11 +260,11 @@ export function useVideoCorePlaylist() {
         if (isWatchPartyPeer) return
 
         if (!playlistState) {
-            toast.error("Unexpected error: No playlist state")
+            toast.error(t("nakama.toast.unexpectedErrorNoPlaylistState"))
             return
         }
         if (!animeEntry) {
-            toast.error("Unexpected error: No entry")
+            toast.error(t("nakama.toast.unexpectedErrorNoEntry"))
             return
         }
 
@@ -313,7 +316,7 @@ export function useVideoCorePlaylist() {
             case "localfile":
             case "nakama":
                 if (!episode?.localFile?.path) {
-                    toast.error("Local file not found")
+                    toast.error(t("nakama.toast.localFileNotFound"))
                     return
                 }
                 playMediaFile({

@@ -7,6 +7,8 @@ import { Modal } from "@/components/ui/modal"
 import { Separator } from "@/components/ui/separator"
 import { TextInput } from "@/components/ui/text-input"
 import React from "react"
+import { createTranslator } from "@/locales"
+import { translateExtensionInstallMessage } from "@/lib/helpers/translate-extension-toast"
 import { FiDownload } from "react-icons/fi"
 import { LuSearch } from "react-icons/lu"
 import { toast } from "sonner"
@@ -18,6 +20,7 @@ type AddExtensionModalProps = {
 
 export function AddExtensionModal(props: AddExtensionModalProps) {
 
+    const t = createTranslator()
     const {
         extensions,
         children,
@@ -44,7 +47,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
 
     React.useEffect(() => {
         if (installResponse) {
-            toast.success(installResponse.message)
+            toast.success(translateExtensionInstallMessage(installResponse.message))
             setOpen(false)
             reset()
         }
@@ -52,7 +55,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
 
     function handleFetchExtensionData() {
         if (!manifestURL) {
-            toast.warning("Please provide a valid URL.")
+            toast.warning(t("extensions.toast.pleaseProvideValidUrl"))
             return
         }
 
@@ -63,7 +66,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
 
     function handleInstallFromRepository(install: boolean) {
         if (!repositoryURL) {
-            toast.warning("Please provide a valid URL.")
+            toast.warning(t("extensions.toast.pleaseProvideValidUrl"))
             return
         }
 
@@ -73,7 +76,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
         }, {
             onSuccess: () => {
                 if (install) {
-                    toast.success("Extensions installed successfully.")
+                    toast.success(t("extensions.toast.extensionsInstalledSuccessfully"))
                     setOpen(false)
                     setRepositoryURL("")
                     resetRepo()
@@ -90,12 +93,12 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
                 trigger={children}
                 contentClass="max-w-3xl"
                 titleClass="text-center pb-4"
-                title="Add extensions"
+            title={t("extensions.addModal.title")}
             >
                 <div className="flex gap-4 flex-col lg:flex-row">
                     <div className="lg:w-1/3">
-                        <h3 className="text-2xl font-bold">Install from URL</h3>
-                        <p className="text-[--muted]">Install an extension by entering the manifest URL.</p>
+                        <h3 className="text-2xl font-bold">{t("extensions.addModal.installFromUrl")}</h3>
+                        <p className="text-[--muted]">{t("extensions.addModal.installFromUrlDesc")}</p>
                     </div>
                     <div className="lg:w-2/3 gap-3 flex flex-col">
                         <TextInput
@@ -109,7 +112,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
                             intent="white"
                             onClick={handleFetchExtensionData}
                             loading={isPending}
-                        >Find</Button>
+                        >{t("extensions.addModal.find")}</Button>
                     </div>
                 </div>
 
@@ -121,7 +124,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
 
                         {extensions?.find(n => n.id === extensionData.id) ? (
                             <p className="text-center">
-                                This extension is already installed.
+                                {t("extensions.addModal.alreadyInstalled")}
                             </p>
                         ) : (
                             <Button
@@ -132,7 +135,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
                                         manifestUri: extensionData?.manifestURI,
                                     })
                                 }}
-                            >Install</Button>
+                            >{t("extensions.addModal.install")}</Button>
                         )}
                     </>
                 )}
@@ -142,17 +145,17 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
                         <Separator />
 
                         <p className="text-center text-[--muted]">
-                            You can also install many extensions at once by importing them from a repository.
+                            {t("extensions.addModal.bulkImportHint")}
                         </p>
 
                         <div className="flex gap-4 flex-col lg:flex-row-reverse">
                             <div className="lg:w-1/3">
-                                <h3 className="text-xl font-bold">Import from repository</h3>
-                                <p className="text-[--muted]">Import and automatically install extensions by entering a repository URL.</p>
+                                <h3 className="text-xl font-bold">{t("extensions.addModal.importFromRepo")}</h3>
+                                <p className="text-[--muted]">{t("extensions.addModal.importFromRepoDesc")}</p>
                             </div>
                             <div className="lg:w-2/3 gap-3 flex flex-col">
                                 <TextInput
-                                    placeholder={"https://example.com/extensions.json or { \"urls\": [...] }"}
+                                    placeholder={t("extensions.addModal.repoPlaceholder")}
                                     value={repositoryURL}
                                     onValueChange={setRepositoryURL}
                                     // label="URL"
@@ -162,7 +165,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
                                     intent="gray-outline"
                                     onClick={() => handleInstallFromRepository(false)}
                                     loading={isInstallingFromRepo}
-                                >Import all</Button>
+                                >{t("extensions.addModal.importAll")}</Button>
                             </div>
                         </div>
 
@@ -178,7 +181,7 @@ export function AddExtensionModal(props: AddExtensionModalProps) {
                                     intent="white"
                                     onClick={() => handleInstallFromRepository(true)}
                                     loading={isInstallingFromRepo}
-                                >Install all</Button>
+                                >{t("extensions.addModal.installAll")}</Button>
                             </>
                         )}
                     </>

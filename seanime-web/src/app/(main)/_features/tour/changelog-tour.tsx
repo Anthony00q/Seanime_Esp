@@ -1,3 +1,4 @@
+import { createTranslator } from "@/locales"
 import { useSeaCommand } from "@/app/(main)/_features/sea-command/sea-command.tsx"
 import { SeaImage } from "@/components/shared/sea-image"
 import { useRouter } from "@/lib/navigation"
@@ -10,6 +11,8 @@ import { __settings_tabAtom } from "../../settings/_components/settings-page.ato
 import { __scanner_modalIsOpen } from "../anime-library/_containers/scanner-modal"
 import { tourHelpers, useTour } from "./tour"
 import { TourStep } from "./tour"
+
+const t = createTranslator()
 
 export const seenChangelogAtom = atomWithStorage<string | null>("sea-seen-changelog", null, undefined, { getOnInit: true })
 
@@ -26,19 +29,19 @@ function useSetupTour(): Record<string, () => TourStep[]> {
                 id: "changelog-1",
                 content: (
                     <div>
-                        <h4 className="text-xl font-bold text-white">What's New in 3.5.0?</h4>
-                        <p>Let's take a look at some of the new features.</p>
+                        <h4 className="text-xl font-bold text-white">{t("changelogTour.3_5_0.introTitle")}</h4>
+                        <p>{t("changelogTour.3_5_0.introDesc")}</p>
                     </div>
                 ),
                 route: "/",
-                nextLabel: "Start",
+                nextLabel: t("common.buttons.start"),
                 ignoreOutsideClick: true,
             },
             {
                 id: "scanner",
                 target: "[data-home-toolbar-scan-button]",
-                title: "New Scanner",
-                content: "The scanner's internal logic has been completely overhauled. It now uses a more context-aware algorithm which is more accurate.",
+                title: t("changelogTour.3_5_0.scanner.title"),
+                content: t("changelogTour.3_5_0.scanner.content"),
                 route: "/",
                 advanceOnTargetClick: true,
                 ignoreOutsideClick: true,
@@ -48,8 +51,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "scanner-2",
                 target: "[data-scanner-modal-content]",
-                title: "New Scanner",
-                content: "The scanner now supports Anime Offline Database for matching data.",
+                title: t("changelogTour.3_5_0.scanner2.title"),
+                content: t("changelogTour.3_5_0.scanner2.content"),
                 route: "/",
                 prepare: () => {
                     openScannerModal(true)
@@ -62,8 +65,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "scanner-3",
                 target: "[data-settings-anime-library='advanced-accordion-trigger']",
-                title: "Scanner Configuration",
-                content: "You can now fine-tune the scanner's matching behavior. Check out the documentation for more information.",
+                title: t("changelogTour.3_5_0.scanner3.title"),
+                content: t("changelogTour.3_5_0.scanner3.content"),
                 route: "/settings",
                 prepare: async () => {
                     setSettingsTab("library")
@@ -76,8 +79,7 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "issue-recorder",
                 target: "[data-open-issue-recorder-button]",
-                title: "Issue Recorder",
-                // content: "The issue recorder has been improved and will now record the UI.",
+                title: t("changelogTour.3_5_0.issueRecorder.title"),
                 content: <div>
                     <SeaImage
                         src="https://github.com/5rahim/hibike/blob/main/changelog/3_5-issue-recorder.gif?raw=true"
@@ -87,7 +89,7 @@ function useSetupTour(): Record<string, () => TourStep[]> {
                         className="rounded-md"
                         allowGif
                     />
-                    <p className="mt-2">The issue recorder has improved and can now record the UI, making bug reports more insightful.</p>
+                    <p className="mt-2">{t("changelogTour.3_5_0.issueRecorder.contentText")}</p>
                 </div>,
                 route: "/settings",
                 prepare: async () => {
@@ -100,8 +102,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "transcode-new-player",
                 target: "[data-tab-trigger='mediastream']",
-                title: "Transcode Player",
-                content: "Transcoding/Direct Play now uses the custom Seanime player used by Seanime Denshi and Online Streaming.",
+                title: t("changelogTour.3_5_0.transcodeNewPlayer.title"),
+                content: t("changelogTour.3_5_0.transcodeNewPlayer.content"),
                 route: "/settings",
                 prepare: async () => {
                     setSettingsTab("mediastream")
@@ -112,15 +114,15 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "search",
                 target: "[data-vertical-menu-item='Search']",
-                title: "Search",
-                content: "The search menu item now opens the search page. You can still quickly search from any page by pressing 'S'.",
+                title: t("changelogTour.3_5_0.search.title"),
+                content: t("changelogTour.3_5_0.search.content"),
                 route: "/search",
                 advanceOnTargetClick: false,
                 ignoreOutsideClick: true,
             },
             {
                 id: "entry",
-                title: "New Player Features",
+                title: t("changelogTour.3_5_0.entry.title"),
                 content: <div>
                     <SeaImage
                         src="https://github.com/5rahim/hibike/blob/main/changelog/3_5-videocore-characters.png?raw=true"
@@ -129,7 +131,7 @@ function useSetupTour(): Record<string, () => TourStep[]> {
                         height="auto"
                         className="rounded-md"
                     />
-                    <p className="mt-2">Press 'H' to quickly look up characters while watching. Press 'Z' to toggle Stats for Nerds.</p>
+                    <p className="mt-2">{t("changelogTour.3_5_0.entry.contentText")}</p>
                 </div>,
                 route: "/",
                 advanceOnTargetClick: false,
@@ -145,18 +147,18 @@ function useSetupTour(): Record<string, () => TourStep[]> {
                 id: "changelog-1",
                 content: (
                     <div>
-                        <h4 className="text-xl font-bold text-white">What's New in 3.7.0?</h4>
-                        <p>Let's take a look at some of the new features.</p>
+                        <h4 className="text-xl font-bold text-white">{t("changelogTour.3_7_0.introTitle")}</h4>
+                        <p>{t("changelogTour.3_7_0.introDesc")}</p>
                     </div>
                 ),
                 route: "/",
-                nextLabel: "Start",
+                nextLabel: t("common.buttons.start"),
                 ignoreOutsideClick: true,
             },
             {
                 id: "security",
-                title: "Security Improvements",
-                content: "3.7.0 includes several security improvements, including secure modes. Check out the documentation for more information.",
+                title: t("changelogTour.3_7_0.security.title"),
+                content: t("changelogTour.3_7_0.security.content"),
                 route: "/",
                 advanceOnTargetClick: true,
                 ignoreOutsideClick: true,
@@ -164,8 +166,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "search",
                 target: "[data-advanced-search-options-tags='true']",
-                title: "Tags",
-                content: "The search page now supports searching by tags.",
+                title: t("changelogTour.3_7_0.tags.title"),
+                content: t("changelogTour.3_7_0.tags.content"),
                 route: "/search",
                 advanceOnTargetClick: false,
                 ignoreOutsideClick: true,
@@ -173,8 +175,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "search",
                 target: ".sea-command-content",
-                title: "Adult Entries in Global Search",
-                content: "Global search no longer filters out adult entries if you have adult content enabled. (Reminder: Press 's' to open global search)",
+                title: t("changelogTour.3_7_0.adultContent.title"),
+                content: t("changelogTour.3_7_0.adultContent.content"),
                 route: "/search",
                 advanceOnTargetClick: false,
                 ignoreOutsideClick: true,
@@ -189,8 +191,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             },
             {
                 id: "changelog-2",
-                title: "Bug Fixes",
-                content: "Several bugs have been fixed in this release, including some related to Seanime Denshi and plugins. Read the full changelog for more details.",
+                title: t("changelogTour.3_7_0.bugFixes.title"),
+                content: t("changelogTour.3_7_0.bugFixes.content"),
                 route: "/",
                 ignoreOutsideClick: true,
             },
@@ -203,33 +205,33 @@ function useSetupTour(): Record<string, () => TourStep[]> {
                 id: "changelog-1",
                 content: (
                     <div>
-                        <h4 className="text-xl font-bold text-white">What's New in 3.8.0?</h4>
-                        <p>Let's take a look at the biggest additions in this release.</p>
+                        <h4 className="text-xl font-bold text-white">{t("changelogTour.3_8_0.introTitle")}</h4>
+                        <p>{t("changelogTour.3_8_0.introDesc")}</p>
                     </div>
                 ),
                 route: "/",
-                nextLabel: "Start",
+                nextLabel: t("common.buttons.start"),
                 ignoreOutsideClick: true,
             },
             {
                 id: "torrent-search",
-                title: "Torrent Search and Downloads",
-                content: "Torrent search can now fan out across many providers at once. This release also smooths out a few debrid download edge cases.",
+                title: t("changelogTour.3_8_0.torrentSearch.title"),
+                content: t("changelogTour.3_8_0.torrentSearch.content"),
                 route: "/",
                 ignoreOutsideClick: true,
             },
             {
                 id: "subtitle-translation",
-                title: "Subtitle Translation",
-                content: "Subtitle Translator now supports OpenAI-compatible local LLMs, so tools like LM Studio and Ollama can be used as local translation backends.",
+                title: t("changelogTour.3_8_0.subtitleTranslation.title"),
+                content: t("changelogTour.3_8_0.subtitleTranslation.content"),
                 route: "/",
                 ignoreOutsideClick: true,
             },
             {
                 id: "external-player-link",
                 target: "[data-settings-external-player-link-scheme]",
-                title: "Local Subtitle Files",
-                content: "Local subtitle files are now picked up automatically from the video folder, and external player links can use the new '{subtitleUrl}' placeholder for those local subtitle files.",
+                title: t("changelogTour.3_8_0.externalPlayerLink.title"),
+                content: t("changelogTour.3_8_0.externalPlayerLink.content"),
                 route: "/settings",
                 prepare: async () => {
                     setSettingsTab("external-player-link")
@@ -241,8 +243,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "spoilers",
                 target: "[data-settings-hide-anime-spoilers]",
-                title: "Hide Spoilers",
-                content: "You can now hide spoilers across the app, and on anime pages the new '/spoilers' command lets you toggle spoiler hiding for that specific anime.",
+                title: t("changelogTour.3_8_0.spoilers.title"),
+                content: t("changelogTour.3_8_0.spoilers.content"),
                 route: "/settings",
                 prepare: async () => {
                     setSettingsTab("seanime")
@@ -254,8 +256,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "online-streaming",
                 target: "[data-settings-enable-onlinestream]",
-                title: "Online Streaming",
-                content: "Online streaming now uses a new HTTP/1-based proxy and can automatically cycle through providers until it finds one that works.",
+                title: t("changelogTour.3_8_0.onlineStreaming.title"),
+                content: t("changelogTour.3_8_0.onlineStreaming.content"),
                 route: "/settings",
                 prepare: async () => {
                     setSettingsTab("onlinestream")
@@ -267,8 +269,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "default-episode-source",
                 target: "[data-settings-default-episode-source]",
-                title: "Default Episode Source",
-                content: "Choose which episode source Seanime should open by default when you land on an anime page.",
+                title: t("changelogTour.3_8_0.defaultEpisodeSource.title"),
+                content: t("changelogTour.3_8_0.defaultEpisodeSource.content"),
                 route: "/settings",
                 prepare: async () => {
                     setSettingsTab("seanime")
@@ -280,8 +282,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "ui-settings-redesign",
                 target: "[data-settings-ui-panel-tabs]",
-                title: "Redesigned UI Settings",
-                content: "The User Interface settings panel has been redesigned so it is easier to navigate.",
+                title: t("changelogTour.3_8_0.uiSettingsRedesign.title"),
+                content: t("changelogTour.3_8_0.uiSettingsRedesign.content"),
                 route: "/settings",
                 prepare: async () => {
                     setSettingsTab("ui")
@@ -293,8 +295,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "ui-settings-redesign2",
                 target: ".settings-ui-navigation-preloading",
-                title: "Route Preloading",
-                content: "Seanime can now preload routes in the background to make navigation feel instant. You can adjust the preloading behavior in the new UI settings panel.",
+                title: t("changelogTour.3_8_0.precarga.title"),
+                content: t("changelogTour.3_8_0.precarga.content"),
                 prepare: async () => {
                     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })
                     await new Promise(resolve => setTimeout(resolve, 1000))
@@ -306,8 +308,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             {
                 id: "entry-header-redesign",
                 target: "[data-media-page-header]",
-                title: "UI Updates",
-                content: "The media header has been slightly redesigned. There are also new animations and transitions for a snappier experience.",
+                title: t("changelogTour.3_8_0.entryHeader.title"),
+                content: t("changelogTour.3_8_0.entryHeader.content"),
                 prepare: async () => {
                     router.push("/entry?id=21827")
                     await tourHelpers.waitForSelector("[data-media-page-header]")
@@ -317,16 +319,16 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             },
             {
                 id: "extensions",
-                title: "Extensions",
-                content: "Extensions can now be disabled without uninstalling them, and plugins have new APIs for settings, auth, and extension management.",
+                title: t("changelogTour.3_8_0.extensions.title"),
+                content: t("changelogTour.3_8_0.extensions.content"),
                 route: "/extensions",
                 ignoreOutsideClick: true,
             },
             {
                 id: "extension-secure-mode",
                 target: "[data-settings-enable-extension-secure-mode]",
-                title: "Extension Secure Mode",
-                content: "Enable Extension Secure Mode to get a confirmation prompt whenever an extension tries to perform a sensitive action.",
+                title: t("changelogTour.3_8_0.extensionSecureMode.title"),
+                content: t("changelogTour.3_8_0.extensionSecureMode.content"),
                 route: "/settings",
                 prepare: async () => {
                     setSettingsTab("seanime")
@@ -337,8 +339,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             },
             {
                 id: "denshi",
-                title: "Denshi Window State",
-                content: "Seanime Denshi now remembers its window position and size, so reopening the app brings you back to the same desktop layout.",
+                title: t("changelogTour.3_8_0.denshi.title"),
+                content: t("changelogTour.3_8_0.denshi.content"),
                 route: "/settings",
                 prepare: async () => {
                     setSettingsTab("denshi")
@@ -377,8 +379,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             // },
             {
                 id: "changelog-2",
-                title: "Bug Fixes",
-                content: "Several bugs have been fixed in this release, including some related to the built-in player. Read the full changelog for more details.",
+                title: t("changelogTour.3_8_0.bugFixes.title"),
+                content: t("changelogTour.3_8_0.bugFixes.content"),
                 route: "/",
                 ignoreOutsideClick: true,
             },

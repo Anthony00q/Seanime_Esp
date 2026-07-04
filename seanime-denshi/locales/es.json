@@ -1,0 +1,12 @@
+{
+  "tray": {
+    "toggleVisibility": "Mostrar/Ocultar",
+    "removeFromDock": "Quitar del Dock",
+    "quit": "Salir de Seanime"
+  },
+  "error": {
+    "title": "Ocurrió un error",
+    "uncaughtException": "Excepción no capturada",
+    "checkLogs": "Revisa los registros para más detalles."
+  }
+}

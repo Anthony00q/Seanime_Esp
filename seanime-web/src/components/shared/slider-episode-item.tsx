@@ -3,8 +3,11 @@ import { EpisodeItemBottomGradient } from "@/app/(main)/_features/custom-ui/item
 import { imageShimmer } from "@/components/shared/image-helpers"
 import { SeaImage } from "@/components/shared/sea-image"
 import { cn } from "@/components/ui/core/styling"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { AiFillPlayCircle } from "react-icons/ai"
+
+const t = createTranslator()
 
 type SliderEpisodeItemProps = {
     episode: Anime_Episode
@@ -67,7 +70,7 @@ export const SliderEpisodeItem = React.forwardRef<HTMLDivElement, SliderEpisodeI
                     {!!episode.episodeMetadata?.length &&
                         <p className="text-[--muted] text-sm md:text-base">{episode.episodeMetadata?.length + "m" || ""}</p>}
                 </div>
-                {episode.isInvalid && <p className="text-red-300">No metadata found</p>}
+                {episode.isInvalid && <p className="text-red-300">{t("common.messages.noMetadataFound")}</p>}
             </div>
         </div>
     )
