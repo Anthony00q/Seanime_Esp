@@ -22,6 +22,9 @@ import React from "react"
 import { BiTrash } from "react-icons/bi"
 import { GiOpenBook } from "react-icons/gi"
 import { MdOutlineOfflinePin } from "react-icons/md"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export const manga_downloadedChapterContainerAtom = atom<Manga_ChapterContainer | null>(null)
 
@@ -72,13 +75,13 @@ export function DownloadedChapterList(props: DownloadedChapterListProps) {
     const columns = React.useMemo(() => defineDataGridColumns<MangaDownloadChapterItem>(() => [
         {
             accessorKey: "chapterNumber",
-            header: "Chapter",
+            header: t("manga.downloadedChapters.chapter"),
             size: 90,
-            cell: info => <span>Chapter {info.getValue<string>()}</span>,
+            cell: info => <span>{t("manga.downloadedChapters.chapterLabel", { number: info.getValue<string>() })}</span>,
         },
         {
             id: "number",
-            header: "Number",
+            header: t("manga.downloadedChapters.number"),
             size: 10,
             enableSorting: true,
             accessorFn: (row) => {
@@ -87,12 +90,12 @@ export function DownloadedChapterList(props: DownloadedChapterListProps) {
         },
         {
             accessorKey: "provider",
-            header: "Provider",
+            header: t("manga.downloadedChapters.provider"),
             size: 10,
         },
         {
             accessorKey: "chapterId",
-            header: "Chapter ID",
+            header: t("manga.downloadedChapters.chapterId"),
             size: 20,
             cell: info => <span className="text-[--muted] text-sm italic">{info.getValue<string>()}</span>,
         },
@@ -104,7 +107,7 @@ export function DownloadedChapterList(props: DownloadedChapterListProps) {
             cell: ({ row }) => {
                 return (
                     <div className="flex justify-end gap-2 items-center w-full">
-                        {row.original.queued && <p className="text-[--muted]">Queued</p>}
+                        {row.original.queued && <p className="text-[--muted]">{t("manga.downloadedChapters.queued")}</p>}
                         {row.original.downloaded && <p className="text-[--muted] px-1"><MdOutlineOfflinePin className="text-2xl" /></p>}
 
                         {row.original.downloaded && <IconButton
@@ -172,13 +175,13 @@ export function DownloadedChapterList(props: DownloadedChapterListProps) {
 
     return (
         <>
-            <h3 className="pt-8">Downloaded chapters</h3>
+            <h3 className="pt-8">{t("manga.downloadedChapters.title")}</h3>
 
             <div data-downloaded-chapter-list-container className="space-y-4 rounded-2xl border bg-[--paper] p-4">
 
                 <div className="flex flex-wrap items-center gap-4">
                     <Checkbox
-                        label="Show queued"
+                        label={t("manga.downloadedChapters.showQueued")}
                         value={showQueued}
                         onValueChange={v => setShowQueued(v as boolean)}
                         fieldClass="w-fit"
@@ -197,7 +200,7 @@ export function DownloadedChapterList(props: DownloadedChapterListProps) {
                         className=""
                         loading={isDeletingChapter}
                     >
-                        Delete selected chapters ({selectedChapters?.length})
+                        {t("manga.downloadedChapters.deleteSelected", { count: String(selectedChapters?.length) })}
                     </Button>
                 </div>}
 

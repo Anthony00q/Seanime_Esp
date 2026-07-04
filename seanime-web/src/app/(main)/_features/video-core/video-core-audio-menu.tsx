@@ -10,10 +10,13 @@ import { VideoCoreControlButtonIcon } from "@/app/(main)/_features/video-core/vi
 import { HlsAudioTrack, vc_hlsAudioTracks, vc_hlsCurrentAudioTrack } from "@/app/(main)/_features/video-core/video-core-hls"
 import { VideoCoreMenu, VideoCoreMenuBody, VideoCoreMenuTitle, VideoCoreSettingSelect } from "@/app/(main)/_features/video-core/video-core-menu"
 import { vc_dispatchAction } from "@/app/(main)/_features/video-core/video-core.utils"
+import { createTranslator } from "@/locales"
 import { useAtomValue } from "jotai"
 import { useSetAtom } from "jotai/react"
 import React from "react"
 import { LuHeadphones } from "react-icons/lu"
+
+const t = createTranslator()
 
 export function VideoCoreAudioMenu() {
     const action = useSetAtom(vc_dispatchAction)
@@ -76,7 +79,7 @@ export function VideoCoreAudioMenu() {
                 }}
             />}
         >
-            <VideoCoreMenuTitle>Audio</VideoCoreMenuTitle>
+            <VideoCoreMenuTitle>{t("videoPlayer.menuAudio")}</VideoCoreMenuTitle>
             <VideoCoreMenuBody>
                 <VideoCoreSettingSelect
                     isFullscreen={isFullscreen}

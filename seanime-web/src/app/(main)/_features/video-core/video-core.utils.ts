@@ -20,6 +20,9 @@ import { VideoCore_VideoPlaybackInfo } from "@/app/(main)/_features/video-core/v
 import { atom } from "jotai"
 import { useSetAtom } from "jotai/react"
 import React, { useEffect } from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type VideoCoreAction = "seekTo" | "seek" | "togglePlay"
 
@@ -344,7 +347,7 @@ export function vc_createChaptersFromAniSkip(
             uid: 90,
             start: 0,
             end: openingStart,
-            text: "Prologue",
+            text: t("videoPlayer.chapters.prologue"),
         })
     }
 
@@ -352,7 +355,7 @@ export function vc_createChaptersFromAniSkip(
         uid: 91,
         start: openingStart,
         end: openingEnd,
-        text: "Opening",
+        text: t("videoPlayer.chapters.opening"),
     })
 
     const middleEnd = endingStart ?? duration
@@ -361,7 +364,7 @@ export function vc_createChaptersFromAniSkip(
             uid: 93,
             start: openingEnd,
             end: middleEnd,
-            text: mediaFormat !== "MOVIE" ? "Episode" : "Movie",
+            text: mediaFormat !== "MOVIE" ? t("videoPlayer.chapters.episode") : t("videoPlayer.chapters.movie"),
         })
     }
 
@@ -370,7 +373,7 @@ export function vc_createChaptersFromAniSkip(
             uid: 92,
             start: endingStart,
             end: endingEnd,
-            text: "Ending",
+            text: t("videoPlayer.chapters.ending"),
         })
     }
 
@@ -379,7 +382,7 @@ export function vc_createChaptersFromAniSkip(
             uid: 94,
             start: endingEnd,
             end: duration,
-            text: (duration - endingEnd) > 0.5 * 60 ? "Ending" : "Preview",
+            text: (duration - endingEnd) > 0.5 * 60 ? t("videoPlayer.chapters.ending") : t("videoPlayer.chapters.preview"),
         })
     }
 

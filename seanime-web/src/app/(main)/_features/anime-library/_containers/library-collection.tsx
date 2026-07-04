@@ -7,7 +7,7 @@ import { IconButton } from "@/components/ui/button"
 import { Carousel, CarouselContent, CarouselDotButtons } from "@/components/ui/carousel"
 import { cn } from "@/components/ui/core/styling"
 import { DropdownMenu, DropdownMenuItem } from "@/components/ui/dropdown-menu"
-import { getLibraryCollectionTitle } from "@/lib/server/utils"
+import { createTranslator } from "@/locales"
 import { useAtom } from "jotai/react"
 import React from "react"
 import { LuListFilter } from "react-icons/lu"
@@ -114,6 +114,8 @@ export const LibraryCollectionListItem = React.memo(({ list, streamingMediaIds, 
 
     const [params, setParams] = useAtom(__mainLibrary_paramsAtom)
 
+    const t = createTranslator()
+
     if (!!showStatuses && !!list.type && !showStatuses.includes(list.type)) return null
 
     return (
@@ -123,7 +125,7 @@ export const LibraryCollectionListItem = React.memo(({ list, streamingMediaIds, 
                     className={cn(
                         "p-0 m-0",
                     )}
-                >{getLibraryCollectionTitle(list.type)}</h2>
+                >{list.type === "CURRENT" ? t("listTitles.current") : list.type === "PLANNING" ? t("listTitles.planning") : list.type === "PAUSED" ? t("listTitles.paused") : list.type === "COMPLETED" ? t("listTitles.completed") : list.type === "DROPPED" ? t("listTitles.dropped") : list.type === "REPEATING" ? t("listTitles.repeating") : list.type}</h2>
                 {type === "grid" && <div className="flex flex-1"></div>}
                 {isCurrentlyWatching && <DropdownMenu
                     trigger={<IconButton
@@ -141,7 +143,7 @@ export const LibraryCollectionListItem = React.memo(({ list, streamingMediaIds, 
                             })
                         }}
                     >
-                        {params.continueWatchingOnly ? "Show all" : "Show unwatched only"}
+                        {params.continueWatchingOnly ? t("common.labels.showAll") : t("status.showOnlyUnwatched")}
                     </DropdownMenuItem>
                 </DropdownMenu>}
             </div>
