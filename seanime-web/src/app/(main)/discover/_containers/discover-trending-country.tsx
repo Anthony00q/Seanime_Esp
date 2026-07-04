@@ -9,6 +9,10 @@ import { Carousel, CarouselContent, CarouselDotButtons } from "@/components/ui/c
 import { atom } from "jotai"
 import { useAtom, useAtomValue, useSetAtom } from "jotai/react"
 import React, { useEffect, useState } from "react"
+import { createTranslator } from "@/locales"
+import { translateGenre } from "@/lib/anilist-translations"
+
+const t = createTranslator()
 
 const trendingGenresAtom = atom<string[]>([])
 
@@ -132,12 +136,12 @@ function GenreSelector() {
         <MediaGenreSelector
             items={[
                 {
-                    name: "All",
+                    name: t("discover.all"),
                     isCurrent: selectedGenre.length === 0,
                     onClick: () => setSelectedGenre([]),
                 },
                 ...ADVANCED_SEARCH_MEDIA_GENRES.map(genre => ({
-                    name: genre,
+                    name: translateGenre(genre),
                     isCurrent: selectedGenre.includes(genre),
                     onClick: () => setSelectedGenre([genre]),
                 })),

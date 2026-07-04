@@ -21,6 +21,7 @@ import { BiListPlus, BiPlus, BiStar, BiTrash } from "react-icons/bi"
 import { TbEdit } from "react-icons/tb"
 import { useToggle } from "react-use"
 import { z } from "zod"
+import { createTranslator } from "@/locales"
 
 type AnilistMediaEntryModalProps = {
     children?: React.ReactNode
@@ -85,6 +86,7 @@ function IsomorphicPopover(props: PopoverProps & ModalProps & { media?: AL_BaseA
 
 
 export const AnilistMediaEntryModal = (props: AnilistMediaEntryModalProps) => {
+    const t = createTranslator()
     const [open, toggle] = useToggle(false)
     const [repeat, setRepeat] = React.useState<number | "">(0)
 
@@ -157,7 +159,7 @@ export const AnilistMediaEntryModal = (props: AnilistMediaEntryModalProps) => {
                         })}
                     />}
                 >
-                    Add to list
+                    {t("anilist.mediaEntry.addToList")}
                 </Tooltip>}
             </>}
 
@@ -228,6 +230,8 @@ function Content(props: AnilistMediaEntryModalProps & {
         ...rest
     } = props
 
+    const t = createTranslator()
+
     return (
         <>
             {(!!listData) && <Form
@@ -252,7 +256,7 @@ function Content(props: AnilistMediaEntryModalProps & {
                     <StatusField media={media} type={type} />
                     {media?.status !== "NOT_YET_RELEASED" && <>
                         <Field.Number
-                            label="Score"
+                            label={t("anilist.mediaEntry.score")}
                             name="score"
                             min={0}
                             max={10}
@@ -264,7 +268,7 @@ function Content(props: AnilistMediaEntryModalProps & {
                             rightIcon={<BiStar />}
                         />
                         <Field.Number
-                            label="Progress"
+                            label={t("anilist.mediaEntry.progress")}
                             name="progress"
                             min={0}
                             max={type === "anime" ? (!!(media as AL_BaseAnime)?.nextAiringEpisode?.episode
@@ -283,13 +287,13 @@ function Content(props: AnilistMediaEntryModalProps & {
                 </div>
                 {media?.status !== "NOT_YET_RELEASED" && <div className="flex flex-col sm:flex-row gap-4">
                     <Field.DatePicker
-                        label="Start date"
+                        label={t("anilist.mediaEntry.startDate")}
                         name="startedAt"
                         // defaultValue={(state.startedAt && state.startedAt.year) ? parseAbsoluteToLocal(new Date(state.startedAt.year,
                         // (state.startedAt.month || 1)-1, state.startedAt.day || 1).toISOString()) : undefined}
                     />
                     <Field.DatePicker
-                        label="Completion date"
+                        label={t("anilist.mediaEntry.completionDate")}
                         name="completedAt"
                         // defaultValue={(state.completedAt && state.completedAt.year) ? parseAbsoluteToLocal(new Date(state.completedAt.year,
                         // (state.completedAt.month || 1)-1, state.completedAt.day || 1).toISOString()) : undefined}
@@ -297,7 +301,7 @@ function Content(props: AnilistMediaEntryModalProps & {
 
                     <NumberInput
                         name="repeat"
-                        label={type === "anime" ? "Total rewatches" : "Total rereads"}
+                        label={type === "anime" ? t("anilist.mediaEntry.totalRewatches") : t("anilist.mediaEntry.totalRereads")}
                         min={0}
                         max={1000}
                         value={repeat}
@@ -332,14 +336,14 @@ function Content(props: AnilistMediaEntryModalProps & {
                                             mediaId: media?.id!,
                                             type: type,
                                         })}
-                                    >Confirm</Button>
+                                    >{t("common.buttons.confirm")}</Button>
                                 </DisclosureContent>
                             </DisclosureItem>
                         </Disclosure>
                     </div>
 
                     <Field.Submit role="save" disableIfInvalid={true} loading={isEditing} disabled={isDeleting}>
-                        Save
+                        {t("common.buttons.save")}
                     </Field.Submit>
                 </div>
 
@@ -353,6 +357,7 @@ function StatusField({ media, type }: {
     media?: AL_BaseAnime | AL_BaseManga
     type: "anime" | "manga"
 }) {
+    const t = createTranslator()
     const { setValue } = useFormContext<z.infer<typeof mediaListDataSchema>>()
 
     const handleChange = (status: AL_MediaListStatus) => {
@@ -365,30 +370,30 @@ function StatusField({ media, type }: {
     }
 
     return <Field.Select
-        label="Status"
+        label={t("anilist.mediaEntry.status")}
         name="status"
         onChange={handleChange}
         options={[
             media?.status !== "NOT_YET_RELEASED" ? {
                 value: "CURRENT",
-                label: type === "anime" ? "Watching" : "Reading",
+                label: type === "anime" ? t("status.current") : t("status.currentManga"),
             } : undefined,
-            { value: "PLANNING", label: "Planning" },
+            { value: "PLANNING", label: t("status.planning") },
             media?.status !== "NOT_YET_RELEASED" ? {
                 value: "PAUSED",
-                label: "Paused",
+                label: t("status.paused"),
             } : undefined,
             media?.status !== "NOT_YET_RELEASED" ? {
                 value: "COMPLETED",
-                label: "Completed",
+                label: t("status.completed"),
             } : undefined,
             media?.status !== "NOT_YET_RELEASED" ? {
                 value: "DROPPED",
-                label: "Dropped",
+                label: t("status.dropped"),
             } : undefined,
             media?.status !== "NOT_YET_RELEASED" ? {
                 value: "REPEATING",
-                label: "Repeating",
+                label: t("status.repeating"),
             } : undefined,
         ].filter(Boolean)}
     />

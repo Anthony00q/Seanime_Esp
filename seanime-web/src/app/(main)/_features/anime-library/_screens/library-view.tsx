@@ -11,6 +11,7 @@ import { useSetAtom } from "jotai"
 import { useAtom } from "jotai/react"
 import { AnimatePresence } from "motion/react"
 import React from "react"
+import { translateGenre } from "@/lib/anilist-translations"
 
 
 type LibraryViewProps = {
@@ -122,8 +123,8 @@ function GenreSelector({
             <MediaGenreSelector
                 items={[
                     ...genres.map(genre => ({
-                        name: genre,
-                        isCurrent: params!.genre?.includes(genre) ?? false,
+                    name: translateGenre(genre),
+                    isCurrent: params!.genre?.includes(genre) ?? false,
                         onClick: () => setParams(draft => {
                             if (draft.genre?.includes(genre)) {
                                 draft.genre = draft.genre?.filter(g => g !== genre)

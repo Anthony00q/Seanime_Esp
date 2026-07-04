@@ -19,6 +19,9 @@ import { useSetAtom } from "jotai/react"
 import React from "react"
 import { AiFillInfoCircle } from "react-icons/ai"
 import { LuCaptions, LuPaintbrush } from "react-icons/lu"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export type VideoCoreSubtitleSelection = {
     language?: string
@@ -115,12 +118,12 @@ export function VideoCoreSubtitleMenu({ inline, onPreferenceChange }: {
                 }}
             />}
         >
-            <VideoCoreMenuTitle>Subtitles {(!!subtitleManager && !inline) && <Tooltip
+                <VideoCoreMenuTitle>Subtitles {(!!subtitleManager && !inline) && <Tooltip
                 trigger={<AiFillInfoCircle className="text-sm" />}
                 className="z-[150]"
                 portalContainer={isFullscreen ? (containerElement ?? undefined) : undefined}
             >
-                You can add subtitles by dragging and dropping files onto the player.
+                {t("videoPlayer.subtitleMenu.addSubtitlesHelp")}
             </Tooltip>}
                 <IconButton
                     intent="gray-link" size="xs"
@@ -139,7 +142,7 @@ export function VideoCoreSubtitleMenu({ inline, onPreferenceChange }: {
                     containerElement={containerElement}
                     options={[
                         {
-                            label: "Off",
+                            label: t("videoPlayer.subtitleMenu.off"),
                             value: -1,
                         },
                         ...subtitleTracks.map(track => {

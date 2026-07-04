@@ -1,7 +1,10 @@
 import { LuffyError } from "@/components/shared/luffy-error"
+import { createTranslator } from "@/locales"
 import { useQueryClient } from "@tanstack/react-query"
 import { useRouter as useTanStackRouter } from "@tanstack/react-router"
 import React from "react"
+
+const t = createTranslator()
 
 interface AppErrorBoundaryProps {
     error: any
@@ -41,11 +44,11 @@ export function AppErrorBoundary({ error, reset, resetErrorBoundary }: AppErrorB
 
     return (
         <LuffyError
-            title="Client side error"
+            title={t("misc.error.clientSideError")}
             reset={handleReset}
         >
             <p className="text-[--muted]">
-                {(error as Error)?.message || "An unexpected error occurred."}
+                {(error as Error)?.message || t("misc.error.unexpectedError")}
             </p>
         </LuffyError>
     )

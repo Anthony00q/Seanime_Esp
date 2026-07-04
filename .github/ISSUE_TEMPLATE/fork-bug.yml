@@ -1,0 +1,60 @@
+name: Error del Fork / Actualizador
+description: Reporta un error con el actualizador o funcionalidades exclusivas de este fork
+title: 'bug: '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **¡ALTO AHÍ!** Por favor lee esto antes de reportar:
+        - Si el error es sobre **la reproducción, UI rota, fallos al escanear o funciones base de Seanime**, debes reportarlo en el [repositorio original de 5rahim](https://github.com/5rahim/seanime/issues).
+        - Usa esta plantilla **SOLO** si el problema está en el **Actualizador interno de este fork**, si la app **crashea al cambiar de idioma**, o si hay un problema directamente relacionado al sistema de traducciones.
+
+  - type: dropdown
+    id: origen
+    attributes:
+      label: Origen del Problema
+      description: ¿Estás seguro de que este error pertenece a este fork y no a la aplicación original?
+      options:
+        - "Sí, es un fallo del Actualizador (Updater de Seanime_Esp)"
+        - "Sí, la app crashea al cambiar de idioma"
+        - "No estoy seguro, pero solo me pasa en esta versión traducida"
+        - "No, creo que es un error de la app en general (¡Ve a reportarlo al repositorio original!)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: descripcion
+    attributes:
+      label: Descripción del Error
+      description: Explica detalladamente qué estabas haciendo y qué falló.
+      placeholder: "Ej: Le di al botón de actualizar y me salió este error en la consola..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: captura
+    attributes:
+      label: Captura de Pantalla o Logs
+      description: Adjunta una imagen o copia los logs de la terminal (esto ayuda muchísimo a detectar si es de traducción o de la app base).
+
+  - type: input
+    id: version
+    attributes:
+      label: Versión de la App
+      description: Qué versión de Seanime_Esp estás usando.
+      placeholder: v3.8.3
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sistema
+    attributes:
+      label: Sistema Operativo
+      options:
+        - Windows
+        - Linux
+        - macOS
+    validations:
+      required: true

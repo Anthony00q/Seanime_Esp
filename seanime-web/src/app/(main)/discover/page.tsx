@@ -1,3 +1,4 @@
+import { createTranslator } from "@/locales"
 import { PluginWebviewSlot } from "@/app/(main)/_features/plugin/webview/plugin-webviews"
 import { useServerStatus } from "@/app/(main)/_hooks/use-server-status"
 import { DiscoverPageHeader } from "@/app/(main)/discover/_components/discover-page-header"
@@ -25,6 +26,8 @@ export default function Page() {
     const [pageType, setPageType] = useAtom(__discord_pageTypeAtom)
     const searchParams = useSearchParams()
     const searchType = searchParams.get("type")
+
+    const t = createTranslator()
 
 
     React.useEffect(() => {
@@ -54,10 +57,10 @@ export default function Page() {
                             triggerClass="px-4 py-2 h-full rounded-full border-transparent"
                             pillClass="rounded-full border-transparent"
                             items={[
-                                { name: "Anime", isCurrent: pageType === "anime", onClick: () => setPageType("anime") },
-                                { name: "Schedule", isCurrent: pageType === "schedule", onClick: () => setPageType("schedule") },
+                                { name: t("anilistStats.anime"), isCurrent: pageType === "anime", onClick: () => setPageType("anime") },
+                                { name: t("navigation.schedule"), isCurrent: pageType === "schedule", onClick: () => setPageType("schedule") },
                                 ...(serverStatus?.settings?.library?.enableManga ? [{
-                                    name: "Manga",
+                                    name: t("navigation.manga"),
                                     isCurrent: pageType === "manga",
                                     onClick: () => setPageType("manga"),
                                 }] : []),
@@ -107,25 +110,25 @@ export default function Page() {
                         data-discover-page-anime-container
                     >
                         <div className="space-y-2 z-[5] relative" data-discover-page-anime-trending-container>
-                            <h2>Trending Right Now</h2>
+                            <h2>{t("discover.trendingRightNow")}</h2>
                             <DiscoverTrending />
                         </div>
                         <RecentReleases />
                         <div className="space-y-2 z-[5] relative" data-discover-page-anime-highest-rated-container>
-                            <h2>Top of the Season</h2>
+                            <h2>{t("discover.topOfSeason")}</h2>
                             <DiscoverThisSeason />
                         </div>
                         <div className="space-y-2 z-[5] relative" data-discover-page-anime-highest-rated-container>
-                            <h2>Best of Last Season</h2>
+                            <h2>{t("discover.bestOfLastSeason")}</h2>
                             <DiscoverPastSeason />
                         </div>
-                        <DiscoverMissedSequelsSection />
+                        <DiscoverMissedSequelsSection title={t("discover.missedSequels")} />
                         <div className="space-y-2 z-[5] relative" data-discover-page-anime-upcoming-container>
-                            <h2>Coming Soon</h2>
+                            <h2>{t("discover.comingSoon")}</h2>
                             <DiscoverUpcoming />
                         </div>
                         <div className="space-y-2 z-[5] relative" data-discover-page-anime-trending-movies-container>
-                            <h2>Trending Movies</h2>
+                            <h2>{t("discover.trendingMovies")}</h2>
                             <DiscoverTrendingMovies />
                         </div>
                         {/*<div className="space-y-2 z-[5] relative">*/}
@@ -166,15 +169,15 @@ export default function Page() {
                         {/*    <DiscoverTrendingMangaAll />*/}
                         {/*</div>*/}
                         <div className="space-y-2 z-[5] relative" data-discover-page-manga-trending-container>
-                            <h2>Trending Manga</h2>
+                            <h2>{t("discover.trendingManga")}</h2>
                             <DiscoverTrendingCountry country="JP" forDiscoverHeader />
                         </div>
                         <div className="space-y-2 z-[5] relative" data-discover-page-manga-trending-manhwa-container>
-                            <h2>Trending Manhwa</h2>
+                            <h2>{t("discover.trendingManhwa")}</h2>
                             <DiscoverTrendingCountry country="KR" />
                         </div>
                         <div className="space-y-2 z-[5] relative" data-discover-page-manga-trending-manhua-container>
-                            <h2>Trending Manhua</h2>
+                            <h2>{t("discover.trendingManhua")}</h2>
                             <DiscoverTrendingCountry country="CN" />
                         </div>
                         {/*<div className="space-y-2 z-[5] relative">*/}

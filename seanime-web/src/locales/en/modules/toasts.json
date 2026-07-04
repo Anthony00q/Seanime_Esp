@@ -1,0 +1,160 @@
+{
+  "toast": {
+    "settings": {
+      "settingsSaved": "Settings saved"
+    },
+    "anilist": {
+      "upToDate": "Up to date",
+      "entryUpdated": "Entry updated",
+      "entryDeleted": "Entry deleted",
+      "rateLimited": "AniList: Rate limited, retrying in {seconds} seconds",
+      "apiBackOnline": "The AniList API is back online",
+      "apiIssues": "The AniList API is experiencing issues ({count} failures in {time}), switching to cache-only mode.",
+      "sessionExpired": "Your AniList session has expired. Please log in again.",
+      "updateProgressFailed": "Failed to update progress on AniList"
+    },
+    "playlist": {
+      "created": "Created",
+      "updated": "Updated",
+      "deleted": "Deleted"
+    },
+    "auth": {
+      "authenticated": "Authenticated",
+      "loggedOut": "Logged out",
+      "invalidToken": "Invalid token"
+    },
+    "autoDownloader": {
+      "started": "Started",
+      "ruleCreated": "Rule created",
+      "ruleUpdated": "Rule updated",
+      "ruleDeleted": "Rule deleted",
+      "itemDeleted": "Item deleted",
+      "profileCreated": "Profile created",
+      "profileUpdated": "Profile updated",
+      "profileDeleted": "Profile deleted"
+    },
+    "debrid": {
+      "torrentAdded": "Torrent added",
+      "downloadStarted": "Download started",
+      "downloadCancelled": "Download cancelled",
+      "torrentDeleted": "Torrent deleted",
+      "streamCancelled": "Stream cancelled"
+    },
+    "download": {
+      "filesDownloaded": "Files downloaded",
+      "updateDownloaded": "Update downloaded",
+      "updateInstalled": "Update installed"
+    },
+    "extensions": {
+      "uninstalled": "Uninstalled",
+      "updated": "Updated",
+      "configSaved": "Config saved",
+      "reloaded": "Reloaded",
+      "permissionsGranted": "Permissions granted"
+    },
+    "filecache": {
+      "cacheCleared": "Cache cleared"
+    },
+    "local": {
+      "mediaAddedOffline": "Media added offline",
+      "offlineDataRemoved": "Offline data removed",
+      "syncing": "Syncing",
+      "anilistUpdated": "Anilist updated",
+      "offlineEnabled": "Offline enabled",
+      "offlineDisabled": "Offline disabled"
+    },
+    "localfiles": {
+      "metadataUpdated": "Metadata updated",
+      "filesDeleted": "Files deleted",
+      "emptyDirsRemoved": "Empty dirs removed",
+      "imported": "Imported"
+    },
+    "mal": {
+      "loggedOut": "Logged out"
+    },
+    "manga": {
+      "mappingAdded": "Mapping added",
+      "mappingRemoved": "Mapping removed",
+      "sourcesRefreshed": "Sources refreshed"
+    },
+    "mangaDownload": {
+      "downloading": "Downloading",
+      "queueStopped": "Queue stopped",
+      "queueCleared": "Queue cleared",
+      "erroredReset": "Errored reset",
+      "chaptersDeleted": "Chapters deleted"
+    },
+    "metadata": {
+      "fillerFetched": "Filler fetched",
+      "fillerRemoved": "Filler removed",
+      "updated": "Updated",
+      "removed": "Removed"
+    },
+    "onlinestream": {
+      "cacheEmptied": "Cache emptied",
+      "mappingAdded": "Mapping added",
+      "mappingRemoved": "Mapping removed"
+    },
+    "playback": {
+      "playlistCancelled": "Playlist cancelled",
+      "nextFile": "Next file",
+      "randomEpisode": "Random episode",
+      "nextEpisode": "Next episode"
+    },
+    "status": {
+      "logsDeleted": "Logs deleted",
+      "couldntFetchLogs": "Couldnt fetch logs",
+      "failedToCopyLogs": "Failed to copy logs: {error}",
+      "gcCompleted": "Gc completed",
+      "generatingProfile": "Generating {profileType} profile...",
+      "profileDownloaded": "{profileType} profile downloaded",
+      "failedToDownloadProfile": "Failed to download {profileType} profile",
+      "generatingGoroutineProfile": "Generating goroutine profile",
+      "goroutineProfileDownloaded": "Goroutine profile downloaded",
+      "failedToDownloadGoroutineProfile": "Failed to download goroutine profile",
+      "generatingCpuProfile": "Generating CPU profile for {duration} seconds...",
+      "cpuProfileDownloaded": "CPU profile ({duration}s) downloaded",
+      "failedToDownloadCpuProfile": "Failed to download cpu profile",
+      "homeUpdated": "Home updated"
+    },
+    "theme": {
+      "uiSettingsSaved": "Ui settings saved"
+    },
+    "torrentClient": {
+      "actionPerformed": "Action performed",
+      "downloadStarted": "Download started",
+      "globalSpeedLimitsUpdated": "Global speed limits updated",
+      "torrentFilesMoved": "Torrent files moved",
+      "torrentRenamed": "Torrent renamed",
+      "magnetLinkAdded": "Magnet link added",
+      "reannouncedToTrackers": "Reannounced to trackers",
+      "trackerAdded": "Tracker added",
+      "trackerRemoved": "Tracker removed"
+    },
+    "torrentstream": {
+      "streamStopped": "Stream stopped",
+      "torrentDropped": "Torrent dropped",
+      "downloadDirNotExist": "Download dir not exist",
+      "downloadDirNotDir": "Download dir not dir"
+    },
+    "animeCollection": {
+      "mediaAdded": "Media added"
+    },
+    "animeEntries": {
+      "filesMatched": "Files matched",
+      "progressUpdated": "Progress updated"
+    },
+    "client": {
+      "featureDisabled": "Feature disabled",
+      "anilistRateLimit": "Anilist rate limit",
+      "anilistError": "AniList error: {error}",
+      "error": "Error: {error}",
+      "noResponse": "No response",
+      "unknownError": "Unknown error",
+      "mangaNoPagesFound": "No pages found for this chapter",
+      "mangaNoChaptersFound": "No chapters found for this manga",
+      "mangaChapterNotFound": "Chapter not found",
+      "mangaProviderNotFound": "Provider not found and chapter is not downloaded"
+    }
+  }
+}

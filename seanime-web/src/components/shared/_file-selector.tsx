@@ -3,10 +3,13 @@ import { Modal } from "@/components/ui/modal"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { TextInput } from "@/components/ui/text-input"
 import { useDebounce } from "@/hooks/use-debounce"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { BiFolderOpen } from "react-icons/bi"
 import { FaFolder } from "react-icons/fa"
 import { FiChevronDown, FiChevronRight, FiFile, FiFolder } from "react-icons/fi"
+
+const t = createTranslator()
 
 type FileSelectorProps = {
     kind: "file" | "directory" | "both"
@@ -134,7 +137,7 @@ function FileSelectorModal(props: FileSelectorProps & { isOpen: boolean, onOpenC
 
     return (
         <Modal
-            title="Select a file or directory"
+            title={t("common.components.fileSelector.selectFileOrDirectory")}
             open={isOpen}
             onOpenChange={onOpenChange}
             contentClass="max-w-3xl"

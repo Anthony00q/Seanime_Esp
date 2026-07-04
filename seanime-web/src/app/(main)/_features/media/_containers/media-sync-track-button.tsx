@@ -4,6 +4,9 @@ import { IconButton } from "@/components/ui/button"
 import { Tooltip } from "@/components/ui/tooltip"
 import React from "react"
 import { MdOutlineDownloadForOffline, MdOutlineOfflinePin } from "react-icons/md"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type MediaSyncTrackButtonProps = {
     mediaId: number
@@ -38,8 +41,8 @@ export function MediaSyncTrackButton(props: MediaSyncTrackButtonProps) {
     }
 
     const confirmUntrack = useConfirmationDialog({
-        title: "Remove offline data",
-        description: "This action will remove the offline data for this media entry. Are you sure you want to proceed?",
+        title: t("sync.removeOfflineData"),
+        description: t("sync.removeOfflineDataDesc"),
         onConfirm: () => {
             handleToggle()
         },
@@ -57,7 +60,7 @@ export function MediaSyncTrackButton(props: MediaSyncTrackButtonProps) {
                     {...rest}
                 />}
             >
-                {isTracked ? `Remove offline data` : `Save locally`}
+                {isTracked ? t("sync.removeOfflineData") : t("sync.saveLocally")}
             </Tooltip>
 
             <ConfirmationDialog {...confirmUntrack} />

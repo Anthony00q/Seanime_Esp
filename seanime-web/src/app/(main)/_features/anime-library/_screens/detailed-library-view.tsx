@@ -18,6 +18,8 @@ import {
     ADVANCED_SEARCH_SEASONS,
     ADVANCED_SEARCH_STATUS,
 } from "@/app/(main)/search/_lib/advanced-search-constants"
+import { createTranslator } from "@/locales"
+import { translateFormat, translateGenre, translateSeason, translateStatus, translateTag } from "@/lib/anilist-translations"
 import { PageWrapper } from "@/components/shared/page-wrapper"
 import { AppLayoutStack } from "@/components/ui/app-layout"
 import { IconButton } from "@/components/ui/button"
@@ -31,7 +33,6 @@ import { StaticTabs } from "@/components/ui/tabs"
 import { TextInput } from "@/components/ui/text-input"
 import { useDebounce } from "@/hooks/use-debounce"
 import { ANIME_COLLECTION_SORTING_OPTIONS } from "@/lib/helpers/filtering"
-import { getLibraryCollectionTitle } from "@/lib/server/utils"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { getYear } from "date-fns"
 import { useSetAtom } from "jotai"
@@ -44,6 +45,8 @@ import { FiSearch } from "react-icons/fi"
 import { LuCalendar, LuLeaf, LuTags } from "react-icons/lu"
 import { MdPersonalVideo } from "react-icons/md"
 import { RiSignalTowerLine } from "react-icons/ri"
+
+const t = createTranslator()
 
 type LibraryViewProps = {
     collectionList: Anime_LibraryCollectionList[]
@@ -112,9 +115,9 @@ export function DetailedLibraryView(props: LibraryViewProps) {
                         size="sm"
                         onClick={() => setView("base")}
                     />
-                    {!isNakamaLibrary && <h3 className="text-ellipsis truncate">Home</h3>}
+                    {!isNakamaLibrary && <h3 className="text-ellipsis truncate">{t("navigation.home")}</h3>}
                     {isNakamaLibrary &&
-                        <h3 className="text-ellipsis truncate">{nakamaStatus?.hostConnectionStatus?.username || "Host"}'s Library</h3>}
+                        <h3 className="text-ellipsis truncate">{t("animeLibrary.hostsLibrary", { host: nakamaStatus?.hostConnectionStatus?.username || t("common.labels.host") })}</h3>}
                 </div>
 
                 <SearchInput />
@@ -129,27 +132,27 @@ export function DetailedLibraryView(props: LibraryViewProps) {
             >
                 {!isNakamaLibrary && <div>
                     <h3>{stats?.totalSize}</h3>
-                    <p>Library</p>
+                    <p>{t("home.stats.library")}</p>
                 </div>}
                 <div>
                     <h3>{stats?.totalFiles}</h3>
-                    <p>Files</p>
+                    <p>{t("home.stats.files")}</p>
                 </div>
                 <div>
                     <h3>{stats?.totalEntries}</h3>
-                    <p>Entries</p>
+                    <p>{t("animeLibrary.entries")}</p>
                 </div>
                 <div>
                     <h3>{stats?.totalShows}</h3>
-                    <p>TV Shows</p>
+                    <p>{t("animeLibrary.tvShows")}</p>
                 </div>
                 <div>
                     <h3>{stats?.totalMovies}</h3>
-                    <p>Movies</p>
+                    <p>{t("animeLibrary.movies")}</p>
                 </div>
                 <div>
                     <h3>{stats?.totalSpecials}</h3>
-                    <p>Specials</p>
+                    <p>{t("animeLibrary.specials")}</p>
                 </div>
             </div>}
 
@@ -174,12 +177,13 @@ const LibraryCollectionListItem = React.memo(({ list, streamingMediaIds, type }:
 }) => {
 
     const [selectedList, setSelectedList] = useAtom(__library_selectedListAtom)
+    const t = createTranslator()
 
     if (selectedList !== "-" && selectedList !== list.type) return null
 
     return (
         <React.Fragment key={list.type}>
-            <h2>{getLibraryCollectionTitle(list.type)} <span className="text-[--muted] font-medium ml-3">{list?.entries?.length ?? 0}</span></h2>
+            <h2>{list.type === "CURRENT" ? t("listTitles.current") : list.type === "PLANNING" ? t("listTitles.planning") : list.type === "PAUSED" ? t("listTitles.paused") : list.type === "COMPLETED" ? t("listTitles.completed") : list.type === "DROPPED" ? t("listTitles.dropped") : list.type === "REPEATING" ? t("listTitles.repeating") : list.type} <span className="text-[--muted] font-medium ml-3">{list?.entries?.length ?? 0}</span></h2>
             {type === "grid" && <MediaCardLazyGrid itemCount={list?.entries?.length || 0}>
                 {list.entries?.map(entry => {
                     return <LibraryCollectionEntryItem key={entry.mediaId} entry={entry} streamingMediaIds={streamingMediaIds} type={type} />
@@ -292,6 +296,7 @@ export function SearchOptions() {
     const serverStatus = useServerStatus()
     const [params, setParams] = useAtom(__library_paramsAtom)
     const [selectedIndex, setSelectedIndex] = useAtom(__library_selectedListAtom)
+    const t = createTranslator()
 
     return (
         <AppLayoutStack className="px-4 xl:px-0" data-detailed-library-view-search-options-container>
@@ -300,13 +305,13 @@ export function SearchOptions() {
                     className="w-fit mb-6"
                     triggerClass="px-4 py-1"
                     items={[
-                        { name: "Lists", isCurrent: selectedIndex === "-", onClick: () => setSelectedIndex("-") },
-                        { name: "All", isCurrent: selectedIndex === "all", onClick: () => setSelectedIndex("all") },
-                        { name: "Watching", isCurrent: selectedIndex === "CURRENT", onClick: () => setSelectedIndex("CURRENT") },
-                        { name: "Planning", isCurrent: selectedIndex === "PLANNING", onClick: () => setSelectedIndex("PLANNING") },
-                        { name: "Paused", isCurrent: selectedIndex === "PAUSED", onClick: () => setSelectedIndex("PAUSED") },
-                        { name: "Completed", isCurrent: selectedIndex === "COMPLETED", onClick: () => setSelectedIndex("COMPLETED") },
-                        { name: "Dropped", isCurrent: selectedIndex === "DROPPED", onClick: () => setSelectedIndex("DROPPED") },
+                        { name: t("status.lists"), isCurrent: selectedIndex === "-", onClick: () => setSelectedIndex("-") },
+                        { name: t("status.all"), isCurrent: selectedIndex === "all", onClick: () => setSelectedIndex("all") },
+                        { name: t("listTitles.current"), isCurrent: selectedIndex === "CURRENT", onClick: () => setSelectedIndex("CURRENT") },
+                        { name: t("listTitles.planning"), isCurrent: selectedIndex === "PLANNING", onClick: () => setSelectedIndex("PLANNING") },
+                        { name: t("listTitles.paused"), isCurrent: selectedIndex === "PAUSED", onClick: () => setSelectedIndex("PAUSED") },
+                        { name: t("listTitles.completed"), isCurrent: selectedIndex === "COMPLETED", onClick: () => setSelectedIndex("COMPLETED") },
+                        { name: t("listTitles.dropped"), isCurrent: selectedIndex === "DROPPED", onClick: () => setSelectedIndex("DROPPED") },
                     ]}
                 />
             </div>
@@ -315,7 +320,7 @@ export function SearchOptions() {
                 data-detailed-library-view-search-options-grid
             >
                 <Select
-                    label="Sorting"
+                    label={t("home.items.options.sorting.label")}
                     leftAddon={<FaSortAmountDown className={cn(params.sorting !== "TITLE" && "text-indigo-300 font-bold text-xl")} />}
                     className="w-full"
                     fieldClass="flex items-center"
@@ -332,10 +337,10 @@ export function SearchOptions() {
                 <Select
                     leftAddon={
                         <MdPersonalVideo className={cn((params.format as any) !== null && (params.format as any) !== "" && "text-indigo-300 font-bold text-xl")} />}
-                    label="Format" placeholder="All formats"
+                    label={t("home.items.options.format.label")} placeholder={t("common.placeholders.allFormats")}
                     className="w-full"
                     fieldClass="w-full"
-                    options={ADVANCED_SEARCH_FORMATS}
+                    options={ADVANCED_SEARCH_FORMATS.map(f => ({ ...f, label: translateFormat(f.value) }))}
                     value={params.format || ""}
                     onValueChange={v => setParams(draft => {
                         draft.format = v as any
@@ -346,11 +351,11 @@ export function SearchOptions() {
                 <Select
                     leftAddon={
                         <RiSignalTowerLine className={cn((params.status as any) !== null && (params.status as any) !== "" && "text-indigo-300 font-bold text-xl")} />}
-                    label="Status" placeholder="All statuses"
+                    label={t("home.items.options.status.label")} placeholder={t("common.placeholders.allStatuses")}
                     className="w-full"
                     fieldClass="w-full"
                     options={[
-                        ...ADVANCED_SEARCH_STATUS,
+                        ...ADVANCED_SEARCH_STATUS.map(s => ({ ...s, label: translateStatus(s.value) })),
                     ]}
                     value={params.status || ""}
                     onValueChange={v => setParams(draft => {
@@ -363,9 +368,9 @@ export function SearchOptions() {
                     multiple
                     leftAddon={!params.tags &&
                         <LuTags />}
-                    emptyMessage="No options found"
-                    label="Tags"
-                    placeholder="All tags"
+                    emptyMessage={t("common.messages.noOptions")}
+                    label={t("common.labels.tags")}
+                    placeholder={t("common.placeholders.allTags")}
                     className="w-full"
                     fieldClass="w-full"
                     options={ADVANCED_SEARCH_MEDIA_TAGS
@@ -375,7 +380,7 @@ export function SearchOptions() {
                             }
                             return tag.isAdult === false
                         })
-                        .map(tag => ({ value: tag.name, label: tag.name, textValue: tag.name }))}
+                        .map(tag => ({ value: tag.name, label: translateTag(tag.name), textValue: tag.name }))}
                     value={params.tags ? params.tags : []}
                     onValueChange={v => setParams(draft => {
                         draft.tags = v
@@ -386,12 +391,12 @@ export function SearchOptions() {
                 <Select
                     leftAddon={
                         <LuLeaf className={cn((params.season as any) !== null && (params.season as any) !== "" && "text-indigo-300 font-bold text-xl")} />}
-                    label="Season"
-                    placeholder="All seasons"
+                    label={t("home.items.options.season.label")}
+                    placeholder={t("common.placeholders.allSeasons")}
                     className="w-full"
                     fieldClass="w-full flex items-center"
                     inputContainerClass="w-full"
-                    options={ADVANCED_SEARCH_SEASONS.map(season => ({ value: season.toUpperCase(), label: season }))}
+                    options={ADVANCED_SEARCH_SEASONS.map(season => ({ value: season.toUpperCase(), label: translateSeason(season.toUpperCase()) }))}
                     value={params.season || ""}
                     onValueChange={v => setParams(draft => {
                         draft.season = v as any
@@ -401,7 +406,7 @@ export function SearchOptions() {
                 />
                 <Select
                     leftAddon={<LuCalendar className={cn((params.year !== null && params.year !== "") && "text-indigo-300 font-bold text-xl")} />}
-                    label="Year" placeholder="Timeless"
+                    label={t("home.items.options.year.label")} placeholder={t("common.placeholders.timeless")}
                     className="w-full"
                     fieldClass="w-full"
                     options={[...Array(70)].map((v, idx) => getYear(new Date()) - idx).map(year => ({
@@ -424,7 +429,7 @@ export function SearchOptions() {
                 </div>
                 {serverStatus?.settings?.anilist?.enableAdultContent && <div className="flex h-full items-center">
                     <Switch
-                        label="Adult"
+                        label={t("common.labels.adult")}
                         value={params.isAdult}
                         onValueChange={v => setParams(draft => {
                             draft.isAdult = v
@@ -445,7 +450,7 @@ function GenreSelector({ genres }: { genres: string[] }) {
         <MediaGenreSelector
             items={[
                 {
-                    name: "All",
+                    name: t("common.labels.all"),
                     isCurrent: !params!.genre?.length,
                     onClick: () => setParams(draft => {
                         draft.genre = []
@@ -453,7 +458,7 @@ function GenreSelector({ genres }: { genres: string[] }) {
                     }),
                 },
                 ...genres.map(genre => ({
-                    name: genre,
+                    name: translateGenre(genre),
                     isCurrent: params!.genre?.includes(genre) ?? false,
                     onClick: () => setParams(draft => {
                         if (draft.genre?.includes(genre)) {

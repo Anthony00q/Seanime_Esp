@@ -1,0 +1,68 @@
+{
+  "continueWatching": {
+    "heading": "Continuar Assistindo",
+    "title": "Continuar assistindo"
+  },
+  "progressTracking": {
+    "buttonLabel": "Assistindo",
+    "playNextEpisode": "Reproduzir próximo episódio",
+    "stopPlaylist": "Parar reprodução contínua",
+    "stopPlaylistDesc": "Tem certeza de que deseja parar a playlist? Ela será excluída.",
+    "progressUpdated": "Progresso atualizado",
+    "autoUpdateInfo": "Seu progresso será atualizado automaticamente",
+    "updateProgressNow": "Atualizar progresso agora",
+    "playingExternally": "Reproduzindo externamente",
+    "stop": "Parar",
+    "openExternalPlayer": "Abrir no player externo",
+    "playlistTitle": "Playlist",
+    "remainingEpisodes": "{count} episódio depois deste",
+    "nextLabel": "Próximo",
+    "playNext": "Reproduzir próximo",
+    "playerClosed": "Player fechado"
+  },
+  "autoplay": {
+    "requestingNextEpisode": "Solicitando o próximo episódio",
+    "playingNextEpisode": "Reproduzindo o próximo episódio",
+    "failedToPlayNextEpisode": "Falha ao reproduzir o próximo episódio",
+    "title": "Título",
+    "playNow": "Reproduzir agora"
+  },
+  "playlist": {
+    "watched": "Assistido"
+  },
+  "playlists": {
+    "title": "Playlists",
+    "startingPlaylist": "Iniciando playlist",
+    "playingEpisode": "Reproduzindo o episódio {episode} de {anime}",
+    "pleaseEnterPlaylistName": "Por favor, insira o nome da playlist",
+    "editPlaylist": "Editar playlist",
+    "createPlaylist": "Criar playlist",
+    "addNewPlaylist": "Adicionar a uma nova playlist",
+    "addToPlaylist": "Adicionar à playlist",
+    "update": "Atualizar",
+    "create": "Criar",
+    "deletePlaylist": "Excluir playlist",
+    "noPlaylists": "Sem playlists"
+  },
+  "playlistEditor": {
+    "addEpisodes": "Adicionar episódios",
+    "notInLibraryOrWatching": "Este anime não está na sua biblioteca ou coleção de 'Assistindo'.",
+    "selectAnime": "Selecione um anime",
+    "episodeAlreadyAdded": "Episódio já adicionado",
+    "episodeAdded": "Episódio adicionado à playlist",
+    "maxEpisodes": "Você não pode adicionar mais de 20 episódios a uma playlist"
+  },
+  "playlistManager": {
+    "updateProgress": "Atualizar progresso",
+    "updateProgressDesc": "Seu progresso do AniList será atualizado",
+    "playlistName": "Playlist: {name}",
+    "reopenEpisode": "Reabrir episódio",
+    "stopPlaylist": "Parar playlist",
+    "torrentStreaming": "Streaming de torrent",
+    "debridStreaming": "Streaming de Debrid",
+    "onlineStreaming": "Streaming online",
+    "selectAll": "Selecionar tudo",
+    "deselectAll": "Desmarcar tudo",
+    "noEpisodesFound": "Nenhum episódio encontrado"
+  }
+}

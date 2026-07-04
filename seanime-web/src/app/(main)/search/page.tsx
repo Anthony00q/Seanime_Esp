@@ -16,6 +16,9 @@ import React from "react"
 import { LuCompass } from "react-icons/lu"
 import { MdDataSaverOn } from "react-icons/md"
 import { useMount } from "react-use"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export default function Page() {
     const router = useRouter()
@@ -61,7 +64,7 @@ export default function Page() {
                 <div className="flex items-center gap-3">
                     <SeaLink href={`/discover`}>
                         <Button leftIcon={<LuCompass className="text-xl" />} rounded intent="gray-outline" size="md">
-                            Discover series
+                            {t("search.discoverSeries")}
                         </Button>
                     </SeaLink>
                     {!!customSources?.length && <div data-discover-page-header-custom-source-container>
@@ -73,7 +76,7 @@ export default function Page() {
                                 className="rounded-full"
                                 onClick={() => router.push("/search")}
                             >
-                                Custom sources
+                                {t("search.customSources")}
                             </Button>
                         </SeaLink>
                     </div>}

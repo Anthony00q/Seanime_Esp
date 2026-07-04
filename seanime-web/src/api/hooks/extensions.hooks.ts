@@ -33,6 +33,7 @@ import {
 import { useQueryClient } from "@tanstack/react-query"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { toast } from "sonner"
 
@@ -97,13 +98,14 @@ export function useInstallExternalExtensionRepository() {
 }
 
 export function useUninstallExternalExtension() {
+    const t = createTranslator()
     return useServerMutation<boolean, UninstallExternalExtension_Variables>({
         endpoint: API_ENDPOINTS.EXTENSIONS.UninstallExternalExtension.endpoint,
         method: API_ENDPOINTS.EXTENSIONS.UninstallExternalExtension.methods[0],
         mutationKey: [API_ENDPOINTS.EXTENSIONS.UninstallExternalExtension.key],
         onSuccess: async () => {
             // DEVNOTE: No need to refetch, the websocket listener will do it
-            toast.success("Extension uninstalled successfully.")
+            toast.success(t("toast.extensions.uninstalled"))
         },
     })
 }
@@ -118,13 +120,14 @@ export function useGetExtensionPayload(id: string) {
 }
 
 export function useUpdateExtensionCode() {
+    const t = createTranslator()
     return useServerMutation<boolean, UpdateExtensionCode_Variables>({
         endpoint: API_ENDPOINTS.EXTENSIONS.UpdateExtensionCode.endpoint,
         method: API_ENDPOINTS.EXTENSIONS.UpdateExtensionCode.methods[0],
         mutationKey: [API_ENDPOINTS.EXTENSIONS.UpdateExtensionCode.key],
         onSuccess: async () => {
             // DEVNOTE: No need to refetch, the websocket listener will do it
-            toast.success("Extension updated successfully.")
+            toast.success(t("toast.extensions.updated"))
         },
     })
 }
@@ -216,13 +219,14 @@ export function useGetExtensionUserConfig(id: string) {
 }
 
 export function useSaveExtensionUserConfig() {
+    const t = createTranslator()
     return useServerMutation<boolean, SaveExtensionUserConfig_Variables>({
         endpoint: API_ENDPOINTS.EXTENSIONS.SaveExtensionUserConfig.endpoint,
         method: API_ENDPOINTS.EXTENSIONS.SaveExtensionUserConfig.methods[0],
         mutationKey: [API_ENDPOINTS.EXTENSIONS.SaveExtensionUserConfig.key],
         onSuccess: async () => {
             // DEVNOTE: No need to refetch, the websocket listener will do it
-            toast.success("Config saved successfully.")
+            toast.success(t("toast.extensions.configSaved"))
         },
     })
 }
@@ -238,12 +242,13 @@ export function useListDevelopmentModeExtensions() {
 
 export function useReloadExternalExtension() {
     const queryClient = useQueryClient()
+    const t = createTranslator()
     return useServerMutation<boolean, ReloadExternalExtension_Variables>({
         endpoint: API_ENDPOINTS.EXTENSIONS.ReloadExternalExtension.endpoint,
         method: API_ENDPOINTS.EXTENSIONS.ReloadExternalExtension.methods[0],
         mutationKey: [API_ENDPOINTS.EXTENSIONS.ReloadExternalExtension.key],
         onSuccess: async () => {
-            toast.success("Extension reloaded successfully.")
+            toast.success(t("toast.extensions.reloaded"))
             queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.EXTENSIONS.ListDevelopmentModeExtensions.key] })
             queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.EXTENSIONS.GetPluginSettings.key] })
             // DEVNOTE: No need to refetch, the websocket listener will do it
@@ -285,13 +290,14 @@ export function useSetPluginSettingsPinnedTrays() {
 
 export function useGrantPluginPermissions() {
     const queryClient = useQueryClient()
+    const t = createTranslator()
     return useServerMutation<boolean, GrantPluginPermissions_Variables>({
         endpoint: API_ENDPOINTS.EXTENSIONS.GrantPluginPermissions.endpoint,
         method: API_ENDPOINTS.EXTENSIONS.GrantPluginPermissions.methods[0],
         mutationKey: [API_ENDPOINTS.EXTENSIONS.GrantPluginPermissions.key],
         onSuccess: async (data) => {
             if (data) {
-                toast.success("Plugin permissions granted successfully.")
+                toast.success(t("toast.extensions.permissionsGranted"))
                 queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.EXTENSIONS.GetPluginSettings.key] })
                 queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.EXTENSIONS.GetAllExtensions.key] })
             }

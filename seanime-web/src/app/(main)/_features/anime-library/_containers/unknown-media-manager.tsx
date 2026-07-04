@@ -7,6 +7,7 @@ import { AppLayoutStack } from "@/components/ui/app-layout"
 import { Button } from "@/components/ui/button"
 import { Drawer } from "@/components/ui/drawer"
 import { upath } from "@/lib/helpers/upath.ts"
+import { createTranslator } from "@/locales"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import React, { useCallback } from "react"
@@ -24,6 +25,7 @@ type UnknownMediaManagerProps = {
 
 export function UnknownMediaManager(props: UnknownMediaManagerProps) {
 
+    const t = createTranslator()
     const { unknownGroups, onActionComplete } = props
 
     const [isOpen, setIsOpen] = useAtom(__unknownMedia_drawerIsOpen)
@@ -62,7 +64,7 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
             action: "unmatch",
         }, {
             onSuccess: () => {
-                toast.success("Media unmatched")
+                toast.success(t("animeLibrary.mediaUnmatched"))
                 onActionComplete?.()
             },
         })
@@ -84,19 +86,18 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                 }
             }}
             size="xl"
-            title="Hidden Media"
+            title={t("unknownMedia.title")}
 
         >
             <AppLayoutStack className="mt-4">
 
-                <p className="">
-                    Seanime matched {unknownGroups.length} group{unknownGroups.length === 1 ? "" : "s"} to {unknownGroups.length === 1 ? "a " : ""}series
-                    that {unknownGroups.length === 1
-                    ? "is"
-                    : "are"} absent from your
-                    {!hasCustomSources ? "AniList" : ""} collection.<br />
-                    Add the media to be able to see entries in your library or unmatch them if incorrect.
-                </p>
+                <p className="" dangerouslySetInnerHTML={{ __html: t("unknownMedia.description", {
+                    count: unknownGroups.length,
+                    plural: unknownGroups.length === 1 ? "" : "s",
+                    article: unknownGroups.length === 1 ? "a " : "",
+                    verb: unknownGroups.length === 1 ? "is" : "are",
+                    hasCustomSources: hasCustomSources ? "false" : "true",
+                }) }} />
 
                 <Button
                     leftIcon={<TbDatabasePlus />}
@@ -104,7 +105,9 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                     loading={isAdding}
                     disabled={isUnmatching}
                 >
-                    Add all to {!hasCustomSources ? "AniList" : "collection"}
+                    {t("unknownMedia.addAllToCollection", {
+                        hasCustomSources: hasCustomSources ? "false" : "true",
+                    })}
                 </Button>
 
                 <div className="divide divide-y divide-[--border] space-y-4">
@@ -114,7 +117,7 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                             <div key={group.mediaId} className="pt-4 space-y-2">
                                 <div className="flex items-center w-full justify-between">
                                     <h4 className="font-semibold flex gap-2 items-center">
-                                        <span>Matched to{" "}</span>
+                                        <span>{t("unknownMedia.matchedTo")}{" "}</span>
                                         <p
                                             className="underline cursor-pointer text-brand-200 flex gap-1.5 items-center"
                                             onClick={() => { setPreviewModalMediaId(group.mediaId, "anime") }}
@@ -137,7 +140,9 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                                             leftIcon={<BiPlus />}
                                             className="rounded-full"
                                         >
-                                            Add to {!hasCustomSources ? "AniList" : "collection"}
+                                            {t("unknownMedia.addToCollection", {
+                                                hasCustomSources: hasCustomSources ? "false" : "true",
+                                            })}
                                         </Button>
                                         <Button
                                             size="sm"
@@ -146,7 +151,7 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                                             onClick={() => handleUnmatchMedia(group.mediaId)}
                                             className="rounded-full"
                                         >
-                                            Unmatch
+                                            {t("unknownMedia.unmatch")}
                                         </Button>
                                     </div>
                                 </div>

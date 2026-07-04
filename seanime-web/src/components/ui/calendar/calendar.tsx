@@ -3,6 +3,7 @@ import * as React from "react"
 import { DayPicker } from "react-day-picker"
 import { ButtonAnatomy } from "../button"
 import { cn, ComponentAnatomy, defineStyleAnatomy } from "../core/styling"
+import { capitalizeFirst } from "@/lib/utils/capitalize-date"
 
 /* -------------------------------------------------------------------------------------------------
  * Anatomy
@@ -186,6 +187,9 @@ export function Calendar(props: CalendarProps) {
                 >
                     <path d="m15 18-6-6 6-6" />
                 </svg>,
+                CaptionLabel: ({ children, ...rest }) => (
+                    <span {...rest}>{capitalizeFirst(String(children))}</span>
+                ),
             }}
             {...rest}
         />

@@ -81,7 +81,7 @@ func VersionIsOlderThan(version string, compare string) bool {
 	return comp < 0 && shouldUpdate
 }
 
-var allowedGitHubOwners = []string{"5rahim"}
+var allowedGitHubOwners = []string{"5rahim", "Anthony00q"}
 
 // validateReleaseUrl checks that the URL points to a GitHub release asset
 // from an allowed owner.

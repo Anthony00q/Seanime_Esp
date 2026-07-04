@@ -1,0 +1,112 @@
+{
+  "changelogTour": {
+    "3_5_0": {
+      "introTitle": "What's new in 3.5.0?",
+      "introDesc": "Let's take a look at some of the new features.",
+      "scanner": {
+        "title": "New Scanner",
+        "content": "The scanner's internal logic has been completely revamped. It now uses a more contextually aware and accurate algorithm."
+      },
+      "scanner2": {
+        "title": "New Scanner",
+        "content": "The scanner now supports Anime Offline Database for data matching."
+      },
+      "scanner3": {
+        "title": "Scanner Configuration",
+        "content": "You can now fine-tune the scanner's matching behavior. See the documentation for more information."
+      },
+      "issueRecorder": {
+        "title": "Issue Recorder",
+        "contentText": "The issue recorder has been improved and can now record the UI, making bug reports more detailed."
+      },
+      "transcodeNewPlayer": {
+        "title": "Transcoding Player",
+        "content": "Transcoding/Direct Play now uses Seanime's custom player, also used by Seanime Denshi and online streaming."
+      },
+      "search": {
+        "title": "Search",
+        "content": "The Search menu item now opens the search page. You can also quickly search from any page by pressing 'S'."
+      },
+      "entry": {
+        "title": "New Player Features",
+        "contentText": "Press 'H' to quickly look up characters while watching. Press 'Z' to toggle Stats for Nerds."
+      }
+    },
+    "3_7_0": {
+      "introTitle": "What's new in 3.7.0?",
+      "introDesc": "Let's take a look at some of the new features.",
+      "security": {
+        "title": "Security Improvements",
+        "content": "3.7.0 includes several security improvements, including secure modes. See the documentation for more information."
+      },
+      "tags": {
+        "title": "Tags",
+        "content": "The search page now allows searching by tags."
+      },
+      "adultContent": {
+        "title": "Adult Content in Global Search",
+        "content": "Global search no longer filters adult content if you have it enabled. (Remember: press 'S' to open global search)"
+      },
+      "bugFixes": {
+        "title": "Bug Fixes",
+        "content": "Several bugs have been fixed in this version, including some related to Seanime Denshi and plugins. Read the full changelog for more details."
+      }
+    },
+    "3_8_0": {
+      "introTitle": "What's new in 3.8.0?",
+      "introDesc": "Let's take a look at the biggest additions in this version.",
+      "torrentSearch": {
+        "title": "Torrent Search & Downloads",
+        "content": "Torrent search can now be expanded across multiple providers at once. This version also fixes some edge cases in Debrid downloads."
+      },
+      "subtitleTranslation": {
+        "title": "Subtitle Translation",
+        "content": "The Subtitle Translator now supports OpenAI-compatible local LLMs, so tools like LM Studio and Ollama can be used as local translation backends."
+      },
+      "externalPlayerLink": {
+        "title": "Local Subtitle Files",
+        "content": "Local subtitle files are now automatically detected from the video folder, and external player links can use the new '{subtitleUrl}' placeholder for those files."
+      },
+      "spoilers": {
+        "title": "Hide Spoilers",
+        "content": "You can now hide spoilers throughout the app. On anime pages, the new '/spoilers' command lets you toggle spoilers for that specific anime."
+      },
+      "onlineStreaming": {
+        "title": "Online Streaming",
+        "content": "Online streaming now uses a new HTTP/1-based proxy and can automatically switch between providers until it finds one that works."
+      },
+      "defaultEpisodeSource": {
+        "title": "Default Episode Source",
+        "content": "Choose which episode source Seanime should open by default when you access an anime page."
+      },
+      "uiSettingsRedesign": {
+        "title": "Redesigned UI Settings",
+        "content": "The User Interface settings panel has been redesigned for easier navigation."
+      },
+      "precarga": {
+        "title": "Route Preloading",
+        "content": "Seanime can now preload routes in the background for instant navigation. You can adjust the preloading behavior in the new UI settings panel."
+      },
+      "entryHeader": {
+        "title": "UI Updates",
+        "content": "The media header has been slightly redesigned. There are also new animations and transitions for a smoother experience."
+      },
+      "extensions": {
+        "title": "Extensions",
+        "content": "Extensions can now be disabled without uninstalling them, and plugins have new APIs for settings, authentication, and extension management."
+      },
+      "extensionSecureMode": {
+        "title": "Extension Secure Mode",
+        "content": "Enable Extension Secure Mode to receive a confirmation prompt whenever an extension attempts to perform a sensitive action."
+      },
+      "denshi": {
+        "title": "Denshi Window State",
+        "content": "Seanime Denshi now remembers window position and size, so reopening the app brings you back to the same desktop layout."
+      },
+      "bugFixes": {
+        "title": "Bug Fixes",
+        "content": "Several bugs have been fixed in this version, including some related to the integrated player. Read the full changelog for more details."
+      }
+    }
+  }
+}
