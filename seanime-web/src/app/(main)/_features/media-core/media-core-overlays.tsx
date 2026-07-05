@@ -74,6 +74,27 @@ export function MediaCoreLoadingOverlay(props: {
     const { loadingState, isMiniPlayer, inline, fullscreen, terminateButton } = props
     if (!loadingState) return null
 
+    let displayTitle = loadingState
+    if (loadingState === "Loading...") {
+        displayTitle = t("videoPlayer.loadingState.loading")
+    } else if (loadingState === "Ending stream...") {
+        displayTitle = t("videoPlayer.loadingState.endingStream")
+    } else if (loadingState === "Preparing stream...") {
+        displayTitle = t("videoPlayer.loadingState.preparingStream")
+    } else if (loadingState === "Loading stream...") {
+        displayTitle = t("videoPlayer.loadingState.loadingStream")
+    } else if (loadingState === "Loading metadata...") {
+        displayTitle = t("videoPlayer.loadingState.loadingMetadata")
+    } else if (loadingState === "Downloading metadata...") {
+        displayTitle = t("videoPlayer.loadingState.downloadingMetadata")
+    } else if (loadingState.startsWith("Awaiting stream:")) {
+        const percent = loadingState.replace("Awaiting stream: ", "").replace("%", "")
+        displayTitle = t("videoPlayer.loadingState.awaitingStream", { percent })
+    } else if (loadingState.startsWith("An error occurred while loading the stream:")) {
+        const errorMsg = loadingState.replace("An error occurred while loading the stream: ", "")
+        displayTitle = t("videoPlayer.loadingState.errorLoadingStream", { error: errorMsg })
+    }
+
     return (
         <div
             data-vc-element="loading-overlay"
@@ -82,7 +103,7 @@ export function MediaCoreLoadingOverlay(props: {
             {(!inline || fullscreen) && terminateButton}
             
             <LoadingSpinner
-                title={loadingState || t("videoPlayer.loading")}
+                title={displayTitle || t("videoPlayer.loading")}
                 spinner={<ImSpinner2 className="size-20 text-white animate-spin" />}
                 containerClass="z-[1]"
             />

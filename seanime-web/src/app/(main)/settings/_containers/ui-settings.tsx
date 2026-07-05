@@ -791,7 +791,7 @@ export function UISettings() {
                                         onClick={() => openInExplorer({ path: `${serverStatus?.dataDir}/assets` })}
                                         leftIcon={<LuFolderOpen />}
                                     >
-                                        Open assets directory
+                                        {t("settings.ui.openAssetsDir")}
                                     </Button>
                                 </div>
 
