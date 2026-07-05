@@ -60,13 +60,13 @@
       "useBuiltInPlayerHelp": "Cuando está activado, toda la reproducción de medios utilizará el reproductor integrado (sobrescribe los ajustes de abajo)",
       "downloadedMedia": "Medios Descargados",
       "downloadedMediaDescription": "Elige cómo reproducir archivos de anime almacenados en tu dispositivo",
-      "desktopMediaPlayer": "Reproductor de Escritorio",
       "desktopMediaPlayerHelp": "Abre archivos en tu reproductor del sistema con seguimiento automático",
       "transcodingDirectPlay": "Transcoding / Direct Play",
       "transcodingDirectPlayHelp": "Reproduce en el navegador con transcoding",
       "transcodingNotEnabled": "Transcoding no activado",
-      "externalPlayerLink": "Enlace de Reproductor Externo",
       "externalPlayerLinkHelp": "Envía URL de stream a otra aplicación",
+      "desktopMediaPlayerStreamingHelp": "Abre el stream en tu reproductor configurado con seguimiento automático.",
+      "externalPlayerLinkStreamingHelp": "Envía la URL del stream a otra aplicación usando tu esquema personalizado.",
       "torrentDebridStreaming": "Streaming Torrent y Debrid",
       "torrentDebridStreamingDescription": "Elige cómo reproducir contenido en streaming desde torrents y servicios debrid",
       "settingsAutoSaved": "Los ajustes se guardan automáticamente",
@@ -81,17 +81,7 @@
       "customMpvOptionsHelp": "Añade opciones personalizadas para mpv.conf.",
       "customMpvOptionsPlaceholder": "# Añade opciones personalizadas aquí"
     },
-    "externalPlayerLink": {
-      "title": "Enlace de Reproductor Externo",
-      "description": "Configurar enlace de reproductor externo",
-      "customScheme": "Esquema personalizado",
-      "customSchemeHelp": "Esquema de URL personalizado para abrir enlaces externos.",
-      "launchingExternalPlayer": "Lanzando reproductor externo",
-      "mediaLink": "Enlace de medios",
-      "mediaLinkHelp": "El enlace se abrirá con el esquema especificado."
-    },
     "playbackOptions": {
-      "desktopMediaPlayerOrTranscoding": "Reproductor de escritorio o Transcodificación / Reproducción directa",
       "externalPlayerLink": "Enlace de reproductor externo",
       "desktopMediaPlayer": "Reproductor de escritorio"
     }
