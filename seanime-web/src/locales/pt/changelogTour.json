@@ -107,6 +107,26 @@
         "title": "Correções de Bugs",
         "content": "Vários bugs foram corrigidos nesta versão, incluindo alguns relacionados ao player integrado. Leia o changelog completo para mais detalhes."
       }
+    },
+    "3_9_0": {
+      "introTitle": "O que há de novo em 3.9.0?",
+      "introDesc": "Vamos dar uma olhada nas maiores novidades desta versão.",
+      "libmpvPlayer": {
+        "title": "Novo reprodutor integrado (Denshi)",
+        "content": "O Denshi agora possui um reprodutor integrado baseado em libmpv. Oferece renderização acelerada por hardware diretamente na tela do aplicativo, suporte impecável de codecs e legendas, e é compatível com opções e shaders do mpv.conf."
+      },
+      "torrentStreaming": {
+        "title": "Torrent Streaming mais rápido",
+        "content": "O início do streaming por torrent agora é até 20% mais rápido dependendo do seeding, com um relatório de progresso de download mais preciso e correção na seleção em lote."
+      },
+      "debridStreaming": {
+        "title": "Debrid Streaming mais rápido",
+        "content": "O início da reprodução por Debrid agora é até 5 segundos mais rápido para transmissões em cache."
+      },
+      "bugFixes": {
+        "title": "Correções de Bugs",
+        "content": "Vários bugs foram corrigidos nesta versão, incluindo o rastreamento de progresso para MPV/IINA, problemas com o proxy de imagens de mangá e a atualização do Electron no Seanime Denshi para a versão 42.4.0. Leia o changelog completo para mais detalhes."
+      }
     }
   }
 }
