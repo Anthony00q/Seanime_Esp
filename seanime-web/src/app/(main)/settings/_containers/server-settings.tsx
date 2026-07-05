@@ -416,25 +416,6 @@ export function ServerSettings(props: ServerSettingsProps) {
                     moreHelp={__isElectronDesktop__ ? t("settings.server.cannotDisableAutoUpdatesDenshi") : undefined}
                     icon={<TbDownloadOff className="" />}
                 />
-                <Field.Select
-                    label={t("settings.server.updateChannel")}
-                    name="updateChannel"
-                    help={__isElectronDesktop__ ? t("settings.server.updateChannelHelp") : ""}
-                    options={[
-                        { label: t("settings.server.updateChannelGithub"), value: "github" },
-                        { label: t("settings.server.updateChannelSeanime"), value: "seanime" },
-                        { label: t("settings.server.updateChannelSeanimeNightly"), value: "seanime_nightly" },
-                    ]}
-                />
-                {serverStatus?.settings?.library?.updateChannel === "seanime" && (
-                    <Alert intent="info" description={t("settings.server.releaseChannelHostedOnSeanime")} />
-                )}
-                {serverStatus?.settings?.library?.updateChannel === "seanime_nightly" && (
-                    <Alert
-                        intent="warning"
-                        description={t("settings.server.canaryReleaseChannelWarning")}
-                    />
-                )}
             </SettingsCard>
 
             <SettingsCard title={t("settings.server.serverCard")}>
