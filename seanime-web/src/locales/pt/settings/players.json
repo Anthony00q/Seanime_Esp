@@ -60,13 +60,13 @@
       "useBuiltInPlayerHelp": "Quando ativado, toda a reprodução de mídia usará o player integrado (sobrescreve as configurações abaixo)",
       "downloadedMedia": "Mídia Baixada",
       "downloadedMediaDescription": "Escolha como reproduzir os arquivos de anime armazenados no seu dispositivo",
-      "desktopMediaPlayer": "Player de Mídia Desktop",
       "desktopMediaPlayerHelp": "Abrir arquivos no player do seu sistema com rastreamento automático",
       "transcodingDirectPlay": "Transcoding / Direct Play",
       "transcodingDirectPlayHelp": "Reproduzir no navegador com transcodificação",
       "transcodingNotEnabled": "Transcodificação não ativada",
-      "externalPlayerLink": "Link de Player Externo",
       "externalPlayerLinkHelp": "Enviar URLs de stream para outro aplicativo",
+      "desktopMediaPlayerStreamingHelp": "Abra o stream no seu player configurado com rastreamento automático.",
+      "externalPlayerLinkStreamingHelp": "Envie a URL do stream para outro aplicativo usando seu esquema personalizado.",
       "torrentDebridStreaming": "Streaming de Torrent e Debrid",
       "torrentDebridStreamingDescription": "Escolha como reproduzir conteúdo em stream de torrents e serviços de debrid",
       "settingsAutoSaved": "As configurações são salvas automaticamente",
@@ -81,17 +81,7 @@
       "customMpvOptionsHelp": "Adicione opções personalizadas para o mpv.conf.",
       "customMpvOptionsPlaceholder": "# Adicione configurações personalizadas aqui"
     },
-    "externalPlayerLink": {
-      "title": "Link de Player Externo",
-      "description": "Configurar link de player externo",
-      "customScheme": "Esquema personalizado",
-      "customSchemeHelp": "Esquema de URL personalizado para abrir links externos.",
-      "launchingExternalPlayer": "Iniciando player externo",
-      "mediaLink": "Link da mídia",
-      "mediaLinkHelp": "O link será aberto com o esquema especificado."
-    },
     "playbackOptions": {
-      "desktopMediaPlayerOrTranscoding": "Player de mídia desktop ou Transcoding / Direct Play",
       "externalPlayerLink": "Link de player externo",
       "desktopMediaPlayer": "Player de mídia desktop"
     }
