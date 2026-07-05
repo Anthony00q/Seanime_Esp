@@ -107,6 +107,26 @@
         "title": "Bug Fixes",
         "content": "Several bugs have been fixed in this version, including some related to the integrated player. Read the full changelog for more details."
       }
+    },
+    "3_9_0": {
+      "introTitle": "What's new in 3.9.0?",
+      "introDesc": "Let's take a look at the biggest additions in this release.",
+      "libmpvPlayer": {
+        "title": "New Built-in Player (Denshi)",
+        "content": "Denshi now features a libmpv-based built-in player. It offers hardware-accelerated rendering directly in the app viewport, flawless codec & subtitle support, and supports mpv.conf options and shaders."
+      },
+      "torrentStreaming": {
+        "title": "Faster Torrent Streaming",
+        "content": "Torrent streaming startup is now up to 20% faster depending on seeding, with more accurate download progress reporting and fixed batch selection."
+      },
+      "debridStreaming": {
+        "title": "Faster Debrid Streaming",
+        "content": "Debrid streaming launch is now up to 5 seconds faster for cached streams."
+      },
+      "bugFixes": {
+        "title": "Bug Fixes",
+        "content": "Several bugs have been fixed in this release, including progress tracking for MPV/IINA, manga image proxy issues, and Seanime Denshi's Electron has been updated to 42.4.0. Read the full changelog for more details."
+      }
     }
   }
 }
