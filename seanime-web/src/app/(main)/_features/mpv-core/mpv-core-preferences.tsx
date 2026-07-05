@@ -9,6 +9,9 @@ import { TextInput } from "@/components/ui/text-input"
 import { atom, useAtom, useAtomValue } from "jotai"
 import React from "react"
 import { useServerStatus } from "../../_hooks/use-server-status"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 import {
     mc_defaultKeybindings,
     mc_initialSettings,
@@ -100,7 +103,7 @@ const KeybindingRow = ({
                     recordingKey === actionKey && "!text-xs text-white",
                 )}
             >
-                {recordingKey === actionKey ? "Press key..." : formatKeyDisplay(editedKeybindings[actionKey].key)}
+                {recordingKey === actionKey ? t("videoPlayer.keybindings.pressKey") : formatKeyDisplay(editedKeybindings[actionKey].key)}
             </Button>
         </div>
     </div>
@@ -215,7 +218,7 @@ export function MpvCorePreferencesModal(props: {
     return (
         <>
             <Modal
-                title="Preferences"
+                title={t("videoPlayer.preferences.title")}
                 open={open}
                 onOpenChange={setOpen}
                 contentClass="max-w-5xl focus:outline-none focus-visible:outline-none outline-none bg-[--background] backdrop-blur-sm z-[101]"
@@ -230,9 +233,9 @@ export function MpvCorePreferencesModal(props: {
                     listClass={tabsListClass}
                 >
                     <TabsList className="flex-wrap max-w-full bg-[--paper] p-2 border rounded-xl">
-                        <TabsTrigger value="keybinds">Keyboard Shortcuts</TabsTrigger>
-                        <TabsTrigger value="subtitles">Subtitles & Audio</TabsTrigger>
-                        <TabsTrigger value="general">General</TabsTrigger>
+                        <TabsTrigger value="keybinds">{t("videoPlayer.preferences.tabs.keyboardShortcuts")}</TabsTrigger>
+                        <TabsTrigger value="subtitles">{t("videoPlayer.preferences.tabs.subtitlesAudio")}</TabsTrigger>
+                        <TabsTrigger value="general">{t("videoPlayer.preferences.tabs.general")}</TabsTrigger>
                     </TabsList>
 
                     <TabsContent value="general" className={tabContentClass}>
@@ -240,8 +243,8 @@ export function MpvCorePreferencesModal(props: {
                             <DirectorySelector
                                 value={editedScreenshotDir}
                                 onSelect={setEditedScreenshotDir}
-                                label="Screenshot Directory"
-                                help="Configure the directory where screenshots will be saved"
+                                label={t("videoPlayer.preferences.screenshotDirectory")}
+                                help={t("videoPlayer.preferences.screenshotDirectoryHelp")}
                             />
 
                             <div className="flex items-center justify-between pt-6">
@@ -249,20 +252,20 @@ export function MpvCorePreferencesModal(props: {
                                     intent="gray-outline"
                                     onClick={handleReset}
                                 >
-                                    Reset all
+                                    {t("videoPlayer.resetAll")}
                                 </Button>
                                 <div className="flex gap-2">
                                     <Button
                                         intent="gray-outline"
                                         onClick={() => setOpen(false)}
                                     >
-                                        Cancel
+                                        {t("videoPlayer.mpv.cancel")}
                                     </Button>
                                     <Button
                                         intent="primary"
                                         onClick={handleSave}
                                     >
-                                        Save
+                                        {t("videoPlayer.settingsMenu.save")}
                                     </Button>
                                 </div>
                             </div>
@@ -274,42 +277,42 @@ export function MpvCorePreferencesModal(props: {
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                                 <div>
                                     <div className="space-y-3">
-                                        <KeybindingRow action="Seek Forward (Fine)" actionKey="seekForwardFine" hasValue valueLabel="Seconds" {...rowProps} />
-                                        <KeybindingRow action="Seek Backward (Fine)" actionKey="seekBackwardFine" hasValue valueLabel="Seconds" {...rowProps} />
-                                        <KeybindingRow action="Seek Forward" actionKey="seekForward" hasValue valueLabel="Seconds" {...rowProps} />
-                                        <KeybindingRow action="Seek Backward" actionKey="seekBackward" hasValue valueLabel="Seconds" {...rowProps} />
-                                        <KeybindingRow action="Increase Speed" actionKey="increaseSpeed" hasValue valueLabel="increment" {...rowProps} />
-                                        <KeybindingRow action="Decrease Speed" actionKey="decreaseSpeed" hasValue valueLabel="increment" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.seekForwardFine")} actionKey="seekForwardFine" hasValue valueLabel={t("videoPlayer.keybindings.valueLabels.seconds")} {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.seekBackwardFine")} actionKey="seekBackwardFine" hasValue valueLabel={t("videoPlayer.keybindings.valueLabels.seconds")} {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.seekForward")} actionKey="seekForward" hasValue valueLabel={t("videoPlayer.keybindings.valueLabels.seconds")} {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.seekBackward")} actionKey="seekBackward" hasValue valueLabel={t("videoPlayer.keybindings.valueLabels.seconds")} {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.increaseSpeed")} actionKey="increaseSpeed" hasValue valueLabel={t("videoPlayer.keybindings.valueLabels.increment")} {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.decreaseSpeed")} actionKey="decreaseSpeed" hasValue valueLabel={t("videoPlayer.keybindings.valueLabels.increment")} {...rowProps} />
                                     </div>
                                 </div>
                                 <div>
                                     <div className="space-y-3">
-                                        <KeybindingRow action="Next Chapter" actionKey="nextChapter" {...rowProps} />
-                                        <KeybindingRow action="Previous Chapter" actionKey="previousChapter" {...rowProps} />
-                                        <KeybindingRow action="Next Episode" actionKey="nextEpisode" {...rowProps} />
-                                        <KeybindingRow action="Previous Episode" actionKey="previousEpisode" {...rowProps} />
-                                        <KeybindingRow action="Cycle Subtitles" actionKey="cycleSubtitles" {...rowProps} />
-                                        <KeybindingRow action="Fullscreen" actionKey="fullscreen" {...rowProps} />
-                                        <KeybindingRow action="Picture in Picture" actionKey="pictureInPicture" {...rowProps} />
-                                        <KeybindingRow action="Take Screenshot" actionKey="takeScreenshot" {...rowProps} />
-                                        <KeybindingRow action="Display Characters" actionKey="openInSight" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.nextChapter")} actionKey="nextChapter" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.previousChapter")} actionKey="previousChapter" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.nextEpisode")} actionKey="nextEpisode" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.previousEpisode")} actionKey="previousEpisode" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.cycleSubtitles")} actionKey="cycleSubtitles" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.fullscreen")} actionKey="fullscreen" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.pictureInPicture")} actionKey="pictureInPicture" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.takeScreenshot")} actionKey="takeScreenshot" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.displayCharacters")} actionKey="openInSight" {...rowProps} />
                                     </div>
                                 </div>
                                 <div>
                                     <div className="space-y-3">
-                                        <KeybindingRow action="Volume Up" actionKey="volumeUp" hasValue valueLabel="Percent" {...rowProps} />
-                                        <KeybindingRow action="Volume Down" actionKey="volumeDown" hasValue valueLabel="Percent" {...rowProps} />
-                                        <KeybindingRow action="Mute" actionKey="mute" {...rowProps} />
-                                        <KeybindingRow action="Cycle Audio" actionKey="cycleAudio" {...rowProps} />
-                                        <KeybindingRow action="Stats for Nerds" actionKey="statsForNerds" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.volumeUp")} actionKey="volumeUp" hasValue valueLabel={t("videoPlayer.keybindings.valueLabels.percent")} {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.volumeDown")} actionKey="volumeDown" hasValue valueLabel={t("videoPlayer.keybindings.valueLabels.percent")} {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.mute")} actionKey="mute" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.cycleAudio")} actionKey="cycleAudio" {...rowProps} />
+                                        <KeybindingRow action={t("videoPlayer.keybindings.statsForNerds")} actionKey="statsForNerds" {...rowProps} />
                                     </div>
                                 </div>
                             </div>
                             <div className="flex items-center justify-between pt-6">
-                                <Button intent="gray-outline" onClick={handleReset}>Reset all</Button>
+                                <Button intent="gray-outline" onClick={handleReset}>{t("videoPlayer.resetAll")}</Button>
                                 <div className="flex gap-2">
-                                    <Button intent="gray-outline" onClick={() => setOpen(false)}>Cancel</Button>
-                                    <Button intent="primary" onClick={handleSave}>Save</Button>
+                                    <Button intent="gray-outline" onClick={() => setOpen(false)}>{t("videoPlayer.mpv.cancel")}</Button>
+                                    <Button intent="primary" onClick={handleSave}>{t("videoPlayer.settingsMenu.save")}</Button>
                                 </div>
                             </div>
                         </div>
@@ -317,10 +320,10 @@ export function MpvCorePreferencesModal(props: {
 
                     <TabsContent value="subtitles" className={tabContentClass}>
                         <div className="space-y-3">
-                            <h3 className="text-lg font-semibold text-white">Defaults</h3>
+                            <h3 className="text-lg font-semibold text-white">{t("videoPlayer.defaults")}</h3>
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-muted-foreground">Preferred Subtitle Language</label>
+                                    <label className="text-sm font-medium text-muted-foreground">{t("videoPlayer.preferredSubtitleLanguage")}</label>
                                     <TextInput
                                         value={editedSubLanguage}
                                         onValueChange={setEditedSubLanguage}
@@ -330,7 +333,7 @@ export function MpvCorePreferencesModal(props: {
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-muted-foreground">Preferred Audio Language</label>
+                                    <label className="text-sm font-medium text-muted-foreground">{t("videoPlayer.preferredAudioLanguage")}</label>
                                     <TextInput
                                         value={editedAudioLanguage}
                                         onValueChange={setEditedAudioLanguage}
@@ -341,18 +344,18 @@ export function MpvCorePreferencesModal(props: {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-muted-foreground">Ignored Subtitle Names</label>
+                                <label className="text-sm font-medium text-muted-foreground">{t("videoPlayer.ignoredSubtitleNames")}</label>
                                 <TextInput
                                     value={editedSubsBlacklist}
                                     onValueChange={setEditedSubsBlacklist}
                                     placeholder="e.g. signs & songs,signs/songs"
                                     onKeyDown={event => event.stopPropagation()}
                                     onInput={event => event.stopPropagation()}
-                                    help="Subtitle tracks that will not be selected by default if they match the preferred languages. Separate multiple names with commas."
+                                    help={t("videoPlayer.ignoredSubtitleNamesHelp")}
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-muted-foreground">Subtitle Delay</label>
+                                <label className="text-sm font-medium text-muted-foreground">{t("videoPlayer.settingsMenu.subtitleDelay")}</label>
                                 <NumberInput
                                     value={editedSubtitleDelay}
                                     onValueChange={value => setEditedSubtitleDelay(value || 0)}
@@ -363,10 +366,10 @@ export function MpvCorePreferencesModal(props: {
                             </div>
                         </div>
                         <div className="flex items-center justify-between pt-6">
-                            <Button intent="gray-outline" onClick={handleReset}>Reset all</Button>
+                            <Button intent="gray-outline" onClick={handleReset}>{t("videoPlayer.resetAll")}</Button>
                             <div className="flex gap-2">
-                                <Button intent="gray-outline" onClick={() => setOpen(false)}>Cancel</Button>
-                                <Button intent="primary" onClick={handleSave}>Save</Button>
+                                <Button intent="gray-outline" onClick={() => setOpen(false)}>{t("videoPlayer.mpv.cancel")}</Button>
+                                <Button intent="primary" onClick={handleSave}>{t("videoPlayer.settingsMenu.save")}</Button>
                             </div>
                         </div>
                     </TabsContent> </Tabs>
