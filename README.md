@@ -7,7 +7,7 @@
 <h1 align="center"><b>Seanime Esp</b></h1>
 
 <p align="center">
-<img src="https://s3.seanime.app/sea/img-20260508-090529-ioc20pjr--sq2.webp" alt="preview" width="100%"/>
+<img src="docs/images/hero_mockup.png" alt="preview" width="100%"/>
   <b>Fork Multilingüe de Seanime (con foco principal en Español)</b> — Media server con interfaz web y app de escritorio para anime y manga
 </p>
 
