@@ -132,7 +132,6 @@
       "enableCacheOnlyModeHelp": "O Seanime usará dados em cache em vez de fazer solicitações de API.",
       "useFallbackEpisodeMetadata": "Usar metadados de episódios alternativos",
       "useFallbackEpisodeMetadataHelp": "Se ativado, o Seanime usará uma fonte alternativa para buscar metadados de episódios.",
-      "updates": "Atualizações",
       "updateChannel": "Canal de Atualização",
       "updateChannelGithub": "GitHub (Padrão)",
       "updateChannelSeanime": "Seanime",
