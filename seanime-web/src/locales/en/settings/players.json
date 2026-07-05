@@ -60,13 +60,13 @@
       "useBuiltInPlayerHelp": "When enabled, all media playback will use the built-in player (overrides settings below)",
       "downloadedMedia": "Downloaded Media",
       "downloadedMediaDescription": "Choose how to play anime files stored on your device",
-      "desktopMediaPlayer": "Desktop Media Player",
       "desktopMediaPlayerHelp": "Open files in your system player with automatic tracking",
       "transcodingDirectPlay": "Transcoding / Direct Play",
       "transcodingDirectPlayHelp": "Play in the browser with transcoding",
       "transcodingNotEnabled": "Transcoding not enabled",
-      "externalPlayerLink": "External Player Link",
       "externalPlayerLinkHelp": "Send stream URLs to another application",
+      "desktopMediaPlayerStreamingHelp": "Open the stream in your configured player with automatic tracking.",
+      "externalPlayerLinkStreamingHelp": "Send the stream URL to another app using your custom scheme.",
       "torrentDebridStreaming": "Torrent and Debrid Streaming",
       "torrentDebridStreamingDescription": "Choose how to play streamed content from torrents and debrid services",
       "settingsAutoSaved": "Settings are saved automatically",
@@ -81,17 +81,7 @@
       "customMpvOptionsHelp": "Add custom mpv.conf options.",
       "customMpvOptionsPlaceholder": "# Add custom settings here"
     },
-    "externalPlayerLink": {
-      "title": "External Player Link",
-      "description": "Configure external player link",
-      "customScheme": "Custom scheme",
-      "customSchemeHelp": "Custom URL scheme for opening external links.",
-      "launchingExternalPlayer": "Launching external player",
-      "mediaLink": "Media link",
-      "mediaLinkHelp": "The link will be opened with the specified scheme."
-    },
     "playbackOptions": {
-      "desktopMediaPlayerOrTranscoding": "Desktop media player or Transcoding / Direct Play",
       "externalPlayerLink": "External player link",
       "desktopMediaPlayer": "Desktop media player"
     }
