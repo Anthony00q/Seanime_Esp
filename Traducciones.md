@@ -139,7 +139,7 @@ Antes de solicitar que añadamos tu idioma, **debes asegurarte de que no hayas c
 Abre la terminal en la raíz del proyecto y ejecuta:
 ```bash
 cd seanime-web
-npx tsgo --noEmit
+npm run typecheck
 ```
 
 Si el comando termina sin mostrar ningún error, ¡Felicidades! Tu traducción está en paridad perfecta y lista para ser integrada a Seanime_Esp.
