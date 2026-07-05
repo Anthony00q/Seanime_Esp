@@ -327,15 +327,15 @@ export function PlaybackSettings() {
                         options={[
                             {
                                 value: PlaybackTorrentStreaming.Default,
-                                title: "Desktop media player",
-                                description: "Open the stream in your configured player with automatic tracking.",
+                                title: t("settings.playbackOptions.desktopMediaPlayer"),
+                                description: t("settings.playback.desktopMediaPlayerStreamingHelp"),
                                 icon: LuLaptop,
                                 preview: <TorrentDesktopPreview />,
                             },
                             {
                                 value: PlaybackTorrentStreaming.ExternalPlayerLink,
-                                title: "External player link",
-                                description: "Send the stream URL to another app using your custom scheme.",
+                                title: t("settings.playbackOptions.externalPlayerLink"),
+                                description: t("settings.playback.externalPlayerLinkStreamingHelp"),
                                 icon: LuExternalLink,
                                 preview: <TorrentExternalPreview />,
                             },
