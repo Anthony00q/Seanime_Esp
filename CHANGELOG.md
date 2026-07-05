@@ -4,33 +4,33 @@ All notable changes to this project will be documented in this file.
 
 ## v3.9.0
 
-- 🎉 Denshi: New libmpv-based Built-in Player (Experimental)
-  - Enable in 'Settings > Video Playback'
-  - Hardware-accelerated rendering directly in the app viewport (no external window)
-  - Flawless codec and subtitle support on all platforms
-  - Supports many 'mpv.conf' options and shaders
-- ⚡️ UI: New splashcreen, updated components and colors
-- ⚡️ Torrent Streaming: Up to 20% faster startup depending on seeding
-- ⚡️ Debrid Streaming: Up to 5 seconds faster launch for cached streams
-- ⚡️ UI: Support for alt + mouse wheel horizontal scrolling on carousels
-- ⚡️ VideoCore: Support for screenshot directory
-- ⚡️ Plugins: Added new ChromeDP APIs
-- ⚡️ Discord: Seanime logo no longer displayed in Rich Presence
-- ⚡️ Debrid: Premiumize support #845
-- 🦺 Torrent Streaming: Fixed batch selection
-- 🦺 VideoCore: Ability to exit fullscreen when next stream is loading
-- 🦺 MPV/IINA: Fixed progress tracking dropping when media path is temporarily unavailable #836
-- 🦺 AllDebrid: Fixed batch torrent streaming #841
-- 🦺 Manga: Fixed unnecessary image proxy
-- 🦺 Torrent Streaming: More accurate download progress reporting
-- 🦺 Nakama: Refresh collection when turning off host library sharing
-- 🦺 Torrent Client: Fixed runtime error when display name is null
-- 🦺 Torrent Client: Use classic file-based downloading instead of memory-mapped files
-- 🦺 Mobile: Potential fixes for debrid downloading
-- ⬆️ Updated Electron to 42.4.0
-  - Fixes AC3/EAC3 audio support detection on Windows for HTML5 player
-  - Fixes security vulnerabilities
-- ⬆️ Upgraded to Rust-based React Compiler
+- 🎉 Denshi: Nuevo reproductor integrado basado en libmpv (Experimental)
+  - Actívalo en 'Ajustes > Reproducción de Video'
+  - Renderizado acelerado por hardware directamente en la pantalla de la app (sin ventana externa)
+  - Soporte impecable de códecs y subtítulos en todas las plataformas
+  - Soporta múltiples opciones de 'mpv.conf' y shaders
+- ⚡️ UI: Nueva pantalla de carga (splashscreen), componentes y colores actualizados
+- ⚡️ Torrent Streaming: Inicio hasta un 20% más rápido dependiendo del seeding
+- ⚡️ Debrid Streaming: Lanzamiento hasta 5 segundos más rápido para streams en caché
+- ⚡️ UI: Soporte para scroll horizontal con Alt + rueda del ratón en carruseles
+- ⚡️ VideoCore: Soporte para directorio de capturas de pantalla
+- ⚡️ Plugins: Añadidas nuevas APIs de ChromeDP
+- ⚡️ Discord: El logo de Seanime ya no se muestra en el Rich Presence
+- ⚡️ Debrid: Soporte para Premiumize #845
+- 🦺 Torrent Streaming: Corregida la selección por lotes
+- 🦺 VideoCore: Posibilidad de salir de pantalla completa mientras se carga el siguiente stream
+- 🦺 MPV/IINA: Corregido el fallo donde el seguimiento de progreso se perdía si la ruta del archivo no estaba disponible temporalmente #836
+- 🦺 AllDebrid: Corregido el torrent streaming por lotes #841
+- 🦺 Manga: Corregido el proxy de imagen innecesario
+- 🦺 Torrent Streaming: Reporte de progreso de descarga más preciso
+- 🦺 Nakama: Actualizar colección al desactivar el uso compartido de la biblioteca del host
+- 🦺 Torrent Client: Corregido error en tiempo de ejecución cuando el nombre a mostrar es nulo
+- 🦺 Torrent Client: Uso de descarga clásica basada en archivos en lugar de archivos mapeados en memoria
+- 🦺 Mobile: Posibles correcciones para descargas de debrid
+- ⬆️ Actualizado Electron a 42.4.0
+  - Corrige la detección de soporte de audio AC3/EAC3 en Windows para el reproductor HTML5
+  - Corrige vulnerabilidades de seguridad
+- ⬆️ Actualizado al compilador de React basado en Rust
 
 ## v3.8.7
 
