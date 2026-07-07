@@ -20,7 +20,8 @@
     "startingWatchParty": "Iniciando watch party de streaming en línea",
     "dubbedSearchHelp": "Solo aplica a proveedores que admiten doblajes en los resultados de búsqueda.",
     "manualMatchDesc": "Emparejar este anime con un resultado de búsqueda del proveedor.",
-    "confirmMatchDesc": "¿Estás seguro de que quieres emparejar este anime con el resultado de búsqueda?"
+    "confirmMatchDesc": "¿Estás seguro de que quieres emparejar este anime con el resultado de búsqueda?",
+    "episodeListEnd": "Fin"
   },
   "nativePlayer": {
     "errorPlayingStream": "Ocurrió un error al reproducir el stream. {error}"

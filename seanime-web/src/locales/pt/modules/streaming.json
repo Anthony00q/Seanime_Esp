@@ -20,7 +20,8 @@
     "startingWatchParty": "Iniciando Watch Party de streaming online",
     "dubbedSearchHelp": "Aplica-se apenas a provedores que suportam dublagem nos resultados de busca.",
     "manualMatchDesc": "Vincular este anime a um resultado de busca do provedor.",
-    "confirmMatchDesc": "Tem certeza de que deseja vincular este anime com este resultado de busca?"
+    "confirmMatchDesc": "Tem certeza de que deseja vincular este anime com este resultado de busca?",
+    "episodeListEnd": "Fim"
   },
   "nativePlayer": {
     "errorPlayingStream": "Erro ao reproduzir o stream. {error}"

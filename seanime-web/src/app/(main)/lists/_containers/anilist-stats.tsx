@@ -520,7 +520,7 @@ function getTopGenre(genres: AL_UserGenreStats[] | undefined) {
     if (!genre) return null
 
     return {
-        genre: genre.genre ?? "Unknown",
+        genre: translateGenre(genre.genre ?? "Unknown"),
         count: genre.count,
         meanScore: genre.meanScore,
     }
@@ -582,7 +582,7 @@ function toRankingRows(
 
         return {
             id: item.genre ?? "Unknown",
-            name: item.genre ?? "Unknown",
+            name: translateGenre(item.genre ?? "Unknown"),
             count: item.count,
             maxCount,
             valueLabel: countLabel,
