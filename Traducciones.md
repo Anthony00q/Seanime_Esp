@@ -115,21 +115,6 @@ Seanime tiene un ícono minimizado en la barra de tareas de Windows. Crea un arc
 }
 ```
 
-### 6. (Opcional) Animación de Inicio (Splash Screen)
-
-La pantalla de carga cuenta con una animación que dibuja letras sutiles debajo del logo según el idioma. Edita `seanime-web/src/components/shared/loading-overlay-with-logo.tsx`:
-
-```tsx
-    let subBrand = ""
-    if (currentLocale === "es") {
-        subBrand = "ESP"
-    } else if (currentLocale === "pt") {
-        subBrand = "POR"
-    } else if (currentLocale === "fr") { // ← nuevo
-        subBrand = "FRA"
-    }
-```
-
 ---
 
 ## Verificación Final antes de enviar tu aporte
