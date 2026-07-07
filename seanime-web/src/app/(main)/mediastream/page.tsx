@@ -413,7 +413,7 @@ function MediastreamPage() {
                                         />
                                     )
                                 })}
-                                {!!episodes?.length && <p className="text-center text-[--muted] py-2">End</p>}
+                                {!!episodes?.length && <p className="text-center text-[--muted] py-2">{t("onlinestream.episodeListEnd")}</p>}
                             </motion.div>
                         ) : (
                             <EpisodePillsGrid
