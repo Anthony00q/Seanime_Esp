@@ -549,7 +549,7 @@ export function LibraryExplorer() {
                                         "animate-pulse",
                                     )}
                                 >
-                                    Filter: {!!selectedFilter ? t(`libraryExplorer.${selectedFilter.toLowerCase()}` as any) : ""}
+                                    {t("libraryExplorer.filterActive", { filter: !!selectedFilter ? t(`libraryExplorer.${selectedFilter.toLowerCase()}` as any) : "" })}
                                 </Button>
                             )}
                             <Button
@@ -713,9 +713,9 @@ export function LibraryExplorerBulkActions(props: LibraryExplorerBulkActionsProp
                         intent={shouldShowUnmatchFiles ? "warning-link" : "success-link"}
                         onClick={handleMatchOrUnmatch}
                     >
-                        {shouldShowUnmatchFiles ? t("libraryExplorer.unmatch") : t("libraryExplorer.match")} {selectedPathFileNodes.length} file{selectedPathFileNodes.length != 1
-                        ? "s"
-                        : ""}
+                        {shouldShowUnmatchFiles 
+                            ? t("libraryExplorer.unmatchFilesCount", { count: selectedPathFileNodes.length }) 
+                            : t("libraryExplorer.matchFilesCount", { count: selectedPathFileNodes.length })}
                     </Button>
                     {(shouldShowIgnoreFiles || shouldShowUnIgnoreFiles) && <Button
                         leftIcon={<LuClipboardX className="text-xl" />}
@@ -723,9 +723,9 @@ export function LibraryExplorerBulkActions(props: LibraryExplorerBulkActionsProp
                         intent={"gray-link"}
                         onClick={handleToggleIgnore}
                     >
-                        {shouldShowIgnoreFiles ? t("libraryExplorer.ignore") : t("libraryExplorer.unignore")} {selectedPathFileNodes.length} file{selectedPathFileNodes.length != 1
-                        ? "s"
-                        : ""}
+                        {shouldShowIgnoreFiles 
+                            ? t("libraryExplorer.ignoreFilesCount", { count: selectedPathFileNodes.length }) 
+                            : t("libraryExplorer.unignoreFilesCount", { count: selectedPathFileNodes.length })}
                     </Button>}
                     <Button
                         leftIcon={<LuTrash2 className="text-xl" />}
