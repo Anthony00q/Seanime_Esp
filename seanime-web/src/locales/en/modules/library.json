@@ -205,7 +205,13 @@
     "unmatch": "Unmatch",
     "match": "Match",
     "ignore": "Ignore",
-    "unignore": "Un-ignore"
+    "unignore": "Un-ignore",
+    "matchFilesCount": "Match {count} file(s)",
+    "unmatchFilesCount": "Unmatch {count} file(s)",
+    "ignoreFilesCount": "Ignore {count} file(s)",
+    "unignoreFilesCount": "Unignore {count} file(s)",
+    "filterActive": "Filter: {filter}",
+    "largerScreensOnly": "Library explorer can only be rendered on larger screens."
   },
   "libraryExplorerSuper": {
     "description": "Update multiple file names and metadata at once.",
@@ -255,7 +261,10 @@
     "fileType": "File type",
     "filterOptional": "Filter (optional)",
     "findTextRegex": "Find (text/regex)",
-    "episodeNumber": "Episode number"
+    "episodeNumber": "Episode number",
+    "successfullyUpdatedFilenamesAndMetadata": "Successfully updated {filenamesCount} filename(s) and {metadataCount} metadata",
+    "successfullyUpdatedFilenames": "Successfully updated {count} filename(s)",
+    "successfullyUpdatedMetadata": "Successfully updated {count} metadata"
   },
   "emptyLibrary": {
     "title": "Empty library",

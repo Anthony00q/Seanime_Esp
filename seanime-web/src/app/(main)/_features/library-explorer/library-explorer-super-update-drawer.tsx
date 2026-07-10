@@ -555,6 +555,11 @@ function getNewFileName(originalName: string, options: SuperUpdateFormData & { t
 
 export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpdateDrawerProps) {
     const t = createTranslator()
+    const typeLabelMap: Record<string, string> = {
+        main: t("libraryExplorer.episodeType"),
+        special: t("libraryExplorer.specialType"),
+        nc: t("libraryExplorer.ncType"),
+    }
     const { fileNodes } = props
 
     const [isOpen, setIsOpen] = useAtom(libraryExplorer_superUpdateDrawerOpenAtom)
@@ -648,13 +653,13 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                 const renamedCount = filesToUpdate.filter(f => f.newName).length
                 const metadataCount = filesToUpdate.filter(f => f.metadata).length
 
-                let message = t("libraryExplorerSuper.successfullyUpdated") + " "
+                let message = ""
                 if (renamedCount > 0 && metadataCount > 0) {
-                    message += `${renamedCount} filename(s) and ${metadataCount} metadata`
+                    message = t("libraryExplorerSuper.successfullyUpdatedFilenamesAndMetadata", { filenamesCount: renamedCount, metadataCount })
                 } else if (renamedCount > 0) {
-                    message += `${renamedCount} filename(s)`
+                    message = t("libraryExplorerSuper.successfullyUpdatedFilenames", { count: renamedCount })
                 } else if (metadataCount > 0) {
-                    message += `${metadataCount} metadata`
+                    message = t("libraryExplorerSuper.successfullyUpdatedMetadata", { count: metadataCount })
                 }
 
                 toast.success(message)
@@ -910,14 +915,14 @@ export function LibraryExplorerSuperUpdateDrawer(props: LibraryExplorerSuperUpda
                                                 {item.metadataWillChange && item.originalMetadata && item.newMetadata && (
                                                     <div className="text-xs text-blue-300 mt-1 space-y-1">
                                                         {item.originalMetadata.episode !== item.newMetadata.episode && (
-                                                            <div>Episode: {item.originalMetadata.episode} → {item.newMetadata.episode}</div>
+                                                            <div>{t("libraryExplorer.episode")} {item.originalMetadata.episode} → {item.newMetadata.episode}</div>
                                                         )}
                                                         {item.originalMetadata.aniDBEpisode !== item.newMetadata.aniDBEpisode && (
-                                                            <div>AniDB: "{item.originalMetadata.aniDBEpisode}" →
+                                                            <div>{t("libraryExplorer.aniDbEpisodeLabel")} "{item.originalMetadata.aniDBEpisode}" →
                                                                  "{item.newMetadata.aniDBEpisode}"</div>
                                                         )}
                                                         {item.originalMetadata.type !== item.newMetadata.type && (
-                                                            <div>Type: {item.originalMetadata.type} → {item.newMetadata.type}</div>
+                                                            <div>{t("libraryExplorer.typeLabel")}: {typeLabelMap[item.originalMetadata.type] || item.originalMetadata.type} → {typeLabelMap[item.newMetadata.type] || item.newMetadata.type}</div>
                                                         )}
                                                     </div>
                                                 )}
