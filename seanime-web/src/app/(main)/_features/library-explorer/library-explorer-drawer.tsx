@@ -7,10 +7,11 @@ import { Vaul, VaulContent } from "@/components/vaul"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { ScopeProvider } from "jotai-scope"
 import { useAtom } from "jotai/react"
+import { createTranslator } from "@/locales"
 import React from "react"
 
 export function LibraryExplorerDrawer(props: {}) {
-
+    const t = createTranslator()
     const ts = useThemeSettings()
     const [open, setOpen] = useAtom(libraryExplorer_drawerOpenAtom)
 
@@ -31,7 +32,7 @@ export function LibraryExplorerDrawer(props: {}) {
                 </ScopeProvider>
                 <div className="block lg:hidden">
                     <p className="text-center text-white text-lg font-semibold py-4">
-                        Library explorer can only be rendered on larger screens.
+                        {t("libraryExplorer.largerScreensOnly")}
                     </p>
                 </div>
             </VaulContent>

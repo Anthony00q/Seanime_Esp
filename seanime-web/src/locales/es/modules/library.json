@@ -205,7 +205,13 @@
     "unmatch": "Des-vincular",
     "match": "Vincular",
     "ignore": "Ignorar",
-    "unignore": "Des-ignorar"
+    "unignore": "Des-ignorar",
+    "matchFilesCount": "Vincular {count} archivo(s)",
+    "unmatchFilesCount": "Des-vincular {count} archivo(s)",
+    "ignoreFilesCount": "Ignorar {count} archivo(s)",
+    "unignoreFilesCount": "Des-ignorar {count} archivo(s)",
+    "filterActive": "Filtro: {filter}",
+    "largerScreensOnly": "El explorador de biblioteca solo se puede mostrar en pantallas grandes."
   },
   "libraryExplorerSuper": {
     "description": "Actualiza múltiples nombres de archivo y metadatos a la vez.",
@@ -255,7 +261,10 @@
     "padZeros": "${{padding=3}} - Rellenar con ceros (000, 001, 002...)",
     "combinedStart": "${{padding=3;start=10}} - Combinado (010, 011, 012...)",
     "combinedPad": "${{padding=2;increment=5}} - Rellenar + incrementar (00, 05, 10...)",
-    "combinedAll": "${{increment=2;start=1;padding=3}} - Todo combinado (001, 003, 005...)"
+    "combinedAll": "${{increment=2;start=1;padding=3}} - Todo combinado (001, 003, 005...)",
+    "successfullyUpdatedFilenamesAndMetadata": "Actualizado exitosamente {filenamesCount} nombre(s) de archivo y {metadataCount} metadatos",
+    "successfullyUpdatedFilenames": "Actualizado exitosamente {count} nombre(s) de archivo",
+    "successfullyUpdatedMetadata": "Actualizados exitosamente {count} metadatos"
   },
   "emptyLibrary": {
     "title": "Biblioteca vacía",
