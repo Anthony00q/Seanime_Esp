@@ -146,9 +146,7 @@ export function AutoDownloaderPage() {
                                     <Alert
                                         intent="warning"
                                         description={<p>
-                                            The auto downloader is currently disabled. <Button intent="white-link" onClick={() => setTab("settings")}>Enable
-                                                                                                                                                      it
-                                                                                                                                                      here.</Button>
+                                            {t("autoDownloader.disabledWarning")} <Button intent="white-link" onClick={() => setTab("settings")}>{t("autoDownloader.enableItHere")}</Button>
                                         </p>}
                                     />
                                 )}
