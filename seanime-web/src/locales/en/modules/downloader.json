@@ -2,6 +2,8 @@
   "autoDownloader": {
     "title": "Auto Downloader",
     "description": "Automatically download new episodes when they are released.",
+    "disabledWarning": "The auto downloader is currently disabled.",
+    "enableItHere": "Enable it here.",
     "allCurrentlyWatching": "All currently watching",
     "allUpcoming": "All upcoming",
     "errorOccurred": "An error occurred, verify the fields.",

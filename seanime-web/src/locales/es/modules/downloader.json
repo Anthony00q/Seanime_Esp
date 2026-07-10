@@ -2,6 +2,8 @@
   "autoDownloader": {
     "title": "Descargas Automáticas",
     "description": "Descarga automáticamente nuevos episodios cuando se lancen.",
+    "disabledWarning": "El descargador automático está actualmente desactivado.",
+    "enableItHere": "Actívalo aquí.",
     "allCurrentlyWatching": "Todo lo que se está viendo actualmente",
     "allUpcoming": "Todo lo próximo",
     "errorOccurred": "Ocurrió un error, verifica los campos.",
