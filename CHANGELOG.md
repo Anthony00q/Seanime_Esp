@@ -4,28 +4,28 @@ All notable changes to this project will be documented in this file.
 
 ## v3.9.1
 
-- 🦺 VideoCore/MpvCore: Fixed preferred track selection
-- 🦺 VideoCore/MpvCore: Enforce absolute path for screenshot dir
-- 🦺 VideoCore: Fixed subtitles not appearing until after cycling
-- 🦺 Nakama: Fixed online streaming watch parties (regression)
-- 🦺 MpvCore: Fixed watch parties not working
-- 🦺 Library: Update library size stats after a scan
-- 🦺 Nakama: Send media to peers and host relay, fixes custom sources
-  - Progress tracking is still not supported
-- 🦺 Nakama: Fixed interference with connected peers not in watch party
-- 🦺 Plugins: Fixed missing fields in Discord RPC API event payload
-- 🦺 Plugins: Fixed tray icon badge state handling after remounts
-- 🦺 Torrent Download: Fixed filename detection when downloading file
-- 🦺 Manga: Workaround for AVIF file type when downloading
-- 🦺 MpvCore: Fixed logging on Windows
-- 🦺 MpvCore: Updated mpv-prism to 0.1.1
-  - Linux: Removed bundled graphics libraries
-  - Linux: Fixed EGL not working for certain configs
-  - Linux: Fixed flickering issues when using shaders
-  - Linux: Potential fix for GPU mismatches
-  - Windows: Fixed UNC path handling
-  - Windows: Potential fix for GPU mismatches
-- 🦺 UI: Fixed minor UI bugs
+- 🦺 VideoCore/MpvCore: Corregida la selección de pista preferida
+- 🦺 VideoCore/MpvCore: Se obliga a usar una ruta absoluta para el directorio de capturas de pantalla
+- 🦺 VideoCore: Corregido que los subtítulos no aparecieran hasta cambiar de pista
+- 🦺 Nakama: Corregidas las salas para ver en grupo (watch parties) en streaming online (regresión)
+- 🦺 MpvCore: Corregido que las salas para ver en grupo no funcionaran
+- 🦺 Biblioteca: Se actualizan las estadísticas de tamaño de la biblioteca tras un escaneo
+- 🦺 Nakama: Envío de medios a pares y relay del host, corrige fuentes personalizadas
+  - El seguimiento del progreso aún no está soportado
+- 🦺 Nakama: Corregida la interferencia con pares conectados que no están en la sala para ver en grupo
+- 🦺 Plugins: Corregidos campos faltantes en el payload del evento de la API de Discord RPC
+- 🦺 Plugins: Corregido el manejo del estado de la insignia del tray tras desmontarse
+- 🦺 Descarga de torrents: Corregida la detección de nombre de archivo al descargar
+- 🦺 Manga: Solución de soporte para el tipo de archivo AVIF al descargar
+- 🦺 MpvCore: Corregidos los registros (logs) en Windows
+- 🦺 MpvCore: Actualizado mpv-prism a 0.1.1
+  - Linux: Eliminadas las librerías gráficas empaquetadas
+  - Linux: Corregido que EGL no funcionara en ciertas configuraciones
+  - Linux: Corregidos los parpadeos al usar shaders
+  - Linux: Posible solución para discrepancias de GPU
+  - Windows: Corregido el soporte para rutas UNC
+  - Windows: Posible solución para discrepancias de GPU
+- 🦺 UI: Corregidos pequeños errores de interfaz
 
 ## v3.9.0
 
