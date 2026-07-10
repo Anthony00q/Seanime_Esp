@@ -146,13 +146,14 @@ export function AutoDownloaderPage() {
                                     <Alert
                                         intent="warning"
                                         description={<p>
-                                            The auto downloader is currently disabled. <Button
-                                            className="py-0 h-auto"
-                                            intent="white-link"
-                                            onClick={() => setTab("settings")}
-                                        >Enable
-                                                                                                                                                      it
-                                                                                                                                                      here.</Button>
+<<<<<<< HEAD
+                                            {t("autoDownloader.disabledWarning")} <Button
+                                                className="py-0 h-auto"
+                                                intent="white-link"
+                                                onClick={() => setTab("settings")}
+                                            >
+                                                {t("autoDownloader.enableItHere")}
+                                            </Button>
                                         </p>}
                                     />
                                 )}
