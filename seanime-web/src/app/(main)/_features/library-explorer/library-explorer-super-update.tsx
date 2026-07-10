@@ -6,6 +6,7 @@ import {
 } from "@/app/(main)/_features/library-explorer/library-explorer.atoms"
 import { Button } from "@/components/ui/button"
 import { useAtom } from "jotai"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { FaRegEdit } from "react-icons/fa"
 
@@ -14,6 +15,7 @@ type LibraryExplorerSuperUpdateProps = {
 }
 
 export function LibraryExplorerSuperUpdate(props: LibraryExplorerSuperUpdateProps) {
+    const t = createTranslator()
     const {
         fileNodes,
     } = props
@@ -38,7 +40,7 @@ export function LibraryExplorerSuperUpdate(props: LibraryExplorerSuperUpdateProp
                         intent={"white-link"}
                         onClick={handleOpenSuperUpdate}
                     >
-                        Super update
+                        {t("libraryExplorer.superUpdate")}
                     </Button>
                 </>
             )}
