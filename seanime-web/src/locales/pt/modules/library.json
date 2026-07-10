@@ -205,7 +205,13 @@
     "unmatch": "Desvincular",
     "match": "Vincular",
     "ignore": "Ignorar",
-    "unignore": "Deixar de ignorar"
+    "unignore": "Deixar de ignorar",
+    "matchFilesCount": "Vincular {count} arquivo(s)",
+    "unmatchFilesCount": "Desvincular {count} arquivo(s)",
+    "ignoreFilesCount": "Ignorar {count} arquivo(s)",
+    "unignoreFilesCount": "Des-ignorar {count} arquivo(s)",
+    "filterActive": "Filtro: {filter}",
+    "largerScreensOnly": "O explorador de biblioteca só pode ser exibido em telas grandes."
   },
   "libraryExplorerSuper": {
     "description": "Atualize vários nomes de arquivos e metadados de uma só vez.",
@@ -255,7 +261,10 @@
     "fileType": "Tipo de arquivo",
     "filterOptional": "Filtro (opcional)",
     "findTextRegex": "Localizar (texto/regex)",
-    "episodeNumber": "Número do episódio"
+    "episodeNumber": "Número do episódio",
+    "successfullyUpdatedFilenamesAndMetadata": "Atualizado com sucesso {filenamesCount} nome(s) de arquivo e {metadataCount} metadados",
+    "successfullyUpdatedFilenames": "Atualizado com sucesso {count} nome(s) de arquivo",
+    "successfullyUpdatedMetadata": "Atualizado com sucesso {count} metadados"
   },
   "emptyLibrary": {
     "title": "Biblioteca vazia",
