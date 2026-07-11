@@ -22,7 +22,7 @@ export const DateRangePickerAnatomy = defineStyleAnatomy({
     ]),
     placeholder: cva([
         "UI-DateRangePicker__placeholder",
-        "text-[--muted]",
+        "text-[--muted] truncate",
     ]),
 })
 
@@ -162,7 +162,7 @@ export const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePick
             {...rest}
         >
             {date?.from ? (
-                date.to ? <span className="line-clamp-1">{`${format(date.from, "P")} - ${format(date.to, "P")}`}</span> : format(date.from, "PPP")
+                date.to ? <span className="line-clamp-1">{`${format(date.from, "P")} - ${format(date.to, "P")}`}</span> : <span className="line-clamp-1">{format(date.from, "PPP")}</span>
             ) : <span className={cn(DateRangePickerAnatomy.placeholder(), placeholderClass)}>{placeholder || "Select a date"}</span>}
         </button>
     )
