@@ -28,7 +28,7 @@ export const DatePickerAnatomy = defineStyleAnatomy({
     ]),
     placeholder: cva([
         "UI-DatePicker__placeholder",
-        "text-[--muted]",
+        "text-[--muted] truncate",
     ]),
 })
 
