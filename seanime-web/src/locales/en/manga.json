@@ -6,6 +6,55 @@
     "refreshSources": "Refresh sources",
     "refetching": "Refreshing...",
     "refetchingSources": "Fetching data from sources...",
+    "sourceRefresh": {
+      "installedProviders": "{count, plural, one {# installed provider} other {# installed providers}}",
+      "eligibleMangaOnly": "Current and re-reading manga only",
+      "start": "Start refresh",
+      "stop": "Stop refresh",
+      "stopping": "Stopping...",
+      "findAlternatives": "Find alternatives",
+      "retryFailed": "Retry failed",
+      "runAgain": "Run again",
+      "stoppingAfterRequest": "Stopping after the current request",
+      "refreshingSelected": "Refreshing selected sources",
+      "searchingInstalled": "Searching installed sources",
+      "progress": "{current} of {total}",
+      "progressLabel": "Source refresh progress",
+      "continueInBackground": "You can close this modal. The refresh will continue in the background.",
+      "complete": "Source refresh complete",
+      "stopped": "Source refresh stopped",
+      "failed": "Source refresh failed",
+      "reviewIssues": "Review issues ({count})",
+      "savedSourceNoChapters": "The saved source returned no chapters.",
+      "noMatchingSource": "No matching source was found.",
+      "providersFailed": "One or more providers failed.",
+      "refreshSelected": {
+        "title": "Refresh selected sources",
+        "description": "Update manga that already have a saved source."
+      },
+      "findMissing": {
+        "title": "Find missing sources",
+        "description": "Search every installed provider for manga without a source."
+      },
+      "refreshAndFind": {
+        "title": "Refresh and find missing",
+        "description": "Update saved sources, then search for missing ones."
+      },
+      "reevaluateAll": {
+        "title": "Re-evaluate all sources",
+        "description": "Compare every installed provider and allow saved sources to change."
+      },
+      "reevaluateWarning": "Existing source selections may be replaced when another provider has more distinct chapters.",
+      "waitingPreferences": "Waiting for server-backed manga preferences to finish syncing.",
+      "installProvider": "Install a manga provider to search for missing or alternative sources.",
+      "summary": {
+        "refreshed": "{count, plural, one {# refreshed} other {# refreshed}}",
+        "found": "{count, plural, one {# found} other {# found}}",
+        "changed": "{count, plural, one {# changed} other {# changed}}",
+        "notFound": "{count, plural, one {# not found} other {# not found}}",
+        "failed": "{count, plural, one {# failed} other {# failed}}"
+      }
+    },
     "hideUnreadCounts": "Hide unread counts",
     "showUnreadCounts": "Show unread counts",
     "unreadOnly": "Unread only",
