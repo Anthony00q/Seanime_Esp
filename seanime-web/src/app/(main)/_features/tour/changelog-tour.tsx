@@ -446,26 +446,26 @@ function useSetupTour(): Record<string, () => TourStep[]> {
                 id: "changelog-1",
                 content: (
                     <div>
-                        <h4 className="text-xl font-bold text-white">What's New in 3.10.0?</h4>
-                        <p>Let's take a look at the biggest additions in this release.</p>
+                        <h4 className="text-xl font-bold text-white">{t("changelogTour.3_10_0.introTitle")}</h4>
+                        <p>{t("changelogTour.3_10_0.introDesc")}</p>
                     </div>
                 ),
                 route: "/",
-                nextLabel: "Start",
+                nextLabel: t("common.buttons.start"),
                 ignoreOutsideClick: true,
             },
             {
                 id: "manga-source-refresh",
-                title: "Manga Source Refresh",
-                content: "Manga source refreshing has been improved. In addition to updating saved sources, you can now assign sources to manga who have none, or re-evaluate all of them.",
+                title: t("changelogTour.3_10_0.mangaSourceRefresh.title"),
+                content: t("changelogTour.3_10_0.mangaSourceRefresh.content"),
                 route: "/manga",
                 ignoreOutsideClick: true,
             },
             {
                 id: "torrent-availability",
                 target: "[data-settings-show-torrent-availability]",
-                title: "Torrent Availability",
-                content: "Enable this to show availability badges on recent episodes missing from your library and in Continue Watching when using torrent or Debrid streaming.",
+                title: t("changelogTour.3_10_0.torrentAvailability.title"),
+                content: t("changelogTour.3_10_0.torrentAvailability.content"),
                 route: "/settings",
                 prepare: async () => {
                     setSettingsTab("torrent")
@@ -476,23 +476,23 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             },
             {
                 id: "online-streaming",
-                title: "Online Streaming",
-                content: "Online streaming can now proxy subtitles, refresh stale source URLs, and keep your provider, server, quality, audio, and subtitle choices more reliably.",
+                title: t("changelogTour.3_10_0.onlineStreaming.title"),
+                content: t("changelogTour.3_10_0.onlineStreaming.content"),
                 route: "/",
                 ignoreOutsideClick: true,
             },
             {
                 id: "plugin-tray-badges",
-                title: "Plugin Tray Badges",
-                content: "Badge counts from tray plugins are now shown on the main tray icon even when the plugin is not pinned.",
+                title: t("changelogTour.3_10_0.pluginTrayBadges.title"),
+                content: t("changelogTour.3_10_0.pluginTrayBadges.content"),
                 route: "/",
                 ignoreOutsideClick: true,
             },
             {
                 id: "mpvcore-logs",
                 target: "[data-tab-trigger='playback']",
-                title: "Export MpvCore Logs",
-                content: "When MpvCore logging is enabled you can now export its logs from the Video Playback settings for faster bug reports.",
+                title: t("changelogTour.3_10_0.mpvcoreLogs.title"),
+                content: t("changelogTour.3_10_0.mpvcoreLogs.content"),
                 route: "/settings",
                 prepare: async () => {
                     setSettingsTab("playback")
@@ -505,8 +505,8 @@ function useSetupTour(): Record<string, () => TourStep[]> {
             },
             {
                 id: "changelog-2",
-                title: "Bug Fixes",
-                content: "This release also fixes lagging or missing subtitles in VideoCore, MPV/IINA watch progress, media container detection, and more. Read the full changelog for details.",
+                title: t("changelogTour.3_10_0.bugFixes.title"),
+                content: t("changelogTour.3_10_0.bugFixes.content"),
                 route: "/",
                 ignoreOutsideClick: true,
             },

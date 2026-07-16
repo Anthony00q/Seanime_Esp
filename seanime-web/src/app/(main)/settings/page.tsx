@@ -132,7 +132,7 @@ export default function Page() {
                         ...denshiSettings,
                         locale: pendingLocale,
                     })
-                    window.electron.send("restart-app")
+                    window.electron.send("restart-app-completely")
                 } else {
                     window.location.reload()
                 }

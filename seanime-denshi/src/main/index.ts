@@ -218,7 +218,7 @@ setupLogging()
 setupChromiumFlags()
 const _development = process.env.NODE_ENV === "development"
 const _isRsbuildFrontend = true
-const DEFAULT_UPDATE_FEED_URL = "https://github.com/5rahim/seanime/releases/latest/download"
+const DEFAULT_UPDATE_FEED_URL = "https://github.com/Anthony00q/Seanime_Esp/releases/latest/download"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Custom protocol for web content
@@ -500,6 +500,20 @@ if (!gotTheLock) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function createTray() {
+    let trayStrings = { toggleVisibility: "Mostrar/Ocultar", removeFromDock: "Quitar del Dock", quit: "Salir de Seanime" }
+    try {
+        const locale = denshiSettings.locale || "es"
+        const localesPath = path.join(app.getAppPath(), "locales", `${locale}.json`)
+        if (fs.existsSync(localesPath)) {
+            const localeData = JSON.parse(fs.readFileSync(localesPath, "utf8"))
+            if (localeData && localeData.tray) {
+                trayStrings = localeData.tray
+            }
+        }
+    } catch (e) {
+        logger.app.error("Failed to load tray locale strings", formatError(e))
+    }
+
     const iconName = process.platform === "darwin" ? "18x18.png" : "icon.png"
 
     const iconPath = path.join(app.getAppPath(), "assets", iconName)
@@ -507,7 +521,7 @@ function createTray() {
     tray = new Tray(icon)
 
     const contextMenu = Menu.buildFromTemplate([{
-        id: "toggle_visibility", label: "Toggle Visibility", click: () => {
+        id: "toggle_visibility", label: trayStrings.toggleVisibility, click: () => {
             if (!serverStarted) return
             if (!mainWindow || mainWindow.isDestroyed()) return
             if (mainWindow.isVisible()) {
@@ -517,12 +531,12 @@ function createTray() {
             }
         },
     }, ...(process.platform === "darwin" ? [{
-        id: "accessory_mode", label: "Remove from Dock", click: () => {
+        id: "accessory_mode", label: trayStrings.removeFromDock, click: () => {
             app.dock?.hide()
         },
     },
     ] : []), {
-        id: "quit", label: "Quit Seanime", click: () => {
+        id: "quit", label: trayStrings.quit, click: () => {
             cleanupAndExit()
         },
     },
@@ -1149,32 +1163,8 @@ function cleanupAndExit() {
 // returns true if github is ok OR url is unreachable
 // returns false if github is down and fallback should be used
 async function fetchGithubStatus() {
-    try {
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), 5000)
-
-        const response = await net.fetch("https://seanime.app/api/github-status", {
-            signal: controller.signal,
-        })
-        clearTimeout(timeoutId)
-
-        if (!response.ok) {
-            return { ok: true, fallback: "" }
-        }
-
-        const data = await response.json()
-
-        // url is reachable, status is "down"
-        if (data.status === "down") {
-            logger.updater.warn("Using fallback update channel", { channel: data.fallback, reason: data.description })
-            return { ok: false, fallback: data.fallback || "seanime" }
-        }
-
-        return { ok: true, fallback: "" }
-    }
-    catch (err) {
-        return { ok: true, fallback: "" }
-    }
+    // Always return ok: true to use the fork's GitHub releases
+    return { ok: true, fallback: "" }
 }
 
 // Initialize the app
@@ -1220,13 +1210,8 @@ app.whenReady().then(async () => {
         verifyUpdateCodeSignature: false,
     }
 
-    if (currentUpdateChannel === "seanime_nightly") {
-        updateConfig.url = "https://seanime.app/api/updates/nightly/"
-        updateConfig.allowPrerelease = true
-    } else if (currentUpdateChannel === "seanime") {
-        updateConfig.url = "https://seanime.app/api/updates/stable/"
-        updateConfig.allowPrerelease = false
-    }
+    // Fork-specific: always use GitHub releases from the fork
+    // Removed upstream seanime.app channel redirects
 
     updateConfig.url = normalizeUpdateFeedURL(updateConfig.url, DEFAULT_UPDATE_FEED_URL)
 
@@ -1477,6 +1462,13 @@ app.whenReady().then(async () => {
         // Quit app handler
         ipcMain.on("quit-app", () => {
             logger.ipc.info("quit-app")
+            cleanupAndExit()
+        })
+
+        // Restart app completely handler (for locale change)
+        ipcMain.on("restart-app-completely", () => {
+            logger.ipc.info("restart-app-completely")
+            app.relaunch()
             cleanupAndExit()
         })
 

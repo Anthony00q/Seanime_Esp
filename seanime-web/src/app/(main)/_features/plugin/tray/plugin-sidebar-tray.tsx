@@ -1,4 +1,5 @@
 import { Extension_Extension, ExtensionRepo_StoredPluginSettingsData } from "@/api/generated/types"
+import { createTranslator } from "@/locales"
 import {
     useGetPluginSettings,
     useListDevelopmentModeExtensions,
@@ -36,6 +37,8 @@ import {
     usePluginListenTrayOpenEvent,
     usePluginSendListTrayIconsEvent,
 } from "../generated/plugin-events"
+
+const t = createTranslator()
 
 export const __plugin_trayIconsAtom = atom<TrayIcon[]>([])
 
