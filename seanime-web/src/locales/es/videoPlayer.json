@@ -145,6 +145,8 @@
         "general": "General",
         "translation": "Traducción"
       },
+      "extraChaptersToSkip": "Capítulos extra a omitir",
+      "extraChaptersToSkipHelp": "Expresiones regulares separadas por comas, sin distinción de mayúsculas. Las reglas de opening y ending existentes siguen activas.",
       "screenshotDirectory": "Directorio de Capturas de Pantalla",
       "screenshotDirectoryHelp": "Configura el directorio donde se guardarán las capturas de pantalla",
       "mustBeAbsolutePath": "Debe ser una ruta absoluta"

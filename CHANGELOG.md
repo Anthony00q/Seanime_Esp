@@ -4,35 +4,35 @@ All notable changes to this project will be documented in this file.
 
 ## v3.10.0
 
-- ⚡️ Manga: Improved source refresh
-  - Refresh saved sources, find missing sources, or compare all installed providers
-  - Retry failed entries or find alternatives when a source stops working
-- ⚡️ Built-in Players: Configure extra chapters to skip
-  - Custom patterns for auto-skip, skip buttons, and timeline highlighting
-- ⚡️ VideoCore: Faster and more reliable subtitles
-- ⚡️ Torrent: Optional availability badges for recently released episodes
-- ⚡️ Online Streaming: Improvement to reliability
-  - Refresh stale source urls before switching providers
-  - Keep provider, server, quality, audio, and subtitle choices during recovery
-  - Remember HLS quality between episodes
-  - Respect provider defaults and per-anime subtitle choices
-  - Support subtitles that require provider headers
-- ⚡️ Denshi: Restore scroll position on Search and Lists
-- ⚡️ Denshi: Export MpvCore logs from Video Playback settings
-- ⚡️ Plugins: Show badge counts for unpinned tray plugins
-- ⚡️ Plugins: Added APIs for custom Discord Rich Presence activities and AniList avatar URLs
-- 🦺 Transcoding / Direct Play: Fixed codec and container detection and stopped reusing stale media containers
-- 🦺 MpvCore: Fixed the player background color
-- 🦺 Nakama: Fixed watch parties using custom-source media
-- 🦺 VideoCore: Fixed stale playback sessions blocking a new client
-- 🦺 MPV/IINA: Restoring watch progress now waits until media is ready
-- 🦺 Cache: Fixed deleted file cache entries remaining active in memory
-- 🦺 UI: Fixed some visual bugs
-- ⬆️ MpvCore: Updated mpv-prism to 0.1.8
-  - Better support for dual-gpu setups
-  - Fixed startup race causing infinite loading
-  - Fixed logging on Windows
-- ⬆️ Updated dependencies
+- ⚡️ Manga: Actualización de fuentes mejorada
+  - Actualiza fuentes guardadas, encuentra fuentes faltantes o compara todos los proveedores instalados
+  - Reintenta entradas fallidas o encuentra alternativas cuando una fuente deja de funcionar
+- ⚡️ Reproductores Integrados: Configuración de capítulos extra a omitir
+  - Patrones personalizados para omisión automática, botones de omisión y resaltado en la línea de tiempo
+- ⚡️ VideoCore: Subtítulos más rápidos y fiables
+- ⚡️ Torrent: Insignias opcionales de disponibilidad para episodios recién lanzados
+- ⚡️ Online Streaming: Mejoras en la fiabilidad
+  - Actualiza URLs de fuentes caducadas antes de cambiar de proveedor
+  - Mantiene las elecciones de proveedor, servidor, calidad, audio y subtítulos durante la recuperación
+  - Recuerda la calidad HLS entre episodios
+  - Respeta los valores predeterminados del proveedor y las elecciones de subtítulos por anime
+  - Soporte para subtítulos que requieren cabeceras del proveedor
+- ⚡️ Denshi: Restaura la posición de desplazamiento en Búsqueda y Listas
+- ⚡️ Denshi: Exportación de logs de MpvCore desde los ajustes de Reproducción de Video
+- ⚡️ Plugins: Muestra el conteo de insignias para los plugins del tray no anclados
+- ⚡️ Plugins: Añadidas APIs para actividades personalizadas de Discord Rich Presence y URLs de avatar de AniList
+- 🦺 Transcoding / Direct Play: Corregida la detección de códecs y contenedores, y se dejó de reutilizar contenedores de medios obsoletos
+- 🦺 MpvCore: Corregido el color de fondo del reproductor
+- 🦺 Nakama: Corregidas las salas para ver en grupo (watch parties) usando medios de fuentes personalizadas
+- 🦺 VideoCore: Corregido que las sesiones de reproducción obsoletas bloquearan a un nuevo cliente
+- 🦺 MPV/IINA: La restauración del progreso de reproducción ahora espera hasta que el medio esté listo
+- 🦺 Caché: Corregido que las entradas de caché de archivos eliminados permanecieran activas en memoria
+- 🦺 UI: Corregidos algunos errores visuales
+- ⬆️ MpvCore: Actualizado mpv-prism a 0.1.8
+  - Mejor soporte para configuraciones de doble GPU
+  - Corregida condición de carrera al inicio que causaba carga infinita
+  - Corregidos los registros (logs) en Windows
+- ⬆️ Dependencias actualizadas
 
 ## v3.9.1
 
