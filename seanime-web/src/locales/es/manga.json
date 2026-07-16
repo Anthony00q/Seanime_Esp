@@ -6,6 +6,55 @@
     "refreshSources": "Actualizar fuentes",
     "refetching": "Actualizando...",
     "refetchingSources": "Obteniendo datos de las fuentes...",
+    "sourceRefresh": {
+      "installedProviders": "{count, plural, one {# proveedor instalado} other {# proveedores instalados}}",
+      "eligibleMangaOnly": "Solo manga actuales y en relectura",
+      "start": "Iniciar actualización",
+      "stop": "Detener actualización",
+      "stopping": "Deteniendo...",
+      "findAlternatives": "Buscar alternativas",
+      "retryFailed": "Reintentar fallidos",
+      "runAgain": "Ejecutar de nuevo",
+      "stoppingAfterRequest": "Se detendrá después de la solicitud actual",
+      "refreshingSelected": "Actualizando fuentes seleccionadas",
+      "searchingInstalled": "Buscando en fuentes instaladas",
+      "progress": "{current} de {total}",
+      "progressLabel": "Progreso de actualización de fuentes",
+      "continueInBackground": "Puedes cerrar este cuadro. La actualización continuará en segundo plano.",
+      "complete": "Actualización de fuentes completada",
+      "stopped": "Actualización de fuentes detenida",
+      "failed": "Error al actualizar las fuentes",
+      "reviewIssues": "Revisar problemas ({count})",
+      "savedSourceNoChapters": "La fuente guardada no devolvió capítulos.",
+      "noMatchingSource": "No se encontró una fuente coincidente.",
+      "providersFailed": "Falló uno o más proveedores.",
+      "refreshSelected": {
+        "title": "Actualizar fuentes seleccionadas",
+        "description": "Actualiza los manga que ya tienen una fuente guardada."
+      },
+      "findMissing": {
+        "title": "Buscar fuentes faltantes",
+        "description": "Busca en todas las fuentes instaladas los manga que no tienen una fuente."
+      },
+      "refreshAndFind": {
+        "title": "Actualizar y buscar faltantes",
+        "description": "Actualiza las fuentes guardadas y luego busca las faltantes."
+      },
+      "reevaluateAll": {
+        "title": "Reevaluar todas las fuentes",
+        "description": "Compara todas las fuentes instaladas y permite cambiar las fuentes guardadas."
+      },
+      "reevaluateWarning": "Las fuentes existentes podrían reemplazarse si otra tiene más capítulos distintos.",
+      "waitingPreferences": "Esperando a que terminen de sincronizarse las preferencias de manga del servidor.",
+      "installProvider": "Instala un proveedor de manga para buscar fuentes faltantes o alternativas.",
+      "summary": {
+        "refreshed": "{count, plural, one {# actualizada} other {# actualizadas}}",
+        "found": "{count, plural, one {# encontrada} other {# encontradas}}",
+        "changed": "{count, plural, one {# cambiada} other {# cambiadas}}",
+        "notFound": "{count, plural, one {# no encontrada} other {# no encontradas}}",
+        "failed": "{count, plural, one {# fallida} other {# fallidas}}"
+      }
+    },
     "hideUnreadCounts": "Ocultar cantidad de no leídos",
     "showUnreadCounts": "Mostrar cantidad de no leídos",
     "unreadOnly": "Solo capítulos sin leer",
