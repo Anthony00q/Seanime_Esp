@@ -9,6 +9,7 @@ import { Disclosure, DisclosureContent, DisclosureItem, DisclosureTrigger } from
 import { Modal } from "@/components/ui/modal"
 import { ProgressBar } from "@/components/ui/progress-bar"
 import { RadioGroup } from "@/components/ui/radio-group"
+import { createTranslator } from "@/locales"
 import { useAtomValue } from "jotai/react"
 import React from "react"
 import { LuChevronDown, LuRefreshCcw } from "react-icons/lu"
@@ -23,6 +24,7 @@ type MangaSourceRefreshModalProps = {
 const discoveryModes: Manga_MangaSourceRefreshMode[] = ["find_missing", "refresh_and_find", "reevaluate_all"]
 
 export function MangaSourceRefreshModal({ open, onOpenChange, job, returnFocusRef }: MangaSourceRefreshModalProps) {
+    const t = createTranslator()
     const hydrated = useAtomValue(__manga_preferencesHydratedAtom)
     const { data: providers } = useListMangaProviderExtensions()
     const { mutate: startRefresh, isPending: isStarting } = useStartMangaSourceRefresh()
@@ -77,11 +79,21 @@ export function MangaSourceRefreshModal({ open, onOpenChange, job, returnFocusRe
         })
     }, [affectedMediaIds, startRefresh, stopRefresh])
 
+    const formatRefreshSummary = (refreshJob: Manga_MangaSourceRefreshJob) => {
+        const parts = [
+            t("manga.sourceRefresh.summary.refreshed", { count: refreshJob.result.refreshed }),
+            t("manga.sourceRefresh.summary.found", { count: refreshJob.result.found }),
+            t("manga.sourceRefresh.summary.changed", { count: refreshJob.result.replaced }),
+        ]
+        if (refreshJob.result.notFound > 0) parts.push(t("manga.sourceRefresh.summary.notFound", { count: refreshJob.result.notFound }))
+        if (refreshJob.result.failed > 0) parts.push(t("manga.sourceRefresh.summary.failed", { count: refreshJob.result.failed }))
+        return `${parts.join(", ")}.`
+    }
     return (
         <Modal
             open={open}
             onOpenChange={onOpenChange}
-            title="Refresh manga sources"
+            title={t("manga.refreshSources")}
             contentClass="max-w-xl"
             onCloseAutoFocus={event => {
                 event.preventDefault()
@@ -89,41 +101,41 @@ export function MangaSourceRefreshModal({ open, onOpenChange, job, returnFocusRe
             }}
             footer={running ? (
                 <>
-                    <Button intent="gray-outline" onClick={() => onOpenChange(false)}>Close</Button>
+                    <Button intent="gray-outline" onClick={() => onOpenChange(false)}>{t("common.buttons.close")}</Button>
                     <Button
                         intent="warning"
                         loading={job?.status === "stopping" || isStopping}
                         disabled={job?.status === "stopping" || isStopping}
                         onClick={() => stopRefresh()}
                     >
-                        {job?.status === "stopping" ? "Stopping..." : "Stop refresh"}
+                        {job?.status === "stopping" ? t("manga.sourceRefresh.stopping") : t("manga.sourceRefresh.stop")}
                     </Button>
                 </>
             ) : terminal ? (
                 <>
                     {canFindAlternatives && (
                         <Button intent="gray-outline" loading={isStarting || isStopping} onClick={findAlternatives}>
-                            Find alternatives
+                            {t("manga.sourceRefresh.findAlternatives")}
                         </Button>
                     )}
                     {!!failedMediaIds.length && (
                         <Button intent="gray-outline" loading={isStarting || isStopping} onClick={retryFailed}>
-                            Retry failed
+                            {t("manga.sourceRefresh.retryFailed")}
                         </Button>
                     )}
-                    <Button intent="gray-outline" loading={isStopping} onClick={() => dismissJob(true)}>Run again</Button>
-                    <Button intent="primary" loading={isStopping} onClick={() => dismissJob(false)}>Done</Button>
+                    <Button intent="gray-outline" loading={isStopping} onClick={() => dismissJob(true)}>{t("manga.sourceRefresh.runAgain")}</Button>
+                    <Button intent="primary" loading={isStopping} onClick={() => dismissJob(false)}>{t("common.buttons.done")}</Button>
                 </>
             ) : (
                 <>
-                    <Button intent="gray-outline" onClick={() => onOpenChange(false)}>Cancel</Button>
+                    <Button intent="gray-outline" onClick={() => onOpenChange(false)}>{t("common.buttons.cancel")}</Button>
                     <Button
                         intent="primary"
                         leftIcon={<LuRefreshCcw />}
                         loading={isStarting}
                         disabled={startDisabled}
                         onClick={() => startRefresh({ mode })}
-                    >Start refresh</Button>
+                    >{t("manga.sourceRefresh.start")}</Button>
                 </>
             )}
         >
@@ -133,24 +145,24 @@ export function MangaSourceRefreshModal({ open, onOpenChange, job, returnFocusRe
                         <div className="flex items-center justify-between gap-4 text-sm">
                             <p ref={statusHeadingRef} tabIndex={-1} className="font-medium outline-none">
                                 {job.status === "stopping"
-                                    ? "Stopping after the current request"
-                                    : job.stage === "refreshing" ? "Refreshing selected sources" : "Searching installed sources"}
+                                    ? t("manga.sourceRefresh.stoppingAfterRequest")
+                                    : job.stage === "refreshing" ? t("manga.sourceRefresh.refreshingSelected") : t("manga.sourceRefresh.searchingInstalled")}
                             </p>
-                            <p className="shrink-0 text-[--muted]">{job.current} of {job.total}</p>
+                            <p className="shrink-0 text-[--muted]">{t("manga.sourceRefresh.progress", { current: job.current, total: job.total })}</p>
                         </div>
-                        <ProgressBar value={progress} size="sm" aria-label="Source refresh progress" />
+                        <ProgressBar value={progress} size="sm" aria-label={t("manga.sourceRefresh.progressLabel")} />
                     </div>
                     <p className="text-sm text-[--muted]">
-                        You can close this modal. The refresh will continue in the background.
+                        {t("manga.sourceRefresh.continueInBackground")}
                     </p>
                 </div>
             ) : terminal && job ? (
                 <div className="space-y-5">
                     <div aria-live={job.status === "failed" ? "assertive" : "polite"}>
                         <p ref={statusHeadingRef} tabIndex={-1} className="font-medium outline-none">
-                            {job.status === "completed" ? "Source refresh complete" : job.status === "cancelled"
-                                ? "Source refresh stopped"
-                                : "Source refresh failed"}
+                            {job.status === "completed" ? t("manga.sourceRefresh.complete") : job.status === "cancelled"
+                                ? t("manga.sourceRefresh.stopped")
+                                : t("manga.sourceRefresh.failed")}
                         </p>
                         <p className="mt-1 text-sm text-[--muted]">
                             {formatRefreshSummary(job)}
@@ -164,7 +176,7 @@ export function MangaSourceRefreshModal({ open, onOpenChange, job, returnFocusRe
                             <DisclosureItem value="issues">
                                 <DisclosureTrigger>
                                     <Button intent="gray-outline" className="w-full justify-between" rightIcon={<LuChevronDown />}>
-                                        Review issues ({job.result.issues.length})
+                                        {t("manga.sourceRefresh.reviewIssues", { count: job.result.issues.length })}
                                     </Button>
                                 </DisclosureTrigger>
                                 <DisclosureContent className="pt-3 max-h-56 overflow-y-auto">
@@ -177,9 +189,9 @@ export function MangaSourceRefreshModal({ open, onOpenChange, job, returnFocusRe
                                                 <p className="text-[--muted] break-words">
                                                     {issue.kind === "not_found"
                                                         ? job.mode === "refresh_selected"
-                                                            ? "The saved source returned no chapters."
-                                                            : "No matching source was found."
-                                                        : "One or more providers failed."}
+                                                            ? t("manga.sourceRefresh.savedSourceNoChapters")
+                                                            : t("manga.sourceRefresh.noMatchingSource")
+                                                        : t("manga.sourceRefresh.providersFailed")}
                                                     {!!issue.providers?.length && ` ${issue.providers.join(", ")}`}
                                                 </p>
                                             </div>
@@ -193,8 +205,8 @@ export function MangaSourceRefreshModal({ open, onOpenChange, job, returnFocusRe
             ) : (
                 <div className="space-y-5">
                     <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[--muted]">
-                        <span>{providerCount} installed {providerCount === 1 ? "provider" : "providers"}</span>
-                        <span>Current and re-reading manga only</span>
+                        <span>{t("manga.sourceRefresh.installedProviders", { count: providerCount })}</span>
+                        <span>{t("manga.sourceRefresh.eligibleMangaOnly")}</span>
                     </div>
 
                     <RadioGroup
@@ -207,30 +219,30 @@ export function MangaSourceRefreshModal({ open, onOpenChange, job, returnFocusRe
                         options={[
                             {
                                 value: "refresh_selected",
-                                label: <ModeLabel title="Refresh selected sources" description="Update manga that already have a saved source." />,
+                                label: <ModeLabel title={t("manga.sourceRefresh.refreshSelected.title")} description={t("manga.sourceRefresh.refreshSelected.description")} />,
                             },
                             {
                                 value: "find_missing",
                                 disabled: discoveryDisabled,
                                 label: <ModeLabel
-                                    title="Find missing sources"
-                                    description="Search every installed provider for manga without a source."
+                                    title={t("manga.sourceRefresh.findMissing.title")}
+                                    description={t("manga.sourceRefresh.findMissing.description")}
                                 />,
                             },
                             {
                                 value: "refresh_and_find",
                                 disabled: discoveryDisabled,
                                 label: <ModeLabel
-                                    title="Refresh and find missing"
-                                    description="Update saved sources, then search for missing ones."
+                                    title={t("manga.sourceRefresh.refreshAndFind.title")}
+                                    description={t("manga.sourceRefresh.refreshAndFind.description")}
                                 />,
                             },
                             {
                                 value: "reevaluate_all",
                                 disabled: discoveryDisabled,
                                 label: <ModeLabel
-                                    title="Re-evaluate all sources"
-                                    description="Compare every installed provider and allow saved sources to change."
+                                    title={t("manga.sourceRefresh.reevaluateAll.title")}
+                                    description={t("manga.sourceRefresh.reevaluateAll.description")}
                                 />,
                             },
                         ]}
@@ -239,14 +251,14 @@ export function MangaSourceRefreshModal({ open, onOpenChange, job, returnFocusRe
                     {mode === "reevaluate_all" && (
                         <Alert
                             intent="warning-basic"
-                            description="Existing source selections may be replaced when another provider has more distinct chapters."
+                            description={t("manga.sourceRefresh.reevaluateWarning")}
                         />
                     )}
                     {!hydrated && (
-                        <Alert intent="info-basic" description="Waiting for server-backed manga preferences to finish syncing." />
+                        <Alert intent="info-basic" description={t("manga.sourceRefresh.waitingPreferences")} />
                     )}
                     {discoveryDisabled && (
-                        <Alert intent="warning-basic" description="Install a manga provider to search for missing or alternative sources." />
+                        <Alert intent="warning-basic" description={t("manga.sourceRefresh.installProvider")} />
                     )}
                 </div>
             )}
@@ -261,15 +273,4 @@ function ModeLabel({ title, description }: { title: string, description: string 
             <span className="mt-0.5 block text-sm font-normal text-[--muted] break-words">{description}</span>
         </span>
     )
-}
-
-function formatRefreshSummary(job: Manga_MangaSourceRefreshJob) {
-    const parts = [
-        `${job.result.refreshed} refreshed`,
-        `${job.result.found} found`,
-        `${job.result.replaced} changed`,
-    ]
-    if (job.result.notFound > 0) parts.push(`${job.result.notFound} not found`)
-    if (job.result.failed > 0) parts.push(`${job.result.failed} failed`)
-    return `${parts.join(", ")}.`
 }

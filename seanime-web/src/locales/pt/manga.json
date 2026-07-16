@@ -6,6 +6,55 @@
     "refreshSources": "Atualizar fontes",
     "refetching": "Atualizando...",
     "refetchingSources": "Buscando dados das fontes...",
+    "sourceRefresh": {
+      "installedProviders": "{count, plural, one {# provedor instalado} other {# provedores instalados}}",
+      "eligibleMangaOnly": "Somente mangás atuais e em releitura",
+      "start": "Iniciar atualização",
+      "stop": "Parar atualização",
+      "stopping": "Parando...",
+      "findAlternatives": "Encontrar alternativas",
+      "retryFailed": "Tentar novamente as falhas",
+      "runAgain": "Executar novamente",
+      "stoppingAfterRequest": "Parando após a solicitação atual",
+      "refreshingSelected": "Atualizando fontes selecionadas",
+      "searchingInstalled": "Buscando fontes instaladas",
+      "progress": "{current} de {total}",
+      "progressLabel": "Progresso da atualização de fontes",
+      "continueInBackground": "Você pode fechar esta janela. A atualização continuará em segundo plano.",
+      "complete": "Atualização de fontes concluída",
+      "stopped": "Atualização de fontes interrompida",
+      "failed": "Falha ao atualizar as fontes",
+      "reviewIssues": "Revisar problemas ({count})",
+      "savedSourceNoChapters": "A fonte salva não retornou capítulos.",
+      "noMatchingSource": "Nenhuma fonte correspondente foi encontrada.",
+      "providersFailed": "Um ou mais provedores falharam.",
+      "refreshSelected": {
+        "title": "Atualizar fontes selecionadas",
+        "description": "Atualize mangás que já têm uma fonte salva."
+      },
+      "findMissing": {
+        "title": "Encontrar fontes ausentes",
+        "description": "Pesquise todos os provedores instalados por mangás sem fonte."
+      },
+      "refreshAndFind": {
+        "title": "Atualizar e encontrar ausentes",
+        "description": "Atualize as fontes salvas e depois pesquise as ausentes."
+      },
+      "reevaluateAll": {
+        "title": "Reavaliar todas as fontes",
+        "description": "Compare todos os provedores instalados e permita que as fontes salvas mudem."
+      },
+      "reevaluateWarning": "As fontes existentes podem ser substituídas se outro provedor tiver mais capítulos distintos.",
+      "waitingPreferences": "Aguardando a sincronização das preferências de mangá do servidor.",
+      "installProvider": "Instale um provedor de mangá para buscar fontes ausentes ou alternativas.",
+      "summary": {
+        "refreshed": "{count, plural, one {# atualizada} other {# atualizadas}}",
+        "found": "{count, plural, one {# encontrada} other {# encontradas}}",
+        "changed": "{count, plural, one {# alterada} other {# alteradas}}",
+        "notFound": "{count, plural, one {# não encontrada} other {# não encontradas}}",
+        "failed": "{count, plural, one {# falhou} other {# falharam}}"
+      }
+    },
     "hideUnreadCounts": "Ocultar contadores de não lidos",
     "showUnreadCounts": "Mostrar contadores de não lidos",
     "unreadOnly": "Apenas não lidos",
