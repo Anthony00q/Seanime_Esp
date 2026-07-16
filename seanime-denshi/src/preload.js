@@ -85,6 +85,7 @@ contextBridge.exposeInMainWorld(
             // Whitelist channels
             const validChannels = [
                 "restart-app",
+                "restart-app-completely",
                 "quit-app"
             ]
             if (validChannels.includes(channel)) {

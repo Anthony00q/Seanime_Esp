@@ -127,6 +127,34 @@
         "title": "Correcciones de errores",
         "content": "Se han corregido varios errores en esta versión, incluyendo el seguimiento de progreso para MPV/IINA, problemas con el proxy de imágenes de manga, y la actualización de Electron en Seanime Denshi a la versión 42.4.0. Lee el registro de cambios completo para más detalles."
       }
+    },
+    "3_10_0": {
+      "introTitle": "¿Qué hay de nuevo en 3.10.0?",
+      "introDesc": "Echemos un vistazo a las principales novedades de esta versión.",
+      "mangaSourceRefresh": {
+        "title": "Actualización de fuentes de manga",
+        "content": "La actualización de fuentes de manga ha mejorado. Además de actualizar las fuentes guardadas, ahora puedes asignar fuentes a manga que no tienen ninguna, o reevaluar todas."
+      },
+      "torrentAvailability": {
+        "title": "Disponibilidad de Torrents",
+        "content": "Activa esto para mostrar insignias de disponibilidad en los episodios recientes que faltan en tu biblioteca y en 'Continuar Viendo' al usar streaming por torrent o Debrid."
+      },
+      "onlineStreaming": {
+        "title": "Streaming en línea",
+        "content": "El streaming en línea ahora puede hacer proxy de subtítulos, actualizar URLs de fuentes caducadas y mantener tu proveedor, servidor, calidad, audio y preferencias de subtítulos de forma más fiable."
+      },
+      "pluginTrayBadges": {
+        "title": "Insignias en el Tray de Plugins",
+        "content": "Los conteos de insignias de los plugins del tray ahora se muestran en el icono principal del tray incluso cuando el plugin no está anclado."
+      },
+      "mpvcoreLogs": {
+        "title": "Exportar Logs de MpvCore",
+        "content": "Cuando el registro de MpvCore está activado, ahora puedes exportar sus logs desde los ajustes de Reproducción de Video para informes de errores más rápidos."
+      },
+      "bugFixes": {
+        "title": "Correcciones de errores",
+        "content": "Esta versión también corrige subtítulos con retraso o faltantes en VideoCore, progreso de visualización con MPV/IINA, detección de contenedores de medios y más. Lee el changelog completo para más detalles."
+      }
     }
   }
 }

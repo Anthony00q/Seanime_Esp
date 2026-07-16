@@ -127,6 +127,34 @@
         "title": "Correções de Bugs",
         "content": "Vários bugs foram corrigidos nesta versão, incluindo o rastreamento de progresso para MPV/IINA, problemas com o proxy de imagens de mangá e a atualização do Electron no Seanime Denshi para a versão 42.4.0. Leia o changelog completo para mais detalhes."
       }
+    },
+    "3_10_0": {
+      "introTitle": "O que há de novo em 3.10.0?",
+      "introDesc": "Vamos dar uma olhada nas maiores adições desta versão.",
+      "mangaSourceRefresh": {
+        "title": "Atualização de Fontes de Mangá",
+        "content": "A atualização de fontes de mangá foi melhorada. Além de atualizar as fontes salvas, agora você pode atribuir fontes a mangás sem nenhuma, ou reavaliar todas elas."
+      },
+      "torrentAvailability": {
+        "title": "Disponibilidade de Torrents",
+        "content": "Ative para mostrar emblemas de disponibilidade em episódios recentes ausentes da sua biblioteca e em 'Continuar Assistindo' ao usar streaming de torrent ou Debrid."
+      },
+      "onlineStreaming": {
+        "title": "Streaming Online",
+        "content": "O streaming online agora pode fazer proxy de legendas, atualizar URLs de fontes expiradas e manter suas preferências de provedor, servidor, qualidade, áudio e legenda de forma mais confiável."
+      },
+      "pluginTrayBadges": {
+        "title": "Emblemas no Tray de Plugins",
+        "content": "As contagens de emblemas dos plugins do tray agora são mostradas no ícone principal do tray mesmo quando o plugin não está fixado."
+      },
+      "mpvcoreLogs": {
+        "title": "Exportar Logs do MpvCore",
+        "content": "Quando o registro do MpvCore está ativado, você pode exportar seus logs nas configurações de Reprodução de Vídeo para relatórios de bugs mais rápidos."
+      },
+      "bugFixes": {
+        "title": "Correções de Bugs",
+        "content": "Esta versão também corrige legendas com atraso ou ausentes no VideoCore, progresso de visualização com MPV/IINA, detecção de contêineres de mídia e mais. Leia o changelog completo para mais detalhes."
+      }
     }
   }
 }

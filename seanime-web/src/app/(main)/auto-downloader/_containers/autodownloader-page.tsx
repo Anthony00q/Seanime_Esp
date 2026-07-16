@@ -146,7 +146,6 @@ export function AutoDownloaderPage() {
                                     <Alert
                                         intent="warning"
                                         description={<p>
-<<<<<<< HEAD
                                             {t("autoDownloader.disabledWarning")} <Button
                                                 className="py-0 h-auto"
                                                 intent="white-link"
