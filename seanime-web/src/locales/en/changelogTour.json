@@ -127,6 +127,34 @@
         "title": "Bug Fixes",
         "content": "Several bugs have been fixed in this release, including progress tracking for MPV/IINA, manga image proxy issues, and Seanime Denshi's Electron has been updated to 42.4.0. Read the full changelog for more details."
       }
+    },
+    "3_10_0": {
+      "introTitle": "What's New in 3.10.0?",
+      "introDesc": "Let's take a look at the biggest additions in this release.",
+      "mangaSourceRefresh": {
+        "title": "Manga Source Refresh",
+        "content": "Manga source refreshing has been improved. In addition to updating saved sources, you can now assign sources to manga who have none, or re-evaluate all of them."
+      },
+      "torrentAvailability": {
+        "title": "Torrent Availability",
+        "content": "Enable this to show availability badges on recent episodes missing from your library and in Continue Watching when using torrent or Debrid streaming."
+      },
+      "onlineStreaming": {
+        "title": "Online Streaming",
+        "content": "Online streaming can now proxy subtitles, refresh stale source URLs, and keep your provider, server, quality, audio, and subtitle choices more reliably."
+      },
+      "pluginTrayBadges": {
+        "title": "Plugin Tray Badges",
+        "content": "Badge counts from tray plugins are now shown on the main tray icon even when the plugin is not pinned."
+      },
+      "mpvcoreLogs": {
+        "title": "Export MpvCore Logs",
+        "content": "When MpvCore logging is enabled you can now export its logs from the Video Playback settings for faster bug reports."
+      },
+      "bugFixes": {
+        "title": "Bug Fixes",
+        "content": "This release also fixes lagging or missing subtitles in VideoCore, MPV/IINA watch progress, media container detection, and more. Read the full changelog for details."
+      }
     }
   }
 }

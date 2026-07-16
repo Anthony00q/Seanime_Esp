@@ -145,6 +145,8 @@
         "general": "Geral",
         "translation": "Tradução"
       },
+      "extraChaptersToSkip": "Capítulos extras a pular",
+      "extraChaptersToSkipHelp": "Expressões regulares separadas por vírgula, sem distinção entre maiúsculas e minúsculas. As regras de opening e ending existentes continuam ativas.",
       "screenshotDirectory": "Diretório de Capturas de Tela",
       "screenshotDirectoryHelp": "Configure o diretório onde os prints serão salvos",
       "mustBeAbsolutePath": "Deve ser um caminho absoluto"

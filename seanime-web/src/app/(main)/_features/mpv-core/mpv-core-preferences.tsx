@@ -257,11 +257,11 @@ export function MpvCorePreferencesModal(props: {
                     <TabsContent value="general" className={tabContentClass}>
                         <div className="space-y-4">
                             <TextInput
-                                label="Extra Chapters to Skip"
+                                label={t("videoPlayer.preferences.extraChaptersToSkip")}
                                 value={editedSkipPatterns}
                                 onValueChange={setEditedSkipPatterns}
                                 placeholder="^Intro$,^Outro$,^Preview$"
-                                help="Comma-separated regular expressions matched case-insensitively. Existing opening and ending rules remain active."
+                                help={t("videoPlayer.preferences.extraChaptersToSkipHelp")}
                                 error={skipPatternError}
                                 onKeyDown={event => event.stopPropagation()}
                                 onInput={event => event.stopPropagation()}

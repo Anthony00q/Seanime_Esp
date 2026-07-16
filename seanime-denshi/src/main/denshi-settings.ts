@@ -11,6 +11,7 @@ export type DenshiSettings = {
     windowBounds: Electron.Rectangle | null
     windowMaximized: boolean
     mpvPrismLogging: boolean
+    locale: string
 }
 
 export const DENSHI_SETTINGS_DEFAULTS: DenshiSettings = {
@@ -21,6 +22,7 @@ export const DENSHI_SETTINGS_DEFAULTS: DenshiSettings = {
     windowBounds: null,
     windowMaximized: true,
     mpvPrismLogging: false,
+    locale: "es",
 }
 
 function getDenshiSettingsPath(): string {

@@ -145,6 +145,8 @@
         "general": "General",
         "translation": "Translation"
       },
+      "extraChaptersToSkip": "Extra Chapters to Skip",
+      "extraChaptersToSkipHelp": "Comma-separated regular expressions matched case-insensitively. Existing opening and ending rules remain active.",
       "screenshotDirectory": "Screenshot Directory",
       "screenshotDirectoryHelp": "Configure the directory where screenshots will be saved",
       "mustBeAbsolutePath": "Must be an absolute path"
