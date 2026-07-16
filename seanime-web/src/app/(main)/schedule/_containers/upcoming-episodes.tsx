@@ -63,7 +63,7 @@ export function UpcomingEpisodes() {
                                             isAdult={item.baseAnime?.isAdult}
                                             spoilerMode="replace"
                                             spoilerActive={spoilerActive}
-                                            title={`Episode ${item.episodeNumber}`}
+                                            title={t("schedule.episodeNumber", { number: item.episodeNumber })}
                                             meta={formatDistanceToNow(addSeconds(new Date(), item.timeUntilAiring!),
                                                 { addSuffix: true, locale: getDateFnsLocale() })}
                                             imageClass="opacity-50"
