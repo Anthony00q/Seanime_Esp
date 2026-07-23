@@ -63,7 +63,7 @@ export function EpisodePillsGrid({
                             // }}
                             onClick={() => !disabled && onEpisodeSelect(episode.number, getEpisodeId(episode))}
                             disabled={disabled}
-                            title={episode.title || `Episode ${episode.number}`}
+                            title={episode.title || t("videoPlayer.episodePillTitle", { number: episode.number })}
                             id={getEpisodeId(episode)}
                             className={cn(
                                 "relative flex items-center justify-center",

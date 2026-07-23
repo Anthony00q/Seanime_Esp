@@ -18,6 +18,7 @@ import { AnimatePresence, motion } from "motion/react"
 import React, { useEffect, useRef, useState } from "react"
 import { BiChevronDown, BiChevronUp, BiDownArrow, BiGroup, BiStop, BiUpArrow } from "react-icons/bi"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 export const enum TorrentStreamEvents {
     TorrentLoading = "loading",
@@ -61,6 +62,8 @@ export function PlaybackPlayPill({ isNativePlayerComponent, show }: {
     const { mutate: stopTorrent, isPending: isStoppingTorrent } = useTorrentstreamStopStream()
     const { mutate: cancelDebrid, isPending: isCancellingDebrid } = useDebridCancelStream()
 
+    const tr = createTranslator()
+
     const t = useRef<NodeJS.Timeout | null>(null)
     const [showMediaPlayerLoading, setShowMediaPlayerLoading] = useState(false)
 
@@ -85,9 +88,9 @@ export function PlaybackPlayPill({ isNativePlayerComponent, show }: {
     }, [minimized, setMinimized])
 
     const confirmStop = useConfirmationDialog({
-        title: "Stop streaming?",
-        description: "Are you sure you want to stop and close the stream?",
-        actionText: "Stop stream",
+        title: tr("entry.torrentStream.stopStreamingTitle"),
+        description: tr("entry.torrentStream.stopStreamingDesc"),
+        actionText: tr("entry.torrentStream.stopStreamingAction"),
         actionIntent: "alert",
         onConfirm: () => {
             handleStopStream()
@@ -294,7 +297,7 @@ export function PlaybackPlayPill({ isNativePlayerComponent, show }: {
                     setDebridState(null)
                     setAutoSelectState(null)
                     if (data.message !== "") {
-                        toast.info("Sending stream to player...", { duration: 1 })
+                        toast.info(tr("entry.debridStream.sendingStream"), { duration: 1 })
                     }
                     setShowMediaPlayerLoading(true)
                     return
@@ -386,21 +389,21 @@ export function PlaybackPlayPill({ isNativePlayerComponent, show }: {
         if (!loadingState) return ""
         switch (loadingState) {
             case "LOADING":
-                return "Loading..."
+                return tr("entry.torrentStream.loading")
             case "SEARCHING_TORRENTS":
-                return "Selecting file..."
+                return tr("entry.torrentStream.selectingFile")
             case "ADDING_TORRENT":
-                return torrentBeingLoaded ? `Adding torrent "${torrentBeingLoaded}"` : "Adding torrent..."
+                return tr("entry.torrentStream.addingTorrent", { name: torrentBeingLoaded || "" })
             case "CHECKING_TORRENT":
-                return torrentBeingLoaded ? `Checking torrent "${torrentBeingLoaded}"` : "Checking torrent..."
+                return tr("entry.torrentStream.checkingTorrent", { name: torrentBeingLoaded || "" })
             case "SELECTING_FILE":
-                return "Selecting file..."
+                return tr("entry.torrentStream.selectingFile")
             case "SENDING_STREAM_TO_MEDIA_PLAYER":
-                return "Sending stream to player..."
+                return tr("entry.torrentStream.sendingStream")
             default:
                 return loadingState
         }
-    }, [loadingState, torrentBeingLoaded])
+    }, [loadingState, torrentBeingLoaded, t])
 
     const currentStepDetail = autoSelectState?.stepDetail || debridState?.message || loadingStateStr || ""
 
@@ -440,7 +443,7 @@ export function PlaybackPlayPill({ isNativePlayerComponent, show }: {
                                         transition={{ duration: 0.25 }}
                                         className="text-[--foreground] text-xs font-semibold truncate block"
                                     >
-                                        {currentStepDetail || "Loading..."}
+                                        {currentStepDetail || tr("entry.torrentStream.loading")}
                                     </motion.span>
                                 </AnimatePresence>
                             </div>}
@@ -497,10 +500,10 @@ export function PlaybackPlayPill({ isNativePlayerComponent, show }: {
                             <div className="flex items-center justify-between gap-4 border-b border-[--border]/60 pb-2">
                                 <div className="min-w-0 flex-1">
                                     <h3 className="text-sm font-bold text-[--foreground] truncate">
-                                        {autoSelectState?.mediaTitle || debridState?.torrentName || "Active Streaming"}
+                                        {autoSelectState?.mediaTitle || debridState?.torrentName || tr("entry.torrentStream.activeStreaming")}
                                     </h3>
                                     <p className="text-[11px] text-[--muted] mt-0.5">
-                                        {autoSelectState ? `Episode ${autoSelectState.episode}` : (debridState?.message || "Loading...")}
+                                        {autoSelectState ? tr("entry.torrentStream.episodeLabel", { number: autoSelectState.episode }) : (debridState?.message || tr("entry.torrentStream.loading"))}
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-1 flex-shrink-0">
@@ -533,7 +536,7 @@ export function PlaybackPlayPill({ isNativePlayerComponent, show }: {
 
                             {autoSelectState?.candidates && autoSelectState.candidates.length > 0 && (
                                 <div className="flex flex-col gap-1.5 mt-1">
-                                    <h4 className="text-[10px] font-bold text-[--muted] uppercase tracking-wider px-1">Top Candidates</h4>
+                                    <h4 className="text-[10px] font-bold text-[--muted] uppercase tracking-wider px-1">{tr("entry.torrentStream.topCandidates")}</h4>
                                     <div className="flex flex-col gap-1.5 max-h-[160px] overflow-y-auto border border-[--border] rounded-xl bg-gray-950 p-1">
                                         {autoSelectState.candidates.map((cand, idx) => {
                                             const isSkipped = cand.status === "skipped"
@@ -558,7 +561,7 @@ export function PlaybackPlayPill({ isNativePlayerComponent, show }: {
                                                         <p className="text-[9px] text-[--muted] mt-0.5 font-mono">{cand.provider}</p>
                                                     </div>
                                                     <div className="flex items-center gap-2.5 flex-shrink-0">
-                                                        <span className="text-[10px] font-bold text-[--muted]">Score: {cand.score}</span>
+                                                        <span className="text-[10px] font-bold text-[--muted]">{tr("entry.torrentStream.score")} {cand.score}</span>
                                                         {!isTorrentLoaded && <span
                                                             className={cn(
                                                                 "px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider border border-transparent",
@@ -581,8 +584,8 @@ export function PlaybackPlayPill({ isNativePlayerComponent, show }: {
                             {isTorrentLoaded && status && (
                                 <div className="flex flex-col gap-2 bg-gray-950/30 border border-[--border] p-3 rounded-xl mt-1">
                                     <div className="flex justify-between items-center text-[11px] text-[--muted] font-semibold">
-                                        <span>Speed: <strong className="text-[--foreground]">{status.downloadSpeed || "0 B/s"}</strong></span>
-                                        <span>Seeders: <strong className="text-[--foreground]">{status.seeders}</strong></span>
+                                        <span>{tr("entry.torrentStream.speed")} <strong className="text-[--foreground]">{status.downloadSpeed || "0 B/s"}</strong></span>
+                                        <span>{tr("entry.torrentStream.seedersLabel")} <strong className="text-[--foreground]">{status.seeders}</strong></span>
                                     </div>
                                     <div className="w-full bg-gray-950 border border-[--border] rounded-full h-1.5 overflow-hidden">
                                         <div
@@ -591,8 +594,8 @@ export function PlaybackPlayPill({ isNativePlayerComponent, show }: {
                                         />
                                     </div>
                                     <div className="flex justify-between items-center text-[10px] text-[--muted] font-medium">
-                                        <span>{status.progressPercentage.toFixed(1)}% complete</span>
-                                        <span>Upload: {status.uploadSpeed || "0 B/s"}</span>
+                                        <span>{status.progressPercentage.toFixed(1)}{tr("entry.torrentStream.percentComplete")}</span>
+                                        <span>{tr("entry.torrentStream.upload")} {status.uploadSpeed || "0 B/s"}</span>
                                     </div>
                                 </div>
                             )}

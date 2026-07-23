@@ -189,7 +189,7 @@ export function EpisodeSection({ entry, details, bottomSection, hideCarousel, ma
                                                         })
                                                     }}
                                                 >
-                                                    <LuTvMinimalPlay /> Play externally
+                                                    <LuTvMinimalPlay /> {t("entry.episodeList.playExternally")}
                                                 </ContextMenuItem>}
                                             </>}
                                         />
