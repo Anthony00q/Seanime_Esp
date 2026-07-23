@@ -15,6 +15,7 @@ import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import React from "react"
 import { IoPlayCircle } from "react-icons/io5"
+import { createTranslator } from "@/locales"
 
 const log = logger("TORRENT STREAM FILE SELECTION")
 
@@ -22,6 +23,7 @@ export const __torrentSearch_fileSelectionTorrentAtom = atom<HibikeTorrent_Anime
 
 export function TorrentstreamFileSelectionModal({ entry }: { entry: Anime_Entry }) {
     const [, setter] = useAtom(__torrentSearch_selectionAtom)
+    const t = createTranslator()
 
     const [selectedTorrent, setSelectedTorrent] = useAtom(__torrentSearch_fileSelectionTorrentAtom)
 
@@ -131,7 +133,7 @@ export function TorrentstreamFileSelectionModal({ entry }: { entry: Anime_Entry 
             <VaulContent className="max-w-5xl mx-auto">
                 <AppLayoutStack className="mt-4 p-3 lg:p-6">
                     {(isLoading || filePreviews?.length === 1) ? <LoadingSpinner
-                        title={filePreviews?.length === 1 ? "Launching stream..." : "Fetching torrent info..."}
+                        title={filePreviews?.length === 1 ? t("entry.torrentStream.launchingStream") : t("entry.torrentStream.fetchingTorrentInfo")}
                     /> : (
                         <AppLayoutStack className="pb-0">
 
@@ -157,7 +159,7 @@ export function TorrentstreamFileSelectionModal({ entry }: { entry: Anime_Entry 
                                 disabled={selectedFileIdx === -1 || isLoading}
                                 onClick={() => onStream(selectedFileIdx)}
                             >
-                                Stream
+                                {t("entry.torrentStream.streamButton")}
                             </Button>
 
                         </AppLayoutStack>

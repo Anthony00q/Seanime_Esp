@@ -151,7 +151,7 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
             )
 
             if (episodeNumbers?.length === 0) return (
-                `Batch`
+                t("entry.torrentSearch.batchLabel")
             )
 
             if (metadata?.formatted_title) return metadata.formatted_title
@@ -165,12 +165,12 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
             const lastS = parseInt(partNumbers[partNumbers.length - 1])
             if (s1 != lastS) {
                 if (uniqBy(partNumbers, n => parseInt(n)).length === 2 && lastS - s1 === 1)
-                    titleText = `Part ${s1} and ${lastS}`
+                    titleText = t("entry.torrentSearch.partAnd", { p1: s1, p2: lastS })
                 else
-                    titleText = `Parts ${s1} to ${lastS}`
+                    titleText = t("entry.torrentSearch.partsRange", { from: s1, to: lastS })
                 return titleText
             } else {
-                return `Part ${s1}`
+                return t("entry.torrentSearch.partSingle", { n: s1 })
             }
         }
         if (seasonNumbers?.length && seasonNumbers.length > 1) {
@@ -178,24 +178,27 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
             const lastS = parseInt(seasonNumbers[seasonNumbers.length - 1])
             if (s1 != lastS) {
                 if (uniqBy(seasonNumbers, n => parseInt(n)).length === 2 && lastS - s1 === 1)
-                    titleText = `Season ${s1} and ${lastS}`
+                    titleText = t("entry.torrentSearch.seasonAnd", { s1: s1, s2: lastS })
                 else
-                    titleText = `Seasons ${s1} to ${lastS}`
+                    titleText = t("entry.torrentSearch.seasonsRange", { from: s1, to: lastS })
                 return titleText
             } else {
-                return `Season ${s1}`
+                return t("entry.torrentSearch.seasonSingle", { n: s1 })
             }
         }
         if (episodeNumbers?.length && episodeNumbers?.length > 1) {
-            titleText = `Episodes ${parseInt(episodeNumbers[0])} to ${parseInt(episodeNumbers[episodeNumbers.length - 1])}`
+            titleText = t("entry.torrentSearch.episodesRange", {
+                from: parseInt(episodeNumbers[0]),
+                to: parseInt(episodeNumbers[episodeNumbers.length - 1]),
+            })
             if (seasonNumbers?.length === 1) {
-                titleText += ` (Season ${parseInt(seasonNumbers[0])})`
+                titleText += " " + t("entry.torrentSearch.seasonParens", { n: parseInt(seasonNumbers[0]) })
             }
             return titleText
         } else if (seasonNumbers?.length && seasonNumbers.length === 1) {
-            return `Season ${parseInt(seasonNumbers[0])}`
+            return t("entry.torrentSearch.seasonSingle", { n: parseInt(seasonNumbers[0]) })
         }
-        return "Batch"
+        return t("entry.torrentSearch.batchLabel")
     }, [displayName, metadata])
 
     return (

@@ -129,7 +129,7 @@ export function DebridStreamOverlay() {
                             <HiOutlineServerStack className="text-2xl text-[--brand]" />
                             <div className="">
                                 <p>
-                                    Awaiting stream from Debrid service
+                                    {t("entry.debridStream.awaitingStreamMessage")}
                                 </p>
                                 <p className="text-[--muted] text-sm">
                                     {state?.message}
@@ -155,7 +155,7 @@ export function DebridStreamOverlay() {
                 <AppLayoutStack>
 
                     <p className="text-[--muted] italic text-sm">
-                        Closing this modal will not cancel the stream
+                        {t("entry.debridStream.closingModalNotice")}
                     </p>
 
                     <div className="p-4 pb-0">
@@ -175,7 +175,7 @@ export function DebridStreamOverlay() {
                             disabled={isCancelling || state?.status !== "downloading" || state?.message === "Downloading torrent..."}
                             size="sm"
                         >
-                            Cancel
+                            {t("entry.debridStream.cancelStream")}
                         </Button>
                         <Button
                             onClick={() => confirmCancelAndRemoveTorrent.open()}
@@ -183,7 +183,7 @@ export function DebridStreamOverlay() {
                             disabled={isCancelling || state?.status !== "downloading" || state?.message === "Downloading torrent..."}
                             size="sm"
                         >
-                            Cancel and remove torrent
+                            {t("entry.debridStream.cancelAndRemoveTorrent")}
                         </Button>
                     </div>
 

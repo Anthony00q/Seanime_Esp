@@ -112,7 +112,7 @@ export function MetaSection(props: { entry: Anime_Entry, details: AL_AnimeDetail
                                         </SeaLink>
                                     </div>}
                                 >
-                                    Custom source
+                                    {t("entry.customSource")}
                                 </Tooltip>
                             )}
 
@@ -127,13 +127,13 @@ export function MetaSection(props: { entry: Anime_Entry, details: AL_AnimeDetail
                                     </SeaLink>
                                 </div>}
                             >
-                                Open in website
+                                {t("entry.openInWebsite")}
                             </Tooltip>}
 
                             {!!entry?.media?.trailer?.id && <TrailerModal
                                 trailerId={entry?.media?.trailer?.id} trigger={
                                 <Button size="sm" intent="gray-link" className="px-0">
-                                    Trailer
+                                    {t("entry.trailer")}
                                 </Button>}
                             />}
                         </div>
@@ -227,7 +227,7 @@ export function MetaSection(props: { entry: Anime_Entry, details: AL_AnimeDetail
                         {entry._isNakamaEntry && currentView === "library" &&
                             <div className="flex items-center gap-2 h-10 px-4 border rounded-md flex-none">
                                 <MdOutlineConnectWithoutContact className="size-6 animate-pulse text-[--blue]" />
-                                <span className="text-sm tracking-wide">Shared by {nakamaStatus?.hostConnectionStatus?.username}</span>
+                                <span className="text-sm tracking-wide">{t("entry.sharedBy")} {nakamaStatus?.hostConnectionStatus?.username}</span>
                             </div>}
 
                         <PluginAnimePageButtons media={entry.media!} />

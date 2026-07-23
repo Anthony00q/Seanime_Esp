@@ -1,11 +1,13 @@
 import type { Anime_EpisodeTorrentAvailability } from "@/api/generated/types"
 import { Badge } from "@/components/ui/badge"
 import { LuCircleCheck, LuCircleHelp, LuClock3, LuLoaderCircle } from "react-icons/lu"
+import { createTranslator } from "@/locales"
 
 export function EpisodeTorrentAvailabilityBadge({ status }: { status?: Anime_EpisodeTorrentAvailability }) {
+    const t = createTranslator()
     if (status === "available") {
-        return <Badge size="sm" intent="success-solid" leftIcon={<LuCircleCheck />} title="A matching torrent was found">
-            Torrent available
+        return <Badge size="sm" intent="success-solid" leftIcon={<LuCircleCheck />} title={t("entry.episodeList.torrentAvailableTooltip")}>
+            {t("entry.episodeList.torrentAvailable")}
         </Badge>
     }
     if (status === "checking") {
@@ -13,19 +15,19 @@ export function EpisodeTorrentAvailabilityBadge({ status }: { status?: Anime_Epi
             size="sm"
             intent="primary-solid"
             leftIcon={<LuLoaderCircle className="animate-spin" />}
-            title="Checking the selected torrent provider"
+            title={t("entry.episodeList.checkingTorrentsTooltip")}
         >
-            Checking torrents
+            {t("entry.episodeList.checkingTorrents")}
         </Badge>
     }
     if (status === "waiting") {
-        return <Badge size="sm" intent="warning-solid" leftIcon={<LuClock3 />} title="No matching torrent was found yet">
-            Waiting for torrent
+        return <Badge size="sm" intent="warning-solid" leftIcon={<LuClock3 />} title={t("entry.episodeList.waitingForTorrentTooltip")}>
+            {t("entry.episodeList.waitingForTorrent")}
         </Badge>
     }
     if (status === "unknown") {
-        return <Badge size="sm" intent="gray-solid" leftIcon={<LuCircleHelp />} title="The torrent provider could not be checked">
-            Availability unknown
+        return <Badge size="sm" intent="gray-solid" leftIcon={<LuCircleHelp />} title={t("entry.episodeList.availabilityUnknownTooltip")}>
+            {t("entry.episodeList.availabilityUnknown")}
         </Badge>
     }
     return null
