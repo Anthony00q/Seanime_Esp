@@ -54,13 +54,13 @@ Este es un **fork multilingüe** del proyecto [Seanime](https://github.com/5rahi
 
 ## Características
 
-- **Multiplataforma**: Interfaz web y aplicación de escritorio para Windows, Linux y macOS.
+- **Multiplataforma**: Interfaz web y aplicación de escritorio para Windows, Linux y macOS, accesible desde dispositivos iOS y Android.
 - **Seanime Denshi**: Cliente de escritorio con reproductor de video integrado basado en libmpv (soporte para subtítulos SSA/ASS, shaders y más).
 - **Integración con AniList**: Explora y gestiona tus listas, descubre anime y manga.
 - **Fuentes Personalizadas**: Soporte para añadir anime y manga que no están en AniList.
 - **Gestión de Biblioteca**: Escaneo rápido e inteligente de archivos locales sin convenciones de nomenclatura estrictas ni estructuras de carpetas obligatorias.
-- **Integración de Torrents**: Motor de búsqueda de torrents integrado a través de extensiones y soporte de descarga con qBittorrent, Transmission, TorBox y Real-Debrid.
-- **Streaming de Torrents**: Transmite torrents directamente al reproductor de video sin esperar a que se descarguen (soporta BitTorrent, TorBox y Real-Debrid).
+- **Integración de Torrents**: Motor de búsqueda de torrents integrado a través de extensiones y soporte de descarga con qBittorrent, Transmission, TorBox, Real-Debrid, AllDebrid y Premiumize.
+- **Streaming de Torrents**: Transmite torrents directamente al reproductor de video sin esperar a que se descarguen (soporta BitTorrent, TorBox, Real-Debrid, AllDebrid y Premiumize).
 - **Streaming en Línea**: Ve anime desde fuentes en línea directamente en la aplicación a través de extensiones.
 - **Descargas Automáticas**: Rastrea y descarga automáticamente nuevos episodios con filtros personalizables y funciones avanzadas (priorización, puntuación, retraso, etc.).
 - **Catálogo de Extensiones**: Repositorio en la aplicación para instalar y gestionar extensiones para streaming en línea, fuentes de manga y proveedores de torrents.
