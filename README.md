@@ -45,7 +45,7 @@ Este es un **fork multilingüe** del proyecto [Seanime](https://github.com/5rahi
 
 **Estructura de ramas:**
 - `main` → espejo puro del upstream (sin modificaciones)
-- `traduccion-es` → rama de trabajo con las traducciones al español
+- `traduccion-es` → rama de trabajo con las traducciones
 
 > [!IMPORTANT]
 > Seanime no proporciona, aloja ni distribuye contenido multimedia. Los usuarios son responsables de obtener contenido por medios legales y cumplir con las leyes locales. Las extensiones listadas en la app no están afiliadas con Seanime y pueden ser eliminadas si violan leyes de derechos de autor.
@@ -93,21 +93,21 @@ El proyecto original no tiene soporte nativo para múltiples idiomas (i18n), por
 
 ### 🌍 Estado Actual (Traducción Completa)
 
-El ecosistema actual cubre el **100% de la interfaz de forma nativa en Español, Inglés y Portugués (pt-BR)**. La mayor novedad es que el idioma es totalmente dinámico: los usuarios pueden alternar libremente entre los tres idiomas desde los Ajustes, aplicando los cambios en tiempo real a toda la interfaz. Además, la arquitectura modular diseñada permite escalar a cualquier idioma adicional sin fricciones. Se realiza un mantenimiento constante para pulir el contexto, asegurar la naturalidad del lenguaje y garantizar que cada actualización del proyecto original sea adaptada inmediatamente al lanzarse.
+El ecosistema actual cubre el **100% de la interfaz de forma nativa en Español, Inglés y Portugués (pt)**. La mayor novedad es que el idioma es totalmente dinámico: los usuarios pueden alternar libremente entre los tres idiomas desde los Ajustes, aplicando los cambios en tiempo real a toda la interfaz. Además, la arquitectura modular diseñada permite escalar a cualquier idioma adicional sin fricciones. Se realiza un mantenimiento constante para pulir el contexto, asegurar la naturalidad del lenguaje y garantizar que cada actualización del proyecto original sea adaptada inmediatamente al lanzarse.
 
 **Detalles Técnicos del Sistema:**
-- **~3.500+ keys** en 25 archivos JSON modulares, con validación de tipo estricta para evitar errores.
+- **Miles de keys** de traducción en 25 archivos JSON modulares, con validación de tipo estricta para evitar errores.
 - **Backend Go intacto** — Los mensajes nativos del servidor se interceptan y traducen en el frontend (`SERVER_TOAST_MAP`).
 - **Fechas y Calendarios** — Adaptación dinámica total del formato de fechas usando `date-fns` y parches de capitalización idiomática.
 - **Cero Hardcoding** — Ni un solo string visible "quemado" directamente en el código de React.
 - **Soporte Escalable** — Arquitectura modular que permite a cualquier contribuidor agregar nuevos idiomas fácilmente siguiendo la guía `Traducciones.md`.
 
 **Áreas y Componentes Traducidos:**
-Se han adaptado más de **310 componentes React** y **247 notificaciones**, cubriendo absolutamente toda la experiencia:
+Se han adaptado más de **300 componentes React** y **cientos de notificaciones** del servidor, cubriendo absolutamente toda la experiencia:
 - **Core Visual:** Navegación, Paleta de Comandos (Sea Command), Pantalla de Inicio, Descubrimiento y Asistente de Configuración.
 - **Consumo:** Reproductor de Video integral (Subtítulos, Chromecast, Anime4K), Lector de Manga interactivo y Watch Parties (Nakama).
 - **Gestión:** Configuraciones Avanzadas, Escáner de Biblioteca local, Explorador, Descargador Automático y Tienda de Extensiones.
-- **AniList y Metadatos:** Diccionario completo integrado (411 keys para géneros, formatos, estados), Seguimiento de Progreso y Listas offline.
+- **AniList y Metadatos:** Diccionario completo integrado (cientos de keys para géneros, formatos, estados, temporadas y tags), Seguimiento de Progreso y Listas offline.
 
 ---
 
