@@ -48,7 +48,8 @@
       "bulkActions": "Ações em massa",
       "downloadSomeFiles": "Baixar alguns arquivos",
       "unmatchSomeFiles": "Desvincular alguns arquivos",
-      "deleteSomeFiles": "Excluir alguns arquivos"
+      "deleteSomeFiles": "Excluir alguns arquivos",
+      "openOnAniList": "Abrir no AniList"
     },
     "metadataManager": {
       "title": "Metadados",
@@ -121,7 +122,16 @@
       "adultContentNotSupported": "Este provedor não suporta conteúdo adulto",
       "smartSearchNotSupported": "Este provedor não suporta busca inteligente",
       "bestReleaseNotSupported": "Este provedor não suporta busca pelos melhores lançamentos",
-      "previousSelection": "Seleção anterior"
+      "previousSelection": "Seleção anterior",
+      "seasonSingle": "Temporada {n}",
+      "seasonsRange": "Temporadas {from} até {to}",
+      "seasonAnd": "Temporadas {s1} e {s2}",
+      "seasonParens": "(Temporada {n})",
+      "partSingle": "Parte {n}",
+      "partsRange": "Partes {from} até {to}",
+      "partAnd": "Partes {p1} e {p2}",
+      "episodesRange": "Episódios {from} até {to}",
+      "batchLabel": "Lote"
     },
     "torrentDownload": {
       "chooseDestination": "Escolha o destino",
@@ -172,7 +182,21 @@
       "disablePreviousTorrent": "Desativar torrent anterior",
       "disablePreviousTorrentDesc": "Desativar temporariamente o lote salvo ou excluir o histórico totalmente.",
       "deleteHistory": "Excluir histórico",
-      "disableOnly": "Apenas desativar"
+      "disableOnly": "Apenas desativar",
+      "launchingStream": "Iniciando stream...",
+      "fetchingTorrentInfo": "Obtendo info do torrent...",
+      "streamButton": "Stream",
+      "stopStreamingTitle": "Parar streaming?",
+      "stopStreamingDesc": "Tem certeza de que deseja parar e fechar o stream?",
+      "stopStreamingAction": "Parar stream",
+      "activeStreaming": "Streaming ativo",
+      "episodeLabel": "Episódio {number}",
+      "topCandidates": "Melhores candidatos",
+      "score": "Pontuação:",
+      "speed": "Velocidade:",
+      "seedersLabel": "Seeders:",
+      "upload": "Upload:",
+      "percentComplete": "% concluído"
     },
     "debridStream": {
       "title": "Streaming Debrid",
@@ -187,7 +211,9 @@
       "noFilesAvailable": "Nenhum arquivo disponível",
       "selectAtLeastOne": "Selecione pelo menos um arquivo",
       "autoSelectFile": "Selecionar arquivo automaticamente",
-      "autoSelectFileDesc": "O arquivo do episódio será selecionado automaticamente do seu lote salvo"
+      "autoSelectFileDesc": "O arquivo do episódio será selecionado automaticamente do seu lote salvo",
+      "awaitingStreamMessage": "Aguardando stream do serviço Debrid",
+      "closingModalNotice": "Fechar este modal não cancelará o stream"
     },
     "rankings": {
       "allTimeHighestRated": "Melhor Avaliado{format}",
@@ -237,7 +263,15 @@
       "na": "N/D",
       "noSummary": "Sem resumo disponível",
       "type": "Tipo",
-      "unknownAirDate": "Data de exibição desconhecida"
+      "unknownAirDate": "Data de exibição desconhecida",
+      "torrentAvailable": "Torrent disponível",
+      "torrentAvailableTooltip": "Um torrent compatível foi encontrado",
+      "checkingTorrents": "Verificando torrents",
+      "checkingTorrentsTooltip": "Verificando o provedor de torrents selecionado",
+      "waitingForTorrent": "Aguardando torrent",
+      "waitingForTorrentTooltip": "Nenhum torrent compatível foi encontrado ainda",
+      "availabilityUnknown": "Disponibilidade desconhecida",
+      "availabilityUnknownTooltip": "Não foi possível verificar o provedor de torrents"
     },
     "downloadedEpisodes": "Episódios baixados"
   }

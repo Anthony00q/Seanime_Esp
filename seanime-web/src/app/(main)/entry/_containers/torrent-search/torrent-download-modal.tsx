@@ -266,7 +266,7 @@ export function TorrentDownloadModal({ onToggleTorrent, media, entry }: {
                                     loading={isDownloadingDebrid}
                                     className="w-full"
                                 >
-                                    Download with Debrid service
+                                    {t("entry.torrentDownload.downloadWithDebrid")}
                                 </Button>
                             )}
                         </>

@@ -12,6 +12,7 @@ import { Carousel, CarouselContent, CarouselDotButtons, CarouselItem } from "@/c
 import { ContextMenuItem } from "@/components/ui/context-menu"
 import { DropdownMenu, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
+import { createTranslator } from "@/locales"
 import React, { useMemo } from "react"
 import { BiDotsHorizontal } from "react-icons/bi"
 import { LuTvMinimalPlay } from "react-icons/lu"
@@ -28,6 +29,7 @@ type TorrentStreamEpisodeSectionProps = {
 
 export function TorrentStreamEpisodeSection(props: TorrentStreamEpisodeSectionProps) {
     const ts = useThemeSettings()
+    const t = createTranslator()
 
     const {
         entry,
@@ -114,7 +116,7 @@ export function TorrentStreamEpisodeSection(props: TorrentStreamEpisodeSectionPr
                                     {onPlayExternallyEpisodeClick && <ContextMenuItem
                                         onClick={() => onPlayExternallyEpisodeClick(episode)}
                                     >
-                                        <LuTvMinimalPlay /> Play externally
+                                        <LuTvMinimalPlay /> {t("entry.episodeList.playExternally")}
                                     </ContextMenuItem>}
                                 </>}
                             />
@@ -172,7 +174,7 @@ export function TorrentStreamEpisodeSection(props: TorrentStreamEpisodeSectionPr
                                         }}
                                     >
                                         <LuTvMinimalPlay />
-                                        Play externally
+                                        {t("entry.episodeList.playExternally")}
                                     </DropdownMenuItem>}
                                     <PluginEpisodeGridItemMenuItems isDropdownMenu={false} type={contextType} episode={episode as Anime_Episode} />
                                 </DropdownMenu> : (

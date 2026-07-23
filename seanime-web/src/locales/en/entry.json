@@ -48,7 +48,8 @@
       "bulkActions": "Bulk actions",
       "downloadSomeFiles": "Download some files",
       "unmatchSomeFiles": "Unmatch some files",
-      "deleteSomeFiles": "Delete some files"
+      "deleteSomeFiles": "Delete some files",
+      "openOnAniList": "Open on AniList"
     },
     "metadataManager": {
       "title": "Metadata",
@@ -121,7 +122,16 @@
       "adultContentNotSupported": "This provider does not support adult content",
       "smartSearchNotSupported": "This provider does not support smart search",
       "bestReleaseNotSupported": "This provider does not support best release search",
-      "previousSelection": "Previous selection"
+      "previousSelection": "Previous selection",
+      "seasonSingle": "Season {n}",
+      "seasonsRange": "Seasons {from} to {to}",
+      "seasonAnd": "Season {s1} and {s2}",
+      "seasonParens": "(Season {n})",
+      "partSingle": "Part {n}",
+      "partsRange": "Parts {from} to {to}",
+      "partAnd": "Part {p1} and {p2}",
+      "episodesRange": "Episodes {from} to {to}",
+      "batchLabel": "Batch"
     },
     "torrentDownload": {
       "chooseDestination": "Choose the destination",
@@ -172,7 +182,21 @@
       "disablePreviousTorrent": "Disable previous torrent",
       "disablePreviousTorrentDesc": "Disable using the saved previous batch for now, or delete the saved history entirely.",
       "deleteHistory": "Delete history",
-      "disableOnly": "Disable only"
+      "disableOnly": "Disable only",
+      "launchingStream": "Launching stream...",
+      "fetchingTorrentInfo": "Fetching torrent info...",
+      "streamButton": "Stream",
+      "stopStreamingTitle": "Stop streaming?",
+      "stopStreamingDesc": "Are you sure you want to stop and close the stream?",
+      "stopStreamingAction": "Stop stream",
+      "activeStreaming": "Active Streaming",
+      "episodeLabel": "Episode {number}",
+      "topCandidates": "Top Candidates",
+      "score": "Score:",
+      "speed": "Speed:",
+      "seedersLabel": "Seeders:",
+      "upload": "Upload:",
+      "percentComplete": "% complete"
     },
     "debridStream": {
       "title": "Debrid streaming",
@@ -187,7 +211,9 @@
       "noFilesAvailable": "No files available",
       "selectAtLeastOne": "Select at least one file",
       "autoSelectFile": "Auto-select file",
-      "autoSelectFileDesc": "The episode file will be automatically selected from your chosen batch torrent"
+      "autoSelectFileDesc": "The episode file will be automatically selected from your chosen batch torrent",
+      "awaitingStreamMessage": "Awaiting stream from Debrid service",
+      "closingModalNotice": "Closing this modal will not cancel the stream"
     },
     "rankings": {
       "allTimeHighestRated": "Highest Rated{format}",
@@ -237,7 +263,15 @@
       "na": "N/A",
       "noSummary": "No summary available",
       "type": "Type",
-      "unknownAirDate": "Unknown air date"
+      "unknownAirDate": "Unknown air date",
+      "torrentAvailable": "Torrent available",
+      "torrentAvailableTooltip": "A matching torrent was found",
+      "checkingTorrents": "Checking torrents",
+      "checkingTorrentsTooltip": "Checking the selected torrent provider",
+      "waitingForTorrent": "Waiting for torrent",
+      "waitingForTorrentTooltip": "No matching torrent was found yet",
+      "availabilityUnknown": "Availability unknown",
+      "availabilityUnknownTooltip": "The torrent provider could not be checked"
     },
     "downloadedEpisodes": "Downloaded episodes"
   }

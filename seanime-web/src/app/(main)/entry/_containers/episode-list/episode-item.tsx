@@ -321,12 +321,12 @@ export function EpisodeItemInfoModalButton({ episode }: { episode: Anime_Episode
             {
                 (!!episode.episodeMetadata?.anidbId) && <>
                     <div className="w-full flex gap-2">
-                        <p>Episodio AniDB: {episode.fileMetadata?.aniDBEpisode}</p>
+                        <p>{t("entry.episodeList.aniDbEpisode")}: {episode.fileMetadata?.aniDBEpisode}</p>
                         <a
                             href={"https://anidb.net/episode/" + episode.episodeMetadata?.anidbId + "#layout-footer"}
                             target="_blank"
                             className="hover:underline text-[--muted]"
-                        >Abrir en AniDB
+                        >{t("entry.dropdown.openOnAniDB")}
                         </a>
                     </div>
                 </>
