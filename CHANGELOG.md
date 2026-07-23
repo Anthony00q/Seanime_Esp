@@ -4,15 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## v3.10.2
 
-- ⚡️ Perf (Directstream): Improved torrent streaming handling
-  - Prevents delayed HTTP responses on large torrents
-  - Faster seeks and piece prioritization
-- ⚡️ Torrent Search: Reduced cache TTL and automatic retries
-- 🦺 TorBox: Fixed download link filename encoding
-- 🦺 Issue Recorder: Upgraded rrweb to fix session replay
-- 🦺 Autoselect: Fixed language parsing
-- 🦺 MpvCore: Fixed autonext on video end
-- 🦺 AniList: Restrict retries to 429 errors only
+- ⚡️ Rendimiento (Directstream): Mejorado el manejo del streaming de torrents
+  - Previene respuestas HTTP retrasadas en torrents grandes
+  - Búsquedas (seeks) y priorización de piezas más rápidas
+- ⚡️ Búsqueda de Torrents: Reducido el TTL de caché y reintentos automáticos
+- 🦺 TorBox: Corregida la codificación del nombre de archivo en los enlaces de descarga
+- 🦺 Issue Recorder: Actualizado rrweb para corregir la reproducción de sesiones
+- 🦺 Autoselect: Corregido el análisis de idioma
+- 🦺 MpvCore: Corregido el auto-siguiente al finalizar el video
+- 🦺 AniList: Restringidos los reintentos solo a errores 429
 
 ## v3.10.1
 

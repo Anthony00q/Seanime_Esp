@@ -131,7 +131,10 @@
       "partsRange": "Parts {from} to {to}",
       "partAnd": "Part {p1} and {p2}",
       "episodesRange": "Episodes {from} to {to}",
-      "batchLabel": "Batch"
+      "batchLabel": "Batch",
+      "autoRetryChecking": "Checking the provider again...",
+      "autoRetryWaiting": "No matching torrent found. Checking again in {time}.",
+      "autoRetryMoment": "a moment"
     },
     "torrentDownload": {
       "chooseDestination": "Choose the destination",
