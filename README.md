@@ -45,7 +45,7 @@ Este es un **fork multilingüe** del proyecto [Seanime](https://github.com/5rahi
 
 **Estructura de ramas:**
 - `main` → espejo puro del upstream (sin modificaciones)
-- `traduccion-es` → rama de trabajo con las traducciones
+- `traducciones` → rama de trabajo con las traducciones
 
 > [!IMPORTANT]
 > Seanime no proporciona, aloja ni distribuye contenido multimedia. Los usuarios son responsables de obtener contenido por medios legales y cumplir con las leyes locales. Las extensiones listadas en la app no están afiliadas con Seanime y pueden ser eliminadas si violan leyes de derechos de autor.
