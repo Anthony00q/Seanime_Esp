@@ -292,6 +292,9 @@
     "nakama": {
       "relay": "Relay",
       "origin": "Origem"
+    },
+    "continueWatching": {
+      "goToEpisode": "Ir para o episódio {n}"
     }
   }
 }

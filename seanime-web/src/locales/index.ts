@@ -250,6 +250,12 @@ export function createTranslator(locale?: string) {
         }
 
         console.warn(`[i18n] Missing translation for key: ${key as string}`)
+
+        if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
+            const missing: Map<string, number> = (window as any).__seanime_i18n_missingKeys ||= new Map()
+            missing.set(key as string, (missing.get(key as string) || 0) + 1)
+        }
+
         return key as string
     }
 

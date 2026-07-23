@@ -21,6 +21,7 @@ import { Tooltip } from "@/components/ui/tooltip"
 import { copyToClipboard, openTab } from "@/lib/helpers/browser"
 import { getCustomSourceExtensionId, getCustomSourceMediaSiteUrl, isCustomSource } from "@/lib/server/utils"
 import { ThemeMediaPageInfoBoxSize, useThemeSettings } from "@/lib/theme/theme-hooks"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { BiDotsVerticalRounded, BiExtension } from "react-icons/bi"
 import { LuExternalLink } from "react-icons/lu"
@@ -31,6 +32,7 @@ export function MetaSection(props: { entry: Manga_Entry | undefined, details: AL
 
     const { entry, details, detailsLoading } = props
     const ts = useThemeSettings()
+    const t = createTranslator()
 
     if (!entry?.media) return null
 
@@ -84,7 +86,7 @@ export function MetaSection(props: { entry: Manga_Entry | undefined, details: AL
                                     </SeaLink>
                                 </div>}
                             >
-                                Custom source
+                                {t("entry.customSource")}
                             </Tooltip>
                         )}
 
@@ -99,7 +101,7 @@ export function MetaSection(props: { entry: Manga_Entry | undefined, details: AL
                                 </SeaLink>
                             </div>}
                         >
-                            Open in website
+                            {t("entry.openInWebsite")}
                         </Tooltip>}
                     </div>}
                 >
@@ -127,17 +129,17 @@ export function MetaSection(props: { entry: Manga_Entry | undefined, details: AL
                         {!isCustomSource(entry.mediaId) && <DropdownMenuItem
                             onClick={() => openTab(`https://anilist.co/manga/${entry.mediaId}`)}
                         >
-                            <SiAnilist /> Open on AniList
+                            <SiAnilist /> {t("entry.dropdown.openOnAniList")}
                         </DropdownMenuItem>}
                         {isCustomSource(entry.mediaId) && !!getCustomSourceMediaSiteUrl(entry.media) && <DropdownMenuItem
                             onClick={() => openTab(getCustomSourceMediaSiteUrl(entry.media)!)}
                         >
-                            <LuExternalLink /> Open in website
+                            <LuExternalLink /> {t("entry.openInWebsite")}
                         </DropdownMenuItem>}
                         {isCustomSource(entry.mediaId) && <DropdownMenuItem
                             onClick={() => copyToClipboard(entry.mediaId.toString())}
                         >
-                            Copy ID
+                            {t("entry.dropdown.copyId")}
                         </DropdownMenuItem>}
                         <PluginMangaPageDropdownItems media={entry.media} />
                     </DropdownMenu>

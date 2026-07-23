@@ -16,6 +16,7 @@ import { cn } from "@/components/ui/core/styling"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useRouter } from "@/lib/navigation"
 import { getAssetUrl } from "@/lib/server/assets"
+import { createTranslator } from "@/locales"
 import { useContinueWatchingSpoilers } from "@/lib/theme/anime-spoilers"
 import { ThemeLibraryScreenBannerType, ThemeMediaPageBannerSize, ThemeMediaPageBannerType, useThemeSettings } from "@/lib/theme/theme-hooks"
 import { __isDesktop__ } from "@/types/constants"
@@ -59,6 +60,7 @@ interface HeaderCarouselDotsProps {
 
 function HeaderCarouselDots({ totalEpisodes, currentIndex, onIndexChange, className }: HeaderCarouselDotsProps) {
     const ts = useThemeSettings()
+    const t = createTranslator()
 
     // Don't render if there are no episodes or only one episode
     if (totalEpisodes <= 1) return null
@@ -83,7 +85,7 @@ function HeaderCarouselDots({ totalEpisodes, currentIndex, onIndexChange, classN
                         index === currentIndex ? "w-6 bg-[--muted]" : "w-3 bg-[--subtle] hover:bg-gray-300",
                     )}
                     onClick={() => onIndexChange(index)}
-                    aria-label={`Go to episode ${index + 1}`}
+                    aria-label={t("search.continueWatching.goToEpisode", { n: index + 1 })}
                 />
             ))}
         </div>

@@ -99,7 +99,7 @@ export function ServerSettings(props: ServerSettingsProps) {
                 />
             )}
 
-            <SettingsCard title="Episodes">
+            <SettingsCard title={t("entry.episodes")}>
                 <Field.Switch
                     side="right"
                     name="autoUpdateProgress"

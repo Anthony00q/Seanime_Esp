@@ -257,7 +257,7 @@ export function TorrentStreamPage(props: TorrentStreamPageProps) {
             items: episodeCollection.episodes.map(episode => ({
                 id: `episode-${episode.episodeNumber}`,
                 value: `${episode.episodeNumber}`,
-                heading: "Episodes",
+                heading: t("entry.episodes"),
                 render: () => (
                     <div className="flex gap-1 items-center w-full">
                         <p className="max-w-[70%] truncate">{episode.displayTitle}</p>

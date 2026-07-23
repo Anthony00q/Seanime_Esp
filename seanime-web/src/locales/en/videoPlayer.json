@@ -265,6 +265,7 @@
       "errorLoadingStream": "An error occurred while loading the stream: {error}"
     },
     "fillerEpisode": "Filler episode",
+    "episodePillTitle": "Episode {number}",
     "menuAudio": "Audio",
     "menuVideo": "Video",
     "mpv": {

@@ -33,6 +33,7 @@ import { getImageUrl } from "@/lib/server/assets"
 import { TORRENT_CLIENT } from "@/lib/server/settings"
 import { isCustomSource } from "@/lib/server/utils"
 import { ThemeMediaPageBannerSize, ThemeMediaPageInfoBoxSize, useThemeSettings } from "@/lib/theme/theme-hooks"
+import { createTranslator } from "@/locales"
 import { usePrevious } from "@uidotdev/usehooks"
 import { atom } from "jotai"
 import { ScopeProvider } from "jotai-scope"
@@ -68,6 +69,7 @@ export function MediaPreviewModal(props: AnimePreviewModalProps) {
     const previousInfo = usePrevious(info)
 
     const pathname = usePathname()
+    const t = createTranslator()
 
     React.useEffect(() => {
         setInfo(undefined)
@@ -133,6 +135,7 @@ function Content({ entry, entryLoading, detailsLoading, details, type }: {
     const serverStatus = useServerStatus()
 
     const ts = useThemeSettings()
+    const t = createTranslator()
     const media = entry?.media
     const bannerImage = media?.bannerImage || media?.coverImage?.extraLarge
 
@@ -260,14 +263,14 @@ function Content({ entry, entryLoading, detailsLoading, details, type }: {
 
                         <SeaLink href={type === "anime" ? `/entry?id=${media?.id}` : `/manga/entry?id=${media?.id}`}>
                             <Button className="px-0" intent="gray-link">
-                                Open page
+                                {t("mediaCard.openPage")}
                             </Button>
                         </SeaLink>
 
                         {type === "anime" && !!(entry?.media as AL_BaseAnime)?.trailer?.id && <TrailerModal
                             trailerId={(entry?.media as AL_BaseAnime)?.trailer?.id} trigger={
                             <Button intent="gray-link" className="px-0">
-                                Trailer
+                                {t("entry.trailer")}
                             </Button>}
                         />}
 
