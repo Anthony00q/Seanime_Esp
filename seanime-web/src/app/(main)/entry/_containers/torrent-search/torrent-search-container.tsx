@@ -554,8 +554,8 @@ export function TorrentSearchContainer({ type, entry }: { type: TorrentSelection
                                         ? <LuLoaderCircle className="text-xl text-blue-500 dark:text-blue-400 animate-spin" />
                                         : <LuClock3 className="text-xl text-blue-500 dark:text-blue-400" />}
                                     description={isAutoRetrying
-                                        ? "Checking the provider again..."
-                                        : `No matching torrent found. Checking again in ${formatRetryTime(autoRetrySeconds)}.`}
+                                        ? t("entry.torrentSearch.autoRetryChecking")
+                                        : t("entry.torrentSearch.autoRetryWaiting", { time: formatRetryTime(autoRetrySeconds) })}
                                 />
                             )}
                             {(searchType === Torrent_SearchType.SMART) && !hasOneWarning && !isError && (
@@ -636,7 +636,7 @@ export function TorrentSearchContainer({ type, entry }: { type: TorrentSelection
 }
 
 function formatRetryTime(seconds: number | undefined) {
-    if (seconds === undefined) return "a moment"
+    if (seconds === undefined) return t("entry.torrentSearch.autoRetryMoment")
     const minutes = Math.floor(seconds / 60)
     const remaining = seconds % 60
     if (minutes === 0) return `${remaining}s`
