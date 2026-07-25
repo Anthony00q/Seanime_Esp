@@ -14,6 +14,7 @@ import { AiOutlineDownload } from "react-icons/ai"
 import { HiDownload } from "react-icons/hi"
 import { IoLibrary } from "react-icons/io5"
 import { LuBellOff } from "react-icons/lu"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { createTranslator } from "@/locales"
 
 const t = createTranslator()
@@ -61,7 +62,7 @@ export function MissingEpisodes({ isLoading, data }: {
                                             topTitle={episode.baseAnime?.title?.userPreferred}
                                             spoilerMode="replace"
                                             spoilerActive={spoilerActive}
-                                            title={episode.displayTitle}
+                                            title={translateDisplayTitle(episode.displayTitle)}
                                             meta={episode.episodeMetadata?.airDate ?? undefined}
                                             actionIcon={hasTorrentProvider ? <HiDownload className="opacity-50" /> : null}
                                             isInvalid={episode.isInvalid}
@@ -126,7 +127,7 @@ export function MissingEpisodes({ isLoading, data }: {
                                                             topTitle={episode.baseAnime?.title?.userPreferred}
                                                             spoilerMode="replace"
                                                             spoilerActive={spoilerActive}
-                                                            title={episode.displayTitle}
+                                                            title={translateDisplayTitle(episode.displayTitle)}
                                                             meta={episode.episodeMetadata?.airDate ?? undefined}
                                                             actionIcon={hasTorrentProvider ? <AiOutlineDownload /> : null}
                                                             isInvalid={episode.isInvalid}

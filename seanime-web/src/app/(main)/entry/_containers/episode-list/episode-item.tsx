@@ -13,6 +13,7 @@ import { Modal, ModalProps } from "@/components/ui/modal"
 import { Popover, PopoverProps } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
 import { getImageUrl } from "@/lib/server/assets"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { createTranslator } from "@/locales"
 import { useWindowSize } from "@uidotdev/usehooks"
 import { atom } from "jotai"
@@ -69,7 +70,7 @@ export const EpisodeItem = memo(({ episode, media, isWatched, watchedProgress, o
                 image={episode.episodeMetadata?.image}
                 onClick={handleClick}
                 isInvalid={episode.isInvalid}
-                title={episode.displayTitle}
+                title={translateDisplayTitle(episode.displayTitle)}
                 episodeTitle={episode.episodeTitle}
                 fileName={episode.localFile?.name}
                 isWatched={episode.progressNumber > 0 && isWatched}
