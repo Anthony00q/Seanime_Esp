@@ -12,6 +12,7 @@ import { Carousel, CarouselContent, CarouselDotButtons, CarouselItem } from "@/c
 import { ContextMenuItem } from "@/components/ui/context-menu"
 import { DropdownMenu, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { createTranslator } from "@/locales"
 import React, { useMemo } from "react"
 import { BiDotsHorizontal } from "react-icons/bi"
@@ -91,7 +92,7 @@ export function TorrentStreamEpisodeSection(props: TorrentStreamEpisodeSectionPr
                                 episode={episode}
                                 image={episode.episodeMetadata?.image || episode.baseAnime?.bannerImage || episode.baseAnime?.coverImage?.extraLarge}
                                 topTitle={episode.episodeTitle || episode?.baseAnime?.title?.userPreferred}
-                                title={episode.displayTitle}
+                                title={translateDisplayTitle(episode.displayTitle)}
                                 // meta={episode.episodeMetadata?.airDate ?? undefined}
                                 isInvalid={episode.isInvalid}
                                 progressTotal={episode.baseAnime?.episodes}
@@ -133,7 +134,7 @@ export function TorrentStreamEpisodeSection(props: TorrentStreamEpisodeSectionPr
                     return (<EpisodeGridItem
                             key={episode?.episodeNumber + (episode?.displayTitle || "")}
                             media={episode?.baseAnime as any}
-                            title={episode?.displayTitle || episode?.baseAnime?.title?.userPreferred || ""}
+                                    title={translateDisplayTitle(episode?.displayTitle) || episode?.baseAnime?.title?.userPreferred || ""}
                             image={episode?.episodeMetadata?.image || episode?.baseAnime?.coverImage?.large}
                             episodeTitle={episode?.episodeTitle}
                             onClick={() => {
@@ -149,7 +150,7 @@ export function TorrentStreamEpisodeSection(props: TorrentStreamEpisodeSectionPr
                             progressNumber={episode?.progressNumber}
                             action={<>
                                 <MediaEpisodeInfoModal
-                                    title={episode?.displayTitle}
+                                    title={translateDisplayTitle(episode?.displayTitle)}
                                     image={episode?.episodeMetadata?.image}
                                     episodeTitle={episode?.episodeTitle}
                                     airDate={episode?.episodeMetadata?.airDate}

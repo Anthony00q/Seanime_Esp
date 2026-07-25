@@ -3,6 +3,7 @@ import { EpisodeItemBottomGradient } from "@/app/(main)/_features/custom-ui/item
 import { imageShimmer } from "@/components/shared/image-helpers"
 import { SeaImage } from "@/components/shared/sea-image"
 import { cn } from "@/components/ui/core/styling"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { createTranslator } from "@/locales"
 import React from "react"
 import { AiFillPlayCircle } from "react-icons/ai"
@@ -61,7 +62,7 @@ export const SliderEpisodeItem = React.forwardRef<HTMLDivElement, SliderEpisodeI
                 <p className="w-[80%] line-clamp-1 text-[--muted] font-semibold">{episode.episodeTitle?.replaceAll("`", "'")}</p>
                 <div className="w-full justify-between flex items-center">
                     <p className="text-base md:text-xl lg:text-2xl font-semibold line-clamp-2">
-                        <span>{episode.displayTitle} {!!episode.baseAnime?.episodes &&
+                        <span>{translateDisplayTitle(episode.displayTitle)} {!!episode.baseAnime?.episodes &&
                             (episode.baseAnime.episodes != 1 &&
                                 <span className="opacity-40">/{` `}{episode.baseAnime.episodes - offset}</span>)}
                         </span>

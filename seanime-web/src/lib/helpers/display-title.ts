@@ -30,5 +30,11 @@ export function translateDisplayTitle(displayTitle: string | undefined | null): 
         return t("common.labels.specialEpisodeNumber", { number: specialMatch[1] })
     }
 
+    // "Episode 6 & 4 more" → "Episodio 6 y 4 más"
+    const episodeAndMoreMatch = displayTitle.match(/^Episode (\d+) & (\d+) more$/)
+    if (episodeAndMoreMatch) {
+        return t("common.labels.episodeNumberAndMore", { number: episodeAndMoreMatch[1], count: episodeAndMoreMatch[2] })
+    }
+
     return displayTitle
 }
