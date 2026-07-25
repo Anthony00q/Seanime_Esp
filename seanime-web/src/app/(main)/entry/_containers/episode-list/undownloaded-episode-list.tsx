@@ -8,6 +8,7 @@ import {
     __torrentSearch_selectionEpisodeAtom,
 } from "@/app/(main)/entry/_containers/torrent-search/torrent-search-drawer"
 import { useSetAtom } from "jotai"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { createTranslator } from "@/locales"
 import { getDateFnsLocale } from "@/locales/date-locale"
 import { format } from "date-fns"
@@ -52,7 +53,7 @@ export function UndownloadedEpisodeList({ downloadInfo, media, watchedProgress, 
                             media={media}
                             image={episode.episodeMetadata?.image}
                             isInvalid={episode.isInvalid}
-                            title={episode.displayTitle}
+                            title={translateDisplayTitle(episode.displayTitle)}
                             episodeTitle={episode.episodeTitle}
                             episodeNumber={episode.episodeNumber}
                             watchedProgress={watchedProgress}

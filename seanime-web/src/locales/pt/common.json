@@ -56,6 +56,7 @@
       "mediaId": "ID da Mídia",
       "episodeNumber": "Episódio {number}",
       "specialEpisodeNumber": "Especial {number}",
+      "episodeNumberAndMore": "Episódio {number} e mais {count}",
       "episodeNumberLabel": "Número do episódio",
       "ep": "Ep",
       "movie": "Filme",
