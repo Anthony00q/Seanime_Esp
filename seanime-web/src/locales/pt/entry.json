@@ -221,7 +221,7 @@
     "rankings": {
       "allTimeHighestRated": "Melhor Avaliado{format}",
       "seasonHighestRated": "{seasonText}",
-      "seasonMostPopular": "Popular{format} {seasonText}"
+      "seasonMostPopular": "Mais popular{format} de {seasonText}"
     },
     "episodeList": {
       "downloadedEpisodes": "Episódios baixados",
