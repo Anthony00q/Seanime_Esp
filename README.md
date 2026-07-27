@@ -83,7 +83,7 @@ Este es un **fork multilingüe** del proyecto [Seanime](https://github.com/5rahi
 3. Descomprime el archivo en una carpeta de tu preferencia y ejecuta la aplicación.
 
 > [!CAUTION]
-> **⚠️ Migración desde la versión original:** Si vienes de usar la versión original de Seanime (en inglés), es **estrictamente necesario** que realices una instalación limpia. Debes eliminar por completo la carpeta y los datos de la versión anterior antes de ejecutar este fork. Esto es vital para prevenir incompatibilidades con la base de datos y evitar que configuraciones previas corrompan el nuevo sistema de traducción.
+> Si ya tienes la versión original de Seanime instalada, elimínala por completo antes de usar este fork. Asegúrate también de borrar su carpeta de datos, ubicada en el directorio de configuración de aplicaciones de tu sistema operativo.
 
 ---
 
