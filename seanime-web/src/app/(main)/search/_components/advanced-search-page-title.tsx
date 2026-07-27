@@ -24,6 +24,7 @@ export function AdvancedSearchPageTitle() {
         if (__advancedSearch_getValue(params.sorting)?.includes("START_DATE_DESC")) str += ` ${t("sorting.mostRecentShort")}`
         if (__advancedSearch_getValue(params.sorting)?.includes("EPISODES_DESC")) str += ` ${t("sorting.mostEpisodesShortTitle")}`
         if (__advancedSearch_getValue(params.sorting)?.includes("CHAPTERS_DESC")) str += ` ${t("sorting.mostChaptersShortTitle")}`
+        if (str === "Anime" || str === "Manga") str += ` ${t("sorting.bestRatedShort")}`
         if (!!__advancedSearch_getValue(params.genre)) str += ` de ${params.genre?.map(g => translateGenre(g)).join(", ")}`
         if (params.season || params.year) str += ` de`
         if (params.season) str += ` ${translateSeason(params.season)}`
