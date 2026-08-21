@@ -349,7 +349,7 @@ export function ChapterList(props: ChapterListProps) {
                     onClick={() => {
                         if (mediaId) {
                             startSourceRefresh({ mode: "refresh_selected", mediaIds: [Number(mediaId)] }, {
-                                onSuccess: () => toast.info("Source refresh started"),
+                                onSuccess: () => toast.info(t("toast.manga.sourceRefreshStarted")),
                             })
                         }
                     }}

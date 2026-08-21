@@ -75,6 +75,7 @@
     "manga": {
       "mappingAdded": "Vínculo adicionado",
       "mappingRemoved": "Vínculo removido",
+      "sourceRefreshStarted": "Atualização de fontes iniciada",
       "sourcesRefreshed": "Fontes atualizadas"
     },
     "mangaDownload": {
