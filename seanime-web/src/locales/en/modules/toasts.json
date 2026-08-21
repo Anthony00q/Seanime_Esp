@@ -75,6 +75,7 @@
     "manga": {
       "mappingAdded": "Mapping added",
       "mappingRemoved": "Mapping removed",
+      "sourceRefreshStarted": "Source refresh started",
       "sourcesRefreshed": "Sources refreshed"
     },
     "mangaDownload": {
