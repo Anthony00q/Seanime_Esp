@@ -70,7 +70,7 @@ export function DiscoverAiringSchedule() {
                 return {
                     id: item.id + item?.episode!,
                     name: item.media?.title?.userPreferred,
-                    time: format(new Date(item?.airingAt! * 1000), "h:mm a"),
+                    time: format(new Date(item?.airingAt! * 1000), "p", { locale: getDateFnsLocale() }),
                     datetime: format(new Date(item?.airingAt! * 1000), "yyyy-MM-dd'T'HH:mm"),
                     href: `/entry?id=${item.id}`,
                     media: item.media,

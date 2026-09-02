@@ -284,10 +284,10 @@
   },
   "unknownMedia": {
     "title": "Hidden media",
-    "description": "Seanime matched {count} group{plural} with {article}series that {verb} missing from your {!hasCustomSources, select, true {AniList} other {}} collection.<br />Add the media to see entries in your library or unmatch them if incorrect.",
-    "addAllToCollection": "Add all to {hasCustomSources, select, true {AniList} other {collection}}",
+    "description": "Seanime matched {count, plural, one {# group} other {# groups}} with {count, plural, one {a series} other {series}} that {count, plural, one {is} other {are}} missing from your {hasCustomSources, select, true {collection} other {AniList collection}}. Add the media to see entries in your library or unmatch them if incorrect.",
+    "addAllToCollection": "Add all to {hasCustomSources, select, true {collection} other {AniList}}",
     "matchedTo": "Matched to",
-    "addToCollection": "Add to {hasCustomSources, select, true {AniList} other {collection}}",
+    "addToCollection": "Add to {hasCustomSources, select, true {collection} other {AniList}}",
     "unmatch": "Unmatch"
   },
   "animeLibrary": {

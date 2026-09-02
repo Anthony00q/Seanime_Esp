@@ -30,6 +30,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai"
 import { BiX } from "react-icons/bi"
 import { StreamPageSkeleton } from "../../_components/stream-page-skeleton"
 import { createTranslator } from "@/locales"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 
 const t = createTranslator()
 
@@ -260,7 +261,7 @@ export function TorrentStreamPage(props: TorrentStreamPageProps) {
                 heading: t("entry.episodes"),
                 render: () => (
                     <div className="flex gap-1 items-center w-full">
-                        <p className="max-w-[70%] truncate">{episode.displayTitle}</p>
+                        <p className="max-w-[70%] truncate">{translateDisplayTitle(episode.displayTitle)}</p>
                         {!!episode.episodeTitle && (
                             <p className="text-[--muted] flex-1 truncate">- {episode.episodeTitle}</p>
                         )}

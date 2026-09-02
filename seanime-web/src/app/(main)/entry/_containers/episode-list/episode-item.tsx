@@ -204,7 +204,7 @@ function MetadataModal({ episode }: { episode: Anime_Episode }) {
             open={isOpen}
             onOpenChange={() => setIsOpen(false)}
 
-            title={episode.displayTitle}
+            title={translateDisplayTitle(episode.displayTitle)}
             titleClass="text-center"
             contentClass="max-w-xl"
         >
@@ -278,7 +278,7 @@ function IsomorphicPopover(props: PopoverProps & ModalProps) {
 export function EpisodeItemInfoModalButton({ episode }: { episode: Anime_Episode }) {
     const t = createTranslator()
     return <IsomorphicPopover
-        title={episode.displayTitle}
+        title={translateDisplayTitle(episode.displayTitle)}
         trigger={<IconButton
             icon={<MdInfo />}
             className="opacity-30 hover:opacity-100 transform-opacity"

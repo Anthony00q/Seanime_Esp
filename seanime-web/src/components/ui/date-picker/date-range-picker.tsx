@@ -1,6 +1,7 @@
 import { cva } from "class-variance-authority"
 import { format, Locale } from "date-fns"
 import * as React from "react"
+import { getDateFnsLocale } from "@/locales/date-locale"
 import { DateRange, PropsBase } from "react-day-picker"
 import { BasicField, BasicFieldOptions, extractBasicFieldProps } from "../basic-field"
 import { Calendar } from "../calendar"
@@ -162,7 +163,7 @@ export const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePick
             {...rest}
         >
             {date?.from ? (
-                date.to ? <span className="line-clamp-1">{`${format(date.from, "P")} - ${format(date.to, "P")}`}</span> : <span className="line-clamp-1">{format(date.from, "PPP")}</span>
+                date.to ? <span className="line-clamp-1">{`${format(date.from, "P", { locale: locale || getDateFnsLocale() })} - ${format(date.to, "P", { locale: locale || getDateFnsLocale() })}`}</span> : <span className="line-clamp-1">{format(date.from, "PPP", { locale: locale || getDateFnsLocale() })}</span>
             ) : <span className={cn(DateRangePickerAnatomy.placeholder(), placeholderClass)}>{placeholder || "Select a date"}</span>}
         </button>
     )
@@ -174,7 +175,7 @@ export const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePick
             defaultMonth={date?.from ?? new Date()}
             selected={date}
             onSelect={handleOnSelect}
-            locale={locale}
+            locale={locale || getDateFnsLocale()}
             initialFocus
             monthGridClass="w-auto mx-auto"
             numberOfMonths={2}

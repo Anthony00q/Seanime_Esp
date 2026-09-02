@@ -22,6 +22,7 @@ import React from "react"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { PluginEpisodeGridItemMenuItems } from "../_features/plugin/actions/plugin-actions"
 import { useServerHMACAuth } from "../_hooks/use-server-status"
 
@@ -170,7 +171,7 @@ export default function Page() {
                             key={episode.localFile?.path || ""}
                             id={`episode-${String(episode.episodeNumber)}`}
                             media={episode?.baseAnime as any}
-                            title={episode?.displayTitle || episode?.baseAnime?.title?.userPreferred || ""}
+                            title={translateDisplayTitle(episode?.displayTitle) || episode?.baseAnime?.title?.userPreferred || ""}
                             image={episode?.episodeMetadata?.image || episode?.baseAnime?.coverImage?.large}
                             episodeTitle={episode?.episodeTitle}
                             fileName={episode?.localFile?.parsedInfo?.original}
@@ -189,7 +190,7 @@ export default function Page() {
                             progressNumber={episode.progressNumber}
                             action={<>
                                 <MediaEpisodeInfoModal
-                                    title={episode.displayTitle}
+                                    title={translateDisplayTitle(episode.displayTitle)}
                                     image={episode.episodeMetadata?.image}
                                     episodeTitle={episode.episodeTitle}
                                     airDate={episode.episodeMetadata?.airDate}

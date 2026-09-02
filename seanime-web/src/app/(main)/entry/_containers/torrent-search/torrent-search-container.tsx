@@ -39,6 +39,7 @@ import React, { startTransition } from "react"
 import { FiSearch } from "react-icons/fi"
 import { LuClock3, LuCornerLeftDown, LuFileSearch, LuLoaderCircle, LuPlus, LuSave } from "react-icons/lu"
 import { createTranslator } from "@/locales"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 
 const t = createTranslator()
 
@@ -252,7 +253,7 @@ export function TorrentSearchContainer({ type, entry }: { type: TorrentSelection
                             <EpisodeCard
                                 image={torrentSearchStreamEpisode.episodeMetadata?.image || torrentSearchStreamEpisode.baseAnime?.bannerImage || torrentSearchStreamEpisode.baseAnime?.coverImage?.extraLarge}
                                 topTitle={torrentSearchStreamEpisode.episodeTitle || torrentSearchStreamEpisode?.baseAnime?.title?.userPreferred}
-                                title={torrentSearchStreamEpisode.displayTitle}
+                                title={translateDisplayTitle(torrentSearchStreamEpisode.displayTitle)}
                                 isInvalid={torrentSearchStreamEpisode.isInvalid}
                                 progressTotal={torrentSearchStreamEpisode.baseAnime?.episodes}
                                 progressNumber={torrentSearchStreamEpisode.progressNumber}
@@ -532,10 +533,10 @@ export function TorrentSearchContainer({ type, entry }: { type: TorrentSelection
                             {hasOneWarning && <LuffyError />}
                             {isError && !hasOneWarning && (
                                 <LuffyError
-                                    title="Search failed"
+                                    title={t("entry.torrentSearch.searchFailed")}
                                 >
                                     <div className="flex flex-col items-center gap-2">
-                                        <p className="text-sm text-[--muted]">Failed to retrieve torrents from the provider.</p>
+                                        <p className="text-sm text-[--muted]">{t("entry.torrentSearch.failedToRetrieve")}</p>
                                         <Button
                                             size="sm"
                                             intent="gray-outline"

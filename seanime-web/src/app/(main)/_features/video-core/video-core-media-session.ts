@@ -1,4 +1,5 @@
 import { VideoCore_VideoPlaybackInfo } from "@/app/(main)/_features/video-core/video-core.atoms"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { logger } from "@/lib/helpers/debug"
 import { atom } from "jotai"
 
@@ -123,7 +124,7 @@ export class VideoCoreMediaSessionManager {
         const episode = this.playbackInfo.episode
         const anime = episode?.baseAnime
 
-        const title = episode?.displayTitle || "Seanime"
+        const title = translateDisplayTitle(episode?.displayTitle) || "Seanime"
         const artist = anime?.title?.userPreferred || anime?.title?.romaji || anime?.title?.english || "Video Player"
 
         const artwork: MediaImage[] = []

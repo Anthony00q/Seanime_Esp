@@ -196,6 +196,8 @@
       "languages": "Languages",
       "scanlators": "Scanlators",
       "reviewPreview": "Review the provider result before saving this match."
-    }
+    },
+    "failedSavePreference": "Could not save manga preference",
+    "noChaptersFound": "No chapters were found for this result"
   }
 }

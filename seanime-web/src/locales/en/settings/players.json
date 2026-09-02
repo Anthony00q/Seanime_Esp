@@ -79,7 +79,9 @@
       "enableLoggingHelp": "If enabled, debug logs will be written to the Denshi data directory.",
       "customMpvOptions": "Custom MPV Options",
       "customMpvOptionsHelp": "Add custom mpv.conf options.",
-      "customMpvOptionsPlaceholder": "# Add custom settings here"
+      "customMpvOptionsPlaceholder": "# Add custom settings here",
+      "logsExported": "MpvCore logs exported",
+      "exportLogsFailed": "Failed to export MpvCore logs"
     },
     "playbackOptions": {
       "externalPlayerLink": "External player link",

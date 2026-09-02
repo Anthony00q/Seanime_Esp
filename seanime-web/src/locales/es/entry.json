@@ -134,7 +134,9 @@
       "batchLabel": "Lote",
       "autoRetryChecking": "Consultando al proveedor nuevamente...",
       "autoRetryWaiting": "No se encontró ningún torrent. Reintentando en {time}.",
-      "autoRetryMoment": "un momento"
+      "autoRetryMoment": "un momento",
+      "searchFailed": "Búsqueda fallida",
+      "failedToRetrieve": "Error al obtener los torrents del proveedor."
     },
     "torrentDownload": {
       "chooseDestination": "Elige el destino",

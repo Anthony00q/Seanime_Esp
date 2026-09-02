@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
 import { logger } from "@/lib/helpers/debug"
 import { BiSolidSkipNextCircle } from "react-icons/bi"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { createTranslator } from "@/locales"
 
 const t = createTranslator()
@@ -47,7 +48,7 @@ export function AutoplayCountdownModal({
     const getNextEpisodeInfo = () => {
         if (nextEpisode) {
             return {
-                title: nextEpisode.displayTitle,
+                title: translateDisplayTitle(nextEpisode.displayTitle),
                 episodeTitle: nextEpisode.episodeTitle,
                 image: nextEpisode.episodeMetadata?.image || nextEpisode.baseAnime?.coverImage?.large,
             }

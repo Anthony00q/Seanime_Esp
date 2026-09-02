@@ -6,7 +6,10 @@ import { useAtom, useAtomValue } from "jotai"
 import { useSetAtom } from "jotai/react"
 import React from "react"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 import { vc_containerElement, vc_isFullscreen } from "./video-core-atoms"
+
+const t = createTranslator()
 import { vc_showOverlayFeedback } from "./video-core-overlay-display"
 import { vc_pendingScreenshotAtom, vc_screenshotPromptOpenAtom } from "./video-core-screenshot"
 
@@ -62,12 +65,12 @@ export function VideoCoreScreenshotDirPrompt() {
                 showOverlayFeedback({ message: "Screenshot saved", type: "message" })
                 setPendingScreenshot(null)
             }
-            toast.success("Screenshot folder saved")
+            toast.success(t("mpv.toast.screenshotFolderSaved"))
             return true
         }
         catch (error) {
             console.error("Failed to setup screenshot folder:", error)
-            toast.error(error instanceof Error ? error.message : "Failed to save screenshot folder")
+            toast.error(error instanceof Error ? error.message : t("mpv.toast.screenshotFolderFailed"))
             return false
         }
     }
