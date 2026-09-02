@@ -284,10 +284,10 @@
   },
   "unknownMedia": {
     "title": "Media oculta",
-    "description": "Seanime coincidió {count} grupo{plural} con {article}serie que {verb} ausente de tu {!hasCustomSources, select, true {AniList} other {}} colección.<br />Añade la media para poder ver entradas en tu biblioteca o desvincúlalas si son incorrectas.",
-    "addAllToCollection": "Añadir todo a {hasCustomSources, select, true {AniList} other {la colección}}",
+    "description": "Seanime coincidió {count, plural, one {# grupo} other {# grupos}} con {count, plural, one {una serie} other {series}} que {count, plural, one {está ausente} other {están ausentes}} de tu {hasCustomSources, select, true {colección} other {colección de AniList}}. Añade la media para poder ver entradas en tu biblioteca o desvincúlalas si son incorrectas.",
+    "addAllToCollection": "Añadir todo a {hasCustomSources, select, true {la colección} other {AniList}}",
     "matchedTo": "Coincide con",
-    "addToCollection": "Añadir a {hasCustomSources, select, true {AniList} other {la colección}}",
+    "addToCollection": "Añadir a {hasCustomSources, select, true {la colección} other {AniList}}",
     "unmatch": "Desvincular"
   },
   "animeLibrary": {

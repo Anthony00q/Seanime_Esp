@@ -50,7 +50,10 @@
       "updated": "Extensión actualizada exitosamente",
       "configSaved": "Configuración guardada exitosamente",
       "reloaded": "Extensión recargada exitosamente",
-      "permissionsGranted": "Permisos del plugin concedidos exitosamente"
+      "permissionsGranted": "Permisos del plugin concedidos exitosamente",
+      "toggle": "{state, select, disabled {Extensión desactivada.} enabled {Extensión activada.} other {Extensión actualizada.}}",
+      "disabled": "Extensión desactivada.",
+      "enabled": "Extensión activada."
     },
     "filecache": {
       "cacheCleared": "Caché limpiado"
@@ -138,6 +141,21 @@
       "downloadDirNotExist": "El directorio de descarga no existe",
       "downloadDirNotDir": "El directorio de descarga no es un directorio"
     },
+    "nakama": {
+      "failedToParseRoomUrl": "Error al analizar URL de sala",
+      "failedToConnectRoom": "Error al conectar con el servidor de sala",
+      "failedToReconnect": "Error al reconectar con la sala. Por favor, crea una nueva sala.",
+      "failedToConnectHost": "Error al conectar con el host de Nakama tras varios intentos."
+    },
+    "watchParty": {
+      "peerNotFound": "Peer no encontrado en la sesión",
+      "failedPrepareDebrid": "Watch party: Error al preparar stream de Debrid",
+      "missingTorrentParams": "Watch party: Error al reproducir: el host no devolvió opciones de inicio de torrent",
+      "torrentNotEnabled": "Watch party: Error al reproducir: el streaming por torrent no está activado",
+      "missingOnlinestreamParams": "Watch party: Error al reproducir: el host no devolvió parámetros de online stream",
+      "customNoTracking": "El seguimiento de progreso no estará disponible para fuentes personalizadas.",
+      "playFailedGeneric": "Watch party: Error al reproducir: {error}"
+    },
     "animeCollection": {
       "mediaAdded": "Medio añadido exitosamente"
     },
@@ -156,6 +174,21 @@
       "mangaNoChaptersFound": "No se encontraron capítulos para este manga",
       "mangaChapterNotFound": "Capítulo no encontrado",
       "mangaProviderNotFound": "Proveedor no encontrado y el capítulo no está descargado"
+    }
+  },
+  "mpv": {
+    "toast": {
+      "configUnavailable": "Los archivos de configuración de MPV no están disponibles en esta versión de Denshi",
+      "writeConfigFailed": "Error al escribir la configuración de MPV",
+      "applySubtitleFailed": "Error al aplicar la configuración de subtítulos",
+      "togglePipFailed": "Error al alternar PiP",
+      "captureScreenshotFailed": "Error al capturar la pantalla",
+      "noVideoElement": "No se encontró el elemento de video para capturar",
+      "canvasFailed": "Error al crear el contexto del canvas",
+      "saveScreenshotFailed": "Error al guardar la captura en el servidor",
+      "unsupportedSubtitle": "Formato de subtítulo no compatible",
+      "screenshotFolderSaved": "Carpeta de capturas guardada",
+      "screenshotFolderFailed": "Error al guardar la carpeta de capturas"
     }
   }
 }

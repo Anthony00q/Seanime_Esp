@@ -50,7 +50,10 @@
       "updated": "Atualizado",
       "configSaved": "Configuração salva",
       "reloaded": "Recarregado",
-      "permissionsGranted": "Permissões concedidas"
+      "permissionsGranted": "Permissões concedidas",
+      "toggle": "{state, select, disabled {Extensão desativada.} enabled {Extensão ativada.} other {Extensão atualizada.}}",
+      "disabled": "Extensão desativada.",
+      "enabled": "Extensão ativada."
     },
     "filecache": {
       "cacheCleared": "Cache limpo"
@@ -138,6 +141,21 @@
       "downloadDirNotExist": "O diretório de download não existe",
       "downloadDirNotDir": "O diretório de download não é uma pasta"
     },
+    "nakama": {
+      "failedToParseRoomUrl": "Falha ao analisar URL da sala",
+      "failedToConnectRoom": "Falha ao conectar ao servidor da sala",
+      "failedToReconnect": "Falha ao reconectar à sala. Por favor, crie uma nova sala.",
+      "failedToConnectHost": "Falha ao conectar ao host do Nakama após várias tentativas."
+    },
+    "watchParty": {
+      "peerNotFound": "Peer não encontrado na sessão",
+      "failedPrepareDebrid": "Watch party: Falha ao preparar stream Debrid",
+      "missingTorrentParams": "Watch party: Falha ao reproduzir: host não retornou opções de stream de torrent",
+      "torrentNotEnabled": "Watch party: Falha ao reproduzir: streaming por torrent não está ativado",
+      "missingOnlinestreamParams": "Watch party: Falha ao reproduzir: host não retornou parâmetros de online stream",
+      "customNoTracking": "O rastreamento de progresso não estará disponível para fontes personalizadas.",
+      "playFailedGeneric": "Watch party: Falha ao reproduzir: {error}"
+    },
     "animeCollection": {
       "mediaAdded": "Mídia adicionada"
     },
@@ -156,6 +174,21 @@
       "mangaNoChaptersFound": "Nenhum capítulo encontrado para este manga",
       "mangaChapterNotFound": "Capítulo não encontrado",
       "mangaProviderNotFound": "Provedor não encontrado e o capítulo não está baixado"
+    }
+  },
+  "mpv": {
+    "toast": {
+      "configUnavailable": "Arquivos de configuração do MPV não estão disponíveis nesta build do Denshi",
+      "writeConfigFailed": "Falha ao gravar a configuração do MPV",
+      "applySubtitleFailed": "Falha ao aplicar as configurações de legenda",
+      "togglePipFailed": "Falha ao alternar PiP",
+      "captureScreenshotFailed": "Falha ao capturar a tela",
+      "noVideoElement": "Nenhum elemento de vídeo encontrado para capturar",
+      "canvasFailed": "Falha ao criar o contexto do canvas",
+      "saveScreenshotFailed": "Falha ao salvar a captura no servidor",
+      "unsupportedSubtitle": "Formato de legenda não suportado",
+      "screenshotFolderSaved": "Pasta de capturas salva",
+      "screenshotFolderFailed": "Falha ao salvar a pasta de capturas"
     }
   }
 }

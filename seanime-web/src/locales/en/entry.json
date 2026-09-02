@@ -134,7 +134,9 @@
       "batchLabel": "Batch",
       "autoRetryChecking": "Checking the provider again...",
       "autoRetryWaiting": "No matching torrent found. Checking again in {time}.",
-      "autoRetryMoment": "a moment"
+      "autoRetryMoment": "a moment",
+      "searchFailed": "Search failed",
+      "failedToRetrieve": "Failed to retrieve torrents from the provider."
     },
     "torrentDownload": {
       "chooseDestination": "Choose the destination",

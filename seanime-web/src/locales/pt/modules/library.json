@@ -284,10 +284,10 @@
   },
   "unknownMedia": {
     "title": "Mídias ocultas",
-    "description": "O Seanime agrupou {count} arquivo{plural} em {article}série que {verb} faltando na sua coleção do {!hasCustomSources, select, true {AniList} other {}}.<br />Adicione a mídia para ver os arquivos na sua biblioteca ou desfaça o vínculo se estiver incorreto.",
-    "addAllToCollection": "Adicionar todos à {hasCustomSources, select, true {AniList} other {coleção}}",
+    "description": "O Seanime agrupou {count, plural, one {# arquivo} other {# arquivos}} em {count, plural, one {uma série} other {séries}} que {count, plural, one {está} other {estão}} faltando na sua {hasCustomSources, select, true {coleção} other {coleção do AniList}}. Adicione a mídia para ver os arquivos na sua biblioteca ou desfaça o vínculo se estiver incorreto.",
+    "addAllToCollection": "Adicionar todos à {hasCustomSources, select, true {coleção} other {AniList}}",
     "matchedTo": "Vinculado a",
-    "addToCollection": "Adicionar à {hasCustomSources, select, true {AniList} other {coleção}}",
+    "addToCollection": "Adicionar à {hasCustomSources, select, true {coleção} other {AniList}}",
     "unmatch": "Desfazer vínculo"
   },
   "animeLibrary": {

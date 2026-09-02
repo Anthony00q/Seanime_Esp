@@ -17,6 +17,7 @@ import { Carousel, CarouselContent, CarouselDotButtons, CarouselItem } from "@/c
 import { ContextMenuItem } from "@/components/ui/context-menu"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { createTranslator } from "@/locales"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import React from "react"
 import { IoLibrarySharp } from "react-icons/io5"
 import { LuTvMinimalPlay } from "react-icons/lu"
@@ -75,7 +76,7 @@ export function EpisodeSection({ entry, details, bottomSection, hideCarousel, ma
                     episode.type === "main" ? 1 : 0,
                 render: () => (
                     <div className="flex gap-1 items-center w-full">
-                        <p className="max-w-[70%] truncate">{episode.displayTitle}</p>
+                        <p className="max-w-[70%] truncate">{translateDisplayTitle(episode.displayTitle)}</p>
                         {!!episode.episodeTitle && (
                             <p className="text-[--muted] flex-1 truncate">- {episode.episodeTitle}</p>
                         )}
@@ -156,7 +157,7 @@ export function EpisodeSection({ entry, details, bottomSection, hideCarousel, ma
                                             episode={episode}
                                             image={episode.episodeMetadata?.image || episode.baseAnime?.bannerImage || episode.baseAnime?.coverImage?.extraLarge}
                                             topTitle={episode.episodeTitle || episode?.baseAnime?.title?.userPreferred}
-                                            title={episode.displayTitle}
+                                            title={translateDisplayTitle(episode.displayTitle)}
                                             isInvalid={episode.isInvalid}
                                             progressTotal={episode.baseAnime?.episodes}
                                             watchedProgress={entry.listData?.progress}

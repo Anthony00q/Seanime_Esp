@@ -30,6 +30,16 @@ export function formatSafe(value: Date, formatString: string, options?: FormatOp
     }
 }
 
+export function formatLocalized(value: Date, formatString: string, options?: FormatOptions | undefined) {
+    try {
+        return format(value, formatString, { locale: getDateFnsLocale(), ...options })
+    }
+    catch (e) {
+        let v = new Date()
+        return format(v, formatString, { locale: getDateFnsLocale(), ...options })
+    }
+}
+
 export function normalizeDate(value: string) {
     try {
         let arr = value.split(/[\-\+ :T]/)

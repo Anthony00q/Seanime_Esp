@@ -132,10 +132,10 @@ export function PlaybackSettings() {
             setIsExportingMpvLogs(true)
             if (!window.electron?.mpvCore) throw new Error("MpvCore is not available")
             await window.electron.mpvCore.exportLogs()
-            toast.success("MpvCore logs exported")
+            toast.success(t("settings.playback.logsExported"))
         }
         catch (error) {
-            let msg = error instanceof Error ? error.message : "Failed to export MpvCore logs"
+            let msg = error instanceof Error ? error.message : t("settings.playback.exportLogsFailed")
             msg = msg.replace(/^Error:\s*/i, "").replace(/Error invoking remote method '.*?':\s*/i, "")
             toast.error(msg)
         }

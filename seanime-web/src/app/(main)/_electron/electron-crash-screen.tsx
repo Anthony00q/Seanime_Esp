@@ -80,7 +80,7 @@ export function ElectronCrashScreenError() {
                         }
                     }}
                 >
-                    {t("common.close" as any)}
+                    {t("common.buttons.close")}
                 </Button>
             </div>
         </div>

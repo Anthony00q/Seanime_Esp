@@ -6,6 +6,7 @@ import { vc_busy } from "@/app/(main)/_features/video-core/video-core-atoms"
 import { VideoCoreLifecycleState } from "@/app/(main)/_features/video-core/video-core.atoms"
 import { useRouter } from "@/lib/navigation.ts"
 import { useThemeSettings } from "@/lib/theme/theme-hooks.ts"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { useAtomValue } from "jotai"
 import { useAtom } from "jotai/react"
 import React from "react"
@@ -48,7 +49,7 @@ export function VideoCoreTopPlaybackInfo(props: { state: VideoCoreLifecycleState
 
     const router = useRouter()
 
-    const displayTitle = state.playbackInfo?.episode?.displayTitle
+    const displayTitle = translateDisplayTitle(state.playbackInfo?.episode?.displayTitle)
     const _episodeTitle = state.playbackInfo?.episode?.episodeTitle
     const episodeTitle = (displayTitle !== _episodeTitle && (!ts.hideAnimeSpoilers || (ts.hideAnimeSpoilers && !ts.hideAnimeSpoilerTitles)))
         ? _episodeTitle

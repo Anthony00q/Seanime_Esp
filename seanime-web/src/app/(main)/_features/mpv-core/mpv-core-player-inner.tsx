@@ -37,6 +37,7 @@ import { clientIdAtom } from "@/app/websocket-provider"
 import { Button, IconButton } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { Modal } from "@/components/ui/modal"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { logger } from "@/lib/helpers/debug"
 import { upath } from "@/lib/helpers/upath"
 import { WSEvents } from "@/lib/server/ws-events"
@@ -50,6 +51,7 @@ import React from "react"
 import { LuCaptions, LuFilm, LuHeadphones, LuPaintbrush } from "react-icons/lu"
 import { RemoveScrollBar } from "react-remove-scroll-bar"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 
 import {
     applyMpvSubtitleSettings,
@@ -116,6 +118,7 @@ type DocumentPictureInPictureApi = {
 }
 
 const log = logger("MpvCore")
+const t = createTranslator()
 const subtitleExts = ["srt", "ass", "ssa", "vtt", "ttml", "stl", "txt"]
 
 type MpvCorePlayerContentProps = {
@@ -144,7 +147,7 @@ export function MpvCorePlayerInner() {
 
             const writeConfigFile = window.electron?.mpvCore?.writeConfigFile
             if (!writeConfigFile) {
-                toast.error("MPV config files are unavailable in this Denshi build")
+                toast.error(t("mpv.toast.configUnavailable"))
                 setConfigState({ ready: true, path: null })
                 return
             }
@@ -158,7 +161,7 @@ export function MpvCorePlayerInner() {
             }
             catch (error) {
                 if (!cancelled) {
-                    toast.error(error instanceof Error ? error.message : "Failed to write MPV config")
+                    toast.error(error instanceof Error ? error.message : t("mpv.toast.writeConfigFailed"))
                     setConfigState({ ready: true, path: null })
                 }
             }
@@ -497,7 +500,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
         const episode = info.episode
         const anime = info.media
 
-        const title = episode?.displayTitle || info.localFile?.name || "Seanime"
+        const title = translateDisplayTitle(episode?.displayTitle) || info.localFile?.name || "Seanime"
         const artist = anime?.title?.userPreferred || anime?.title?.romaji || anime?.title?.english || "Anime"
 
         const artwork: MediaImage[] = []
@@ -1205,7 +1208,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
     React.useEffect(() => {
         if (!player || !state.active || !metadataReadyRef.current) return
         applyMpvSubtitleSettings(player, mpvSettings).catch(error => {
-            toast.error(error instanceof Error ? error.message : "Failed to apply subtitle settings")
+            toast.error(error instanceof Error ? error.message : t("mpv.toast.applySubtitleFailed"))
         })
     }, [player, state.active, mpvSettings])
 
@@ -1482,7 +1485,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
             }
         } catch (error) {
             console.error("Failed to toggle PiP:", error)
-            toast.error(error instanceof Error ? error.message : "Failed to toggle PiP")
+            toast.error(error instanceof Error ? error.message : t("mpv.toast.togglePipFailed"))
         }
     }
 
@@ -1505,7 +1508,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
             const targetElement = videoCanvas || video
 
             if (!targetElement) {
-                toast.error("No video element found to capture")
+                toast.error(t("mpv.toast.noVideoElement"))
                 return
             }
 
@@ -1526,7 +1529,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
 
             const ctx = canvas.getContext("2d")
             if (!ctx) {
-                toast.error("Failed to create canvas context")
+                toast.error(t("mpv.toast.canvasFailed"))
                 return
             }
 
@@ -1577,7 +1580,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
             }
             catch (error) {
                 console.error("Failed to save screenshot:", error)
-                toast.error("Failed to save screenshot to server")
+                toast.error(t("mpv.toast.saveScreenshotFailed"))
 
                 // Reprompt the screenshot dir when saving fails
                 setPendingScreenshot({ base64Data })
@@ -1585,7 +1588,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
             }
         } catch (error) {
             console.error("Screenshot capture failed:", error)
-            toast.error(error instanceof Error ? error.message : "Failed to capture screenshot")
+            toast.error(error instanceof Error ? error.message : t("mpv.toast.captureScreenshotFailed"))
         }
     }
 
@@ -1598,7 +1601,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
     async function addSubtitleFile(file: File) {
         const extension = file.name.split(".").pop()?.toLowerCase() ?? ""
         if (!subtitleExts.includes(extension)) {
-            toast.error("Unsupported subtitle format")
+            toast.error(t("mpv.toast.unsupportedSubtitle"))
             return
         }
         const content = await file.text()

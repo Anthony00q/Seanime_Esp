@@ -91,13 +91,10 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
         >
             <AppLayoutStack className="mt-4">
 
-                <p className="" dangerouslySetInnerHTML={{ __html: t("unknownMedia.description", {
+                <p className="whitespace-pre-line">{t("unknownMedia.description", {
                     count: unknownGroups.length,
-                    plural: unknownGroups.length === 1 ? "" : "s",
-                    article: unknownGroups.length === 1 ? "a " : "",
-                    verb: unknownGroups.length === 1 ? "is" : "are",
-                    hasCustomSources: hasCustomSources ? "false" : "true",
-                }) }} />
+                    hasCustomSources: hasCustomSources ? "true" : "false",
+                })}</p>
 
                 <Button
                     leftIcon={<TbDatabasePlus />}
@@ -106,7 +103,7 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                     disabled={isUnmatching}
                 >
                     {t("unknownMedia.addAllToCollection", {
-                        hasCustomSources: hasCustomSources ? "false" : "true",
+                        hasCustomSources: hasCustomSources ? "true" : "false",
                     })}
                 </Button>
 
@@ -141,7 +138,7 @@ export function UnknownMediaManager(props: UnknownMediaManagerProps) {
                                             className="rounded-full"
                                         >
                                             {t("unknownMedia.addToCollection", {
-                                                hasCustomSources: hasCustomSources ? "false" : "true",
+                                                hasCustomSources: hasCustomSources ? "true" : "false",
                                             })}
                                         </Button>
                                         <Button
