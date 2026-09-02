@@ -256,7 +256,7 @@ export function PlaybackPlayPill({ isNativePlayerComponent, show }: {
                 if (data.status === "ready") {
                     setDebridState(null)
                     setAutoSelectState(null)
-                    toast.info("Sending stream to player...", { duration: 1 })
+                    toast.info(tr("entry.debridStream.sendingStream"), { duration: 1 })
                     setShowMediaPlayerLoading(true)
                     return
                 }

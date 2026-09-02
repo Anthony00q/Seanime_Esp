@@ -18,7 +18,10 @@
       "skippedOpening": "Opening Skipped",
       "skippedEnding": "Ending Skipped",
       "play": "Play",
-      "pause": "Pause"
+      "pause": "Pause",
+      "screenshotSaved": "Screenshot saved",
+      "screenshotFailed": "Screenshot failed",
+      "takingScreenshot": "Taking screenshot..."
     },
     "translationSettings": {
       "enableTranslation": "Enable Translation",

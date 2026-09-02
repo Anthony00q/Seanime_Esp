@@ -173,9 +173,7 @@ export const MediaExclusionSelector = React.forwardRef<HTMLDivElement, MediaExcl
                         <div className="flex-1">
                             <div className="flex items-center gap-2 mb-2">
                                 <span className="text-sm font-medium">
-                                    {selectedIds.length === 1
-                                        ? t("common.components.mediaExclusion.countExcluded", { count: selectedIds.length })
-                                        : t("common.components.mediaExclusion.countExcluded_plural", { count: selectedIds.length })}
+                                    {t("common.components.mediaExclusion.countExcluded", { count: selectedIds.length })}
                                 </span>
                                 {selectedIds.length > 0 && (
                                     <span className="text-xs text-[--muted]">{t("common.components.mediaExclusion.notVisibleHint")}</span>
@@ -262,9 +260,7 @@ export const MediaExclusionSelector = React.forwardRef<HTMLDivElement, MediaExcl
                                     </Button>
                                     <div className="flex-1" />
                                     <span className="text-sm text-[--muted]">
-                                        {selectedIds.length === 1
-                                            ? t("common.components.mediaExclusion.countSelected", { count: selectedIds.length })
-                                            : t("common.components.mediaExclusion.countSelected_plural", { count: selectedIds.length })}
+                                        {t("common.components.mediaExclusion.countSelected", { count: selectedIds.length })}
                                     </span>
                                 </div>
 
@@ -322,9 +318,7 @@ export const MediaExclusionSelector = React.forwardRef<HTMLDivElement, MediaExcl
                                         intent="primary"
                                         onClick={() => setModalOpen(false)}
                                     >
-                                        {selectedIds.length === 1
-                                            ? t("common.components.mediaExclusion.done", { count: selectedIds.length })
-                                            : t("common.components.mediaExclusion.done_plural", { count: selectedIds.length })}
+                                        {t("common.components.mediaExclusion.done", { count: selectedIds.length })}
                                     </Button>
                                 </div>
                             </div>

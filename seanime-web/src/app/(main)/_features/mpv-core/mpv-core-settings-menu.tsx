@@ -26,34 +26,8 @@ import { mc_parseCustomMpvConfig, mc_resolveAnime4KProfile } from "./mpv-core"
 import type { MpvCoreAnime4KQuality, MpvCoreSettings, MpvCoreShaderMode, MpvCoreShaderSettings } from "./mpv-core.atoms"
 import { createTranslator } from "@/locales"
 
-const mpvSubtitleFontSizeOptions = [
-    { label: "Small", value: 28 },
-    { label: "Medium", value: 38 },
-    { label: "Large", value: 48 },
-    { label: "Extra Large", value: 58 },
-]
-const mpvSubtitleColorOptions = [
-    { label: "White", value: "#FFFFFF" },
-    { label: "Black", value: "#000000" },
-    { label: "Gray", value: "#808080" },
-    { label: "Yellow", value: "#FFD700" },
-    { label: "Cyan", value: "#00FFFF" },
-    { label: "Pink", value: "#FF69B4" },
-    { label: "Purple", value: "#9370DB" },
-    { label: "Lime", value: "#00FF00" },
-]
-const mpvSubtitleOutlineOptions = [
-    { label: "None", value: 0 },
-    { label: "Small", value: 2 },
-    { label: "Medium", value: 3 },
-    { label: "Large", value: 4 },
-]
-const mpvSubtitleShadowOptions = [
-    { label: "None", value: 0 },
-    { label: "Small", value: 1 },
-    { label: "Medium", value: 2 },
-    { label: "Large", value: 3 },
-]
+// Porcentajes universales, no requieren traducción. Las demás opciones usan
+// los diccionarios locales traducidos dentro del componente (patrón rebase-safe).
 const mpvSubtitleOpacityOptions = [
     { label: "100%", value: 1 },
     { label: "80%", value: 0.8 },

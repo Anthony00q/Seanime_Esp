@@ -162,7 +162,7 @@ export default function Page() {
                                         </p>
                                         {!!selectedSummary?.unmatchedFiles?.length && (
                                             <p className="text-orange-300">
-                                                {selectedSummary?.unmatchedFiles?.length === 1 ? t("scanSummaries.notMatched") : t("scanSummaries.notMatched_plural")}
+                                                {t("scanSummaries.notMatched", { count: selectedSummary?.unmatchedFiles?.length ?? 0 })}
                                                 {debouncedSearchQuery.trim() && (
                                                     <span className="ml-2 text-sm">({filteredUnmatchedFiles.length} {t("scanSummaries.matching")})</span>
                                                 )}

@@ -2,9 +2,9 @@ import { format, FormatDistanceToNowOptions, FormatOptions, Locale } from "date-
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
 import { getDateFnsLocale } from "@/locales/date-locale"
 
-export function formatDistanceToNowSafe(value: string, options: FormatDistanceToNowOptions & { locale?: Locale } | undefined = { addSuffix: true, locale: getDateFnsLocale() }) {
+export function formatDistanceToNowSafe(value: string, options?: FormatDistanceToNowOptions & { locale?: Locale }) {
     try {
-        return formatDistanceToNow(value, options)
+        return formatDistanceToNow(value, { addSuffix: true, locale: getDateFnsLocale(), ...options })
     }
     catch (e) {
         return "N/A"
@@ -20,6 +20,11 @@ export function newDateSafe(value: string) {
     }
 }
 
+/**
+ * @deprecated Usa `formatLocalized()` para textos visibles al usuario.
+ * `formatSafe` no inyecta locale y quedará en inglés si el formato contiene
+ * nombres de días/meses. Solo úsalo para formatos máquina (HH:mm, yyyy-MM-dd).
+ */
 export function formatSafe(value: Date, formatString: string, options?: FormatOptions | undefined) {
     try {
         return format(value, formatString, options)

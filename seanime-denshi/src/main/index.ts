@@ -347,11 +347,29 @@ function logStartupEvent(stage: string, detail?: unknown) {
 }
 
 // Global error handlers to catch unhandled exceptions
+function getErrorStrings() {
+    const fallback = { title: "Ocurrió un error", uncaughtException: "Excepción no capturada", checkLogs: "Revisa los registros para más detalles." }
+    try {
+        const locale = (typeof denshiSettings !== "undefined" && denshiSettings.locale) || "es"
+        const localesPath = path.join(app.getAppPath(), "locales", `${locale}.json`)
+        if (fs.existsSync(localesPath)) {
+            const localeData = JSON.parse(fs.readFileSync(localesPath, "utf8"))
+            if (localeData && localeData.error) {
+                return { ...fallback, ...localeData.error }
+            }
+        }
+    } catch (e) {
+        logger.app.error("Failed to load error locale strings", formatError(e))
+    }
+    return fallback
+}
+
 process.on("uncaughtException", (error: Error) => {
     logger.app.error("Uncaught exception", formatError(error))
 
     if (app.isReady()) {
-        dialog.showErrorBox("An error occurred", `Uncaught Exception: ${error.message}\n\nCheck the logs for more details.`)
+        const errorStrings = getErrorStrings()
+        dialog.showErrorBox(errorStrings.title, `${errorStrings.uncaughtException}: ${error.message}\n\n${errorStrings.checkLogs}`)
     }
 })
 
@@ -500,14 +518,15 @@ if (!gotTheLock) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function createTray() {
-    let trayStrings = { toggleVisibility: "Mostrar/Ocultar", removeFromDock: "Quitar del Dock", quit: "Salir de Seanime" }
+    const fallbackTrayStrings = { toggleVisibility: "Mostrar/Ocultar", removeFromDock: "Quitar del Dock", quit: "Salir de Seanime" }
+    let trayStrings = { ...fallbackTrayStrings }
     try {
         const locale = denshiSettings.locale || "es"
         const localesPath = path.join(app.getAppPath(), "locales", `${locale}.json`)
         if (fs.existsSync(localesPath)) {
             const localeData = JSON.parse(fs.readFileSync(localesPath, "utf8"))
             if (localeData && localeData.tray) {
-                trayStrings = localeData.tray
+                trayStrings = { ...fallbackTrayStrings, ...localeData.tray }
             }
         }
     } catch (e) {

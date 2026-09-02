@@ -1,6 +1,8 @@
 import { createTranslator } from "@/locales"
+import { getCurrentLocale } from "@/locales/config"
 
 const cache = new Map<string, string>()
+const MAX_CACHE_SIZE = 500
 
 /**
  * translateDisplayTitle
@@ -20,52 +22,48 @@ const cache = new Map<string, string>()
  */
 export function translateDisplayTitle(displayTitle: string | undefined | null): string {
     if (!displayTitle) return ""
-    const cached = cache.get(displayTitle)
+    const cacheKey = `${getCurrentLocale()}:${displayTitle}`
+    const cached = cache.get(cacheKey)
     if (cached !== undefined) return cached
 
     const t = createTranslator()
     const normalize = (n: string) => String(parseInt(n, 10) || n)
 
+    const store = (res: string) => {
+        if (cache.size >= MAX_CACHE_SIZE) cache.clear()
+        cache.set(cacheKey, res)
+        return res
+    }
+
     // "Episode 6 & 4 more" → must be before generic Episode
     const moreMatch = displayTitle.match(/^Episode (\d+) & (\d+) more$/)
     if (moreMatch) {
-        const res = t("common.labels.episodeNumberAndMore", { number: normalize(moreMatch[1]), count: moreMatch[2] })
-        cache.set(displayTitle, res)
-        return res
+        return store(t("common.labels.episodeNumberAndMore", { number: normalize(moreMatch[1]), count: moreMatch[2] }))
     }
 
     // "Episode 7 - Title" defensivo (FilePreview y futuro-proof)
     const epWithTitle = displayTitle.match(/^Episode (\d+)\s*-\s*(.+)$/)
     if (epWithTitle) {
-        const res = `${t("common.labels.episodeNumber", { number: normalize(epWithTitle[1]) })} - ${epWithTitle[2]}`
-        cache.set(displayTitle, res)
-        return res
+        return store(`${t("common.labels.episodeNumber", { number: normalize(epWithTitle[1]) })} - ${epWithTitle[2]}`)
     }
 
     // "Episode 7" → zero-pad normalizado "07" => "7"
     const episodeMatch = displayTitle.match(/^Episode (\d+)$/)
     if (episodeMatch) {
-        const res = t("common.labels.episodeNumber", { number: normalize(episodeMatch[1]) })
-        cache.set(displayTitle, res)
-        return res
+        return store(t("common.labels.episodeNumber", { number: normalize(episodeMatch[1]) }))
     }
 
     // "Special 2 - Title" defensivo
     const specialWithTitle = displayTitle.match(/^Special (\S+)\s*-\s*(.+)$/)
     if (specialWithTitle) {
-        const res = `${t("common.labels.specialEpisodeNumber", { number: specialWithTitle[1] })} - ${specialWithTitle[2]}`
-        cache.set(displayTitle, res)
-        return res
+        return store(`${t("common.labels.specialEpisodeNumber", { number: specialWithTitle[1] })} - ${specialWithTitle[2]}`)
     }
 
     // "Special 2" → "Especial 2"
     const specialMatch = displayTitle.match(/^Special (\S+)$/)
     if (specialMatch) {
-        const res = t("common.labels.specialEpisodeNumber", { number: specialMatch[1] })
-        cache.set(displayTitle, res)
-        return res
+        return store(t("common.labels.specialEpisodeNumber", { number: specialMatch[1] }))
     }
 
-    cache.set(displayTitle, displayTitle)
-    return displayTitle
+    return store(displayTitle)
 }

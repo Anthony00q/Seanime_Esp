@@ -16,7 +16,7 @@ import { DataGridCellInputField } from "./datagrid-cell-input-field"
 import { DataGridFilter } from "./datagrid-filter"
 import { DataGridApi, DataGridInstanceProps, useDataGrid } from "./datagrid-instance"
 import { getColumnHelperMeta, getValueFormatter } from "./helpers"
-import translations from "./locales"
+import translations, { resolveDatagridLocale } from "./locales"
 import { useDataGridEditing } from "./use-datagrid-editing"
 import { useDataGridFiltering } from "./use-datagrid-filtering"
 import { useDataGridResponsiveness } from "./use-datagrid-responsiveness"
@@ -120,7 +120,7 @@ export type DataGridProps<T extends Record<string, any>> = ComponentAnatomy<type
 export function DataGrid<T extends Record<string, any>>(props: DataGridProps<T>) {
 
     const {
-        lng = "en",
+        lng: lngProp,
         className,
         headerClass,
         toolbarClass,
@@ -143,6 +143,9 @@ export function DataGrid<T extends Record<string, any>>(props: DataGridProps<T>)
         hideGlobalSearchInput,
         ...rest
     } = props
+
+    // Sigue al idioma global de la app salvo `lng` explícito soportado
+    const lng = resolveDatagridLocale(lngProp)
 
     const {
         table,
