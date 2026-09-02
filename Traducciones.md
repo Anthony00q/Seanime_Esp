@@ -37,16 +37,9 @@ Edita `seanime-web/src/locales/config.ts`:
 // 1. Agrega tu idioma al tipo Locale
 export type Locale = "en" | "es" | "pt" | "fr"
 
-// 2. IMPORTANTE: Agrega tu idioma a la validación de defaultLocale para que la app permita cargarlo
-export const defaultLocale: Locale = (() => {
-    if (typeof window !== "undefined") {
-        const saved = window.localStorage.getItem("seanime-locale")
-        if (saved === "en" || saved === "es" || saved === "pt" || saved === "fr") return saved as Locale // ← Agrega tu idioma aquí
-    }
-    return "es"
-})()
-
-// 3. Ponle un nombre nativo para que aparezca automáticamente en el selector de la UI
+// 2. Ponle un nombre nativo para que aparezca automáticamente en el selector de la UI
+//    (la validación es automática vía isValidLocale() contra esta tabla,
+//    no hay ninguna lista `if (saved === ...)` que actualizar)
 export const localeNames: Record<Locale, string> = {
     en: "English",
     es: "Español",
@@ -54,6 +47,8 @@ export const localeNames: Record<Locale, string> = {
     fr: "Français", // ← nuevo
 }
 ```
+
+> Tip: puedes automatizar los pasos 1–5 con `node .agents/skills/seanime-i18n/scripts/scaffold-lang.js fr "Français"` (copia `en/` como plantilla y parchea `config.ts`, `index.ts`, `date-locale.ts` y `seanime-denshi/locales/`).
 
 ### 3. Integración en el Validador Estricto (`index.ts`)
 
@@ -77,7 +72,7 @@ const frModules = [
 type FrMessages = UnionToIntersection<typeof frModules[number]>;
 type _VerifyFr = AssertParity<CheckParity<Paths<FrMessages>>>;
 
-// 4. Agrégalo al registro de módulos lazy-loaded
+// 4. Agrégalo al registro de módulos (imports estáticos, con validación estricta)
 const languageModules: Record<string, readonly Record<string, any>[]> = {
     en: enModules,
     es: esModules,

@@ -1,3 +1,4 @@
-export function capitalizeFirst(str: string): string {
+export function capitalizeFirst(str: string | null | undefined): string {
+    if (!str) return ""
     return str.charAt(0).toUpperCase() + str.slice(1)
 }

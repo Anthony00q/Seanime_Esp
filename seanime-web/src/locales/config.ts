@@ -34,5 +34,8 @@ export function setCurrentLocale(locale: Locale) {
     }
 }
 
-// Compat: snapshot legacy (deprecated, usar getCurrentLocale() para dinamico)
+// Compat: snapshot legacy (deprecated, usar getCurrentLocale() para dinamico).
+// Se mantiene exportado solo por compatibilidad con código antiguo o futuro del
+// upstream que importe `defaultLocale`. NO usar en código nuevo: queda congelado
+// en el idioma del arranque y NO reacciona a `setCurrentLocale()`.
 export const defaultLocale: Locale = getCurrentLocale()

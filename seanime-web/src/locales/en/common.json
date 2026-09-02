@@ -123,8 +123,7 @@
       },
       "mediaExclusion": {
         "title": "Select anime to exclude from sharing",
-        "countExcluded": "{count} anime excluded from sharing",
-        "countExcluded_plural": "{count} anime excluded from sharing",
+        "countExcluded": "{count, plural, one {# anime excluded from sharing} other {# anime excluded from sharing}}",
         "notVisibleHint": "(will not be visible to other clients)",
         "moreCount": "+{count} more",
         "editSelection": "Edit selection",
@@ -133,10 +132,8 @@
         "selectAll": "Select all",
         "deselectAll": "Deselect all",
         "selectAdult": "Select adult",
-        "countSelected": "{count} selected (will not be shared)",
-        "countSelected_plural": "{count} selected (will not be shared)",
-        "done": "Done ({count} selected)",
-        "done_plural": "Done ({count} selected)"
+        "countSelected": "{count, plural, one {# selected (will not be shared)} other {# selected (will not be shared)}}",
+        "done": "{count, plural, one {Done (# selected)} other {Done (# selected)}}"
       },
       "fields": {
         "directory": "Directory"

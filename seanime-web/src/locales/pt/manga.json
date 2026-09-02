@@ -131,7 +131,7 @@
       "nothingInQueue": "Nada na fila",
       "downloaded": "Baixado",
       "mediaLabel": "Mídia {id}",
-      "chaptersCount": "{count} capítulo{plural}",
+      "chaptersCount": "{count, plural, =0 {# capítulos} one {# capítulo} other {# capítulos}}",
       "notInCollection": "Não está na sua coleção AniList",
       "noChaptersDownloaded": "Nenhum capítulo baixado",
       "mangaDownloads": "Downloads de Mangá"

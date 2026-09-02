@@ -8,6 +8,7 @@ import { SeaImage } from "@/components/shared/sea-image"
 import { stagger, useAnimate } from "motion/react"
 import React from "react"
 import { createTranslator } from "@/locales"
+import { getCurrentLocale } from "@/locales/config"
 
 const t = createTranslator()
 
@@ -51,7 +52,7 @@ export function LoadingOverlayWithLogo({ refetch, title, compactBrandSpacing }: 
 const splashBrandLetters = "Seanime".split("")
 
 function SplashBrandLockup({ compactSpacing }: { compactSpacing?: boolean }) {
-    const currentLocale = window.localStorage.getItem("seanime-locale") || "es"
+    const currentLocale = getCurrentLocale()
     
     let subBrand = ""
     if (currentLocale === "es") {

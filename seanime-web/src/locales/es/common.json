@@ -123,8 +123,7 @@
       },
       "mediaExclusion": {
         "title": "Seleccionar anime para excluir del intercambio",
-        "countExcluded": "{count} anime excluido del intercambio",
-        "countExcluded_plural": "{count} anime excluidos del intercambio",
+        "countExcluded": "{count, plural, one {# anime excluido del intercambio} other {# anime excluidos del intercambio}}",
         "notVisibleHint": "(no será visible para otros clientes)",
         "moreCount": "+{count} más",
         "editSelection": "Editar selección",
@@ -133,10 +132,8 @@
         "selectAll": "Seleccionar todo",
         "deselectAll": "Deseleccionar todo",
         "selectAdult": "Seleccionar adultos",
-        "countSelected": "{count} seleccionado (no se compartirá)",
-        "countSelected_plural": "{count} seleccionados (no se compartirán)",
-        "done": "Listo ({count} seleccionado)",
-        "done_plural": "Listo ({count} seleccionados)"
+        "countSelected": "{count, plural, one {# seleccionado (no se compartirá)} other {# seleccionados (no se compartirán)}}",
+        "done": "{count, plural, one {Listo (# seleccionado)} other {Listo (# seleccionados)}}"
       },
       "fields": {
         "directory": "Directorio"

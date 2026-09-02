@@ -18,7 +18,10 @@
       "skippedOpening": "Abertura Pulada",
       "skippedEnding": "Encerramento Pulado",
       "play": "Reproduzir",
-      "pause": "Pausar"
+      "pause": "Pausar",
+      "screenshotSaved": "Captura salva",
+      "screenshotFailed": "Falha na captura",
+      "takingScreenshot": "Tirando captura..."
     },
     "translationSettings": {
       "enableTranslation": "Ativar Tradução",
