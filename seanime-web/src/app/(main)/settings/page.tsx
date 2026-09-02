@@ -77,7 +77,7 @@ import { DiscordRichPresenceSettings } from "./_containers/discord-rich-presence
 import { LocalSettings } from "./_containers/local-settings"
 import { NakamaSettings } from "./_containers/nakama-settings"
 import { createTranslator } from "@/locales"
-import { defaultLocale } from "@/locales/config"
+import { getCurrentLocale, setCurrentLocale } from "@/locales/config"
 
 const t = createTranslator()
 
@@ -125,7 +125,7 @@ export default function Page() {
         description: t("settings.locale.restartDescription"),
         onConfirm: async () => {
             if (pendingLocale) {
-                localStorage.setItem("seanime-locale", pendingLocale)
+                setCurrentLocale(pendingLocale as any)
                 if (__isElectronDesktop__ && window.electron?.denshiSettings) {
                     const denshiSettings = await window.electron.denshiSettings.get()
                     await window.electron.denshiSettings.set({
@@ -140,7 +140,7 @@ export default function Page() {
         },
         onCancel: () => {
             setPendingLocale(null)
-            formRef.current?.setValue("locale", defaultLocale)
+            formRef.current?.setValue("locale", getCurrentLocale())
         },
     })
 
@@ -504,10 +504,10 @@ export default function Page() {
                                     })
                                 }
 
-                                const newLocale = (data.locale && data.locale !== defaultLocale) ? data.locale : null
+                                const newLocale = (data.locale && data.locale !== getCurrentLocale()) ? data.locale : null
 
                                 if (newLocale) {
-                                    setPendingLocale(newLocale)
+                                    setPendingLocale(newLocale as any)
                                 }
 
                                 formRef.current?.reset(data)
@@ -629,7 +629,7 @@ export default function Page() {
                                 hideAnimeSpoilerDescriptions: status?.themeSettings?.hideAnimeSpoilerDescriptions ?? THEME_DEFAULT_VALUES.hideAnimeSpoilerDescriptions,
                                 hideAnimeSpoilerSkipNextEpisode: status?.themeSettings?.hideAnimeSpoilerSkipNextEpisode ?? THEME_DEFAULT_VALUES.hideAnimeSpoilerSkipNextEpisode,
                                 showTorrentAvailability: status?.settings?.library?.showTorrentAvailability ?? false,
-                                locale: pendingLocale || defaultLocale,
+                                locale: pendingLocale || getCurrentLocale(),
                             }}
                             stackClass="space-y-0 relative"
                         >

@@ -1,13 +1,5 @@
 export type Locale = "en" | "es" | "pt"
 
-export const defaultLocale: Locale = (() => {
-    if (typeof window !== "undefined") {
-        const saved = window.localStorage.getItem("seanime-locale")
-        if (saved === "en" || saved === "es" || saved === "pt") return saved as Locale
-    }
-    return "es"
-})()
-
 export const localeNames: Record<Locale, string> = {
     en: "English",
     es: "Español",
@@ -17,3 +9,30 @@ export const localeNames: Record<Locale, string> = {
 export function isValidLocale(value: string): value is Locale {
     return value in localeNames
 }
+
+let _cachedLocale: Locale | null = null
+let _cachedRaw: string | null = null
+
+export function getCurrentLocale(): Locale {
+    if (typeof window === "undefined") return "es"
+    const raw = window.localStorage.getItem("seanime-locale")
+    if (raw === _cachedRaw && _cachedLocale) return _cachedLocale
+    _cachedRaw = raw
+    if (raw && isValidLocale(raw)) {
+        _cachedLocale = raw as Locale
+        return _cachedLocale
+    }
+    _cachedLocale = "es"
+    return "es"
+}
+
+export function setCurrentLocale(locale: Locale) {
+    _cachedLocale = locale
+    _cachedRaw = locale
+    if (typeof window !== "undefined") {
+        window.localStorage.setItem("seanime-locale", locale)
+    }
+}
+
+// Compat: snapshot legacy (deprecated, usar getCurrentLocale() para dinamico)
+export const defaultLocale: Locale = getCurrentLocale()

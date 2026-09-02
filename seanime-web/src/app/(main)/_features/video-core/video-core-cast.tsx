@@ -13,6 +13,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react"
 import { BiCast } from "react-icons/bi"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 
 const t = createTranslator()
 
@@ -173,7 +174,7 @@ export async function castCurrentMedia(playbackInfo: any) {
         title: playbackInfo.media?.title?.english
             || playbackInfo.media?.title?.romaji
             || t("common.messages.unknown"),
-        subtitle: playbackInfo.episode?.displayTitle || "",
+        subtitle: translateDisplayTitle(playbackInfo.episode?.displayTitle) || "",
         imageUrl: playbackInfo.media?.coverImage?.large || "",
         serverPort,
     })

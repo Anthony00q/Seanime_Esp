@@ -79,7 +79,9 @@
       "enableLoggingHelp": "Se ativado, logs de depuração serão gravados no diretório de dados do Denshi.",
       "customMpvOptions": "Opções personalizadas do MPV",
       "customMpvOptionsHelp": "Adicione opções personalizadas para o mpv.conf.",
-      "customMpvOptionsPlaceholder": "# Adicione configurações personalizadas aqui"
+      "customMpvOptionsPlaceholder": "# Adicione configurações personalizadas aqui",
+      "logsExported": "Logs do MpvCore exportados",
+      "exportLogsFailed": "Falha ao exportar os logs do MpvCore"
     },
     "playbackOptions": {
       "externalPlayerLink": "Link de player externo",

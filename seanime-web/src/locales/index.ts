@@ -1,5 +1,5 @@
-import { defaultLocale } from "./config"
-import { isValidElement, useMemo } from "react"
+import { getCurrentLocale } from "./config"
+import { isValidElement } from "react"
 import { IntlMessageFormat } from "intl-messageformat"
 
 // --- Importaciones de secciones en inglés (modular) ---
@@ -209,22 +209,55 @@ function interpolate(text: string, locale: string, params?: Record<string, any>)
 let defaultTranslator: ((key: TranslationKeys, params?: Record<string, any>) => string) | null = null;
 
 export function createTranslator(locale?: string) {
-    if (!locale && defaultTranslator) {
+    // Locale explícito → translator estático (para tests/SSR)
+    if (locale) {
+        const messages = getTranslations(locale)
+        const fallbackMessages = getTranslations("en")
+        function tStatic(key: TranslationKeys, params?: Record<string, any>): string {
+            let safeParams = params;
+            if (safeParams) {
+                let paramsCloned = false;
+                for (const k in safeParams) {
+                    const val = safeParams[k];
+                    if (val !== null && typeof val === 'object' && !Array.isArray(val) && !isValidElement(val)) {
+                        if (!paramsCloned) {
+                            safeParams = { ...safeParams };
+                            paramsCloned = true;
+                        }
+                        console.warn(`[i18n] 🛡️ Prevención de crash: Se pasó un objeto crudo en el parámetro "${k}" para la key "${key}". Se convirtió a string.`);
+                        safeParams[k] = val instanceof Error ? val.message : String(val);
+                    }
+                }
+            }
+            const translation = messages[key as string]
+            if (translation) {
+                return interpolate(translation, locale!, safeParams)
+            }
+            const fallback = fallbackMessages[key as string]
+            if (fallback) {
+                return interpolate(fallback, "en", safeParams)
+            }
+            console.warn(`[i18n] Missing translation for key: ${key as string}`)
+            if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
+                const missing: Map<string, number> = (window as any).__seanime_i18n_missingKeys ||= new Map()
+                missing.set(key as string, (missing.get(key as string) || 0) + 1)
+            }
+            return key as string
+        }
+        return tStatic;
+    }
+
+    // Sin locale → translator dinámico singleton (resuelve getCurrentLocale() en cada llamada)
+    if (defaultTranslator) {
         return defaultTranslator;
     }
 
-    const resolved = locale ?? defaultLocale
-    
-    // Carga diferida del idioma activo y el fallback (inglés)
-    const messages = getTranslations(resolved)
-    const fallbackMessages = getTranslations("en")
-
-    function t(key: TranslationKeys, params?: Record<string, any>): string {
-        const translation = messages[key as string]
+    function tDynamic(key: TranslationKeys, params?: Record<string, any>): string {
+        const resolved = getCurrentLocale()
+        const messages = getTranslations(resolved)
+        const fallbackMessages = getTranslations("en")
 
         let safeParams = params;
-
-        // Prevenir crashes de React por objetos crudos (Error #31)
         if (safeParams) {
             let paramsCloned = false;
             for (const k in safeParams) {
@@ -240,6 +273,7 @@ export function createTranslator(locale?: string) {
             }
         }
 
+        const translation = messages[key as string]
         if (translation) {
             return interpolate(translation, resolved, safeParams)
         }
@@ -259,17 +293,11 @@ export function createTranslator(locale?: string) {
         return key as string
     }
 
-    if (!locale) {
-        defaultTranslator = t;
-    }
-
-    return t;
+    defaultTranslator = tDynamic;
+    return tDynamic;
 }
 
 export function useTranslation() {
-    const t = useMemo(() => {
-        return createTranslator()
-    }, [])
-
+    const t = createTranslator()
     return { t }
 }

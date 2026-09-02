@@ -196,6 +196,8 @@
       "languages": "Idiomas",
       "scanlators": "Scans",
       "reviewPreview": "Revise o resultado do provedor antes de salvar esta correspondência."
-    }
+    },
+    "failedSavePreference": "Não foi possível salvar a preferência do mangá",
+    "noChaptersFound": "Nenhum capítulo foi encontrado para este resultado"
   }
 }

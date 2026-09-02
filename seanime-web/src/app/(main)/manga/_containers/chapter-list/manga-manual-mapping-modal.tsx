@@ -208,7 +208,7 @@ function Content({ entry }: { entry: Manga_Entry }) {
                                             previewMapping({ provider: selectedProvider, mangaId: item.id }, {
                                                 onSuccess: preview => {
                                                     if (!preview?.chapterCount) {
-                                                        toast.error("No chapters were found for this result")
+                                                        toast.error(t("manga.noChaptersFound"))
                                                         setSelectedResult(null)
                                                         resetPreview()
                                                         return

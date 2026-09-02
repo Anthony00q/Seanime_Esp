@@ -7,6 +7,7 @@ import { Modal } from "@/components/ui/modal"
 import { __CAST_ENABLED__, __isElectronDesktop__ } from "@/types/constants"
 import React from "react"
 import { BiCast } from "react-icons/bi"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { mc_resolveSource } from "./mpv-core"
 
 export interface MpvCoreCastButtonProps {
@@ -63,7 +64,7 @@ export function MpvCoreCastButton(props: MpvCoreCastButtonProps) {
             streamUrl,
             contentType: props.info.mimeType || "video/mp4",
             title: props.info.media?.title?.userPreferred || "Seanime",
-            subtitle: props.info.episode?.displayTitle || "",
+            subtitle: translateDisplayTitle(props.info.episode?.displayTitle) || "",
             imageUrl: props.info.media?.coverImage?.large || "",
             serverPort: Number(serverBaseUrl.split(":").pop()) || 43211,
         })

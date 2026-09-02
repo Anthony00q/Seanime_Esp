@@ -257,12 +257,13 @@ export function useReloadExternalExtension() {
 }
 
 export function useSetExternalExtensionDisabled() {
+    const t = createTranslator()
     return useServerMutation<boolean, SetExternalExtensionDisabled_Variables>({
         endpoint: API_ENDPOINTS.EXTENSIONS.SetExternalExtensionDisabled.endpoint,
         method: API_ENDPOINTS.EXTENSIONS.SetExternalExtensionDisabled.methods[0],
         mutationKey: [API_ENDPOINTS.EXTENSIONS.SetExternalExtensionDisabled.key],
         onSuccess: async (_data, variables) => {
-            toast.success(variables.disabled ? "Extension disabled." : "Extension enabled.")
+            toast.success(t("toast.extensions.toggle" as any, { state: variables.disabled ? "disabled" : "enabled" }))
         },
     })
 }

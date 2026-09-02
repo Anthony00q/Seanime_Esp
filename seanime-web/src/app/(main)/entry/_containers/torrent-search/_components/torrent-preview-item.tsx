@@ -14,6 +14,7 @@ import { openTab } from "@/lib/helpers/browser"
 import { formatDistanceToNowSafe } from "@/lib/helpers/date"
 import uniqBy from "lodash/uniqBy"
 import { createTranslator } from "@/locales"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 
 const t = createTranslator()
 import React, { memo } from "react"
@@ -48,7 +49,7 @@ export const TorrentListItem = ({ torrent, metadata, debridCached, onClick, isSe
             link={overrideProps?.link ?? torrent?.link}
             confirmed={overrideProps?.confirmed ?? torrent?.confirmed}
             key={torrent.infoHash}
-            displayName={overrideProps?.displayName ?? (episode?.displayTitle || episode?.baseAnime?.title?.userPreferred || "")}
+            displayName={overrideProps?.displayName ?? (translateDisplayTitle(episode?.displayTitle) || episode?.baseAnime?.title?.userPreferred || "")}
             releaseGroup={overrideProps?.releaseGroup ?? (torrent.releaseGroup || "")}
             torrentName={overrideProps?.torrentName ?? torrent.name}
             isBatch={overrideProps?.isBatch ?? torrent.isBatch ?? false}
