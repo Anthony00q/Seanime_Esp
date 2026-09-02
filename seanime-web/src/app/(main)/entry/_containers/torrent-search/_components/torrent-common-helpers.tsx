@@ -9,6 +9,9 @@ import React, { useState } from "react"
 import { LiaMicrophoneSolid } from "react-icons/lia"
 import { PiChatCircleDotsDuotone } from "react-icons/pi"
 import { TbArrowsSort, TbFilter, TbSortAscending, TbSortDescending } from "react-icons/tb"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 // Define sort types
 export type SortField = "seeders" | "size" | "date" | "resolution" | null
@@ -293,7 +296,7 @@ export const TorrentFilterSortControls: React.FC<{
 
     return (
         <div className="flex items-center justify-between gap-4">
-            <p className="text-sm text-[--muted] flex-none">{resultCount} results</p>
+            <p className="text-sm text-[--muted] flex-none">{t("customSources.resultCount", { count: resultCount })}</p>
             <div className="flex items-center gap-1 flex-wrap">
                 <Popover
                     trigger={<Button
@@ -303,11 +306,11 @@ export const TorrentFilterSortControls: React.FC<{
                             {getFilterIcon(isAnyFilterActive)}
                         </>}
                     >
-                        Filters
+                        {t("entry.torrentSearch.filters")}
                     </Button>}
                 >
                     <p className="text-xs text-[--muted] flex-none pb-2">
-                        Filters are based on torrent names and can miss some results.
+                        {t("entry.torrentSearch.filtersHelp")}
                     </p>
                     <div className="space-y-1">
                         <Checkbox

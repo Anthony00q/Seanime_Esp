@@ -16,7 +16,8 @@
     "playlist": {
       "created": "Lista de reproducción creada",
       "updated": "Lista de reproducción actualizada",
-      "deleted": "Lista de reproducción eliminada"
+      "deleted": "Lista de reproducción eliminada",
+      "retrieveInfoFailed": "Error al obtener la info de la lista de reproducción"
     },
     "auth": {
       "authenticated": "Autenticación exitosa",
@@ -38,7 +39,8 @@
       "downloadStarted": "Descarga iniciada",
       "downloadCancelled": "Descarga cancelada",
       "torrentDeleted": "Torrent eliminado",
-      "streamCancelled": "Stream cancelado"
+      "streamCancelled": "Stream cancelado",
+      "genericError": "Debrid: {error}"
     },
     "download": {
       "filesDownloaded": "Archivos descargados",
@@ -174,6 +176,13 @@
       "mangaNoChaptersFound": "No se encontraron capítulos para este manga",
       "mangaChapterNotFound": "Capítulo no encontrado",
       "mangaProviderNotFound": "Proveedor no encontrado y el capítulo no está descargado"
+    },
+    "subtitles": {
+      "uploadFailed": "Error al subir el archivo de subtítulos: {error}",
+      "conversionFailed": "Error al convertir el archivo de subtítulos: {error}"
+    },
+    "plugin": {
+      "genericError": "Error de plugin: {error}"
     }
   },
   "mpv": {

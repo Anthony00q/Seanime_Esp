@@ -10,6 +10,9 @@ import { mergeRefs } from "../core/utils"
 import { extractInputPartProps, hiddenInputStyles, InputAddon, InputAnatomy, InputContainer, InputIcon, InputStyling } from "../input"
 import { Modal } from "../modal"
 import { Popover } from "../popover"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 
 /* -------------------------------------------------------------------------------------------------
@@ -164,7 +167,7 @@ export const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePick
         >
             {date?.from ? (
                 date.to ? <span className="line-clamp-1">{`${format(date.from, "P", { locale: locale || getDateFnsLocale() })} - ${format(date.to, "P", { locale: locale || getDateFnsLocale() })}`}</span> : <span className="line-clamp-1">{format(date.from, "PPP", { locale: locale || getDateFnsLocale() })}</span>
-            ) : <span className={cn(DateRangePickerAnatomy.placeholder(), placeholderClass)}>{placeholder || "Select a date"}</span>}
+            ) : <span className={cn(DateRangePickerAnatomy.placeholder(), placeholderClass)}>{placeholder || t("ui.datePicker.selectDate")}</span>}
         </button>
     )
 
@@ -200,7 +203,7 @@ export const DateRangePicker = React.forwardRef<HTMLButtonElement, DateRangePick
 
                 <div className="block sm:hidden w-full">
                     <Modal
-                        title={placeholder || "Select a date"}
+                        title={placeholder || t("ui.datePicker.selectDate")}
                         trigger={Input}
                     >
                         {Picker}

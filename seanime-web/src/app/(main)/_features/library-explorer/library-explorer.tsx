@@ -1488,7 +1488,7 @@ function LibraryInfoPanel({}: { localFiles: Record<string, Anime_LocalFile> | un
                         <div className="flex flex-col">
                             <dt className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-1">{t("libraryExplorer.contents")}</dt>
                             <dd className="text-sm text-gray-200 font-medium">
-                                {directoryCount} {t("libraryExplorer.folders", { plural: directoryCount })}, {fileCount} {t("libraryExplorer.files", { plural: fileCount })}
+                                {t("libraryExplorer.folders", { count: directoryCount })}, {t("libraryExplorer.files", { count: fileCount })}
                             </dd>
                         </div>
                     )}

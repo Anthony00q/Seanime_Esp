@@ -185,6 +185,7 @@ function getTranslations(locale: string): Record<string, string> {
 }
 
 const formattersCache = new Map<string, IntlMessageFormat>()
+const MAX_FORMATTERS_CACHE_SIZE = 500
 
 function interpolate(text: string, locale: string, params?: Record<string, any>): string {
     if (!params) return text
@@ -194,6 +195,7 @@ function interpolate(text: string, locale: string, params?: Record<string, any>)
         let formatter = formattersCache.get(cacheKey)
         if (!formatter) {
             formatter = new IntlMessageFormat(text, locale)
+            if (formattersCache.size >= MAX_FORMATTERS_CACHE_SIZE) formattersCache.clear()
             formattersCache.set(cacheKey, formatter)
         }
         return formatter.format(params) as string
@@ -297,6 +299,10 @@ export function createTranslator(locale?: string) {
     return tDynamic;
 }
 
+/**
+ * @deprecated NO usar en código nuevo. Usa `createTranslator()` directamente
+ * (devuelve el mismo singleton dinámico). Se mantiene solo por compatibilidad.
+ */
 export function useTranslation() {
     const t = createTranslator()
     return { t }

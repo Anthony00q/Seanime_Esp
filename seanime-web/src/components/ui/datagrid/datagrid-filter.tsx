@@ -9,7 +9,7 @@ import { DateRangePicker } from "../date-picker"
 import { DropdownMenu, DropdownMenuGroup, DropdownMenuItem } from "../dropdown-menu"
 import { RadioGroup } from "../radio-group"
 import { Select } from "../select"
-import translations, { dateFnsLocales } from "./locales"
+import translations, { dateFnsLocales, resolveDatagridLocale } from "./locales"
 
 /* -------------------------------------------------------------------------------------------------
  * Anatomy
@@ -47,9 +47,11 @@ export function DataGridFilter<T extends Record<string, any>>(props: DataGridFil
         className,
         column,
         onRemove,
-        lng = "en",
+        lng: lngProp,
         ...rest
     } = props
+
+    const lng = resolveDatagridLocale(lngProp)
 
     const filterParams = getColumnHelperMeta(column, "filteringMeta")!
     const filterValue = React.useMemo(() => column.getFilterValue(), [column.getFilterValue()]) as any

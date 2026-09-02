@@ -1,6 +1,6 @@
 import { Status } from "@/api/generated/types"
 import { useGettingStarted } from "@/api/hooks/settings.hooks"
-import { useTranslation } from "@/locales"
+import { createTranslator } from "@/locales"
 import { useSetServerStatus } from "@/app/(main)/_hooks/use-server-status"
 import { GlowingEffect } from "@/components/shared/glowing-effect"
 import { LoadingOverlayWithLogo } from "@/components/shared/loading-overlay-with-logo"
@@ -123,7 +123,7 @@ const STEPS = [
 ]
 
 function StepIndicator({ currentStep, totalSteps, onStepClick }: { currentStep: number; totalSteps: number; onStepClick: (step: number) => void }) {
-    const { t } = useTranslation()
+    const t = createTranslator()
 
     return (
         <div className="mb-12">
@@ -245,7 +245,7 @@ function StepCard({ children, className, ...props }: CardProps) {
 
 
 function LibraryStep({ form }: { form: any }) {
-    const { t } = useTranslation()
+    const t = createTranslator()
 
     return (
         <motion.div
@@ -282,7 +282,7 @@ function LibraryStep({ form }: { form: any }) {
 function PlayerStep({ form, status }: { form: any, status: Status }) {
     const { watch } = useFormContext()
     const defaultPlayer = useWatch({ name: "defaultPlayer" })
-    const { t } = useTranslation()
+    const t = createTranslator()
 
     return (
         <motion.div
@@ -401,7 +401,7 @@ function PlayerStep({ form, status }: { form: any, status: Status }) {
 function TorrentStep({ form }: { form: any }) {
     const { watch } = useFormContext()
     const defaultTorrentClient = useWatch({ name: "defaultTorrentClient" })
-    const { t } = useTranslation()
+    const t = createTranslator()
 
     return (
         <motion.div
@@ -497,7 +497,7 @@ function TorrentStep({ form }: { form: any }) {
 
 function DebridStep({ form }: { form: any }) {
     const debridProvider = useWatch({ name: "debridProvider" })
-    const { t } = useTranslation()
+    const t = createTranslator()
 
     return (
         <motion.div
@@ -552,7 +552,7 @@ function DebridStep({ form }: { form: any }) {
 }
 
 function FeaturesStep({ form }: { form: any }) {
-    const { t } = useTranslation()
+    const t = createTranslator()
     const features = [
         {
             name: "enableManga",
@@ -665,7 +665,7 @@ export function GettingStartedPage({ status }: { status: Status }) {
     const router = useRouter()
     const { getDefaultVlcPath, getDefaultQBittorrentPath, getDefaultTransmissionPath } = useDefaultSettingsPaths()
     const setServerStatus = useSetServerStatus()
-    const { t } = useTranslation()
+    const t = createTranslator()
 
     const { mutate, data, isPending, isSuccess } = useGettingStarted()
 

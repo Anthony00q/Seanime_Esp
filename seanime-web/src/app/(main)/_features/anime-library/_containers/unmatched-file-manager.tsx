@@ -27,6 +27,7 @@ import { FiSearch } from "react-icons/fi"
 import { TbFileSad } from "react-icons/tb"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
+import { translateFormat, translateStatus } from "@/lib/anilist-translations"
 
 export const __unmatchedFileManagerIsOpen = atom(false)
 
@@ -370,14 +371,14 @@ export function UnmatchedFileManager(props: UnmatchedFileManagerProps) {
                                         />
                                     </div>}
                                     <div className="text-[--muted]">
-                                        <p>Type: <span
+                                        <p>{t("unmatchedFiles.typeLabel")}: <span
                                             className="text-gray-200 font-semibold"
-                                        >{media.format}</span>
+                                        >{media.format ? translateFormat(media.format) : "-"}</span>
                                         </p>
-                                        <p>Aired: {media.startDate?.year ? capitalizeFirst(new Intl.DateTimeFormat(getDateFnsLocale().code, {
+                                        <p>{t("unmatchedFiles.airedLabel")}: {media.startDate?.year ? capitalizeFirst(new Intl.DateTimeFormat(getDateFnsLocale().code, {
                                             year: "numeric",
                                         }).format(new Date(media.startDate?.year || 0, media.startDate?.month || 0))) : "-"}</p>
-                                        <p>Status: {media.status}</p>
+                                        <p>{t("unmatchedFiles.statusLabel")}: {media.status ? translateStatus(media.status) : "-"}</p>
                                         <SeaLink href={`https://anilist.co/anime/${media.id}`} target="_blank">
                                             <Button
                                                 intent="primary-link"

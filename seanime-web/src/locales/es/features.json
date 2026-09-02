@@ -207,10 +207,8 @@
   },
   "discover": {
     "releasingNow": "Transmitiendo ahora",
-    "episodeReleased": "{count} episodio lanzado",
-    "episodeReleased_plural": "{count} episodios lanzados",
-    "totalEpisode": "{count} episodio en total",
-    "totalEpisodes": "{count} episodios en total",
+    "episodeReleased": "{count, plural, one {# episodio lanzado} other {# episodios lanzados}}",
+    "totalEpisodes": "{count, plural, one {# episodio en total} other {# episodios en total}}",
     "preview": "Vista previa",
     "airingSchedule": "Calendario de Estrenos",
     "today": "Hoy",
