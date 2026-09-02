@@ -12,6 +12,12 @@
 </p>
 
 <p align="center">
+  <strong>Español</strong> |
+  <a href="./README.pt.md">Português</a> |
+  <a href="./README.en.md">English</a>
+</p>
+
+<p align="center">
   <a href="https://github.com/5rahim/seanime">Proyecto Original</a> |
   <a href="https://seanime.app/docs">Documentación</a> |
   <a href="https://github.com/Anthony00q/Seanime_Esp/releases">Última release</a> |
