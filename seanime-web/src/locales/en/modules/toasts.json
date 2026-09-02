@@ -50,7 +50,10 @@
       "updated": "Updated",
       "configSaved": "Config saved",
       "reloaded": "Reloaded",
-      "permissionsGranted": "Permissions granted"
+      "permissionsGranted": "Permissions granted",
+      "toggle": "{state, select, disabled {Extension disabled.} enabled {Extension enabled.} other {Extension updated.}}",
+      "disabled": "Extension disabled.",
+      "enabled": "Extension enabled."
     },
     "filecache": {
       "cacheCleared": "Cache cleared"
@@ -138,6 +141,21 @@
       "downloadDirNotExist": "Download dir not exist",
       "downloadDirNotDir": "Download dir not dir"
     },
+    "nakama": {
+      "failedToParseRoomUrl": "Failed to parse room URL",
+      "failedToConnectRoom": "Failed to connect to room server",
+      "failedToReconnect": "Failed to reconnect to room. Please create a new room.",
+      "failedToConnectHost": "Failed to connect to Nakama host after multiple attempts."
+    },
+    "watchParty": {
+      "peerNotFound": "Peer not found in session",
+      "failedPrepareDebrid": "Watch party: Failed to prepare debrid stream",
+      "missingTorrentParams": "Watch party: Failed to play media: Host did not return torrent stream start options",
+      "torrentNotEnabled": "Watch party: Failed to play media: Torrent streaming is not enabled",
+      "missingOnlinestreamParams": "Watch party: Failed to play media: Host did not return onlinestream params",
+      "customNoTracking": "Progress tracking will not be available for custom sources.",
+      "playFailedGeneric": "Watch party: Failed to play media: {error}"
+    },
     "animeCollection": {
       "mediaAdded": "Media added"
     },
@@ -156,6 +174,21 @@
       "mangaNoChaptersFound": "No chapters found for this manga",
       "mangaChapterNotFound": "Chapter not found",
       "mangaProviderNotFound": "Provider not found and chapter is not downloaded"
+    }
+  },
+  "mpv": {
+    "toast": {
+      "configUnavailable": "MPV config files are unavailable in this Denshi build",
+      "writeConfigFailed": "Failed to write MPV config",
+      "applySubtitleFailed": "Failed to apply subtitle settings",
+      "togglePipFailed": "Failed to toggle PiP",
+      "captureScreenshotFailed": "Failed to capture screenshot",
+      "noVideoElement": "No video element found to capture",
+      "canvasFailed": "Failed to create canvas context",
+      "saveScreenshotFailed": "Failed to save screenshot to server",
+      "unsupportedSubtitle": "Unsupported subtitle format",
+      "screenshotFolderSaved": "Screenshot folder saved",
+      "screenshotFolderFailed": "Failed to save screenshot folder"
     }
   }
 }

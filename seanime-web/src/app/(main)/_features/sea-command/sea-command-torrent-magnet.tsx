@@ -20,6 +20,7 @@ import { __torrentStream_autoSelectFileAtom } from "@/app/(main)/entry/_containe
 import { CommandGroup, CommandItem } from "@/components/ui/command"
 import { useDebounce } from "@/hooks/use-debounce"
 import { createTranslator } from "@/locales"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { useRouter } from "@/lib/navigation"
 import { TORRENT_CLIENT } from "@/lib/server/settings.ts"
 import { atom } from "jotai"
@@ -402,7 +403,7 @@ export function SeaCommandTorrentMagnet() {
                                     }}
                                 >
                                     <div className="flex gap-1 items-center w-full">
-                                        <p className="max-w-[70%] truncate">{episode.displayTitle}</p>
+                                        <p className="max-w-[70%] truncate">{translateDisplayTitle(episode.displayTitle)}</p>
                                         {!!episode.episodeTitle && (
                                             <p className="text-[--muted] flex-1 truncate">- {episode.episodeTitle}</p>
                                         )}
@@ -431,7 +432,7 @@ export function SeaCommandTorrentMagnet() {
                                     <div className="text-[--foreground]">{entry.media.title?.userPreferred || entry.media.title?.romaji}</div>
                                 )}
                                 {selectedEpisode && (
-                                    <div className="text-[--muted]">{selectedEpisode.displayTitle}</div>
+                                    <div className="text-[--muted]">{translateDisplayTitle(selectedEpisode.displayTitle)}</div>
                                 )}
                                 {!canStreamSelectedEpisode && (
                                     <div className="text-[--muted]">{t("seaCommand.streamingUnavailableNoAnidb")}</div>

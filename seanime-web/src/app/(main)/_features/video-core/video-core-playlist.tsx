@@ -33,6 +33,7 @@ import React from "react"
 import { useUpdateEffect } from "react-use"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 
 const t = createTranslator()
 
@@ -363,7 +364,7 @@ function PlaylistEpisodeHoverCard({ episode, children }: { episode?: Anime_Episo
             <EpisodeGridItem
                 key={JSON.stringify(episode)}
                 media={episode?.baseAnime as any}
-                title={episode?.displayTitle || episode?.baseAnime?.title?.userPreferred || ""}
+                title={translateDisplayTitle(episode?.displayTitle) || episode?.baseAnime?.title?.userPreferred || ""}
                 image={episode?.episodeMetadata?.image || episode?.baseAnime?.coverImage?.large}
                 episodeTitle={episode?.episodeTitle}
                 fileName={episode?.localFile?.parsedInfo?.original}

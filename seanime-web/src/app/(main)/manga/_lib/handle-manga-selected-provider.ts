@@ -10,7 +10,10 @@ import { useAtom, useAtomValue } from "jotai/react"
 import { atomWithStorage } from "jotai/utils"
 import React from "react"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 import { getActiveMangaFilters, MangaEntryFilters } from "./manga-preferences"
+
+const t = createTranslator()
 
 export type { MangaEntryFilters } from "./manga-preferences"
 
@@ -50,7 +53,7 @@ function useSaveMangaPreference() {
             }
         }
         catch {
-            toast.error("Could not save manga preference")
+            toast.error(t("manga.failedSavePreference"))
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.MANGA.GetMangaPreferences.key] })
         }
     }, [queryClient, seaFetch])

@@ -2,6 +2,7 @@ import { cn } from "@/components/ui/core/styling"
 import { TextInput } from "@/components/ui/text-input"
 import { useDebounce } from "@/hooks/use-debounce"
 import { createTranslator } from "@/locales"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import React from "react"
 import { FcFolder } from "react-icons/fc"
 import { FiChevronDown, FiChevronRight, FiFile, FiSearch } from "react-icons/fi"
@@ -163,7 +164,7 @@ const FileTreeNodeComponent: React.FC<FileTreeNodeProps> = ({
                     {node.type === "file" && node.filePreview ? (
                         <>
                             <p className="mb-1 line-clamp-1 font-medium">
-                                {node.filePreview.displayTitle}
+                                {translateDisplayTitle(node.filePreview.displayTitle)}
                             </p>
                             {isLikelyMatch && (
                                 <p className="flex items-center">
@@ -425,7 +426,7 @@ const FileTreeMultiNodeComponent: React.FC<FileTreeMultiNodeProps> = ({
                     {node.type === "file" && node.filePreview ? (
                         <>
                             <p className="mb-1 line-clamp-1 font-medium">
-                                {node.filePreview.displayTitle}
+                                {translateDisplayTitle(node.filePreview.displayTitle)}
                             </p>
                             <p className="font-normal line-clamp-2 text-sm text-[--muted]">{node.filePreview.displayPath}</p>
                         </>

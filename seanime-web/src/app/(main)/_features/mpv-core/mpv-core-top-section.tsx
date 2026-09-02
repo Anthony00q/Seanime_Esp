@@ -3,6 +3,7 @@ import { MediaCoreTopPlaybackInfoView } from "@/app/(main)/_features/media-core/
 import { startVideoCoreMiniPlayerTransition } from "@/app/(main)/_features/video-core/video-core"
 import { useRouter } from "@/lib/navigation.ts"
 import { useThemeSettings } from "@/lib/theme/theme-hooks.ts"
+import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import React from "react"
 
 export function MpvCoreTopPlaybackInfo(props: {
@@ -17,7 +18,7 @@ export function MpvCoreTopPlaybackInfo(props: {
     const router = useRouter()
     const ts = useThemeSettings()
 
-    const displayTitle = playbackInfo?.episode?.displayTitle || playbackInfo?.localFile?.name || "MpvCore"
+    const displayTitle = translateDisplayTitle(playbackInfo?.episode?.displayTitle) || playbackInfo?.localFile?.name || "MpvCore"
     const _episodeTitle = playbackInfo?.episode?.episodeTitle
     const episodeTitle = (_episodeTitle && displayTitle !== _episodeTitle && (!ts.hideAnimeSpoilers || (ts.hideAnimeSpoilers && !ts.hideAnimeSpoilerTitles)))
         ? _episodeTitle
