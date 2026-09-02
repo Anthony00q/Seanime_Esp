@@ -124,7 +124,7 @@
     "errorLoading": "Falha ao carregar conteúdo de {provider}",
     "noResults": "Nenhum resultado encontrado",
     "noResultsDesc": "Nenhum {type} encontrado para a sua busca",
-    "resultCount": "{count} resultado{plural, select, 1 {} other {s}}",
+    "resultCount": "{count, plural, =0 {# resultados} one {# resultado} other {# resultados}}",
     "perPage": "{size} por página",
     "pageOf": "Página {current} de {total}"
   },

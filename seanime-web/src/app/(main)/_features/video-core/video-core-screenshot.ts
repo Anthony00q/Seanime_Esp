@@ -8,6 +8,7 @@ import { upath } from "@/lib/helpers/upath"
 import { atom, useAtomValue, useSetAtom } from "jotai"
 import React from "react"
 import { toast } from "sonner"
+import { createTranslator } from "@/locales"
 import { vc_anime4kOption } from "./video-core-anime-4k"
 
 export const vc_screenshotPromptOpenAtom = atom(false)
@@ -15,6 +16,7 @@ export const vc_pendingScreenshotAtom = atom<{ blob: Blob; isAnime4K: boolean } 
 
 export function useVideoCoreScreenshot() {
 
+    const t = createTranslator()
     const videoElement = useAtomValue(vc_videoElement)
     const subtitleManager = useAtomValue(vc_subtitleManager)
     const showOverlayFeedback = useSetAtom(vc_showOverlayFeedback)
@@ -68,12 +70,12 @@ export function useVideoCoreScreenshot() {
                 base64Data,
             })
 
-            showOverlayFeedback({ message: "Screenshot saved", type: "message" })
+            showOverlayFeedback({ message: t("videoPlayer.overlay.screenshotSaved"), type: "message" })
         }
         catch (error) {
             console.error("Failed to save screenshot:", error)
-            showOverlayFeedback({ message: "Screenshot failed" })
-            toast.error("Failed to save screenshot to server")
+            showOverlayFeedback({ message: t("videoPlayer.overlay.screenshotFailed") })
+            toast.error(t("mpv.toast.saveScreenshotFailed"))
 
             // Reprompt the screenshot dir when saving fails
             setPendingScreenshot({ blob, isAnime4K })
@@ -153,7 +155,7 @@ export function useVideoCoreScreenshot() {
         const isPaused = videoElement.paused
 
         videoElement.pause()
-        showOverlayFeedback({ message: "Taking screenshot..." })
+        showOverlayFeedback({ message: t("videoPlayer.overlay.takingScreenshot") })
 
         try {
             let blob: Blob | null = null
@@ -185,7 +187,7 @@ export function useVideoCoreScreenshot() {
         }
         catch (error) {
             console.error("Screenshot failed:", error)
-            showOverlayFeedback({ message: "Screenshot failed" })
+            showOverlayFeedback({ message: t("videoPlayer.overlay.screenshotFailed") })
         }
         finally {
             if (!isPaused) {

@@ -136,7 +136,9 @@
       "autoRetryWaiting": "Nenhum torrent encontrado. Tentando novamente em {time}.",
       "autoRetryMoment": "um momento",
       "searchFailed": "Busca falhou",
-      "failedToRetrieve": "Falha ao buscar torrents do provedor."
+      "failedToRetrieve": "Falha ao buscar torrents do provedor.",
+      "filters": "Filtros",
+      "filtersHelp": "Os filtros baseiam-se nos nomes dos torrents e podem omitir resultados."
     },
     "torrentDownload": {
       "chooseDestination": "Escolha o destino",

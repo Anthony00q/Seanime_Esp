@@ -25,6 +25,7 @@ const SERVER_TOAST_MAP: Record<string, string> = {
     "Progress tracking will not be available for custom sources.": "toast.watchParty.customNoTracking",
     "Sending stream to media player...": "entry.debridStream.sendingStream",
     "Sending stream to player...": "entry.debridStream.sendingStream",
+    "Failed to retrieve playlist info": "toast.playlist.retrieveInfoFailed",
 }
 
 function translateDynamicServerMessage(msg: string): string | null {
@@ -41,6 +42,21 @@ function translateDynamicServerMessage(msg: string): string | null {
     if (msg.startsWith("Watch party: Failed to play media:")) {
         const error = msg.replace("Watch party: Failed to play media:", "").trim()
         return t("toast.watchParty.playFailedGeneric", { error } as any)
+    }
+    if (msg.startsWith("Failed to upload subtitle file:")) {
+        const error = msg.replace("Failed to upload subtitle file:", "").trim()
+        return t("toast.subtitles.uploadFailed", { error } as any)
+    }
+    if (msg.startsWith("Failed to convert subtitle file:")) {
+        const error = msg.replace("Failed to convert subtitle file:", "").trim()
+        return t("toast.subtitles.conversionFailed", { error } as any)
+    }
+    if (msg.startsWith("debrid:")) {
+        const error = msg.replace(/^debrid:\s*/, "").trim()
+        return t("toast.debrid.genericError", { error } as any)
+    }
+    if (msg.startsWith("plugin(")) {
+        return t("toast.plugin.genericError", { error: msg } as any)
     }
     return null
 }

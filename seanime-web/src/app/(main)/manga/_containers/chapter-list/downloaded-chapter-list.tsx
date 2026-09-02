@@ -200,7 +200,7 @@ export function DownloadedChapterList(props: DownloadedChapterListProps) {
                         className=""
                         loading={isDeletingChapter}
                     >
-                        {t("manga.downloadedChapters.deleteSelected", { count: String(selectedChapters?.length) })}
+                        {t("manga.downloadedChapters.deleteSelected", { count: selectedChapters?.length ?? 0 })}
                     </Button>
                 </div>}
 

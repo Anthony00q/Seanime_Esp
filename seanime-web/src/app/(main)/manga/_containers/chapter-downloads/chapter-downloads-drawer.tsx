@@ -249,7 +249,7 @@ export function ChapterDownloadList(props: ChapterDownloadListProps) {
                                             >{t("manga.chapterDownloads.mediaLabel", { id: String(item.mediaId) })}</SeaLink>
 
                                             <div className="flex items-center gap-2">
-                                                <p>{t("manga.chapterDownloads.chaptersCount", { count: String(Object.values(item.downloadData).flatMap(n => n).length), plural: Object.values(item.downloadData).flatMap(n => n).length === 1 ? "" : "s" })}</p> - <em className="text-[--muted]">{t("manga.chapterDownloads.notInCollection")}</em>
+                                                <p>{t("manga.chapterDownloads.chaptersCount", { count: Object.values(item.downloadData).flatMap(n => n).length })}</p> - <em className="text-[--muted]">{t("manga.chapterDownloads.notInCollection")}</em>
                                             </div>
                                         </Card>
                                     )
@@ -273,7 +273,7 @@ export function ChapterDownloadList(props: ChapterDownloadListProps) {
                                                 hideAnilistEntryEditButton
                                                 overlay={<p
                                                     className="font-semibold text-white bg-gray-950 z-[-1] absolute right-0 w-fit px-4 py-1.5 text-center !bg-opacity-90 text-sm lg:text-base rounded-none rounded-bl-lg"
-                                                >{t("manga.chapterDownloads.chaptersCount", { count: String(nb), plural: nb === 1 ? "" : "s" })}</p>}
+                                                >{t("manga.chapterDownloads.chaptersCount", { count: nb })}</p>}
                                             />
                                         </div>
                                     })}

@@ -1,9 +1,8 @@
 import { createTranslator } from "@/locales"
 
-const t = createTranslator()
-
 function translateAnilist(prefix: string, value: string): string {
     if (!value) return value
+    const t = createTranslator()
     const key = `anilist.${prefix}.${value}`
     const result = t(key as any)
     return result === key ? value : result
@@ -17,6 +16,7 @@ export const translateTag = (v: string) => translateAnilist("tags", v)
 
 function translateCountryAnilist(value: string): string {
     if (!value) return value
+    const t = createTranslator()
     const key = `seaCommand.countries.${value}`
     const result = t(key as any)
     return result === key ? value : result

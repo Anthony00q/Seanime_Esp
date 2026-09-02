@@ -136,7 +136,9 @@
       "autoRetryWaiting": "No matching torrent found. Checking again in {time}.",
       "autoRetryMoment": "a moment",
       "searchFailed": "Search failed",
-      "failedToRetrieve": "Failed to retrieve torrents from the provider."
+      "failedToRetrieve": "Failed to retrieve torrents from the provider.",
+      "filters": "Filters",
+      "filtersHelp": "Filters are based on torrent names and can miss some results."
     },
     "torrentDownload": {
       "chooseDestination": "Choose the destination",

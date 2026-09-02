@@ -43,8 +43,7 @@
     "noSummaries": "No scan summaries available",
     "searchPlaceholder": "Search filenames...",
     "successfullyScanned": "Seanime successfully scanned {count} media",
-    "notMatched": "file was not matched",
-    "notMatched_plural": "files were not matched",
+    "notMatched": "{count, plural, one {# file was not matched} other {# files were not matched}}",
     "unmatchedFiles": "Unmatched files",
     "mediaScanned": "Media scanned",
     "presentInCollection": "is present in your AniList collection",
@@ -65,7 +64,10 @@
     "searchOnAnilist": "Search on AniList",
     "ignoreSelection": "Ignore selection",
     "selectAnime": "Select Anime",
-    "openOnAnilist": "Open on AniList"
+    "openOnAnilist": "Open on AniList",
+    "typeLabel": "Type",
+    "airedLabel": "Aired",
+    "statusLabel": "Status"
   },
   "scanLogViewer": {
     "title": "Scan Log Analyzer",
@@ -155,8 +157,8 @@
     "na": "N/A",
     "aniDbEpisodeLabel": "AniDB Episode:",
     "contents": "Contents",
-    "folders": "folder{plural, select, 1 {} other {s}}",
-    "files": "file{plural, select, 1 {} other {s}}",
+    "folders": "{count, plural, one {# folder} other {# folders}}",
+    "files": "{count, plural, one {# file} other {# files}}",
     "deleteFile": "Delete file",
     "deleteFilesCount": "Delete {count} file(s)",
     "delete": "Delete",

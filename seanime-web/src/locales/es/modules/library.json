@@ -43,8 +43,7 @@
     "noSummaries": "No hay resúmenes de escaneo disponibles",
     "searchPlaceholder": "Buscar nombres de archivo...",
     "successfullyScanned": "Seanime escaneó exitosamente {count} medios",
-    "notMatched": "archivo no fue coincidente",
-    "notMatched_plural": "archivos no fueron coincidentes",
+    "notMatched": "{count, plural, one {# archivo no fue coincidente} other {# archivos no fueron coincidentes}}",
     "unmatchedFiles": "Archivos no coincidentes",
     "mediaScanned": "Medios escaneados",
     "presentInCollection": "está presente en tu colección de AniList",
@@ -65,7 +64,10 @@
     "searchOnAnilist": "Buscar en AniList",
     "ignoreSelection": "Ignorar selección",
     "selectAnime": "Seleccionar Anime",
-    "openOnAnilist": "Abrir en AniList"
+    "openOnAnilist": "Abrir en AniList",
+    "typeLabel": "Tipo",
+    "airedLabel": "Emitido",
+    "statusLabel": "Estado"
   },
   "scanLogViewer": {
     "title": "Analizador de Registros de Escaneo",
@@ -155,8 +157,8 @@
     "na": "N/A",
     "aniDbEpisodeLabel": "Episodio AniDB:",
     "contents": "Contenido",
-    "folders": "carpeta{plural, select, 1 {} other {s}}",
-    "files": "archivo{plural, select, 1 {} other {s}}",
+    "folders": "{count, plural, one {# carpeta} other {# carpetas}}",
+    "files": "{count, plural, one {# archivo} other {# archivos}}",
     "deleteFile": "Eliminar archivo",
     "deleteFilesCount": "Eliminar {count} archivo(s)",
     "delete": "Eliminar",

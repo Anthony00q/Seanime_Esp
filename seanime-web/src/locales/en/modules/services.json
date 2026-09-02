@@ -124,7 +124,7 @@
     "errorLoading": "Failed to load content from {provider}",
     "noResults": "No results found",
     "noResultsDesc": "No {type} found for your search criteria",
-    "resultCount": "{count} result{plural, select, 1 {} other {s}}",
+    "resultCount": "{count, plural, one {# result} other {# results}}",
     "perPage": "{size} per page",
     "pageOf": "Page {current} of {total}"
   },

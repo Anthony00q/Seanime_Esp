@@ -235,8 +235,8 @@ export function TorrentStreamOverlay({ isNativePlayerComponent, show }: {
                             <div className="truncate max-w-[500px]">
                                 {loadingState === "LOADING" ? tr("entry.torrentStream.loading") : ""}
                                 {loadingState === "SEARCHING_TORRENTS" ? tr("entry.torrentStream.selectingFile") : ""}
-                                {loadingState === "ADDING_TORRENT" ? tr("entry.torrentStream.addingTorrent").replace("{name}", torrentBeingLoaded || "") : ""}
-                                {loadingState === "CHECKING_TORRENT" ? tr("entry.torrentStream.checkingTorrent").replace("{name}", torrentBeingLoaded || "") : ""}
+                                {loadingState === "ADDING_TORRENT" ? tr("entry.torrentStream.addingTorrent", { name: torrentBeingLoaded || "" }) : ""}
+                                {loadingState === "CHECKING_TORRENT" ? tr("entry.torrentStream.checkingTorrent", { name: torrentBeingLoaded || "" }) : ""}
                                 {loadingState === "SELECTING_FILE" ? tr("entry.torrentStream.selectingFile") : ""}
                                 {loadingState === "SENDING_STREAM_TO_MEDIA_PLAYER" ? tr("entry.torrentStream.gettingMetadata") : ""}
                             </div>
@@ -305,8 +305,8 @@ export function TorrentStreamOverlay({ isNativePlayerComponent, show }: {
                     <div className="truncate max-w-[500px]">
                         {loadingState === "LOADING" ? tr("entry.torrentStream.loading") : ""}
                         {loadingState === "SEARCHING_TORRENTS" ? tr("entry.torrentStream.selectingFile") : ""}
-                        {loadingState === "ADDING_TORRENT" ? tr("entry.torrentStream.addingTorrent").replace("{name}", torrentBeingLoaded || "") : ""}
-                        {loadingState === "CHECKING_TORRENT" ? tr("entry.torrentStream.checkingTorrent").replace("{name}", torrentBeingLoaded || "") : ""}
+                        {loadingState === "ADDING_TORRENT" ? tr("entry.torrentStream.addingTorrent", { name: torrentBeingLoaded || "" }) : ""}
+                        {loadingState === "CHECKING_TORRENT" ? tr("entry.torrentStream.checkingTorrent", { name: torrentBeingLoaded || "" }) : ""}
                         {loadingState === "SELECTING_FILE" ? tr("entry.torrentStream.selectingFile") : ""}
                         {loadingState === "SENDING_STREAM_TO_MEDIA_PLAYER" ? tr("entry.torrentStream.sendingStream") : ""}
                     </div>
