@@ -48,8 +48,6 @@ export const localeNames: Record<Locale, string> = {
 }
 ```
 
-> Tip: puedes automatizar los pasos 1–5 con `node .agents/skills/seanime-i18n/scripts/scaffold-lang.js fr "Français"` (copia `en/` como plantilla y parchea `config.ts`, `index.ts`, `date-locale.ts` y `seanime-denshi/locales/`).
-
 ### 3. Integración en el Validador Estricto (`index.ts`)
 
 Edita `seanime-web/src/locales/index.ts` para conectar tu carpeta al motor de la aplicación:
