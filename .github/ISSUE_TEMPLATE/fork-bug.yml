@@ -1,5 +1,5 @@
-name: Error del Fork / Actualizador
-description: Reporta un error con el actualizador o funcionalidades exclusivas de este fork
+name: Error exclusivo del fork (actualización de la app)
+description: Fallo al actualizar Seanime_Esp a una nueva versión, o error que solo pasa en esta versión traducida (no en la original)
 title: 'bug: '
 labels:
   - bug
@@ -9,7 +9,7 @@ body:
       value: |
         ⚠️ **¡ALTO AHÍ!** Por favor lee esto antes de reportar:
         - Si el error es sobre **la reproducción, UI rota, fallos al escanear o funciones base de Seanime**, debes reportarlo en el [repositorio original de 5rahim](https://github.com/5rahim/seanime/issues).
-        - Usa esta plantilla **SOLO** si el problema está en el **Actualizador interno de este fork**, si la app **crashea al cambiar de idioma**, o si hay un problema directamente relacionado al sistema de traducciones.
+        - Usa esta plantilla **SOLO** si el problema es al **actualizar la app a una nueva versión**, si la app **crashea al cambiar de idioma**, o si hay un problema que **solo pasa en esta versión traducida**.
 
   - type: dropdown
     id: origen
@@ -17,7 +17,7 @@ body:
       label: Origen del Problema
       description: ¿Estás seguro de que este error pertenece a este fork y no a la aplicación original?
       options:
-        - "Sí, es un fallo del Actualizador (Updater de Seanime_Esp)"
+        - "Sí, falla al actualizar la app a una nueva versión"
         - "Sí, la app crashea al cambiar de idioma"
         - "No estoy seguro, pero solo me pasa en esta versión traducida"
         - "No, creo que es un error de la app en general (¡Ve a reportarlo al repositorio original!)"
@@ -29,7 +29,7 @@ body:
     attributes:
       label: Descripción del Error
       description: Explica detalladamente qué estabas haciendo y qué falló.
-      placeholder: "Ej: Le di al botón de actualizar y me salió este error en la consola..."
+      placeholder: "Ej: Le di al botón de actualizar y me salió este error..."
     validations:
       required: true
 
@@ -37,14 +37,14 @@ body:
     id: captura
     attributes:
       label: Captura de Pantalla o Logs
-      description: Adjunta una imagen o copia los logs de la terminal (esto ayuda muchísimo a detectar si es de traducción o de la app base).
+      description: Adjunta una imagen o copia los logs (esto ayuda muchísimo a detectar si es de la traducción o de la versión original).
 
   - type: input
     id: version
     attributes:
       label: Versión de la App
-      description: Qué versión de Seanime_Esp estás usando.
-      placeholder: v3.8.3
+      description: Qué versión de Seanime_Esp estás usando (la ves en Ajustes, abajo del todo).
+      placeholder: v3.10.0
     validations:
       required: true
 
