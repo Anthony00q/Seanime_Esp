@@ -88,9 +88,6 @@ This is a **multilingual fork** of the [Seanime](https://github.com/5rahim/seani
 2. Download the archive for your operating system (Windows, Linux or macOS).
 3. Extract the archive to a folder of your choice and run the app.
 
-> [!CAUTION]
-> If you already have the original Seanime installed, remove it completely before using this fork. Also be sure to delete its data folder, located in your operating system's app config directory.
-
 ---
 
 ## Architecture and Translation Progress
