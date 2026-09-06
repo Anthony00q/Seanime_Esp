@@ -88,9 +88,6 @@ Este é um **fork multilíngue** do projeto [Seanime](https://github.com/5rahim/
 2. Baixe o arquivo compactado correspondente ao seu sistema operacional (Windows, Linux ou macOS).
 3. Extraia o arquivo em uma pasta de sua preferência e execute o aplicativo.
 
-> [!CAUTION]
-> Se você já tem a versão original do Seanime instalada, remova-a completamente antes de usar este fork. Certifique-se também de apagar sua pasta de dados, localizada no diretório de configuração de aplicativos do seu sistema operacional.
-
 ---
 
 ## Arquitetura e Progresso da Tradução
