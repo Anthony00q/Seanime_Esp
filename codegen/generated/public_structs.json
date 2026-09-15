@@ -2882,6 +2882,15 @@
         "comments": []
       },
       {
+        "name": "CreatedAt",
+        "jsonName": "createdAt",
+        "goType": "int",
+        "typescriptType": "number",
+        "required": false,
+        "public": true,
+        "comments": []
+      },
+      {
         "name": "ID",
         "jsonName": "id",
         "goType": "int",
@@ -2964,6 +2973,15 @@
         "typescriptType": "AL_MediaListStatus",
         "usedTypescriptType": "AL_MediaListStatus",
         "usedStructName": "anilist.MediaListStatus",
+        "required": false,
+        "public": true,
+        "comments": []
+      },
+      {
+        "name": "UpdatedAt",
+        "jsonName": "updatedAt",
+        "goType": "int",
+        "typescriptType": "number",
         "required": false,
         "public": true,
         "comments": []
@@ -8815,6 +8833,15 @@
         "comments": []
       },
       {
+        "name": "CreatedAt",
+        "jsonName": "createdAt",
+        "goType": "int",
+        "typescriptType": "number",
+        "required": false,
+        "public": true,
+        "comments": []
+      },
+      {
         "name": "ID",
         "jsonName": "id",
         "goType": "int",
@@ -8897,6 +8924,15 @@
         "typescriptType": "AL_MediaListStatus",
         "usedTypescriptType": "AL_MediaListStatus",
         "usedStructName": "anilist.MediaListStatus",
+        "required": false,
+        "public": true,
+        "comments": []
+      },
+      {
+        "name": "UpdatedAt",
+        "jsonName": "updatedAt",
+        "goType": "int",
+        "typescriptType": "number",
         "required": false,
         "public": true,
         "comments": []
@@ -49035,6 +49071,24 @@
         "required": false,
         "public": true,
         "comments": []
+      },
+      {
+        "name": "CreatedAt",
+        "jsonName": "createdAt",
+        "goType": "int",
+        "typescriptType": "number",
+        "required": false,
+        "public": true,
+        "comments": []
+      },
+      {
+        "name": "UpdatedAt",
+        "jsonName": "updatedAt",
+        "goType": "int",
+        "typescriptType": "number",
+        "required": false,
+        "public": true,
+        "comments": []
       }
     ],
     "comments": []
@@ -61248,6 +61302,24 @@
         "jsonName": "completedAt",
         "goType": "string",
         "typescriptType": "string",
+        "required": false,
+        "public": true,
+        "comments": []
+      },
+      {
+        "name": "CreatedAt",
+        "jsonName": "createdAt",
+        "goType": "int",
+        "typescriptType": "number",
+        "required": false,
+        "public": true,
+        "comments": []
+      },
+      {
+        "name": "UpdatedAt",
+        "jsonName": "updatedAt",
+        "goType": "int",
+        "typescriptType": "number",
         "required": false,
         "public": true,
         "comments": []
