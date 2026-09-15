@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - 🦺 VideoCore: Potential fix for disappearing subtitles
 - 🦺 Torrenstream: Fixed wrong torrent from being selected for autoplay #948
 - 🦺 Torrentstream: Fixed VLC mobile compatibility #928
+- 🦺 Plugins: Fixed newEpisodeGridItemMenuItem in torrent streaming
 - ⬆️ Updated dependencies
 
 ## v3.10.2
