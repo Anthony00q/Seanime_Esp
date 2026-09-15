@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - 🦺 Torrenstream: Fixed wrong torrent from being selected for autoplay #948
 - 🦺 Torrentstream: Fixed VLC mobile compatibility #928
 - 🦺 Plugins: Fixed newEpisodeGridItemMenuItem in torrent streaming
+- 🦺 Mediastream: Direct play and progress fixes #926
 - ⬆️ Updated dependencies
 
 ## v3.10.2
