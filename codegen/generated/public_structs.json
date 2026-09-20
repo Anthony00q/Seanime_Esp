@@ -84412,6 +84412,19 @@
         ]
       },
       {
+        "name": "marketplaceManager",
+        "jsonName": "marketplaceManager",
+        "goType": "MarketplaceManager",
+        "typescriptType": "PluginUI_MarketplaceManager",
+        "usedTypescriptType": "PluginUI_MarketplaceManager",
+        "usedStructName": "plugin_ui.MarketplaceManager",
+        "required": false,
+        "public": false,
+        "comments": [
+          " Manage extension marketplace"
+        ]
+      },
+      {
         "name": "atomicCleanupCounter",
         "jsonName": "atomicCleanupCounter",
         "goType": "atomic.Int64",
@@ -84988,7 +85001,8 @@
         "\"dom:event-triggered\"",
         "\"dom:ready\"",
         "\"dom:main-tab-ready\"",
-        "\"dom:viewport-size\""
+        "\"dom:viewport-size\"",
+        "\"marketplace:get-url-result\""
       ]
     },
     "comments": []
@@ -85843,6 +85857,34 @@
   {
     "filepath": "../internal/plugin/ui/events.go",
     "filename": "events.go",
+    "name": "ClientMarketplaceGetURLResultEventPayload",
+    "formattedName": "PluginUI_ClientMarketplaceGetURLResultEventPayload",
+    "package": "plugin_ui",
+    "fields": [
+      {
+        "name": "RequestID",
+        "jsonName": "requestId",
+        "goType": "string",
+        "typescriptType": "string",
+        "required": true,
+        "public": true,
+        "comments": []
+      },
+      {
+        "name": "URL",
+        "jsonName": "url",
+        "goType": "string",
+        "typescriptType": "string",
+        "required": true,
+        "public": true,
+        "comments": []
+      }
+    ],
+    "comments": []
+  },
+  {
+    "filepath": "../internal/plugin/ui/events.go",
+    "filename": "events.go",
     "name": "ServerEventType",
     "formattedName": "PluginUI_ServerEventType",
     "package": "plugin_ui",
@@ -85895,7 +85937,9 @@
         "\"dom:get-viewport-size\"",
         "\"dom:clipboard:write\"",
         "\"debug:log\"",
-        "\"debug:clear\""
+        "\"debug:clear\"",
+        "\"marketplace:get-url\"",
+        "\"marketplace:set-url\""
       ]
     },
     "comments": []
@@ -87175,6 +87219,44 @@
     "comments": []
   },
   {
+    "filepath": "../internal/plugin/ui/events.go",
+    "filename": "events.go",
+    "name": "ServerMarketplaceGetURLEventPayload",
+    "formattedName": "PluginUI_ServerMarketplaceGetURLEventPayload",
+    "package": "plugin_ui",
+    "fields": [
+      {
+        "name": "RequestID",
+        "jsonName": "requestId",
+        "goType": "string",
+        "typescriptType": "string",
+        "required": true,
+        "public": true,
+        "comments": []
+      }
+    ],
+    "comments": []
+  },
+  {
+    "filepath": "../internal/plugin/ui/events.go",
+    "filename": "events.go",
+    "name": "ServerMarketplaceSetURLEventPayload",
+    "formattedName": "PluginUI_ServerMarketplaceSetURLEventPayload",
+    "package": "plugin_ui",
+    "fields": [
+      {
+        "name": "URL",
+        "jsonName": "url",
+        "goType": "string",
+        "typescriptType": "string",
+        "required": true,
+        "public": true,
+        "comments": []
+      }
+    ],
+    "comments": []
+  },
+  {
     "filepath": "../internal/plugin/ui/form.go",
     "filename": "form.go",
     "name": "FormManager",
@@ -87391,6 +87473,36 @@
         "usedStructName": "plugin_ui.FormField",
         "required": false,
         "public": true,
+        "comments": []
+      }
+    ],
+    "comments": []
+  },
+  {
+    "filepath": "../internal/plugin/ui/marketplace.go",
+    "filename": "marketplace.go",
+    "name": "MarketplaceManager",
+    "formattedName": "PluginUI_MarketplaceManager",
+    "package": "plugin_ui",
+    "fields": [
+      {
+        "name": "ctx",
+        "jsonName": "ctx",
+        "goType": "Context",
+        "typescriptType": "PluginUI_Context",
+        "usedTypescriptType": "PluginUI_Context",
+        "usedStructName": "plugin_ui.Context",
+        "required": false,
+        "public": false,
+        "comments": []
+      },
+      {
+        "name": "cache",
+        "jsonName": "cache",
+        "goType": "",
+        "typescriptType": "any",
+        "required": false,
+        "public": false,
         "comments": []
       }
     ],
