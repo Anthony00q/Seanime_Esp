@@ -106,7 +106,7 @@ El ecosistema actual cubre **prácticamente toda la interfaz de forma nativa en 
 - **Backend Go intacto** — Los mensajes nativos del servidor se interceptan y traducen en el frontend (`SERVER_TOAST_MAP`).
 - **Fechas y Calendarios** — Adaptación dinámica total del formato de fechas usando `date-fns` y parches de capitalización idiomática.
 - **Cero Hardcoding** — Ni un solo string visible "quemado" directamente en el código de React.
-- **Soporte Escalable** — Arquitectura modular que permite a cualquier contribuidor agregar nuevos idiomas fácilmente siguiendo la guía `Traducciones.md`.
+- **Soporte Escalable** — Arquitectura modular que permite a cualquier contribuidor agregar nuevos idiomas fácilmente siguiendo la guía [`Traducciones.md`](Traducciones.md).
 
 **Áreas y Componentes Traducidos:**
 Se han adaptado más de **300 componentes React** y **cientos de notificaciones** del servidor, cubriendo absolutamente toda la experiencia:

@@ -15,6 +15,7 @@ Para garantizar la consistencia visual y técnica del proyecto, toda nueva tradu
    - *Ejemplo: En lugar de "Transcodificação / Reprodução Direta", se prefiere la versión concisa "Transcoding / Direct Play" para evitar que el menú de ajustes se desborde.*
 3. **Paridad Estricta**: Cada archivo y cada clave ("key") de traducción DEBE existir de forma idéntica a la estructura de la carpeta base en inglés (`en/`). La omisión de una sola clave provocará fallos en la compilación.
 4. **Puntuación y Espacios Finales**: Preste especial atención a los espacios en blanco o signos de puntuación al final de las frases originales (ej. `"Tamaño: "`). Si el inglés tiene un espacio al final de la cadena, su traducción también debe conservarlo para evitar que el texto choque visualmente con los números o variables dinámicas en la interfaz.
+5. **Sintaxis ICU (Plurales y Condicionales)**: Algunas cadenas contienen mensajes ICU como `{count, plural, one {# item} other {# items}}` o `{value, select, ...}`. Traduzca **solo el texto dentro de las llaves internas**; nunca traduzca los comandos reservados (`plural`, `select`, `one`, `other`, `few`, `many`, `zero`) ni las variables. El símbolo `#` representa el número y puede reposicionarse dentro de la rama. Adapte las ramas disponibles a las reglas de plural de su idioma.
 
 ---
 
@@ -96,7 +97,7 @@ const DATE_FNS_LOCALES: Record<string, Locale> = {
 
 ### 5. Traducir el System Tray (Electron)
 
-Seanime tiene un ícono minimizado en la barra de tareas de Windows. Crea un archivo JSON para tu idioma en `seanime-denshi/locales/fr.json` usando como plantilla `es.json` o `en.json`.
+Seanime tiene un ícono minimizado en la barra de tareas de Windows. Crea un archivo JSON para tu idioma en `seanime-denshi/locales/fr.json` usando como plantilla `es.json` o `en.json`. Debe incluir **ambas secciones**: `tray` (menú del ícono) y `error` (diálogo de excepciones no capturadas).
 
 ```json
 {
@@ -104,6 +105,11 @@ Seanime tiene un ícono minimizado en la barra de tareas de Windows. Crea un arc
     "toggleVisibility": "Afficher/Masquer",
     "removeFromDock": "Retirer du Dock",
     "quit": "Quitter Seanime"
+  },
+  "error": {
+    "title": "Une erreur est survenue",
+    "uncaughtException": "Exception non capturée",
+    "checkLogs": "Consultez les journaux pour plus de détails."
   }
 }
 ```
