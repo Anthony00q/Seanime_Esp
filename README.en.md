@@ -94,9 +94,12 @@ This is a **multilingual fork** of the [Seanime](https://github.com/5rahim/seani
 
 The original project has no native support for multiple languages (i18n), so a robust JSON-based translation architecture was built from scratch.
 
-### 🌍 Current Status (Complete Translation)
+### 🌍 Current Status
 
-The current ecosystem covers **100% of the interface natively in Spanish, English and Portuguese (pt)**. The biggest novelty is that the language is fully dynamic: users can freely switch between the three languages from Settings, applying changes in real time to the entire interface. Moreover, the modular architecture allows scaling to any additional language without friction. Constant maintenance is performed to polish context, ensure natural language and guarantee that every update from the original project is adapted immediately upon release.
+The current ecosystem covers **practically the entire interface natively in Spanish, English and Portuguese (pt)**. The biggest novelty is that the language is fully dynamic: users can freely switch between the three languages from Settings, applying changes in real time to the entire interface. Moreover, the modular architecture allows scaling to any additional language without friction. Constant maintenance is performed to polish context, ensure natural language and guarantee that every update from the original project is adapted immediately upon release.
+
+> [!WARNING]
+> **Verification status**: The translation covers the vast majority of the interface, but **not every section has been exhaustively verified** to rule out regressions introduced during the translation process, and a few small strings may still be missing or in need of polish. If you find any errors, stray English text or broken behavior, please report it in the [Issues](https://github.com/Anthony00q/Seanime_Esp/issues) section.
 
 **Technical System Details:**
 - **Thousands of translation keys** in 25 modular JSON files, with strict type validation to prevent errors.
