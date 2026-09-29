@@ -94,9 +94,12 @@ Este es un **fork multilingüe** del proyecto [Seanime](https://github.com/5rahi
 
 El proyecto original no tiene soporte nativo para múltiples idiomas (i18n), por lo que se implementó desde cero una robusta arquitectura de traducción basada en JSON.
 
-### 🌍 Estado Actual (Traducción Completa)
+### 🌍 Estado Actual
 
-El ecosistema actual cubre el **100% de la interfaz de forma nativa en Español, Inglés y Portugués (pt)**. La mayor novedad es que el idioma es totalmente dinámico: los usuarios pueden alternar libremente entre los tres idiomas desde los Ajustes, aplicando los cambios en tiempo real a toda la interfaz. Además, la arquitectura modular diseñada permite escalar a cualquier idioma adicional sin fricciones. Se realiza un mantenimiento constante para pulir el contexto, asegurar la naturalidad del lenguaje y garantizar que cada actualización del proyecto original sea adaptada inmediatamente al lanzarse.
+El ecosistema actual cubre **prácticamente toda la interfaz de forma nativa en Español, Inglés y Portugués (pt)**. La mayor novedad es que el idioma es totalmente dinámico: los usuarios pueden alternar libremente entre los tres idiomas desde los Ajustes, aplicando los cambios en tiempo real a toda la interfaz. Además, la arquitectura modular diseñada permite escalar a cualquier idioma adicional sin fricciones. Se realiza un mantenimiento constante para pulir el contexto, asegurar la naturalidad del lenguaje y garantizar que cada actualización del proyecto original sea adaptada inmediatamente al lanzarse.
+
+> [!WARNING]
+> **Estado de verificación**: La traducción cubre la gran mayoría de la interfaz, pero **no todos los apartados han sido comprobados exhaustivamente** para descartar que el proceso de traducción haya introducido algún fallo, y pueden quedar pequeños textos sin traducir o con traducciones mejorables. Si encuentras algún error, texto suelto en inglés o comportamiento roto, por favor repórtalo en la sección de [Issues](https://github.com/Anthony00q/Seanime_Esp/issues).
 
 **Detalles Técnicos del Sistema:**
 - **Miles de keys** de traducción en 25 archivos JSON modulares, con validación de tipo estricta para evitar errores.
