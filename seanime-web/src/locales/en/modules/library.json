@@ -109,7 +109,8 @@
     "loadingSavedLogs": "Loading saved logs...",
     "dropLogFile": "Drop log file",
     "back": "Back",
-    "candidatesFound": "candidates found"
+    "candidatesFound": "candidates found",
+    "noLogsForFile": "No logs found for this file across any phase."
   },
   "libraryExplorer": {
     "title": "Library Explorer",
@@ -305,6 +306,7 @@
   },
   "manualMatch": {
     "none": "No manual match",
-    "removeMapping": "Remove mapping"
+    "removeMapping": "Remove mapping",
+    "currentMapping": "Current mapping:"
   }
 }

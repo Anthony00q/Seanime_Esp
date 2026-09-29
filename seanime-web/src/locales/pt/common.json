@@ -21,7 +21,8 @@
       "done": "Concluído",
       "previous": "Anterior",
       "loadMore": "Carregar mais",
-      "ok": "Ok"
+      "ok": "Ok",
+      "openInExternalPlayer": "Abrir mídia no reprodutor externo"
     },
     "labels": {
       "name": "Nome",
@@ -65,7 +66,8 @@
       "openInLibraryExplorer": "Abrir no Explorador de Biblioteca",
       "showAudienceScore": "Mostrar pontuação do público",
       "filler": "Filler",
-      "unidentified": "Não identificado"
+      "unidentified": "Não identificado",
+      "openMainMenu": "Abrir menu principal"
     },
     "status": {
       "connecting": "Conectando..."
@@ -83,7 +85,8 @@
       "noTrailerFound": "Nenhum trailer encontrado",
       "noMetadataFound": "Nenhum metadado encontrado",
       "unknownGPU": "GPU desconhecida",
-      "unknown": "Desconhecido"
+      "unknown": "Desconhecido",
+      "somethingWentWrong": "Algo correu mal:"
     },
     "placeholders": {
       "allGenres": "Todos os gêneros",

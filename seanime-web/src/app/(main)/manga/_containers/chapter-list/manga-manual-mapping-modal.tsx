@@ -154,7 +154,7 @@ function Content({ entry }: { entry: Manga_Entry }) {
                         {!!existingMapping?.mangaId ? (
                             <AppLayoutStack>
                                 <p>
-                                    Current mapping: <span>{existingMapping.mangaId}</span>
+                                    {t("manualMatch.currentMapping")} <span>{existingMapping.mangaId}</span>
                                 </p>
                                 <Button
                                     intent="alert-subtle" loading={isUnmatching} onClick={() => {

@@ -6,6 +6,7 @@ import { Button, IconButton } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Skeleton } from "@/components/ui/skeleton"
+import { createTranslator } from "@/locales"
 import { atom, useAtomValue } from "jotai"
 import { useAtom } from "jotai/react"
 import { atomWithStorage } from "jotai/utils"
@@ -13,6 +14,8 @@ import React from "react"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { TbLayoutSidebarRightCollapse, TbLayoutSidebarRightExpand } from "react-icons/tb"
 import { useWindowSize } from "react-use"
+
+const t = createTranslator()
 
 const vc_inlineHelper_progressUpdateData = atom<{ media: AL_BaseAnime, currentProgress: number, currentEpisodeNumber: number } | null>(null)
 const vc_inlineHelper_hasUpdatedProgress = atom<boolean>(false)
@@ -130,7 +133,7 @@ export function VideoCoreInlineHelperUpdateProgressButton() {
             disabled={hasUpdatedProgress}
             onClick={handleProgressUpdate}
         >
-            Update progress
+            {t("videoPlayer.updateProgress")}
         </Button>
     }
 

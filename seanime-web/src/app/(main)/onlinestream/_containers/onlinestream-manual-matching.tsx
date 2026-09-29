@@ -113,7 +113,7 @@ function Content({ entry, provider }: { entry: Anime_Entry, provider: string }) 
                         {!!existingMapping?.animeId ? (
                             <AppLayoutStack>
                                 <p>
-                                    Current mapping: <span>{existingMapping.animeId}</span>
+                                    {t("manualMatch.currentMapping")} <span>{existingMapping.animeId}</span>
                                 </p>
                                 <Button
                                     intent="alert-subtle" loading={isUnmatching} onClick={() => {
@@ -185,7 +185,7 @@ function Content({ entry, provider }: { entry: Anime_Entry, provider: string }) 
                                                         size="xs"
                                                     />}
                                                 >
-                                                    Open in browser
+                                                    {t("entry.torrentDownload.openInBrowser")}
                                                 </Tooltip>
                                             </SeaLink>
                                         </div>

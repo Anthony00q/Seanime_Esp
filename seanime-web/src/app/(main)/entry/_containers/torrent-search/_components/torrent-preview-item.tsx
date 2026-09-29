@@ -71,7 +71,7 @@ export const TorrentListItem = ({ torrent, metadata, debridCached, onClick, isSe
                         intent="success-solid"
                         leftIcon={<LuGem className="text-md" />}
                     >
-                        Highest quality
+                        {t("entry.torrentSearch.highestQuality")}
                     </Badge>
                 )}
                 <TorrentSeedersBadge seeders={torrent.seeders} />
@@ -321,7 +321,7 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
                 <div className="relative overflow-hidden space-y-1 w-full" data-torrent-preview-item-metadata>
                     {isInvalid && <p className="flex gap-2 text-red-300 items-center"><AiFillWarning
                         className="text-lg text-red-500"
-                    /> Unidentified</p>}
+                    /> {t("common.labels.unidentified")}</p>}
 
                     {mainTitle && <div
                         className={cn(

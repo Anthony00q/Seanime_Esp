@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button"
 import { Tooltip } from "@/components/ui/tooltip"
 import React from "react"
 import { IoReload } from "react-icons/io5"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 interface RefreshAnilistButtonProps {
     children?: React.ReactNode
@@ -43,7 +46,7 @@ export const RefreshAnilistButton: React.FC<RefreshAnilistButtonProps> = (props)
                     </Button>
                 }
             >
-                Refresh AniList
+                {t("navigation.refreshAniList")}
             </Tooltip>
         </>
     )

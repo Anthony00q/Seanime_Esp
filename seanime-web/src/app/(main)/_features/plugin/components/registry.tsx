@@ -30,8 +30,11 @@ import {
     PluginText,
     PluginTooltip,
 } from "@/app/(main)/_features/plugin/components/registry-components"
+import { createTranslator } from "@/locales"
 import type React from "react"
 import { createContext, useContext } from "react"
+
+const t = createTranslator()
 
 // Create and initialize the registry
 export const registry: ComponentRegistry = new Map([
@@ -77,14 +80,14 @@ interface RenderPluginComponentsProps {
 
 // Fallback component when type is not found
 function DefaultFallback({ type }: { type: string }) {
-    return <div className="p-4 text-muted-foreground">Component type &quot;{type}&quot; not found</div>
+    return <div className="p-4 text-muted-foreground">{t("extensions.registry.componentNotFound", { type })}</div>
 }
 
 // Error fallback
 function ErrorFallbackComponent({ error }: { error: Error }) {
     return (
         <div className="p-4 text-destructive" role="alert">
-            <p>Something went wrong:</p>
+            <p>{t("common.messages.somethingWentWrong")}</p>
             <pre className="mt-2 text-sm">{error.message}</pre>
         </div>
     )

@@ -925,7 +925,7 @@ function AnimeCarousel(props: { libraryCollectionProps: HandleLibraryCollectionP
             {(!isLoading && !!data?.Page && !data.Page?.media?.length && isInView) &&
                 <PageWrapper className="rounded-xl bg-gray-900 border-2 border-dashed border-orange-400 p-4 !my-4">
                     <p className="text-sm font-medium text-gray-400">
-                        Nothing was fetched, please update your options.
+                        {t("common.messages.nothingFetched")}
                     </p>
                 </PageWrapper>}
         </PageWrapper>
@@ -1051,7 +1051,7 @@ function MangaCarousel(props: { libraryCollectionProps: HandleLibraryCollectionP
             {(!isLoading && !!data?.Page && !data.Page?.media?.length && isInView) &&
                 <PageWrapper className="rounded-xl bg-gray-900 border-2 border-dashed border-orange-400 p-4 !my-4">
                     <p className="text-sm font-medium text-gray-400">
-                        Nothing was fetched, please update your options.
+                        {t("common.messages.nothingFetched")}
                     </p>
                 </PageWrapper>}
         </PageWrapper>

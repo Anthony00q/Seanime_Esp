@@ -262,7 +262,7 @@ export function PlaybackSettings() {
                                                 loading={isExportingMpvLogs}
                                                 onClick={handleExportMpvLogs}
                                             >
-                                                Export logs
+                                                {t("settings.playback.exportLogs")}
                                             </Button>
                                         </div>}
                                         <div className="space-y-2 pt-4 border-t border-[--border] mt-4">

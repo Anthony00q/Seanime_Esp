@@ -223,13 +223,13 @@ const ExtensionList = ({
                                             />}
                                         </div>}
                                     >
-                                        {isPinned(trayIcon.extensionId) ? "Unpin" : "Pin"}
+                                        {isPinned(trayIcon.extensionId) ? t("extensions.unpinTray") : t("extensions.pinTray")}
                                     </Tooltip>
                                 </div>
                             </div>
                         ))}
                         {!trayIcons.length && <p className="text-sm text-[--muted] py-1 text-center w-full">
-                            No tray plugins
+                            {t("extensions.noTrayPlugins")}
                         </p>}
 
                         {/* {developmentModeExtensions?.map(extension => (
@@ -267,10 +267,10 @@ const ExtensionList = ({
                     <div className="space-y-1" data-plugin-sidebar-debug-popover-content>
                         <div className="text-sm space-y-1">
                             <p className="font-bold">
-                                Debug
+                                {t("extensions.debugTitle")}
                             </p>
                             <p className="text-xs text-[--muted]">
-                                These extensions are loaded in development mode.
+                                {t("extensions.devModeExtensionsLoaded")}
                             </p>
                         </div>
                         {developmentModeExtensions?.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true })).map(extension => (
@@ -287,7 +287,7 @@ const ExtensionList = ({
                                                 onClick={() => openDebugWindow(extension.id)}
                                             />
                                         </div>}
-                                    >Debug logs</Tooltip>
+                                    >{t("extensions.debugLogs")}</Tooltip>
                                     <IconButton
                                         intent="warning-basic"
                                         size="sm"

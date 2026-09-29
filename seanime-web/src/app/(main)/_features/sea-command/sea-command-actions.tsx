@@ -75,13 +75,13 @@ export function SeaCommandActions() {
                             })
                         }}
                     >
-                        Drop all torrents from the torrent streaming client
-                        <CommandShortcut>{droppingTorrent ? "Dropping..." : "Enter"}</CommandShortcut>
+                        {t("search.seaCommand.dropAllTorrents")}
+                        <CommandShortcut>{droppingTorrent ? t("search.seaCommand.dropping") : "Enter"}</CommandShortcut>
                     </CommandItem>
                 </CommandGroup>
             )}
             {command === "reload" && (
-                <CommandGroup heading="Actions">
+                <CommandGroup heading={t("search.seaCommand.actions")}>
                     <CommandItem
                         value="Reload Page"
                         onSelect={() => {
@@ -91,7 +91,7 @@ export function SeaCommandActions() {
                             })
                         }}
                     >
-                        Reload the page
+                        {t("search.seaCommand.reloadPage")}
                         <CommandShortcut>Enter</CommandShortcut>
                     </CommandItem>
                 </CommandGroup>

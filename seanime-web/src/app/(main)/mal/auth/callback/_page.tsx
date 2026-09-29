@@ -2,8 +2,11 @@ import { API_ENDPOINTS } from "@/api/generated/endpoints"
 import { useMALAuth } from "@/api/hooks/mal.hooks"
 import { LoadingOverlay } from "@/components/ui/loading-spinner"
 import { useRouter } from "@/lib/navigation"
+import { createTranslator } from "@/locales"
 import { useQueryClient } from "@tanstack/react-query"
 import React from "react"
+
+const t = createTranslator()
 
 export default function _page() {
 
@@ -39,14 +42,14 @@ export default function _page() {
 
     if (!state || !code || !challenge) return (
         <div className="p-12 space-y-4 text-center">
-            Invalid URL or Challenge
+            {t("mal.invalidCallback")}
         </div>
     )
 
     return (
         <div>
             <LoadingOverlay className="fixed w-full h-full z-[80]">
-                <h3 className="mt-2">Authenticating...</h3>
+                <h3 className="mt-2">{t("navigation.authenticating")}</h3>
             </LoadingOverlay>
         </div>
     )

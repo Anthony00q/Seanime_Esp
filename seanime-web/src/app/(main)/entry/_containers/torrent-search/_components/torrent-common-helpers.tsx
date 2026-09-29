@@ -315,7 +315,7 @@ export const TorrentFilterSortControls: React.FC<{
                     <div className="space-y-1">
                         <Checkbox
                             label={<div className="flex items-center gap-1">
-                                <PiChatCircleDotsDuotone className="text-lg text-[--blue]" /> Multi Subs
+                                <PiChatCircleDotsDuotone className="text-lg text-[--blue]" /> {t("entry.torrentSearch.multiSubs")}
                             </div>}
                             value={filters.multiSubs}
                             onValueChange={(value) => onFilterChange("multiSubs", value)}
@@ -330,7 +330,7 @@ export const TorrentFilterSortControls: React.FC<{
 
                         <Checkbox
                             label={<div className="flex items-center gap-1">
-                                <LiaMicrophoneSolid className="text-lg text-[--red]" /> Dubbed
+                                <LiaMicrophoneSolid className="text-lg text-[--red]" /> {t("extensions.dubbed")}
                             </div>}
                             value={filters.dubbed}
                             onValueChange={(value) => onFilterChange("dubbed", value)}
@@ -412,7 +412,7 @@ export const TorrentFilterSortControls: React.FC<{
                     </>}
                     onClick={() => onSortChange("seeders")}
                 >
-                    Seeders
+                    {t("entry.torrentSearch.seeders")}
                 </Button>
                 <Button
                     size="xs"
@@ -422,7 +422,7 @@ export const TorrentFilterSortControls: React.FC<{
                     </>}
                     onClick={() => onSortChange("size")}
                 >
-                    Size
+                    {t("entry.torrentSearch.size")}
                 </Button>
                 <Button
                     size="xs"
@@ -432,7 +432,7 @@ export const TorrentFilterSortControls: React.FC<{
                     </>}
                     onClick={() => onSortChange("date")}
                 >
-                    Date
+                    {t("entry.torrentSearch.date")}
                 </Button>
                 <Button
                     size="xs"
@@ -442,7 +442,7 @@ export const TorrentFilterSortControls: React.FC<{
                     </>}
                     onClick={() => onSortChange("resolution")}
                 >
-                    Resolution
+                    {t("entry.torrentSearch.resolution")}
                 </Button>
             </div>
         </div>

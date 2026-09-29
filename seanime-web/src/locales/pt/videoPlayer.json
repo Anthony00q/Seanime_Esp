@@ -222,7 +222,8 @@
       "play": "Reproduzir",
       "stop": "Parar",
       "back10s": "-10s",
-      "forward30s": "+30s"
+      "forward30s": "+30s",
+      "connected": "Conectado"
     },
     "stats": {
       "title": "Estatísticas para Nerds",
@@ -246,7 +247,19 @@
       "timeDuration": "Tempo / Duração",
       "anime4kMode": "Modo Anime4K",
       "a4kFramerate": "Framerate A4K",
-      "a4kFrameDrops": "Perdas de Quadros A4K"
+      "a4kFrameDrops": "Perdas de Quadros A4K",
+      "source": "Fonte",
+      "video": "Vídeo",
+      "colorFormat": "Cor / Formato",
+      "audio": "Áudio",
+      "frameDrops": "Quadros perdidos (Saída / Decodificador)",
+      "presenterDrops": "Quedas do presenter (Fila / Navegador)",
+      "avgRenderTime": "Tempo médio de render",
+      "mistimedDelayed": "Fora de tempo / Atrasado",
+      "avSync": "Sincronia A/V",
+      "hardwareDecode": "Decodificação por hardware",
+      "container": "Contêiner",
+      "shaders": "Shaders"
     },
     "subtitleMenu": {
       "addSubtitlesHelp": "Você pode adicionar legendas arrastando e soltando os arquivos no player.",
@@ -295,6 +308,14 @@
       "screenshotSaved": "Captura de tela salva em {path}",
       "screenshotFolderSaved": "Pasta de capturas de tela salva",
       "screenshotFolderFailed": "Falha ao salvar a pasta de capturas de tela"
-    }
+    },
+    "terminateConfirm": {
+      "title": "Terminar o stream?",
+      "description": "Pressione Esc novamente ou escolha terminar para interromper a reprodução.",
+      "terminate": "Terminar o stream",
+      "keepPlaying": "Continuar reproduzindo"
+    },
+    "updateProgress": "Atualizar progresso",
+    "menuSubtitles": "Legendas"
   }
 }

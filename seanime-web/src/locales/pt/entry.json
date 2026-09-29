@@ -138,7 +138,11 @@
       "searchFailed": "Busca falhou",
       "failedToRetrieve": "Falha ao buscar torrents do provedor.",
       "filters": "Filtros",
-      "filtersHelp": "Os filtros baseiam-se nos nomes dos torrents e podem omitir resultados."
+      "filtersHelp": "Os filtros baseiam-se nos nomes dos torrents e podem omitir resultados.",
+      "multiSubs": "Multi Subs",
+      "originalAndDub": "Original + Dub",
+      "retrySearch": "Tentar busca novamente",
+      "highestQuality": "Melhor qualidade"
     },
     "torrentDownload": {
       "chooseDestination": "Escolha o destino",

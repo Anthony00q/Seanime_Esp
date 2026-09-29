@@ -2,6 +2,7 @@ import { Habari_Metadata } from "@/api/generated/types"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/components/ui/core/styling"
 import { Tooltip } from "@/components/ui/tooltip"
+import { createTranslator } from "@/locales"
 import startCase from "lodash/startCase"
 import React from "react"
 import { LiaMicrophoneSolid } from "react-icons/lia"
@@ -16,6 +17,8 @@ import {
     PiChatTextDuotone,
     PiSmileyNervousDuotone,
 } from "react-icons/pi"
+
+const t = createTranslator()
 
 export function TorrentResolutionBadge({ resolution }: { resolution?: string }) {
 
@@ -119,7 +122,7 @@ export function TorrentParsedMetadata({ metadata }: { metadata: Habari_Metadata 
                 trigger={<Badge
                     className="rounded-md bg-transparent border-transparent px-1"
                 >
-                    <PiChatTextDuotone className="text-lg text-[--blue]" /> Languages
+                    <PiChatTextDuotone className="text-lg text-[--blue]" /> {t("manga.manualMapping.languages")}
                 </Badge>}
             >
                 <span>
@@ -133,7 +136,7 @@ export function TorrentParsedMetadata({ metadata }: { metadata: Habari_Metadata 
                 >
                     {/* <LuAudioWaveform className="text-lg text-[--blue]" /> {term} */}
                     <LiaMicrophoneSolid className="text-lg text-[--rose]" /> {term.toLowerCase().includes("dual")
-                    ? "Original + Dub"
+                    ? t("entry.torrentSearch.originalAndDub")
                     : startCase(term)}
                 </Badge>
             ))}
@@ -141,14 +144,14 @@ export function TorrentParsedMetadata({ metadata }: { metadata: Habari_Metadata 
                 <Badge
                     className="rounded-md border-transparent bg-indigo-300 px-1"
                 >
-                    <LiaMicrophoneSolid className="text-lg text-[--red]" /> Dubbed
+                    <LiaMicrophoneSolid className="text-lg text-[--red]" /> {t("extensions.dubbed")}
                 </Badge>
             )}
             {hasMultiSubs && (
                 <Badge
                     className="rounded-md border-transparent bg-indigo-300 px-1"
                 >
-                    <PiChatCircleDotsDuotone className="text-lg text-[--blue]" /> Multi Subs
+                    <PiChatCircleDotsDuotone className="text-lg text-[--blue]" /> {t("entry.torrentSearch.multiSubs")}
                 </Badge>
             )}
         </div>
@@ -168,7 +171,7 @@ export function TorrentDebridInstantAvailabilityBadge() {
                 <LuGauge className="text-xl" />
             </Badge>}
         >
-            Instantly available on Debrid service
+            {t("debrid.instantAvailability")}
         </Tooltip>
     )
 

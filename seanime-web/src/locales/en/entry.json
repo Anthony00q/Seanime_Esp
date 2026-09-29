@@ -138,7 +138,11 @@
       "searchFailed": "Search failed",
       "failedToRetrieve": "Failed to retrieve torrents from the provider.",
       "filters": "Filters",
-      "filtersHelp": "Filters are based on torrent names and can miss some results."
+      "filtersHelp": "Filters are based on torrent names and can miss some results.",
+      "multiSubs": "Multi Subs",
+      "originalAndDub": "Original + Dub",
+      "retrySearch": "Retry Search",
+      "highestQuality": "Highest quality"
     },
     "torrentDownload": {
       "chooseDestination": "Choose the destination",

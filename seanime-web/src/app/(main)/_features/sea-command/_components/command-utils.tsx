@@ -33,7 +33,7 @@ export function CommandItemMedia({ media, type }: { media: AL_BaseAnime | AL_Bas
                 setPreviewModalMediaId(media.id, type)
             }} className="flex-shrink-0"
             >
-                Preview
+                {t("mediaCard.preview")}
             </Button>
         </div>
     )
