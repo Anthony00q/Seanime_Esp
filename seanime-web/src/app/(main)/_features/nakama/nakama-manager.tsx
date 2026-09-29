@@ -342,7 +342,7 @@ export function NakamaManager() {
             onOpenChange={setIsModalOpen}
             title={<div className="flex items-center gap-2 w-full justify-center">
                 <MdOutlineConnectWithoutContact className="size-8" />
-                Nakama
+                {t("nakama.title")}
             </div>}
             contentClass={cn(
                 "max-w-3xl bg-gray-950 bg-opacity-90 firefox:bg-opacity-100 firefox:backdrop-blur-none sm:rounded-3xl",

@@ -2,9 +2,12 @@ import { SeaLink } from "@/components/shared/sea-link"
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
 import { cva, VariantProps } from "class-variance-authority"
 import * as React from "react"
+import { createTranslator } from "@/locales"
 import { cn, ComponentAnatomy, defineStyleAnatomy } from "../core/styling"
 import { Drawer } from "../drawer"
 import { VerticalMenu, VerticalMenuItem } from "../vertical-menu"
+
+const t = createTranslator()
 
 
 /* -------------------------------------------------------------------------------------------------
@@ -179,7 +182,7 @@ export const NavigationMenu = React.forwardRef<HTMLDivElement, NavigationMenuPro
                 )}
                 onClick={() => setMobileOpen(s => !s)}
             >
-                <span className="sr-only">Open main menu</span>
+                <span className="sr-only">{t("common.labels.openMainMenu")}</span>
                 {mobileOpen ? (
                     <svg
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

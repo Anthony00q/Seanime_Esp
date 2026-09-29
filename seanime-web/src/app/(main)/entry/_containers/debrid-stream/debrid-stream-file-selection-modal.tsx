@@ -17,6 +17,9 @@ import { DEBRID_SERVICE } from "@/lib/server/settings"
 import { useAtom } from "jotai/react"
 import React from "react"
 import { IoPlayCircle } from "react-icons/io5"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 const log = logger("DEBRID STREAM FILE SELECTION")
 
@@ -166,7 +169,7 @@ export function DebridStreamFileSelectionModal(props: DebridStreamFileSelectionM
                                 disabled={selectedFileId === "" || isLoading}
                                 onClick={() => onStream(selectedFileId)}
                             >
-                                Stream
+                                {t("entry.torrentSearch.stream")}
                             </Button>
 
                         </AppLayoutStack>

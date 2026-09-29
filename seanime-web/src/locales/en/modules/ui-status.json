@@ -142,7 +142,15 @@
     "startRecording": "Start recording",
     "screenshot": "Screenshot",
     "response": "Response",
-    "fullScreenshot": "Full screenshot"
+    "fullScreenshot": "Full screenshot",
+    "recorderTitle": "Issue Recorder",
+    "cancelRecording": "Cancel recording",
+    "attachScreenshot": "Attach screenshot",
+    "requestBody": "Request Body",
+    "addNote": "Add note",
+    "editNote": "Edit note",
+    "descriptionTooltip": "Add a description of what you're experiencing",
+    "replayLoadFailed": "Failed to load session replay player"
   },
   "electron": {
     "updateDownloadedReady": "Update downloaded and ready to install",

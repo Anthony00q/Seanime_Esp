@@ -4,11 +4,14 @@ import { Button, IconButton } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { Modal } from "@/components/ui/modal"
+import { createTranslator } from "@/locales"
 import { __CAST_ENABLED__, __isElectronDesktop__ } from "@/types/constants"
 import React from "react"
 import { BiCast } from "react-icons/bi"
 import { translateDisplayTitle } from "@/lib/helpers/display-title"
 import { mc_resolveSource } from "./mpv-core"
+
+const t = createTranslator()
 
 export interface MpvCoreCastButtonProps {
     info: Player_PlaybackInfo | null
@@ -85,18 +88,18 @@ export function MpvCoreCastButton(props: MpvCoreCastButtonProps) {
                 size="sm"
                 icon={<BiCast className={cn("text-lg", casting && "text-brand-300")} />}
                 onClick={() => setModalOpen(true)}
-                title={casting ? "Casting" : "Cast to device"}
+                title={casting ? t("videoPlayer.cast.casting") : t("videoPlayer.cast.castToDevice")}
             />
-            <Modal open={modalOpen} onOpenChange={setModalOpen} title="Cast to Device" contentClass="max-w-md">
+            <Modal open={modalOpen} onOpenChange={setModalOpen} title={t("videoPlayer.cast.title")} contentClass="max-w-md">
                 <div className="space-y-4">
                     {casting && (
                         <div className="flex items-center justify-between p-3 bg-gray-900 rounded-md border border-brand-700">
                             <div>
-                                <p className="text-sm font-medium text-brand-300">Connected</p>
+                                <p className="text-sm font-medium text-brand-300">{t("videoPlayer.cast.connected")}</p>
                                 <p className="text-base font-semibold">Chromecast</p>
                             </div>
                             <Button intent="alert-subtle" size="sm" onClick={() => void disconnect()}>
-                                Disconnect
+                                {t("videoPlayer.cast.disconnect")}
                             </Button>
                         </div>
                     )}
@@ -104,15 +107,15 @@ export function MpvCoreCastButton(props: MpvCoreCastButtonProps) {
                     {discovering && (
                         <div className="flex items-center gap-2 text-sm text-[--muted]">
                             <LoadingSpinner />
-                            <span>Searching for devices...</span>
+                            <span>{t("videoPlayer.cast.searching")}</span>
                         </div>
                     )}
 
                     {!discovering && !devices.length && (
                         <div className="text-center py-6">
-                            <p className="text-sm text-[--muted]">No devices found</p>
+                            <p className="text-sm text-[--muted]">{t("videoPlayer.cast.noDevices")}</p>
                             <Button intent="gray-subtle" size="sm" className="mt-2" onClick={() => void discover()}>
-                                Scan again
+                                {t("videoPlayer.cast.scanAgain")}
                             </Button>
                         </div>
                     )}
@@ -134,7 +137,7 @@ export function MpvCoreCastButton(props: MpvCoreCastButtonProps) {
 
                     {!discovering && !!devices.length && (
                         <Button intent="gray-subtle" size="sm" className="w-full" onClick={() => void discover()}>
-                            Scan again
+                            {t("videoPlayer.cast.scanAgain")}
                         </Button>
                     )}
                 </div>

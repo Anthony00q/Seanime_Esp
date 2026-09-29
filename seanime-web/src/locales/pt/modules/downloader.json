@@ -217,7 +217,8 @@
     "torrentDashboard": "Painel de Torrent"
   },
   "debrid": {
-    "failedToConnect": "Falha ao conectar ao serviço Debrid. Verifique as configurações."
+    "failedToConnect": "Falha ao conectar ao serviço Debrid. Verifique as configurações.",
+    "instantAvailability": "Disponível instantaneamente no serviço Debrid"
   },
   "debridPage": {
     "refreshed": "Atualizado",
@@ -237,5 +238,69 @@
     "downloadTitle": "Título do download",
     "destination": "Destino",
     "destinationHelp": "Pasta de destino"
+  },
+  "torrentClient": {
+    "description": "Gerencie os downloads executados diretamente no Seanime.",
+    "notActiveDesc": "Selecione Seanime como cliente torrent padrão para usar este painel.",
+    "couldNotLoad": "Não foi possível carregar os torrents",
+    "addTorrent": "Adicionar torrent",
+    "addTorrentDesc": "Adicione um link magnet ao cliente torrent do Seanime.",
+    "pauseAll": "Pausar tudo",
+    "resumeAll": "Retomar tudo",
+    "moveUp": "Mover para cima",
+    "moveDown": "Mover para baixo",
+    "forceStart": "Forçar início",
+    "changeSavePath": "Alterar caminho de salvamento",
+    "changeSavePathDesc": "O Seanime pausará o torrent, moverá seus arquivos e verificará os dados.",
+    "recheck": "Reverificar",
+    "reannounce": "Reanunciar",
+    "speedLimits": "Limites de velocidade",
+    "globalSpeedLimits": "Limites de velocidade globais",
+    "downloadLimit": "Download (KB/s)",
+    "uploadLimit": "Upload (KB/s)",
+    "applyLimits": "Aplicar limites",
+    "globalDownloadSpeed": "Velocidade de download global",
+    "globalUploadSpeed": "Velocidade de upload global",
+    "filterPlaceholder": "Filtrar torrents",
+    "seedsPeers": "Seeds / Peers",
+    "speed": "Velocidade",
+    "eta": "ETA",
+    "ratio": "Ratio",
+    "dateAdded": "Data de adição",
+    "savePath": "Caminho de salvamento",
+    "rename": "Renomear",
+    "renameTorrent": "Renomear torrent",
+    "displayName": "Nome de exibição",
+    "magnetLink": "Link magnet",
+    "startDownload": "Iniciar download",
+    "moveFiles": "Mover arquivos",
+    "newSavePath": "Novo caminho de salvamento",
+    "selectTorrent": "Selecione um torrent para inspecionar arquivos, trackers e peers.",
+    "sequential": "Sequencial",
+    "progress": "Progresso",
+    "downloaded": "Baixado",
+    "uploaded": "Enviado",
+    "queuePosition": "Posição na fila",
+    "file": "Arquivo",
+    "priority": "Prioridade",
+    "address": "Endereço",
+    "client": "Cliente",
+    "waitingForMetadata": "Aguardando os metadados do torrent.",
+    "removeTracker": "Remover tracker",
+    "noTrackers": "Nenhum tracker listado.",
+    "noPeers": "Nenhum peer conectado.",
+    "noMatches": "Nenhum torrent corresponde a esta visualização.",
+    "tabs": {
+      "general": "Geral",
+      "files": "Arquivos",
+      "trackers": "Trackers",
+      "peers": "Peers"
+    },
+    "qbittorrent": {
+      "description": "Acesse a Web UI do cliente qBittorrent integrado.",
+      "openInNewTab": "Abrir em uma nova aba",
+      "securityNotice": "Devido às políticas de segurança do navegador (proteção COEP e Clickjacking), o cliente integrado não pode ser carregado dentro do iframe aqui.",
+      "openWebUi": "Abrir a Web UI do qBittorrent"
+    }
   }
 }

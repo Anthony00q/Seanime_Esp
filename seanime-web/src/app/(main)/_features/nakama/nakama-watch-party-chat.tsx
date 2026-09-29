@@ -71,6 +71,7 @@ export function NakamaWatchPartyChat(props: { layout?: "fixed" | "videocore" }) 
 
 function Content(props: { layout: "fixed" | "videocore" }) {
     const { layout } = props
+    const t = createTranslator()
     const { watchPartySession, isParticipant, currentUserPeerId } = useNakamaWatchParty()
     const [messages, setMessages] = useAtom(watchPartyChat_chatMessagesAtom)
     const [minimized, setMinimized] = useAtom(watchPartyChat_chatMinimizedAtom)
@@ -157,7 +158,7 @@ function Content(props: { layout: "fixed" | "videocore" }) {
             >
                 <div className="flex items-center gap-2">
                     <HiOutlineChatBubbleLeftRight className="text-xl text-white" />
-                    <span className="font-semibold text-sm">Watch Party Chat</span>
+                    <span className="font-semibold text-sm">{t("nakama.watchPartyChat")}</span>
                     {minimized && unreadCount > 0 && (
                         <span className="bg-red-500 text-white text-xs font-bold w-5 flex justify-center items-center rounded-full animate-bounce shadow-lg">
                             {unreadCount > 9 ? "9+" : unreadCount}
@@ -234,7 +235,7 @@ function ChatContent(props: {
             >
                 {messages.length === 0 ? (
                     <div className="flex items-center justify-center h-full text-[--muted] text-sm">
-                        No messages yet
+                        {t("nakama.noMessagesYet")}
                     </div>
                 ) : (
                     messages.map((msg) => {

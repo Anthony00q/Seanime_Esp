@@ -338,7 +338,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                                 intent="gray-subtle"
                                 className="w-full"
                             >
-                                View code
+                                {t("extensions.card.viewCode")}
                             </Button>
                         </ExtensionCodeModal>
 

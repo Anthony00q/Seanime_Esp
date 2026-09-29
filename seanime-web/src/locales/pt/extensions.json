@@ -184,6 +184,11 @@
       "extensionsInstalledSuccessfully": "Extensões instaladas com sucesso.",
       "invalidFunctionSelected": "Função selecionada inválida.",
       "noOutputToCopy": "Nenhuma saída para copiar"
-    }
+    },
+    "registry": {
+      "componentNotFound": "Tipo de componente \"{type}\" não encontrado"
+    },
+    "debugTitle": "Depuração",
+    "playgroundScreenTooSmall": "Sua tela é pequena demais."
   }
 }

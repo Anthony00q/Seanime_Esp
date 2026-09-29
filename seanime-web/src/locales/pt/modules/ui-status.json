@@ -142,7 +142,15 @@
     "startRecording": "Iniciar gravação",
     "screenshot": "Captura de tela",
     "response": "Resposta",
-    "fullScreenshot": "Captura de tela inteira"
+    "fullScreenshot": "Captura de tela inteira",
+    "recorderTitle": "Gravador de problemas",
+    "cancelRecording": "Cancelar gravação",
+    "attachScreenshot": "Anexar captura de tela",
+    "requestBody": "Corpo da requisição",
+    "addNote": "Adicionar nota",
+    "editNote": "Editar nota",
+    "descriptionTooltip": "Adicione uma descrição do que você está passando",
+    "replayLoadFailed": "Falha ao carregar o player de reprodução de sessão"
   },
   "electron": {
     "updateDownloadedReady": "Atualização baixada e pronta para instalar",

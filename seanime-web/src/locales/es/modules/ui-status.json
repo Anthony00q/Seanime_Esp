@@ -142,7 +142,15 @@
     "startRecording": "Iniciar grabación",
     "screenshot": "Captura de pantalla",
     "response": "Respuesta",
-    "fullScreenshot": "Captura de pantalla completa"
+    "fullScreenshot": "Captura de pantalla completa",
+    "recorderTitle": "Grabador de incidencias",
+    "cancelRecording": "Cancelar grabación",
+    "attachScreenshot": "Adjuntar captura de pantalla",
+    "requestBody": "Cuerpo de la solicitud",
+    "addNote": "Añadir nota",
+    "editNote": "Editar nota",
+    "descriptionTooltip": "Añade una descripción de lo que estás experimentando",
+    "replayLoadFailed": "No se pudo cargar el reproductor de repetición de sesión"
   },
   "electron": {
     "updateDownloadedReady": "Actualización descargada y lista para instalar",

@@ -222,7 +222,8 @@
       "play": "Play",
       "stop": "Stop",
       "back10s": "-10s",
-      "forward30s": "+30s"
+      "forward30s": "+30s",
+      "connected": "Connected"
     },
     "stats": {
       "title": "Stats for Nerds",
@@ -246,7 +247,19 @@
       "timeDuration": "Time / Duration",
       "anime4kMode": "Anime4K Mode",
       "a4kFramerate": "A4K Framerate",
-      "a4kFrameDrops": "A4K Frame Drops"
+      "a4kFrameDrops": "A4K Frame Drops",
+      "source": "Source",
+      "video": "Video",
+      "colorFormat": "Color / Format",
+      "audio": "Audio",
+      "frameDrops": "Frame Drops (Output / Decoder)",
+      "presenterDrops": "Presenter Drops (Queue / Browser)",
+      "avgRenderTime": "Avg Render Time",
+      "mistimedDelayed": "Mistimed / Delayed",
+      "avSync": "A/V Sync",
+      "hardwareDecode": "Hardware Decode",
+      "container": "Container",
+      "shaders": "Shaders"
     },
     "subtitleMenu": {
       "addSubtitlesHelp": "You can add subtitles by dragging and dropping files onto the player.",
@@ -295,6 +308,14 @@
       "screenshotSaved": "Screenshot saved to {path}",
       "screenshotFolderSaved": "Screenshot folder saved",
       "screenshotFolderFailed": "Failed to save screenshot folder"
-    }
+    },
+    "terminateConfirm": {
+      "title": "Terminate stream?",
+      "description": "Press Esc again or choose terminate to stop playback.",
+      "terminate": "Terminate stream",
+      "keepPlaying": "Keep playing"
+    },
+    "updateProgress": "Update progress",
+    "menuSubtitles": "Subtitles"
   }
 }

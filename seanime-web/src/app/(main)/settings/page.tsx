@@ -960,7 +960,7 @@ export default function Page() {
                                                 <AccordionItem value="seanime">
                                                     <AccordionTrigger>
                                                         <h4 className="flex gap-2 items-center">
-                                                            <SiBittorrent className="text-[--brand]" /> Built-in
+                                                            <SiBittorrent className="text-[--brand]" /> {t("extensions.card.builtIn")}
                                                         </h4>
                                                     </AccordionTrigger>
                                                     <AccordionContent className="p-0 py-4 space-y-4">

@@ -1,9 +1,12 @@
 import { SeaLink } from "@/components/shared/sea-link"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "@/lib/navigation"
+import { createTranslator } from "@/locales"
 import { atom } from "jotai"
 import { useAtom } from "jotai/react"
 import React from "react"
+
+const t = createTranslator()
 
 type ExternalPlayerLinkButtonProps = {}
 
@@ -33,7 +36,7 @@ export function ExternalPlayerLinkButton(props: ExternalPlayerLinkButtonProps) {
                             })
                         }}
                     >
-                        Open media in external player
+                        {t("common.buttons.openInExternalPlayer")}
                     </Button>
                 </SeaLink>
             </div>

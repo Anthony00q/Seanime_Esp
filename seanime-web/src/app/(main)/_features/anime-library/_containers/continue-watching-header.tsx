@@ -100,6 +100,7 @@ interface MediaMetadataProps {
 
 function MediaMetadata({ episode, episodes, onHoverChange }: MediaMetadataProps) {
     const ts = useThemeSettings()
+    const t = createTranslator()
     const { setPreviewModalMediaId } = useMediaPreviewModal()
     const anime = episode.baseAnime
 
@@ -212,7 +213,7 @@ function MediaMetadata({ episode, episodes, onHoverChange }: MediaMetadataProps)
 
                         {anime.nextAiringEpisode?.airingAt && (
                             <p className="text-base text-brand-200 inline-flex items-center gap-1.5">
-                                <RiSignalTowerLine /> Releasing now
+                                <RiSignalTowerLine /> {t("discover.releasingNow")}
                             </p>
                         )}
                     </div>
@@ -233,7 +234,7 @@ function MediaMetadata({ episode, episodes, onHoverChange }: MediaMetadataProps)
                             className="rounded-full"
                             onClick={() => setPreviewModalMediaId(anime.id, "anime")}
                         >
-                            Preview
+                            {t("mediaCard.preview")}
                         </Button>
                     </motion.div>
                 </motion.div>

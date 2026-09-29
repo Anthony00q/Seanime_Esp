@@ -1825,8 +1825,8 @@ export function VideoCore(props: VideoCoreProps) {
                 </VideoCoreDrawer>
 
                 <Modal
-                    title="Terminate stream?"
-                    description="Press Esc again or choose terminate to stop playback."
+                    title={t("videoPlayer.terminateConfirm.title")}
+                    description={t("videoPlayer.terminateConfirm.description")}
                     titleClass="text-center"
                     open={isTerminateConfirmOpen && isMiniPlayer}
                     onOpenChange={open => {
@@ -1841,10 +1841,10 @@ export function VideoCore(props: VideoCoreProps) {
                 >
                     <div className="flex gap-2 justify-center items-center">
                         <Button intent="warning-subtle" onClick={onTerminateStream}>
-                            Terminate stream
+                            {t("videoPlayer.terminateConfirm.terminate")}
                         </Button>
                         <Button intent="white" onClick={closeTerminateConfirm}>
-                            Keep playing
+                            {t("videoPlayer.terminateConfirm.keepPlaying")}
                         </Button>
                     </div>
                 </Modal>

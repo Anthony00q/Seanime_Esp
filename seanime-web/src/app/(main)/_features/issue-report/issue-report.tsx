@@ -757,7 +757,7 @@ export function IssueReport() {
                                 <VscDebugAlt className="text-xl text-[--brand]" />
                             </div>
                             <div>
-                                <p className="font-semibold text-sm text-gray-100">Issue Recorder</p>
+                                <p className="font-semibold text-sm text-gray-100">{t("issueReport.recorderTitle")}</p>
                             </div>
                             <div className="ml-auto">
                                 <IconButton
@@ -811,7 +811,7 @@ export function IssueReport() {
                                         bg-gray-800 hover:bg-gray-700 text-gray-300 transition-colors border border-gray-700"
                             >
                                 <BiCamera className="text-sm" />
-                                Attach screenshot
+                                {t("issueReport.attachScreenshot")}
                             </button>
                             <Tooltip
                                 trigger={
@@ -825,12 +825,12 @@ export function IssueReport() {
                                         )}
                                     >
                                         <BiNote className="text-sm" />
-                                        {description ? "Edit note" : "Add note"}
+                                        {description ? t("issueReport.editNote") : t("issueReport.addNote")}
                                     </button>
                                 }
                                 className="z-[101]"
                             >
-                                Add a description of what you're experiencing
+                                {t("issueReport.descriptionTooltip")}
                             </Tooltip>
                         </div>
 
@@ -864,7 +864,7 @@ export function IssueReport() {
                                 />}
                                 className="z-[101]"
                             >
-                                Cancel recording
+                                {t("issueReport.cancelRecording")}
                             </Tooltip>
                         </div>
                     </div>}

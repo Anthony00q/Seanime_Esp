@@ -542,7 +542,7 @@ export function TorrentSearchContainer({ type, entry }: { type: TorrentSelection
                                             intent="gray-outline"
                                             onClick={() => refetch()}
                                         >
-                                            Retry Search
+                                            {t("entry.torrentSearch.retrySearch")}
                                         </Button>
                                     </div>
                                 </LuffyError>
