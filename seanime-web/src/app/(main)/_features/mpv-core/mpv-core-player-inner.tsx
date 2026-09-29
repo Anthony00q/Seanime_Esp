@@ -1866,7 +1866,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
                                         className="absolute top-0 left-0 w-full h-full z-[100] bg-black flex items-center justify-center"
                                     >
                                         <Button intent="gray-outline" size="xl" onClick={() => togglePip(false)}>
-                                            Exit PiP
+                                            {t("videoPlayer.exitPip")}
                                         </Button>
                                     </div>
                                 )}
@@ -2009,7 +2009,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
                                                         />
                                                     }
                                                 >
-                                                    <MediaCoreMenuTitle>Quality</MediaCoreMenuTitle>
+                                                    <MediaCoreMenuTitle>{t("videoPlayer.resolution.quality")}</MediaCoreMenuTitle>
                                                     <MediaCoreMenuBody>
                                                         <MediaCoreSettingSelect
                                                             options={state.playbackInfo.videoSources.toReversed().map(source => ({
@@ -2062,7 +2062,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
                                                         />
                                                     }
                                                 >
-                                                    <MediaCoreMenuTitle>Subtitles
+                                                    <MediaCoreMenuTitle>{t("videoPlayer.menuSubtitles")}
                                                         <IconButton
                                                             intent="gray-link" size="xs"
                                                             onClick={() => {
@@ -2110,7 +2110,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
                                                         />
                                                     }
                                                 >
-                                                    <MediaCoreMenuTitle>Audio</MediaCoreMenuTitle>
+                                                    <MediaCoreMenuTitle>{t("videoPlayer.menuAudio")}</MediaCoreMenuTitle>
                                                     <MediaCoreMenuBody>
                                                         <MediaCoreSettingSelect
                                                             options={audioTracks.map(mc_formatAudioTrack)}
@@ -2180,8 +2180,8 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
             </MediaCoreDrawer>
 
             <Modal
-                title="Terminate stream?"
-                description="Press Esc again or choose terminate to stop playback."
+                title={t("videoPlayer.terminateConfirm.title")}
+                description={t("videoPlayer.terminateConfirm.description")}
                 titleClass="text-center"
                 open={isTerminateConfirmOpen && state.miniPlayer}
                 onOpenChange={open => {
@@ -2194,10 +2194,10 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
             >
                 <div className="flex gap-2 justify-center items-center">
                     <Button intent="warning-subtle" onClick={() => terminate("user terminated player")}>
-                        Terminate stream
+                        {t("videoPlayer.terminateConfirm.terminate")}
                     </Button>
                     <Button intent="white" onClick={() => setTerminateConfirmOpen(false)}>
-                        Keep playing
+                        {t("videoPlayer.terminateConfirm.keepPlaying")}
                     </Button>
                 </div>
             </Modal>

@@ -255,7 +255,7 @@ export function Announcements() {
                                 intent="white"
                                 onClick={() => handleDialogClose(announcement)}
                             >
-                                OK
+                                {t("common.buttons.ok")}
                             </Button>
                         </div>
                     </div>

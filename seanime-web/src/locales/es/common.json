@@ -21,7 +21,8 @@
       "done": "Listo",
       "previous": "Anterior",
       "loadMore": "Cargar más",
-      "ok": "Aceptar"
+      "ok": "Aceptar",
+      "openInExternalPlayer": "Abrir archivo en reproductor externo"
     },
     "labels": {
       "name": "Nombre",
@@ -65,7 +66,8 @@
       "openInLibraryExplorer": "Abrir en Explorador de Biblioteca",
       "showAudienceScore": "Mostrar puntuación de audiencia",
       "filler": "Relleno",
-      "unidentified": "No identificado"
+      "unidentified": "No identificado",
+      "openMainMenu": "Abrir menú principal"
     },
     "status": {
       "connecting": "Conectando..."
@@ -83,7 +85,8 @@
       "noTrailerFound": "No se encontró tráiler",
       "noMetadataFound": "No se encontraron metadatos",
       "unknownGPU": "GPU desconocida",
-      "unknown": "Desconocido"
+      "unknown": "Desconocido",
+      "somethingWentWrong": "Algo salió mal:"
     },
     "placeholders": {
       "allGenres": "Todos los géneros",

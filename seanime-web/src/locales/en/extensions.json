@@ -184,6 +184,11 @@
       "extensionsInstalledSuccessfully": "Extensions installed successfully.",
       "invalidFunctionSelected": "Invalid function selected.",
       "noOutputToCopy": "No output to copy"
-    }
+    },
+    "registry": {
+      "componentNotFound": "Component type \"{type}\" not found"
+    },
+    "debugTitle": "Debug",
+    "playgroundScreenTooSmall": "Your screen size is too small."
   }
 }

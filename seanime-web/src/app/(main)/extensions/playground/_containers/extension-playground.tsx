@@ -343,8 +343,8 @@ export function ExtensionPlayground(props: ExtensionPlaygroundProps) {
                 </div>
 
                 <div className="block lg:hidden">
-                    <LuffyError title="Oops!">
-                        Your screen size is too small.
+                    <LuffyError title={t("error.oops")}>
+                        {t("extensions.playgroundScreenTooSmall")}
                     </LuffyError>
                 </div>
 

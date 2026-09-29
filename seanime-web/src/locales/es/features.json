@@ -94,7 +94,9 @@
       "disconnectedFromChromecast": "Desconectado de Chromecast",
       "failedToConnectChromecast": "Error al conectar: {error}",
       "castError": "Error de Cast: {error}"
-    }
+    },
+    "watchPartyChat": "Chat de Watch Party",
+    "noMessagesYet": "Aún no hay mensajes"
   },
   "seaCommand": {
     "animeCommand": "/anime [título]",
@@ -287,7 +289,10 @@
       "actions": "Acciones",
       "copyServerLogs": "Copiar registros del servidor",
       "suggestions": "Sugerencias",
-      "custom": "Personalizado"
+      "custom": "Personalizado",
+      "reloadPage": "Recargar la página",
+      "dropAllTorrents": "Quitar todos los torrents del cliente de streaming de torrents",
+      "dropping": "Eliminando..."
     },
     "nakama": {
       "relay": "Relay",
@@ -296,5 +301,8 @@
     "continueWatching": {
       "goToEpisode": "Ir al episodio {n}"
     }
+  },
+  "mal": {
+    "invalidCallback": "URL o challenge no válido"
   }
 }

@@ -1188,7 +1188,7 @@ function NetworkPanel({ logs, searchQuery, setSearchQuery }: {
                                         <div className="text-xs text-gray-500 font-mono break-all">{log.pageUrl}</div>
                                         {log.body && log.body !== "null" && (
                                             <div className="space-y-1">
-                                                <p className="text-sm font-semibold text-gray-400">Request Body</p>
+                                                <p className="text-sm font-semibold text-gray-400">{t("issueReport.requestBody")}</p>
                                                 <pre className="text-xs font-mono text-gray-300 bg-gray-900 p-2 rounded break-all whitespace-pre-wrap max-h-[200px] overflow-auto">
                                                     {tryFormatJSON(log.body)}
                                                 </pre>
@@ -1570,7 +1570,7 @@ function ReplayPanel({ rrwebEvents, unifiedEvents, includeServerLogs, setInclude
                 if (containerRef.current) {
                     containerRef.current.innerHTML = `
                         <div style="display:flex;align-items:center;justify-content:center;height:400px;color:#888;font-size:14px;">
-                            Failed to load session replay player
+                            ${t("issueReport.replayLoadFailed")}
                         </div>
                     `
                 }

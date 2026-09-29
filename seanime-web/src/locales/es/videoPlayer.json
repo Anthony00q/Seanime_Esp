@@ -222,7 +222,8 @@
       "play": "Reproducir",
       "stop": "Detener",
       "back10s": "-10s",
-      "forward30s": "+30s"
+      "forward30s": "+30s",
+      "connected": "Conectado"
     },
     "stats": {
       "title": "Stats for Nerds",
@@ -246,7 +247,19 @@
       "timeDuration": "Tiempo / Duración",
       "anime4kMode": "Modo Anime4K",
       "a4kFramerate": "Framerate A4K",
-      "a4kFrameDrops": "Fotogramas Perdidos A4K"
+      "a4kFrameDrops": "Fotogramas Perdidos A4K",
+      "source": "Fuente",
+      "video": "Vídeo",
+      "colorFormat": "Color / Formato",
+      "audio": "Audio",
+      "frameDrops": "Frames perdidos (Salida / Decodificador)",
+      "presenterDrops": "Caídas del presentador (Cola / Navegador)",
+      "avgRenderTime": "Tiempo de render medio",
+      "mistimedDelayed": "Fuera de tiempo / Retrasado",
+      "avSync": "Sincronía A/V",
+      "hardwareDecode": "Decodificación por hardware",
+      "container": "Contenedor",
+      "shaders": "Shaders"
     },
     "subtitleMenu": {
       "addSubtitlesHelp": "Puedes añadir subtítulos arrastrando y soltando archivos sobre el reproductor.",
@@ -295,6 +308,14 @@
       "screenshotSaved": "Captura de pantalla guardada en {path}",
       "screenshotFolderSaved": "Carpeta de capturas de pantalla guardada",
       "screenshotFolderFailed": "Error al guardar la carpeta de capturas de pantalla"
-    }
+    },
+    "terminateConfirm": {
+      "title": "¿Terminar el stream?",
+      "description": "Pulsa Esc de nuevo o elige terminar para detener la reproducción.",
+      "terminate": "Terminar stream",
+      "keepPlaying": "Seguir reproduciendo"
+    },
+    "updateProgress": "Actualizar progreso",
+    "menuSubtitles": "Subtítulos"
   }
 }

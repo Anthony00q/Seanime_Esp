@@ -1320,7 +1320,7 @@ function FileFlowPanel({ group }: { group: FileGroup }) {
             )}
 
             {group.matcherLogs.length === 0 && group.hydratorLogs.length === 0 && !group.parsingLog && (
-                <p className="text-gray-500 text-sm">No logs found for this file across any phase.</p>
+                <p className="text-gray-500 text-sm">{t("scanLogViewer.noLogsForFile")}</p>
             )}
         </div>
     )

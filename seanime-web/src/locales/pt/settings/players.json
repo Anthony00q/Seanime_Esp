@@ -81,11 +81,13 @@
       "customMpvOptionsHelp": "Adicione opções personalizadas para o mpv.conf.",
       "customMpvOptionsPlaceholder": "# Adicione configurações personalizadas aqui",
       "logsExported": "Logs do MpvCore exportados",
-      "exportLogsFailed": "Falha ao exportar os logs do MpvCore"
+      "exportLogsFailed": "Falha ao exportar os logs do MpvCore",
+      "exportLogs": "Exportar logs"
     },
     "playbackOptions": {
       "externalPlayerLink": "Link de player externo",
-      "desktopMediaPlayer": "Player de mídia desktop"
+      "desktopMediaPlayer": "Player de mídia desktop",
+      "desktopMediaPlayerOrTranscoding": "Player de mídia desktop ou Transcoding / Direct Play"
     }
   }
 }
