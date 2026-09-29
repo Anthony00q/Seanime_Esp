@@ -94,9 +94,12 @@ Este é um **fork multilíngue** do projeto [Seanime](https://github.com/5rahim/
 
 O projeto original não possui suporte nativo a múltiplos idiomas (i18n), por isso foi implementada do zero uma arquitetura robusta de tradução baseada em JSON.
 
-### 🌍 Estado Atual (Tradução Completa)
+### 🌍 Estado Atual
 
-O ecossistema atual cobre **100% da interface de forma nativa em Espanhol, Inglês e Português (pt)**. A grande novidade é que o idioma é totalmente dinâmico: os usuários podem alternar livremente entre os três idiomas nas Configurações, aplicando as mudanças em tempo real em toda a interface. Além disso, a arquitetura modular projetada permite escalar para qualquer idioma adicional sem atrito. É feita uma manutenção constante para refinar o contexto, garantir a naturalidade da linguagem e assegurar que cada atualização do projeto original seja adaptada imediatamente ao ser lançada.
+O ecossistema atual cobre **praticamente toda a interface de forma nativa em Espanhol, Inglês e Português (pt)**. A grande novidade é que o idioma é totalmente dinâmico: os usuários podem alternar livremente entre os três idiomas nas Configurações, aplicando as mudanças em tempo real em toda a interface. Além disso, a arquitetura modular projetada permite escalar para qualquer idioma adicional sem atrito. É feita uma manutenção constante para refinar o contexto, garantir a naturalidade da linguagem e assegurar que cada atualização do projeto original seja adaptada imediatamente ao ser lançada.
+
+> [!WARNING]
+> **Estado de verificação**: A tradução cobre a grande maioria da interface, mas **nem todos os setores foram verificados exaustivamente** para descartar que o processo de tradução tenha introduzido alguma falha, e podem restar pequenos textos por traduzir ou com traduções a melhorar. Se encontrar algum erro, texto solto em inglês ou comportamento quebrado, por favor reporte-o na seção de [Issues](https://github.com/Anthony00q/Seanime_Esp/issues).
 
 **Detalhes Técnicos do Sistema:**
 - **Milhares de keys** de tradução em 25 arquivos JSON modulares, com validação de tipos estrita para evitar erros.
