@@ -1,5 +1,6 @@
 import { getServerBaseUrl } from "@/api/client/server-url"
 import { SERVER_AUTH_TOKEN_STORAGE_KEY, serverAuthTokenAtom } from "@/app/(main)/_atoms/server-status.atoms"
+import { translateServerApiError } from "@/lib/helpers/server-error"
 import { getClientId, getClientIdProof, setClientIdentity } from "@/lib/server/client-id"
 import { createTranslator } from "@/locales"
 import { __clientPlatform__ } from "@/types/constants"
@@ -289,6 +290,10 @@ function _handleSeaError(data: any): string {
     const err = data?.error as string
 
     if (!err) return t("toast.client.unknownError")
+
+    // Fallback al inglés más abajo si el string del backend es desconocido.
+    const translatedServerError = translateServerApiError(err)
+    if (translatedServerError) return t("toast.client.error", { error: translatedServerError })
 
     if (err.includes("Too many requests"))
         return t("toast.client.anilistRateLimit")

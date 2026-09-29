@@ -183,6 +183,63 @@
     },
     "plugin": {
       "genericError": "Plugin error: {error}"
+    },
+    "serverErrors": {
+      "common": {
+        "invalidId": "Invalid ID",
+        "missingArguments": "Missing arguments",
+        "missingRequiredFields": "Missing required fields",
+        "destinationNotFound": "Destination not found",
+        "destinationMustBeAbsolute": "The destination must be an absolute path",
+        "directoryNotFound": "Directory not found",
+        "clientSessionNotFound": "Client session not found"
+      },
+      "logs": {
+        "cannotDeleteNewestLog": "Cannot delete the newest log file",
+        "invalidFilename": "Invalid filename",
+        "unsupportedFileExtension": "Unsupported file extension",
+        "failedToLookupMemoryProfile": "Failed to look up the memory profile",
+        "failedToLookupGoroutineProfile": "Failed to look up the goroutine profile"
+      },
+      "settings": {
+        "libraryPathsNested": "Library paths cannot be subdirectories of each other",
+        "settingsPathEmpty": "The settings path is empty",
+        "intervalTooShort": "The interval must be at least 15 minutes"
+      },
+      "torrentClient": {
+        "couldNotStart": "Could not start the torrent client, verify your settings",
+        "couldNotContact": "Could not contact the torrent client, verify your settings or make sure it's running",
+        "smartSelectMultiple": "Smart select is not supported for multiple torrents",
+        "notActive": "The Seanime torrent client is not active",
+        "actionOnlySeanime": "This action is only available for the Seanime torrent client"
+      },
+      "debrid": {
+        "settingsNotFound": "Debrid settings not found",
+        "providerNotSet": "Debrid provider not set",
+        "notAuthenticated": "Not authenticated",
+        "failedToAuthenticate": "Failed to authenticate",
+        "streamInterrupted": "Stream interrupted",
+        "noTorrentsFound": "No torrents found, please select manually"
+      },
+      "download": {
+        "invalidVersionString": "Invalid version string",
+        "verificationCodeExpired": "The verification code has expired",
+        "invalidVerificationCode": "Invalid verification code",
+        "failedMultiple": "Failed to download multiple files",
+        "failedToUpdateStatus": "Failed to download the update: status {status}",
+        "failedToUpdate": "Failed to download the update: {error}",
+        "invalidDownloadUrl": "Invalid download URL: {error}"
+      },
+      "nakama": {
+        "hostNotSharing": "The host is not sharing its anime library",
+        "notConnectedToHost": "Not connected to the host",
+        "onlyHostsCreate": "Only hosts can create watch parties",
+        "hostsCannotJoin": "Hosts cannot join watch parties",
+        "notActingAsHost": "Not acting as the host"
+      },
+      "onlinestream": {
+        "enableInSettings": "Enable online streaming in the settings"
+      }
     }
   },
   "mpv": {
