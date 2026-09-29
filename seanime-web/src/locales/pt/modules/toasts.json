@@ -183,6 +183,63 @@
     },
     "plugin": {
       "genericError": "Erro de plugin: {error}"
+    },
+    "serverErrors": {
+      "common": {
+        "invalidId": "ID inválido",
+        "missingArguments": "Argumentos ausentes",
+        "missingRequiredFields": "Campos obrigatórios ausentes",
+        "destinationNotFound": "Destino não encontrado",
+        "destinationMustBeAbsolute": "O destino deve ser um caminho absoluto",
+        "directoryNotFound": "Diretório não encontrado",
+        "clientSessionNotFound": "Sessão do cliente não encontrada"
+      },
+      "logs": {
+        "cannotDeleteNewestLog": "Não é possível excluir o arquivo de log mais recente",
+        "invalidFilename": "Nome de arquivo inválido",
+        "unsupportedFileExtension": "Extensão de arquivo não suportada",
+        "failedToLookupMemoryProfile": "Não foi possível localizar o perfil de memória",
+        "failedToLookupGoroutineProfile": "Não foi possível localizar o perfil de goroutines"
+      },
+      "settings": {
+        "libraryPathsNested": "Os caminhos da biblioteca não podem ser subdiretórios entre si",
+        "settingsPathEmpty": "O caminho das configurações está vazio",
+        "intervalTooShort": "O intervalo deve ser de pelo menos 15 minutos"
+      },
+      "torrentClient": {
+        "couldNotStart": "Não foi possível iniciar o cliente de torrent, verifique suas configurações",
+        "couldNotContact": "Não foi possível contactar o cliente de torrent, verifique suas configurações ou certifique-se de que está em execução",
+        "smartSelectMultiple": "A seleção inteligente não é compatível com múltiplos torrents",
+        "notActive": "O cliente de torrent do Seanime não está ativo",
+        "actionOnlySeanime": "Esta ação está disponível apenas para o cliente de torrent do Seanime"
+      },
+      "debrid": {
+        "settingsNotFound": "Configurações do Debrid não encontradas",
+        "providerNotSet": "Provedor do Debrid não configurado",
+        "notAuthenticated": "Não autenticado",
+        "failedToAuthenticate": "Não foi possível autenticar",
+        "streamInterrupted": "Stream interrompido",
+        "noTorrentsFound": "Nenhum torrent encontrado, selecione manualmente"
+      },
+      "download": {
+        "invalidVersionString": "Versão inválida",
+        "verificationCodeExpired": "O código de verificação expirou",
+        "invalidVerificationCode": "Código de verificação inválido",
+        "failedMultiple": "Não foi possível baixar múltiplos arquivos",
+        "failedToUpdateStatus": "Não foi possível baixar a atualização: status {status}",
+        "failedToUpdate": "Não foi possível baixar a atualização: {error}",
+        "invalidDownloadUrl": "URL de download inválida: {error}"
+      },
+      "nakama": {
+        "hostNotSharing": "O host não está compartilhando sua biblioteca de anime",
+        "notConnectedToHost": "Não conectado ao host",
+        "onlyHostsCreate": "Apenas hosts podem criar watch parties",
+        "hostsCannotJoin": "Hosts não podem entrar em watch parties",
+        "notActingAsHost": "Não está atuando como host"
+      },
+      "onlinestream": {
+        "enableInSettings": "Ative o streaming online nas configurações"
+      }
     }
   },
   "mpv": {
