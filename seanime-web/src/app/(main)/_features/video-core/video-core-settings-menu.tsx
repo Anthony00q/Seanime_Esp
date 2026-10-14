@@ -527,14 +527,14 @@ export function VideoCoreSettingsMenu() {
                                 className="px-1 pl-4 pr-4 !text-xs flex-1"
                                 intent="gray-subtle"
                                 size="sm"
-                                aria-label="Decrease playback speed"
+                                aria-label={t("videoPlayer.keybindings.decreaseSpeed")}
                                 disabled={playbackRate <= 0.25}
                                 onClick={() => setPlaybackRate(Math.max(0.25, Math.round((playbackRate - 0.05) * 100) / 100))}
                             >
                                 -
                             </Button>
                             <Slider
-                                aria-label="Playback speed"
+                                aria-label={t("videoPlayer.settingsMenu.playbackSpeed")}
                                 value={[playbackRate]}
                                 defaultValue={[1]}
                                 min={0.25}
@@ -546,7 +546,7 @@ export function VideoCoreSettingsMenu() {
                                 className="px-1 pl-4 pr-4 !text-xs flex-1"
                                 intent="gray-subtle"
                                 size="sm"
-                                aria-label="Increase playback speed"
+                                aria-label={t("videoPlayer.keybindings.increaseSpeed")}
                                 disabled={playbackRate >= 2}
                                 onClick={() => setPlaybackRate(Math.min(2, Math.round((playbackRate + 0.05) * 100) / 100))}
                             >
@@ -598,13 +598,13 @@ export function VideoCoreSettingsMenu() {
                     </VideoCoreMenuOption>
                     <VideoCoreMenuOption title={t("videoPlayer.settingsMenu.volumeBoost")} icon={LuVolume2}>
                         <VideoCoreSettingSelect
-                            options={VOLUME_BOOST_OPTIONS}
+                            options={VOLUME_BOOST_OPTIONS.map(option => ({ ...option, label: formatVolumeBoost(option.value) }))}
                             onValueChange={(v: number) => {
                                 setVolumeBoost(v)
                             }}
                             value={VOLUME_BOOST_OPTIONS.some(o => o.value === volumeBoost) ? volumeBoost : null}
                         />
-                        <p className="text-[--muted] text-sm px-2 pt-2">Shift + Up/Down to adjust</p>
+                        <p className="text-[--muted] text-sm px-2 pt-2">{t("videoPlayer.settingsMenu.volumeBoostShortcut")}</p>
                     </VideoCoreMenuOption>
                     <VideoCoreMenuOption title={t("videoPlayer.settingsMenu.autoPlay")} icon={IoCaretForwardCircleOutline}>
                         <VideoCoreSettingSelect

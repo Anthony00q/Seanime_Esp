@@ -1018,7 +1018,7 @@ export function VideoCoreKeybindingController(props: {
                 const direction = e.code === keybindings.volumeUp.key ? 1 : -1
                 const next = clampVolumeBoost(volumeBoost + direction * VOLUME_BOOST_STEP)
                 setVolumeBoost(next)
-                showOverlayFeedback({ message: `Volume Boost: ${formatVolumeBoost(next)}` })
+                showOverlayFeedback({ message: t("videoPlayer.settingsMenu.volumeBoostFeedback", { value: formatVolumeBoost(next) }) })
                 return
             }
 

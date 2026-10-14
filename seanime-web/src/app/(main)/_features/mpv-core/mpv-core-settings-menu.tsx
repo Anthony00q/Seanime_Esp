@@ -370,13 +370,13 @@ export function MpvCoreSettingsMenu(props: MpvCoreSettingsMenuProps) {
                     onOpenSectionChange={setOpenSection}
                 >
                     <MediaCoreSettingSelect
-                        options={VOLUME_BOOST_OPTIONS}
+                        options={VOLUME_BOOST_OPTIONS.map(option => ({ ...option, label: formatVolumeBoost(option.value) }))}
                         value={VOLUME_BOOST_OPTIONS.some(o => o.value === volumeBoost) ? volumeBoost : null}
                         onValueChange={value => setVolumeBoost(Number(value))}
                         isFullscreen={isFullscreen}
                         containerElement={containerElement}
                     />
-                    <p className="text-[--muted] text-sm px-2 pt-2">Shift + Up/Down to adjust</p>
+                    <p className="text-[--muted] text-sm px-2 pt-2">{t("videoPlayer.settingsMenu.volumeBoostShortcut")}</p>
                 </MediaCoreMenuOption>
                 <MediaCoreMenuOption
                     title={t("videoPlayer.settingsMenu.autoPlay")}

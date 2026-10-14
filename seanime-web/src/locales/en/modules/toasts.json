@@ -185,6 +185,12 @@
       "genericError": "Plugin error: {error}"
     },
     "serverErrors": {
+      "screenshots": {
+        "filenameMustNotContainPath": "The filename must not contain a path",
+        "configureFolderFirst": "Configure a screenshot folder in settings first",
+        "useConfiguredFolder": "Screenshots must be saved to the configured folder",
+        "openDirectoryFailed": "Failed to open the screenshot folder: {error}"
+      },
       "common": {
         "invalidId": "Invalid ID",
         "missingArguments": "Missing arguments",

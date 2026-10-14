@@ -42,6 +42,9 @@
     "settingsMenu": {
       "title": "Ajustes",
       "playbackSpeed": "Velocidad de reproducción",
+      "volumeBoost": "Amplificación de volumen",
+      "volumeBoostShortcut": "Mayús + ↑/↓ para ajustar",
+      "volumeBoostFeedback": "Amplificación de volumen: {value}",
       "autoPlay": "Reproducción auto",
       "autoNext": "Siguiente automático",
       "skipOPED": "Saltar OP/ED",

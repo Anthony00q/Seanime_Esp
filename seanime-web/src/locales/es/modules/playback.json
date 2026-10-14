@@ -50,7 +50,7 @@
     "selectAnime": "Seleccionar un anime",
     "episodeAlreadyAdded": "Episodio ya añadido",
     "episodeAdded": "Episodio añadido a la lista de reproducción",
-    "maxEpisodes": "No puedes añadir más de 20 episodios a una lista de reproducción"
+    "maxEpisodes": "No puedes añadir más de {count} episodios a una lista de reproducción"
   },
   "playlistManager": {
     "updateProgress": "¿Actualizar progreso?",

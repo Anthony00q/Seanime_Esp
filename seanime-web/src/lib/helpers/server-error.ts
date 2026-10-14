@@ -64,10 +64,17 @@ const SERVER_ERROR_MAP: Record<string, string> = {
 
     // Streaming en línea (internal/handlers/onlinestream.go)
     "enable online streaming in the settings": "toast.serverErrors.onlinestream.enableInSettings",
+    "filename must not contain a path": "toast.serverErrors.screenshots.filenameMustNotContainPath",
+    "set a screenshot folder in settings first": "toast.serverErrors.screenshots.configureFolderFirst",
+    "screenshots must be saved to the configured folder": "toast.serverErrors.screenshots.useConfiguredFolder",
 }
 
 // Regex/prefijo para mensajes con valores dinámicos. El orden importa: gana la primera coincidencia.
 function translateDynamicServerError(err: string): string | null {
+    const screenshotDirectory = err.match(/^failed to open screenshot directory: ([\s\S]+)$/)
+    if (screenshotDirectory) {
+        return t("toast.serverErrors.screenshots.openDirectoryFailed", { error: screenshotDirectory[1] })
+    }
     const updateStatus = err.match(/^failed to download update: status (\d+)$/)
     if (updateStatus) {
         return t("toast.serverErrors.download.failedToUpdateStatus", { status: updateStatus[1] } as any)
