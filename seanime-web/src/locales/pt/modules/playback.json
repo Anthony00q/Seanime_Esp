@@ -50,7 +50,7 @@
     "selectAnime": "Selecione um anime",
     "episodeAlreadyAdded": "Episódio já adicionado",
     "episodeAdded": "Episódio adicionado à playlist",
-    "maxEpisodes": "Você não pode adicionar mais de 20 episódios a uma playlist"
+    "maxEpisodes": "Você não pode adicionar mais de {count} episódios a uma playlist"
   },
   "playlistManager": {
     "updateProgress": "Atualizar progresso",

@@ -1,3 +1,7 @@
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
+
 export const VOLUME_BOOST_MIN = 1
 export const VOLUME_BOOST_MAX = 3
 export const VOLUME_BOOST_STEP = 0.25
@@ -17,5 +21,5 @@ export function clampVolumeBoost(value: number) {
 }
 
 export function formatVolumeBoost(value: number) {
-    return value <= VOLUME_BOOST_MIN ? "Off" : `${Math.round(value * 100)}%`
+    return value <= VOLUME_BOOST_MIN ? t("videoPlayer.settingsMenu.off") : `${Math.round(value * 100)}%`
 }

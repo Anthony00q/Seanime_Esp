@@ -1267,7 +1267,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
                 const direction = event.code === keybindings.volumeUp.key ? 1 : -1
                 const next = clampVolumeBoost(volumeBoost + direction * VOLUME_BOOST_STEP)
                 setVolumeBoost(next)
-                showMessage(`Volume Boost: ${formatVolumeBoost(next)}`)
+                showMessage(t("videoPlayer.settingsMenu.volumeBoostFeedback", { value: formatVolumeBoost(next) }))
                 return
             }
 

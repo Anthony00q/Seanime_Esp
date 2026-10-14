@@ -42,6 +42,9 @@
     "settingsMenu": {
       "title": "Settings",
       "playbackSpeed": "Playback Speed",
+      "volumeBoost": "Volume Boost",
+      "volumeBoostShortcut": "Shift + Up/Down to adjust",
+      "volumeBoostFeedback": "Volume Boost: {value}",
       "autoPlay": "Auto Play",
       "autoNext": "Auto Next",
       "skipOPED": "Skip OP/ED",

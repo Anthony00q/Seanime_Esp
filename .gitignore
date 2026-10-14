@@ -120,3 +120,7 @@ informacion/
 ## Scripts locales
 ##
 *.bat
+
+# Configuración y pruebas i18n locales del fork
+/seanime-web/vitest.config.ts
+/seanime-web/src/lib/helpers/media-playback-i18n.test.ts

@@ -185,6 +185,12 @@
       "genericError": "Erro de plugin: {error}"
     },
     "serverErrors": {
+      "screenshots": {
+        "filenameMustNotContainPath": "O nome do arquivo não deve conter um caminho",
+        "configureFolderFirst": "Primeiro configure uma pasta para capturas nos ajustes",
+        "useConfiguredFolder": "As capturas devem ser salvas na pasta configurada",
+        "openDirectoryFailed": "Não foi possível abrir a pasta de capturas: {error}"
+      },
       "common": {
         "invalidId": "ID inválido",
         "missingArguments": "Argumentos ausentes",

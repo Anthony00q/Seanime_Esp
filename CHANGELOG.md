@@ -4,26 +4,26 @@ All notable changes to this project will be documented in this file.
 
 ## v3.10.4
 
-- ⚡️ Playlists: Increased episode limit to 200 #757
-- ⚡️ Plugins: Added API to open native modals from actions #772
-- ⚡️ UI: Show episode totals for unstarted anime on hover #872
-- ⚡️ Torrent Search: Allow batch searches for airing anime #904
-- ⚡️ Manga: Added MyAnimeList link to entry menu #921
-- ⚡️ Manga: Smoother keyboard scrolling and cursor hiding when idle #918
-- ⚡️ VideoCore/MpvCore: Volume boost up to 300% #964
-- ⚡️ VideoCore: Playback speed slider #865
-- 🦺 Torrent Download: Fixed torrent client startup before file selection #912
-- 🦺 qBittorrent: Fixed missing filenames in file selection #957
-- 🦺 Denshi: Fixed background startup on Linux #923
-- 🦺 Library: Show missing episodes when episode metadata is unavailable #951
-- 🦺 VideoCore: Fixed unnecessary source refresh at HLS playback startup #953
-- 🦺 VideoCore: Potential fix for disappearing subtitles after seeking #968
-- 🦺 Mediastream: Fixed embedded font extraction for filenames with spaces #971
-- 🦺 VideoCore: Fixed Anime4K memory leaks and cleanup #955
-- 🦺 InSight: Replaced Jikan with Tenrai for character data
-- 🦺 Torrent Search: Best releases no longer force batch status #979
-- 🦺 Plugins: Include playback state in start, stop and completion events #977
-- 🦺 Subtitles: Fixed VTT conversion dropping lines with custom placements #975
+- ⚡️ Listas de reproducción: Aumentado el límite a 200 episodios #757
+- ⚡️ Plugins: Añadida una API para abrir modales nativos desde acciones #772
+- ⚡️ UI: Se muestra el total de episodios de los animes no iniciados al pasar el cursor #872
+- ⚡️ Búsqueda de Torrents: Se permiten búsquedas de lotes para animes en emisión #904
+- ⚡️ Manga: Añadido un enlace a MyAnimeList en el menú de la entrada #921
+- ⚡️ Manga: Desplazamiento con teclado más fluido y ocultación del cursor cuando está inactivo #918
+- ⚡️ VideoCore/MpvCore: Amplificación de volumen hasta el 300 % #964
+- ⚡️ VideoCore: Control deslizante de velocidad de reproducción #865
+- 🦺 Descarga de torrents: Corregido el inicio del cliente torrent antes de seleccionar archivos #912
+- 🦺 qBittorrent: Corregidos los nombres de archivo ausentes en la selección de archivos #957
+- 🦺 Denshi: Corregido el inicio en segundo plano en Linux #923
+- 🦺 Biblioteca: Se muestran los episodios faltantes cuando sus metadatos no están disponibles #951
+- 🦺 VideoCore: Corregida la actualización innecesaria de la fuente al iniciar la reproducción HLS #953
+- 🦺 VideoCore: Posible corrección para los subtítulos que desaparecen al cambiar la posición de reproducción #968
+- 🦺 Mediastream: Corregida la extracción de fuentes incrustadas con nombres de archivo que contienen espacios #971
+- 🦺 VideoCore: Corregidas las fugas de memoria y la liberación de recursos de Anime4K #955
+- 🦺 InSight: Sustituido Jikan por Tenrai para los datos de personajes
+- 🦺 Búsqueda de Torrents: Las mejores releases ya no se fuerzan a tratarse como lotes #979
+- 🦺 Plugins: Se incluye el estado de reproducción en los eventos de inicio, detención y finalización #977
+- 🦺 Subtítulos: Corregida la pérdida de líneas con posiciones personalizadas durante la conversión VTT #975
 
 ## v3.10.3
 
