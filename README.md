@@ -21,8 +21,7 @@
   <a href="https://github.com/5rahim/seanime">Proyecto Original</a> |
   <a href="https://seanime.app/docs">Documentación</a> |
   <a href="https://github.com/Anthony00q/Seanime_Esp/releases">Última release</a> |
-  <a href="https://seanime.app/docs/policies">Copyright</a> |
-  <a href="https://discord.gg/Sbr7Phzt6m">Discord</a>
+  <a href="https://seanime.app/docs/policies">Copyright</a>
 </p>
 
 <div align="center">
@@ -31,9 +30,6 @@
   </a>
   <a href="https://github.com/Anthony00q/Seanime_Esp">
     <img src="https://img.shields.io/badge/Idiomas-ES%20%7C%20PT%20%7C%20EN-blue?style=flat-square" alt="idiomas soportados" />
-  </a>
-  <a href="https://discord.gg/Aruz7wdAaf">
-    <img src="https://img.shields.io/discord/1224767201551192224?style=flat-square&logo=Discord&color=blue&label=Discord" alt="discord" />
   </a>
 </div>
 
@@ -47,7 +43,7 @@ Si te gusta el proyecto, ¡deja una estrella en este y en el <a href="https://gi
 
 Este es un **fork multilingüe** del proyecto [Seanime](https://github.com/5rahim/seanime) creado por [5rahim](https://github.com/5rahim).
 
-**Misión:** Transformar Seanime en una plataforma accesible globalmente mediante una arquitectura robusta de internacionalización (i18n), característica ausente en el proyecto base. Nuestro enfoque principal es la comunidad hispanohablante y luso-parlante, asegurando paridad total e inmediata con las actualizaciones del proyecto original.
+**Objetivo:** Mantengo este fork para usar Seanime en español y compartir las traducciones con quien le sirvan. También incluye inglés y portugués. Lo llevo por mi cuenta e intento incorporar las novedades del proyecto original cuando puedo.
 
 **Estructura de ramas:**
 - `main` → espejo puro del upstream (sin modificaciones)
@@ -85,8 +81,8 @@ Este es un **fork multilingüe** del proyecto [Seanime](https://github.com/5rahi
 ## 📥 Cómo Empezar (Instalación)
 
 1. Dirígete a la sección de [Releases](https://github.com/Anthony00q/Seanime_Esp/releases).
-2. Descarga el archivo comprimido correspondiente a tu sistema operativo (Windows, Linux o macOS).
-3. Descomprime el archivo en una carpeta de tu preferencia y ejecuta la aplicación.
+2. Descarga Seanime Denshi (escritorio) o el servidor con interfaz web para tu sistema operativo y arquitectura.
+3. Instala la aplicación o descomprime el archivo y ejecútalo, según el formato descargado.
 
 ---
 
@@ -96,24 +92,24 @@ El proyecto original no tiene soporte nativo para múltiples idiomas (i18n), por
 
 ### 🌍 Estado Actual
 
-El ecosistema actual cubre **prácticamente toda la interfaz de forma nativa en Español, Inglés y Portugués (pt)**. La mayor novedad es que el idioma es totalmente dinámico: los usuarios pueden alternar libremente entre los tres idiomas desde los Ajustes, aplicando los cambios en tiempo real a toda la interfaz. Además, la arquitectura modular diseñada permite escalar a cualquier idioma adicional sin fricciones. Se realiza un mantenimiento constante para pulir el contexto, asegurar la naturalidad del lenguaje y garantizar que cada actualización del proyecto original sea adaptada inmediatamente al lanzarse.
+El fork ofrece **amplia cobertura de la interfaz en español, inglés y portugués (código `pt`, variante brasileña)**. El idioma se selecciona desde Ajustes y se aplica después de confirmar la recarga de la interfaz o el reinicio de Denshi. La arquitectura modular permite incorporar nuevos idiomas siguiendo la guía de contribución. El mantenimiento busca mejorar la naturalidad de los textos y adaptar las novedades del proyecto original, sin garantizar una actualización inmediata tras cada lanzamiento upstream.
 
 > [!WARNING]
 > **Estado de verificación**: La traducción cubre la gran mayoría de la interfaz, pero **no todos los apartados han sido comprobados exhaustivamente** para descartar que el proceso de traducción haya introducido algún fallo, y pueden quedar pequeños textos sin traducir o con traducciones mejorables. Si encuentras algún error, texto suelto en inglés o comportamiento roto, por favor repórtalo en la sección de [Issues](https://github.com/Anthony00q/Seanime_Esp/issues).
 
 **Detalles Técnicos del Sistema:**
-- **Miles de keys** de traducción en 25 archivos JSON modulares, con validación de tipo estricta para evitar errores.
-- **Backend Go intacto** — Los mensajes nativos del servidor se interceptan y traducen en el frontend (`SERVER_TOAST_MAP`).
-- **Fechas y Calendarios** — Adaptación dinámica total del formato de fechas usando `date-fns` y parches de capitalización idiomática.
-- **Cero Hardcoding** — Ni un solo string visible "quemado" directamente en el código de React.
-- **Soporte Escalable** — Arquitectura modular que permite a cualquier contribuidor agregar nuevos idiomas fácilmente siguiendo la guía [`Traducciones.md`](Traducciones.md).
+- **Catálogos modulares** — Miles de keys de traducción en JSON, con validación de tipos y paridad entre idiomas.
+- **Mensajes del servidor** — Los toasts y errores HTTP se traducen en el frontend mediante adaptadores, sin introducir traducciones en Go. El fork también mantiene adaptaciones propias del updater.
+- **Fechas y Calendarios** — Formatos con locale dinámico y capitalización mediante `date-fns` y utilidades del fork.
+- **Textos centralizados** — Las traducciones se mantienen en catálogos; pueden quedar textos pendientes y el contenido personalizado de extensiones no se traduce automáticamente.
+- **Nuevos idiomas** — La guía [`Traducciones.md`](Traducciones.md) explica cómo añadir y validar un idioma.
 
 **Áreas y Componentes Traducidos:**
-Se han adaptado más de **300 componentes React** y **cientos de notificaciones** del servidor, cubriendo absolutamente toda la experiencia:
+La traducción abarca las principales áreas de la aplicación, entre ellas:
 - **Core Visual:** Navegación, Paleta de Comandos (Sea Command), Pantalla de Inicio, Descubrimiento y Asistente de Configuración.
 - **Consumo:** Reproductor de Video integral (Subtítulos, Chromecast, Anime4K), Lector de Manga interactivo y Watch Parties (Nakama).
 - **Gestión:** Configuraciones Avanzadas, Escáner de Biblioteca local, Explorador, Descargador Automático y Tienda de Extensiones.
-- **AniList y Metadatos:** Diccionario completo integrado (cientos de keys para géneros, formatos, estados, temporadas y tags), Seguimiento de Progreso y Listas offline.
+- **AniList y Metadatos:** Diccionario de géneros, formatos, estados, temporadas y tags, Seguimiento de Progreso y Listas offline.
 
 ---
 
