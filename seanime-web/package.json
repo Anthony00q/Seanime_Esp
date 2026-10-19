@@ -149,6 +149,7 @@
   "devDependencies": {
     "happy-dom": "^21.0.3",
     "@babel/parser": "^7.29.2",
+    "@babel/traverse": "^7.29.0",
     "@rsbuild/core": "^2.1.3",
     "@rsbuild/plugin-node-polyfill": "^1.4.6",
     "@rsbuild/plugin-react": "^2.1.0",

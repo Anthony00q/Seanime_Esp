@@ -2,9 +2,11 @@ import fs from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { parse, parseExpression } from "@babel/parser"
+import traverseModule from "@babel/traverse"
 import { IntlMessageFormat } from "intl-messageformat"
 
 const defaultRoot = fileURLToPath(new URL("../..", import.meta.url))
+const traverse = traverseModule.default ?? traverseModule
 
 // Callable with an isolated fixture root: importing this module never audits or exits.
 export function auditTranslations({ root = defaultRoot } = {}) {
@@ -71,6 +73,7 @@ const literals = new Set([
 
 function analyze(text, locale, key) {
     const variables = new Map()
+    const selects = new Set()
     const cases = [{}]
     const formatter = new IntlMessageFormat(text, locale)
     function visit(elements, ancestors = {}) {
@@ -80,6 +83,9 @@ function analyze(text, locale, key) {
                 if (!variables.has(element.value) || kind !== "string") variables.set(element.value, kind)
             }
             if (element.type === 5 || element.type === 6) {
+                // Select values are application identifiers, unlike locale-dependent plural categories.
+                // Ignore order and repetitions so translations can rearrange or repeat a clause.
+                if (element.type === 5) selects.add(JSON.stringify([element.value, Object.keys(element.options).sort()]))
                 if (locale === "pt" && element.type === 6 && element.pluralType === "cardinal" && !element.options["=0"]) {
                     fail(`pt:${key}: plural ${element.value} requires an explicit =0 branch`)
                 }
@@ -111,7 +117,7 @@ function analyze(text, locale, key) {
             formatChecks++
         }
     }
-    return variables
+    return { variables, selects }
 }
 
 const catalogs = Object.create(null)
@@ -121,7 +127,8 @@ const index = fs.readFileSync(path.join(localeRoot, "index.ts"), "utf8")
 const imports = new Map()
 const arrays = new Map()
 const registered = new Map()
-const unwrap = node => node?.type === "TSAsExpression" || node?.type === "TSSatisfiesExpression" ? unwrap(node.expression) : node
+const unwrap = node => ["TSAsExpression", "TSSatisfiesExpression", "TSTypeAssertion", "TSNonNullExpression", "ParenthesizedExpression"].includes(node?.type)
+    ? unwrap(node.expression) : node
 walk(parse(index, { sourceType: "module", plugins: ["typescript"] }), node => {
     if (node.type === "ImportDeclaration") {
         for (const specifier of node.specifiers) imports.set(specifier.local.name, node.source.value)
@@ -152,7 +159,7 @@ for (const locale of languages) {
             for (const [key, text] of Object.entries(messages)) {
                 if (Object.hasOwn(catalogs[locale], key)) fail(`${locale}:${key}: catalog collision`)
                 catalogs[locale][key] = text
-                signatures[locale][key] = literals.has(key) ? new Map() : analyze(text, locale, key)
+                signatures[locale][key] = literals.has(key) ? { variables: new Map(), selects: new Set() } : analyze(text, locale, key)
             }
         } catch (error) { fail(`${locale}/${relative}: ${error.message}`) }
     }
@@ -162,8 +169,13 @@ for (const locale of ["es", "pt"]) {
     if (JSON.stringify(moduleFiles.en) !== JSON.stringify(moduleFiles[locale])) fail(`${locale}: file/key structure differs from English`)
     for (const key of Object.keys(catalogs.en)) {
         const signature = vars => JSON.stringify([...vars].sort(([a], [b]) => a.localeCompare(b)))
-        if (signatures.en[key] && signatures[locale][key] && signature(signatures.en[key]) !== signature(signatures[locale][key])) {
+        const english = signatures.en[key]
+        const translated = signatures[locale][key]
+        if (english && translated && signature(english.variables) !== signature(translated.variables)) {
             fail(`${locale}:${key}: ICU argument names/types differ from English`)
+        }
+        if (english && translated && JSON.stringify([...english.selects].sort()) !== JSON.stringify([...translated.selects].sort())) {
+            fail(`${locale}:${key}: ICU select options differ from English`)
         }
     }
 }
@@ -172,20 +184,46 @@ for (const file of files(path.join(root, "seanime-web/src"), /\.(ts|tsx)$/)) {
     if (/\.(test|spec)\.tsx?$|\.d\.ts$/.test(file)) continue
     try {
         const ast = parse(fs.readFileSync(file, "utf8"), { sourceType: "module", plugins: file.endsWith(".tsx") ? ["typescript", "jsx"] : ["typescript"] })
-        const factories = new Set(["createTranslator"])
-        const translators = new Set(["t", "tr", "tx"])
-        walk(ast, node => {
-            if (node.type === "ImportSpecifier" && node.imported?.name === "createTranslator") factories.add(node.local.name)
-            if (node.type === "VariableDeclarator" && node.id.type === "Identifier"
-                && node.init?.type === "CallExpression" && factories.has(node.init.callee?.name)) translators.add(node.id.name)
-        })
-        walk(ast, node => {
-            if (node.type !== "CallExpression" || !translators.has(node.callee?.name) || node.arguments[0]?.type !== "StringLiteral") return
-            const key = node.arguments[0].value
+        function isLocaleImport(binding) {
+            const declaration = binding?.path.parentPath?.node
+            if (declaration?.type !== "ImportDeclaration" || declaration.importKind === "type") return false
+            const source = declaration.source.value
+            const resolved = source.startsWith("@/") ? path.resolve(root, "seanime-web/src", source.slice(2))
+                : source.startsWith(".") ? path.resolve(path.dirname(file), source) : undefined
+            return resolved !== undefined && [localeRoot, path.join(localeRoot, "index")].includes(resolved.replace(/\.tsx?$/, ""))
+        }
+        function isFactoryCall(node, scope) {
+            if (node?.type !== "CallExpression") return false
+            const callee = unwrap(node.callee)
+            if (callee?.type === "Identifier") {
+                const binding = scope.getBinding(callee.name)
+                return isLocaleImport(binding) && binding.path.isImportSpecifier() && binding.path.node.importKind !== "type"
+                    && (binding.path.node.imported.name ?? binding.path.node.imported.value) === "createTranslator"
+            }
+            if (callee?.type === "MemberExpression" && callee.object.type === "Identifier"
+                && (callee.computed ? callee.property.value : callee.property.name) === "createTranslator") {
+                const binding = scope.getBinding(callee.object.name)
+                return isLocaleImport(binding) && binding.path.isImportNamespaceSpecifier()
+            }
+            return false
+        }
+        function isTranslatorCall(node, scope) {
+            const callee = unwrap(node.callee)
+            if (isFactoryCall(callee, scope)) return true
+            if (callee?.type !== "Identifier") return false
+            const binding = scope.getBinding(callee.name)
+            return binding?.path.isVariableDeclarator()
+                && isFactoryCall(unwrap(binding.path.node.init), binding.path.scope)
+        }
+        traverse(ast, { CallExpression(callPath) {
+            const node = callPath.node
+            const argument = unwrap(node.arguments[0])
+            if (!isTranslatorCall(node, callPath.scope) || argument?.type !== "StringLiteral") return
+            const key = argument.value
             const at = `${path.relative(root, file)}:${node.loc.start.line}`
             if (!Object.hasOwn(catalogs.en, key)) { fail(`${at}: unknown translation key ${key}`); return }
             const params = node.arguments[1]
-            const required = signatures.en[key]
+            const required = signatures.en[key]?.variables
             if (literals.has(key) && params) fail(`${at}: literal template ${key} must not be interpolated`)
             if (!required?.size) return
             if (!params) { fail(`${at}: ${key} requires ${[...required.keys()].join(", ")}`); return }
@@ -194,12 +232,12 @@ for (const file of files(path.join(root, "seanime-web/src"), /\.(ts|tsx)$/)) {
             const provided = new Map(object.properties.map(property => [property.key?.name ?? property.key?.value, property.value]))
             for (const [name, kind] of required) {
                 if (!provided.has(name)) fail(`${at}: ${key} is missing argument ${name}`)
-                const value = provided.get(name)
+                const value = unwrap(provided.get(name))
                 const stringConversion = value?.type === "CallExpression" && (value.callee?.name === "String" || value.callee?.name === "formatNumber"
                     || ["toString", "toLocaleString", "toFixed"].includes(value.callee?.property?.name))
                 if (kind === "number" && (["StringLiteral", "BooleanLiteral", "NullLiteral", "TemplateLiteral", "ArrayExpression", "ObjectExpression"].includes(value?.type) || stringConversion)) fail(`${at}: ${key}.${name} must be numeric`)
             }
-        })
+        } })
     } catch (error) { fail(`${file}: ${error.message}`) }
 }
 
