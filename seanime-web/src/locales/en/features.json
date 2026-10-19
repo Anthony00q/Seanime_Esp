@@ -273,6 +273,7 @@
     "mostChaptersShortTitle": "with most chapters"
   },
   "search": {
+    "commandInputPlaceholder": "Type a command or input...",
     "mostLikedAnime": "Most liked anime",
     "mostLikedManga": "Most liked manga",
     "discoverSeries": "Discover series",

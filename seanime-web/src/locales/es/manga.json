@@ -1,5 +1,6 @@
 {
   "manga": {
+    "downloadSelectedChapters": "{count, plural, one {Descargar capítulo seleccionado (#)} other {Descargar capítulos seleccionados (#)}}",
     "noMangaFound": "No se encontró manga",
     "noMangaAdded": "Aún no se ha añadido manga a tu biblioteca.",
     "browseManga": "Explorar manga",

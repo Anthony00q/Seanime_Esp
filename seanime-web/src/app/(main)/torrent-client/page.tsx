@@ -356,7 +356,7 @@ function Dashboard() {
                     })}
                 />
                 <div className="hidden xl:block mt-auto text-xs text-[--muted] px-3 py-2">
-                    {torrents.length} torrents
+                    {t("torrentPagination.count", { count: torrents.length })}
                 </div>
             </div>
 
@@ -692,17 +692,17 @@ function Dashboard() {
                                         setCurrentPage(1)
                                     }}
                                     options={[
-                                        { value: "20", label: "20 per page" },
-                                        { value: "50", label: "50 per page" },
-                                        { value: "100", label: "100 per page" },
-                                        { value: "200", label: "200 per page" },
+                                        { value: "20", label: t("customSources.perPage", { size: 20 }) },
+                                        { value: "50", label: t("customSources.perPage", { size: 50 }) },
+                                        { value: "100", label: t("customSources.perPage", { size: 100 }) },
+                                        { value: "200", label: t("customSources.perPage", { size: 200 }) },
                                     ]}
                                     size="sm"
                                     fieldClass="w-36"
                                     className="w-36"
                                 />
                                 <span className="text-xs text-[--muted]">
-                                    Showing {(currentPage - 1) * pageSize + 1}–{Math.min(currentPage * pageSize, visible.length)} of {visible.length}
+                                    {t("torrentPagination.showingRange", { start: visible.length ? (currentPage - 1) * pageSize + 1 : 0, end: Math.min(currentPage * pageSize, visible.length), count: visible.length })}
                                 </span>
                             </div>
 

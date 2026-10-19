@@ -6,6 +6,7 @@ import * as path from "node:path"
 import { Transform } from "node:stream"
 import { pipeline } from "node:stream/promises"
 import type { DenshiSettings } from "./denshi-settings"
+import { loadDenshiStrings } from "./locale"
 import { log } from "./logging"
 
 const archiver: any = require("archiver")
@@ -392,12 +393,13 @@ function setMpvCoreLoggingEnabled(enabled: boolean, settings: SettingsAccess): b
         settings.updateLogging(enabled)
 
         if (process.platform === "win32") {
+            const strings = loadDenshiStrings(app.getAppPath(), settings.get().locale).logging
             void dialog.showMessageBox({
                 type: "question",
-                buttons: ["Restart Now", "Later"],
+                buttons: [strings.restartNow, strings.later],
                 defaultId: 0,
-                title: "Restart Required",
-                message: "A restart is required for MpvCore logging changes to take effect. Would you like to restart now?",
+                title: strings.restartRequired,
+                message: strings.restartMessage,
                 cancelId: 1,
             }).then(({ response }) => {
                 if (response === 0) {

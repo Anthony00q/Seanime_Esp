@@ -1,5 +1,6 @@
 {
   "manga": {
+    "downloadSelectedChapters": "{count, plural, one {Download selected chapter (#)} other {Download selected chapters (#)}}",
     "noMangaFound": "No manga found",
     "noMangaAdded": "No manga has been added to your library yet.",
     "browseManga": "Browse manga",

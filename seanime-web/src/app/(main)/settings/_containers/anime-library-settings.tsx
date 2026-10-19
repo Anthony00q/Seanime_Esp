@@ -28,7 +28,7 @@ export function AnimeLibrarySettings(props: LibrarySettingsProps) {
     return (
         <div className="space-y-8">
 
-            <SettingsCard title="Local library">
+            <SettingsCard title={t("entry.localLibrary")}>
                 <Field.DirectorySelector
                     name="libraryPath"
                     label={t("settings.library.libraryPath")}
@@ -46,7 +46,7 @@ export function AnimeLibrarySettings(props: LibrarySettingsProps) {
                 />
             </SettingsCard>
 
-            <SettingsCard title="Scanning">
+            <SettingsCard title={t("settings.library.scanningTitle")}>
 
                 <Field.Switch
                     side="right"

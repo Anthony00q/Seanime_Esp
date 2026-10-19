@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/components/ui/core/styling"
 import { Modal } from "@/components/ui/modal"
 import { WSEvents } from "@/lib/server/ws-events"
+import { createTranslator } from "@/locales"
 import { useAtomValue } from "jotai"
 import * as React from "react"
 import { LuDownload, LuKeyRound, LuPackage, LuSettings, LuShieldCheck, LuTerminal } from "react-icons/lu"
@@ -26,6 +27,7 @@ type ExtensionPromptRequest = {
 }
 
 export function ExtensionPrompt() {
+    const t = createTranslator()
     const isMainTab = useIsMainTab()
     const isConnected = useAtomValue(websocketConnectedAtom)
     const { sendMessage } = useWebsocketSender()
@@ -94,7 +96,8 @@ export function ExtensionPrompt() {
     if (!isMainTab || !prompt) return null
 
     const Icon = getIcon(prompt.kind)
-    const title = prompt.message || `Allow the extension "${prompt.extension?.name || "Extension"}" to ${prompt.action}?`
+    const extension = prompt.extension?.name || t("extensions.prompt.unnamed")
+    const title = prompt.message || t("extensions.prompt.allowAction", { extension, action: prompt.action })
 
     return (
         <Modal
@@ -130,9 +133,7 @@ export function ExtensionPrompt() {
                     </div>
 
                     <p className="text-sm text-[--muted] mb-2 text-pretty break-all">
-                        {prompt.extension?.name || "An extension"} would like to perform the following action{!!prompt.resource
-                        ? ` on "${prompt.resource}"`
-                        : ""}:
+                        {t("extensions.prompt.request", { extension, resource: prompt.resource || "", hasResource: !!prompt.resource })}
                     </p>
 
                     <p
@@ -168,7 +169,7 @@ export function ExtensionPrompt() {
                         className="h-12 rounded-full border-0 bg-gray-200 text-base text-gray-950 shadow-none hover:bg-gray-300"
                         onClick={() => respond(false)}
                     >
-                        {prompt.denyLabel || "Don't Allow"}
+                        {!prompt.denyLabel || prompt.denyLabel === "Don't Allow" ? t("extensions.prompt.deny") : prompt.denyLabel}
                     </Button>
                     <Button
                         intent="warning-subtle"
@@ -176,7 +177,7 @@ export function ExtensionPrompt() {
                         className="h-12 rounded-full border-0 text-base shadow-none"
                         onClick={() => respond(true)}
                     >
-                        {prompt.allowLabel || "Allow"}
+                        {!prompt.allowLabel || prompt.allowLabel === "Allow" ? t("extensions.prompt.allow") : prompt.allowLabel}
                     </Button>
                 </div>
             </div>

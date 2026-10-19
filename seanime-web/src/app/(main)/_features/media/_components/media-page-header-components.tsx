@@ -185,7 +185,7 @@ export function MediaPageHeader(props: MediaPageHeaderProps) {
                     {(!!bannerImage) && <MotionImage
                         data-media-page-header-banner-image
                         src={getImageUrl(bannerImage || "")}
-                        alt="banner image"
+                        alt={t("common.images.banner")}
                         fill
                         quality={100}
                         priority
@@ -398,7 +398,7 @@ export function MediaPageHeaderEntryDetails(props: MediaPageHeaderEntryDetailsPr
                         <MotionImage
                             data-media-page-header-entry-details-cover-image
                             src={getImageUrl(coverImage)}
-                            alt="cover image"
+                            alt={t("common.images.cover")}
                             fill
                             priority
                             placeholder={imageShimmer(700, 475)}

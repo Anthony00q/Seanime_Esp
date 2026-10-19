@@ -168,7 +168,7 @@ function MediaMetadata({ episode, episodes, onHoverChange }: MediaMetadataProps)
                             <div className="w-[180px] h-[280px] relative rounded-[--radius-md] overflow-hidden bg-[--background] shadow-md">
                                 <SeaImage
                                     src={anime.coverImage.large}
-                                    alt="cover image"
+                                alt={t("common.images.cover")}
                                     fill
                                     priority
                                     placeholder={imageShimmer(700, 475)}
@@ -345,6 +345,7 @@ interface BannerImageProps {
 }
 
 function BannerImage({ episode, isTransitioning, shouldBlurBanner }: BannerImageProps) {
+    const t = createTranslator()
     const ts = useThemeSettings()
     const bannerImage = (!!ts.libraryScreenCustomBannerImage
         && ts.libraryScreenBannerType === ThemeLibraryScreenBannerType.Custom) ? getAssetUrl(ts.libraryScreenCustomBannerImage) :
@@ -385,7 +386,7 @@ function BannerImage({ episode, isTransitioning, shouldBlurBanner }: BannerImage
                     {bannerImage && (
                         <MotionImage
                             src={bannerImage}
-                            alt="banner image"
+                        alt={t("common.images.banner")}
                             fill
                             quality={100}
                             priority

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -120,7 +120,7 @@
 </head>
 
 <body>
-<main aria-label="Seanime is starting" class="splash">
+<main aria-label="Seanime" class="splash">
     <div class="content">
         <img alt="" class="logo" src="../assets/512x512.png">
         <div class="title">Seanime</div>
@@ -131,6 +131,13 @@
         </div>
     </div>
 </main>
+<script>
+    const params = new URLSearchParams(window.location.search)
+    const locale = params.get("locale")
+    if (["es", "en", "pt"].includes(locale)) document.documentElement.lang = locale === "pt" ? "pt-BR" : locale
+    const starting = params.get("starting")
+    if (starting) document.querySelector("main").setAttribute("aria-label", starting)
+</script>
 </body>
 
 </html>

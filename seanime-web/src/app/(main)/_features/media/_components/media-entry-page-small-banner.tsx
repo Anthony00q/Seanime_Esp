@@ -4,6 +4,9 @@ import { cn } from "@/components/ui/core/styling"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { __isDesktop__ } from "@/types/constants"
 import React from "react"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 type MediaEntryPageSmallBannerProps = {
     bannerImage?: string
@@ -36,7 +39,7 @@ export function MediaEntryPageSmallBanner(props: MediaEntryPageSmallBannerProps)
                     {(!!bannerImage) && <SeaImage
                         data-media-entry-page-small-banner-image
                         src={bannerImage || ""}
-                        alt="banner image"
+                    alt={t("common.images.banner")}
                         fill
                         quality={100}
                         priority

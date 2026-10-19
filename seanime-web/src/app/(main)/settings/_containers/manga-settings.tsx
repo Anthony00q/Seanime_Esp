@@ -88,7 +88,7 @@ export function MangaSettings(props: MangaSettingsProps) {
                 />
             </SettingsCard>
 
-            <SettingsCard title="Provider">
+            <SettingsCard title={t("manga.chapterList.provider")}>
                 <Field.Select
                     name="defaultMangaProvider"
                     label={t("settings.manga.defaultProvider")}

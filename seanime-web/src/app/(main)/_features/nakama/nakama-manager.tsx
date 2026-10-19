@@ -32,6 +32,7 @@ import { TextInput } from "@/components/ui/text-input"
 import { Tooltip } from "@/components/ui/tooltip"
 import { copyToClipboard } from "@/lib/helpers/browser"
 import { createTranslator } from "@/locales"
+import { getDateFnsLocale } from "@/locales/date-locale"
 import { WSEvents } from "@/lib/server/ws-events"
 import { useThemeSettings } from "@/lib/theme/theme-hooks"
 import { __isElectronDesktop__ } from "@/types/constants"
@@ -467,7 +468,7 @@ export function NakamaManager() {
                                             </div>
                                             {roomInfo.expiresAt && <div className="flex items-center gap-1">
                                                 <span className="text-sm text-[--muted]">{t("seaCommand.expires")} </span>
-                                                <span className="text-sm font-semibold">{new Date(roomInfo.expiresAt).toLocaleString()}</span>
+                                                <span className="text-sm font-semibold">{new Date(roomInfo.expiresAt).toLocaleString(getDateFnsLocale().code)}</span>
                                             </div>}
                                         </div>
                                     </div>

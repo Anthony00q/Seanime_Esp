@@ -2,12 +2,14 @@ import { useWebsocketMessageListener } from "@/app/(main)/_hooks/handle-websocke
 import { ProgressBar } from "@/components/ui/progress-bar"
 import { logger } from "@/lib/helpers/debug"
 import { WSEvents } from "@/lib/server/ws-events"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { FiClock } from "react-icons/fi"
 
 const log = logger("RateLimitLoader")
 
 export function RateLimitLoader() {
+    const t = createTranslator()
     const [totalSeconds, setTotalSeconds] = React.useState(0)
     const [secondsRemaining, setSecondsRemaining] = React.useState(0)
 
@@ -52,7 +54,7 @@ export function RateLimitLoader() {
             />
             <div className="mt-2 bg-orange-950/90 border border-orange-500/30 text-orange-200 px-3 py-1.5 rounded-full text-xs font-medium shadow-lg backdrop-blur-sm animate-fade-in flex items-center gap-1.5">
                 <FiClock className="animate-spin text-orange-400 size-3.5" style={{ animationDuration: "3s" }} />
-                <span>AniList rate limit: retrying in {secondsRemaining}s</span>
+                <span>{t("toast.anilist.rateLimited", { seconds: secondsRemaining })}</span>
             </div>
         </div>
     )

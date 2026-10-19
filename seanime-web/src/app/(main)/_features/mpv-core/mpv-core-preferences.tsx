@@ -376,7 +376,7 @@ export function MpvCorePreferencesModal(props: {
                                 <TextInput
                                     value={editedSubsBlacklist}
                                     onValueChange={setEditedSubsBlacklist}
-                                    placeholder="e.g. signs & songs,signs/songs"
+                                    placeholder={t("common.placeholders.example", { value: "signs & songs,signs/songs" })}
                                     onKeyDown={event => event.stopPropagation()}
                                     onInput={event => event.stopPropagation()}
                                     help={t("videoPlayer.ignoredSubtitleNamesHelp")}

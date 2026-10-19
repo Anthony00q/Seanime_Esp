@@ -7,6 +7,16 @@
   "error": {
     "title": "An error occurred",
     "uncaughtException": "Uncaught Exception",
-    "checkLogs": "Check the logs for more details."
+    "checkLogs": "Check the logs for more details.",
+    "mpvCoreStartFailed": "Seanime Denshi could not start MpvCore"
+  },
+  "logging": {
+    "restartNow": "Restart now",
+    "later": "Later",
+    "restartRequired": "Restart required",
+    "restartMessage": "A restart is required for MpvCore logging changes to take effect. Would you like to restart now?"
+  },
+  "startup": {
+    "starting": "Seanime is starting"
   }
 }

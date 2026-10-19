@@ -1,4 +1,12 @@
 {
+  "torrentPagination": {
+    "count": "{count, plural, one {# torrent} other {# torrents}}",
+    "showingRange": "Showing {start}–{end} of {count}"
+  },
+  "autoDownloaderExamples": {
+    "delay": "{count, plural, one {# min delay} other {# min delay}}",
+    "source": "e.g. Blu-Ray, BluRay or \\b(group)\\i"
+  },
   "autoDownloader": {
     "title": "Auto Downloader",
     "description": "Automatically download new episodes when they are released.",

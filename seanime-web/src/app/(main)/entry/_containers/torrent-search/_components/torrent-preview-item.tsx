@@ -236,7 +236,7 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
                     {(image || fallbackImage) && <SeaImage
                         data-torrent-preview-item-image
                         src={image || fallbackImage!}
-                        alt="episode image"
+                                alt={t("common.images.episode")}
                         fill
                         className={cn(
                             "object-cover object-center absolute w-full h-full group-hover/torrent-preview-item:blur-0 transition-opacity opacity-25 group-hover/torrent-preview-item:opacity-60 z-[0] select-none pointer-events-none",
@@ -254,7 +254,7 @@ const TorrentPreviewItem = memo((props: TorrentPreviewItemProps) => {
                     {(image) && <SeaImage
                         data-torrent-preview-item-image
                         src={image!}
-                        alt="episode image"
+                                alt={t("common.images.episode")}
                         fill
                         className={cn(
                             "object-cover object-center absolute w-full h-full group-hover/torrent-preview-item:blur-0 transition-opacity opacity-25 z-[0] select-none pointer-events-none",

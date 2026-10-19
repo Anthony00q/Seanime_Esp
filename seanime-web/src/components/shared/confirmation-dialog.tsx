@@ -2,6 +2,7 @@ import { Button, ButtonProps } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
 import { useDisclosure, UseDisclosureReturn } from "@/hooks/use-disclosure"
 import { createTranslator } from "@/locales"
+import { Description } from "@radix-ui/react-dialog"
 import React from "react"
 
 type ConfirmationDialogHookProps = {
@@ -47,7 +48,9 @@ export const ConfirmationDialog: React.FC<ConfirmationDialogHookProps & UseDiscl
                 onOpenChange={close}
             >
                 <div className="space-y-4">
-                    <div className="text-center">{description}</div>
+                    <Description asChild>
+                        <div className="text-center">{description}</div>
+                    </Description>
                     <div className="flex gap-2 justify-center items-center">
                         <Button
                             intent={actionIntent}

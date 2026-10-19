@@ -632,7 +632,7 @@ export function UISettings() {
 
                             </SettingsCard>
 
-                            <SettingsCard title="Theme">
+                            <SettingsCard title={t("settings.ui.themeTitle")}>
                                 <Field.Switch
                                     side="right"
                                     label={swLabel(

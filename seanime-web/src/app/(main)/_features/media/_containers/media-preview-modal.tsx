@@ -166,7 +166,7 @@ function Content({ entry, entryLoading, detailsLoading, details, type }: {
                 >
                     {(!!bannerImage) && <SeaImage
                         src={getImageUrl(bannerImage || "")}
-                        alt="banner image"
+                            alt={t("common.images.banner")}
                         fill
                         quality={100}
                         priority

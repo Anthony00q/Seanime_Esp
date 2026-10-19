@@ -16,6 +16,7 @@ import { StaticTabs } from "@/components/ui/tabs"
 import React from "react"
 import { translateFormat, translateGenre } from "@/lib/anilist-translations"
 import { createTranslator } from "@/locales"
+import { formatNumber } from "@/lib/helpers/number"
 import { FaRegStar } from "react-icons/fa"
 import { FiBarChart2, FiBookOpen, FiClock } from "react-icons/fi"
 import { LuHourglass, LuStar, LuTrendingUp } from "react-icons/lu"
@@ -94,7 +95,7 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
     const lastYearData = anime?.startYears?.find(y => y.startYear === thisYear - 1)
 
     const hoursWatched = Math.round((anime?.minutesWatched ?? 0) / 60)
-    const daysWatched = hoursWatched > 0 ? `${(hoursWatched / 24).toFixed(1)}d` : "0d"
+    const daysWatched = `${formatNumber(hoursWatched / 24, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}d`
 
     const scoreData = React.useMemo(() => toScoreData(anime?.scores), [anime?.scores])
     const statusData = React.useMemo(() => toStatusData(anime?.statuses), [anime?.statuses])
@@ -122,13 +123,13 @@ function AnimeStatsView({ stats }: { stats?: AL_Stats }) {
                 <MetricCard
                     icon={<FiBarChart2 />}
                     label={t("anilistStats.episodes")}
-                    value={(anime?.episodesWatched ?? 0).toLocaleString()}
+                    value={formatNumber(anime?.episodesWatched ?? 0)}
                 />
                 <MetricCard
                     icon={<FiClock />}
                     label={t("anilistStats.watchTime")}
                     value={daysWatched}
-                    sub={`${hoursWatched.toLocaleString()} ${t("anilistStats.hours")}`}
+                    sub={t("anilistStats.hoursWatchedCount", { hours: formatNumber(hoursWatched) })}
                 />
                 <MetricCard
                     icon={<LuStar />}
@@ -283,7 +284,7 @@ function MangaStatsView({ stats }: { stats?: AL_Stats }) {
                 <MetricCard
                     icon={<FiBarChart2 />}
                     label={t("anilistStats.chapters")}
-                    value={(manga?.chaptersRead ?? 0).toLocaleString()}
+                    value={formatNumber(manga?.chaptersRead ?? 0)}
                 />
                 <MetricCard
                     icon={<LuStar />}
@@ -458,22 +459,22 @@ function toHighlights({
         modeScore && {
             label: t("anilistStats.mostUsedScore"),
             value: modeScore.score,
-            detail: `${modeScore.count.toLocaleString()} ${unit}`,
+            detail: `${formatNumber(modeScore.count)} ${unit}`,
         },
         completion && {
             label: t("anilistStats.completion"),
             value: `${completion.rate}%`,
-            detail: t("anilistStats.completedOfStarted", { completed: completion.completed.toLocaleString(), started: completion.started.toLocaleString() }),
+            detail: t("anilistStats.completedOfStarted", { completed: formatNumber(completion.completed), started: formatNumber(completion.started) }),
         },
         topGenre && {
             label: t("anilistStats.topGenre"),
             value: topGenre.genre,
-            detail: joinMeta(`${topGenre.count.toLocaleString()} ${unit}`, formatAvg(topGenre.meanScore)),
+            detail: joinMeta(`${formatNumber(topGenre.count)} ${unit}`, formatAvg(topGenre.meanScore)),
         },
         peakYear && {
             label: t("anilistStats.peakStartYear"),
             value: String(peakYear.year),
-            detail: t("anilistStats.titlesStartedCount", { count: peakYear.count.toLocaleString(), unit: unit }),
+            detail: t("anilistStats.titlesStartedCount", { count: formatNumber(peakYear.count), unit: unit }),
         },
     ].filter(Boolean) as Highlight[]
 }
@@ -558,8 +559,8 @@ function toFormatRows(formats: AL_UserFormatStats[] | undefined): RankingRow[] {
             name,
             count: f.count,
             maxCount,
-            valueLabel: `${f.count.toLocaleString()} ${t("anilistStats.titles").toLowerCase()}`,
-            meta: joinMeta(t("anilistStats.hoursWatchedCount", { hours: hours.toLocaleString() }), formatAvg(f.meanScore)),
+            valueLabel: `${formatNumber(f.count)} ${t("anilistStats.titles").toLowerCase()}`,
+            meta: joinMeta(t("anilistStats.hoursWatchedCount", { hours: formatNumber(hours) }), formatAvg(f.meanScore)),
         }
     })
 }
@@ -577,8 +578,8 @@ function toRankingRows(
     const maxCount = rows[0]?.count ?? 1
 
     return rows.map(item => {
-        const countLabel = `${item.count.toLocaleString()} ${unit}`
-        const secondaryLabel = secondaryUnit ? `${item.chaptersRead.toLocaleString()} ${t("anilistStats.chapters").toLowerCase()}` : undefined
+        const countLabel = `${formatNumber(item.count)} ${unit}`
+        const secondaryLabel = secondaryUnit ? `${formatNumber(item.chaptersRead)} ${t("anilistStats.chapters").toLowerCase()}` : undefined
 
         return {
             id: item.genre ?? "Unknown",
@@ -604,7 +605,7 @@ function toStudioRows(studios: AL_UserStudioStats[] | undefined): RankingRow[] {
         name: item.studio?.name ?? "Unknown",
         count: item.count,
         maxCount,
-        valueLabel: `${item.count.toLocaleString()} ${t("anilistStats.titles").toLowerCase()}`,
+        valueLabel: `${formatNumber(item.count)} ${t("anilistStats.titles").toLowerCase()}`,
         meta: formatAvg(item.meanScore),
     }))
 }
@@ -635,7 +636,7 @@ function toReleaseYearData(years: AL_UserReleaseYearStats[] | undefined) {
 
 function formatScore(score: number | undefined) {
     if (!score) return "-"
-    return (score / 10).toFixed(1)
+    return formatNumber(score / 10, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
 }
 
 function formatAvg(score: number | undefined) {
@@ -714,7 +715,7 @@ function StatusChart({ title, data, className, ...rest }: {
                 colors={data.map(item => item.color)}
             />
             <Legend
-                categories={data.map(item => `${item.name} (${item.count.toLocaleString()})`)}
+                categories={data.map(item => `${item.name} (${formatNumber(item.count)})`)}
                 colors={data.map(item => item.color)}
                 className="mt-4 justify-center"
             />

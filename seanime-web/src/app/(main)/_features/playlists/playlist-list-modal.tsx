@@ -216,9 +216,7 @@ function PlaylistLists({ libraryCollection }: { libraryCollection: Anime_Library
                                     <div className="space-y-0 pb-3 items-center">
                                         <p className="text-md font-bold text-white max-w-lg truncate text-center">{p.name}</p>
                                         {p.episodes &&
-                                            <p className="text-sm text-[--muted] font-normal line-clamp-1 text-center">{p.episodes.length} episode{p.episodes.length > 1
-                                                ? `s`
-                                                : ""}</p>}
+                                            <p className="text-sm text-[--muted] font-normal line-clamp-1 text-center">{t("common.labels.episodesCount", { count: p.episodes.length })}</p>}
                                     </div>
                                 </div>
 

@@ -24,7 +24,7 @@ export function LoadingOverlayWithLogo({ refetch, title, compactBrandSpacing }: 
     return <LoadingOverlay showSpinner={false}>
         <SeaImage
             src="/seanime-logo.png"
-            alt="Loading..."
+            alt={t("common.labels.loading")}
             priority
             width={100}
             height={100}

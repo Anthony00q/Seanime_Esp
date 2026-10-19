@@ -145,7 +145,7 @@ function BannerImage({ media, isTransitioning, shouldBlurBanner, showTrailer, tr
                     {bannerImage && (
                         <MotionImage
                             src={bannerImage}
-                            alt="banner image"
+                            alt={t("common.images.banner")}
                             fill
                             quality={100}
                             priority
@@ -261,7 +261,7 @@ function MediaMetadata({ media, pageType, isTransitioning, onHoverChange }: Medi
                         <div className="w-[180px] h-[280px] relative rounded-[--radius-md] overflow-hidden bg-[--background] shadow-md">
                             <SeaImage
                                 src={media.coverImage.large}
-                                alt="cover image"
+                            alt={t("common.images.cover")}
                                 fill
                                 priority
                                 placeholder={imageShimmer(700, 475)}

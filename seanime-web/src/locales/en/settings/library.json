@@ -1,6 +1,7 @@
 {
   "settings": {
     "library": {
+      "scanningTitle": "Scanning",
       "title": "Local Anime Library",
       "description": "Manage your local anime library",
       "libraryPath": "Library path",

@@ -1,5 +1,12 @@
 {
   "extensions": {
+    "prompt": {
+      "unnamed": "An extension",
+      "allowAction": "Allow {extension} to perform this action: {action}?",
+      "request": "{extension} would like to perform the following action{hasResource, select, true { on \"{resource}\"} other {}}:",
+      "allow": "Allow",
+      "deny": "Don't allow"
+    },
     "title": "Extensions",
     "description": "Manage your plugins and content providers.",
     "preferences": "Preferences",

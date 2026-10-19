@@ -186,7 +186,7 @@ export const EpisodeGridItem = React.memo((props: EpisodeGridItemProps & React.C
                     {(image || media.coverImage?.large) && <EpisodeCardImage
                         data-episode-grid-item-image
                         src={getImageUrl(image || media.coverImage?.large || "")}
-                        alt="episode image"
+                    alt={t("common.images.episode")}
                         fill
                         quality={60}
                         placeholder={imageShimmer(700, 475)}

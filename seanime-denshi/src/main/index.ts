@@ -20,6 +20,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { setupChromiumFlags } from "./chromium-flags"
 import { DENSHI_SETTINGS_DEFAULTS, DenshiSettings, loadDenshiSettings, saveDenshiSettings } from "./denshi-settings"
+import { isDenshiLocale, loadDenshiStrings } from "./locale"
 import {
     allowedWebviewOrigins,
     getLocalServerPort,
@@ -348,20 +349,7 @@ function logStartupEvent(stage: string, detail?: unknown) {
 
 // Global error handlers to catch unhandled exceptions
 function getErrorStrings() {
-    const fallback = { title: "Ocurrió un error", uncaughtException: "Excepción no capturada", checkLogs: "Revisa los registros para más detalles." }
-    try {
-        const locale = (typeof denshiSettings !== "undefined" && denshiSettings.locale) || "es"
-        const localesPath = path.join(app.getAppPath(), "locales", `${locale}.json`)
-        if (fs.existsSync(localesPath)) {
-            const localeData = JSON.parse(fs.readFileSync(localesPath, "utf8"))
-            if (localeData && localeData.error) {
-                return { ...fallback, ...localeData.error }
-            }
-        }
-    } catch (e) {
-        logger.app.error("Failed to load error locale strings", formatError(e))
-    }
-    return fallback
+    return loadDenshiStrings(app.getAppPath(), denshiSettings.locale).error
 }
 
 process.on("uncaughtException", (error: Error) => {
@@ -518,20 +506,7 @@ if (!gotTheLock) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function createTray() {
-    const fallbackTrayStrings = { toggleVisibility: "Mostrar/Ocultar", removeFromDock: "Quitar del Dock", quit: "Salir de Seanime" }
-    let trayStrings = { ...fallbackTrayStrings }
-    try {
-        const locale = denshiSettings.locale || "es"
-        const localesPath = path.join(app.getAppPath(), "locales", `${locale}.json`)
-        if (fs.existsSync(localesPath)) {
-            const localeData = JSON.parse(fs.readFileSync(localesPath, "utf8"))
-            if (localeData && localeData.tray) {
-                trayStrings = { ...fallbackTrayStrings, ...localeData.tray }
-            }
-        }
-    } catch (e) {
-        logger.app.error("Failed to load tray locale strings", formatError(e))
-    }
+    const trayStrings = loadDenshiStrings(app.getAppPath(), denshiSettings.locale).tray
 
     const iconName = process.platform === "darwin" ? "18x18.png" : "icon.png"
 
@@ -1113,7 +1088,9 @@ function createSplashScreen() {
     setTimeout(showSplashScreen, 500)
 
     logStartupEvent("Loading splash screen")
-    splashScreen.loadFile(path.join(app.getAppPath(), "src/splash.html"))
+    splashScreen.loadFile(path.join(app.getAppPath(), "src/splash.html"), {
+        query: { locale: denshiSettings.locale, starting: loadDenshiStrings(app.getAppPath(), denshiSettings.locale).startup.starting },
+    })
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1201,7 +1178,7 @@ app.whenReady().then(async () => {
     catch (error) {
         const message = error instanceof Error ? error.message : String(error)
         logger.app.error("Failed to initialize MpvCore", formatError(error))
-        dialog.showErrorBox("Seanime Denshi could not start MpvCore", message)
+        dialog.showErrorBox(getErrorStrings().mpvCoreStartFailed, message)
         app.quit()
         return
     }
@@ -1521,8 +1498,13 @@ app.whenReady().then(async () => {
         })
 
         ipcMain.handle("denshi:setSettings", (_: Electron.IpcMainInvokeEvent, newSettings: Partial<DenshiSettings>) => {
-            denshiSettings = { ...DENSHI_SETTINGS_DEFAULTS, ...denshiSettings, ...newSettings }
-            saveDenshiSettings(denshiSettings)
+            if (!newSettings || typeof newSettings !== "object" || Array.isArray(newSettings)
+                || (Object.prototype.hasOwnProperty.call(newSettings, "locale") && !isDenshiLocale(newSettings.locale))) {
+                throw new Error("Invalid Denshi settings")
+            }
+            const nextSettings = { ...DENSHI_SETTINGS_DEFAULTS, ...denshiSettings, ...newSettings }
+            if (!saveDenshiSettings(nextSettings)) throw new Error("Failed to persist Denshi settings")
+            denshiSettings = nextSettings
             logger.settings.info("Updated", denshiSettings)
 
             // Apply openAtLaunch immediately (only supported on macOS and Windows)

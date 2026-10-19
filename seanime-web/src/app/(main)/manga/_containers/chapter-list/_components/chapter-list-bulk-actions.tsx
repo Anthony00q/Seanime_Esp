@@ -1,5 +1,6 @@
 import { HibikeManga_ChapterDetails } from "@/api/generated/types"
 import { Button } from "@/components/ui/button"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { FaDownload } from "react-icons/fa"
 
@@ -9,6 +10,7 @@ type ChapterListBulkActionsProps = {
 }
 
 export function ChapterListBulkActions(props: ChapterListBulkActionsProps) {
+    const t = createTranslator()
 
     const {
         rowSelectedChapters,
@@ -20,7 +22,7 @@ export function ChapterListBulkActions(props: ChapterListBulkActionsProps) {
         onDownloadSelected(rowSelectedChapters || [])
     }, [onDownloadSelected, rowSelectedChapters])
 
-    if (rowSelectedChapters?.length === 0) return null
+    if (!rowSelectedChapters?.length) return null
 
     return (
         <>
@@ -32,7 +34,7 @@ export function ChapterListBulkActions(props: ChapterListBulkActionsProps) {
                 className="animate-pulse"
                 data-download-selected-chapters-button
             >
-                Download selected chapters ({rowSelectedChapters?.length})
+                {t("manga.downloadSelectedChapters", { count: rowSelectedChapters.length })}
             </Button>
         </>
     )

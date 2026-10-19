@@ -6,7 +6,8 @@
   "author": "5rahim <talkwithrahim@gmail.com>",
   "scripts": {
     "build:main": "tsc -p tsconfig.main.json",
-    "test:main": "node --test tests/*.test.mjs",
+    "test:main": "npm run build:main && node --test tests/*.test.mjs",
+    "test:i18n": "npm run build:main && node --test tests/locale*.test.mjs",
     "sync:mpv-prism": "node scripts/sync-mpv-prism.mjs",
     "dev": "npm run build:main && npm run sync:mpv-prism && NODE_ENV=development electron .",
     "build": "npm run build:main && npm run sync:mpv-prism && electron-builder build",

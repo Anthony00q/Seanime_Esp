@@ -1,6 +1,7 @@
 {
   "settings": {
     "locale": {
+      "changeFailed": "Não foi possível salvar o idioma. Verifique o acesso ao armazenamento e tente novamente.",
       "title": "Idioma",
       "description": "Altere o idioma da aplicação.",
       "restartRequired": "Requer Reinício",

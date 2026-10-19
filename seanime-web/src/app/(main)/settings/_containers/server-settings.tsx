@@ -214,7 +214,7 @@ export function ServerSettings(props: ServerSettingsProps) {
 
             </SettingsCard>
 
-            <SettingsCard title="Extensions">
+            <SettingsCard title={t("extensions.title")}>
                 <div data-settings-enable-extension-secure-mode>
                     <Field.Switch
                         side="right"

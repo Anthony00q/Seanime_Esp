@@ -178,7 +178,7 @@ export function ExtensionCard(props: ExtensionCardProps) {
                         {!!extension.icon ? (
                             <SeaImage
                                 src={extension.icon}
-                                alt="extension icon"
+                        alt={t("common.images.extension")}
                                 crossOrigin="anonymous"
                                 fill
                                 quality={100}

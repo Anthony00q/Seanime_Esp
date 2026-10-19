@@ -1,5 +1,7 @@
 {
   "videoPlayer": {
+    "playbackTime": "Video playback time",
+    "skipChapter": "Skip {chapter}",
     "defaults": "Defaults",
     "rendering": "Rendering",
     "preferredSubtitleLanguage": "Preferred Subtitle Language",

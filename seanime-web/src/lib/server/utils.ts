@@ -1,5 +1,6 @@
 import capitalize from "lodash/capitalize"
 import { createTranslator } from "@/locales"
+import { getDateFnsLocale } from "@/locales/date-locale"
 
 const t = createTranslator()
 
@@ -22,7 +23,7 @@ export function getMangaCollectionTitle(type?: string) {
 }
 
 export function formatDateAndTimeShort(date: string) {
-    return new Date(date).toLocaleString(undefined, {
+    return new Date(date).toLocaleString(getDateFnsLocale().code, {
         dateStyle: "short",
         timeStyle: "short",
     })

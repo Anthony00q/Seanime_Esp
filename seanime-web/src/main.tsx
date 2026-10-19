@@ -13,6 +13,7 @@ import { Button } from "./components/ui/button"
 import { setupDenshiScrollRestoration } from "./lib/router/denshi-scroll-restoration"
 import { createTranslator } from "./locales"
 import { getDenshiViewTransition } from "./lib/router/view-transitions"
+import { updateDocumentLocale } from "./locales/config"
 import { routeTree } from "./routeTree.gen"
 import "@fontsource-variable/inter/index.css"
 
@@ -152,6 +153,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
 //     script.crossOrigin = "anonymous"
 //     document.head.appendChild(script)
 // }
+updateDocumentLocale()
 ReactDOM.createRoot(document.getElementById("root")!, {
     onUncaughtError: (error, errorInfo) => {
         console.error("[Root] Uncaught renderer error", error, errorInfo)

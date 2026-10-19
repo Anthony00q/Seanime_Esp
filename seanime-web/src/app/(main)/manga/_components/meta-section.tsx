@@ -134,7 +134,7 @@ export function MetaSection(props: { entry: Manga_Entry | undefined, details: AL
                         {!!entry.media.idMal && <DropdownMenuItem
                             onClick={() => openTab(`https://myanimelist.net/manga/${entry.media?.idMal}`)}
                         >
-                            <SiMyanimelist /> Open on MAL
+                    <SiMyanimelist /> {t("entry.dropdown.openOnMAL")}
                         </DropdownMenuItem>}
                         {isCustomSource(entry.mediaId) && !!getCustomSourceMediaSiteUrl(entry.media) && <DropdownMenuItem
                             onClick={() => openTab(getCustomSourceMediaSiteUrl(entry.media)!)}

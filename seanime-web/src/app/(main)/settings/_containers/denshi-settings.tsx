@@ -2,6 +2,7 @@ import { SettingsCard } from "@/app/(main)/settings/_components/settings-card"
 import { Switch } from "@/components/ui/switch"
 import { createTranslator } from "@/locales"
 import React from "react"
+import { toast } from "sonner"
 import { RiSettings3Fill } from "react-icons/ri"
 
 const t = createTranslator()
@@ -18,6 +19,10 @@ export function DenshiSettings() {
                 setSettings(s)
                 settingsRef.current = s
                 setLoading(false)
+            }).catch(error => {
+                console.error("[Denshi] Failed to load settings", error)
+                setLoading(false)
+                toast.error(t("common.toast.error"))
             })
         }
     }, [])
@@ -28,7 +33,11 @@ export function DenshiSettings() {
         const newSettings = { ...settingsRef.current, [key]: value }
         settingsRef.current = newSettings
         setSettings(newSettings)
-        window.electron.denshiSettings.set(newSettings)
+        // Keep the original optimistic controls without resending a stale locale.
+        window.electron.denshiSettings.set({ [key]: value }).catch(error => {
+            console.error("[Denshi] Failed to save settings", error)
+            toast.error(t("common.toast.error"))
+        })
     }
 
     if (loading || !settings) {

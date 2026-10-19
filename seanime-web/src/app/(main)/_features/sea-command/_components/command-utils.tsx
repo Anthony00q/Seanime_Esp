@@ -17,7 +17,7 @@ export function CommandItemMedia({ media, type }: { media: AL_BaseAnime | AL_Bas
             <div className="size-12 flex-none rounded-[--radius-md] relative overflow-hidden">
                 <SeaImage
                     src={media.coverImage?.medium || ""}
-                    alt="episode image"
+                            alt={t("common.images.episode")}
                     fill
                     className="object-center object-cover"
                     placeholder={imageShimmer(700, 475)}
