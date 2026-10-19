@@ -21,8 +21,7 @@
   <a href="https://github.com/5rahim/seanime">Original Project</a> |
   <a href="https://seanime.app/docs">Documentation</a> |
   <a href="https://github.com/Anthony00q/Seanime_Esp/releases">Latest release</a> |
-  <a href="https://seanime.app/docs/policies">Copyright</a> |
-  <a href="https://discord.gg/Sbr7Phzt6m">Discord</a>
+  <a href="https://seanime.app/docs/policies">Copyright</a>
 </p>
 
 <div align="center">
@@ -31,9 +30,6 @@
   </a>
   <a href="https://github.com/Anthony00q/Seanime_Esp">
     <img src="https://img.shields.io/badge/Languages-ES%20%7C%20PT%20%7C%20EN-blue?style=flat-square" alt="supported languages" />
-  </a>
-  <a href="https://discord.gg/Aruz7wdAaf">
-    <img src="https://img.shields.io/discord/1224767201551192224?style=flat-square&logo=Discord&color=blue&label=Discord" alt="discord" />
   </a>
 </div>
 
@@ -47,7 +43,7 @@ If you like the project, leave a star on this and the <a href="https://github.co
 
 This is a **multilingual fork** of the [Seanime](https://github.com/5rahim/seanime) project created by [5rahim](https://github.com/5rahim).
 
-**Mission:** Transform Seanime into a globally accessible platform through a robust internationalization (i18n) architecture, a feature missing in the base project. Our main focus is the Spanish and Portuguese-speaking community, ensuring full and immediate parity with updates from the original project.
+**Goal:** I maintain this fork to use Seanime in Spanish and share the translations with anyone who finds them useful. It also includes English and Portuguese. I work on it on my own and try to bring in updates from the original project when I can.
 
 **Branch structure:**
 - `main` → pure mirror of upstream (no modifications)
@@ -85,8 +81,8 @@ This is a **multilingual fork** of the [Seanime](https://github.com/5rahim/seani
 ## 📥 Getting Started (Installation)
 
 1. Go to the [Releases](https://github.com/Anthony00q/Seanime_Esp/releases) section.
-2. Download the archive for your operating system (Windows, Linux or macOS).
-3. Extract the archive to a folder of your choice and run the app.
+2. Download Seanime Denshi (desktop) or the server with web interface for your operating system and architecture.
+3. Install the app or extract the archive and run it, depending on the download format.
 
 ---
 
@@ -96,24 +92,24 @@ The original project has no native support for multiple languages (i18n), so a r
 
 ### 🌍 Current Status
 
-The current ecosystem covers **practically the entire interface natively in Spanish, English and Portuguese (pt)**. The biggest novelty is that the language is fully dynamic: users can freely switch between the three languages from Settings, applying changes in real time to the entire interface. Moreover, the modular architecture allows scaling to any additional language without friction. Constant maintenance is performed to polish context, ensure natural language and guarantee that every update from the original project is adapted immediately upon release.
+The fork provides **broad interface coverage in Spanish, English and Portuguese (code `pt`, Brazilian variant)**. Select the language in Settings, then confirm the interface reload or Denshi restart to apply it. The modular architecture supports adding languages by following the contribution guide. Maintenance aims to improve wording and adapt changes from the original project, without guaranteeing an immediate update after every upstream release.
 
 > [!WARNING]
 > **Verification status**: The translation covers the vast majority of the interface, but **not every section has been exhaustively verified** to rule out regressions introduced during the translation process, and a few small strings may still be missing or in need of polish. If you find any errors, stray English text or broken behavior, please report it in the [Issues](https://github.com/Anthony00q/Seanime_Esp/issues) section.
 
 **Technical System Details:**
-- **Thousands of translation keys** in 25 modular JSON files, with strict type validation to prevent errors.
-- **Intact Go backend** — Native server messages are intercepted and translated in the frontend (`SERVER_TOAST_MAP`).
-- **Dates and Calendars** — Full dynamic adaptation of date formatting using `date-fns` and idiomatic capitalization patches.
-- **Zero Hardcoding** — Not a single visible string hard-coded directly in React code.
-- **Scalable Support** — Modular architecture that allows any contributor to easily add new languages following the `Traducciones.md` guide.
+- **Modular catalogs** — Thousands of JSON translation keys, with type validation and key parity across languages.
+- **Server messages** — Toasts and HTTP errors are translated through frontend adapters, without introducing translations in Go. The fork also maintains its own updater adaptations.
+- **Dates and Calendars** — Dynamic locale formatting and capitalization using `date-fns` and fork utilities.
+- **Centralized text** — Translations live in catalogs; some text may still need translation, and custom extension content is not translated automatically.
+- **New languages** — The [`Traducciones.md`](Traducciones.md) guide explains how to add and validate a language.
 
 **Translated Areas and Components:**
-More than **300 React components** and **hundreds of server notifications** have been adapted, covering the entire experience:
+Translations cover the main areas of the application, including:
 - **Visual Core:** Navigation, Command Palette (Sea Command), Home Screen, Discovery and Setup Wizard.
 - **Consumption:** Full Video Player (Subtitles, Chromecast, Anime4K), Interactive Manga Reader and Watch Parties (Nakama).
 - **Management:** Advanced Settings, Local Library Scanner, Explorer, Automatic Downloader and Extension Store.
-- **AniList & Metadata:** Fully integrated dictionary (hundreds of keys for genres, formats, statuses, seasons and tags), Progress Tracking and Offline Lists.
+- **AniList & Metadata:** Dictionary of genres, formats, statuses, seasons and tags, Progress Tracking and Offline Lists.
 
 ---
 

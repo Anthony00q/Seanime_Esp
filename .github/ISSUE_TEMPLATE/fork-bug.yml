@@ -1,5 +1,5 @@
-name: Error exclusivo del fork (actualización de la app)
-description: Fallo al actualizar Seanime_Esp a una nueva versión, o error que solo pasa en esta versión traducida (no en la original)
+name: Problema con Seanime Esp
+description: Reporta un fallo de la aplicación, del cambio de idioma o de las actualizaciones.
 title: 'bug: '
 labels:
   - bug
@@ -7,54 +7,104 @@ body:
   - type: markdown
     attributes:
       value: |
-        ⚠️ **¡ALTO AHÍ!** Por favor lee esto antes de reportar:
-        - Si el error es sobre **la reproducción, UI rota, fallos al escanear o funciones base de Seanime**, debes reportarlo en el [repositorio original de 5rahim](https://github.com/5rahim/seanime/issues).
-        - Usa esta plantilla **SOLO** si el problema es al **actualizar la app a una nueva versión**, si la app **crashea al cambiar de idioma**, o si hay un problema que **solo pasa en esta versión traducida**.
-
-  - type: dropdown
-    id: origen
-    attributes:
-      label: Origen del Problema
-      description: ¿Estás seguro de que este error pertenece a este fork y no a la aplicación original?
-      options:
-        - "Sí, falla al actualizar la app a una nueva versión"
-        - "Sí, la app crashea al cambiar de idioma"
-        - "No estoy seguro, pero solo me pasa en esta versión traducida"
-        - "No, creo que es un error de la app en general (¡Ve a reportarlo al repositorio original!)"
-    validations:
-      required: true
-
-  - type: textarea
-    id: descripcion
-    attributes:
-      label: Descripción del Error
-      description: Explica detalladamente qué estabas haciendo y qué falló.
-      placeholder: "Ej: Le di al botón de actualizar y me salió este error..."
-    validations:
-      required: true
-
-  - type: textarea
-    id: captura
-    attributes:
-      label: Captura de Pantalla o Logs
-      description: Adjunta una imagen o copia los logs (esto ayuda muchísimo a detectar si es de la traducción o de la versión original).
+        Si algo no funciona en Seanime Esp, puedes reportarlo aquí. **No necesitas instalar ni probar Seanime original**, ni saber de dónde viene el fallo.
+        Si ya lo probaste en la versión original, puedes comentarlo, pero no es un requisito. Para corregir o mejorar un texto, usa la plantilla de traducción.
 
   - type: input
     id: version
     attributes:
-      label: Versión de la App
-      description: Qué versión de Seanime_Esp estás usando (la ves en Ajustes, abajo del todo).
-      placeholder: v3.10.0
+      label: Versión de Seanime Esp
+      description: Indica la versión que aparece en Ajustes. Si no puedes verla, escribe que no la sabes.
+      placeholder: "Ej.: v3.x.x"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: variante
+    attributes:
+      label: Cómo usas la aplicación
+      options:
+        - Seanime Denshi (aplicación de escritorio)
+        - Interfaz web en un navegador
+        - No estoy seguro
     validations:
       required: true
 
   - type: dropdown
     id: sistema
     attributes:
-      label: Sistema Operativo
+      label: Sistema operativo
+      description: El del dispositivo donde ves el problema. Puedes añadir la versión en la descripción.
       options:
         - Windows
         - Linux
         - macOS
+        - Android (navegador)
+        - iOS / iPadOS (navegador)
+        - Otro / No estoy seguro
     validations:
       required: true
+
+  - type: input
+    id: navegador
+    attributes:
+      label: Navegador y entorno (opcional)
+      description: Si usas la interfaz web, indica el navegador. Si el servidor está en otro equipo, puedes indicar también su sistema operativo.
+      placeholder: "Ej.: Firefox en Android; servidor en Linux"
+
+  - type: dropdown
+    id: idioma
+    attributes:
+      label: Idioma seleccionado
+      options:
+        - Español
+        - Português
+        - English
+        - Otro / No estoy seguro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: seccion
+    attributes:
+      label: Apartado afectado
+      options:
+        - Instalación / Inicio de la aplicación
+        - Actualización de la aplicación
+        - Cambio de idioma
+        - Reproducción / Streaming
+        - Biblioteca / Escaneo
+        - Manga
+        - Descargas / Torrents
+        - Interfaz / Ajustes
+        - Extensiones
+        - Otro / No estoy seguro
+    validations:
+      required: true
+
+  - type: textarea
+    id: descripcion
+    attributes:
+      label: Qué ocurre y qué esperabas
+      description: Describe el fallo y el resultado que esperabas. Si aparece un mensaje de error, copia su texto exacto.
+      placeholder: "Ej.: Al confirmar el cambio de idioma, la ventana se cierra y no vuelve a abrirse. Esperaba que la aplicación se reiniciara."
+    validations:
+      required: true
+
+  - type: textarea
+    id: pasos
+    attributes:
+      label: Cómo reproducirlo
+      description: Indica los pasos que seguiste y si ocurre siempre o solo a veces. Si no sabes reproducirlo, cuenta qué estabas haciendo.
+      placeholder: |
+        1. Abro...
+        2. Pulso...
+        3. Ocurre...
+    validations:
+      required: true
+
+  - type: textarea
+    id: captura
+    attributes:
+      label: Capturas o logs (opcional)
+      description: Adjunta solo lo relacionado con el fallo. Oculta contraseñas, tokens, claves de API y datos personales antes de publicarlos.

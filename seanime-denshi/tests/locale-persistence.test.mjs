@@ -45,7 +45,7 @@ function settingsHandlers(settings, initial, { save = settings.saveDenshiSetting
 }
 
 function fixture(t, { failRename = false } = {}) {
-    const temporary = process.platform === "win32" ? path.join(os.tmpdir(), "opencode") : os.tmpdir()
+    const temporary = process.platform === "win32" ? path.join(os.tmpdir(), "seanime-i18n") : os.tmpdir()
     fs.mkdirSync(temporary, { recursive: true })
     const directory = fs.mkdtempSync(path.join(temporary, "fork-i18n-native-"))
     t.after(() => fs.rmSync(directory, { recursive: true, force: true }))

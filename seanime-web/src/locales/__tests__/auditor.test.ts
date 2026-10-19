@@ -20,7 +20,7 @@ const mutate = (locale: string, change: (value: any) => void) => {
 const rejects = (fragment: string) => expect(auditTranslations({ root }).errors.some((error: string) => error.includes(fragment))).toBe(true)
 
 beforeEach(() => {
-    const temporary = process.platform === "win32" ? path.join(os.tmpdir(), "opencode") : os.tmpdir()
+    const temporary = process.platform === "win32" ? path.join(os.tmpdir(), "seanime-i18n") : os.tmpdir()
     fs.mkdirSync(temporary, { recursive: true })
     root = fs.mkdtempSync(path.join(temporary, "fork-i18n-audit-"))
     for (const locale of ["en", "es", "pt"]) {
