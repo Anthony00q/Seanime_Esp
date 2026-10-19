@@ -7,6 +7,7 @@ import { LuChevronLeft, LuChevronRight, LuVolume, LuVolume1, LuVolume2, LuVolume
 import { RiPauseLargeLine, RiPlayLargeLine } from "react-icons/ri"
 import { RxEnterFullScreen, RxExitFullScreen } from "react-icons/rx"
 import { TbPictureInPicture, TbPictureInPictureOff } from "react-icons/tb"
+import { createTranslator } from "@/locales"
 
 export function formatTime(seconds: number) {
     const sign = seconds < 0 ? "-" : ""
@@ -667,6 +668,7 @@ export interface MediaCoreTimeRangeViewProps {
 
 
 export function MediaCoreTimeRangeView(props: MediaCoreTimeRangeViewProps) {
+    const t = createTranslator()
     const {
         seeking,
         progressPercentage,
@@ -707,7 +709,7 @@ export function MediaCoreTimeRangeView(props: MediaCoreTimeRangeViewProps) {
             aria-valuenow={progressPercentage}
             aria-valuetext={`${Math.round(progressPercentage)}%`}
             aria-orientation="horizontal"
-            aria-label="Video playback time"
+            aria-label={t("videoPlayer.playbackTime")}
             onPointerDown={onPointerDown}
             onPointerUp={onPointerUp}
             onPointerLeave={onPointerLeave}
@@ -727,7 +729,7 @@ export function MediaCoreTimeRangeView(props: MediaCoreTimeRangeViewProps) {
                         <Image
                             data-vc-element="preview-thumbnail-image"
                             src={previewThumbnailUrl}
-                            alt="Preview"
+                                    alt={t("mediaCard.preview")}
                             fill
                             sizes={`${previewWidth}px`}
                             className="object-cover rounded-md"

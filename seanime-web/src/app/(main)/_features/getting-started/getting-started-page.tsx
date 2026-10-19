@@ -848,7 +848,7 @@ export function GettingStartedPage({ status }: { status: Status }) {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1 }}
                 >
-                    By 5rahim
+                    {t("common.labels.byAuthor", { author: "5rahim" })}
                 </motion.p>
             </div>
         </div>

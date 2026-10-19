@@ -324,7 +324,7 @@ export function PlaybackManagerProgressTracking() {
                 </div>}
                 {state && <div data-progress-tracking-main-content className="text-center relative overflow-hidden py-2 space-y-2">
                     {state.mediaCoverImage && <div className="size-16 rounded-full relative mx-auto overflow-hidden mb-3">
-                        <SeaImage src={state.mediaCoverImage} alt="cover image" fill className="object-cover object-center" />
+                        <SeaImage src={state.mediaCoverImage} alt={t("common.images.cover")} fill className="object-cover object-center" />
                     </div>}
                     {/*<p className="text-[--muted]">Currently watching</p>*/}
                     <div data-progress-tracking-title>

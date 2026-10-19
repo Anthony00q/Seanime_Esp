@@ -181,7 +181,7 @@ export function InvalidExtensionCard(props: InvalidExtensionCardProps) {
                         {!!extension.extension?.icon ? (
                             <SeaImage
                                 src={extension.extension?.icon}
-                                alt="extension icon"
+                    alt={t("common.images.extension")}
                                 crossOrigin="anonymous"
                                 fill
                                 quality={100}
@@ -400,7 +400,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                         {!!extension.extension?.icon ? (
                             <SeaImage
                                 src={extension.extension?.icon}
-                                alt="extension icon"
+                            alt={t("common.images.extension")}
                                 crossOrigin="anonymous"
                                 fill
                                 quality={100}

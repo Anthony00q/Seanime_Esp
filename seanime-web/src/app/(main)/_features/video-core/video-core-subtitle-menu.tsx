@@ -118,7 +118,7 @@ export function VideoCoreSubtitleMenu({ inline, onPreferenceChange }: {
                 }}
             />}
         >
-                <VideoCoreMenuTitle>Subtitles {(!!subtitleManager && !inline) && <Tooltip
+                <VideoCoreMenuTitle>{t("videoPlayer.menuSubtitles")} {(!!subtitleManager && !inline) && <Tooltip
                 trigger={<AiFillInfoCircle className="text-sm" />}
                 className="z-[150]"
                 portalContainer={isFullscreen ? (containerElement ?? undefined) : undefined}

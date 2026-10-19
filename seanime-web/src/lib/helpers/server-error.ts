@@ -1,4 +1,4 @@
-import { createTranslator } from "@/locales"
+import { createTranslator, type TranslationKeys } from "@/locales"
 
 const t = createTranslator()
 
@@ -6,9 +6,37 @@ const t = createTranslator()
  * Mapa de strings de error del backend Go → key de traducción.
  * El backend devuelve `err.Error()` literal (internal/handlers/response.go), de ahí el match exacto.
  * Mantener en sincronía con `locales/{es,en,pt}/modules/toasts.json`.
- * Espejo de `SERVER_TOAST_MAP` (misc-events.listeners.ts) para la ruta de errores HTTP.
+ * Espejo de `SERVER_TOAST_MAP` (server-toast.ts) para la ruta de errores HTTP.
  */
-const SERVER_ERROR_MAP: Record<string, string> = {
+const SERVER_ERROR_MAP: Readonly<Record<string, TranslationKeys>> = {
+    "list entry not found": "toast.serverErrors.validation.listEntryNotFound",
+    "error: Anilist responded with an error, this is most likely a rate limit issue": "toast.serverErrors.validation.anilistRateLimit",
+    "error: Anilist responded with an error, wait one minute before refreshing": "toast.serverErrors.validation.anilistWait",
+    "no local files found for media id": "toast.serverErrors.validation.noMediaFiles",
+    "local file not found": "toast.serverErrors.validation.localFileNotFound",
+    "no local files found for selected directory": "toast.serverErrors.validation.noDirectoryFiles",
+    "destination is required": "toast.serverErrors.validation.destinationRequired",
+    "media id is required": "toast.serverErrors.validation.mediaIdRequired",
+    "invalid rule": "toast.serverErrors.validation.invalidRule",
+    "profile name is required": "toast.serverErrors.validation.profileNameRequired",
+    "invalid profile id": "toast.serverErrors.validation.invalidProfileId",
+    "provider extension not found": "toast.serverErrors.validation.providerExtensionNotFound",
+    "dummy debrid is disabled": "toast.serverErrors.validation.dummyDebridDisabled",
+    "dummy debrid settings not found": "toast.serverErrors.validation.dummyDebridSettingsNotFound",
+    "no local files found": "toast.serverErrors.validation.noLocalFiles",
+    "mediaId and progress is required": "toast.serverErrors.validation.mediaProgressRequired",
+    "invalid media id": "toast.serverErrors.validation.invalidMediaId",
+    "invalid manga source refresh mode": "toast.serverErrors.validation.invalidRefreshMode",
+    "provider and manga id are required": "toast.serverErrors.validation.providerMangaRequired",
+    "manga: Local provider not found": "toast.serverErrors.validation.localProviderNotFound",
+    "media streaming settings not found": "toast.serverErrors.validation.mediastreamSettingsNotFound",
+    "message cannot be empty": "toast.serverErrors.validation.messageRequired",
+    "unavailable": "toast.serverErrors.validation.unavailable",
+    "self-updating is not supported on mobile platforms": "toast.serverErrors.validation.mobileUpdateUnsupported",
+    "UNAUTHENTICATED": "toast.serverErrors.debrid.notAuthenticated",
+    "torrent streaming settings not found": "toast.serverErrors.validation.torrentstreamSettingsNotFound",
+    "missing torrent hash": "toast.serverErrors.validation.missingTorrentHash",
+    "destination path is not a library path": "toast.serverErrors.validation.destinationNotLibrary",
     // Compartidos entre dominios
     "invalid id": "toast.serverErrors.common.invalidId",
     "missing arguments": "toast.serverErrors.common.missingArguments",
@@ -77,15 +105,15 @@ function translateDynamicServerError(err: string): string | null {
     }
     const updateStatus = err.match(/^failed to download update: status (\d+)$/)
     if (updateStatus) {
-        return t("toast.serverErrors.download.failedToUpdateStatus", { status: updateStatus[1] } as any)
+        return t("toast.serverErrors.download.failedToUpdateStatus", { status: Number(updateStatus[1]) })
     }
     if (err.startsWith("failed to download update:")) {
         const error = err.slice("failed to download update:".length).trim()
-        return t("toast.serverErrors.download.failedToUpdate", { error } as any)
+        return t("toast.serverErrors.download.failedToUpdate", { error })
     }
     if (err.startsWith("invalid download URL:")) {
         const error = err.slice("invalid download URL:".length).trim()
-        return t("toast.serverErrors.download.invalidDownloadUrl", { error } as any)
+        return t("toast.serverErrors.download.invalidDownloadUrl", { error })
     }
     return null
 }
@@ -103,7 +131,7 @@ export function translateServerApiError(err: string): string | null {
 
     const key = SERVER_ERROR_MAP[trimmed]
     if (typeof key === "string") {
-        const result = t(key as any)
+        const result = t(key)
         // Si la key no existe, t() devuelve la propia key → fallback silencioso al inglés.
         return result === key ? null : result
     }

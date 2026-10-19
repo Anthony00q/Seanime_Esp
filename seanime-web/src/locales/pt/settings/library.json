@@ -1,6 +1,7 @@
 {
   "settings": {
     "library": {
+      "scanningTitle": "Escaneamento",
       "title": "Biblioteca de Anime Local",
       "description": "Gerenciar sua biblioteca de anime local",
       "libraryPath": "Caminho da biblioteca",

@@ -244,13 +244,13 @@ function RuleFormFields(props: RuleFormFieldsProps) {
                         <Field.Text
                             name="minSize"
                             label={t("autoDownloader.ruleForm.minSize")}
-                            placeholder="ej. 100MB"
+                            placeholder={t("settings.autoSelectProfile.minSizePlaceholder")}
                             fieldClass="w-full"
                         />
                         <Field.Text
                             name="maxSize"
                             label={t("autoDownloader.ruleForm.maxSize")}
-                            placeholder="ej. 2GB o 10GiB"
+                            placeholder={t("settings.autoSelectProfile.maxSizePlaceholder")}
                             fieldClass="w-full"
                         />
                     </div>

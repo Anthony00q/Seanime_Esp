@@ -115,6 +115,14 @@
       "defaultProviderHelp": "Used by the search engine. Select 'None' if you don't need torrent support."
     },
     "torrentClient": {
+      "builtin": {
+        "listeningPort": "Listening port",
+        "connectionsPerTorrent": "Connections per torrent",
+        "activeDownloads": "Active downloads",
+        "downloadLimit": "Download limit (KB/s)",
+        "uploadLimit": "Upload limit (KB/s)",
+        "unlimitedHelp": "Set to 0 for no limit."
+      },
       "title": "Torrent Client",
       "description": "Configure the torrent client",
       "defaultClient": "Default torrent client",

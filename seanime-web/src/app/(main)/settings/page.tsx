@@ -77,7 +77,8 @@ import { DiscordRichPresenceSettings } from "./_containers/discord-rich-presence
 import { LocalSettings } from "./_containers/local-settings"
 import { NakamaSettings } from "./_containers/nakama-settings"
 import { createTranslator } from "@/locales"
-import { getCurrentLocale, setCurrentLocale } from "@/locales/config"
+import { getCurrentLocale, isValidLocale, type Locale } from "@/locales/config"
+import { changeLocaleAndRestart } from "@/lib/helpers/locale-change"
 
 const t = createTranslator()
 
@@ -119,22 +120,19 @@ export default function Page() {
     const setWebUpdateModalOpen = useSetAtom(webUpdateModalOpenAtom)
     const setElectronUpdateModalOpen = useSetAtom(electronUpdateModalOpenAtom)
 
-    const [pendingLocale, setPendingLocale] = React.useState<string | null>(null)
+    const [pendingLocale, setPendingLocale] = React.useState<Locale | null>(null)
     const confirmRestart = useConfirmationDialog({
         title: t("settings.locale.restartRequired"),
         description: t("settings.locale.restartDescription"),
         onConfirm: async () => {
             if (pendingLocale) {
-                setCurrentLocale(pendingLocale as any)
-                if (__isElectronDesktop__ && window.electron?.denshiSettings) {
-                    const denshiSettings = await window.electron.denshiSettings.get()
-                    await window.electron.denshiSettings.set({
-                        ...denshiSettings,
-                        locale: pendingLocale,
-                    })
-                    window.electron.send("restart-app-completely")
-                } else {
-                    window.location.reload()
+                try {
+                    await changeLocaleAndRestart(pendingLocale, __isElectronDesktop__)
+                } catch (error) {
+                    console.error("[i18n] Failed to persist locale", error)
+                    toast.error(t("settings.locale.changeFailed"))
+                    formRef.current?.setValue("locale", getCurrentLocale())
+                    setPendingLocale(null)
                 }
             }
         },
@@ -507,17 +505,20 @@ export default function Page() {
                                 const newLocale = (data.locale && data.locale !== getCurrentLocale()) ? data.locale : null
 
                                 if (newLocale) {
-                                    setPendingLocale(newLocale as any)
+                                    if (isValidLocale(newLocale)) setPendingLocale(newLocale)
                                 }
 
                                 formRef.current?.reset(data)
 
                                 if (__isElectronDesktop__ && window.electron?.denshiSettings) {
-                                    const denshiSettings = await window.electron.denshiSettings.get()
-                                    await window.electron.denshiSettings.set({
-                                        ...denshiSettings,
-                                        updateChannel: data.updateChannel || "github",
-                                    })
+                                    try {
+                                        await window.electron.denshiSettings.set({ updateChannel: data.updateChannel || "github" })
+                                    } catch (error) {
+                                        console.error("[Denshi] Failed to save update channel", error)
+                                        toast.error(t("common.toast.error"))
+                                        setPendingLocale(null)
+                                        return
+                                    }
                                 }
                                 
                                 if (newLocale) {
@@ -967,22 +968,22 @@ export default function Page() {
                                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                             <Field.Number
                                                                 name="seanimePort"
-                                                                label="Listening port"
+                                                                label={t("settings.torrentClient.builtin.listeningPort")}
                                                                 formatOptions={{ useGrouping: false }}
                                                             />
-                                                            <Field.Number name="seanimeMaxConnections" label="Connections per torrent" />
-                                                            <Field.Number name="seanimeMaxActiveDownloads" label="Active downloads" />
+                                                            <Field.Number name="seanimeMaxConnections" label={t("settings.torrentClient.builtin.connectionsPerTorrent")} />
+                                                            <Field.Number name="seanimeMaxActiveDownloads" label={t("settings.torrentClient.builtin.activeDownloads")} />
                                                         </div>
                                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                             <Field.Number
                                                                 name="seanimeDownloadLimit"
-                                                                label="Download limit (KB/s)"
-                                                                help="Set to 0 for no limit."
+                                                                label={t("settings.torrentClient.builtin.downloadLimit")}
+                                                                help={t("settings.torrentClient.builtin.unlimitedHelp")}
                                                             />
                                                             <Field.Number
                                                                 name="seanimeUploadLimit"
-                                                                label="Upload limit (KB/s)"
-                                                                help="Set to 0 for no limit."
+                                                                label={t("settings.torrentClient.builtin.uploadLimit")}
+                                                                help={t("settings.torrentClient.builtin.unlimitedHelp")}
                                                             />
                                                         </div>
                                                     </AccordionContent>

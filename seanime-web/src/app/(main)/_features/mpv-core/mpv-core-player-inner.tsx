@@ -1790,7 +1790,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
                                                     }}
                                                     onPointerMove={e => e.stopPropagation()}
                                                 >
-                                                    Skip {skipChapter.label}
+                                                    {t("videoPlayer.skipChapter", { chapter: skipChapter.label })}
                                                 </Button>
                                             </div>
                                         )}

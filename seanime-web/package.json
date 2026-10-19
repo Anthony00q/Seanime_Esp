@@ -16,7 +16,12 @@
     "build:denshi": "npm run typecheck && env-cmd -f .env.denshi rsbuild build",
     "build:development:desktop": "npm run typecheck && env-cmd -f .env.development.desktop rsbuild build",
     "preview": "rsbuild preview",
-    "test": "vitest run"
+    "test": "vitest run --config vitest.shared.ts",
+    "test:i18n": "npm run typecheck:i18n && vitest run --config vitest.i18n.ts",
+    "typecheck:i18n": "tsc --pretty false -p tsconfig.i18n.json",
+    "verify:i18n": "npm run typecheck && npm run i18n:check && npm run test:i18n && npm --prefix ../seanime-denshi run test:i18n",
+    "i18n:check": "node scripts/i18n-audit.mjs",
+    "i18n:lint": "node scripts/hardcoded-audit.mjs"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.20.3",
@@ -142,6 +147,8 @@
     "zod": "^3.25.67"
   },
   "devDependencies": {
+    "happy-dom": "^21.0.3",
+    "@babel/parser": "^7.29.2",
     "@rsbuild/core": "^2.1.3",
     "@rsbuild/plugin-node-polyfill": "^1.4.6",
     "@rsbuild/plugin-react": "^2.1.0",

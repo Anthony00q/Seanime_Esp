@@ -273,6 +273,7 @@
     "mostChaptersShortTitle": "con más capítulos"
   },
   "search": {
+    "commandInputPlaceholder": "Escribe un comando o una búsqueda...",
     "mostLikedAnime": "Anime más gustado",
     "mostLikedManga": "Manga más gustado",
     "discoverSeries": "Descubrir series",

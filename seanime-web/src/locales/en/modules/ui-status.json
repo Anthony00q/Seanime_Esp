@@ -70,6 +70,8 @@
     "oops": "Oops!"
   },
   "issueReport": {
+    "eventCount": "{count, plural, one {# event} other {# events}}",
+    "screenshotCount": "{count, plural, one {# screenshot} other {# screenshots}}",
     "failedToSaveReportBrowser": "Failed to save the report to browser storage",
     "restoredPreviousReport": "Previous report restored",
     "decompressingReport": "Decompressing report...",

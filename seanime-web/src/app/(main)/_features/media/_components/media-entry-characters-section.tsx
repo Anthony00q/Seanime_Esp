@@ -87,7 +87,7 @@ export function MediaEntryCharactersSection(props: RelationsRecommendationsSecti
                                 {(edge?.node?.image?.large) && <SeaImage
                                     data-media-entry-characters-section-grid-item-image
                                     src={edge?.node?.image?.large || ""}
-                                    alt="episode image"
+                                alt={t("common.images.character")}
                                     fill
                                     quality={60}
                                     placeholder={imageShimmer(700, 475)}

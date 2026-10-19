@@ -228,7 +228,7 @@ export function AutoDownloaderProfileForm(props: AutoDownloaderProfileFormProps)
                                 draft.minSize = e.target.value
                                 return
                             })}
-                            placeholder="ej. 100MB"
+                            placeholder={t("settings.autoSelectProfile.minSizePlaceholder")}
                         />
                     </div>
                     <div className="space-y-2">
@@ -239,7 +239,7 @@ export function AutoDownloaderProfileForm(props: AutoDownloaderProfileFormProps)
                                 draft.maxSize = e.target.value
                                 return
                             })}
-                            placeholder="ej. 2GB o 10GiB"
+                            placeholder={t("settings.autoSelectProfile.maxSizePlaceholder")}
                         />
                     </div>
                 </div>
@@ -627,7 +627,7 @@ function ConditionItem(props: ConditionItemProps) {
                 <TextInput
                     value={field.term}
                     onChange={(e) => onUpdateField(field.id, "term", e.target.value)}
-                    placeholder="ej. Blu-Ray, BluRay o \b(grupo)\i"
+                    placeholder={t("autoDownloaderExamples.source")}
                     className="w-full"
                     help={t("autoDownloader.profileForm.regexHelp")}
                 />

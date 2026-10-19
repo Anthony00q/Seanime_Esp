@@ -70,6 +70,8 @@
     "oops": "¡Uy!"
   },
   "issueReport": {
+    "eventCount": "{count, plural, one {# evento} other {# eventos}}",
+    "screenshotCount": "{count, plural, one {# captura} other {# capturas}}",
     "failedToSaveReportBrowser": "Error al guardar el informe en el almacenamiento del navegador",
     "restoredPreviousReport": "Informe anterior restaurado",
     "decompressingReport": "Descomprimiendo informe...",

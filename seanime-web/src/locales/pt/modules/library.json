@@ -171,7 +171,7 @@
     "path": "Caminho",
     "size": "Tamanho",
     "associatedMedia": "Mídia Associada",
-    "animeSeries": "{count, plural, one {# série de anime} other {# séries de anime}}",
+    "animeSeries": "{count, plural, =0 {# séries de anime} one {# série de anime} other {# séries de anime}}",
     "matchedFilesTooltip": "Arquivos correspondidos",
     "unlock": "Desbloquear",
     "lock": "Bloquear",
@@ -287,7 +287,7 @@
   },
   "unknownMedia": {
     "title": "Mídias ocultas",
-    "description": "O Seanime agrupou {count, plural, one {# arquivo} other {# arquivos}} em {count, plural, one {uma série} other {séries}} que {count, plural, one {está} other {estão}} faltando na sua {hasCustomSources, select, true {coleção} other {coleção do AniList}}. Adicione a mídia para ver os arquivos na sua biblioteca ou desfaça o vínculo se estiver incorreto.",
+    "description": "O Seanime agrupou {count, plural, =0 {# arquivos} one {# arquivo} other {# arquivos}} em {count, plural, =0 {séries} one {uma série} other {séries}} que {count, plural, =0 {estão} one {está} other {estão}} faltando na sua {hasCustomSources, select, true {coleção} other {coleção do AniList}}. Adicione a mídia para ver os arquivos na sua biblioteca ou desfaça o vínculo se estiver incorreto.",
     "addAllToCollection": "Adicionar todos à {hasCustomSources, select, true {coleção} other {AniList}}",
     "matchedTo": "Vinculado a",
     "addToCollection": "Adicionar à {hasCustomSources, select, true {coleção} other {AniList}}",

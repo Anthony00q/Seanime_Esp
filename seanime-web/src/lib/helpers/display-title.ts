@@ -38,7 +38,7 @@ export function translateDisplayTitle(displayTitle: string | undefined | null): 
     // "Episode 6 & 4 more" → must be before generic Episode
     const moreMatch = displayTitle.match(/^Episode (\d+) & (\d+) more$/)
     if (moreMatch) {
-        return store(t("common.labels.episodeNumberAndMore", { number: normalize(moreMatch[1]), count: moreMatch[2] }))
+        return store(t("common.labels.episodeNumberAndMore", { number: normalize(moreMatch[1]), count: Number(moreMatch[2]) }))
     }
 
     // "Episode 7 - Title" defensivo (FilePreview y futuro-proof)

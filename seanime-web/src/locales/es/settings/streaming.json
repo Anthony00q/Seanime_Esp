@@ -115,6 +115,14 @@
       "defaultProviderHelp": "Utilizado por el motor de búsqueda. Selecciona 'Ninguno' si no necesitas soporte de torrent."
     },
     "torrentClient": {
+      "builtin": {
+        "listeningPort": "Puerto de escucha",
+        "connectionsPerTorrent": "Conexiones por torrent",
+        "activeDownloads": "Descargas activas",
+        "downloadLimit": "Límite de descarga (KB/s)",
+        "uploadLimit": "Límite de subida (KB/s)",
+        "unlimitedHelp": "Usa 0 para no limitar."
+      },
       "title": "Cliente Torrent",
       "description": "Configurar el cliente torrent",
       "defaultClient": "Cliente torrent predeterminado",

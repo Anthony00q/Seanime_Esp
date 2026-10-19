@@ -2,6 +2,7 @@ import { DirectorySelector } from "@/components/shared/directory-selector"
 import { Button } from "@/components/ui/button"
 import { Modal } from "@/components/ui/modal"
 import { upath } from "@/lib/helpers/upath"
+import { createTranslator } from "@/locales"
 import React from "react"
 import { BiFolder } from "react-icons/bi"
 
@@ -13,6 +14,7 @@ export interface ScreenshotDirModalProps {
 }
 
 export function ScreenshotDirModal({ open, onClose, onSave, portalContainer }: ScreenshotDirModalProps) {
+    const t = createTranslator()
     const [path, setPath] = React.useState("")
     const [saving, setSaving] = React.useState(false)
 
@@ -44,29 +46,26 @@ export function ScreenshotDirModal({ open, onClose, onSave, portalContainer }: S
             onOpenChange={v => {
                 if (!v && !saving) onClose()
             }}
-            title="Screenshot Folder"
+            title={t("videoPlayer.preferences.screenshotDirectory")}
+            description={t("videoPlayer.preferences.screenshotDirectoryHelp")}
             contentClass="max-w-md space-y-4"
             portalContainer={portalContainer || undefined}
         >
 
-            <p className="text-sm text-[--muted]">
-                Select the folder where you would like to save your video screenshots.
-            </p>
-
             <DirectorySelector
                 value={path}
                 onSelect={setPath}
-                label="Screenshot Folder"
+                label={t("videoPlayer.preferences.screenshotDirectory")}
                 leftIcon={<BiFolder className="text-[--indigo]" />}
-                error={!isAbsolute ? "Must be an absolute path" : ""}
+                error={!isAbsolute ? t("videoPlayer.preferences.mustBeAbsolutePath") : ""}
             />
 
             <div className="flex justify-end gap-2 mt-4">
                 <Button intent="gray-basic" onClick={onClose} disabled={saving}>
-                    Cancel
+                    {t("common.buttons.cancel")}
                 </Button>
                 <Button intent="white" onClick={handleSave} disabled={!path || !isAbsolute} loading={saving}>
-                    Save
+                    {t("common.buttons.save")}
                 </Button>
             </div>
         </Modal>

@@ -60,6 +60,7 @@
       "unsavedChangesAlert": "Você possui alterações não salvas."
     },
     "ui": {
+      "themeTitle": "Tema",
       "enableColorSettings": "Ativar configurações de cores",
       "livePreview": "Pré-visualização ao vivo",
       "livePreviewDisabled": "Desativar recarregará a página sem aplicar as alterações.",

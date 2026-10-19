@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -118,16 +118,22 @@
 
 <body>
 <div aria-hidden="true" class="bg"></div>
-<main aria-label="Seanime is starting" class="splash">
-    <img alt="Seanime" class="logo" src="../assets/512x512.png">
+<main aria-label="Seanime" class="splash">
+    <img alt="" class="logo" src="../assets/512x512.png">
     <div aria-hidden="true" class="bar"></div>
 </main>
 <div class="version" id="version"></div>
 <script>
-    const version = new URLSearchParams(location.search).get("version")
+    const params = new URLSearchParams(window.location.search)
+    const version = params.get("version")
     if (version) document.getElementById("version").textContent = "v" + version
-    
+
     if (Date.now() < new Date(2026, 10, 27).getTime()) document.body.classList.add("event")
+
+    const locale = params.get("locale")
+    if (["es", "en", "pt"].includes(locale)) document.documentElement.lang = locale === "pt" ? "pt-BR" : locale
+    const starting = params.get("starting")
+    if (starting) document.querySelector("main").setAttribute("aria-label", starting)
 </script>
 </body>
 

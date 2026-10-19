@@ -1,4 +1,4 @@
-import { getCurrentLocale } from "./config"
+import { getCurrentLocale, isValidLocale, type Locale } from "./config"
 import { isValidElement } from "react"
 import { IntlMessageFormat } from "intl-messageformat"
 
@@ -132,7 +132,7 @@ type EsMessages = UnionToIntersection<typeof esModules[number]>;
 // Tipos auxiliares para extraer rutas en formato "padre.hijo"
 type Join<K, P> = K extends string | number ? P extends string | number ? `${K}${"" extends P ? "" : "."}${P}` : never : never;
 type Paths<T> = T extends object ? {
-    [K in keyof T]-?: K extends string | number ? `${K}` | Join<K, Paths<T[K]>> : never
+    [K in keyof T]-?: K extends string | number ? T[K] extends string ? `${K}` : Join<K, Paths<T[K]>> : never
 }[keyof T] : never;
 
 // El tipo estricto de todas las keys permitidas
@@ -152,7 +152,7 @@ type PtMessages = UnionToIntersection<typeof ptModules[number]>;
 type _VerifyPt = AssertParity<CheckParity<Paths<PtMessages>>>;
 
 function flattenAndMerge(...modules: readonly Record<string, any>[]) {
-    const result: Record<string, string> = {};
+    const result: Record<string, string> = Object.create(null);
     for (const mod of modules) {
         const flat = flattenMessages(mod);
         for (const key in flat) {
@@ -174,7 +174,7 @@ const languageModules: Record<string, readonly Record<string, any>[]> = {
     pt: ptModules,
 };
 
-const translationsCache: Record<string, Record<string, string>> = {};
+const translationsCache: Record<string, Record<string, string>> = Object.create(null);
 
 function getTranslations(locale: string): Record<string, string> {
     if (!translationsCache[locale]) {
@@ -210,27 +210,28 @@ function interpolate(text: string, locale: string, params?: Record<string, any>)
 
 let defaultTranslator: ((key: TranslationKeys, params?: Record<string, any>) => string) | null = null;
 
-export function createTranslator(locale?: string) {
+function sanitizeParams(key: TranslationKeys, params?: Record<string, any>) {
+    if (!params) return params
+    let result = params
+    for (const name of Object.keys(params)) {
+        const value = params[name]
+        if (value !== null && typeof value === "object" && !Array.isArray(value) && !isValidElement(value)) {
+            if (result === params) result = { ...params }
+            console.warn(`[i18n] Se convirtió a texto el objeto del parámetro "${name}" para "${key}".`)
+            result[name] = value instanceof Error ? value.message : String(value)
+        }
+    }
+    return result
+}
+
+export function createTranslator(locale?: Locale) {
     // Locale explícito → translator estático (para tests/SSR)
     if (locale) {
+        locale = isValidLocale(locale) ? locale : "es"
         const messages = getTranslations(locale)
         const fallbackMessages = getTranslations("en")
         function tStatic(key: TranslationKeys, params?: Record<string, any>): string {
-            let safeParams = params;
-            if (safeParams) {
-                let paramsCloned = false;
-                for (const k in safeParams) {
-                    const val = safeParams[k];
-                    if (val !== null && typeof val === 'object' && !Array.isArray(val) && !isValidElement(val)) {
-                        if (!paramsCloned) {
-                            safeParams = { ...safeParams };
-                            paramsCloned = true;
-                        }
-                        console.warn(`[i18n] 🛡️ Prevención de crash: Se pasó un objeto crudo en el parámetro "${k}" para la key "${key}". Se convirtió a string.`);
-                        safeParams[k] = val instanceof Error ? val.message : String(val);
-                    }
-                }
-            }
+            const safeParams = sanitizeParams(key, params)
             const translation = messages[key as string]
             if (translation) {
                 return interpolate(translation, locale!, safeParams)
@@ -259,21 +260,7 @@ export function createTranslator(locale?: string) {
         const messages = getTranslations(resolved)
         const fallbackMessages = getTranslations("en")
 
-        let safeParams = params;
-        if (safeParams) {
-            let paramsCloned = false;
-            for (const k in safeParams) {
-                const val = safeParams[k];
-                if (val !== null && typeof val === 'object' && !Array.isArray(val) && !isValidElement(val)) {
-                    if (!paramsCloned) {
-                        safeParams = { ...safeParams };
-                        paramsCloned = true;
-                    }
-                    console.warn(`[i18n] 🛡️ Prevención de crash: Se pasó un objeto crudo en el parámetro "${k}" para la key "${key}". Se convirtió a string.`);
-                    safeParams[k] = val instanceof Error ? val.message : String(val);
-                }
-            }
-        }
+        const safeParams = sanitizeParams(key, params)
 
         const translation = messages[key as string]
         if (translation) {

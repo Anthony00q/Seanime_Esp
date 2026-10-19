@@ -11,6 +11,9 @@ import { useSetAtom } from "jotai/react"
 import { AnimatePresence, motion } from "motion/react"
 import React, { useEffect, useState } from "react"
 import { useWindowScroll } from "react-use"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export const __libraryHeaderImageAtom = atom<{ bannerImage?: string | null, episodeImage?: string | null } | null>({
     bannerImage: null,
@@ -138,7 +141,7 @@ export function LibraryHeader({ list }: { list: Anime_Episode[] }) {
                                 <MotionImage
                                     data-library-header-banner-image
                                     src={getImageUrl(actualImage || prevImage!)}
-                                    alt="banner image"
+                        alt={t("common.images.banner")}
                                     fill
                                     quality={100}
                                     sizes="100vw"

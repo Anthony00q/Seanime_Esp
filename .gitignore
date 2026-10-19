@@ -10,6 +10,7 @@ testdata/
 .github/*
 !.github/ISSUE_TEMPLATE
 !.github/scripts
+!.github/workflows/
 !.github/pull_request_template.md
 
 Dockerfile

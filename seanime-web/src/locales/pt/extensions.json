@@ -1,5 +1,12 @@
 {
   "extensions": {
+    "prompt": {
+      "unnamed": "Uma extensão",
+      "allowAction": "Permitir que {extension} realize esta ação: {action}?",
+      "request": "{extension} quer realizar a seguinte ação{hasResource, select, true { em \"{resource}\"} other {}}:",
+      "allow": "Permitir",
+      "deny": "Não permitir"
+    },
     "title": "Extensões",
     "description": "Gerencie seus plugins e provedores de conteúdo.",
     "preferences": "Preferências",

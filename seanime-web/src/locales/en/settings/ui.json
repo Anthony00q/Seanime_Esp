@@ -60,6 +60,7 @@
       "unsavedChangesAlert": "You have unsaved changes."
     },
     "ui": {
+      "themeTitle": "Theme",
       "enableColorSettings": "Enable color settings",
       "livePreview": "Live preview",
       "livePreviewDisabled": "Disabling will reload the page without applying changes.",

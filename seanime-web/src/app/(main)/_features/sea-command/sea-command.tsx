@@ -21,6 +21,9 @@ import { SeaCommandHandler } from "./config"
 import { SeaCommandInjectables } from "./sea-command-injectables"
 import { SeaCommandList } from "./sea-command-list"
 import { SeaCommandNavigation, SeaCommandUserMediaNavigation } from "./sea-command-navigation"
+import { createTranslator } from "@/locales"
+
+const tr = createTranslator()
 
 export const __seaCommand_shortcuts = atomWithStorage<string[]>("sea-command-shortcuts", ["meta+j", "q"], undefined, { getOnInit: true })
 
@@ -217,7 +220,7 @@ export function SeaCommand() {
             >
 
                 <CommandInput
-                    placeholder="Type a command or input..."
+                    placeholder={tr("search.commandInputPlaceholder")}
                     value={input}
                     onValueChange={setInput}
                 />

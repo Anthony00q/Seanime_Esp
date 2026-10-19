@@ -699,7 +699,7 @@ export function VideoCorePreferencesModal({ isWebPlayer }: { isWebPlayer: boolea
                             <TextInput
                                 value={editedSubsBlacklist}
                                 onValueChange={setEditedSubsBlacklist}
-                                placeholder="e.g. signs & songs,signs/songs"
+                                    placeholder={t("common.placeholders.example", { value: "signs & songs,signs/songs" })}
                                 onKeyDown={(e) => e.stopPropagation()}
                                 onInput={(e) => e.stopPropagation()}
                                 help={t("videoPlayer.ignoredSubtitleNamesHelp")}

@@ -1,5 +1,12 @@
 {
   "common": {
+    "images": {
+      "banner": "Imagem do banner",
+      "cover": "Imagem de capa",
+      "episode": "Imagem do episódio",
+      "character": "Imagem do personagem",
+      "extension": "Ícone da extensão"
+    },
     "buttons": {
       "save": "Salvar",
       "cancel": "Cancelar",
@@ -25,6 +32,8 @@
       "openInExternalPlayer": "Abrir mídia no reprodutor externo"
     },
     "labels": {
+      "byAuthor": "Por {author}",
+      "episodesCount": "{count, plural, =0 {# episódios} one {# episódio} other {# episódios}}",
       "name": "Nome",
       "type": "Tipo",
       "status": "Status",
@@ -89,6 +98,7 @@
       "somethingWentWrong": "Algo correu mal:"
     },
     "placeholders": {
+      "example": "ex. {value}",
       "allGenres": "Todos os gêneros",
       "allTags": "Todas as tags",
       "allFormats": "Todos os formatos",

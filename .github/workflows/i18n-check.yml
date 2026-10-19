@@ -1,0 +1,43 @@
+name: Translation checks
+
+on:
+  pull_request:
+    branches: [traducciones]
+  push:
+    branches: [traducciones]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  translations:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            seanime-web/package-lock.json
+            seanime-denshi/package-lock.json
+      - name: Install frontend dependencies
+        working-directory: seanime-web
+        run: npm ci
+      - name: Validate types, catalogs and translation regressions
+        working-directory: seanime-web
+        run: |
+          npm run typecheck
+          npm run i18n:check
+          npm run test:i18n
+      - name: Install native dependencies without downloading Electron
+        working-directory: seanime-denshi
+        run: npm ci --ignore-scripts
+      - name: Compile and test native locales and persistence
+        working-directory: seanime-denshi
+        run: npm run test:i18n

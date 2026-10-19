@@ -73,7 +73,7 @@ declare global {
             killServer: () => Promise<any>;
             denshiSettings: {
                 get: () => Promise<DenshiSettings>;
-                set: (settings: DenshiSettings) => Promise<DenshiSettings>;
+                set: (settings: Partial<DenshiSettings>) => Promise<DenshiSettings>;
             };
             mpvCore: {
                 createTempSubtitle: (filename: string, content: string) => Promise<string>;

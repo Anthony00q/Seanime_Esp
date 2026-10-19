@@ -120,7 +120,7 @@ function ProfileItem({ profile, onEdit }: { profile: Anime_AutoDownloaderProfile
                             {!!profile.conditions?.length &&
                                 <span>{profile.conditions?.length} {t("autoDownloader.profiles.conditions")}{(profile.conditions?.length !== 1) ? "" : ""}</span>}
                             {!!profile.minimumScore && <span>{`>=`} {profile.minimumScore}</span>}
-                            {!!profile.delayMinutes && <span>{profile.delayMinutes} min. delay</span>}
+                            {!!profile.delayMinutes && <span>{t("autoDownloaderExamples.delay", { count: profile.delayMinutes })}</span>}
 
                         </div>
                     </div>

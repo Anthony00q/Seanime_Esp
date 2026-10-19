@@ -127,7 +127,7 @@ export function ContinueWatching({ episodes, isLoading, linkTemplate, withTitle 
                         <div className="w-12 aspect-[6/5] flex-none rounded-[--radius-md] relative overflow-hidden">
                             <SeaImage
                                 src={episode.episodeMetadata?.image || ""}
-                                alt="episode image"
+                    alt={t("common.images.episode")}
                                 fill
                                 className="object-center object-cover"
                             />

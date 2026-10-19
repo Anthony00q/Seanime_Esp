@@ -2,6 +2,7 @@ import { app } from "electron"
 import log from "electron-log/main"
 import fs from "node:fs"
 import path from "node:path"
+import { resolveDenshiLocale, type DenshiLocale } from "./locale"
 
 export type DenshiSettings = {
     minimizeToTray: boolean
@@ -11,7 +12,7 @@ export type DenshiSettings = {
     windowBounds: Electron.Rectangle | null
     windowMaximized: boolean
     mpvPrismLogging: boolean
-    locale: string
+    locale: DenshiLocale
 }
 
 export const DENSHI_SETTINGS_DEFAULTS: DenshiSettings = {
@@ -34,7 +35,7 @@ export function loadDenshiSettings(): DenshiSettings {
         const settingsPath = getDenshiSettingsPath()
         if (fs.existsSync(settingsPath)) {
             const data = JSON.parse(fs.readFileSync(settingsPath, "utf-8"))
-            return { ...DENSHI_SETTINGS_DEFAULTS, ...data }
+            return { ...DENSHI_SETTINGS_DEFAULTS, ...data, locale: resolveDenshiLocale(data?.locale) }
         }
     }
     catch (error) {
@@ -43,11 +44,16 @@ export function loadDenshiSettings(): DenshiSettings {
     return { ...DENSHI_SETTINGS_DEFAULTS }
 }
 
-export function saveDenshiSettings(settings: DenshiSettings): void {
+export function saveDenshiSettings(settings: DenshiSettings): boolean {
+    const settingsPath = getDenshiSettingsPath()
+    const temporaryPath = `${settingsPath}.tmp`
     try {
-        fs.writeFileSync(getDenshiSettingsPath(), JSON.stringify(settings, null, 2), "utf-8")
+        fs.writeFileSync(temporaryPath, JSON.stringify(settings, null, 2), "utf-8")
+        fs.renameSync(temporaryPath, settingsPath)
+        return true
     }
     catch (error) {
         log.error("[Denshi] Failed to save settings:", error)
+        return false
     }
 }

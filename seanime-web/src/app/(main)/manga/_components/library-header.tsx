@@ -10,6 +10,9 @@ import { useSetAtom } from "jotai/react"
 import { AnimatePresence, motion } from "motion/react"
 import React, { useEffect, useState } from "react"
 import { useWindowScroll } from "react-use"
+import { createTranslator } from "@/locales"
+
+const t = createTranslator()
 
 export const __mangaLibraryHeaderImageAtom = atom<string | null>(null)
 export const __mangaLibraryHeaderMangaAtom = atom<AL_BaseManga | null>(null)
@@ -126,7 +129,7 @@ export function MangaLibraryHeader({ manga }: { manga: AL_BaseManga[] }) {
                                 <MotionImage
                                     data-library-header-banner-image
                                     src={getImageUrl(actualImage || prevImage!)}
-                                    alt="banner image"
+                        alt={t("common.images.banner")}
                                     fill
                                     quality={100}
                                     sizes="100vw"

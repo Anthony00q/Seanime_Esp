@@ -114,7 +114,7 @@ export function ReleaseGroupsField(props: ReleaseGroupsFieldProps) {
                 name={props.name}
                 control={props.control}
                 type="text"
-                placeholder="e.g. SubsPlease"
+                placeholder={t("common.placeholders.example", { value: "SubsPlease" })}
                 separatorText={t("autoDownloaderFields.separatorOr")}
                 suggestions={suggestions}
             />

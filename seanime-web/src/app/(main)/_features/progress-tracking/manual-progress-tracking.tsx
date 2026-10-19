@@ -123,7 +123,7 @@ export function ManualProgressTracking() {
                 {state && <div data-manual-progress-tracking-modal-content className="text-center relative overflow-hidden space-y-2">
                     <p className="text-[--muted]">{t("progressTracking.playingExternally")}</p>
                     {state.mediaCoverImage && <div className="size-16 rounded-full relative mx-auto overflow-hidden mb-3">
-                        <SeaImage src={state.mediaCoverImage} alt="cover image" fill className="object-cover object-center" />
+                        <SeaImage src={state.mediaCoverImage} alt={t("common.images.cover")} fill className="object-cover object-center" />
                     </div>}
                     <h3 className="text-lg font-medium line-clamp-1">{state?.mediaTitle}</h3>
                     <p className="text-2xl font-bold">{t("common.labels.episodeNumber", { number: state?.episodeNumber })}

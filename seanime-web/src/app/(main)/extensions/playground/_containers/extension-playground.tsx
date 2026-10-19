@@ -501,7 +501,7 @@ export function ExtensionPlayground(props: ExtensionPlaygroundProps) {
                                                                 />
 
                                                                 <NumberInput
-                                                                    leftAddon={t("common.labels.episodeNumber")}
+                                                                    leftAddon={t("common.labels.episodeNumberLabel")}
                                                                     value={inputs.animeTorrentProvider.smartSearch.episodeNumber || 0}
                                                                     min={0}
                                                                     formatOptions={{ useGrouping: false }}

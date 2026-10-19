@@ -1,5 +1,7 @@
 {
   "videoPlayer": {
+    "playbackTime": "Tempo de reprodução do vídeo",
+    "skipChapter": "Pular {chapter}",
     "defaults": "Padrões",
     "rendering": "Renderização",
     "preferredSubtitleLanguage": "Idioma Preferido da Legenda",

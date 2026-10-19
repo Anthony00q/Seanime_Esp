@@ -2,7 +2,7 @@
 
 ¡Gracias por tu interés en traducir Seanime_Esp a tu idioma! 
 
-Actualmente, el proyecto soporta de forma nativa **Español (`es`)**, **Inglés (`en`)** y **Português (`pt-BR`)**. Si deseas agregar un idioma nuevo (por ejemplo, Francés, Alemán o Ruso), esta guía te explicará cómo hacerlo paso a paso sin romper la aplicación.
+Actualmente, el proyecto soporta de forma nativa **Español (`es`)**, **Inglés (`en`)** y **Português (código `pt`, locale regional `pt-BR`)**. Si deseas agregar un idioma nuevo (por ejemplo, Francés, Alemán o Ruso), esta guía te explicará cómo hacerlo paso a paso.
 
 ---
 
@@ -16,6 +16,8 @@ Para garantizar la consistencia visual y técnica del proyecto, toda nueva tradu
 3. **Paridad Estricta**: Cada archivo y cada clave ("key") de traducción DEBE existir de forma idéntica a la estructura de la carpeta base en inglés (`en/`). La omisión de una sola clave provocará fallos en la compilación.
 4. **Puntuación y Espacios Finales**: Preste especial atención a los espacios en blanco o signos de puntuación al final de las frases originales (ej. `"Tamaño: "`). Si el inglés tiene un espacio al final de la cadena, su traducción también debe conservarlo para evitar que el texto choque visualmente con los números o variables dinámicas en la interfaz.
 5. **Sintaxis ICU (Plurales y Condicionales)**: Algunas cadenas contienen mensajes ICU como `{count, plural, one {# item} other {# items}}` o `{value, select, ...}`. Traduzca **solo el texto dentro de las llaves internas**; nunca traduzca los comandos reservados (`plural`, `select`, `one`, `other`, `few`, `many`, `zero`) ni las variables. El símbolo `#` representa el número y puede reposicionarse dentro de la rama. Adapte las ramas disponibles a las reglas de plural de su idioma.
+   - En portugués, incluya siempre una rama explícita `=0` con texto plural. Pase los conteos como números, no como cadenas.
+6. **Argumentos y plantillas literales**: Una clave como `common.labels.episodeNumber` requiere `{ number }`; para un label sin valor use `common.labels.episodeNumberLabel`. Las plantillas técnicas que muestran llaves literalmente están enumeradas en `seanime-web/scripts/i18n-audit.mjs` y no deben interpolarse.
 
 ---
 
@@ -62,12 +64,12 @@ import frToasts from "./fr/modules/toasts.json"
 
 // 2. Agrúpalos en un array
 const frModules = [
-    frCommon, frHome, /* ... */
+    frCommon, frHome, frToasts, /* ... resto de archivos */
 ] as const;
 
 // 3. Genera la validación estricta (¡IMPORTANTÍSIMO!)
-// Esto arrojará error TS2344 en compilación si te faltan/sobran keys, 
-// y lanzará un Error Crítico en ejecución si duplicas la misma key en dos archivos.
+// Esto arrojará error TS2344 en compilación si te faltan/sobran keys.
+// El motor también detecta en ejecución las keys duplicadas entre archivos.
 type FrMessages = UnionToIntersection<typeof frModules[number]>;
 type _VerifyFr = AssertParity<CheckParity<Paths<FrMessages>>>;
 
@@ -95,9 +97,9 @@ const DATE_FNS_LOCALES: Record<string, Locale> = {
 }
 ```
 
-### 5. Traducir el System Tray (Electron)
+### 5. Traducciones nativas de Electron (Denshi)
 
-Seanime tiene un ícono minimizado en la barra de tareas de Windows. Crea un archivo JSON para tu idioma en `seanime-denshi/locales/fr.json` usando como plantilla `es.json` o `en.json`. Debe incluir **ambas secciones**: `tray` (menú del ícono) y `error` (diálogo de excepciones no capturadas).
+Copia **todo** `seanime-denshi/locales/en.json` a `seanime-denshi/locales/fr.json`: incluye el menú del ícono de la bandeja (`tray`), los errores (`error`), los avisos de registros (`logging`) y el inicio (`startup`). Traduce sus valores y registra el código en `DenshiLocale` e `isDenshiLocale()` de `seanime-denshi/src/main/locale.ts`.
 
 ```json
 {
@@ -109,21 +111,42 @@ Seanime tiene un ícono minimizado en la barra de tareas de Windows. Crea un arc
   "error": {
     "title": "Une erreur est survenue",
     "uncaughtException": "Exception non capturée",
-    "checkLogs": "Consultez les journaux pour plus de détails."
+    "checkLogs": "Consultez les journaux pour plus de détails.",
+    "mpvCoreStartFailed": "Seanime Denshi n'a pas pu démarrer MpvCore"
+  },
+  "logging": {
+    "restartNow": "Redémarrer maintenant",
+    "later": "Plus tard",
+    "restartRequired": "Redémarrage nécessaire",
+    "restartMessage": "Redémarrez pour appliquer les changements de journaux MpvCore. Redémarrer maintenant ?"
+  },
+  "startup": {
+    "starting": "Seanime démarre"
   }
 }
 ```
 
 ---
 
+### 6. Tablas y controles del idioma
+
+- El DataGrid usa su propia tabla en `seanime-web/src/components/ui/datagrid/locales.ts`: añada el idioma allí y su locale de `date-fns`.
+- Registre el idioma en el auditor (`languages` en `scripts/i18n-audit.mjs`) y amplíe las pruebas parametrizadas web y nativas.
+- Para cifras visibles use `formatNumber()`; para fechas, `formatLocalized()` o `getDateFnsLocale().code` con `Intl`.
+- Para probar el idioma, selecciónalo en Ajustes y confirma la recarga o el reinicio. En Denshi, este cambio guarda también el idioma de los menús y avisos nativos; no hay sincronización automática al arrancar.
+
 ## Verificación Final antes de enviar tu aporte
 
-Antes de solicitar que añadamos tu idioma, **debes asegurarte de que no hayas cometido ningún error tipográfico ni te falten claves**.
+Antes de enviar tu aporte, comprueba que no falten claves y que las traducciones se muestren correctamente. Necesitas tener instaladas las dependencias de `seanime-web` y `seanime-denshi`.
 
 Abre la terminal en la raíz del proyecto y ejecuta:
 ```bash
 cd seanime-web
-npm run typecheck
+npm run verify:i18n
 ```
 
-Si el comando termina sin mostrar ningún error, ¡Felicidades! Tu traducción está en paridad perfecta y lista para ser integrada a Seanime_Esp.
+Este comando comprueba los tipos, la estructura y paridad de los catálogos, claves duplicadas, mensajes ICU y las pruebas de traducción web y nativas.
+
+Opcionalmente, ejecuta `npm run i18n:lint` desde `seanime-web` para buscar textos que podrían seguir sin traducir. Sus resultados son orientativos: pueden incluir nombres o valores técnicos que no deben traducirse.
+
+Por último, revisa la aplicación en tu idioma: botones, textos largos, plurales, fechas, calendarios y menús de Denshi. Las pruebas automáticas no sustituyen esta revisión visual. No elimines claves por parecer sin uso: algunas, como géneros y tags de AniList, se consultan dinámicamente.

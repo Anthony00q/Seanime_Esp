@@ -797,9 +797,9 @@ export function IssueReport() {
                                 {formatElapsed(recordingElapsed)}
                             </span>
                             <div className="ml-auto flex items-center gap-2">
-                                <span className="text-xs text-gray-500 tabular-nums">{eventCount} events</span>
+                                <span className="text-xs text-gray-500 tabular-nums">{t("issueReport.eventCount", { count: eventCount })}</span>
                                 {screenshots.length > 0 && (
-                                    <span className="text-xs text-gray-500">{screenshots.length} imgs</span>
+                                    <span className="text-xs text-gray-500">{t("issueReport.screenshotCount", { count: screenshots.length })}</span>
                                 )}
                             </div>
                         </div>

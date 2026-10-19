@@ -1,5 +1,6 @@
 {
   "manga": {
+    "downloadSelectedChapters": "{count, plural, =0 {Baixar capítulos selecionados (#)} one {Baixar capítulo selecionado (#)} other {Baixar capítulos selecionados (#)}}",
     "noMangaFound": "Nenhum mangá encontrado",
     "noMangaAdded": "Nenhum mangá foi adicionado à sua biblioteca ainda.",
     "browseManga": "Explorar mangás",
@@ -7,7 +8,7 @@
     "refetching": "Atualizando...",
     "refetchingSources": "Buscando dados das fontes...",
     "sourceRefresh": {
-      "installedProviders": "{count, plural, one {# provedor instalado} other {# provedores instalados}}",
+      "installedProviders": "{count, plural, =0 {# provedores instalados} one {# provedor instalado} other {# provedores instalados}}",
       "eligibleMangaOnly": "Somente mangás atuais e em releitura",
       "start": "Iniciar atualização",
       "stop": "Parar atualização",
@@ -48,11 +49,11 @@
       "waitingPreferences": "Aguardando a sincronização das preferências de mangá do servidor.",
       "installProvider": "Instale um provedor de mangá para buscar fontes ausentes ou alternativas.",
       "summary": {
-        "refreshed": "{count, plural, one {# atualizada} other {# atualizadas}}",
-        "found": "{count, plural, one {# encontrada} other {# encontradas}}",
-        "changed": "{count, plural, one {# alterada} other {# alteradas}}",
-        "notFound": "{count, plural, one {# não encontrada} other {# não encontradas}}",
-        "failed": "{count, plural, one {# falhou} other {# falharam}}"
+        "refreshed": "{count, plural, =0 {# atualizadas} one {# atualizada} other {# atualizadas}}",
+        "found": "{count, plural, =0 {# encontradas} one {# encontrada} other {# encontradas}}",
+        "changed": "{count, plural, =0 {# alteradas} one {# alterada} other {# alteradas}}",
+        "notFound": "{count, plural, =0 {# não encontradas} one {# não encontrada} other {# não encontradas}}",
+        "failed": "{count, plural, =0 {# falharam} one {# falhou} other {# falharam}}"
       }
     },
     "hideUnreadCounts": "Ocultar contadores de não lidos",

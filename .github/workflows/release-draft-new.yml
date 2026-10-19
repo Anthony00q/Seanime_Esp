@@ -31,6 +31,8 @@ jobs:
         run: |
           cd seanime-web/
           npm install
+          npm run i18n:check
+          npm run test:i18n
           npm run build
           npm run build:denshi
           cd ..
