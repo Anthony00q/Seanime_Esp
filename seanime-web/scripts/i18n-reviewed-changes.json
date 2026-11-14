@@ -1,0 +1,18 @@
+[
+  {
+    "id": "931f6849687f537f9774",
+    "reason": "La clave calculada del filtro se sustituyó por translateLibraryFilter: mapa tipado de UNLOCKED/UNMATCHED/IGNORED/UNKNOWN_MEDIA a etiquetas existentes. display-labels.test.tsx comprueba los cuatro casos en es/en/pt; no cambia el filtrado."
+  },
+  {
+    "id": "e8e89dcfb3898d387d81",
+    "reason": "Se dejó de extraer el verbo con split de skipOpening. El botón usa el mensaje completo videoPlayer.skipChapter con su argumento chapter; el handler seekTo y su tiempo de destino no cambian."
+  },
+  {
+    "id": "348090c4daa32e1b9c79",
+    "reason": "La clave calculada del capítulo se sustituyó por translateChapterLabel. Sus etiquetas conocidas están tipadas y los nombres personalizados se conservan, sin defaultValue ficticio. display-labels.test.tsx comprueba las etiquetas y la preservación de los intervalos originales."
+  },
+  {
+    "id": "bb273444df0a0f4707c1",
+    "reason": "Las dos búsquedas de diccionarios AniList/países pasan por translateOptional. Se conserva el valor externo si no hay traducción, sin registrar una clave rota esperable; no se elimina ninguna entrada de los catálogos."
+  }
+]

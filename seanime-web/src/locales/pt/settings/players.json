@@ -34,7 +34,7 @@
       "mpvArgsPlaceholder": "ex. --no-config --mute=yes",
       "iinaArgsPlaceholder": "ex. --mpv-mute=yes",
       "socket": "Socket",
-      "defaultSocket": "Padrão: '{default}'",
+      "defaultSocket": "Padrão: ''{default}''",
       "options": "Opções",
       "iina": "IINA",
       "iinaHelp": "Deixe em branco para usar a CLI.",

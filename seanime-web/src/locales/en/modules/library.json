@@ -70,6 +70,7 @@
     "statusLabel": "Status"
   },
   "scanLogViewer": {
+    "filesCount": "{count, plural, one {# file} other {# files}}",
     "title": "Scan Log Analyzer",
     "loadFile": "Load scan log file",
     "loadAnother": "Load another file",

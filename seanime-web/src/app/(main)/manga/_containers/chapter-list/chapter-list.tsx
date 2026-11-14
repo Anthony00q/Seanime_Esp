@@ -375,10 +375,10 @@ export function ChapterList(props: ChapterListProps) {
             {!providerExtensionsLoading && !selectedExtension && (
                 <Alert
                     intent="warning-basic"
-                    title={selectedProvider ? "Saved source unavailable" : "No manga source available"}
+                    title={selectedProvider ? t("manga.chapterList.savedSourceUnavailable") : t("manga.chapterList.noSourceAvailable")}
                     description={selectedProvider
-                        ? `The saved source “${selectedProvider}” is not currently installed. Install it again or choose another source to continue.`
-                        : "Install or select a manga source to load chapters."}
+                        ? t("manga.chapterList.savedSourceUnavailableHelp", { provider: selectedProvider })
+                        : t("manga.chapterList.noSourceAvailableHelp")}
                 />
             )}
 
@@ -386,7 +386,7 @@ export function ChapterList(props: ChapterListProps) {
                 fallbackRender={({ error }) => <Alert
                     intent="alert"
                     title={t("misc.error.clientError")}
-                    description={t("manga.chapterList.loadFiltersError", { error })}
+                    description={t("manga.chapterList.loadFiltersError", { error: error instanceof Error ? error.message : String(error) })}
                 />}
             >
                 {(selectedExtension?.settings?.supportsMultiLanguage || selectedExtension?.settings?.supportsMultiScanlator) && (

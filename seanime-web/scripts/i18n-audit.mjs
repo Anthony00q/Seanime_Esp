@@ -62,14 +62,7 @@ function flatten(value, prefix = "", output = Object.create(null)) {
 
 // These are documented literal templates/HTML, not messages to interpolate.
 // Keep this list explicit so new malformed ICU cannot silently bypass validation.
-const literals = new Set([
-    "extensions.addModal.repoPlaceholder", "gettingStarted.player.iinaAlert",
-    "libraryExplorerSuper.simpleCounter", "libraryExplorerSuper.startFrom",
-    "libraryExplorerSuper.incrementBy", "libraryExplorerSuper.padZeros",
-    "libraryExplorerSuper.combinedStart", "libraryExplorerSuper.combinedPad", "libraryExplorerSuper.combinedAll",
-    "settings.mediaPlayer.customSchemePlaceholder", "nakama.nakamaServerURLPlaceholder",
-    "changelogTour.3_8_0.externalPlayerLink.content",
-])
+const literals = new Set(JSON.parse(fs.readFileSync(new URL("../src/locales/message-policy.json", import.meta.url), "utf8")).literalKeys)
 
 function analyze(text, locale, key) {
     const variables = new Map()

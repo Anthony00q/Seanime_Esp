@@ -24,6 +24,8 @@ import { vc_dispatchAction } from "@/app/(main)/_features/video-core/video-core.
 import { atom, useAtomValue } from "jotai"
 import { useAtom, useSetAtom } from "jotai/react"
 import React from "react"
+import { createTranslator } from "@/locales"
+import { translateChapterLabel } from "@/lib/helpers/chapter-label"
 
 export type VideoCoreTimeRangeChapter = {
     width: number
@@ -149,7 +151,7 @@ export function VideoCoreTimeRange(props: VideoCoreTimeRangeProps) {
         if (autoSkipIntroOutro && !restoreProgressTo) {
             setSkipChapter(null)
             action({ type: "seekTo", payload: { time: chapter.end } })
-            showOverlayFeedback({ message: `Skipped ${label}`, duration: 1000 })
+            showOverlayFeedback({ message: createTranslator()("videoPlayer.skippedChapter", { chapter: translateChapterLabel(label) }), duration: 1000 })
             return
         }
 

@@ -263,7 +263,7 @@ export function useSetExternalExtensionDisabled() {
         method: API_ENDPOINTS.EXTENSIONS.SetExternalExtensionDisabled.methods[0],
         mutationKey: [API_ENDPOINTS.EXTENSIONS.SetExternalExtensionDisabled.key],
         onSuccess: async (_data, variables) => {
-            toast.success(t("toast.extensions.toggle" as any, { state: variables.disabled ? "disabled" : "enabled" }))
+            toast.success(t("toast.extensions.toggle", { state: variables.disabled ? "disabled" : "enabled" }))
         },
     })
 }

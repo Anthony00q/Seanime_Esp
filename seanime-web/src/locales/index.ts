@@ -1,6 +1,6 @@
 import { getCurrentLocale, isValidLocale, type Locale } from "./config"
-import { isValidElement } from "react"
-import { IntlMessageFormat } from "intl-messageformat"
+import { renderMessageText } from "./message-format"
+import type { MessageParams } from "./message-params.generated"
 
 // --- Importaciones de secciones en inglés (modular) ---
 import enCommon from "./en/common.json"
@@ -137,6 +137,9 @@ type Paths<T> = T extends object ? {
 
 // El tipo estricto de todas las keys permitidas
 export type TranslationKeys = Paths<BaseMessages>;
+export type TranslationKeyWithoutParams = Exclude<TranslationKeys, keyof MessageParams>
+type TranslationArgs<K> = K extends keyof MessageParams ? [params: MessageParams[K]] : [params?: never]
+export type Translator = <K extends TranslationKeys>(key: K, ...args: TranslationArgs<NoInfer<K>>) => string
 
 // Validación de paridad bidireccional
 type CheckParity<TargetPaths, BasePaths = TranslationKeys> = 
@@ -184,70 +187,38 @@ function getTranslations(locale: string): Record<string, string> {
     return translationsCache[locale];
 }
 
-const formattersCache = new Map<string, IntlMessageFormat>()
-const MAX_FORMATTERS_CACHE_SIZE = 500
+let defaultTranslator: Translator | null = null
 
-function interpolate(text: string, locale: string, params?: Record<string, any>): string {
-    if (!params) return text
-
-    try {
-        const cacheKey = `${locale}:${text}`
-        let formatter = formattersCache.get(cacheKey)
-        if (!formatter) {
-            formatter = new IntlMessageFormat(text, locale)
-            if (formattersCache.size >= MAX_FORMATTERS_CACHE_SIZE) formattersCache.clear()
-            formattersCache.set(cacheKey, formatter)
-        }
-        return formatter.format(params) as string
-    } catch (e) {
-        console.warn(`[i18n] Fallo al parsear sintaxis ICU para el texto: "${text}". Fallback a regex.`, e)
-        return text.replace(/\{(\w+)\}/g, (_, key) => {
-            const value = params[key]
-            return value !== undefined ? String(value) : `{${key}}`
-        })
+function translate(key: string, locale: Locale, params?: Record<string, unknown>): string {
+    const messages = getTranslations(locale)
+    const english = getTranslations("en")
+    const translation = messages[key]
+    const fallback = english[key]
+    if (translation !== undefined || fallback !== undefined) {
+        return renderMessageText(key, translation !== undefined ? locale : "en", translation ?? fallback!, fallback,
+            messages["common.messages.translationUnavailable"] || english["common.messages.translationUnavailable"], params)
     }
+    console.warn(`[i18n] Missing translation for key: ${key}`)
+    if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
+        const missing: Map<string, number> = (window as any).__seanime_i18n_missingKeys ||= new Map()
+        missing.set(key, (missing.get(key) || 0) + 1)
+    }
+    return key
 }
 
-let defaultTranslator: ((key: TranslationKeys, params?: Record<string, any>) => string) | null = null;
-
-function sanitizeParams(key: TranslationKeys, params?: Record<string, any>) {
-    if (!params) return params
-    let result = params
-    for (const name of Object.keys(params)) {
-        const value = params[name]
-        if (value !== null && typeof value === "object" && !Array.isArray(value) && !isValidElement(value)) {
-            if (result === params) result = { ...params }
-            console.warn(`[i18n] Se convirtió a texto el objeto del parámetro "${name}" para "${key}".`)
-            result[name] = value instanceof Error ? value.message : String(value)
-        }
-    }
-    return result
+// External dictionaries may legitimately contain new values. Unknown values are not broken UI keys.
+export function translateOptional(key: string, original: string): string {
+    const locale = getCurrentLocale()
+    if (!Object.hasOwn(getTranslations(locale), key) && !Object.hasOwn(getTranslations("en"), key)) return original
+    return translate(key, locale)
 }
 
-export function createTranslator(locale?: Locale) {
+export function createTranslator(locale?: Locale): Translator {
     // Locale explícito → translator estático (para tests/SSR)
     if (locale) {
         locale = isValidLocale(locale) ? locale : "es"
-        const messages = getTranslations(locale)
-        const fallbackMessages = getTranslations("en")
-        function tStatic(key: TranslationKeys, params?: Record<string, any>): string {
-            const safeParams = sanitizeParams(key, params)
-            const translation = messages[key as string]
-            if (translation) {
-                return interpolate(translation, locale!, safeParams)
-            }
-            const fallback = fallbackMessages[key as string]
-            if (fallback) {
-                return interpolate(fallback, "en", safeParams)
-            }
-            console.warn(`[i18n] Missing translation for key: ${key as string}`)
-            if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
-                const missing: Map<string, number> = (window as any).__seanime_i18n_missingKeys ||= new Map()
-                missing.set(key as string, (missing.get(key as string) || 0) + 1)
-            }
-            return key as string
-        }
-        return tStatic;
+        const resolved = locale
+        return ((key: TranslationKeys, params?: Record<string, unknown>) => translate(key, resolved, params)) as Translator
     }
 
     // Sin locale → translator dinámico singleton (resuelve getCurrentLocale() en cada llamada)
@@ -255,35 +226,8 @@ export function createTranslator(locale?: Locale) {
         return defaultTranslator;
     }
 
-    function tDynamic(key: TranslationKeys, params?: Record<string, any>): string {
-        const resolved = getCurrentLocale()
-        const messages = getTranslations(resolved)
-        const fallbackMessages = getTranslations("en")
-
-        const safeParams = sanitizeParams(key, params)
-
-        const translation = messages[key as string]
-        if (translation) {
-            return interpolate(translation, resolved, safeParams)
-        }
-
-        const fallback = fallbackMessages[key as string]
-        if (fallback) {
-            return interpolate(fallback, "en", safeParams)
-        }
-
-        console.warn(`[i18n] Missing translation for key: ${key as string}`)
-
-        if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
-            const missing: Map<string, number> = (window as any).__seanime_i18n_missingKeys ||= new Map()
-            missing.set(key as string, (missing.get(key as string) || 0) + 1)
-        }
-
-        return key as string
-    }
-
-    defaultTranslator = tDynamic;
-    return tDynamic;
+    defaultTranslator = ((key: TranslationKeys, params?: Record<string, unknown>) => translate(key, getCurrentLocale(), params)) as Translator
+    return defaultTranslator
 }
 
 /**

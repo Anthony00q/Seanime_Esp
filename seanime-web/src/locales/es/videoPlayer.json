@@ -2,6 +2,7 @@
   "videoPlayer": {
     "playbackTime": "Tiempo de reproducción del vídeo",
     "skipChapter": "Saltar {chapter}",
+    "skippedChapter": "Se omitió {chapter}",
     "defaults": "Valores Predeterminados",
     "rendering": "Renderizado",
     "preferredSubtitleLanguage": "Idioma de Subtítulos Preferido",
@@ -205,6 +206,9 @@
     "skipOpening": "Saltar Opening",
     "skipEnding": "Saltar Ending",
     "chapters": {
+      "intro": "Intro",
+      "outro": "Outro",
+      "chapter": "Capítulo",
       "prologue": "Prologo",
       "opening": "Opening",
       "episode": "Episodio",

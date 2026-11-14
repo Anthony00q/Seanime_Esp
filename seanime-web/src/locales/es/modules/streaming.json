@@ -1,5 +1,7 @@
 {
   "onlinestream": {
+    "cancelTryingProviders": "Cancelar intentos",
+    "tryAllProviders": "Probar todos los proveedores",
     "watchPartyProviderNotInstalled": "Watch Party: El proveedor usado por el host no está instalado.",
     "findOtherProviders": "Buscar otros proveedores",
     "selectProvider": "Seleccionar proveedor",

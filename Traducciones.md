@@ -14,10 +14,10 @@ Para garantizar la consistencia visual y técnica del proyecto, toda nueva tradu
 2. **Optimización de la Longitud en la Interfaz (UI)**: La traducción no debe alterar el diseño ni romper los componentes visuales. Compare siempre la longitud de sus textos con los de `es/` o `en/`. Si una traducción resulta excesivamente larga, busque una alternativa más compacta.
    - *Ejemplo: En lugar de "Transcodificação / Reprodução Direta", se prefiere la versión concisa "Transcoding / Direct Play" para evitar que el menú de ajustes se desborde.*
 3. **Paridad Estricta**: Cada archivo y cada clave ("key") de traducción DEBE existir de forma idéntica a la estructura de la carpeta base en inglés (`en/`). La omisión de una sola clave provocará fallos en la compilación.
-4. **Puntuación y Espacios Finales**: Preste especial atención a los espacios en blanco o signos de puntuación al final de las frases originales (ej. `"Tamaño: "`). Si el inglés tiene un espacio al final de la cadena, su traducción también debe conservarlo para evitar que el texto choque visualmente con los números o variables dinámicas en la interfaz.
+4. **Puntuación y Espacios Finales**: En los fragmentos existentes que se insertan junto a otros textos (ej. `"Tamaño: "`), conserve los espacios y signos necesarios para evitar que el contenido quede pegado. Esta compatibilidad no es un patrón para mensajes nuevos: use frases completas parametrizadas (ej. `"Tamaño: {size}"`), sin depender de espacios finales ni concatenaciones en JSX.
 5. **Sintaxis ICU (Plurales y Condicionales)**: Algunas cadenas contienen mensajes ICU como `{count, plural, one {# item} other {# items}}` o `{value, select, ...}`. Traduzca **solo el texto dentro de las llaves internas**; nunca traduzca los comandos reservados (`plural`, `select`, `one`, `other`, `few`, `many`, `zero`) ni las variables. El símbolo `#` representa el número y puede reposicionarse dentro de la rama. Adapte las ramas disponibles a las reglas de plural de su idioma.
    - En portugués, incluya siempre una rama explícita `=0` con texto plural. Pase los conteos como números, no como cadenas.
-6. **Argumentos y plantillas literales**: Una clave como `common.labels.episodeNumber` requiere `{ number }`; para un label sin valor use `common.labels.episodeNumberLabel`. Las plantillas técnicas que muestran llaves literalmente están enumeradas en `seanime-web/scripts/i18n-audit.mjs` y no deben interpolarse.
+6. **Argumentos y plantillas literales**: Una clave como `common.labels.episodeNumber` requiere `{ number }`; para un label sin valor use `common.labels.episodeNumberLabel`. Las plantillas técnicas que muestran llaves literalmente están enumeradas en `seanime-web/src/locales/message-policy.json` y no deben interpolarse. Esa política es compartida por el motor, el auditor y el generador.
 
 ---
 
@@ -139,6 +139,8 @@ Copia **todo** `seanime-denshi/locales/en.json` a `seanime-denshi/locales/fr.jso
 
 Antes de enviar tu aporte, comprueba que no falten claves y que las traducciones se muestren correctamente. Necesitas tener instaladas las dependencias de `seanime-web` y `seanime-denshi`.
 
+Si modificaste los argumentos ICU o añadiste mensajes parametrizados, ejecuta primero `npm --prefix seanime-web run i18n:generate` desde la raíz y revisa los cambios de `seanime-web/src/locales/message-params.generated.ts`. No edites ese archivo manualmente. La verificación comprueba que esté actualizado, pero no lo regenera.
+
 Abre la terminal en la raíz del proyecto y ejecuta:
 ```bash
 cd seanime-web
@@ -146,6 +148,43 @@ npm run verify:i18n
 ```
 
 Este comando comprueba los tipos, la estructura y paridad de los catálogos, claves duplicadas, mensajes ICU y las pruebas de traducción web y nativas.
+
+### Contratos de parámetros y recuperación
+
+`createTranslator()` conserva su API y su singleton dinámico, pero sus parámetros se comprueban también por clave. Los contratos se extraen del AST ICU del catálogo inglés; no se mantienen manualmente ni se deducen mediante regex.
+
+- Después de modificar los argumentos ICU o añadir mensajes parametrizados, ejecute `npm run i18n:generate` desde `seanime-web` y revise `src/locales/message-params.generated.ts`.
+- `typecheck`, los builds y `i18n:check` comprueban que ese archivo esté actualizado; **no lo sobrescriben**. La paridad es/en/pt y la detección de colisiones siguen siendo obligatorias.
+- Los plurales/números ICU exigen `number`; los selectores admiten texto o booleanos; las interpolaciones de texto admiten texto o números. El tipado exige conservadoramente los argumentos de todas las ramas, como el auditor; en ejecución solo se validan las ramas seleccionadas.
+- `t()` devuelve texto, no JSX ni arrays. No utilice `defaultValue` como parámetro: no es una opción de fallback.
+- Para diccionarios externos como AniList, use `translateOptional(key, original)`: conserva el valor original si la entrada no existe, sin producir avisos de claves rotas. Para conjuntos cerrados, prefiera mapas tipados de identificadores a claves; `TranslationKeyWithoutParams` limita los mapas de etiquetas sin argumentos.
+- Ante un error de formato, el motor intenta el mensaje inglés y, si los datos tampoco permiten formatearlo, devuelve una etiqueta localizada de texto no disponible. No inventa conteos ni ejecuta acciones. Los diagnósticos no incluyen valores de parámetros.
+- En desarrollo, compruebe tanto `window.__seanime_i18n_missingKeys` como `window.__seanime_i18n_formatErrors` tras recorrer el flujo. La ausencia de entradas no demuestra cobertura de pantallas no visitadas.
+
+### Revisión de una actualización upstream
+
+Guarde **antes** de actualizar tres referencias: el commit del fork previo a la actualización y los commits upstream anterior/nuevo. No utilice `main...traducciones` como inventario de novedades upstream.
+
+Desde `seanime-web`, el comando versionado es:
+
+```bash
+npm run i18n:upstream -- --baseline <SHA-fork-anterior> --from <SHA-upstream-anterior> --to <SHA-upstream-nuevo>
+```
+
+También acepta solo `--baseline <SHA>` para revisar pérdidas de llamadas respecto al código web actual. El análisis es de solo lectura: no hace fetch, checkout, rebase, traducciones ni aprobaciones automáticas. Usa los snapshots Git indicados y los archivos actuales del checkout; ejecute sobre un checkout completo y revise también archivos nuevos no versionados.
+
+El inventario AST detecta disminuciones de llamadas traducidas (incluidas claves dinámicas), cambios de texto JSX/atributos/expresiones y formateadores. Los cambios nativos y Go del intervalo upstream se señalan para revisión manual: el inventario JSX **no certifica** sus mensajes dinámicos. Una traducción movida a un helper o una pantalla eliminada legítimamente también necesita revisión; no se restaura código antiguo para silenciar el informe.
+
+- Salida **0**: no hay hallazgos pendientes dentro de lo analizado; no garantiza equivalencia funcional ni cobertura total.
+- Salida **1**: hay hallazgos que requieren revisión.
+- Salida **2**: referencias, argumentos o análisis inválidos; no debe tratarse como comprobación superada.
+- `--json` entrega el informe estructurado. Para aprobar hallazgos ya revisados, proporcione `--review <archivo.json>` con un array de objetos `{ "id": "<id-del-informe>", "reason": "<justificación concreta>" }`. No se genera ni acepta un motivo vacío. Las aprobaciones están vinculadas a las referencias y al contenido actual del archivo; si cambia, deben revisarse nuevamente.
+
+`scripts/i18n-reviewed-changes.json` documenta los movimientos intencionales a helpers de la mejora inicial. No se carga automáticamente ni es una lista global de excepciones: sus identificadores solo sirven para los snapshots y contenidos que se revisaron.
+
+El workflow `Translation checks` permite introducir esas referencias y un archivo de revisión versionado mediante `workflow_dispatch`. En pushes/PR ordinarios siguen ejecutándose tipos, auditor, contratos y suites; **el análisis de actualización no se activa sin referencias explícitas**. Los commits deben estar disponibles en el checkout; la herramienta no los descarga.
+
+Después del informe, ejecute `verify:i18n`, la suite general y los builds pertinentes, y pruebe visualmente los flujos afectados en es/en/pt. La revisión AST no verifica que callbacks, permisos, tiempos de salto o valores técnicos conserven su comportamiento.
 
 Opcionalmente, ejecuta `npm run i18n:lint` desde `seanime-web` para buscar textos que podrían seguir sin traducir. Sus resultados son orientativos: pueden incluir nombres o valores técnicos que no deben traducirse.
 

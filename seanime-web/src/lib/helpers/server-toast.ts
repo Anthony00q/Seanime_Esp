@@ -1,8 +1,8 @@
-import { createTranslator, type TranslationKeys } from "@/locales"
+import { createTranslator, type TranslationKeyWithoutParams } from "@/locales"
 
 const t = createTranslator()
 
-const SERVER_TOAST_MAP: Readonly<Record<string, TranslationKeys>> = {
+const SERVER_TOAST_MAP: Readonly<Record<string, TranslationKeyWithoutParams>> = {
     "Adding chapters to download queue...": "manga.chaptersAddedToDownloadQueue",
     "Download directory does not exist": "toast.torrentstream.downloadDirNotExist",
     "Download directory is not a directory": "toast.torrentstream.downloadDirNotDir",

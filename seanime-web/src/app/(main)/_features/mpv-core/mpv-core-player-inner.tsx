@@ -52,6 +52,7 @@ import { LuCaptions, LuFilm, LuHeadphones, LuPaintbrush } from "react-icons/lu"
 import { RemoveScrollBar } from "react-remove-scroll-bar"
 import { toast } from "sonner"
 import { createTranslator } from "@/locales"
+import { translateChapterLabel } from "@/lib/helpers/chapter-label"
 
 import {
     applyMpvSubtitleSettings,
@@ -1790,7 +1791,7 @@ function MpvCorePlayerContent(props: MpvCorePlayerContentProps) {
                                                     }}
                                                     onPointerMove={e => e.stopPropagation()}
                                                 >
-                                                    {t("videoPlayer.skipChapter", { chapter: skipChapter.label })}
+                                                    {t("videoPlayer.skipChapter", { chapter: translateChapterLabel(skipChapter.label) })}
                                                 </Button>
                                             </div>
                                         )}

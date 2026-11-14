@@ -884,7 +884,7 @@ const TorrentRow = React.forwardRef<HTMLTableRowElement, {
         <TableCell className="text-right whitespace-nowrap tabular-nums">{torrent.upSpeed}</TableCell>
         <TableCell className="text-right whitespace-nowrap tabular-nums">{torrent.eta}</TableCell>
         <TableCell className="text-right whitespace-nowrap tabular-nums">{torrent.ratio.toFixed(2)}</TableCell>
-        <TableCell className="whitespace-nowrap">{torrent.addedAt ? new Date(torrent.addedAt).toLocaleString() : "Unknown"}</TableCell>
+        <TableCell className="whitespace-nowrap">{torrent.addedAt ? new Date(torrent.addedAt).toLocaleString(getDateFnsLocale().code) : t("common.messages.unknown")}</TableCell>
         <TableCell className="max-w-80 truncate cursor-help hover:text-[--foreground] transition-colors" title={torrent.contentPath}>
             {truncatePath(torrent.contentPath, 45)}
         </TableCell>

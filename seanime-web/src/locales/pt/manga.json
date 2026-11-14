@@ -85,6 +85,10 @@
       "stretch": "Esticar"
     },
     "chapterList": {
+      "savedSourceUnavailable": "Fonte salva indisponível",
+      "noSourceAvailable": "Nenhuma fonte de mangá disponível",
+      "savedSourceUnavailableHelp": "A fonte salva “{provider}” não está instalada. Instale-a novamente ou escolha outra fonte para continuar.",
+      "noSourceAvailableHelp": "Instale ou selecione uma fonte de mangá para carregar os capítulos.",
       "title": "Capítulos",
       "name": "Nome",
       "scanlator": "Scan",

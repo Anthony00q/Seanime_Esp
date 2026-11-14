@@ -786,7 +786,7 @@ export function OnlinestreamPage({ animeEntry, animeEntryLoading, hideBackButton
         leftIcon={<LuRefreshCw className={autoProviderCycler.isTrying ? "text-xl animate-spin" : "text-xl"} />}
         onClick={() => autoProviderCycler.isTrying ? autoProviderCycler.cancel() : autoProviderCycler.tryAllProviders()}
     >
-        {autoProviderCycler.isTrying ? "Cancel trying" : "Try all available providers"}
+        {autoProviderCycler.isTrying ? tr("onlinestream.cancelTryingProviders") : tr("onlinestream.tryAllProviders")}
     </Button> : null
 
     const parameters = (

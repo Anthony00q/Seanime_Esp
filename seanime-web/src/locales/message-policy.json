@@ -1,0 +1,16 @@
+{
+  "literalKeys": [
+    "extensions.addModal.repoPlaceholder",
+    "gettingStarted.player.iinaAlert",
+    "libraryExplorerSuper.simpleCounter",
+    "libraryExplorerSuper.startFrom",
+    "libraryExplorerSuper.incrementBy",
+    "libraryExplorerSuper.padZeros",
+    "libraryExplorerSuper.combinedStart",
+    "libraryExplorerSuper.combinedPad",
+    "libraryExplorerSuper.combinedAll",
+    "settings.mediaPlayer.customSchemePlaceholder",
+    "nakama.nakamaServerURLPlaceholder",
+    "changelogTour.3_8_0.externalPlayerLink.content"
+  ]
+}
