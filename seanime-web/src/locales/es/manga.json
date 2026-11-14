@@ -85,6 +85,10 @@
       "stretch": "Estirar"
     },
     "chapterList": {
+      "savedSourceUnavailable": "Fuente guardada no disponible",
+      "noSourceAvailable": "No hay fuentes de manga disponibles",
+      "savedSourceUnavailableHelp": "La fuente guardada «{provider}» no está instalada. Vuelve a instalarla o elige otra fuente para continuar.",
+      "noSourceAvailableHelp": "Instala o selecciona una fuente de manga para cargar los capítulos.",
       "title": "Capítulos",
       "name": "Nombre",
       "scanlator": "Scan",

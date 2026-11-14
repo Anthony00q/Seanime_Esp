@@ -136,6 +136,7 @@
       "unsafeWarning": "Este plugin usa sinalizadores (flags) não seguros. O Seanime não pode garantir que seja seguro de usar.",
       "viewCode": "Ver código",
       "errorDetails": "Detalhes do erro",
+      "errorCode": "Código do erro",
       "failedToLoad": "O Seanime não conseguiu carregar esta extensão. Se você não tem certeza do que isso significa, contate o autor.",
       "manifestError": "Erro de manifesto",
       "incompatibleVersion": "Incompatível com esta versão do Seanime",

@@ -8,9 +8,9 @@ import { ProgressBar } from "@/components/ui/progress-bar"
 import { WSEvents } from "@/lib/server/ws-events"
 import { useAtom } from "jotai/react"
 import React, { useState } from "react"
-import { createTranslator } from "@/locales"
+import { createTranslator, type TranslationKeyWithoutParams } from "@/locales"
 
-const SCAN_STATUS_MAP: Record<string, string> = {
+const SCAN_STATUS_MAP: Readonly<Record<string, TranslationKeyWithoutParams>> = {
     "Retrieving local files...": "scanner.status.retrievingLocalFiles",
     "Verifying shelved files...": "scanner.status.verifyingShelvedFiles",
     "Scanning local files...": "scanner.status.scanningLocalFiles",
@@ -25,7 +25,7 @@ const SCAN_STATUS_MAP: Record<string, string> = {
 
 function translateScanStatus(status: string, t: ReturnType<typeof createTranslator>): string {
     const key = SCAN_STATUS_MAP[status]
-    if (key) return t(key as any)
+    if (typeof key === "string") return t(key)
     return status
 }
 

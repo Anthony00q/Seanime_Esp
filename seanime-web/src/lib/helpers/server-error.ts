@@ -1,4 +1,4 @@
-import { createTranslator, type TranslationKeys } from "@/locales"
+import { createTranslator, type TranslationKeyWithoutParams } from "@/locales"
 
 const t = createTranslator()
 
@@ -8,7 +8,7 @@ const t = createTranslator()
  * Mantener en sincronía con `locales/{es,en,pt}/modules/toasts.json`.
  * Espejo de `SERVER_TOAST_MAP` (server-toast.ts) para la ruta de errores HTTP.
  */
-const SERVER_ERROR_MAP: Readonly<Record<string, TranslationKeys>> = {
+const SERVER_ERROR_MAP: Readonly<Record<string, TranslationKeyWithoutParams>> = {
     "list entry not found": "toast.serverErrors.validation.listEntryNotFound",
     "error: Anilist responded with an error, this is most likely a rate limit issue": "toast.serverErrors.validation.anilistRateLimit",
     "error: Anilist responded with an error, wait one minute before refreshing": "toast.serverErrors.validation.anilistWait",

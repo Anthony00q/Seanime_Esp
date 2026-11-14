@@ -85,6 +85,10 @@
       "stretch": "Stretch"
     },
     "chapterList": {
+      "savedSourceUnavailable": "Saved source unavailable",
+      "noSourceAvailable": "No manga source available",
+      "savedSourceUnavailableHelp": "The saved source “{provider}” is not currently installed. Install it again or choose another source to continue.",
+      "noSourceAvailableHelp": "Install or select a manga source to load chapters.",
       "title": "Chapters",
       "name": "Name",
       "scanlator": "Scanlator",

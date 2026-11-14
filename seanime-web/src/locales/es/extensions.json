@@ -136,6 +136,7 @@
       "unsafeWarning": "Este plugin usa flags inseguros. Seanime no puede garantizar que sea seguro de usar.",
       "viewCode": "Ver código",
       "errorDetails": "Detalles del error",
+      "errorCode": "Código de error",
       "failedToLoad": "Seanime no pudo cargar esta extensión. Si no estás seguro de lo que significa, contacta con el autor.",
       "manifestError": "Error de manifiesto",
       "incompatibleVersion": "Incompatible con esta versión de Seanime",

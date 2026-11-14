@@ -130,6 +130,7 @@ import { cn } from "@/components/ui/core/styling"
 import { Modal } from "@/components/ui/modal"
 import { useDisclosure } from "@/hooks/use-disclosure"
 import { logger } from "@/lib/helpers/debug"
+import { translateChapterLabel } from "@/lib/helpers/chapter-label"
 import { __isDesktop__, __isElectronDesktop__ } from "@/types/constants"
 import { useQueryClient } from "@tanstack/react-query"
 import { ErrorData } from "hls.js"
@@ -426,7 +427,7 @@ const PlayerContent = React.memo<PlayerContentProps>(({
                                             }}
                                             onPointerMove={e => e.stopPropagation()}
                                         >
-                                            {`${t("videoPlayer.skipOpening").split(" ")[0]} ${t(`videoPlayer.chapters.${skipChapter.label.toLowerCase()}` as any, { defaultValue: skipChapter.label })}`}
+                                            {t("videoPlayer.skipChapter", { chapter: translateChapterLabel(skipChapter.label) })}
                                         </Button>
                                     </div>
                                 )}

@@ -92,6 +92,7 @@
       "stream": "Streaming",
       "size": "Tamaño",
       "seeders": "Seeders",
+      "seedersCount": "{count, plural, =0 {Sin seeders} one {# seeder} other {# seeders}}",
       "leechers": "Leechers",
       "date": "Fecha",
       "releases": "Lanzamientos",

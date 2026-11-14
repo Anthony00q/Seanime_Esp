@@ -50,12 +50,12 @@ const PERMISSION_KEYS = {
     "dom-script-manipulation: Can execute arbitrary JavaScript code in the app's DOM.": "domScriptManipulation",
     "dom-link-manipulation: Can insert arbitrary links into the app's DOM.": "domLinkManipulation",
     "Reason: ": "reason"
-}
+} as const
 
 function translatePermissionLine(line: string, t: ReturnType<typeof createTranslator>): string {
     // Exact match
-    if (PERMISSION_KEYS[line as keyof typeof PERMISSION_KEYS]) {
-        return t(`extensions.permissionTranslations.${PERMISSION_KEYS[line as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: line })
+    if (Object.hasOwn(PERMISSION_KEYS, line)) {
+        return t(`extensions.permissionTranslations.${PERMISSION_KEYS[line as keyof typeof PERMISSION_KEYS]}`)
     }
 
     // Partial matches
@@ -63,7 +63,7 @@ function translatePermissionLine(line: string, t: ReturnType<typeof createTransl
     const prefixesToCheck = ["• Read files in:", "• Modify/deletes files in:", "Domain:", "Reason: "]
     for (const prefix of prefixesToCheck) {
         if (mappedLine.startsWith(prefix)) {
-            const translatedPrefix = t(`extensions.permissionTranslations.${PERMISSION_KEYS[prefix as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: prefix })
+            const translatedPrefix = t(`extensions.permissionTranslations.${PERMISSION_KEYS[prefix as keyof typeof PERMISSION_KEYS]}`)
             mappedLine = mappedLine.replace(prefix, translatedPrefix)
         }
     }
@@ -71,13 +71,13 @@ function translatePermissionLine(line: string, t: ReturnType<typeof createTransl
     const substringsToCheck = [" [any arguments]", " [any file path]", " [pattern: "]
     for (const sub of substringsToCheck) {
         if (mappedLine.includes(sub)) {
-            const translatedSub = t(`extensions.permissionTranslations.${PERMISSION_KEYS[sub as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: sub })
+            const translatedSub = t(`extensions.permissionTranslations.${PERMISSION_KEYS[sub as keyof typeof PERMISSION_KEYS]}`)
             mappedLine = mappedLine.replace(sub, translatedSub)
         }
     }
 
     if (mappedLine.includes("\n\t  Purpose: ")) {
-        const translatedPurpose = t(`extensions.permissionTranslations.${PERMISSION_KEYS["Purpose: " as keyof typeof PERMISSION_KEYS]}` as any, { defaultValue: "Purpose: " })
+        const translatedPurpose = t("extensions.permissionTranslations.purpose")
         mappedLine = mappedLine.replace("\n\t  Purpose: ", "\n\t  " + translatedPurpose)
     }
 
@@ -129,7 +129,7 @@ export function InvalidExtensionCard(props: InvalidExtensionCardProps) {
                         {t("extensions.card.failedToLoad")}
                     </p>
                     <p>
-                        Code: <strong>{extension.code}</strong>
+                        {t("extensions.card.errorCode")}: <strong>{extension.code}</strong>
                     </p>
                     <code className="code text-red-200">
                         {extension.reason}
@@ -298,7 +298,7 @@ export function UnauthorizedExtensionPluginCard(props: UnauthorizedExtensionPlug
                             
                             if (line.startsWith("•") && !line.startsWith("*")) {
                                 const l = line.replace("• ", "")
-                                const domainPrefix = t("extensions.permissionTranslations.domain", { defaultValue: "Domain:" })
+                                const domainPrefix = t("extensions.permissionTranslations.domain")
                                 return <span key={index} className="mb-1 block">
                                     {(l.startsWith("Domain:") || l.startsWith(domainPrefix)) ? <>
                                             <span className="font-bold bg-gray-900 border px-2 py-[0.08rem] rounded-lg inline-block">{l

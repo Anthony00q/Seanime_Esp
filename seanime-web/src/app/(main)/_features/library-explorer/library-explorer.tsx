@@ -28,6 +28,7 @@ import { Popover } from "@/components/ui/popover"
 import { TextInput } from "@/components/ui/text-input"
 import { Tooltip } from "@/components/ui/tooltip"
 import { createTranslator } from "@/locales"
+import { translateLibraryFilter } from "@/lib/helpers/library-filter-label"
 import { upath } from "@/lib/helpers/upath"
 import { ContextMenuGroup } from "@radix-ui/react-context-menu"
 import { useAtom, useAtomValue, useSetAtom } from "jotai"
@@ -549,7 +550,7 @@ export function LibraryExplorer() {
                                         "animate-pulse",
                                     )}
                                 >
-                                    {t("libraryExplorer.filterActive", { filter: !!selectedFilter ? t(`libraryExplorer.${selectedFilter.toLowerCase()}` as any) : "" })}
+                                    {t("libraryExplorer.filterActive", { filter: translateLibraryFilter(selectedFilter) })}
                                 </Button>
                             )}
                             <Button
@@ -1435,7 +1436,7 @@ function LibraryInfoPanel({}: { localFiles: Record<string, Anime_LocalFile> | un
                         <div className="flex flex-col">
                             <dt className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-1">{t("libraryExplorer.associatedMedia")}</dt>
                             <dd className="text-sm text-gray-200 font-medium mb-1">
-                                {t("libraryExplorer.animeSeries", { count: selectedNode.mediaIds.length, plural: selectedNode.mediaIds.length })}
+                                {t("libraryExplorer.animeSeries", { count: selectedNode.mediaIds.length })}
                             </dd>
                             {selectedNode.mediaIds.length > 1 && selectedNode.mediaIds.length <= 5 && (
                                 <div className="space-y-1 mt-1 pl-2 border-l border-brand-500/20">

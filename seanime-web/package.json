@@ -9,7 +9,7 @@
     "dev:desktop": "env-cmd -f .env.desktop rsbuild dev",
     "dev:denshi": "env-cmd -f .env.denshi rsbuild dev",
     "postinstall": "patch-package",
-    "typecheck": "tsc --pretty false",
+    "typecheck": "node scripts/message-contracts.mjs --check && tsc --pretty false",
     "build": "npm run typecheck && rsbuild build",
     "build:rsdoctor": "RSDOCTOR=true rsbuild build",
     "build:desktop": "npm run typecheck && env-cmd -f .env.desktop rsbuild build",
@@ -18,9 +18,11 @@
     "preview": "rsbuild preview",
     "test": "vitest run --config vitest.shared.ts",
     "test:i18n": "npm run typecheck:i18n && vitest run --config vitest.i18n.ts",
-    "typecheck:i18n": "tsc --pretty false -p tsconfig.i18n.json",
+    "typecheck:i18n": "node scripts/message-contracts.mjs --check && tsc --pretty false -p tsconfig.i18n.json",
     "verify:i18n": "npm run typecheck && npm run i18n:check && npm run test:i18n && npm --prefix ../seanime-denshi run test:i18n",
-    "i18n:check": "node scripts/i18n-audit.mjs",
+    "i18n:check": "node scripts/i18n-audit.mjs && node scripts/message-contracts.mjs --check",
+    "i18n:generate": "node scripts/message-contracts.mjs --write",
+    "i18n:upstream": "node scripts/i18n-upstream.mjs",
     "i18n:lint": "node scripts/hardcoded-audit.mjs"
   },
   "dependencies": {

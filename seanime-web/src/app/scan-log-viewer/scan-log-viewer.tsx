@@ -972,7 +972,7 @@ function HydratorPanel({
                         </button>
                     ))}
                 </div>
-                <span className="text-sm text-gray-500 self-center flex-none">{filtered.length} files</span>
+                <span className="text-sm text-gray-500 self-center flex-none">{t("scanLogViewer.filesCount", { count: filtered.length })}</span>
             </div>
 
             <Virtuoso

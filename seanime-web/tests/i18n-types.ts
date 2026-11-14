@@ -13,3 +13,17 @@ createTranslator()("common.buttons.notARealButton")
 createTranslator("fr")
 // @ts-expect-error Locale preference accepts supported languages only.
 setCurrentLocale("pt-BR")
+
+const t = createTranslator()
+t("manga.sourceRefresh.installedProviders", { count: 2 })
+t("extensions.prompt.request", { extension: "Example", hasResource: false, resource: "" })
+// @ts-expect-error ICU counts are required.
+t("manga.sourceRefresh.installedProviders")
+// @ts-expect-error ICU counts must be numbers even when the variable is not a literal.
+t("manga.sourceRefresh.installedProviders", { count: String(2) })
+// @ts-expect-error A text API cannot return arbitrary objects.
+t("toast.client.error", { error: new Error("EACCES") })
+// @ts-expect-error Parameters are not fallback options.
+t("common.buttons.save", { defaultValue: "Save" })
+// @ts-expect-error Wrong parameter names must not be accepted.
+t("videoPlayer.skipChapter", { name: "Opening" })

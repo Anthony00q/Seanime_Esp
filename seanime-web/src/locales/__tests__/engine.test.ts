@@ -46,7 +46,9 @@ describe("fork locale engine", () => {
     it("sanitizes raw errors without modifying caller parameters", () => {
         const warning = vi.mocked(console.warn).mockImplementation(() => {})
         const params = { error: new Error("EACCES") }
+        // @ts-expect-error Exercise the runtime boundary for callers outside TypeScript.
         expect(createTranslator("es")("toast.client.error", params)).toBe("Error: EACCES")
+        // @ts-expect-error Explicit and dynamic translators must have the same recovery.
         expect(createTranslator()("toast.client.error", params)).toBe("Error: EACCES")
         expect(params.error).toBeInstanceOf(Error)
         expect(warning).toHaveBeenCalledTimes(2)

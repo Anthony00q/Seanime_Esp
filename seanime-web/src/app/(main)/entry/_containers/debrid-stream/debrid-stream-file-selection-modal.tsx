@@ -146,7 +146,7 @@ export function DebridStreamFileSelectionModal(props: DebridStreamFileSelectionM
             <VaulContent className="max-w-5xl mx-auto">
                 <AppLayoutStack className="mt-4 p-3 lg:p-6">
                     {(isLoading || previews?.length === 1) ? <LoadingSpinner
-                        title={previews?.length === 1 ? "Launching stream..." : "Fetching torrent info..."}
+                        title={previews?.length === 1 ? t("entry.torrentStream.launchingStream") : t("entry.torrentStream.fetchingTorrentInfo")}
                     /> : (
                         <AppLayoutStack className="mt-4">
 

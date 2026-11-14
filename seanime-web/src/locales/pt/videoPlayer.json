@@ -2,6 +2,7 @@
   "videoPlayer": {
     "playbackTime": "Tempo de reprodução do vídeo",
     "skipChapter": "Pular {chapter}",
+    "skippedChapter": "Pulado: {chapter}",
     "defaults": "Padrões",
     "rendering": "Renderização",
     "preferredSubtitleLanguage": "Idioma Preferido da Legenda",
@@ -205,6 +206,9 @@
     "skipOpening": "Pular Abertura",
     "skipEnding": "Pular Encerramento",
     "chapters": {
+      "intro": "Intro",
+      "outro": "Outro",
+      "chapter": "Capítulo",
       "prologue": "Prólogo",
       "opening": "Abertura",
       "episode": "Episódio",

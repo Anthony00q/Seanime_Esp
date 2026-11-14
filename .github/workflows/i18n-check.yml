@@ -6,6 +6,19 @@ on:
   push:
     branches: [traducciones]
   workflow_dispatch:
+    inputs:
+      baseline:
+        description: 'SHA del fork antes de actualizar (activa revisión de regresiones)'
+        required: false
+      upstream_from:
+        description: 'SHA upstream anterior (junto con upstream_to)'
+        required: false
+      upstream_to:
+        description: 'SHA upstream nuevo (junto con upstream_from)'
+        required: false
+      review_file:
+        description: 'Archivo JSON versionado con revisiones justificadas (opcional)'
+        required: false
 
 permissions:
   contents: read
@@ -19,6 +32,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: ${{ github.event_name == 'workflow_dispatch' && inputs.baseline != '' && '0' || '1' }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -41,3 +56,21 @@ jobs:
       - name: Compile and test native locales and persistence
         working-directory: seanime-denshi
         run: npm run test:i18n
+      - name: Review explicit upstream snapshots
+        if: github.event_name == 'workflow_dispatch' && (inputs.baseline != '' || inputs.upstream_from != '' || inputs.upstream_to != '' || inputs.review_file != '')
+        working-directory: seanime-web
+        shell: bash
+        env:
+          BASELINE: ${{ inputs.baseline }}
+          UPSTREAM_FROM: ${{ inputs.upstream_from }}
+          UPSTREAM_TO: ${{ inputs.upstream_to }}
+          REVIEW_FILE: ${{ inputs.review_file }}
+        run: |
+          args=(--baseline "$BASELINE")
+          if [[ -n "$UPSTREAM_FROM" || -n "$UPSTREAM_TO" ]]; then
+            args+=(--from "$UPSTREAM_FROM" --to "$UPSTREAM_TO")
+          fi
+          if [[ -n "$REVIEW_FILE" ]]; then
+            args+=(--review "$REVIEW_FILE")
+          fi
+          npm run i18n:upstream -- "${args[@]}"

@@ -70,6 +70,7 @@
     "statusLabel": "Estado"
   },
   "scanLogViewer": {
+    "filesCount": "{count, plural, one {# archivo} other {# archivos}}",
     "title": "Analizador de Registros de Escaneo",
     "loadFile": "Cargar archivo de registro de escaneo",
     "loadAnother": "Cargar otro archivo",

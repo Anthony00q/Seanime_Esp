@@ -82,6 +82,7 @@
       "connecting": "Conectando..."
     },
     "messages": {
+      "translationUnavailable": "Texto no disponible",
       "areYouSure": "¿Estás seguro que deseas continuar?",
       "itemNotFound": "Elemento no encontrado",
       "itemNotFoundWithType": "Elemento no encontrado ({itemType})",
