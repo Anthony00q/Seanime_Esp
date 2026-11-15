@@ -40,7 +40,7 @@ export function useGettingStarted() {
     })
 }
 
-export function useSaveSettings() {
+export function useSaveSettings(options?: { showSuccessToast?: boolean }) {
     const queryClient = useQueryClient()
     const t = createTranslator()
 
@@ -53,7 +53,9 @@ export function useSaveSettings() {
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.STATUS.GetStatus.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_COLLECTION.GetLibraryCollection.key] })
             await queryClient.invalidateQueries({ queryKey: [API_ENDPOINTS.ANIME_ENTRIES.GetMissingEpisodes.key] })
-            toast.success(t("toast.settings.settingsSaved"))
+            if (options?.showSuccessToast !== false) {
+                toast.success(t("toast.settings.settingsSaved"))
+            }
         },
     })
 }
