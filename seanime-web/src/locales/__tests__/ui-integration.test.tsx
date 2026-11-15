@@ -11,6 +11,10 @@ import { ConfirmationDialog, useConfirmationDialog } from "@/components/shared/c
 import { ScreenshotDirModal } from "@/app/(main)/_features/media-core/screenshot-dir-modal"
 import { changeLocaleAndRestart } from "@/lib/helpers/locale-change"
 import { DenshiSettings } from "@/app/(main)/settings/_containers/denshi-settings"
+import { Form } from "@/components/ui/form"
+import { settingsSchema } from "@/lib/server/settings"
+import { isLocaleOnlySettingsChange } from "@/lib/helpers/settings-locale"
+import type { UseFormReturn } from "react-hook-form"
 
 // Only the filesystem picker is replaced: keep real React, buttons, Radix dialog and portals.
 vi.mock("@/components/shared/directory-selector", () => ({
@@ -148,4 +152,27 @@ it.each(["win32", "linux"])("preserves optimistic Denshi switches without overwr
         expect(getCurrentLocale()).toBe("es")
         expect(initial.locale).toBe("pt")
     } finally { window.electron = previous }
+})
+
+it("detects language-only submissions using the actual settings form and resolver", async () => {
+    const formRef = React.createRef<UseFormReturn<any>>()
+    const results: boolean[] = []
+    await act(async () => root.render(<Form
+        schema={settingsSchema}
+        mRef={formRef}
+        defaultValues={{ defaultPlayer: "mpv", mediaPlayerHost: "localhost", vlcPort: 8080, mpcPort: 13579, qbittorrentPort: 8080, locale: "es" }}
+        onSubmit={values => { results.push(isLocaleOnlySettingsChange(values, formRef.current?.formState.defaultValues, getCurrentLocale())) }}
+    ><button type="submit" data-save-settings>Save fixture</button></Form>))
+
+    await act(async () => formRef.current!.setValue("locale", "pt"))
+    await act(async () => document.querySelector<HTMLButtonElement>("[data-save-settings]")!.click())
+    expect(results).toEqual([true])
+
+    await act(async () => formRef.current!.setValue("hideAnimeSpoilers", true))
+    await act(async () => document.querySelector<HTMLButtonElement>("[data-save-settings]")!.click())
+    expect(results).toEqual([true, false])
+
+    await act(async () => formRef.current!.setValue("hideAnimeSpoilers", false))
+    await act(async () => document.querySelector<HTMLButtonElement>("[data-save-settings]")!.click())
+    expect(results).toEqual([true, false, true])
 })

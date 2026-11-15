@@ -79,6 +79,7 @@ import { NakamaSettings } from "./_containers/nakama-settings"
 import { createTranslator } from "@/locales"
 import { getCurrentLocale, isValidLocale, type Locale } from "@/locales/config"
 import { changeLocaleAndRestart } from "@/lib/helpers/locale-change"
+import { isLocaleOnlySettingsChange } from "@/lib/helpers/settings-locale"
 
 const t = createTranslator()
 
@@ -96,7 +97,7 @@ export default function Page() {
 
     const searchParams = useSearchParams()
 
-    const { mutateAsync: saveSettings, data, isPending } = useSaveSettings()
+    const { mutateAsync: saveSettings, data, isPending } = useSaveSettings({ showSuccessToast: false })
 
     const [tab, setTab] = useAtom(__settings_tabAtom)
     const formRef = React.useRef<UseFormReturn<any>>(null)
@@ -363,6 +364,7 @@ export default function Page() {
                             schema={settingsSchema}
                             mRef={formRef}
                             onSubmit={async data => {
+                                const localeOnly = isLocaleOnlySettingsChange(data, formRef.current?.formState.defaultValues, getCurrentLocale())
                                 await saveSettings({
                                     library: {
                                         libraryPath: data.libraryPath,
@@ -480,6 +482,8 @@ export default function Page() {
                                         disableAutoScannerNotifications: data?.disableAutoScannerNotifications ?? false,
                                     },
                                 })
+
+                                if (!localeOnly) toast.success(t("toast.settings.settingsSaved"))
 
                                 const prevTheme = status?.themeSettings ?? { id: 0, ...THEME_DEFAULT_VALUES }
                                 const shouldSaveSpoilerSettings =
