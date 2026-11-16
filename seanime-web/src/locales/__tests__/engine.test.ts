@@ -7,7 +7,7 @@ import { useMockBrowser } from "./browser"
 const browser = useMockBrowser()
 
 describe("fork locale engine", () => {
-    it.each(["__proto__", "constructor", "toString", "fr", "", "pt-BR", null, undefined, ["en"], {}])("rejects invalid input %j", value => {
+    it.each(["__proto__", "constructor", "toString", "not-a-registered-locale", "", null, undefined, ["en"], {}])("rejects invalid input %j", value => {
         expect(isValidLocale(value)).toBe(false)
     })
 

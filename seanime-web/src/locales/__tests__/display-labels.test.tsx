@@ -4,7 +4,7 @@ import React from "react"
 import { renderToStaticMarkup } from "react-dom/server"
 import { describe, expect, it } from "vitest"
 import { createTranslator } from "../index"
-import { setCurrentLocale } from "../config"
+import { setCurrentLocale, supportedLocales } from "../config"
 import { translateChapterLabel } from "@/lib/helpers/chapter-label"
 import { translateLibraryFilter } from "@/lib/helpers/library-filter-label"
 import { getSkipChapters, getSkipLabel } from "@/app/(main)/_features/media-core/media-core-chapters"
@@ -13,7 +13,7 @@ import { useMockBrowser } from "./browser"
 
 useMockBrowser()
 
-describe.each(["en", "es", "pt"] as const)("display-only adapters (%s)", locale => {
+describe.each(supportedLocales)("display-only adapters (%s)", locale => {
     it("translates every real filter without constructing keys from identifiers", () => {
         setCurrentLocale(locale)
         const t = createTranslator()

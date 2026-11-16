@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { isLocaleOnlySettingsChange } from "@/lib/helpers/settings-locale"
 import { settingsSchema } from "@/lib/server/settings"
+import { supportedLocales } from "../config"
 
 const defaults = {
     defaultPlayer: "mpv",
@@ -12,7 +13,7 @@ const defaults = {
 }
 
 describe("settings locale-only save notification", () => {
-    it.each(["en", "pt"])("silences a language-only change to %s, including schema defaults", locale => {
+    it.each(supportedLocales.filter(locale => locale !== "es"))("silences a language-only change to %s, including schema defaults", locale => {
         const values = settingsSchema.parse({ ...defaults, locale })
         expect(isLocaleOnlySettingsChange(values, defaults, "es")).toBe(true)
     })

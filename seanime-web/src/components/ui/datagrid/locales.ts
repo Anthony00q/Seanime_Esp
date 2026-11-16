@@ -1,17 +1,15 @@
-import { enUS, fr, es, ptBR } from "date-fns/locale"
-import { getCurrentLocale } from "@/locales/config"
+import { enUS, fr, es, ptBR, type Locale as DateFnsLocale } from "date-fns/locale"
+import { getCurrentLocale, type Locale } from "@/locales/config"
 
-export const dateFnsLocales = {
+export const dateFnsLocales: Record<string, DateFnsLocale | undefined> = {
     "es": es,
     "fr": fr,
     "en": enUS,
     "pt": ptBR,
-} as {
-    [key: string]: any,
-}
+} satisfies Record<Locale | "fr", DateFnsLocale>
 
 // Idiomas soportados por esta tabla (fr es legacy del upstream, se conserva)
-const SUPPORTED_DATAGRID_LOCALES = ["en", "es", "pt", "fr"]
+const supportsLocale = (value: string) => Object.prototype.hasOwnProperty.call(dateFnsLocales, value)
 
 /**
  * Resuelve el idioma del datagrid: respeta `lng` explícito si es soportado,
@@ -19,10 +17,10 @@ const SUPPORTED_DATAGRID_LOCALES = ["en", "es", "pt", "fr"]
  * Así el datagrid sigue al idioma configurado sin que cada consumidor pase `lng`.
  */
 export function resolveDatagridLocale(explicit?: string): string {
-    if (explicit && SUPPORTED_DATAGRID_LOCALES.includes(explicit)) return explicit
+    if (explicit && supportsLocale(explicit)) return explicit
     try {
         const current = getCurrentLocale()
-        if (SUPPORTED_DATAGRID_LOCALES.includes(current)) return current
+        if (supportsLocale(current)) return current
     } catch {
         /* SSR o localStorage no disponible */
     }

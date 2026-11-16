@@ -6,11 +6,17 @@ import { spawnSync } from "node:child_process"
 import { beforeEach, afterEach, describe, expect, it } from "vitest"
 import { auditTranslations } from "../../../scripts/i18n-audit.mjs"
 import { repo } from "./catalogs"
+import { generateNativeLocaleRegistry, readLocaleRegistry, checkNativeLocaleRegistry } from "../../../scripts/locale-registry.mjs"
 
 let root: string
 const localeFile = (locale: string) => path.join(root, "seanime-web/src/locales", locale, "common.json")
 const indexFile = () => path.join(root, "seanime-web/src/locales/index.ts")
 const sourceFile = () => path.join(root, "seanime-web/src/component.tsx")
+const registryFile = () => path.join(root, "seanime-web/src/locales/registry.json")
+const nativeRegistryFile = () => path.join(root, "seanime-denshi/src/main/locale-registry.generated.ts")
+const datesFile = () => path.join(root, "seanime-web/src/locales/date-locale.ts")
+const gridFile = () => path.join(root, "seanime-web/src/components/ui/datagrid/locales.ts")
+const regenerateNative = () => write(nativeRegistryFile(), generateNativeLocaleRegistry(root))
 const translatorSource = (body: string) => `import { createTranslator } from "@/locales"; const t = createTranslator(); ${body}`
 const write = (file: string, text: string) => { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, text) }
 const mutate = (locale: string, change: (value: any) => void) => {
@@ -20,10 +26,40 @@ const mutate = (locale: string, change: (value: any) => void) => {
 }
 const rejects = (fragment: string) => expect(auditTranslations({ root }).errors.some((error: string) => error.includes(fragment))).toBe(true)
 
+function addFixtureLocale(code = "fr", intlLocale = "fr") {
+    const registry = readLocaleRegistry(root)
+    registry[code] = { name: "Fixture", intlLocale, htmlLang: intlLocale }
+    write(registryFile(), JSON.stringify(registry))
+    write(localeFile(code), fs.readFileSync(localeFile("en"), "utf8"))
+    write(path.join(root, "seanime-denshi/locales", `${code}.json`),
+        fs.readFileSync(path.join(root, "seanime-denshi/locales/en.json"), "utf8"))
+    write(indexFile(), fs.readFileSync(indexFile(), "utf8")
+        .replace("const languageModules", `import fixtureCommon from "./${code}/common.json";\nconst fixtureModules = [fixtureCommon] as const;\nconst languageModules`)
+        .replace("pt: ptModules }", `pt: ptModules, "${code}": fixtureModules }`))
+    write(datesFile(), fs.readFileSync(datesFile(), "utf8").replace("pt: ptBR }", `pt: ptBR, "${code}": fixtureDate }`))
+    if (code !== "fr") {
+        write(gridFile(), fs.readFileSync(gridFile(), "utf8")
+            .replace("pt: ptBR, fr }", `pt: ptBR, fr, "${code}": fixtureDate }`)
+            .replace('fr: "Filtres" }', `fr: "Filtres", "${code}": "Fixture" }`))
+    }
+    regenerateNative()
+}
+
 beforeEach(() => {
     const temporary = process.platform === "win32" ? path.join(os.tmpdir(), "seanime-i18n") : os.tmpdir()
     fs.mkdirSync(temporary, { recursive: true })
     root = fs.mkdtempSync(path.join(temporary, "fork-i18n-audit-"))
+    write(registryFile(), JSON.stringify({
+        en: { name: "English", intlLocale: "en-US", htmlLang: "en" },
+        es: { name: "Español", intlLocale: "es", htmlLang: "es" },
+        pt: { name: "Português", intlLocale: "pt-BR", htmlLang: "pt-BR" },
+    }))
+    regenerateNative()
+    write(path.join(root, "seanime-web/src/locales/message-policy.json"),
+        fs.readFileSync(path.join(repo, "seanime-web/src/locales/message-policy.json"), "utf8"))
+    write(datesFile(), "const DATE_FNS_LOCALES = { en: enUS, es, pt: ptBR };")
+    write(gridFile(), `const dateFnsLocales = { en: enUS, es, pt: ptBR, fr };
+        export default { filters: { en: "Filters", es: "Filtros", pt: "Filtros", fr: "Filtres" } };`)
     for (const locale of ["en", "es", "pt"]) {
         write(localeFile(locale), JSON.stringify({ common: {
             greet: "Hello {name}",
@@ -226,5 +262,159 @@ describe("fork auditor rejects deliberate defects", () => {
         const result = spawnSync(process.execPath, [path.join(repo, "seanime-web/scripts/i18n-audit.mjs"), "--root", root], { encoding: "utf8" })
         expect(result.status).toBe(1)
         expect(result.stderr).toContain("file/key structure")
+    })
+})
+
+describe("registry-driven expansion in isolated fixtures", () => {
+    it("audits a fourth language automatically, including its actual module and controls registrations", () => {
+        addFixtureLocale()
+        const result = auditTranslations({ root })
+        expect(result.errors).toEqual([])
+        expect(result.languages).toEqual(["en", "es", "fr", "pt"])
+        expect(result.formatChecks).toBeGreaterThan(40)
+    })
+    it("preserves regional locale codes rather than truncating them", () => {
+        addFixtureLocale("fr-CA", "fr-CA")
+        expect(auditTranslations({ root }).errors).toEqual([])
+        expect(generateNativeLocaleRegistry(root)).toContain('"fr-CA"')
+    })
+    it("allows a fourth language to use its own plural categories", () => {
+        addFixtureLocale("ru", "ru")
+        mutate("ru", data => { data.common.count = "{count, plural, one {# файл} few {# файла} many {# файлов} other {# файла}}" })
+        expect(auditTranslations({ root }).errors).toEqual([])
+    })
+    it("compares missing and extra keys in the fourth language against English", () => {
+        addFixtureLocale()
+        mutate("fr", data => { delete data.common.greet; data.common.extra = "Extra" })
+        rejects("fr: file/key structure differs")
+    })
+    it("detects renamed ICU arguments in the fourth language", () => {
+        addFixtureLocale()
+        mutate("fr", data => { data.common.greet = "Bonjour {renamed}" })
+        rejects("fr:common.greet: ICU argument names/types")
+    })
+    it("detects changed select options in the fourth language", () => {
+        addFixtureLocale()
+        mutate("fr", data => { data.common.mode = "{state, select, changed {On} other {Off}}" })
+        rejects("fr:common.mode: ICU select options differ")
+    })
+    it("detects duplicate JSON keys and cross-file collisions in the fourth language", () => {
+        addFixtureLocale()
+        write(localeFile("fr"), '{"common":{"greet":"A","greet":"B"}}')
+        write(path.join(path.dirname(localeFile("fr")), "extra.json"), '{"common":{"greet":"Collision"}}')
+        rejects("duplicate JSON key greet")
+        rejects("fr:common.greet: catalog collision")
+    })
+    it("rejects a fourth catalog omitted from its module array", () => {
+        addFixtureLocale()
+        write(indexFile(), fs.readFileSync(indexFile(), "utf8").replace("[fixtureCommon]", "[]"))
+        rejects("Unregistered or repeated catalog: fr/common.json")
+    })
+    it("rejects a fourth catalog repeated in its module array", () => {
+        addFixtureLocale()
+        write(indexFile(), fs.readFileSync(indexFile(), "utf8").replace("[fixtureCommon]", "[fixtureCommon, fixtureCommon]"))
+        rejects("Unregistered or repeated catalog: fr/common.json")
+    })
+    it("rejects a fourth locale omitted from languageModules", () => {
+        addFixtureLocale()
+        write(indexFile(), fs.readFileSync(indexFile(), "utf8").replace(', "fr": fixtureModules', ""))
+        rejects("Web modules: locale registrations differ")
+    })
+    it("rejects modules accidentally imported from a different language", () => {
+        addFixtureLocale()
+        write(indexFile(), fs.readFileSync(indexFile(), "utf8").replace("[fixtureCommon]", "[fixtureCommon, enCommon]"))
+        rejects("Invalid catalog member: fr:enCommon")
+    })
+    it("rejects non-canonical import paths that escape the locale directory", () => {
+        addFixtureLocale()
+        write(indexFile(), fs.readFileSync(indexFile(), "utf8")
+            .replace("const fixtureModules", 'import wrongCommon from "./fr/../es/common.json";\nconst fixtureModules')
+            .replace("[fixtureCommon]", "[fixtureCommon, wrongCommon]"))
+        rejects("Invalid catalog member: fr:wrongCommon")
+    })
+    it("rejects missing or extra web catalog directories", () => {
+        write(localeFile("fr"), '{"common":{}}')
+        rejects("Web catalog directories: locale registrations differ")
+        addFixtureLocale()
+        fs.renameSync(path.dirname(localeFile("fr")), path.join(root, "seanime-web/missing-fixture-catalog"))
+        rejects("Missing web catalog directory: fr")
+    })
+    it("rejects a missing fourth native catalog", () => {
+        addFixtureLocale()
+        fs.unlinkSync(path.join(root, "seanime-denshi/locales/fr.json"))
+        rejects("Denshi catalogs: locale registrations differ")
+        rejects("Denshi fr:")
+    })
+    it("compares native keys for the fourth language too", () => {
+        addFixtureLocale()
+        write(path.join(root, "seanime-denshi/locales/fr.json"), '{"tray":{}}')
+        rejects("Denshi fr: key parity failed")
+    })
+    it("detects a stale generated native registry", () => {
+        addFixtureLocale()
+        write(nativeRegistryFile(), "// stale")
+        rejects("Stale native locale registry")
+        expect(() => checkNativeLocaleRegistry(root)).toThrow("Stale native locale registry")
+    })
+    it("requires the fourth date locale", () => {
+        addFixtureLocale()
+        write(datesFile(), fs.readFileSync(datesFile(), "utf8").replace(', "fr": fixtureDate', ""))
+        rejects("Date locales: locale registrations differ")
+    })
+    it("requires the fourth DataGrid date locale", () => {
+        addFixtureLocale()
+        write(gridFile(), fs.readFileSync(gridFile(), "utf8").replace("pt: ptBR, fr }", "pt: ptBR }"))
+        rejects("DataGrid fr: missing date locale")
+    })
+    it("requires every DataGrid label in the fourth language", () => {
+        addFixtureLocale()
+        write(gridFile(), fs.readFileSync(gridFile(), "utf8").replace('fr: "Filtres"', 'fr: ""'))
+        rejects("DataGrid fr: missing or empty label filters")
+    })
+    it("reports the actual number of languages in CLI output", () => {
+        addFixtureLocale()
+        const result = spawnSync(process.execPath, [path.join(repo, "seanime-web/scripts/i18n-audit.mjs"), "--root", root], { encoding: "utf8" })
+        expect(result.status, result.stderr).toBe(0)
+        expect(result.stdout).toContain("× 4 languages")
+    })
+    it("generates the standalone native registration deterministically without writing during checks", () => {
+        addFixtureLocale()
+        const before = fs.readFileSync(nativeRegistryFile(), "utf8")
+        expect(generateNativeLocaleRegistry(root)).toBe(before)
+        expect(() => checkNativeLocaleRegistry(root)).not.toThrow()
+        expect(fs.readFileSync(nativeRegistryFile(), "utf8")).toBe(before)
+        write(nativeRegistryFile(), before.replace(/\n/g, "\r\n"))
+        expect(() => checkNativeLocaleRegistry(root)).not.toThrow()
+    })
+})
+
+describe("locale registry validation", () => {
+    it.each(["../en", "__proto__", "constructor", "EN", "fr_CA"])("rejects unsafe or non-canonical codes: %s", code => {
+        const registry = readLocaleRegistry(root)
+        write(registryFile(), JSON.stringify({ ...registry, [code]: { name: "Fixture", intlLocale: "fr", htmlLang: "fr" } }))
+        expect(() => readLocaleRegistry(root)).toThrow()
+    })
+    it.each(["en", "es"])("requires the existing fallback %s", code => {
+        const registry = readLocaleRegistry(root)
+        delete registry[code]
+        write(registryFile(), JSON.stringify(registry))
+        expect(() => readLocaleRegistry(root)).toThrow("requires fallback")
+    })
+    it("rejects duplicate registry keys before JSON parsing loses them", () => {
+        const text = fs.readFileSync(registryFile(), "utf8")
+        write(registryFile(), text.replace('{"en":', '{"en":{},"en":'))
+        expect(() => readLocaleRegistry(root)).toThrow("duplicate key en")
+    })
+    it.each([
+        { name: "", intlLocale: "fr", htmlLang: "fr" },
+        { name: "Français", intlLocale: "en-US", htmlLang: "fr" },
+        { name: "Français", intlLocale: "fr", htmlLang: "es" },
+        { name: "Français", intlLocale: "fr_CA", htmlLang: "fr" },
+        { name: "Français", intlLocale: "fr", htmlLang: "fr", unknown: true },
+        null,
+        [],
+    ])("rejects invalid or inconsistent metadata: %j", metadata => {
+        write(registryFile(), JSON.stringify({ ...readLocaleRegistry(root), fr: metadata }))
+        expect(() => readLocaleRegistry(root)).toThrow()
     })
 })

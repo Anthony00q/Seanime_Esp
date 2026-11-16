@@ -1,7 +1,9 @@
 import fs from "node:fs"
 import path from "node:path"
 
-export type DenshiLocale = "es" | "en" | "pt"
+import { denshiLocales, type DenshiLocale } from "./locale-registry.generated"
+
+export { denshiLocales, type DenshiLocale } from "./locale-registry.generated"
 
 type DenshiStrings = {
     tray: { toggleVisibility: string; removeFromDock: string; quit: string }
@@ -13,7 +15,7 @@ type DenshiStrings = {
 const fallback: DenshiStrings = require("../../locales/es.json")
 
 export function isDenshiLocale(value: unknown): value is DenshiLocale {
-    return value === "es" || value === "en" || value === "pt"
+    return typeof value === "string" && (denshiLocales as readonly string[]).includes(value)
 }
 
 export function resolveDenshiLocale(value: unknown): DenshiLocale {

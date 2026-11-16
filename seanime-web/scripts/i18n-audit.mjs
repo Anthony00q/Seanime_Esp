@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url"
 import { parse, parseExpression } from "@babel/parser"
 import traverseModule from "@babel/traverse"
 import { IntlMessageFormat } from "intl-messageformat"
+import { readLocaleRegistry, checkNativeLocaleRegistry } from "./locale-registry.mjs"
 
 const defaultRoot = fileURLToPath(new URL("../..", import.meta.url))
 const traverse = traverseModule.default ?? traverseModule
@@ -11,10 +12,12 @@ const traverse = traverseModule.default ?? traverseModule
 // Callable with an isolated fixture root: importing this module never audits or exits.
 export function auditTranslations({ root = defaultRoot } = {}) {
 const localeRoot = path.join(root, "seanime-web/src/locales")
-const languages = ["en", "es", "pt"]
+const registry = readLocaleRegistry(root)
+const languages = Object.keys(registry).sort()
 const errors = []
 let formatChecks = 0
 const fail = message => { errors.push(message) }
+try { checkNativeLocaleRegistry(root) } catch (error) { fail(error.message) }
 
 function files(directory, extension) {
     return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
@@ -47,6 +50,37 @@ function readJson(file) {
     return JSON.parse(raw)
 }
 
+function compareLanguages(actual, expected, context) {
+    if (JSON.stringify([...actual].sort()) !== JSON.stringify([...expected].sort())) {
+        fail(`${context}: locale registrations differ from registry (${expected.join(", ")})`)
+    }
+}
+
+// Validate declarations without executing application files, also in isolated fixtures.
+function objectDeclaration(file, name) {
+    let object
+    walk(parse(fs.readFileSync(file, "utf8"), { sourceType: "module", plugins: ["typescript"] }), node => {
+        const value = node.type === "VariableDeclarator" && node.id?.name === name ? unwrap(node.init)
+            : name === "default" && node.type === "ExportDefaultDeclaration" ? unwrap(node.declaration) : undefined
+        if (value?.type === "ObjectExpression") object = value
+    })
+    if (!object) throw new Error(`Missing object registration: ${name}`)
+    return object.properties
+}
+
+function objectMembers(properties) {
+    const result = new Map()
+    for (const property of properties) {
+        const key = property.key?.name ?? property.key?.value
+        if (property.type !== "ObjectProperty" || property.computed || typeof key !== "string") {
+            throw new Error("Locale registrations must use explicit object properties")
+        }
+        if (result.has(key)) throw new Error(`Repeated locale registration: ${key}`)
+        result.set(key, unwrap(property.value))
+    }
+    return result
+}
+
 function flatten(value, prefix = "", output = Object.create(null)) {
     if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error(`Invalid object at ${prefix}`)
     for (const [key, child] of Object.entries(value)) {
@@ -62,13 +96,14 @@ function flatten(value, prefix = "", output = Object.create(null)) {
 
 // These are documented literal templates/HTML, not messages to interpolate.
 // Keep this list explicit so new malformed ICU cannot silently bypass validation.
-const literals = new Set(JSON.parse(fs.readFileSync(new URL("../src/locales/message-policy.json", import.meta.url), "utf8")).literalKeys)
+const literals = new Set(readJson(path.join(localeRoot, "message-policy.json")).literalKeys)
 
 function analyze(text, locale, key) {
     const variables = new Map()
     const selects = new Set()
     const cases = [{}]
-    const formatter = new IntlMessageFormat(text, locale)
+    const intlLocale = registry[locale].intlLocale
+    const formatter = new IntlMessageFormat(text, intlLocale)
     function visit(elements, ancestors = {}) {
         for (const element of elements) {
             if ([1, 2, 3, 4, 5, 6].includes(element.type)) {
@@ -87,7 +122,7 @@ function analyze(text, locale, key) {
                     if (element.type === 5) witness = selector === "other" ? "__unmatched__" : selector
                     else if (selector.startsWith("=")) witness = Number(selector.slice(1))
                     else {
-                        const rules = new Intl.PluralRules(locale, { type: element.pluralType })
+                        const rules = new Intl.PluralRules(intlLocale, { type: element.pluralType })
                         witness = [...Array(201).keys(), 0.5, 1.5, 1000000].find(number =>
                             !element.options[`=${number}`] && rules.select(number - (element.offset || 0)) === selector)
                     }
@@ -130,14 +165,40 @@ walk(parse(index, { sourceType: "module", plugins: ["typescript"] }), node => {
     const value = unwrap(node.init)
     if (value?.type === "ArrayExpression") arrays.set(node.id.name, value.elements.map(element => element?.name))
     if (node.id.name === "languageModules" && value?.type === "ObjectExpression") {
-        for (const property of value.properties) registered.set(property.key?.name ?? property.key?.value, property.value?.name)
+        for (const [locale, member] of objectMembers(value.properties)) registered.set(locale, member?.name)
     }
 })
+compareLanguages(registered.keys(), languages, "Web modules")
+compareLanguages(fs.readdirSync(localeRoot, { withFileTypes: true })
+    .filter(entry => entry.isDirectory() && !entry.name.startsWith("__")).map(entry => entry.name), languages, "Web catalog directories")
+try {
+    const dates = objectMembers(objectDeclaration(path.join(localeRoot, "date-locale.ts"), "DATE_FNS_LOCALES"))
+    compareLanguages(dates.keys(), languages, "Date locales")
+    const gridFile = path.join(root, "seanime-web/src/components/ui/datagrid/locales.ts")
+    const gridDates = objectMembers(objectDeclaration(gridFile, "dateFnsLocales"))
+    const gridLabels = objectMembers(objectDeclaration(gridFile, "default"))
+    if (!gridLabels.size) fail("DataGrid: missing labels")
+    for (const locale of languages) {
+        if (!gridDates.has(locale)) fail(`DataGrid ${locale}: missing date locale`)
+        for (const [key, labels] of gridLabels) {
+            const label = labels?.type === "ObjectExpression" ? objectMembers(labels.properties).get(locale) : undefined
+            if (label?.type !== "StringLiteral" || !label.value.trim()) fail(`DataGrid ${locale}: missing or empty label ${key}`)
+        }
+    }
+} catch (error) { fail(`Controls: ${error.message}`) }
 for (const locale of languages) {
     catalogs[locale] = Object.create(null)
     signatures[locale] = Object.create(null)
     moduleFiles[locale] = Object.create(null)
-    for (const file of files(path.join(localeRoot, locale), /\.json$/)) {
+    const directory = path.join(localeRoot, locale)
+    if (!fs.existsSync(directory)) { fail(`Missing web catalog directory: ${locale}`); continue }
+    const members = arrays.get(registered.get(locale)) || []
+    const catalogFiles = files(directory, /\.json$/)
+    const catalogSources = new Set(catalogFiles.map(file => `./${locale}/${path.relative(directory, file).replaceAll("\\", "/")}`))
+    for (const member of members) {
+        if (!catalogSources.has(imports.get(member))) fail(`Invalid catalog member: ${locale}:${member}`)
+    }
+    for (const file of catalogFiles) {
         const relative = path.relative(path.join(localeRoot, locale), file).replaceAll("\\", "/")
         try {
             const messages = flatten(readJson(file))
@@ -146,7 +207,6 @@ for (const locale of languages) {
             if (relative.startsWith("modules/") && filename !== "toasts"
                 && Object.keys(messages).some(key => key === filename || key.startsWith(`${filename}.`))) fail(`${locale}/${relative}: unexpected filename wrapper`)
             moduleFiles[locale][relative] = Object.keys(messages).sort()
-            const members = arrays.get(registered.get(locale)) || []
             const matches = members.filter(name => imports.get(name) === `./${locale}/${relative}`)
             if (matches.length !== 1) fail(`Unregistered or repeated catalog: ${locale}/${relative} (must be imported and used once in languageModules)`)
             for (const [key, text] of Object.entries(messages)) {
@@ -158,7 +218,7 @@ for (const locale of languages) {
     }
 }
 
-for (const locale of ["es", "pt"]) {
+for (const locale of languages.filter(locale => locale !== "en")) {
     if (JSON.stringify(moduleFiles.en) !== JSON.stringify(moduleFiles[locale])) fail(`${locale}: file/key structure differs from English`)
     for (const key of Object.keys(catalogs.en)) {
         const signature = vars => JSON.stringify([...vars].sort(([a], [b]) => a.localeCompare(b)))
@@ -235,13 +295,16 @@ for (const file of files(path.join(root, "seanime-web/src"), /\.(ts|tsx)$/)) {
 }
 
 const denshiRoot = path.join(root, "seanime-denshi/locales")
+compareLanguages(fs.readdirSync(denshiRoot).filter(file => file.endsWith(".json")).map(file => file.slice(0, -5)), languages, "Denshi catalogs")
 const nativeBase = Object.keys(flatten(readJson(path.join(denshiRoot, "en.json")))).sort()
 for (const locale of languages) {
-    const native = Object.keys(flatten(readJson(path.join(denshiRoot, `${locale}.json`)))).sort()
-    if (JSON.stringify(native) !== JSON.stringify(nativeBase)) fail(`Denshi ${locale}: key parity failed`)
+    try {
+        const native = Object.keys(flatten(readJson(path.join(denshiRoot, `${locale}.json`)))).sort()
+        if (JSON.stringify(native) !== JSON.stringify(nativeBase)) fail(`Denshi ${locale}: key parity failed`)
+    } catch (error) { fail(`Denshi ${locale}: ${error.message}`) }
 }
 
-return { errors, keyCount: Object.keys(catalogs.en).length, nativeKeyCount: nativeBase.length, formatChecks }
+return { errors, languages, keyCount: Object.keys(catalogs.en).length, nativeKeyCount: nativeBase.length, formatChecks }
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
@@ -250,7 +313,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
         if (rootFlag >= 0 && !process.argv[rootFlag + 1]) throw new Error("--root requires a fixture directory")
         const result = auditTranslations(rootFlag >= 0 ? { root: path.resolve(process.argv[rootFlag + 1]) } : {})
         for (const error of result.errors) console.error(`ERROR: ${error}`)
-        console.log(`i18n: ${result.keyCount} keys × 3 languages; ${result.nativeKeyCount} native keys per language; ${result.formatChecks} ICU format checks`)
+        console.log(`i18n: ${result.keyCount} keys × ${result.languages.length} languages; ${result.nativeKeyCount} native keys per language; ${result.formatChecks} ICU format checks`)
         console.log(result.errors.length ? `FAILED: ${result.errors.length} error(s)` : "OK: registered catalogs, JSON parity/collisions, ICU branches/arguments, source calls and Denshi")
         process.exitCode = result.errors.length ? 1 : 0
     } catch (error) {

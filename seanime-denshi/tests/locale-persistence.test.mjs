@@ -11,7 +11,7 @@ import ts from "typescript"
 const require = createRequire(import.meta.url)
 const appPath = fileURLToPath(new URL("..", import.meta.url))
 const locale = require("../dist/main/locale.js")
-const { loadDenshiStrings } = locale
+const { loadDenshiStrings, denshiLocales } = locale
 
 // Evaluate the actual compiled IPC registrations, without refactoring production
 // handlers for tests or loading Electron, windows, players and the whole app.
@@ -83,6 +83,17 @@ test("fork IPC + actual filesystem + native strings round trip", t => {
     assert.equal(handlers.get().locale, "es")
 })
 
+test("fork IPC persists every registered locale", t => {
+    const { settings } = fixture(t)
+    const handlers = settingsHandlers(settings, settings.loadDenshiSettings())
+    for (const locale of denshiLocales) {
+        const expected = JSON.parse(fs.readFileSync(path.join(appPath, "locales", `${locale}.json`), "utf8"))
+        const saved = handlers.set({ locale })
+        assert.equal(settings.loadDenshiSettings().locale, locale)
+        assert.deepEqual(loadDenshiStrings(appPath, saved.locale), expected)
+    }
+})
+
 test("fork failed rename preserves the actual previous JSON and does not apply state", t => {
     const { file, settings } = fixture(t, { failRename: true })
     const original = { ...settings.DENSHI_SETTINGS_DEFAULTS, locale: "en" }
@@ -108,11 +119,12 @@ test("fork compiled locale module resolves catalogs from the packaged directory 
     fs.mkdirSync(path.join(packaged, "locales"))
     const modulePath = path.join(packaged, "dist/main/locale.js")
     fs.copyFileSync(path.join(appPath, "dist/main/locale.js"), modulePath)
-    for (const locale of ["en", "es", "pt"]) {
+    fs.copyFileSync(path.join(appPath, "dist/main/locale-registry.generated.js"), path.join(packaged, "dist/main/locale-registry.generated.js"))
+    for (const locale of denshiLocales) {
         fs.copyFileSync(path.join(appPath, "locales", `${locale}.json`), path.join(packaged, "locales", `${locale}.json`))
     }
     const { loadDenshiStrings: packagedLoader } = createRequire(modulePath)(modulePath)
-    for (const locale of ["en", "es", "pt"]) assert.deepEqual(packagedLoader(packaged, locale), loadDenshiStrings(appPath, locale))
+    for (const locale of denshiLocales) assert.deepEqual(packagedLoader(packaged, locale), loadDenshiStrings(appPath, locale))
     const config = JSON.parse(fs.readFileSync(path.join(appPath, "package.json"), "utf8"))
     assert.ok(config.build.files.includes("locales/**/*"))
     assert.ok(config.build.files.includes("dist/main/**/*"))

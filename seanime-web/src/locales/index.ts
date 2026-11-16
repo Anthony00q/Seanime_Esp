@@ -124,10 +124,16 @@ const ptModules = [
     ptSettingsAdvanced, ptSettingsUi, ptSettingsLocale
 ] as const;
 
+// Explicit imports stay local to the fork; adding a locale must register its modules here.
+const languageModules = {
+    en: enModules,
+    es: esModules,
+    pt: ptModules,
+} satisfies Record<Locale, readonly Record<string, unknown>[]>;
+
 // Inferencia estricta de la intersección de todos los JSON base
 type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends ((k: infer I) => void) ? I : never;
 type BaseMessages = UnionToIntersection<typeof enModules[number]>;
-type EsMessages = UnionToIntersection<typeof esModules[number]>;
 
 // Tipos auxiliares para extraer rutas en formato "padre.hijo"
 type Join<K, P> = K extends string | number ? P extends string | number ? `${K}${"" extends P ? "" : "."}${P}` : never : never;
@@ -149,10 +155,10 @@ type CheckParity<TargetPaths, BasePaths = TranslationKeys> =
 
 type AssertParity<T extends true> = T;
 
-// Validadores por idioma (Arroja TS2344 si hay disparidad con el inglés)
-type _VerifyEs = AssertParity<CheckParity<Paths<EsMessages>>>;
-type PtMessages = UnionToIntersection<typeof ptModules[number]>;
-type _VerifyPt = AssertParity<CheckParity<Paths<PtMessages>>>;
+// Every registered locale participates automatically, including future additions.
+type _VerifyLanguages = AssertParity<{
+    [L in keyof typeof languageModules]: CheckParity<Paths<UnionToIntersection<(typeof languageModules)[L][number]>>>
+}[keyof typeof languageModules]>;
 
 function flattenAndMerge(...modules: readonly Record<string, any>[]) {
     const result: Record<string, string> = Object.create(null);
@@ -171,15 +177,9 @@ function flattenAndMerge(...modules: readonly Record<string, any>[]) {
 // ---------------------------------------------------------------------------
 // Diccionarios e inicialización diferida (Lazy Evaluation)
 
-const languageModules: Record<string, readonly Record<string, any>[]> = {
-    en: enModules,
-    es: esModules,
-    pt: ptModules,
-};
-
 const translationsCache: Record<string, Record<string, string>> = Object.create(null);
 
-function getTranslations(locale: string): Record<string, string> {
+function getTranslations(locale: Locale): Record<string, string> {
     if (!translationsCache[locale]) {
         const modules = languageModules[locale] || languageModules.en;
         translationsCache[locale] = flattenAndMerge(...modules);

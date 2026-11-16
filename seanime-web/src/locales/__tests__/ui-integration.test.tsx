@@ -4,7 +4,9 @@ import React, { act } from "react"
 import { createRoot, type Root } from "react-dom/client"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { createTranslator } from "../index"
-import { getCurrentLocale, setCurrentLocale } from "../config"
+import { getCurrentLocale, setCurrentLocale, supportedLocales } from "../config"
+import { format } from "date-fns"
+import { capitalizeFirst } from "@/lib/utils/capitalize-date"
 import { getDateFnsLocale } from "../date-locale"
 import { Calendar } from "@/components/ui/calendar/calendar"
 import { ConfirmationDialog, useConfirmationDialog } from "@/components/shared/confirmation-dialog"
@@ -47,6 +49,14 @@ const button = (label: string) => {
     expect(element, `Expected translated button ${label}`).toBeDefined()
     return element!
 }
+
+it.each(supportedLocales)("renders calendar captions for every registered locale (%s)", async locale => {
+    setCurrentLocale(locale)
+    const date = new Date(2026, 4, 15)
+    await act(async () => root.render(<Calendar locale={getDateFnsLocale()} defaultMonth={date} />))
+    expect(container.querySelector(".UI-Calendar__captionLabel")?.textContent)
+        .toBe(capitalizeFirst(format(date, "LLLL y", { locale: getDateFnsLocale() })))
+})
 
 describe.each([
     { locale: "en", caption: "May 2026", title: "Screenshot Directory", save: "Save", cancel: "Cancel", error: "Must be an absolute path" },
