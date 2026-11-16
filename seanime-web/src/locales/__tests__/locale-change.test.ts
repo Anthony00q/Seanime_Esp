@@ -1,6 +1,6 @@
 import "./setup"
 import { describe, expect, it, vi } from "vitest"
-import { getCurrentLocale } from "../config"
+import { getCurrentLocale, supportedLocales, type Locale } from "../config"
 import { changeLocaleAndRestart, LOCALE_IPC_TIMEOUT_MS, persistLocaleChange } from "@/lib/helpers/locale-change"
 import { useMockBrowser } from "./browser"
 
@@ -56,7 +56,7 @@ describe("fork locale persistence", () => {
     })
 
     it("rejects invalid locales before accessing IPC or storage", async () => {
-        await expect(persistLocaleChange("fr" as "es", true)).rejects.toThrow("Invalid locale")
+        await expect(persistLocaleChange("not-a-registered-locale" as Locale, true)).rejects.toThrow("Invalid locale")
         expect(browser().get).not.toHaveBeenCalled()
         expect(browser().localStorage.setItem).toHaveBeenCalledTimes(1) // setup only
     })
@@ -65,6 +65,24 @@ describe("fork locale persistence", () => {
         vi.stubGlobal("window", { localStorage: browser().localStorage, location: { reload: browser().reload } })
         await expect(changeLocaleAndRestart("pt", true)).rejects.toThrow("unavailable")
         expect(browser().reload).not.toHaveBeenCalled()
+    })
+})
+
+describe.each(supportedLocales)("registered locale persistence (%s)", locale => {
+    it("saves both preferences before restarting Denshi", async () => {
+        await changeLocaleAndRestart(locale, true)
+        expect(browser().set).toHaveBeenCalledWith({ locale })
+        expect(getCurrentLocale()).toBe(locale)
+        expect(browser().storage.get("seanime-locale")).toBe(locale)
+        expect(browser().send).toHaveBeenCalledExactlyOnceWith("restart-app-completely")
+        expect(browser().reload).not.toHaveBeenCalled()
+    })
+    it("saves the browser preference without accessing native IPC", async () => {
+        await changeLocaleAndRestart(locale, false)
+        expect(browser().storage.get("seanime-locale")).toBe(locale)
+        expect(browser().get).not.toHaveBeenCalled()
+        expect(browser().send).not.toHaveBeenCalled()
+        expect(browser().reload).toHaveBeenCalledOnce()
     })
 })
 

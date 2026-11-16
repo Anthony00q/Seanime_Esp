@@ -1,16 +1,18 @@
 import { IntlMessageFormat } from "intl-messageformat"
 import policy from "./message-policy.json"
+import { isValidLocale, localeRegistry } from "./config"
 
 const literalKeys = new Set<string>(policy.literalKeys)
 const formatters = new Map<string, IntlMessageFormat>()
 const MAX_FORMATTERS = 500
 const pluralRules = new Map<string, Intl.PluralRules>()
+const intlLocaleFor = (locale: string) => isValidLocale(locale) ? localeRegistry[locale].intlLocale : locale
 
 function formatterFor(text: string, locale: string) {
     const key = `${locale}:${text}`
     let formatter = formatters.get(key)
     if (!formatter) {
-        formatter = new IntlMessageFormat(text, locale)
+        formatter = new IntlMessageFormat(text, intlLocaleFor(locale))
         if (formatters.size >= MAX_FORMATTERS) formatters.delete(formatters.keys().next().value!)
         formatters.set(key, formatter)
     }
@@ -44,7 +46,7 @@ function validateArguments(ast: ReturnType<IntlMessageFormat["getAst"]>, params:
             const ruleKey = `${locale}:${element.pluralType}`
             let rules = pluralRules.get(ruleKey)
             if (!rules) {
-                rules = new Intl.PluralRules(locale, { type: element.pluralType })
+                rules = new Intl.PluralRules(intlLocaleFor(locale), { type: element.pluralType })
                 pluralRules.set(ruleKey, rules)
             }
             const rule = rules.select(value - element.offset)

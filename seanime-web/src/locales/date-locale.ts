@@ -1,12 +1,12 @@
-import { es, enUS, ptBR, Locale } from "date-fns/locale"
-import { getCurrentLocale } from "./config"
+import { es, enUS, ptBR, type Locale as DateFnsLocale } from "date-fns/locale"
+import { getCurrentLocale, type Locale } from "./config"
 
-const DATE_FNS_LOCALES: Record<string, Locale> = {
+export const DATE_FNS_LOCALES = {
     es,
     pt: ptBR,
     en: enUS,
-}
+} satisfies Record<Locale, DateFnsLocale>
 
-export function getDateFnsLocale(): Locale {
+export function getDateFnsLocale(): DateFnsLocale {
     return DATE_FNS_LOCALES[getCurrentLocale()] || es
 }

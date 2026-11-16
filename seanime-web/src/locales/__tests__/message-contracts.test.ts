@@ -9,6 +9,7 @@ import { formatMessageText, renderMessageText } from "../message-format"
 import { useMockBrowser } from "./browser"
 import { repo, readCatalog } from "./catalogs"
 import policy from "../message-policy.json"
+import { supportedLocales, localeRegistry } from "../config"
 
 useMockBrowser()
 
@@ -29,13 +30,13 @@ it("extracts nested typed arguments independently of interpolation order", () =>
     expect(() => messageArguments(new IntlMessageFormat("{value, number} {value, select, other {Unknown}}", "en").getAst())).toThrow("Incompatible")
 })
 
-describe.each(["en", "es", "pt"] as const)("text boundary (%s)", locale => {
+describe.each(supportedLocales)("text boundary (%s)", locale => {
     it("renders the complete real catalog through the production engine", () => {
         const t = createTranslator(locale) as (key: string, params?: Record<string, unknown>) => string
         const literals = new Set<string>(policy.literalKeys)
         for (const [key, text] of Object.entries(readCatalog(locale))) {
             if (literals.has(key)) { expect(t(key), key).toBe(text); continue }
-            const formatter = new IntlMessageFormat(text, locale)
+            const formatter = new IntlMessageFormat(text, localeRegistry[locale].intlLocale)
             const args = messageArguments(formatter.getAst()) as Map<string, string>
             const params = Object.fromEntries([...args].map(([name, kind]) => [name, kind === "number" ? 2 : kind === "date" ? new Date(0) : "sample"]))
             expect(t(key, args.size ? params : undefined), key).toBe(formatter.format(params))

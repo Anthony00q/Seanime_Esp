@@ -1,10 +1,10 @@
-export type Locale = "en" | "es" | "pt"
+import registry from "./registry.json"
 
-export const localeNames: Record<Locale, string> = {
-    en: "English",
-    es: "Español",
-    pt: "Português",
-}
+export const localeRegistry = registry
+export type Locale = keyof typeof localeRegistry
+export const supportedLocales = Object.keys(localeRegistry) as Locale[]
+
+export const localeNames = Object.fromEntries(supportedLocales.map(locale => [locale, localeRegistry[locale].name])) as Record<Locale, string>
 
 export function isValidLocale(value: unknown): value is Locale {
     return typeof value === "string" && Object.prototype.hasOwnProperty.call(localeNames, value)
@@ -51,7 +51,7 @@ export function setCurrentLocale(locale: Locale) {
 
 export function updateDocumentLocale() {
     if (typeof document !== "undefined") {
-        document.documentElement.lang = getCurrentLocale() === "pt" ? "pt-BR" : getCurrentLocale()
+        document.documentElement.lang = localeRegistry[getCurrentLocale()].htmlLang
     }
 }
 

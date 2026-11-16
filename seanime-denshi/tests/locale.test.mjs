@@ -8,9 +8,9 @@ import { test } from "node:test"
 
 const require = createRequire(import.meta.url)
 const appPath = fileURLToPath(new URL("..", import.meta.url))
-const { isDenshiLocale, resolveDenshiLocale, loadDenshiStrings } = require("../dist/main/locale.js")
+const { isDenshiLocale, resolveDenshiLocale, loadDenshiStrings, denshiLocales } = require("../dist/main/locale.js")
 
-for (const locale of ["es", "en", "pt"]) {
+for (const locale of denshiLocales) {
     test(`loads every native section (${locale})`, () => {
         const expected = JSON.parse(fs.readFileSync(path.join(appPath, "locales", `${locale}.json`), "utf8"))
         assert.deepEqual(loadDenshiStrings(appPath, locale), expected)
@@ -18,7 +18,7 @@ for (const locale of ["es", "en", "pt"]) {
 }
 
 test("rejects unsupported locales and path traversal", () => {
-    for (const locale of ["__proto__", "constructor", "toString", "../en", "fr", null, {}]) {
+    for (const locale of ["__proto__", "constructor", "toString", "../en", "not-a-registered-locale", null, {}]) {
         assert.equal(isDenshiLocale(locale), false)
         assert.equal(resolveDenshiLocale(locale), "es")
         assert.deepEqual(loadDenshiStrings(appPath, locale), loadDenshiStrings(appPath, "es"))
@@ -45,6 +45,13 @@ function localeWithContents(contents) {
     }, { filename })
     return exports.loadDenshiStrings(appPath, "pt")
 }
+
+test("native registration covers exactly the packaged catalogs without frontend files", () => {
+    const catalogs = fs.readdirSync(path.join(appPath, "locales")).filter(file => file.endsWith(".json"))
+        .map(file => file.slice(0, -5)).sort()
+    assert.deepEqual([...denshiLocales].sort(), catalogs)
+    for (const locale of catalogs) assert.equal(isDenshiLocale(locale), true)
+})
 
 test("falls back on malformed JSON", () => {
     assert.deepEqual(localeWithContents("{invalid"), loadDenshiStrings(appPath, "es"))

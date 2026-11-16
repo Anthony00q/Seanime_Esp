@@ -10,9 +10,9 @@ void parent
 // @ts-expect-error Unknown paths must not compile.
 createTranslator()("common.buttons.notARealButton")
 // @ts-expect-error Unsupported explicit locales must not compile.
-createTranslator("fr")
+createTranslator("not-a-registered-locale")
 // @ts-expect-error Locale preference accepts supported languages only.
-setCurrentLocale("pt-BR")
+setCurrentLocale("not-a-registered-locale")
 
 const t = createTranslator()
 t("manga.sourceRefresh.installedProviders", { count: 2 })

@@ -2,7 +2,7 @@ import "./setup"
 import fs from "node:fs"
 import path from "node:path"
 import { describe, expect, it } from "vitest"
-import { setCurrentLocale } from "../config"
+import { setCurrentLocale, supportedLocales } from "../config"
 import { translateServerApiError } from "@/lib/helpers/server-error"
 import { translateServerMessage } from "@/lib/helpers/server-toast"
 import { files, httpErrors, readCatalog, repo, toastExamples } from "./catalogs"
@@ -31,7 +31,7 @@ describe("fork backend fixture discovery", () => {
     })
 })
 
-describe.each(["en", "es", "pt"] as const)("fork HTTP adapters (%s)", locale => {
+describe.each(supportedLocales)("fork HTTP adapters (%s)", locale => {
     const catalog = readCatalog(locale)
     const expected = new Set(Object.entries(catalog).filter(([key]) => key.startsWith("toast.serverErrors.")).map(([, value]) => value))
     it.each(errors)("returns a real catalog value for %s", message => {
@@ -60,7 +60,7 @@ describe.each(["en", "es", "pt"] as const)("fork HTTP adapters (%s)", locale => 
     })
 })
 
-describe.each(["es", "pt"] as const)("fork WebSocket adapters (%s)", locale => {
+describe.each(supportedLocales.filter(locale => locale !== "en"))("fork WebSocket adapters (%s)", locale => {
     const catalog = readCatalog(locale)
     const patterns = Object.entries(catalog).filter(([key]) => key.startsWith("toast.")
         || ["entry.debridStream.sendingStream", "scanner.status.scanCompleted", "manga.chaptersAddedToDownloadQueue"].includes(key))
@@ -69,7 +69,9 @@ describe.each(["es", "pt"] as const)("fork WebSocket adapters (%s)", locale => {
     it.each(toasts)("returns localized text, never a raw key/ICU message: %s", message => {
         setCurrentLocale(locale)
         const actual = translateServerMessage(message)
-        expect(actual).not.toBe(message)
+        // Keep this independent regression check for the existing translations.
+        // A new language may legitimately share an English string.
+        if (locale === "es" || locale === "pt") expect(actual).not.toBe(message)
         expect(Object.hasOwn(catalog, actual)).toBe(false)
         expect(actual).not.toMatch(/\{[^}]+\}/)
         expect(patterns.some(pattern => pattern.test(actual))).toBe(true)

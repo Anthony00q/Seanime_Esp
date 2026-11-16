@@ -1,0 +1,5 @@
+{
+    "en": { "name": "English", "intlLocale": "en-US", "htmlLang": "en" },
+    "es": { "name": "Español", "intlLocale": "es", "htmlLang": "es" },
+    "pt": { "name": "Português", "intlLocale": "pt-BR", "htmlLang": "pt-BR" }
+}

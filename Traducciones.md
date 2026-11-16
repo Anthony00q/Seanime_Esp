@@ -34,22 +34,21 @@ Ve a la carpeta `seanime-web/src/locales/` y copia la carpeta `en/` entera. Reno
 
 ### 2. Registro del Idioma
 
-Edita `seanime-web/src/locales/config.ts`:
+Añade una entrada a `seanime-web/src/locales/registry.json`. Este registro es la fuente de los códigos admitidos, nombres nativos, etiquetas regionales y atributos HTML:
 
-```typescript
-// 1. Agrega tu idioma al tipo Locale
-export type Locale = "en" | "es" | "pt" | "fr"
-
-// 2. Ponle un nombre nativo para que aparezca automáticamente en el selector de la UI
-//    (la validación es automática vía isValidLocale() contra esta tabla,
-//    no hay ninguna lista `if (saved === ...)` que actualizar)
-export const localeNames: Record<Locale, string> = {
-    en: "English",
-    es: "Español",
-    pt: "Português",
-    fr: "Français", // ← nuevo
+```json
+{
+    "en": { "name": "English", "intlLocale": "en-US", "htmlLang": "en" },
+    "es": { "name": "Español", "intlLocale": "es", "htmlLang": "es" },
+    "pt": { "name": "Português", "intlLocale": "pt-BR", "htmlLang": "pt-BR" },
+    "fr": { "name": "Français", "intlLocale": "fr", "htmlLang": "fr" }
 }
 ```
+
+- `config.ts` deriva automáticamente `Locale`, `supportedLocales`, `localeNames` y la validación. El selector de Ajustes usa estos nombres.
+- `intlLocale` debe coincidir con el `.code` del locale de `date-fns`; ICU lo usa también para sus reglas regionales. `htmlLang` conserva la etiqueta de accesibilidad (por compatibilidad, inglés sigue siendo `en`).
+- Los códigos y etiquetas deben ser BCP 47 canónicos, sin rutas, espacios ni truncamientos. Se admiten códigos regionales como `fr-CA` si se completan todas las integraciones. No renombre `pt` a `pt-BR`: rompería preferencias guardadas.
+- Se conservan `en` y `es`, necesarios para los fallbacks existentes. No agregue claves de traducción a este JSON.
 
 ### 3. Integración en el Validador Estricto (`index.ts`)
 
@@ -67,39 +66,40 @@ const frModules = [
     frCommon, frHome, frToasts, /* ... resto de archivos */
 ] as const;
 
-// 3. Genera la validación estricta (¡IMPORTANTÍSIMO!)
-// Esto arrojará error TS2344 en compilación si te faltan/sobran keys.
-// El motor también detecta en ejecución las keys duplicadas entre archivos.
-type FrMessages = UnionToIntersection<typeof frModules[number]>;
-type _VerifyFr = AssertParity<CheckParity<Paths<FrMessages>>>;
-
-// 4. Agrégalo al registro de módulos (imports estáticos, con validación estricta)
-const languageModules: Record<string, readonly Record<string, any>[]> = {
+// 3. Agrégalo al registro de módulos (conserva imports estáticos y tipos inferidos)
+const languageModules = {
     en: enModules,
     es: esModules,
     pt: ptModules,
     fr: frModules, // ← nuevo
-};
+} satisfies Record<Locale, readonly Record<string, unknown>[]>;
 ```
+
+La validación `_VerifyLanguages` recorre automáticamente todos los idiomas de `languageModules`: no añada un `_VerifyFr` manual ni debilite los tipos. `satisfies` exige que el registro coincida con `Locale`; el auditor comprueba además cada archivo importado, su uso único y su idioma de origen. La detección de colisiones en ejecución se conserva.
 
 ### 4. Soporte de Fechas Nativas (Calendarios)
 
 Para que el calendario muestre los meses en tu idioma, añade el locale oficial de `date-fns` en `seanime-web/src/locales/date-locale.ts`:
 
 ```typescript
-import { fr } from "date-fns/locale"
+import { fr, type Locale as DateFnsLocale } from "date-fns/locale"
+import type { Locale } from "./config"
 
-const DATE_FNS_LOCALES: Record<string, Locale> = {
+export const DATE_FNS_LOCALES = {
     es,
     en: enUS,
     pt: ptBR,
     fr,  // ← nuevo
-}
+} satisfies Record<Locale, DateFnsLocale>
 ```
 
 ### 5. Traducciones nativas de Electron (Denshi)
 
-Copia **todo** `seanime-denshi/locales/en.json` a `seanime-denshi/locales/fr.json`: incluye el menú del ícono de la bandeja (`tray`), los errores (`error`), los avisos de registros (`logging`) y el inicio (`startup`). Traduce sus valores y registra el código en `DenshiLocale` e `isDenshiLocale()` de `seanime-denshi/src/main/locale.ts`.
+Copia **todo** `seanime-denshi/locales/en.json` a `seanime-denshi/locales/fr.json`: incluye el menú del ícono de la bandeja (`tray`), los errores (`error`), los avisos de registros (`logging`) y el inicio (`startup`). Traduce sus valores.
+
+Desde la raíz ejecuta `npm --prefix seanime-web run i18n:generate`. Esto genera `seanime-denshi/src/main/locale-registry.generated.ts` a partir del registro común y actualiza los contratos ICU. Revisa e incluye los archivos generados en el mismo cambio; no edites manualmente `DenshiLocale` ni añadas otra lista a `isDenshiLocale()`.
+
+El registro nativo generado se compila dentro de `dist/main/`: Denshi instalado no importa código web, no necesita el checkout y sigue cargando sus JSON propios. No muevas el registro a una ruta fuera de `src/main` ni cambies `rootDir` para importar el frontend.
 
 ```json
 {
@@ -130,8 +130,8 @@ Copia **todo** `seanime-denshi/locales/en.json` a `seanime-denshi/locales/fr.jso
 
 ### 6. Tablas y controles del idioma
 
-- El DataGrid usa su propia tabla en `seanime-web/src/components/ui/datagrid/locales.ts`: añada el idioma allí y su locale de `date-fns`.
-- Registre el idioma en el auditor (`languages` en `scripts/i18n-audit.mjs`) y amplíe las pruebas parametrizadas web y nativas.
+- El DataGrid usa su propia tabla en `seanime-web/src/components/ui/datagrid/locales.ts`: añada todas sus etiquetas y su locale de `date-fns`. Conserve el francés legacy y el comportamiento de `lng` explícito. Su soporte se deriva de la tabla de fechas; no hay una segunda lista que editar.
+- El auditor y las suites generales web/nativas recorren el registro automáticamente. No añada listas manuales de idiomas. Los ejemplos lingüísticos independientes de es/en/pt se conservan como regresiones; añada casos específicos del nuevo idioma para plurales, fechas y títulos.
 - Para cifras visibles use `formatNumber()`; para fechas, `formatLocalized()` o `getDateFnsLocale().code` con `Intl`.
 - Para probar el idioma, selecciónalo en Ajustes y confirma la recarga o el reinicio. En Denshi, este cambio guarda también el idioma de los menús y avisos nativos; no hay sincronización automática al arrancar.
 
@@ -139,7 +139,7 @@ Copia **todo** `seanime-denshi/locales/en.json` a `seanime-denshi/locales/fr.jso
 
 Antes de enviar tu aporte, comprueba que no falten claves y que las traducciones se muestren correctamente. Necesitas tener instaladas las dependencias de `seanime-web` y `seanime-denshi`.
 
-Si modificaste los argumentos ICU o añadiste mensajes parametrizados, ejecuta primero `npm --prefix seanime-web run i18n:generate` desde la raíz y revisa los cambios de `seanime-web/src/locales/message-params.generated.ts`. No edites ese archivo manualmente. La verificación comprueba que esté actualizado, pero no lo regenera.
+Si modificaste el registro de idiomas, los argumentos ICU o añadiste mensajes parametrizados, ejecuta primero `npm --prefix seanime-web run i18n:generate` desde la raíz y revisa `seanime-denshi/src/main/locale-registry.generated.ts` y `seanime-web/src/locales/message-params.generated.ts`. No edites esos archivos manualmente. La verificación comprueba que estén actualizados, pero no los regenera.
 
 Abre la terminal en la raíz del proyecto y ejecuta:
 ```bash
@@ -147,14 +147,20 @@ cd seanime-web
 npm run verify:i18n
 ```
 
-Este comando comprueba los tipos, la estructura y paridad de los catálogos, claves duplicadas, mensajes ICU y las pruebas de traducción web y nativas.
+Este comando comprueba los tipos, el registro y su salida nativa generada, la estructura y paridad de todos los catálogos registrados, claves duplicadas, mensajes ICU y las pruebas de traducción web y nativas. También exige cobertura de fechas y DataGrid, rechaza directorios/catálogos no registrados y comprueba que no falten archivos nativos.
+
+Las pruebas usan un cuarto idioma y un código regional en fixtures aislados para comprobar que la expansión no salte validaciones. No habilitan ningún idioma nuevo en la aplicación.
+
+Copiar inglés no significa haber traducido: pasar el auditor certifica estructura y formato, no calidad o cobertura lingüística. Revise valores, plurales y textos largos con hablantes del idioma. Las coincidencias con inglés pueden ser legítimas (nombres propios y jerga técnica).
+
+Después ejecute la suite general (`npm test`), los builds web y Denshi del renderer (`npm run build` y `npm run build:denshi`) y las pruebas nativas. Antes de publicar, compruebe el workflow `Translation checks` en Windows/Linux, un instalador real con sus catálogos y el cambio de idioma/reinicio. Un test del layout empaquetado no sustituye probar el instalador.
 
 ### Contratos de parámetros y recuperación
 
 `createTranslator()` conserva su API y su singleton dinámico, pero sus parámetros se comprueban también por clave. Los contratos se extraen del AST ICU del catálogo inglés; no se mantienen manualmente ni se deducen mediante regex.
 
 - Después de modificar los argumentos ICU o añadir mensajes parametrizados, ejecute `npm run i18n:generate` desde `seanime-web` y revise `src/locales/message-params.generated.ts`.
-- `typecheck`, los builds y `i18n:check` comprueban que ese archivo esté actualizado; **no lo sobrescriben**. La paridad es/en/pt y la detección de colisiones siguen siendo obligatorias.
+- `typecheck`, los builds y `i18n:check` comprueban que los archivos generados estén actualizados; **no los sobrescriben**. La paridad de todos los idiomas registrados y la detección de colisiones siguen siendo obligatorias.
 - Los plurales/números ICU exigen `number`; los selectores admiten texto o booleanos; las interpolaciones de texto admiten texto o números. El tipado exige conservadoramente los argumentos de todas las ramas, como el auditor; en ejecución solo se validan las ramas seleccionadas.
 - `t()` devuelve texto, no JSX ni arrays. No utilice `defaultValue` como parámetro: no es una opción de fallback.
 - Para diccionarios externos como AniList, use `translateOptional(key, original)`: conserva el valor original si la entrada no existe, sin producir avisos de claves rotas. Para conjuntos cerrados, prefiera mapas tipados de identificadores a claves; `TranslationKeyWithoutParams` limita los mapas de etiquetas sin argumentos.
@@ -185,6 +191,14 @@ El inventario AST detecta disminuciones de llamadas traducidas (incluidas claves
 El workflow `Translation checks` permite introducir esas referencias y un archivo de revisión versionado mediante `workflow_dispatch`. En pushes/PR ordinarios siguen ejecutándose tipos, auditor, contratos y suites; **el análisis de actualización no se activa sin referencias explícitas**. Los commits deben estar disponibles en el checkout; la herramienta no los descarga.
 
 Después del informe, ejecute `verify:i18n`, la suite general y los builds pertinentes, y pruebe visualmente los flujos afectados en es/en/pt. La revisión AST no verifica que callbacks, permisos, tiempos de salto o valores técnicos conserven su comportamiento.
+
+Para conservar este refuerzo tras un rebase:
+
+- Mantenga `registry.json`, la derivación de `Locale` y la paridad automática de todos los módulos; no restaure listas fijas de tres idiomas.
+- No regenere archivos para ocultar un conflicto: fusione primero el registro/catálogos y después ejecute `i18n:generate`, revisando el resultado.
+- Conserve los JSON nativos y `dist/main/**/*` en el empaquetado de Denshi. El registro generado debe seguir compilándose sin importar archivos web.
+- Si upstream reorganiza DataGrid u otros controles, adapte sus tablas y las comprobaciones AST a la estructura nueva; no restaure componentes antiguos ni reduzca cobertura para silenciar errores.
+- La carga sigue siendo estática: la caché difiere el aplanado, no la descarga. Evalúe carga por idioma únicamente tras medir el bundle y el arranque, incluyendo funcionamiento offline.
 
 Opcionalmente, ejecuta `npm run i18n:lint` desde `seanime-web` para buscar textos que podrían seguir sin traducir. Sus resultados son orientativos: pueden incluir nombres o valores técnicos que no deben traducirse.
 
