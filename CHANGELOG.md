@@ -4,12 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## v3.10.5
 
-- ⚡️ Mobile: Record crash reports and startup failures
-- 🦺 Torrent streaming: Fixed torrents not being announced after file selection
-- 🦺 Real-Debrid: Fixed 403 error when adding torrents #990
-- 🦺 Discord: Fixed Rich Presence failing to connect with profile decorations
-- 🦺 Plugins: Fixed crash when anime and manga API calls fail #988
-- ⬆️ MpvCore: Updated mpv-prism to 0.1.10
+- ⚡️ Móvil: Se registran los cierres inesperados y los fallos de arranque
+- 🦺 Streaming de torrents: Se corrige un fallo que impedía anunciar los torrents tras seleccionar los archivos
+- 🦺 Real-Debrid: Corregido el error 403 al añadir torrents #990
+- 🦺 Discord: Se corrige un fallo de conexión de Rich Presence con decoraciones de perfil
+- 🦺 Plugins: Se corrige un cierre inesperado al fallar las llamadas a las API de anime y manga #988
+- ⬆️ MpvCore: Actualizado mpv-prism a 0.1.10
 
 ## v3.10.4
 
