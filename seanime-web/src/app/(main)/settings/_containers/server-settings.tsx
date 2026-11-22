@@ -2,6 +2,7 @@ import { useGetAnilistCacheLayerStatus, useToggleAnilistCacheLayerStatus } from 
 import { useListAnimeEntryEpisodeTabExtensions } from "@/api/hooks/extensions.hooks"
 import { useLocalSyncSimulatedDataToAnilist } from "@/api/hooks/local.hooks"
 import { __seaCommand_shortcuts } from "@/app/(main)/_features/sea-command/sea-command"
+import { LocaleSettings } from "@/app/(main)/settings/_components/locale-settings"
 import { SettingsCard } from "@/app/(main)/settings/_components/settings-card"
 import { SettingsSubmitButton } from "@/app/(main)/settings/_components/settings-submit-button"
 import { ConfirmationDialog, useConfirmationDialog } from "@/components/shared/confirmation-dialog"
@@ -13,7 +14,6 @@ import { Switch } from "@/components/ui/switch"
 import { Separator } from "@/components/ui/separator"
 import { __isElectronDesktop__ } from "@/types/constants"
 import { createTranslator } from "@/locales"
-import { localeNames } from "@/locales/config"
 import { useAtom } from "jotai/react"
 import React from "react"
 import { useFormContext, useWatch } from "react-hook-form"
@@ -98,6 +98,8 @@ export function ServerSettings(props: ServerSettingsProps) {
                     className="fixed top-4 right-4 z-[50] hidden lg:block"
                 />
             )}
+
+            <LocaleSettings desktop={__isElectronDesktop__} />
 
             <SettingsCard title={t("entry.episodes")}>
                 <Field.Switch
@@ -460,16 +462,6 @@ export function ServerSettings(props: ServerSettingsProps) {
 
 
             <Separator />
-
-            <SettingsCard
-                title={t("settings.locale.title")}
-                description={t("settings.locale.description")}
-            >
-                <Field.Select
-                    name="locale"
-                    options={Object.entries(localeNames).map(([value, label]) => ({ value, label }))}
-                />
-            </SettingsCard>
 
             <SettingsSubmitButton isPending={isPending} />
 

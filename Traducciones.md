@@ -130,10 +130,10 @@ El registro nativo generado se compila dentro de `dist/main/`: Denshi instalado 
 
 ### 6. Tablas y controles del idioma
 
-- El DataGrid usa su propia tabla en `seanime-web/src/components/ui/datagrid/locales.ts`: añada todas sus etiquetas y su locale de `date-fns`. Conserve el francés legacy y el comportamiento de `lng` explícito. Su soporte se deriva de la tabla de fechas; no hay una segunda lista que editar.
+- El DataGrid usa sus propias etiquetas y su tabla de fechas en `seanime-web/src/components/ui/datagrid/locales.ts`. El francés (`fr`) ya existe en ambas por compatibilidad, aunque todavía no es un idioma de la app: si añades `fr`, revisa y reutiliza esas entradas sin duplicarlas. Para un idioma que el DataGrid aún no admite, añade sus etiquetas y su locale de `date-fns`. Conserva el comportamiento de `lng` explícito; no hay una segunda lista de idiomas admitidos que editar.
 - El auditor y las suites generales web/nativas recorren el registro automáticamente. No añada listas manuales de idiomas. Los ejemplos lingüísticos independientes de es/en/pt se conservan como regresiones; añada casos específicos del nuevo idioma para plurales, fechas y títulos.
 - Para cifras visibles use `formatNumber()`; para fechas, `formatLocalized()` o `getDateFnsLocale().code` con `Intl`.
-- Para probar el idioma, selecciónalo en Ajustes y confirma la recarga o el reinicio. En Denshi, este cambio guarda también el idioma de los menús y avisos nativos; no hay sincronización automática al arrancar.
+- Para probar el idioma, ve a **Ajustes → App → Idioma**, selecciónalo y pulsa **Aplicar idioma**. Confirma la recarga de la página en web o el reinicio en Denshi. Comprueba que la interfaz cambia de idioma y que la preferencia se conserva al volver a abrirla. En Denshi, comprueba también el menú de la bandeja si está disponible.
 
 ## Verificación Final antes de enviar tu aporte
 
@@ -153,7 +153,9 @@ Las pruebas usan un cuarto idioma y un código regional en fixtures aislados par
 
 Copiar inglés no significa haber traducido: pasar el auditor certifica estructura y formato, no calidad o cobertura lingüística. Revise valores, plurales y textos largos con hablantes del idioma. Las coincidencias con inglés pueden ser legítimas (nombres propios y jerga técnica).
 
-Después ejecute la suite general (`npm test`), los builds web y Denshi del renderer (`npm run build` y `npm run build:denshi`) y las pruebas nativas. Antes de publicar, compruebe el workflow `Translation checks` en Windows/Linux, un instalador real con sus catálogos y el cambio de idioma/reinicio. Un test del layout empaquetado no sustituye probar el instalador.
+- **Si solo corriges textos:** ejecuta `verify:i18n` y revisa en la app las pantallas afectadas.
+- **Si incorporas un idioma:** además, ejecuta la suite general (`npm test`), compila la interfaz web y la de Denshi (`npm run build` y `npm run build:denshi`) y prueba el cambio de idioma como se indica en el paso 6.
+- **Antes de publicar una versión:** comprueba el workflow `Translation checks` en Windows/Linux y verifica los catálogos y el cambio de idioma con un paquete real de Denshi. La prueba del layout empaquetado no sustituye esa comprobación.
 
 ### Contratos de parámetros y recuperación
 
@@ -167,7 +169,7 @@ Después ejecute la suite general (`npm test`), los builds web y Denshi del rend
 - Ante un error de formato, el motor intenta el mensaje inglés y, si los datos tampoco permiten formatearlo, devuelve una etiqueta localizada de texto no disponible. No inventa conteos ni ejecuta acciones. Los diagnósticos no incluyen valores de parámetros.
 - En desarrollo, compruebe tanto `window.__seanime_i18n_missingKeys` como `window.__seanime_i18n_formatErrors` tras recorrer el flujo. La ausencia de entradas no demuestra cobertura de pantallas no visitadas.
 
-### Revisión de una actualización upstream
+### Revisión de una actualización upstream (mantenedores)
 
 Guarde **antes** de actualizar tres referencias: el commit del fork previo a la actualización y los commits upstream anterior/nuevo. No utilice `main...traducciones` como inventario de novedades upstream.
 

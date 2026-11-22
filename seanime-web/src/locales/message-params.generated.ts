@@ -142,6 +142,8 @@ export interface MessageParams {
     "seaCommand.participants": { "count": string | number }
     "seaCommand.results": { "type": string | number }
     "search.continueWatching.goToEpisode": { "n": string | number }
+    "settings.locale.reloadDescription": { "language": string | number }
+    "settings.locale.restartDescription": { "language": string | number }
     "settings.manga.overwriteAllSources": { "provider": string | number }
     "settings.mediaPlayer.defaultSocket": { "default": string | number }
     "sync.unsavedMediaAnimeOnly": { "animeCount": string | number }

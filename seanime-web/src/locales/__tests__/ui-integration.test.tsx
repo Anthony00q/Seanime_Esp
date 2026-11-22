@@ -9,13 +9,12 @@ import { format } from "date-fns"
 import { capitalizeFirst } from "@/lib/utils/capitalize-date"
 import { getDateFnsLocale } from "../date-locale"
 import { Calendar } from "@/components/ui/calendar/calendar"
-import { ConfirmationDialog, useConfirmationDialog } from "@/components/shared/confirmation-dialog"
+import { ConfirmationDialog } from "@/components/shared/confirmation-dialog"
 import { ScreenshotDirModal } from "@/app/(main)/_features/media-core/screenshot-dir-modal"
-import { changeLocaleAndRestart } from "@/lib/helpers/locale-change"
 import { DenshiSettings } from "@/app/(main)/settings/_containers/denshi-settings"
+import { LocaleSettings } from "@/app/(main)/settings/_components/locale-settings"
 import { Form } from "@/components/ui/form"
 import { settingsSchema } from "@/lib/server/settings"
-import { isLocaleOnlySettingsChange } from "@/lib/helpers/settings-locale"
 import type { UseFormReturn } from "react-hook-form"
 
 // Only the filesystem picker is replaced: keep real React, buttons, Radix dialog and portals.
@@ -89,39 +88,177 @@ describe.each([
     })
 })
 
-function LocaleConfirmation({ cancelled }: { cancelled: () => void }) {
-    const t = createTranslator()
-    const confirmation = useConfirmationDialog({
-        title: t("settings.locale.restartRequired"), description: t("settings.locale.restartDescription"),
-        onConfirm: () => { void changeLocaleAndRestart("pt", true) }, onCancel: cancelled,
-    })
-    return <><button data-open-language onClick={confirmation.open}>Open fixture</button><ConfirmationDialog {...confirmation} /></>
+async function renderLocaleSettings(desktop: boolean) {
+    const onSubmit = vi.fn()
+    const formRef = React.createRef<UseFormReturn<any>>()
+    await act(async () => root.render(<Form
+        schema={settingsSchema}
+        mRef={formRef}
+        defaultValues={{ defaultPlayer: "mpv", mediaPlayerHost: "localhost", vlcPort: 8080, mpcPort: 13579, qbittorrentPort: 8080 }}
+        onSubmit={onSubmit}
+    >
+        <LocaleSettings desktop={desktop} />
+        <button type="submit">Save fixture</button>
+    </Form>))
+    const select = container.querySelector<HTMLButtonElement>('[role="combobox"]')!
+    return { formRef, onSubmit, select }
 }
 
-it.each(["confirm", "cancel", "close", "escape"])("fork locale confirmation persists only when confirmed (%s)", async action => {
+async function chooseLanguage(select: HTMLButtonElement, language = "Português") {
+    await act(async () => {
+        select.focus()
+        select.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }))
+    })
+    const option = [...document.querySelectorAll<HTMLElement>('[role="option"]')].find(el => el.textContent === language)!
+    expect(option).toBeDefined()
+    await act(async () => option.click())
+    expect(select.textContent).toBe(language)
+}
+
+it("does not open the language menu when clicking its visible label", async () => {
+    const { select } = await renderLocaleSettings(false)
+    const label = document.getElementById(select.getAttribute("aria-labelledby")!)!
+    expect(label.tagName).not.toBe("LABEL")
+    await act(async () => label.click())
+    expect(select.getAttribute("aria-expanded")).toBe("false")
+    expect(document.querySelector('[role="listbox"]')).toBeNull()
+    await chooseLanguage(select)
+})
+
+it.each(["confirm", "cancel", "close", "escape"])("the real language control applies only when confirmed (%s)", async action => {
     const confirmed = action === "confirm"
     const get = vi.fn(async () => ({ locale: "es", minimizeToTray: true, openInBackground: false, openAtLaunch: false }))
     const set = vi.fn(async (patch: Partial<DenshiSettings>) => ({ ...(await get()), ...patch }))
     const send = vi.fn()
-    const cancelled = vi.fn()
     const previous = window.electron
     window.electron = { denshiSettings: { get, set }, send } as unknown as Window["electron"]
     try {
-        await act(async () => root.render(<LocaleConfirmation cancelled={cancelled} />))
-        await act(async () => document.querySelector<HTMLButtonElement>("[data-open-language]")!.click())
+        const { onSubmit, select } = await renderLocaleSettings(true)
+        expect(document.getElementById(select.getAttribute("aria-labelledby")!)?.textContent).toBe("Idioma de la aplicación")
+        expect(document.getElementById(select.getAttribute("aria-describedby")!)?.textContent).toContain("reiniciar")
+        expect(button("Aplicar idioma").disabled).toBe(true)
+        await chooseLanguage(select)
+        expect(button("Aplicar idioma").disabled).toBe(false)
+        await act(async () => button("Aplicar idioma").click())
+        expect(document.querySelector('[role="dialog"]')?.textContent).toContain('"Português"')
+        expect(document.activeElement).toBe(button("Cancelar"))
         expect(getCurrentLocale()).toBe("es")
         expect(set).not.toHaveBeenCalled()
         await act(async () => {
             if (action === "close") document.querySelector<HTMLButtonElement>("button.UI-Modal__close")!.click()
             else if (action === "escape") document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }))
-            else button(confirmed ? "Confirmar" : "Cancelar").click()
+            else button(confirmed ? "Reiniciar Seanime" : "Cancelar").click()
         })
-        // Dismissal must not run the negative action used by torrent/debrid dialogs.
-        expect(cancelled).toHaveBeenCalledTimes(action === "cancel" ? 1 : 0)
+        expect(onSubmit).not.toHaveBeenCalled()
         expect(getCurrentLocale()).toBe(confirmed ? "pt" : "es")
-        expect(set).toHaveBeenCalledTimes(confirmed ? 1 : 0)
+        expect(set.mock.calls).toEqual(confirmed ? [[{ locale: "pt" }]] : [])
         expect(send.mock.calls).toEqual(confirmed ? [["restart-app-completely"]] : [])
+        if (!confirmed) {
+            expect(document.querySelector('[role="dialog"]')).toBeNull()
+            expect(select.textContent).toBe("Español")
+            expect(button("Aplicar idioma").disabled).toBe(true)
+        }
     } finally { window.electron = previous }
+})
+
+it.each(supportedLocales)("uses double quotes around the target language in web and desktop (%s)", locale => {
+    const t = createTranslator(locale)
+    const language = "English"
+    expect(t("settings.locale.reloadDescription", { language })).toContain('"English"')
+    expect(t("settings.locale.restartDescription", { language })).toContain('"English"')
+})
+
+it.each(["cancel", "close", "escape"])("keeps the target language visible during the dialog exit (%s)", async action => {
+    const style = document.createElement("style")
+    style.textContent = '.UI-Modal__overlay[data-state="closed"], .UI-Modal__content[data-state="closed"] { animation-name: locale-test-exit; }'
+    document.head.append(style)
+    try {
+        const { select } = await renderLocaleSettings(false)
+        await chooseLanguage(select, "English")
+        await act(async () => button("Aplicar idioma").click())
+        const dialog = document.querySelector<HTMLElement>('[role="dialog"]')!
+        const overlay = dialog.closest<HTMLElement>(".UI-Modal__overlay")!
+        const description = document.getElementById(dialog.getAttribute("aria-describedby")!)!
+        const message = description.textContent
+        expect(message).toContain('"English"')
+
+        await act(async () => {
+            if (action === "close") dialog.querySelector<HTMLButtonElement>("button.UI-Modal__close")!.click()
+            else if (action === "escape") document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }))
+            else button("Cancelar").click()
+        })
+        expect(dialog.isConnected).toBe(true)
+        expect(dialog.dataset.state).toBe("closed")
+        expect(description.textContent).toBe(message)
+        expect(select.textContent).toBe("Español")
+
+        await act(async () => {
+            for (const node of [dialog, overlay]) {
+                node.dispatchEvent(Object.assign(new Event("animationend"), { animationName: "locale-test-exit" }))
+            }
+        })
+        expect(dialog.isConnected).toBe(false)
+        await chooseLanguage(select)
+        await act(async () => button("Aplicar idioma").click())
+        expect(document.querySelector('[role="dialog"]')?.textContent).toContain('"Português"')
+    } finally {
+        style.remove()
+    }
+})
+
+it("shows web copy and warns about dirty settings without saving or resetting them", async () => {
+    const { formRef, onSubmit, select } = await renderLocaleSettings(false)
+    expect(document.getElementById(select.getAttribute("aria-describedby")!)?.textContent).toContain("recargar la página")
+    await act(async () => formRef.current!.setValue("hideAnimeSpoilers", true, { shouldDirty: true }))
+    await chooseLanguage(select)
+    await act(async () => button("Aplicar idioma").click())
+    const dialog = document.querySelector('[role="dialog"]')!
+    const description = document.getElementById(dialog.getAttribute("aria-describedby")!)
+    expect(description?.textContent).toContain("La página se recargará")
+    expect(description?.textContent).toContain("Se perderán los demás cambios sin guardar.")
+    expect(button("Recargar página")).toBeDefined()
+    await act(async () => button("Cancelar").click())
+    expect(formRef.current!.getValues("hideAnimeSpoilers")).toBe(true)
+    expect(onSubmit).not.toHaveBeenCalled()
+    expect(getCurrentLocale()).toBe("es")
+})
+
+it("the general save button does not apply a selected language", async () => {
+    const { formRef, onSubmit, select } = await renderLocaleSettings(false)
+    await act(async () => formRef.current!.setValue("hideAnimeSpoilers", true, { shouldDirty: true }))
+    await chooseLanguage(select)
+    await act(async () => button("Save fixture").click())
+    expect(onSubmit).toHaveBeenCalledOnce()
+    expect(onSubmit.mock.calls[0]?.[0]).toMatchObject({ hideAnimeSpoilers: true })
+    expect(onSubmit.mock.calls[0]?.[0]).not.toHaveProperty("locale")
+    expect(document.querySelector('[role="dialog"]')).toBeNull()
+    expect(getCurrentLocale()).toBe("es")
+})
+
+it("leaves the language confirmation open and retryable if native storage fails", async () => {
+    const get = vi.fn(async () => ({ locale: "es" }))
+    const set = vi.fn(async (patch: Partial<DenshiSettings>) => {
+        if (patch.locale === "pt") throw new Error("disk full")
+        return patch
+    })
+    const send = vi.fn()
+    const previous = window.electron
+    window.electron = { denshiSettings: { get, set }, send } as unknown as Window["electron"]
+    const log = vi.spyOn(console, "error").mockImplementation(() => {})
+    try {
+        const { onSubmit, select } = await renderLocaleSettings(true)
+        await chooseLanguage(select)
+        await act(async () => button("Aplicar idioma").click())
+        await act(async () => button("Reiniciar Seanime").click())
+        expect(document.querySelector('[role="alert"]')?.textContent).toContain("No se pudo aplicar")
+        expect(button("Reiniciar Seanime").disabled).toBe(false)
+        expect(getCurrentLocale()).toBe("es")
+        expect(send).not.toHaveBeenCalled()
+        expect(onSubmit).not.toHaveBeenCalled()
+    } finally {
+        log.mockRestore()
+        window.electron = previous
+    }
 })
 
 it("keeps rich confirmation content valid and accessible in its original body layout", async () => {
@@ -162,27 +299,4 @@ it.each(["win32", "linux"])("preserves optimistic Denshi switches without overwr
         expect(getCurrentLocale()).toBe("es")
         expect(initial.locale).toBe("pt")
     } finally { window.electron = previous }
-})
-
-it("detects language-only submissions using the actual settings form and resolver", async () => {
-    const formRef = React.createRef<UseFormReturn<any>>()
-    const results: boolean[] = []
-    await act(async () => root.render(<Form
-        schema={settingsSchema}
-        mRef={formRef}
-        defaultValues={{ defaultPlayer: "mpv", mediaPlayerHost: "localhost", vlcPort: 8080, mpcPort: 13579, qbittorrentPort: 8080, locale: "es" }}
-        onSubmit={values => { results.push(isLocaleOnlySettingsChange(values, formRef.current?.formState.defaultValues, getCurrentLocale())) }}
-    ><button type="submit" data-save-settings>Save fixture</button></Form>))
-
-    await act(async () => formRef.current!.setValue("locale", "pt"))
-    await act(async () => document.querySelector<HTMLButtonElement>("[data-save-settings]")!.click())
-    expect(results).toEqual([true])
-
-    await act(async () => formRef.current!.setValue("hideAnimeSpoilers", true))
-    await act(async () => document.querySelector<HTMLButtonElement>("[data-save-settings]")!.click())
-    expect(results).toEqual([true, false])
-
-    await act(async () => formRef.current!.setValue("hideAnimeSpoilers", false))
-    await act(async () => document.querySelector<HTMLButtonElement>("[data-save-settings]")!.click())
-    expect(results).toEqual([true, false, true])
 })

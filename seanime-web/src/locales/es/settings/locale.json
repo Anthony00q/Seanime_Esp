@@ -1,11 +1,19 @@
 {
   "settings": {
     "locale": {
-      "changeFailed": "No se pudo guardar el idioma. Comprueba el acceso al almacenamiento e inténtalo de nuevo.",
       "title": "Idioma",
-      "description": "Cambiar el idioma de la aplicación. Requiere un reinicio para aplicarse.",
-      "restartRequired": "Cambio de idioma",
-      "restartDescription": "Es obligatorio reiniciar la aplicación ahora para aplicar el nuevo idioma. Si cancelas, el cambio será descartado."
+      "fieldLabel": "Idioma de la aplicación",
+      "apply": "Aplicar idioma",
+      "desktopHelp": "El cambio se aplica al reiniciar Seanime.",
+      "webHelp": "El cambio se aplica al recargar la página.",
+      "confirmTitle": "Cambiar idioma",
+      "restartDescription": "Seanime se reiniciará para aplicar el idioma \"{language}\".",
+      "reloadDescription": "La página se recargará para aplicar el idioma \"{language}\".",
+      "restartApp": "Reiniciar Seanime",
+      "reloadPage": "Recargar página",
+      "unsavedChanges": "Se perderán los demás cambios sin guardar.",
+      "applying": "Aplicando idioma…",
+      "changeFailed": "No se pudo aplicar el idioma. Inténtalo de nuevo."
     }
   }
 }

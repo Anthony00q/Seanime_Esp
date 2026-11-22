@@ -36,7 +36,6 @@ import { Field, Form } from "@/components/ui/form"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ConfirmationDialog, useConfirmationDialog } from "@/components/shared/confirmation-dialog"
 import { useRouter, useSearchParams } from "@/lib/navigation"
 import { DEFAULT_TORRENT_CLIENT, DEFAULT_TORRENT_PROVIDER, settingsSchema, TORRENT_PROVIDER } from "@/lib/server/settings"
 import { THEME_DEFAULT_VALUES } from "@/lib/theme/theme-hooks"
@@ -77,9 +76,6 @@ import { DiscordRichPresenceSettings } from "./_containers/discord-rich-presence
 import { LocalSettings } from "./_containers/local-settings"
 import { NakamaSettings } from "./_containers/nakama-settings"
 import { createTranslator } from "@/locales"
-import { getCurrentLocale, isValidLocale, type Locale } from "@/locales/config"
-import { changeLocaleAndRestart } from "@/lib/helpers/locale-change"
-import { isLocaleOnlySettingsChange } from "@/lib/helpers/settings-locale"
 
 const t = createTranslator()
 
@@ -120,28 +116,6 @@ export default function Page() {
     const { mutate: checkForUpdates, isPending: isCheckingForUpdates } = useCheckForUpdates()
     const setWebUpdateModalOpen = useSetAtom(webUpdateModalOpenAtom)
     const setElectronUpdateModalOpen = useSetAtom(electronUpdateModalOpenAtom)
-
-    const [pendingLocale, setPendingLocale] = React.useState<Locale | null>(null)
-    const confirmRestart = useConfirmationDialog({
-        title: t("settings.locale.restartRequired"),
-        description: t("settings.locale.restartDescription"),
-        onConfirm: async () => {
-            if (pendingLocale) {
-                try {
-                    await changeLocaleAndRestart(pendingLocale, __isElectronDesktop__)
-                } catch (error) {
-                    console.error("[i18n] Failed to persist locale", error)
-                    toast.error(t("settings.locale.changeFailed"))
-                    formRef.current?.setValue("locale", getCurrentLocale())
-                    setPendingLocale(null)
-                }
-            }
-        },
-        onCancel: () => {
-            setPendingLocale(null)
-            formRef.current?.setValue("locale", getCurrentLocale())
-        },
-    })
 
     React.useEffect(() => {
         if (!isPending && !!data?.settings) {
@@ -185,7 +159,6 @@ export default function Page() {
 
     return (
         <>
-            <ConfirmationDialog {...confirmRestart} />
             <CustomLibraryBanner discrete />
             <PageWrapper data-settings-page-container className="p-4 sm:p-8 space-y-4 relative">
                 {/*<Separator/>*/}
@@ -364,7 +337,6 @@ export default function Page() {
                             schema={settingsSchema}
                             mRef={formRef}
                             onSubmit={async data => {
-                                const localeOnly = isLocaleOnlySettingsChange(data, formRef.current?.formState.defaultValues, getCurrentLocale())
                                 await saveSettings({
                                     library: {
                                         libraryPath: data.libraryPath,
@@ -483,7 +455,7 @@ export default function Page() {
                                     },
                                 })
 
-                                if (!localeOnly) toast.success(t("toast.settings.settingsSaved"))
+                                toast.success(t("toast.settings.settingsSaved"))
 
                                 const prevTheme = status?.themeSettings ?? { id: 0, ...THEME_DEFAULT_VALUES }
                                 const shouldSaveSpoilerSettings =
@@ -506,12 +478,6 @@ export default function Page() {
                                     })
                                 }
 
-                                const newLocale = (data.locale && data.locale !== getCurrentLocale()) ? data.locale : null
-
-                                if (newLocale) {
-                                    if (isValidLocale(newLocale)) setPendingLocale(newLocale)
-                                }
-
                                 formRef.current?.reset(data)
 
                                 if (__isElectronDesktop__ && window.electron?.denshiSettings) {
@@ -520,13 +486,7 @@ export default function Page() {
                                     } catch (error) {
                                         console.error("[Denshi] Failed to save update channel", error)
                                         toast.error(t("common.toast.error"))
-                                        setPendingLocale(null)
-                                        return
                                     }
-                                }
-                                
-                                if (newLocale) {
-                                    confirmRestart.open()
                                 }
                             }}
                             defaultValues={{
@@ -634,7 +594,6 @@ export default function Page() {
                                 hideAnimeSpoilerDescriptions: status?.themeSettings?.hideAnimeSpoilerDescriptions ?? THEME_DEFAULT_VALUES.hideAnimeSpoilerDescriptions,
                                 hideAnimeSpoilerSkipNextEpisode: status?.themeSettings?.hideAnimeSpoilerSkipNextEpisode ?? THEME_DEFAULT_VALUES.hideAnimeSpoilerSkipNextEpisode,
                                 showTorrentAvailability: status?.settings?.library?.showTorrentAvailability ?? false,
-                                locale: pendingLocale || getCurrentLocale(),
                             }}
                             stackClass="space-y-0 relative"
                         >
